@@ -1,5 +1,6 @@
 PAGES = \
 	index.html \
+	graduated-students.html \
 	pubs.html
 
 %.html: %.dj REFLINKS HEADER.html FOOTER.html

@@ -1,4 +1,4 @@
-# Zachary Tatlock
+# [Zachary Tatlock][]
 
 Associate Professor \
 [Paul G. Allen School of Computer Science & Engineering][PGAS] \
@@ -36,7 +36,24 @@ We rigorously prove our results and build real systems[^1].
 {#students}
 ## Students
 
-Current
+{.quote}
+> Focus on the students,
+>   since graduating great students means
+>     you'll produce great research,
+>   while focusing on the research
+>     may or may not produce great students.[^advising-quote]
+>
+> -- Nico Habermann
+
+[^advising-quote]: I first heard this
+    [Nico Habermann](https://history.computer.org/pioneers/habermann.html)
+    quote from one of his students, the great
+    [David Notkin](https://www.cs.washington.edu/people/faculty/notkin),
+    during my interview at UW.
+To get a feel for what David was like, check out his talk
+    [A Software Crisis? Please, sir, may I have some more?](https://www.youtube.com/watch?v=ye8mwGb8ExI).
+
+Current Students
 
 - [Max Willsey][], Postdoctoral Scholar
 - [Gus Smith][], PhD Student
@@ -51,9 +68,7 @@ Current
 - [Vishal Canumalla][], BS Student
 - [Caleb Chan][], BS Student
 
-Alumni
-
-- [James Wilcox][], PhD Alum, Graduated 2021
+See [graduated students](graduated-students.html) for more.
 
 {#teaching}
 ## Teaching
@@ -231,7 +246,9 @@ Department
 - 2013 - 2019 : UW CSE Grad Culture Chair
 - 2009 - 2011 : UCSD GradCom Student Representative
 
-I have also helped write and direct
-  UW's annual faculty skit since 2015.
+I have also helped
+  write, produce, and direct
+  UW's annual faculty skit since 2015
+  with [Hank Levy][] and [Adriana Schulz][].
 
 

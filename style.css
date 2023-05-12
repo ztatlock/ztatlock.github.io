@@ -54,6 +54,16 @@ a {
   text-decoration: none;
 }
 
+.quote {
+    font-style: italic;
+    padding: 0;
+    margin: 0;
+}
+
+.quote p {
+    padding-left: 1.5rem;
+}
+
 .pub {
   max-width: 100%;
   line-height: 1.5;
