@@ -1,0 +1,77 @@
+# [Zachary Tatlock][] - Publications
+
+{.pub #2023-pldi-egglog}
+*[Better Together: Unifying Datalog and Equality Saturation](https://arxiv.org/abs/2304.04332)* \
+[Yihong Zhang][],
+[Yisu Remy Wang][Remy Wang],
+[Oliver Flatt][],
+[David Cao][],
+[Philip Zucker][],
+[Eli Rosenthal][],
+[Zachary Tatlock][],
+[Max Willsey][] \
+Programming Language Design and Implementation (PLDI) 2023
+
+{.pub #2023-popl-babble}
+*[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](https://dl.acm.org/doi/abs/10.1145/3571207)* \
+[David Cao][],
+[Rose Kunkel][],
+[Chandrakana Nandi][],
+[Max Willsey][],
+[Zachary Tatlock][],
+[Nadia Polikarpova][] \
+Principles of Programming Languages (POPL) 2023
+
+{.pub #2022-fmcad-proofs}
+*Small Proofs from Congruence Closure* \
+[Oliver Flatt][],
+[Samuel Coward][],
+[Max Willsey][],
+[Zachary Tatlock][],
+[Pavel Panchekha][] \
+Formal Methods in Computer-Aided Design (FMCAD) 2022
+
+{.pub #2022-fmcad-proofs}
+*Verified Compilation and Optimization of Floating-Point Programs in CakeML* \
+[Heiko Becker][],
+Robert Rabe,
+[Eva Darulova][],
+[Magnus O. Myreen][],
+[Zachary Tatlock][],
+[Ramana Kumar][],
+[Yong Kiam Tan][],
+[Anthony Fox][] \
+European Conference on Object-Oriented Programming (ECOOP) 2022
+
+{.pub #2022-fmcad-proofs}
+*Co-Optimization of Design and Fabrication Plans for Carpentry* \
+[Haisen Zhao][],
+[Max Willsey][],
+[Amy Zhu][],
+[Chandrakana Nandi][],
+[Zachary Tatlock][],
+[Justin Solomon][],
+[Adriana Schulz][] \
+ACM Transactions on Graphics (TOG) 2022
+
+{.pub #2022-fmcad-proofs}
+*Relational e-matching* \
+[Yihong Zhang][],
+[Yisu Remy Wang][Remy Wang],
+[Max Willsey][],
+[Zachary Tatlock][] \
+Principles of Programming Languages (POPL) 2022
+
+### Aggregators
+
+- [DBLP](https://dblp.org/pers/t/Tatlock:Zachary.html)
+- [Google Scholar](https://scholar.google.com/citations?user=jz2Tvk4AAAAJ&hl=en)
+- [ACM Digital Library](https://dl.acm.org/profile/81392605383)
+- [ORCID](https://orcid.org/0000-0002-4731-0124)
+- [Semantic Scholar](https://www.semanticscholar.org/author/Zachary-Tatlock/2272813)
+- [ResearchGate](https://www.researchgate.net/profile/Zachary_Tatlock)
+- [DROPS](https://drops.dagstuhl.de/opus/ergebnis.php?wer=opus&suchart=teil&Lines_Displayed=10&sort=o.date_year+DESC%2C+o.title&suchfeld1=oa.person&suchwert1=Tatlock%2C+Zachary)
+- [IEEE Xplore](https://ieeexplore.ieee.org/author/37085529136)
+- [SpringerLink](https://link.springer.com/search?dc.creator=Zachary%20Tatlock)
+
+
