@@ -3,12 +3,12 @@ PAGES = \
 	graduated-students.html \
 	pubs.html
 
-%.html: %.dj REFLINKS HEADER.html FOOTER.html
+%.html: %.dj REFS HEADER.html FOOTER.html
 	$(eval PAGE := $(shell basename $< .dj))
 	@echo
 	@echo "BUILD $(PAGE)"
 	cat HEADER.html | sed 's/__PAGE__/$(PAGE)/' > $@
-	cat $< REFLINKS | djot >> $@
+	cat $< REFS | djot >> $@
 	cat FOOTER.html >> $@
 
 .PHONY: all
