@@ -389,6 +389,94 @@ Workshop on Coq for Programming Languages (CoqPL) 2017
 [Zachary Tatlock][] \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2016
 
+{.pub #2016-netpl-bagpipe}
+*[Formal Semantics and Automated Verification for the Border Gateway Protocol](https://conferences.sigcomm.org/sigcomm/2016/netpl.php)* \
+[Konstantin Weitz][],
+[Doug Woos][],
+[Emina Torlak][],
+[Michael D. Ernst][Mike Ernst],
+[Arvind Krishnamurthy][],
+[Zachary Tatlock][] \
+ACM SIGCOMM Workshop on Networking and Programming Languages (NetPL) 2016
+
+{.pub #2016-cav-neutrons}
+*[Investigating Safety of a Radiotherapy Machine Using System Models with Pluggable Checkers](https://link.springer.com/chapter/10.1007/978-3-319-41540-6_2)* \
+[Stuart Pernsteiner][],
+[Calvin Loncaric][],
+[Emina Torlak][],
+[Zachary Tatlock][],
+[Xi Wang][],
+[Michael D. Ernst][Mike Ernst],
+[Jonathan Jacky][Jon Jacky] \
+Computer-Aided Verification (CAV) 2016
+
+{.pub #2016-nsv-fpbench}
+*[Toward a Standard Benchmark Format and Suite for Floating-Point Analysis](https://link.springer.com/chapter/10.1007/978-3-319-54292-8_6)* \
+[Nasrine Damouche][],
+[Matthieu Martel][],
+[Pavel Panchekha][],
+[Chen Qiu][],
+[Alex Sanchez-Stern][],
+[Zachary Tatlock][] \
+Numerical Software Verification (NSV) 2016
+
+{.pub #2016-pldi-peek}
+*[Verified Peephole Optimizations for CompCert](https://dl.acm.org/doi/10.1145/2908080.2908109)* \
+[Eric Mullen][],
+[Daryl Zuniga][],
+[Zachary Tatlock][],
+[Dan Grossman][] \
+Programming Language Design and Implementation (PLDI) 2016
+
+{.pub #2016-cpp-verdi}
+*[Planning for Change in a Formal Verification of the Raft Consensus Protocol](https://dl.acm.org/doi/10.1145/2854065.2854081)* \
+[Doug Woos][],
+[James R. Wilcox][James Wilcox],
+[Steve Anton][],
+[Zachary Tatlock][],
+[Michael D. Ernst][Mike Ernst],
+[Thomas E. Anderson][Tom Anderson] \
+Certified Programs and Proofs (CPP) 2016
+
+{.pub #2015-pldi-verdi}
+*[Verdi: A Framework for Implementing and Formally Verifying Distributed Systems](https://dl.acm.org/doi/10.1145/2737924.2737958)* \
+[James R. Wilcox][James Wilcox],
+[Doug Woos][],
+[Pavel Panchekha][],
+[Zachary Tatlock][],
+[Xi Wang][],
+[Michael D. Ernst][Mike Ernst],
+[Thomas E. Anderson][Tom Anderson] \
+Programming Language Design and Implementation (PLDI) 2015
+
+{.pub #2015-pldi-herbie}
+*[Automatically Improving Accuracy for Floating Point Expressions](https://dl.acm.org/doi/10.1145/2737924.2737959)* \
+[Pavel Panchekha][],
+[Alex Sanchez-Stern][],
+[James R. Wilcox][James Wilcox],
+[Zachary Tatlock][] \
+Programming Language Design and Implementation (PLDI) 2015
+★ Distinguished Paper
+
+{.pub #2015-icra-roboflow}
+*[RoboFlow: A Flow-based Visual Programming Language for Mobile Manipulation Tasks](https://ieeexplore.ieee.org/document/7139973)* \
+[Sonya Alexandrova][],
+[Zachary Tatlock][],
+[Maya Cakmak][] \
+International Conference on Robotics and Automation (ICRA) 2015
+
+{.pub #2015-snapl-neutrons}
+*[Toward a Dependability Case Language and Workflow for a Radiation Therapy System](https://drops.dagstuhl.de/opus/volltexte/2015/5020/)* \
+[Michael D. Ernst][Mike Ernst],
+[Dan Grossman][],
+[Jonathan Jacky][Jon Jacky],
+[Calvin Loncaric][],
+[Stuart Pernsteiner][],
+[Zachary Tatlock][],
+[Emina Torlak][],
+[Xi Wang][] \
+Summit oN Advances in Programming Languages (SNAPL) 2015
+
 \
 
 ### Aggregators
