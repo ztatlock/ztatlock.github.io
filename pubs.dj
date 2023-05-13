@@ -252,7 +252,7 @@ Computer-Aided Verification (CAV) 2019
 *[Teaching Rigorous Distributed Systems With Efficient Model Checking](https://dl.acm.org/doi/10.1145/3302424.3303947)* \
 [Ellis Michael][],
 [Doug Woos][],
-[Thomas E. Anderson][],
+[Thomas E. Anderson][Tom Anderson],
 [Michael D. Ernst][Mike Ernst],
 [Zachary Tatlock][] \
 European Conference on Computer Systems (EuroSys) 2019
@@ -300,6 +300,94 @@ Interactive Theorem Proving (ITP) 2018
 [Tianqi Chen][],
 [Zachary Tatlock][] \
 Machine Learning and Programming Languages (MAPL) 2018
+
+{.pub #2018-pldi-herbgrind}
+*[Finding Root Causes of Floating Point Error](https://dl.acm.org/doi/10.1145/3296979.3192411)* \
+[Alex Sanchez-Stern][],
+[Pavel Panchekha][],
+[Sorin Lerner][],
+[Zachary Tatlock][] \
+Programming Language Design and Implementation (PLDI) 2018
+
+{.pub #2018-pldi-vizassert}
+*[Verifying that Web Pages have Accessible Layout](https://dl.acm.org/doi/10.1145/3192366.3192407)* \
+[Pavel Panchekha][],
+[Adam T. Geller][Adam Geller],
+[Michael D. Ernst][Mike Ernst],
+[Zachary Tatlock][],
+[Shoaib Kamil][] \
+Programming Language Design and Implementation (PLDI) 2018
+
+{.pub #2018-popl-disel}
+*[Programming and Proving with Distributed Protocols](https://dl.acm.org/doi/10.1145/3158116)* \
+[Ilya Sergey][],
+[James R. Wilcox][James Wilcox],
+[Zachary Tatlock][] \
+Principles of Programming Languages (POPL) 2018
+
+{.pub #2018-cpp-oeuf}
+*[Œuf: Minimizing the Coq Extraction TCB](https://dl.acm.org/doi/10.1145/3167089)* \
+[Eric Mullen][],
+[Stuart Pernsteiner][],
+[James R. Wilcox][James Wilcox],
+[Zachary Tatlock][],
+[Dan Grossman][] \
+Certified Programs and Proofs (CPP) 2018
+
+{.pub #2017-icalepcs-neutrons}
+*[Automatic Formal Verification for EPICS](https://accelconf.web.cern.ch/icalepcs2017/doi/JACoW-ICALEPCS2017-TUDPL02.html)* \
+[Jonathan Jacky][Jon Jacky],
+[Stefani Banerian][],
+[Michael D. Ernst][Mike Ernst],
+[Calvin Loncaric][],
+[Stuart Pernsteiner][],
+[Zachary Tatlock][],
+[Emina Torlak][] \
+International Conference on Accelerator and Large Experimental Control Systems (ICALEPCS) 2017
+
+{.pub #2017-icfp-spacesearch}
+*[SpaceSearch: A Library for Building and Verifying Solver-aided Tools](https://dl.acm.org/doi/10.1145/3110269)* \
+[Konstantin Weitz][],
+[Steven Lyubomirsky][],
+[Stefan Heule][],
+[Emina Torlak][],
+[Michael D. Ernst][Mike Ernst],
+[Zachary Tatlock][] \
+International Conference on Functional Programming (ICFP) 2017
+
+{.pub #2017-snapl-disel}
+*[Programming Language Abstractions for Modularly Verified Distributed Systems](https://drops.dagstuhl.de/opus/volltexte/2017/7126/)* \
+[James R. Wilcox][James Wilcox],
+[Ilya Sergey][],
+[Zachary Tatlock][] \
+Summit oN Advances in Programming Languages (SNAPL) 2017
+
+{.pub #2017-snapl-cad}
+*[Programming Language Tools and Techniques for 3D Printing](https://drops.dagstuhl.de/opus/volltexte/2017/7122/)* \
+[Chandrakana Nandi][],
+[Anat Caspi][],
+[Dan Grossman][],
+[Zachary Tatlock][] \
+Summit oN Advances in Programming Languages (SNAPL) 2017
+
+{.pub #2017-coqpl-verdi}
+*[Verification of Implementations of Distributed Systems Under Churn](https://popl17.sigplan.org/details/main/1/Verification-of-Implementations-of-Distributed-Systems-Under-Churn)* \
+[Ryan Doenges][],
+[James R. Wilcox][James Wilcox],
+[Doug Woos][],
+[Zachary Tatlock][],
+[Karl Palmskog][] \
+Workshop on Coq for Programming Languages (CoqPL) 2017
+
+{.pub #2016-oopsla-bagpipe}
+*[Scalable Verification of Border Gateway Protocol Configurations with an SMT Solver](https://dl.acm.org/doi/10.1145/2983990.2984012)* \
+[Konstantin Weitz][],
+[Doug Woos][],
+[Emina Torlak][],
+[Michael D. Ernst][Mike Ernst],
+[Arvind Krishnamurthy][],
+[Zachary Tatlock][] \
+Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2016
 
 \
 
