@@ -197,6 +197,57 @@ Numerical Software Verification (NSV) 2020
 [Zachary Tatlock][] \
 Programming Language Design and Implementation (PLDI) 2020
 
+{.pub #2019-siga-carpentry}
+*[Carpentry Compiler](https://dl.acm.org/doi/10.1145/3355089.3356518)* \
+[Chenming Wu][],
+[Haisen Zhao][],
+[Chandrakana Nandi][],
+[Jeffrey I. Lipton][Jeff Lipton],
+[Zachary Tatlock][],
+[Adriana Schulz][] \
+SIGGRAPH Asia, ACM Transactions on Graphics (SIGA) 2019
+
+{.pub #2019-correctness-mpmf}
+*[Toward Multi-Precision, Multi-Format Numerics](https://www.computer.org/csdl/proceedings-article/correctness/2019/601500a019/1gyr5pHvaz6)* \
+[David Thien][],
+[Bill Zorn][],
+[Pavel Panchekha][],
+[Zachary Tatlock][] \
+Software Correctness for HPC Applications (CORRECTNESS) 2019
+
+{.pub #2019-oopsla-troika}
+*[Modular Verification of Web Page Layout](https://dl.acm.org/doi/10.1145/3360577)* \
+[Pavel Panchekha][],
+[Michael D. Ernst][Mike Ernst],
+[Zachary Tatlock][],
+[Shoaib Kamil][] \
+Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2019
+
+{.pub #2019-splashe-theia}
+*[Theia: Automatically Generating Correct Program State Visualizations](https://dl.acm.org/doi/10.1145/3358711.3361625)* \
+[Josh Pollock][],
+[Jared Roesch][],
+[Doug Woos][],
+[Zachary Tatlock][] \
+ACM SIGPLAN International Symposium on SPLASH-E (SPLASH-E) 2019
+
+{.pub #2019-ftpl-proofengineering}
+*[QED at Large: A Survey of Engineering of Formally Verified Software](https://www.nowpublishers.com/article/Details/PGL-045)* \
+[Talia Ringer][],
+[Karl Palmskog][],
+[Ilya Sergey][],
+[Milos Gligoric][],
+[Zachary Tatlock][] \
+Foundations and Trends in Programming Languages (FTPL) 2019
+
+{.pub #2019-cav-icing}
+*[Icing: Supporting Fast-Math Style Optimizations in a Verified Compiler](https://link.springer.com/chapter/10.1007/978-3-030-25543-5_10)* \
+[Heiko Becker][],
+[Eva Darulova][],
+[Magnus O. Myreen][],
+[Zachary Tatlock][] \
+Computer-Aided Verification (CAV) 2019
+
 \
 
 ### Aggregators
