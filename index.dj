@@ -1,25 +1,23 @@
 # [Zachary Tatlock][]
 
-Associate Professor \
+Associate Professor ([photo](img/zachary-tatlock.jpg)) \
 [Paul G. Allen School of Computer Science & Engineering][PGAS] \
 [University of Washington][UW]
 
 My goal is to help students
   become great computer scientists.
 In research,
-  I work towards this goal
-  with my [students](#students)
+  I work with my [students](#students)
   in the [UW PLSE][PLSE] research group.
 In education,
-  I work towards this goal by
-  [teaching courses](#teaching)
+  I [teach courses](#teaching)
   on programming languages and related topics.
 
 My expertise is rooted in formal verification,
   especially of compilers.
 As my students develop their own research vision,
   we branch out across diverse domains.
-Our work is unified by themes of
+Our work remains unified by themes of
   making it easier to write tricky code and
   figuring out how to ensure such programs are correct.
 We rigorously prove our results and build real systems[^1].
@@ -62,9 +60,9 @@ Current Students
 - [Yihong Zhang][], PhD Student[^co-advise-suciu]
 - [Oliver Flatt][], PhD Student
 - [Kevin Mu][], PhD Student
-- [Brett Saiki][], BSMS Student
-- [Andrew Cheung][], BSMS Student
-- [Cynthia Richey][], BSMS Student
+- [Brett Saiki][], MS Student
+- [Andrew Cheung][], MS Student
+- [Cynthia Richey][], MS Student
 - [Vishal Canumalla][], BS Student
 - [Caleb Chan][], BS Student
 - [Ryan Tjoa][], BS Student
@@ -141,15 +139,16 @@ See [graduated students](graduated-students.html) for more.
 
     - Proof assistants, dependent types, and systems verificiation
 
-⭐️ \ I was honored to be nominated for the UW Distinguished Teaching Award in 2015.
+★ \ I was honored to be nominated for
+the UW Distinguished Teaching Award in 2015.
 
 ### Summer Schools
 
 - Verifying Distributed Systems Implementations in Coq
 
   * [DeepSpec Summer School 2018](https://deepspec.org/event/dsss18/index.html):
-    [materials](https://github.com/DeepSpec/dsss18/tree/master/verdi),
-    [lectures](https://www.youtube.com/playlist?list=PLF8nG15tV6C8VAUCZfsIMDnGxjTrh016I)
+    \ [materials](https://github.com/DeepSpec/dsss18/tree/master/verdi),
+    \ [videos](https://www.youtube.com/playlist?list=PLF8nG15tV6C8VAUCZfsIMDnGxjTrh016I)
 
 
 {#research}
