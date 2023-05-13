@@ -23,7 +23,7 @@ Programming Language Design and Implementation (PLDI) 2023
 Principles of Programming Languages (POPL) 2023
 
 {.pub #2022-fmcad-proofs}
-*Small Proofs from Congruence Closure* \
+*[Small Proofs from Congruence Closure](https://ieeexplore.ieee.org/document/10026585)* \
 [Oliver Flatt][],
 [Samuel Coward][],
 [Max Willsey][],
@@ -32,7 +32,7 @@ Principles of Programming Languages (POPL) 2023
 Formal Methods in Computer-Aided Design (FMCAD) 2022
 
 {.pub #2022-fmcad-proofs}
-*Verified Compilation and Optimization of Floating-Point Programs in CakeML* \
+*[Verified Compilation and Optimization of Floating-Point Programs in CakeML](https://drops.dagstuhl.de/opus/volltexte/2022/16229/)* \
 [Heiko Becker][],
 Robert Rabe,
 [Eva Darulova][],
@@ -44,7 +44,7 @@ Robert Rabe,
 European Conference on Object-Oriented Programming (ECOOP) 2022
 
 {.pub #2022-fmcad-proofs}
-*Co-Optimization of Design and Fabrication Plans for Carpentry* \
+*[Co-Optimization of Design and Fabrication Plans for Carpentry](https://dl.acm.org/doi/10.1145/3508499)* \
 [Haisen Zhao][],
 [Max Willsey][],
 [Amy Zhu][],
@@ -55,12 +55,83 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 ACM Transactions on Graphics (TOG) 2022
 
 {.pub #2022-fmcad-proofs}
-*Relational e-matching* \
+*[Relational e-matching](https://dl.acm.org/doi/10.1145/3498696)* \
 [Yihong Zhang][],
 [Yisu Remy Wang][Remy Wang],
 [Max Willsey][],
 [Zachary Tatlock][] \
 Principles of Programming Languages (POPL) 2022
+
+{.pub #2021-correctness-xstack}
+*[Guarding Numerics Amidst Rising Heterogeneity](https://ieeexplore.ieee.org/document/9651291)* \
+[Ganesh Gopalakrishnan][],
+[Ignacio Laguna][],
+[Ang Li][],
+[Pavel Panchekha][],
+[Cindy Rubio-González][],
+[Zachary Tatlock][] \
+Software Correctness for HPC Applications (CORRECTNESS) 2021
+
+{.pub #2021-oopsla-ruler}
+*[Rewrite Rule Inference Using Equality Saturation](https://dl.acm.org/doi/abs/10.1145/3485496)* \
+Chandrakana Nandi][],
+[Max Willsey][],
+[Amy Zhu][],
+[Yisu Remy Wang][Remy Wang],
+[Brett Saiki][],
+[Adam Anderson][],
+[Adriana Schulz][],
+[Dan Grossman][],
+[Zachary Tatlock][] \
+Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021 \
+★ Distinguished Paper
+
+{.pub #2021-sff-3dp}
+*[A Roadmap Towards Parallel Printing for Desktop 3D Printers]()* \
+[Molly Aubrey Carton][Molly Carton],
+[Chandrakana Nandi][],
+[Adam Anderson][],
+[Haisen Zhao][],
+[Eva Darulova][],
+[Dan Grossman][],
+[Jeffrey I. Lipton][Jeff Lipton],
+[Adriana Schulz][],
+[Zachary Tatlock][] \
+Solid Freeform Fabrication Symposium (SFF) 2021
+
+{.pub #2021-arith-herbie}
+*[Combining Precision Tuning and Rewriting](https://www.computer.org/csdl/proceedings-article/arith/2021/229300a001/1yDk1IkeJEc)* \
+[Brett Saiki][],
+[Oliver Flatt][],
+[Chandrakana Nandi][],
+[Pavel Panchekha][],
+[Zachary Tatlock][] \
+IEEE International Symposium on Computer Arithmetic (ARITH) 2021
+
+{.pub #2021-maps-glenside}
+*[Pure Tensor Program Rewriting via Access Patterns](https://dl.acm.org/doi/10.1145/3460945.3464953)* \
+[Gus Henry Smith][Gus Smith],
+[Andrew Liu][],
+[Steven Lyubomirsky][],
+[Scott Davidson][],
+[Joseph McMahan][],
+[Michael Taylor][],
+[Luis Ceze][],
+[Zachary Tatlock][] \
+Symposium on Machine Programming (MAPS) 2021
+
+{.pub #2021-iclr-dtr}
+*[Dynamic Tensor Rematerialization](https://openreview.net/forum?id=Vfs_2RnOD0H)* \
+[Marisa Kirisame][],
+[Steven Lyubomirsky][],
+[Altan Haan][],
+[Jennifer Brennan][],
+[Mike He][],
+[Jared Roesch][],
+[Tianqi Chen][],
+[Zachary Tatlock][] \
+International Conference on Learning Representations (ICLR) 2021 \
+★ Spotlight Paper
 
 ### Aggregators
 
