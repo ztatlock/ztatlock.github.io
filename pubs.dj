@@ -133,6 +133,72 @@ Symposium on Machine Programming (MAPS) 2021
 International Conference on Learning Representations (ICLR) 2021 \
 ★ Spotlight Paper
 
+{.pub #2021-mlsys-nimble}
+*[Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference](https://proceedings.mlsys.org/paper/2021/hash/4e732ced3463d06de0ca9a15b6153677-Abstract.html)* \
+[Haichen Shen][],
+[Jared Roesch][],
+[Zhi Chen][],
+[Wei Chen][],
+[Yong Wu][],
+[Mu Li][],
+[Vin Sharma][],
+[Zachary Tatlock][],
+[Yida Wang][] \
+Conference on Machine Learning and Systems (MLSys) 2021
+
+{.pub #2021-latte-3la}
+*[From DSLs to Accelerator-Rich Platform Implementations: Addressing the Mapping Gap](https://capra.cs.cornell.edu/latte21/)* \
+[Bo-Yuan Huang][],
+[Steven Lyubomirsky][],
+[Thierry Tambe][],
+[Yi Li][],
+[Mike He][],
+[Gus Henry Smith][Gus Smith],
+[Gu-Yeon Wei][],
+[Aarti Gupta][],
+[Sharad Malik][],
+[Zachary Tatlock][] \
+Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE) 2021
+
+{.pub #2021-popl-egg}
+*[egg: Fast and Extensible Equality Saturation](https://dl.acm.org/doi/10.1145/3434304)* \
+[Max Willsey][],
+[Chandrakana Nandi][],
+[Yisu Remy Wang][Remy Wang],
+[Oliver Flatt][],
+[Zachary Tatlock][],
+[Pavel Panchekha][] \
+Principles of Programming Languages (POPL) 2021 \
+★ Distinguished Paper
+
+{.pub #2020-plateau-semviz}
+*[The Essence of Program Semantics Visualizers: A Three-Axis Model](https://2020.plateau-workshop.org/program)* \
+[Josh Pollock][],
+[Grace Oh][],
+[Eunice Jun][],
+[Philip J. Guo][Philip Guo],
+[Zachary Tatlock][] \
+Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU) 2020 \
+
+{.pub #2020-nsv-numassist}
+*[Towards Numerical Assistants](https://link.springer.com/chapter/10.1007/978-3-030-63618-0_13)* \
+[Pavel Panchekha][],
+[Zachary Tatlock][] \
+Numerical Software Verification (NSV) 2020
+
+{.pub #2020-pldi-szalinski}
+*[Synthesizing Structured CAD Models with Equality Saturation and Inverse Transformations](https://dl.acm.org/doi/10.1145/3385412.3386012)* \
+[Chandrakana Nandi][],
+[Max Willsey][],
+[Adam Anderson][],
+[James R. Wilcox][James Wilcox],
+[Eva Darulova][],
+[Dan Grossman][],
+[Zachary Tatlock][] \
+Programming Language Design and Implementation (PLDI) 2020
+
+\
+
 ### Aggregators
 
 - [DBLP](https://dblp.org/pers/t/Tatlock:Zachary.html)
