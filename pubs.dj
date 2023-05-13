@@ -248,6 +248,59 @@ Foundations and Trends in Programming Languages (FTPL) 2019
 [Zachary Tatlock][] \
 Computer-Aided Verification (CAV) 2019
 
+{.pub #2019-eurosys-dslabs}
+*[Teaching Rigorous Distributed Systems With Efficient Model Checking](https://dl.acm.org/doi/10.1145/3302424.3303947)* \
+[Ellis Michael][],
+[Doug Woos][],
+[Thomas E. Anderson][],
+[Michael D. Ernst][Mike Ernst],
+[Zachary Tatlock][] \
+European Conference on Computer Systems (EuroSys) 2019
+
+{.pub #2019-conga-sinkingpoint}
+*[Sinking Point: Dynamic Precision Tracking for Floating-Point](https://dl.acm.org/doi/10.1145/3316279.3316283)* \
+[Bill Zorn][],
+[Dan Grossman][],
+[Zachary Tatlock][] \
+Conference for Next Generation Arithmetic (CoNGA) 2019
+
+{.pub #2018-icfp-reincarnate}
+*[Functional Programming for Compiling and Decompiling Computer-aided Design](https://dl.acm.org/doi/10.1145/3236794)* \
+[Chandrakana Nandi][],
+[James R. Wilcox][James Wilcox],
+[Pavel Panchekha][],
+[Taylor Blau][],
+[Dan Grossman][],
+[Zachary Tatlock][] \
+International Conference on Functional Programming (ICFP) 2018
+
+{.pub #2018-fm-fpcombo}
+*[Combining Tools for Optimization and Analysis of Floating-Point Computations](https://link.springer.com/chapter/10.1007/978-3-319-95582-7_21)* \
+[Heiko Becker][],
+[Pavel Panchekha][],
+[Eva Darulova][],
+[Zachary Tatlock][] \
+Formal Methods (FM) 2018
+
+{.pub #2018-itb-tcb}
+*[Software Verification with ITPs Should Use Binary Code Extraction to Reduce the TCB](https://link.springer.com/chapter/10.1007/978-3-319-94821-8_21)* \
+[Ramana Kumar][],
+[Eric Mullen][],
+[Zachary Tatlock][],
+[Magnus O. Myreen][] \
+Interactive Theorem Proving (ITP) 2018
+
+{.pub #2018-mapl-relay}
+*[Relay: a New IR for Machine Learning Frameworks](https://dl.acm.org/doi/10.1145/3211346.3211348)* \
+[Jared Roesch][],
+[Steven Lyubomirsky][],
+[Logan Weber][],
+[Josh Pollock][],
+[Marisa Kirisame][],
+[Tianqi Chen][],
+[Zachary Tatlock][] \
+Machine Learning and Programming Languages (MAPL) 2018
+
 \
 
 ### Aggregators
