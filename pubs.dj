@@ -455,7 +455,7 @@ Programming Language Design and Implementation (PLDI) 2015
 [Alex Sanchez-Stern][],
 [James R. Wilcox][James Wilcox],
 [Zachary Tatlock][] \
-Programming Language Design and Implementation (PLDI) 2015
+Programming Language Design and Implementation (PLDI) 2015 \
 ★ Distinguished Paper
 
 {.pub #2015-icra-roboflow}
@@ -476,6 +476,90 @@ International Conference on Robotics and Automation (ICRA) 2015
 [Emina Torlak][],
 [Xi Wang][] \
 Summit oN Advances in Programming Languages (SNAPL) 2015
+
+{.pub #2015-hri-roboflow}
+*[Visual Robot Programming for Generalizable Mobile Manipulation Tasks](https://dl.acm.org/doi/10.1145/2701973.2702052)* \
+[Sonya Alexandrova][],
+[Zachary Tatlock][],
+[Maya Cakmak][] \
+Human Robot Interaction (HRI) 2015
+
+{.pub #2015-coqpl-peek}
+*[Peek: A Formally Verified Peephole Optimization Framework for x86](https://coqpl.cs.washington.edu/program/)* \
+[Eric Mullen][],
+[Zachary Tatlock][],
+[Dan Grossman][] \
+Workshop on Coq for Programming Languages (CoqPL) 2015
+
+{.pub #2014-osdi-jitk}
+*[Jitk: A Trustworthy In-Kernel Interpreter Infrastructure](https://www.usenix.org/conference/osdi14/technical-sessions/presentation/wang_xi)* \
+[Xi Wang][],
+[David Lazar][],
+[Nickolai Zeldovich][],
+[Adam Chlipala][],
+[Zachary Tatlock][] \
+Operating Systems Design and Implementation (OSDI) 2014
+
+{.pub #2014-pldi-reflex}
+*[Automating Formal Proofs for Reactive Systems](https://dl.acm.org/doi/10.1145/2594291.2594338)* \
+[Daniel Ricketts][],
+[Valentin Robert][],
+[Dongseok Jang][],
+[Zachary Tatlock][],
+[Sorin Lerner][] \
+Programming Language Design and Implementation (PLDI) 2014
+
+{.pub #2014-ndss-vtables}
+*[SafeDispatch: Securing C++ Virtual Calls from Memory Corruption Attacks](https://www.ndss-symposium.org/ndss2014/programme/safedispatch-securing-c-virtual-calls-memory-corruption-attacks/)* \
+[Dongseok Jang][],
+[Zachary Tatlock][],
+[Sorin Lerner][] \
+Network and Distributed System Security (NDSS) 2014
+
+{.pub #2012-security-quark}
+*[Establishing Browser Security Guarantees through Formal Shim Verification](https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/jang)* \
+[Dongseok Jang][],
+[Zachary Tatlock][],
+[Sorin Lerner][] \
+USENIX Security Symposium (SECURITY) 2012
+
+{.pub #2011-lmcs-eqsat}
+*[Equality Saturation: A New Approach to Optimization](https://lmcs.episciences.org/1016)* \
+[Ross Tate][],
+[Michael Stepp][],
+[Zachary Tatlock][],
+[Sorin Lerner][] \
+Logical Methods in Computer Science (LMCS) 2011
+
+{.pub #2010-pldi-xcert}
+*[Bringing Extensibility to Verified Compilers](https://dl.acm.org/doi/10.1145/1806596.1806611)* \
+[Zachary Tatlock][],
+[Sorin Lerner][] \
+Programming Language Design and Implementation (PLDI) 2010
+
+{.pub #2009-pldi-pec}
+*[Proving Optimizations Correct using Parameterized Program Equivalence](https://dl.acm.org/doi/10.1145/1542476.1542513)* \
+[Sudipta Kundu][],
+[Zachary Tatlock][],
+[Sorin Lerner][] \
+Programming Language Design and Implementation (PLDI) 2009
+
+{.pub #2009-popl-eqsat}
+*[Equality Saturation: A New Approach to Optimization ](https://dl.acm.org/doi/10.1145/1480881.1480915)* \
+[Ross Tate][],
+[Michael Stepp][],
+[Zachary Tatlock][],
+[Sorin Lerner][] \
+Principles of Programming Languages (POPL) 2009
+
+{.pub #2008-oopsla-dtar}
+*[Deep Typechecking and Refactoring ](https://dl.acm.org/doi/10.1145/1449764.1449768)* \
+[Zachary Tatlock][],
+[Chris Tucker][],
+[David Shuffelton][],
+[Ranjit Jhala][],
+[Sorin Lerner][] \
+Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 
 \
 
