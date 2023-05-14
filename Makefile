@@ -1,12 +1,12 @@
 PAGES = $(patsubst %.dj,%.html,$(wildcard *.dj))
 
-%.html: %.dj REFS HEADER.html FOOTER.html
+%.html: %.dj REFS HEAD FOOT
 	$(eval PAGE := $(shell basename $< .dj))
 	@echo
 	@echo "BUILD $(PAGE)"
-	cat HEADER.html | sed 's/__PAGE__/$(PAGE)/' > $@
+	cat HEAD | sed 's/__PAGE__/$(PAGE)/' > $@
 	cat $< REFS | djot >> $@
-	cat FOOTER.html >> $@
+	cat FOOT >> $@
 
 .PHONY: all
 all: $(PAGES)
