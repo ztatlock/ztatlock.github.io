@@ -20,20 +20,39 @@ To get a feel for what David was like, check out his talk
 ### Current Students
 
 - [Max Willsey][], Postdoctoral Scholar
-- [Gus Smith][], PhD Student[^co-advise-luis]
-- [Amy Zhu][], PhD Student[^co-advise-adriana]
+
+- [Gus Smith][], PhD Student
+
+- [Amy Zhu][], PhD Student
+
+  * co-advised with [Adriana Schulz][]
+
 - [Anjali Pal][], PhD Student
-- [Yihong Zhang][], PhD Student[^co-advise-suciu]
+
+- [Yihong Zhang][], PhD Student
+
+  * co-advised with [Dan Suciu][]
+
 - [Oliver Flatt][], PhD Student
+
 - [Kevin Mu][], PhD Student
+
 - [Brett Saiki][], MS Student
+
 - [Andrew Cheung][], MS Student
+
 - [Cynthia Richey][], MS Student
+
 - [Vishal Canumalla][], BS Student
+
 - [Caleb Chan][], BS Student
+
 - [Ryan Tjoa][], BS Student
+
 - [Aditya Akhileshwaran][], BS Student
+
 - [Varun Pradeep][], BS Student
+
 - [Zhiyuan (Kevin) Yan][Zhiyuan Yan], BS Student
 
 ★ \ I was honored to receive a
@@ -50,11 +69,13 @@ To get a feel for what David was like, check out his talk
 - [Chandrakana Nandi][], PhD 2021
 
   * Thesis: Programming Language Tools and Techniques for Computational Fabrication
+  * co-advised with [Dan Grossman][]
   * Principal Researcher at Certora
 
 - [Bill Zorn][], PhD 2021
 
   * Thesis: Rounding
+  * co-advised with [Dan Grossman][]
   * Numerical Hardware Architect at Intel
 
 - [James Wilcox][], PhD 2021
@@ -71,26 +92,31 @@ To get a feel for what David was like, check out his talk
 - [Pavel Panchekha][], PhD 2019
 
   * Thesis: Automated Reasoning for Web Page Layout
+  * co-advised with [Mike Ernst][]
   * Assistant Professor at the University of Utah
 
 - [Doug Woos][], PhD 2019
 
   * Thesis: A Step-through Debugger for Distributed Systems
+  * co-advised with [Mike Ernst][] and [Tom Anderson][]
   * Lecturer at Brown University
 
 - [Stuart Pernsteiner][], PhD 2018
 
   * Thesis: Practical Verification of Safety-Critical Systems
+  * co-advised with [Mike Ernst][]
   * Research & Engineering at Galois
 
 - [Eric Mullen][], PhD 2018
 
   * Thesis: Pushing the Limits of Compiler Verification
+  * co-advised with [Dan Grossman][]
   * Google
 
 - [Konstantin Weitz][], PhD 2017
 
   * Thesis: Formal Semantics and Scalable Verification for the Border Gateway Protocol using Proof Assistants and SMT Solvers
+  * co-advised with [Mike Ernst][]
   * Google
   * Co-founder at Nexus
 
@@ -205,6 +231,7 @@ To get a feel for what David was like, check out his talk
 
 - [Luke Nelson][], BS 2017
 
+  * co-advised with [Xi Wang][]
   * PhD Student at the University of Washington
 
 - [Keith Simmons][], BS 2017
@@ -218,6 +245,7 @@ To get a feel for what David was like, check out his talk
 
 - [Daryl Zuniga][], BS 2015
 
+  * co-advised with [Dan Grossman][]
   * Microsoft
 
 - [Alex Sanchez-Stern][], BS 2014
@@ -247,7 +275,4 @@ To get a feel for what David was like, check out his talk
 
   * BS Student at Princeton University
 
-[^co-advise-luis]: Co-advised with [Luis Ceze][]
-[^co-advise-adriana]: Co-advised with [Adriana Schulz][]
-[^co-advise-suciu]: Co-advised with [Dan Suciu][]
 
