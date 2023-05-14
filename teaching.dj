@@ -1,0 +1,75 @@
+# [Zachary Tatlock][] - Teaching
+
+- *UW CSE 505: Concepts of Programming Languages* \
+  Graduate course
+  using proof assistants to explore
+  transition systems,
+  inductive invariants,
+  type systems,
+  Hoare logic,
+  metatheory
+
+  * [2023 Winter](https://sites.google.com/cs.washington.edu/cse-505-23wi/home)
+  * [2021 Spring](https://sites.google.com/cs.washington.edu/cse-505-spring-2021)
+  * [2020 Spring](https://sites.google.com/cs.washington.edu/cse-505-spring-2020)
+  * [2019 Spring](https://sites.google.com/cs.washington.edu/cse-p505-19sp)
+  * [2018 Autumn](https://sites.google.com/cs.washington.edu/cse-505-18au)
+  * [2017 Autumn](https://courses.cs.washington.edu/courses/cse505/17au/)
+  * [2016 Autumn](https://courses.cs.washington.edu/courses/cse505/16au/)
+  * [2015 Autumn](https://courses.cs.washington.edu/courses/cse505/15au/)
+  * [2015 Winter](https://courses.cs.washington.edu/courses/cse505/15wi/)
+  * [2013 Autumn](https://courses.cs.washington.edu/courses/cse505/13au/)
+
+- *UW CSE 341: Programming Languages* \
+  Undergraduate course exploring
+  informal operational semantics,
+  functional programming vs. OOP,
+  static vs. dynamic typing
+
+  * [2022 Autumn](https://sites.google.com/cs.washington.edu/cse341autumn2022)
+  * [2021 Winter](https://sites.google.com/cs.washington.edu/cse341winter2021/home)
+  * [2020 Winter](https://sites.google.com/cs.washington.edu/cse-341-winter-2020)
+  * [2019 Winter](https://sites.google.com/cs.washington.edu/cse341-19wi)
+  * [2018 Winter](https://courses.cs.washington.edu/courses/cse341/18wi/)
+  * [2015 Spring](https://courses.cs.washington.edu/courses/cse341/15sp/)
+  * [2014 Spring](https://courses.cs.washington.edu/courses/cse341/14sp/)
+
+- *UW CSE 331: Software Design and Implementation* \
+  Undergraduate course exploring
+  specification,
+  invariants,
+  testing,
+  debugging,
+  modular design
+
+  * [2018 Spring](https://courses.cs.washington.edu/courses/cse331/18sp/)
+  * [2017 Winter](https://courses.cs.washington.edu/courses/cse331/17wi/)
+  * [2016 Winter](https://courses.cs.washington.edu/courses/cse331/16wi/)
+
+- *Special Topics Graduate Courses*
+
+  * [UW CSE 599Z: Accurate Computing, \ 2017 Spring](https://homes.cs.washington.edu/~ztatlock/599z-17sp/)
+
+    - Numerical computing and computational fabrication
+
+  * [UW CSE 599W: Systems Verification, \ 2016 Spring](https://courses.cs.washington.edu/courses/cse599w/16sp/)
+
+    - Formally verifying systems implementations
+    - Co-taught with [Xi Wang][] and [Bryan Parno][]
+
+  * [UW CSE 506: Advanced Topics in Programming Languages, \ 2014 Winter](https://courses.cs.washington.edu/courses/cse506/14wi/)
+
+    - Proof assistants, dependent types, and systems verificiation
+
+★ \ I was honored to be nominated for
+    the UW Distinguished Teaching Award in 2015.
+
+### Summer Schools
+
+- Verifying Distributed Systems Implementations in Coq
+
+  * [DeepSpec Summer School 2018](https://deepspec.org/event/dsss18/index.html):
+    \ [materials](https://github.com/DeepSpec/dsss18/tree/master/verdi),
+    \ [videos](https://www.youtube.com/playlist?list=PLF8nG15tV6C8VAUCZfsIMDnGxjTrh016I)
+
+
