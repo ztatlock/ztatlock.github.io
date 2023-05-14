@@ -1,7 +1,4 @@
-PAGES = \
-	index.html \
-	graduated-students.html \
-	pubs.html
+PAGES = $(patsubst %.dj,%.html,$(wildcard *.dj))
 
 %.html: %.dj REFS HEADER.html FOOTER.html
 	$(eval PAGE := $(shell basename $< .dj))
