@@ -27,11 +27,102 @@ We rigorously prove our results and build real systems[^1].
 [^1]: My colleague [Dan Grossman][] characterizes this combination of
       formalism and empiricism as "both Greek and graphs".
 
+{.nav}
 - [Students](students.html)
 - [Teaching](teaching.html)
 - [Research](research.html)
 - [Publications](publications.html)
 - [Talks](talks.html)
 - [Service](service.html)
+- [Notes](notes.html)
+
+### _Current Students_
+
+{.students-index}
+- [Max Willsey][], Postdoctoral Scholar
+- [Gus Smith][], PhD Student
+- [Amy Zhu][], PhD Student
+- [Anjali Pal][], PhD Student
+- [Yihong Zhang][], PhD Student
+- [Oliver Flatt][], PhD Student
+- [Kevin Mu][], PhD Student
+- [Brett Saiki][], MS Student
+- [Andrew Cheung][], MS Student
+- [Cynthia Richey][], MS Student
+- [Vishal Canumalla][], BS Student
+- [Caleb Chan][], BS Student
+- [Ryan Tjoa][], BS Student
+- [Aditya Akhileshwaran][], BS Student
+- [Varun Pradeep][], BS Student
+- [Zhiyuan (Kevin) Yan][Zhiyuan Yan], BS Student
+
+Please see my [students page](students.html) for more.
+
+### _Recent Publications_
+
+{.pub #2023-pldi-egglog}
+*[Better Together: Unifying Datalog and Equality Saturation](https://arxiv.org/abs/2304.04332)* \
+[Yihong Zhang][],
+[Yisu Remy Wang][Remy Wang],
+[Oliver Flatt][],
+[David Cao][],
+[Philip Zucker][],
+[Eli Rosenthal][],
+[Zachary Tatlock][],
+[Max Willsey][] \
+Programming Language Design and Implementation (PLDI) 2023
+
+{.pub #2023-popl-babble}
+*[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](https://dl.acm.org/doi/abs/10.1145/3571207)* \
+[David Cao][],
+[Rose Kunkel][],
+[Chandrakana Nandi][],
+[Max Willsey][],
+[Zachary Tatlock][],
+[Nadia Polikarpova][] \
+Principles of Programming Languages (POPL) 2023
+
+{.pub #2022-fmcad-proofs}
+*[Small Proofs from Congruence Closure](https://ieeexplore.ieee.org/document/10026585)* \
+[Oliver Flatt][],
+[Samuel Coward][],
+[Max Willsey][],
+[Zachary Tatlock][],
+[Pavel Panchekha][] \
+Formal Methods in Computer-Aided Design (FMCAD) 2022
+
+{.pub #2022-fmcad-proofs}
+*[Verified Compilation and Optimization of Floating-Point Programs in CakeML](https://drops.dagstuhl.de/opus/volltexte/2022/16229/)* \
+[Heiko Becker][],
+Robert Rabe,
+[Eva Darulova][],
+[Magnus O. Myreen][],
+[Zachary Tatlock][],
+[Ramana Kumar][],
+[Yong Kiam Tan][],
+[Anthony Fox][] \
+European Conference on Object-Oriented Programming (ECOOP) 2022
+
+{.pub #2022-ecoop-cakeml}
+*[Co-Optimization of Design and Fabrication Plans for Carpentry](https://dl.acm.org/doi/10.1145/3508499)* \
+[Haisen Zhao][],
+[Max Willsey][],
+[Amy Zhu][],
+[Chandrakana Nandi][],
+[Zachary Tatlock][],
+[Justin Solomon][],
+[Adriana Schulz][] \
+ACM Transactions on Graphics (TOG) 2022
+
+Please see my [publications page](publications.html) for more.
+
+
+### _Recent Teaching_
+
+- [Winter 2023, UW CSE 505: Concepts of Programming Languages](https://sites.google.com/cs.washington.edu/cse-505-23wi/home)
+
+- [2022 Autumn, UW CSE 341: Programming Languages](https://sites.google.com/cs.washington.edu/cse341autumn2022)
+
+Please see my [teaching page](teaching.html) for more.
 
 

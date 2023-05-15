@@ -64,8 +64,34 @@ a {
     padding-left: 1.5rem;
 }
 
+ul.nav {
+  margin: 1rem;
+  padding: 0;
+  max-width: 40rem;
+  column-count: auto;
+  column-width: 8rem;
+}
+
+ul.nav li {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0.25rem;
+}
+
+ul.students-index {
+  max-width: 40rem;
+  column-count: auto;
+  column-width: 15rem;
+}
+
+hr {
+  max-width: 40rem;
+  margin: 0;
+  margin-top: 2rem;
+}
+
 .pub {
   max-width: 100%;
   line-height: 1.5;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
