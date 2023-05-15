@@ -536,6 +536,11 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 ### _Workshop Papers_
 
 {.pub}
+*Generate Compilers from Hardware Models! \
+Gus Henry Smith, Ben Kushigian, Vishal Canumalla, Andrew Cheung, René Just, Zachary Tatlock \
+Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
+
+{.pub}
 *Guarding Numerics Amidst Rising Heterogeneity* \
 Ganesh Gopalakrishnan, Ignacio Laguna, Ang Li, Pavel Panchekha, Cindy Rubio-González, Zachary Tatlock \
 Software Correctness for HPC Applications (CORRECTNESS) 2021
