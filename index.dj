@@ -62,59 +62,84 @@ Please see my [students page](students.html) for more.
 
 ## Recent Publications
 
+{.pub #2023-plarch-lakeroad}
+*[Generate Compilers from Hardware Models!](TODO)* \
+  [Gus Henry Smith][Gus Smith],
+\ [Ben Kushigian][],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [René Just][],
+\ [Zachary Tatlock][]
+\
+Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
+
 {.pub #2023-pldi-egglog}
 *[Better Together: Unifying Datalog and Equality Saturation](https://arxiv.org/abs/2304.04332)* \
-[Yihong Zhang][],
-[Yisu Remy Wang][Remy Wang],
-[Oliver Flatt][],
-[David Cao][],
-[Philip Zucker][],
-[Eli Rosenthal][],
-[Zachary Tatlock][],
-[Max Willsey][] \
+  [Yihong Zhang][],
+\ [Yisu Remy Wang][Remy Wang],
+\ [Oliver Flatt][],
+\ [David Cao][],
+\ [Philip Zucker][],
+\ [Eli Rosenthal][],
+\ [Zachary Tatlock][],
+\ [Max Willsey][]
+\
 Programming Language Design and Implementation (PLDI) 2023
 
 {.pub #2023-popl-babble}
 *[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](https://dl.acm.org/doi/abs/10.1145/3571207)* \
-[David Cao][],
-[Rose Kunkel][],
-[Chandrakana Nandi][],
-[Max Willsey][],
-[Zachary Tatlock][],
-[Nadia Polikarpova][] \
+  [David Cao][],
+\ [Rose Kunkel][],
+\ [Chandrakana Nandi][],
+\ [Max Willsey][],
+\ [Zachary Tatlock][],
+\ [Nadia Polikarpova][]
+\
 Principles of Programming Languages (POPL) 2023
 
 {.pub #2022-fmcad-proofs}
 *[Small Proofs from Congruence Closure](https://ieeexplore.ieee.org/document/10026585)* \
-[Oliver Flatt][],
-[Samuel Coward][],
-[Max Willsey][],
-[Zachary Tatlock][],
-[Pavel Panchekha][] \
+  [Oliver Flatt][],
+\ [Samuel Coward][],
+\ [Max Willsey][],
+\ [Zachary Tatlock][],
+\ [Pavel Panchekha][]
+\
 Formal Methods in Computer-Aided Design (FMCAD) 2022
 
 {.pub #2022-fmcad-proofs}
 *[Verified Compilation and Optimization of Floating-Point Programs in CakeML](https://drops.dagstuhl.de/opus/volltexte/2022/16229/)* \
-[Heiko Becker][],
-Robert Rabe,
-[Eva Darulova][],
-[Magnus O. Myreen][],
-[Zachary Tatlock][],
-[Ramana Kumar][],
-[Yong Kiam Tan][],
-[Anthony Fox][] \
+  [Heiko Becker][],
+\ Robert Rabe,
+\ [Eva Darulova][],
+\ [Magnus O. Myreen][],
+\ [Zachary Tatlock][],
+\ [Ramana Kumar][],
+\ [Yong Kiam Tan][],
+\ [Anthony Fox][]
+\
 European Conference on Object-Oriented Programming (ECOOP) 2022
 
 {.pub #2022-ecoop-cakeml}
 *[Co-Optimization of Design and Fabrication Plans for Carpentry](https://dl.acm.org/doi/10.1145/3508499)* \
-[Haisen Zhao][],
-[Max Willsey][],
-[Amy Zhu][],
-[Chandrakana Nandi][],
-[Zachary Tatlock][],
-[Justin Solomon][],
-[Adriana Schulz][] \
+  [Haisen Zhao][],
+\ [Max Willsey][],
+\ [Amy Zhu][],
+\ [Chandrakana Nandi][],
+\ [Zachary Tatlock][],
+\ [Justin Solomon][],
+\ [Adriana Schulz][]
+\
 ACM Transactions on Graphics (TOG) 2022
+
+{.pub #2022-fmcad-proofs}
+*[Relational e-matching](https://dl.acm.org/doi/10.1145/3498696)* \
+  [Yihong Zhang][],
+\ [Yisu Remy Wang][Remy Wang],
+\ [Max Willsey][],
+\ [Zachary Tatlock][]
+\
+Principles of Programming Languages (POPL) 2022
 
 Please see my [publications page](publications.html) for more.
 
