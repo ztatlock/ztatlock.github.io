@@ -1,18 +1,119 @@
 # [Zachary Tatlock][] - Research
 
-Current Projects
+My primary goal is to help
+  my [students](students.html)
+  become great researchers.
+That means working with them as
+  they practice developing good research questions and
+  helping them to learn how to get unstuck as
+  they answer those questions.
 
-- Automatic Numerical Accuracy Improvement
-- CAD Tools for 3D Printing, Carpentry, and Knitting
-- Compiler Optimization Synthesis
+Consequently, our "research portfolio" is diverse.
+We've worked on:
 
-Past Projects
+- Formally verifying distributed systems implementations in proof assistants
+- Automatically rewriting code to minimize rounding error
+- Decompiling triangle meshes back to more-editable 3D CAD designs
+- Building new proof assistants to reason about accessiblity in web browsers
+- Automatically trading off time and space in GPU memory for ML training
+- Formally verifying controls in an active clinical radiotherapy installation
+- Using SMT to scale proof assistant based verification of BGP router configs
 
-- Machine Learning Compilers and Runtimes
-- Web Browser Layout Verification
-- Radiotherapy Control Verification
-- Distributed Systems Verification
-- Internet Router Verification
+
+### Current Projects
+
+* [egg](https://egraphs-good.github.io/):
+  Fast and flexible e-graphs for optimization, synthesis, and verification
+
+* [Lakeroad](https://github.com/uwsampl/lakeroad):
+  FPGA technology mapping via enumerative program synthesis
+
+* Optimizations to enable illusion knitting on CNC knitting machines
+
+* Sparse autodiff for second-order optimization and simulation methods
+
+* [Ruler](https://github.com/uwplse/ruler):
+  Automatically inferring rewrite rules by and for equality saturation
+
+* [Herbie](https://herbie.uwplse.org/):
+  Automatically improving numerical accuracy
+
+* [FPBench](https://fpbench.org/):
+  Numerical benchmarks, tools, and standards
+
+### Past Projects
+
+* [Carpentry Compiler](https://grail.cs.washington.edu/projects/carpentrycompiler/):
+  Synthesizing and optimizing carpentry build plans
+
+* [Glenside](https://github.com/gussmith23/glenside):
+  Term rewriting for flexible tensor operator mapping
+
+* [Incarnate](http://incarnate.uwplse.org/):
+  PL tools and techniques for 3D printing
+
+* [TVM Relay](https://sampl.cs.washington.edu/projects/relay.html):
+  Functional compiler IR for machine learning
+
+* [Icing](https://gitlab.mpi-sws.org/AVA/icing):
+  Formally verified, accurate fast-math optimizations
+
+* [Titanic]():
+  Number system design tools
+
+* [Proof Engineering](https://proofengineering.org/):
+  Building and maintaining large verification efforts
+
+* [Œuf](https://oeuf.uwplse.org/):
+  Correctly compile Coq in Coq via CompCert
+
+* [Distributed Components](https://distributedcomponents.net/):
+  Modular verification of distributed systems
+
+* [Cassius](https://cassius.uwplse.org/):
+  Automated reasoning for web page layout
+
+* [Herbgrind](http://herbgrind.ucsd.edu/):
+  Dynamic binary analysis for numerical error
+
+* [Neutrons](http://neutrons.uwplse.org/):
+  Verifying safety of radiotherapy controls at CNTS
+
+* [Verdi](https://verdi.uwplse.org/):
+  Verifying distributed systems implementations
+
+* [SpaceSearch](https://github.com/konne88/SpaceSearch):
+  Formally verified solver-aided tools
+
+* [Bagpipe](http://bagpipe.uwplse.org/bagpipe/):
+  Formal verification for BGP router configurations
+
+* [Peek](http://peek.uwplse.org/):
+  Extensible, formally verified peephole optimization framework for CompCert
+
+* [Roboflow](https://homes.cs.washington.edu/~ztatlock/roboflow/):
+  Visual robot programming framework
+
+* [Jitk](http://css.csail.mit.edu/jitk/):
+  Formally verified BPF JIT compiler for Linux via CompCert
+
+* [Reflex](http://goto.ucsd.edu/reflex/):
+  Formally verified reactive programming framework for system shims
+
+* [SafeDispatch](https://cseweb.ucsd.edu/~d1jang/):
+  Compiler-enforced VTable hijacking defenses
+
+* [Quark](http://goto.ucsd.edu/quark/):
+  Formally verified web browser kernel
+
+* [Peggy](https://rosstate.org/publications/eqsat/):
+  Emergent loop optimizations via equality saturation and PEGs
+
+* [PEC/XCert](https://cseweb.ucsd.edu//~lerner/collider.html):
+  Extensible, formally verified optimizations via parameterized translation validation
+
+* [Quail](https://cseweb.ucsd.edu//~lerner/quail.html):
+  Deep typechecking and refactoring for embedded DB queries in Java
 
 See our [publications](publications.html) for more.
 
