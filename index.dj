@@ -22,7 +22,8 @@ As my students develop their own research vision,
 Our work remains unified by themes of
   making it easier to write tricky code and
   figuring out how to ensure such programs are correct.
-We rigorously prove our results and build real systems[^1].
+We rigorously prove our results while
+  building and measuring real systems[^1].
 
 [^1]: My colleague [Dan Grossman][] characterizes this combination of
       formalism and empiricism as "both Greek and graphs".
