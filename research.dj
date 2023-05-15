@@ -1,4 +1,4 @@
-# [Zachary Tatlock][] - Research
+# [Zachary Tatlock][] -- Research
 
 My primary goal is to help
   my [students](students.html)
@@ -21,7 +21,7 @@ We've worked on:
 - Using SMT to scale proof assistant based verification of BGP router configs
 
 
-### Current Projects
+## Current Projects
 
 * [egg](https://egraphs-good.github.io/):
   Fast and flexible e-graphs for optimization, synthesis, and verification
@@ -42,7 +42,7 @@ We've worked on:
 * [FPBench](https://fpbench.org/):
   Numerical benchmarks, tools, and standards
 
-### Past Projects
+## Past Projects
 
 * [Carpentry Compiler](https://grail.cs.washington.edu/projects/carpentrycompiler/):
   Synthesizing and optimizing carpentry build plans

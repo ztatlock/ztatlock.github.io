@@ -1,4 +1,4 @@
-# *Zachary Tatlock, PhD -- Curriculum Vitae*
+# Zachary Tatlock, PhD -- Curriculum Vitae
 
 ```
 Zachary Tatlock
@@ -275,43 +275,53 @@ https://ztatlock.net
 
 ### _Conference and Journal Papers_
 
+{.pub}
 *Better Together: Unifying Datalog and Equality Saturation* \
 Yihong Zhang, Yisu Remy Wang, Oliver Flatt, David Cao, Philip Zucker, Eli Rosenthal, Zachary Tatlock, Max Willsey \
 Programming Language Design and Implementation (PLDI) 2023
 
+{.pub}
 *babble: Learning Better Abstractions with E-Graphs and Anti-Unification* \
 David Cao, Rose Kunkel, Chandrakana Nandi, Max Willsey, Zachary Tatlock, Nadia Polikarpova \
 Principles of Programming Languages (POPL) 2023
 
+{.pub}
 *Small Proofs from Congruence Closure* \
 Oliver Flatt, Samuel Coward, Max Willsey, Zachary Tatlock, Pavel Panchekha \
 Formal Methods in Computer-Aided Design (FMCAD) 2022
 
+{.pub}
 *Verified Compilation and Optimization of Floating-Point Programs in CakeML* \
 Heiko Becker, Robert Rabe, Eva Darulova, Magnus O. Myreen, Zachary Tatlock, Ramana Kumar, Yong Kiam Tan, Anthony Fox \
 European Conference on Object-Oriented Programming (ECOOP) 2022
 
+{.pub}
 *Co-Optimization of Design and Fabrication Plans for Carpentry* \
 Haisen Zhao, Max Willsey, Amy Zhu, Chandrakana Nandi, Zachary Tatlock, Justin Solomon, Adriana Schulz \
 ACM Transactions on Graphics (TOG) 2022
 
+{.pub}
 *Relational e-matching* \
 Yihong Zhang, Yisu Remy Wang, Max Willsey, Zachary Tatlock \
 Principles of Programming Languages (POPL) 2022
 
+{.pub}
 *Rewrite Rule Inference Using Equality Saturation* \
 Chandrakana Nandi, Max Willsey, Amy Zhu, Yisu Remy Wang, Brett Saiki, Adam Anderson, Adriana Schulz, Dan Grossman, Zachary Tatlock \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021 \
 ★ Distinguished Paper
 
+{.pub}
 *A Roadmap Towards Parallel Printing for Desktop 3D Printers* \
 Molly Aubrey Carton, Chandrakana Nandi, Adam Anderson, Haisen Zhao, Eva Darulova, Dan Grossman, Jeffrey I. Lipton, Adriana Schulz, Zachary Tatlock \
 Solid Freeform Fabrication Symposium (SFF) 2021
 
+{.pub}
 *Combining Precision Tuning and Rewriting* \
 Brett Saiki, Oliver Flatt, Chandrakana Nandi, Pavel Panchekha, Zachary Tatlock \
 IEEE International Symposium on Computer Arithmetic (ARITH) 2021
 
+{.pub}
 *Pure Tensor Program Rewriting via Access Patterns* \
 Gus Henry Smith, Andrew Liu, Steven Lyubomirsky, Scott Davidson, Joseph McMahan, Michael Taylor, Luis Ceze, Zachary Tatlock \
 Symposium on Machine Programming (MAPS) 2021
@@ -321,208 +331,258 @@ Marisa Kirisame, Steven Lyubomirsky, Altan Haan, Jennifer Brennan, Mike He, Jare
 International Conference on Learning Representations (ICLR) 2021 \
 ★ Spotlight Paper
 
+{.pub}
 *Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference* \
 Haichen Shen, Jared Roesch, Zhi Chen, Wei Chen, Yong Wu, Mu Li, Vin Sharma, Zachary Tatlock, Yida Wang \
 Conference on Machine Learning and Systems (MLSys) 2021
 
+{.pub}
 *egg: Fast and Extensible Equality Saturation* \
 Max Willsey, Chandrakana Nandi, Yisu Remy Wang, Oliver Flatt, Zachary Tatlock, Pavel Panchekha \
 Principles of Programming Languages (POPL) 2021 \
 ★ Distinguished Paper
 
+{.pub}
 *Synthesizing Structured CAD Models with Equality Saturation and Inverse Transformations* \
 Chandrakana Nandi, Max Willsey, Adam Anderson, James R. Wilcox, Eva Darulova, Dan Grossman, Zachary Tatlock \
 Programming Language Design and Implementation (PLDI) 2020
 
+{.pub}
 *Carpentry Compiler* \
 Chenming Wu, Haisen Zhao, Chandrakana Nandi, Jeffrey I. Lipton, Zachary Tatlock, Adriana Schulz \
 SIGGRAPH Asia, ACM Transactions on Graphics (SIGA) 2019
 
+{.pub}
 *Modular Verification of Web Page Layout* \
 Pavel Panchekha, Michael D. Ernst, Zachary Tatlock, Shoaib Kamil \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2019
 
+{.pub}
 *QED at Large: A Survey of Engineering of Formally Verified Software* \
 Talia Ringer, Karl Palmskog, Ilya Sergey, Milos Gligoric, Zachary Tatlock \
 Foundations and Trends in Programming Languages (FTPL) 2019
 
+{.pub}
 *Icing: Supporting Fast-Math Style Optimizations in a Verified Compiler* \
 Heiko Becker, Eva Darulova, Magnus O. Myreen, Zachary Tatlock \
 Computer-Aided Verification (CAV) 2019
 
+{.pub}
 *Teaching Rigorous Distributed Systems With Efficient Model Checking* \
 Ellis Michael, Doug Woos, Thomas E. Anderson, Michael D. Ernst, Zachary Tatlock \
 European Conference on Computer Systems (EuroSys) 2019
 
+{.pub}
 *Sinking Point: Dynamic Precision Tracking for Floating-Point* \
 Bill Zorn, Dan Grossman, Zachary Tatlock \
 Conference for Next Generation Arithmetic (CoNGA) 2019
 
+{.pub}
 *Functional Programming for Compiling and Decompiling Computer-aided Design* \
 Chandrakana Nandi, James R. Wilcox, Pavel Panchekha, Taylor Blau, Dan Grossman, Zachary Tatlock \
 International Conference on Functional Programming (ICFP) 2018
 
+{.pub}
 *Combining Tools for Optimization and Analysis of Floating-Point Computations* \
 Heiko Becker, Pavel Panchekha, Eva Darulova, Zachary Tatlock \
 Formal Methods (FM) 2018
 
+{.pub}
 *Software Verification with ITPs Should Use Binary Code Extraction to Reduce the TCB* \
 Ramana Kumar, Eric Mullen, Zachary Tatlock, Magnus O. Myreen \
 Interactive Theorem Proving (ITP) 2018
 
+{.pub}
 *Relay: a New IR for Machine Learning Frameworks* \
 Jared Roesch, Steven Lyubomirsky, Logan Weber, Josh Pollock, Marisa Kirisame, Tianqi Chen, Zachary Tatlock \
 Machine Learning and Programming Languages (MAPL) 2018
 
+{.pub}
 *Finding Root Causes of Floating Point Error* \
 Alex Sanchez-Stern, Pavel Panchekha, Sorin Lerner, Zachary Tatlock \
 Programming Language Design and Implementation (PLDI) 2018
 
+{.pub}
 *Verifying that Web Pages have Accessible Layout* \
 Pavel Panchekha, Adam T. Geller, Michael D. Ernst, Zachary Tatlock, Shoaib Kamil \
 Programming Language Design and Implementation (PLDI) 2018
 
+{.pub}
 *Programming and Proving with Distributed Protocols* \
 Ilya Sergey, James R. Wilcox, Zachary Tatlock \
 Principles of Programming Languages (POPL) 2018
 
+{.pub}
 *Œuf: Minimizing the Coq Extraction TCB* \
 Eric Mullen, Stuart Pernsteiner, James R. Wilcox, Zachary Tatlock, Dan Grossman \
 Certified Programs and Proofs (CPP) 2018
 
+{.pub}
 *Automatic Formal Verification for EPICS* \
 Jonathan Jacky, Stefani Banerian, Michael D. Ernst, Calvin Loncaric, Stuart Pernsteiner, Zachary Tatlock, Emina Torlak \
 International Conference on Accelerator and Large Experimental Control Systems (ICALEPCS) 2017
 
+{.pub}
 *SpaceSearch: A Library for Building and Verifying Solver-aided Tools* \
 Konstantin Weitz, Steven Lyubomirsky, Stefan Heule, Emina Torlak, Michael D. Ernst, Zachary Tatlock \
 International Conference on Functional Programming (ICFP) 2017
 
+{.pub}
 *Programming Language Abstractions for Modularly Verified Distributed Systems* \
 James R. Wilcox, Ilya Sergey, Zachary Tatlock \
 Summit oN Advances in Programming Languages (SNAPL) 2017
 
+{.pub}
 *Programming Language Tools and Techniques for 3D Printing* \
 Chandrakana Nandi, Anat Caspi, Dan Grossman, Zachary Tatlock \
 Summit oN Advances in Programming Languages (SNAPL) 2017
 
+{.pub}
 *Scalable Verification of Border Gateway Protocol Configurations with an SMT Solver* \
 Konstantin Weitz, Doug Woos, Emina Torlak, Michael D. Ernst, Arvind Krishnamurthy, Zachary Tatlock \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2016
 
+{.pub}
 *Formal Semantics and Automated Verification for the Border Gateway Protocol* \
 Konstantin Weitz, Doug Woos, Emina Torlak, Michael D. Ernst, Arvind Krishnamurthy, Zachary Tatlock \
 ACM SIGCOMM Workshop on Networking and Programming Languages (NetPL) 2016
 
+{.pub}
 *Investigating Safety of a Radiotherapy Machine Using System Models with Pluggable Checkers* \
 Stuart Pernsteiner, Calvin Loncaric, Emina Torlak, Zachary Tatlock, Xi Wang, Michael D. Ernst, Jonathan Jacky \
 Computer-Aided Verification (CAV) 2016
 
+{.pub}
 *Verified Peephole Optimizations for CompCert* \
 Eric Mullen, Daryl Zuniga, Zachary Tatlock, Dan Grossman \
 Programming Language Design and Implementation (PLDI) 2016
 
+{.pub}
 *Planning for Change in a Formal Verification of the Raft Consensus Protocol* \
 Doug Woos, James R. Wilcox, Steve Anton, Zachary Tatlock, Michael D. Ernst, Thomas E. Anderson \
 Certified Programs and Proofs (CPP) 2016
 
+{.pub}
 *Verdi: A Framework for Implementing and Formally Verifying Distributed Systems* \
 James R. Wilcox, Doug Woos, Pavel Panchekha, Zachary Tatlock, Xi Wang, Michael D. Ernst, Thomas E. Anderson \
 Programming Language Design and Implementation (PLDI) 2015
 
+{.pub}
 *Automatically Improving Accuracy for Floating Point Expressions* \
 Pavel Panchekha, Alex Sanchez-Stern, James R. Wilcox, Zachary Tatlock \
 Programming Language Design and Implementation (PLDI) 2015 \
 ★ Distinguished Paper
 
+{.pub}
 *RoboFlow: A Flow-based Visual Programming Language for Mobile Manipulation Tasks* \
 Sonya Alexandrova, Zachary Tatlock, Maya Cakmak \
 International Conference on Robotics and Automation (ICRA) 2015
 
+{.pub}
 *Toward a Dependability Case Language and Workflow for a Radiation Therapy System* \
 Michael D. Ernst, Dan Grossman, Jonathan Jacky, Calvin Loncaric, Stuart Pernsteiner, Zachary Tatlock, Emina Torlak, Xi Wang \
 Summit oN Advances in Programming Languages (SNAPL) 2015
 
+{.pub}
 *Visual Robot Programming for Generalizable Mobile Manipulation Tasks* \
 Sonya Alexandrova, Zachary Tatlock, Maya Cakmak \
 Human Robot Interaction (HRI) 2015
 
+{.pub}
 *Jitk: A Trustworthy In-Kernel Interpreter Infrastructure* \
 Xi Wang, David Lazar, Nickolai Zeldovich, Adam Chlipala, Zachary Tatlock \
 Operating Systems Design and Implementation (OSDI) 2014
 
+{.pub}
 *Automating Formal Proofs for Reactive Systems* \
 Daniel Ricketts, Valentin Robert, Dongseok Jang, Zachary Tatlock, Sorin Lerner \
 Programming Language Design and Implementation (PLDI) 2014
 
+{.pub}
 *SafeDispatch: Securing C++ Virtual Calls from Memory Corruption Attacks* \
 Dongseok Jang, Zachary Tatlock, Sorin Lerner \
 Network and Distributed System Security (NDSS) 2014
 
+{.pub}
 *Establishing Browser Security Guarantees through Formal Shim Verification* \
 Dongseok Jang, Zachary Tatlock, Sorin Lerner \
 USENIX Security Symposium (SECURITY) 2012
 
+{.pub}
 *Equality Saturation: A New Approach to Optimization* \
 Ross Tate, Michael Stepp, Zachary Tatlock, Sorin Lerner \
 Logical Methods in Computer Science (LMCS) 2011
 
+{.pub}
 *Bringing Extensibility to Verified Compilers* \
 Zachary Tatlock, Sorin Lerner \
 Programming Language Design and Implementation (PLDI) 2010
 
+{.pub}
 *Proving Optimizations Correct using Parameterized Program Equivalence* \
 Sudipta Kundu, Zachary Tatlock, Sorin Lerner \
 Programming Language Design and Implementation (PLDI) 2009
 
+{.pub}
 *Equality Saturation: A New Approach to Optimization* \
 Ross Tate, Michael Stepp, Zachary Tatlock, Sorin Lerner \
 Principles of Programming Languages (POPL) 2009
 
+{.pub}
 *Deep Typechecking and Refactoring* \
 Zachary Tatlock, Chris Tucker, David Shuffelton, Ranjit Jhala, Sorin Lerner \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 
 ### _Workshop Papers_
 
+{.pub}
 *Guarding Numerics Amidst Rising Heterogeneity* \
 Ganesh Gopalakrishnan, Ignacio Laguna, Ang Li, Pavel Panchekha, Cindy Rubio-González, Zachary Tatlock \
 Software Correctness for HPC Applications (CORRECTNESS) 2021
 
+{.pub}
 *From DSLs to Accelerator-Rich Platform Implementations: Addressing the Mapping Gap* \
 Bo-Yuan Huang, Steven Lyubomirsky, Thierry Tambe, Yi Li, Mike He, Gus Henry Smith, Gu-Yeon Wei, Aarti Gupta, Sharad Malik, Zachary Tatlock \
 Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE) 2021
 
+{.pub}
 *The Essence of Program Semantics Visualizers: A Three-Axis Model* \
 Josh Pollock, Grace Oh, Eunice Jun, Philip J. Guo, Zachary Tatlock \
 Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU) 2020 \
 
+{.pub}
 *Towards Numerical Assistants* \
 Pavel Panchekha, Zachary Tatlock \
 Numerical Software Verification (NSV) 2020
 
+{.pub}
 *Toward Multi-Precision, Multi-Format Numerics* \
 David Thien, Bill Zorn, Pavel Panchekha, Zachary Tatlock \
 Software Correctness for HPC Applications (CORRECTNESS) 2019
 
+{.pub}
 *Theia: Automatically Generating Correct Program State Visualizations* \
 Josh Pollock, Jared Roesch, Doug Woos, Zachary Tatlock \
 ACM SIGPLAN International Symposium on SPLASH-E (SPLASH-E) 2019
 
+{.pub}
 *Verification of Implementations of Distributed Systems Under Churn* \
 Ryan Doenges, James R. Wilcox, Doug Woos, Zachary Tatlock, Karl Palmskog \
 Workshop on Coq for Programming Languages (CoqPL) 2017
 
+{.pub}
 *Toward a Standard Benchmark Format and Suite for Floating-Point Analysis* \
 Nasrine Damouche, Matthieu Martel, Pavel Panchekha, Chen Qiu, Alex Sanchez-Stern, Zachary Tatlock \
 Numerical Software Verification (NSV) 2016
 
+{.pub}
 *Peek: A Formally Verified Peephole Optimization Framework for x86* \
 Eric Mullen, Zachary Tatlock, Dan Grossman \
 Workshop on Coq for Programming Languages (CoqPL) 2015
 
 ### _Book Chapters_
 
+{.pub}
 *Chapter 8: Parameterized Program Equivalence Checking* \
 High-Level Verification: Methods and Tools for Verification of System-Level Designs \
 Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
@@ -540,16 +600,17 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
   Hoare logic,
   metatheory
 
-  *  2023\ Winter,
-  \  2021\ Spring,
-  \  2020\ Spring,
-  \  2019\ Spring,
-  \  2018\ Autumn,
-  \  2017\ Autumn,
-  \  2016\ Autumn,
-  \  2015\ Autumn,
-  \  2015\ Winter,
-  \  2013\ Autumn
+  {.columns .columns-8rem}
+  *  2023 Winter
+  *  2021 Spring
+  *  2020 Spring
+  *  2019 Spring
+  *  2018 Autumn
+  *  2017 Autumn
+  *  2016 Autumn
+  *  2015 Autumn
+  *  2015 Winter
+  *  2013 Autumn
 
 - *UW CSE 341: Programming Languages* \
   Undergraduate course exploring
@@ -557,13 +618,14 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
   functional programming vs. OOP,
   static vs. dynamic typing
 
-  *  2022\ Autumn,
-  \  2021\ Winter,
-  \  2020\ Winter,
-  \  2019\ Winter,
-  \  2018\ Winter,
-  \  2015\ Spring,
-  \  2014\ Spring
+  {.columns .columns-8rem}
+  *  2022 Autumn
+  *  2021 Winter
+  *  2020 Winter
+  *  2019 Winter
+  *  2018 Winter
+  *  2015 Spring
+  *  2014 Spring
 
 - *UW CSE 331: Software Design and Implementation* \
   Undergraduate course exploring
@@ -573,9 +635,10 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
   debugging,
   modular design
 
-  *  2018\ Spring,
-  \  2017\ Winter,
-  \  2016\ Winter
+  {.columns .columns-8rem}
+  *  2018 Spring
+  *  2017 Winter
+  *  2016 Winter
 
 - *Special Topics Graduate Courses*
 
@@ -607,9 +670,10 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
   program analyses and
   compiler optimizations
 
-  *  2012\ Autumn,
-  \  2011\ Autumn,
-  \  2011\ Spring
+  {.columns .columns-8rem}
+  *  2012 Autumn
+  *  2011 Autumn
+  *  2011 Spring
 
 - *UCSD CSE 130: Programming Languages* \
   Undergraduate course exploring
@@ -617,21 +681,27 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
   static vs. dynamic typing, and
   logic programming
 
-  *  2012\ Winter
+  {.columns .columns-8rem}
+  *  2012 Winter
 
 - *Purdue CS 180: Introduction to Java Programming* \
-  Undergraduate course
-  introducing students to programming:
-  state, conditionals, loops, recursion,
-  testing, and basic systems programming
+  Undergraduate course introducing students to Java programming:
+  variables,
+  conditionals,
+  loops,
+  recursion,
+  testing,
+  modular design, and
+  basic systems programming
 
-  *  2007\ Spring,
-  \  2006\ Autumn,
-  \  2006\ Spring,
-  \  2005\ Autumn,
-  \  2005\ Spring,
-  \  2004\ Autumn,
-  \  2004\ Spring,
+  {.columns .columns-8rem}
+  *  2007 Spring
+  *  2006 Autumn
+  *  2006 Spring
+  *  2005 Autumn
+  *  2005 Spring
+  *  2004 Autumn
+  *  2004 Spring
 
 ## Awards
 

@@ -36,6 +36,22 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.50rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+section {
+  margin: 2rem 0;
+}
+
 p {
   max-width: 40rem;
 }
@@ -64,24 +80,22 @@ a {
     padding-left: 1.5rem;
 }
 
-ul.nav {
-  margin: 1rem;
-  padding: 0;
+ul.columns {
   max-width: 40rem;
   column-count: auto;
-  column-width: 8rem;
 }
 
-ul.nav li {
+ul.columns li {
   margin: 0;
-  padding: 0;
   padding-bottom: 0.25rem;
 }
 
-ul.students-index {
-  max-width: 40rem;
-  column-count: auto;
-  column-width: 15rem;
+ul.columns-8rem {
+  column-width: 8rem;
+}
+
+ul.columns-16rem {
+  column-width: 16rem;
 }
 
 hr {
@@ -93,5 +107,5 @@ hr {
 .pub {
   max-width: 100%;
   line-height: 1.5;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }

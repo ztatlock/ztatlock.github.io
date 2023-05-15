@@ -27,7 +27,7 @@ We rigorously prove our results and build real systems[^1].
 [^1]: My colleague [Dan Grossman][] characterizes this combination of
       formalism and empiricism as "both Greek and graphs".
 
-{.nav}
+{.columns .columns-8rem}
 - [Students](students.html)
 - [Teaching](teaching.html)
 - [Research](research.html)
@@ -36,9 +36,9 @@ We rigorously prove our results and build real systems[^1].
 - [Service](service.html)
 - [Notes](notes.html)
 
-### _Current Students_
+## Current Students
 
-{.students-index}
+{.columns .columns-16rem}
 - [Max Willsey][], Postdoctoral Scholar
 - [Gus Smith][], PhD Student
 - [Amy Zhu][], PhD Student
@@ -58,7 +58,7 @@ We rigorously prove our results and build real systems[^1].
 
 Please see my [students page](students.html) for more.
 
-### _Recent Publications_
+## Recent Publications
 
 {.pub #2023-pldi-egglog}
 *[Better Together: Unifying Datalog and Equality Saturation](https://arxiv.org/abs/2304.04332)* \
@@ -117,7 +117,7 @@ ACM Transactions on Graphics (TOG) 2022
 Please see my [publications page](publications.html) for more.
 
 
-### _Recent Teaching_
+## Recent Teaching
 
 - [Winter 2023, UW CSE 505: Concepts of Programming Languages](https://sites.google.com/cs.washington.edu/cse-505-23wi/home)
 
