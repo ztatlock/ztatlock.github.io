@@ -1,0 +1,23 @@
+# [Zachary Tatlock[] -- Paper Recipe (draft)
+
+A great paper has to have 4 big components:
+
+* Problem
+
+  - No one will care about anything you've done till they care about the problem you're trying to solve.
+
+* Insight
+
+  - You must show some simple, clever insight that makes the problem "fall apart".
+  - The insight also has to transcend the particular problem and have clear applications outside this paper.
+
+* Claims
+
+   - You must make concrete claims about the insight, e.g., how much better it is than SOTA.
+
+* Evidence
+
+   - You must provide evidence to support the claims.
+   - For "systems papers" this probably means tables and graphs.
+   - For "theory papers" this probably theorems and proofs.
+
