@@ -73,6 +73,7 @@ li {
 
 code {
   font-family: 'Fira Mono', monospace;
+  font-size: 1rem;
 }
 
 a {
@@ -117,16 +118,6 @@ hr {
   margin-top: 2rem;
 }
 
-.pub {
-  max-width: 100%;
-  line-height: 1.5;
-  margin: 2rem 0;
-}
-
-.course-vspace {
-  margin-top: 2rem;
-}
-
 div.photo {
   display: flex;
   justify-content: center;
@@ -141,4 +132,18 @@ div.photo img {
 
 div.photo-narrow img {
   max-width: 15rem;
+}
+
+.pub {
+  max-width: 100%;
+  line-height: 1.5;
+  margin: 2rem 0;
+}
+
+.bib code {
+  font-size: 0.75rem;
+}
+
+.course-vspace {
+  margin-top: 2rem;
 }

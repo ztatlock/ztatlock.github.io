@@ -1,12 +1,15 @@
 PAGES = $(patsubst %.dj,%.html,$(wildcard *.dj))
 
 %.html: %.dj REFS HEAD FOOT
-	$(eval PAGE := $(shell basename $< .dj))
-	@echo
-	@echo "BUILD $(PAGE)"
-	cat HEAD | sed 's/__PAGE__/$(PAGE)/' > $@
-	cat $< REFS | djot >> $@
-	cat FOOT >> $@
+	$(eval TITLE := $(shell \
+			head -n 1 '$<' \
+			| tr -d '#[]' \
+			| sed 's#^[[:blank:]]*##' \
+			| sed 's#[[:blank:]]*$$##'))
+	@printf "BUILD : %-30s %s\n" "$@" "$(TITLE)"
+	@cat HEAD | sed 's#TITLE#$(TITLE)#' > $@
+	@cat $< REFS | djot >> $@
+	@cat FOOT >> $@
 
 .PHONY: all
 all: $(PAGES)
