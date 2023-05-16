@@ -62,8 +62,8 @@ Please see my [students page](students.html) for more.
 
 ## Recent Publications
 
-{.pub #2023-plarch-lakeroad}
-*[Generate Compilers from Hardware Models!](TODO)* \
+{.pub #2023-plarch-lakeroad %TODO%}
+*[Generate Compilers from Hardware Models!](https://pldi23.sigplan.org/home/plarch-2023)* \
   [Gus Henry Smith][Gus Smith],
 \ [Ben Kushigian][],
 \ [Vishal Canumalla][],

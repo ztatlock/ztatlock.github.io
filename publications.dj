@@ -1,15 +1,6 @@
 # [Zachary Tatlock][] -- Publications
 
-{.pub #2023-plarch-lakeroad}
-*[Generate Compilers from Hardware Models!](TODO)* \
-  [Gus Henry Smith][Gus Smith],
-\ [Ben Kushigian][],
-\ [Vishal Canumalla][],
-\ [Andrew Cheung][],
-\ [René Just][],
-\ [Zachary Tatlock][]
-\
-Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
+## Conference and Journal Papers
 
 {.pub #2023-pldi-egglog}
 *[Better Together: Unifying Datalog and Equality Saturation](https://arxiv.org/abs/2304.04332)* \
@@ -78,17 +69,6 @@ ACM Transactions on Graphics (TOG) 2022
 \ [Zachary Tatlock][]
 \
 Principles of Programming Languages (POPL) 2022
-
-{.pub #2021-correctness-xstack}
-*[Guarding Numerics Amidst Rising Heterogeneity](https://ieeexplore.ieee.org/document/9651291)* \
-  [Ganesh Gopalakrishnan][],
-\ [Ignacio Laguna][],
-\ [Ang Li][],
-\ [Pavel Panchekha][],
-\ [Cindy Rubio-González][],
-\ [Zachary Tatlock][]
-\
-Software Correctness for HPC Applications (CORRECTNESS) 2021
 
 {.pub #2021-oopsla-ruler}
 *[Rewrite Rule Inference Using Equality Saturation](https://dl.acm.org/doi/abs/10.1145/3485496)* \
@@ -170,21 +150,6 @@ International Conference on Learning Representations (ICLR) 2021 \
 \
 Conference on Machine Learning and Systems (MLSys) 2021
 
-{.pub #2021-latte-3la}
-*[From DSLs to Accelerator-Rich Platform Implementations: Addressing the Mapping Gap](https://capra.cs.cornell.edu/latte21/)* \
-  [Bo-Yuan Huang][],
-\ [Steven Lyubomirsky][],
-\ [Thierry Tambe][],
-\ [Yi Li][],
-\ [Mike He][],
-\ [Gus Henry Smith][Gus Smith],
-\ [Gu-Yeon Wei][],
-\ [Aarti Gupta][],
-\ [Sharad Malik][],
-\ [Zachary Tatlock][]
-\
-Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE) 2021
-
 {.pub #2021-popl-egg}
 *[egg: Fast and Extensible Equality Saturation](https://dl.acm.org/doi/10.1145/3434304)* \
   [Max Willsey][],
@@ -196,23 +161,6 @@ Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE) 2021
 \
 Principles of Programming Languages (POPL) 2021 \
 ★ Distinguished Paper
-
-{.pub #2020-plateau-semviz}
-*[The Essence of Program Semantics Visualizers: A Three-Axis Model](https://2020.plateau-workshop.org/program)* \
-  [Josh Pollock][],
-\ [Grace Oh][],
-\ [Eunice Jun][],
-\ [Philip J. Guo][Philip Guo],
-\ [Zachary Tatlock][]
-\
-Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU) 2020 \
-
-{.pub #2020-nsv-numassist}
-*[Towards Numerical Assistants](https://link.springer.com/chapter/10.1007/978-3-030-63618-0_13)* \
-  [Pavel Panchekha][],
-\ [Zachary Tatlock][]
-\
-Numerical Software Verification (NSV) 2020
 
 {.pub #2020-pldi-szalinski}
 *[Synthesizing Structured CAD Models with Equality Saturation and Inverse Transformations](https://dl.acm.org/doi/10.1145/3385412.3386012)* \
@@ -237,15 +185,6 @@ Programming Language Design and Implementation (PLDI) 2020
 \
 SIGGRAPH Asia, ACM Transactions on Graphics (SIGA) 2019
 
-{.pub #2019-correctness-mpmf}
-*[Toward Multi-Precision, Multi-Format Numerics](https://www.computer.org/csdl/proceedings-article/correctness/2019/601500a019/1gyr5pHvaz6)* \
-  [David Thien][],
-\ [Bill Zorn][],
-\ [Pavel Panchekha][],
-\ [Zachary Tatlock][]
-\
-Software Correctness for HPC Applications (CORRECTNESS) 2019
-
 {.pub #2019-oopsla-troika}
 *[Modular Verification of Web Page Layout](https://dl.acm.org/doi/10.1145/3360577)* \
   [Pavel Panchekha][],
@@ -254,15 +193,6 @@ Software Correctness for HPC Applications (CORRECTNESS) 2019
 \ [Shoaib Kamil][]
 \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2019
-
-{.pub #2019-splashe-theia}
-*[Theia: Automatically Generating Correct Program State Visualizations](https://dl.acm.org/doi/10.1145/3358711.3361625)* \
-  [Josh Pollock][],
-\ [Jared Roesch][],
-\ [Doug Woos][],
-\ [Zachary Tatlock][]
-\
-ACM SIGPLAN International Symposium on SPLASH-E (SPLASH-E) 2019
 
 {.pub #2019-ftpl-proofengineering}
 *[QED at Large: A Survey of Engineering of Formally Verified Software](https://www.nowpublishers.com/article/Details/PGL-045)* \
@@ -419,16 +349,6 @@ Summit oN Advances in Programming Languages (SNAPL) 2017
 \
 Summit oN Advances in Programming Languages (SNAPL) 2017
 
-{.pub #2017-coqpl-verdi}
-*[Verification of Implementations of Distributed Systems Under Churn](https://popl17.sigplan.org/details/main/1/Verification-of-Implementations-of-Distributed-Systems-Under-Churn)* \
-  [Ryan Doenges][],
-\ [James R. Wilcox][James Wilcox],
-\ [Doug Woos][],
-\ [Zachary Tatlock][],
-\ [Karl Palmskog][]
-\
-Workshop on Coq for Programming Languages (CoqPL) 2017
-
 {.pub #2016-oopsla-bagpipe}
 *[Scalable Verification of Border Gateway Protocol Configurations with an SMT Solver](https://dl.acm.org/doi/10.1145/2983990.2984012)* \
   [Konstantin Weitz][],
@@ -462,17 +382,6 @@ ACM SIGCOMM Workshop on Networking and Programming Languages (NetPL) 2016
 \ [Jonathan Jacky][Jon Jacky]
 \
 Computer-Aided Verification (CAV) 2016
-
-{.pub #2016-nsv-fpbench}
-*[Toward a Standard Benchmark Format and Suite for Floating-Point Analysis](https://link.springer.com/chapter/10.1007/978-3-319-54292-8_6)* \
-  [Nasrine Damouche][],
-\ [Matthieu Martel][],
-\ [Pavel Panchekha][],
-\ [Chen Qiu][],
-\ [Alex Sanchez-Stern][],
-\ [Zachary Tatlock][]
-\
-Numerical Software Verification (NSV) 2016
 
 {.pub #2016-pldi-peek}
 *[Verified Peephole Optimizations for CompCert](https://dl.acm.org/doi/10.1145/2908080.2908109)* \
@@ -544,14 +453,6 @@ Summit oN Advances in Programming Languages (SNAPL) 2015
 \ [Maya Cakmak][]
 \
 Human Robot Interaction (HRI) 2015
-
-{.pub #2015-coqpl-peek}
-*[Peek: A Formally Verified Peephole Optimization Framework for x86](https://coqpl.cs.washington.edu/program/)* \
-  [Eric Mullen][],
-\ [Zachary Tatlock][],
-\ [Dan Grossman][]
-\
-Workshop on Coq for Programming Languages (CoqPL) 2015
 
 {.pub #2014-osdi-jitk}
 *[Jitk: A Trustworthy In-Kernel Interpreter Infrastructure](https://www.usenix.org/conference/osdi14/technical-sessions/presentation/wang_xi)* \
@@ -632,7 +533,112 @@ Principles of Programming Languages (POPL) 2009
 \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 
-### Aggregators
+
+## Workshop Papers
+
+{.pub #2023-plarch-lakeroad %TODO%}
+*[Generate Compilers from Hardware Models!](https://pldi23.sigplan.org/home/plarch-2023)* \
+  [Gus Henry Smith][Gus Smith],
+\ [Ben Kushigian][],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [René Just][],
+\ [Zachary Tatlock][]
+\
+Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
+
+{.pub #2021-correctness-xstack}
+*[Guarding Numerics Amidst Rising Heterogeneity](https://ieeexplore.ieee.org/document/9651291)* \
+  [Ganesh Gopalakrishnan][],
+\ [Ignacio Laguna][],
+\ [Ang Li][],
+\ [Pavel Panchekha][],
+\ [Cindy Rubio-González][],
+\ [Zachary Tatlock][]
+\
+Software Correctness for HPC Applications (CORRECTNESS) 2021
+
+{.pub #2021-latte-3la}
+*[From DSLs to Accelerator-Rich Platform Implementations: Addressing the Mapping Gap](https://capra.cs.cornell.edu/latte21/)* \
+  [Bo-Yuan Huang][],
+\ [Steven Lyubomirsky][],
+\ [Thierry Tambe][],
+\ [Yi Li][],
+\ [Mike He][],
+\ [Gus Henry Smith][Gus Smith],
+\ [Gu-Yeon Wei][],
+\ [Aarti Gupta][],
+\ [Sharad Malik][],
+\ [Zachary Tatlock][]
+\
+Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE) 2021
+
+{.pub #2020-plateau-semviz}
+*[The Essence of Program Semantics Visualizers: A Three-Axis Model](https://2020.plateau-workshop.org/program)* \
+  [Josh Pollock][],
+\ [Grace Oh][],
+\ [Eunice Jun][],
+\ [Philip J. Guo][Philip Guo],
+\ [Zachary Tatlock][]
+\
+Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU) 2020 \
+
+{.pub #2020-nsv-numassist}
+*[Towards Numerical Assistants](https://link.springer.com/chapter/10.1007/978-3-030-63618-0_13)* \
+  [Pavel Panchekha][],
+\ [Zachary Tatlock][]
+\
+Numerical Software Verification (NSV) 2020
+
+{.pub #2019-correctness-mpmf}
+*[Toward Multi-Precision, Multi-Format Numerics](https://www.computer.org/csdl/proceedings-article/correctness/2019/601500a019/1gyr5pHvaz6)* \
+  [David Thien][],
+\ [Bill Zorn][],
+\ [Pavel Panchekha][],
+\ [Zachary Tatlock][]
+\
+Software Correctness for HPC Applications (CORRECTNESS) 2019
+
+{.pub #2019-splashe-theia}
+*[Theia: Automatically Generating Correct Program State Visualizations](https://dl.acm.org/doi/10.1145/3358711.3361625)* \
+  [Josh Pollock][],
+\ [Jared Roesch][],
+\ [Doug Woos][],
+\ [Zachary Tatlock][]
+\
+ACM SIGPLAN International Symposium on SPLASH-E (SPLASH-E) 2019
+
+{.pub #2017-coqpl-verdi}
+*[Verification of Implementations of Distributed Systems Under Churn](https://popl17.sigplan.org/details/main/1/Verification-of-Implementations-of-Distributed-Systems-Under-Churn)* \
+  [Ryan Doenges][],
+\ [James R. Wilcox][James Wilcox],
+\ [Doug Woos][],
+\ [Zachary Tatlock][],
+\ [Karl Palmskog][]
+\
+Workshop on Coq for Programming Languages (CoqPL) 2017
+
+{.pub #2016-nsv-fpbench}
+*[Toward a Standard Benchmark Format and Suite for Floating-Point Analysis](https://link.springer.com/chapter/10.1007/978-3-319-54292-8_6)* \
+  [Nasrine Damouche][],
+\ [Matthieu Martel][],
+\ [Pavel Panchekha][],
+\ [Chen Qiu][],
+\ [Alex Sanchez-Stern][],
+\ [Zachary Tatlock][]
+\
+Numerical Software Verification (NSV) 2016
+
+{.pub #2015-coqpl-peek}
+*[Peek: A Formally Verified Peephole Optimization Framework for x86](https://coqpl.cs.washington.edu/program/)* \
+  [Eric Mullen][],
+\ [Zachary Tatlock][],
+\ [Dan Grossman][]
+\
+Workshop on Coq for Programming Languages (CoqPL) 2015
+
+
+## Aggregators
 
 - [Google Scholar](https://scholar.google.com/citations?user=jz2Tvk4AAAAJ&hl=en)
 - [DBLP](https://dblp.org/pers/t/Tatlock:Zachary.html)
