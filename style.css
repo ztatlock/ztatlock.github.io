@@ -113,3 +113,19 @@ hr {
 .course-vspace {
   margin-top: 2rem;
 }
+
+div.photo {
+  display: flex;
+  justify-content: center;
+  max-width: 35rem;
+}
+
+div.photo img {
+  border-radius: 0.25rem!important;
+  width: 100%;
+  max-width: 30rem;
+}
+
+div.photo-narrow img {
+  max-width: 15rem;
+}
