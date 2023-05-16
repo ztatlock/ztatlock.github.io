@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
 
 html {
   font-family: "Assistant", sans-serif;
@@ -66,6 +67,14 @@ li {
   margin: 0.5rem 0;
 }
 
+.monospace {
+  font-family: 'Fira Mono', monospace;
+}
+
+code {
+  font-family: 'Fira Mono', monospace;
+}
+
 a {
   text-decoration: none;
 }
@@ -92,6 +101,10 @@ ul.columns li {
 
 ul.columns-8rem {
   column-width: 8rem;
+}
+
+ul.columns-12rem {
+  column-width: 12rem;
 }
 
 ul.columns-16rem {
