@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Deep Typechecking and Refactoring</title>
+</head>
+<body>
+<section id="Deep-Typechecking-and-Refactoring">
+<h1>Deep Typechecking and Refactoring</h1>
+<p><a href="https://ztatlock.net/">Zachary Tatlock</a>,
+&nbsp;<a href="https://www.linkedin.com/in/ctucker/">Chris Tucker</a>,
+&nbsp;<a href="https://www.linkedin.com/in/david-shuffelton-3209412/">David Shuffelton</a>,
+&nbsp;<a href="https://ranjitjhala.github.io/">Ranjit Jhala</a>,
+&nbsp;<a href="http://cseweb.ucsd.edu/~lerner/">Sorin Lerner</a></p>
+<p>Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA) 2008</p>
+<div class="photo">
+<p><img alt="Deep Typechecking and Refactoring" src="https://cs.washington.edu/homes/ztatlock/WEBFILES/pubs/2008-oopsla-dtar/2008-oopsla-dtar-absimg.png"></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="https://dl.acm.org/doi/10.1145/1449764.1449768">publisher</a>
+</li>
+<li>
+<a href="https://cs.washington.edu/homes/ztatlock/WEBFILES/pubs/2008-oopsla-dtar/2008-oopsla-dtar.pdf">paper</a>
+</li>
+<li>
+<a href="https://cs.washington.edu/homes/ztatlock/WEBFILES/pubs/2008-oopsla-dtar/2008-oopsla-dtar-slides.pptx">slides</a>
+</li>
+<li>
+<a href="https://cs.washington.edu/homes/ztatlock/WEBFILES/pubs/2008-oopsla-dtar/2008-oopsla-dtar-poster.pdf">poster</a>
+</li>
+<li>
+<a href="https://cseweb.ucsd.edu/~lerner/quail.html">project</a>
+</li>
+<li>
+<a href="https://cs.washington.edu/homes/ztatlock/WEBFILES/pubs/2008-oopsla-dtar/2008-oopsla-dtar.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>Large software systems are typically composed of multiple layers, written in
+different languages and loosely coupled using a string-based interface. For
+example, in modern web-applications, a server written in Java communicates
+with a database back-end by passing in query strings. This widely prevalent
+approach is unsafe as the analyses developed for the individual layers are
+oblivious to the semantics of the dynamically constructed strings, making it
+impossible to statically reason about the correctness of the interaction.
+Further, even simple refactoring in such systems is daunting and error prone
+as the changes must also be applied to isolated string fragments scattered
+across the code base.</p>
+<p>We present techniques for deep typechecking and refactoring for systems that
+combine Java code with a database back-end using the Java Persistence API.
+Deep typechecking ensures that the queries that are constructed dynamically
+are type safe and that the values returned from the queries are used safely by
+the program. Deep refactoring builds upon typechecking to allow programmers to
+safely and automatically propagate code refactorings through the query string
+fragments.</p>
+<p>Our algorithms are implemented in a tool called QUAIL. We present experiments
+evaluating the effectiveness of QUAIL on several benchmarks ranging from 3,369
+to 82,907 lines of code. We show that QUAIL is able to verify that 84% of
+query strings in our benchmarks are type safe. Finally, we show that QUAIL
+reduces the number of places in the code that a programmer must look at in
+order to perform a refactoring by several orders of magnitude.</p>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@inproceedings{2008-oopsla-dtar,
+  title     = {Deep Typechecking and Refactoring},
+  author    = {Tatlock, Zachary and Tucker, Chris and Shuffelton, David and Jhala, Ranjit and Lerner, Sorin},
+  series    = {OOPSLA 2008},
+  booktitle = {Proceedings of the 23rd ACM SIGPLAN Conference on Object-Oriented Programming Systems Languages and Applications},
+  url       = {https://doi.org/10.1145/1449764.1449768},
+  doi       = {10.1145/1449764.1449768},
+  publisher = {Association for Computing Machinery},
+}
+</code></pre>
+<p><br>
+</p>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>

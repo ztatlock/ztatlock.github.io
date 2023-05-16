@@ -1,4 +1,5 @@
-PAGES = $(patsubst %.dj,%.html,$(wildcard *.dj))
+FILES := https://cs.washington.edu/homes/ztatlock/WEBFILES
+PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
 
 %.html: %.dj REFS HEAD FOOT
 	$(eval TITLE := $(shell \
@@ -7,8 +8,13 @@ PAGES = $(patsubst %.dj,%.html,$(wildcard *.dj))
 			| sed 's#^[[:blank:]]*##' \
 			| sed 's#[[:blank:]]*$$##'))
 	@printf "BUILD : %-30s %s\n" "$@" "$(TITLE)"
-	@cat HEAD | sed 's#TITLE#$(TITLE)#' > $@
-	@cat $< REFS | djot >> $@
+	@cat HEAD \
+		| sed 's#TITLE#$(TITLE)#' \
+		> $@
+	@cat $< REFS \
+		| sed 's#__WEBFILES__#$(FILES)#' \
+		| djot \
+		>> $@
 	@cat FOOT >> $@
 
 .PHONY: all

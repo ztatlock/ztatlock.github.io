@@ -140,6 +140,10 @@ div.photo-narrow img {
   margin: 2rem 0;
 }
 
+.bib {
+  overflow: auto;
+}
+
 .bib code {
   font-size: 0.75rem;
 }

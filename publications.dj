@@ -515,7 +515,7 @@ Programming Language Design and Implementation (PLDI) 2010
 Programming Language Design and Implementation (PLDI) 2009
 
 {.pub #2009-popl-eqsat}
-*[Equality Saturation: A New Approach to Optimization ](https://dl.acm.org/doi/10.1145/1480881.1480915)* \
+*[Equality Saturation: A New Approach to Optimization](https://dl.acm.org/doi/10.1145/1480881.1480915)* \
   [Ross Tate][],
 \ [Michael Stepp][],
 \ [Zachary Tatlock][],
@@ -523,14 +523,13 @@ Programming Language Design and Implementation (PLDI) 2009
 \
 Principles of Programming Languages (POPL) 2009
 
-{.pub #2008-oopsla-dtar}
-*[Deep Typechecking and Refactoring ](https://dl.acm.org/doi/10.1145/1449764.1449768)* \
+{.pub}
+*[Deep Typechecking and Refactoring](pub-2008-oopsla-dtar.html)* \
   [Zachary Tatlock][],
 \ [Chris Tucker][],
 \ [David Shuffelton][],
 \ [Ranjit Jhala][],
-\ [Sorin Lerner][]
-\
+\ [Sorin Lerner][] \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 
 
