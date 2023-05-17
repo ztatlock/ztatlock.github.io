@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Zachary Tatlock / Build the Simplest Thing First</title>
+</head>
+<body>
+<section id="Zachary-Tatlock-Build-the-Simplest-Thing-First">
+<h1><a href="https://ztatlock.net/">Zachary Tatlock</a> / Build the Simplest Thing First</h1>
+<p>Some reviewers find complexity irresistible.
+Maybe
+they conflate complexity with significance or
+they fear looking ignorant.
+Whatever the reason,
+this unfortunate tendency
+biases authors away from asking
+the simplest questions first and
+instead pushes them toward
+unnecessary complexity.
+It is a terrible trap.</p>
+<p>You should always build
+“the simplest thing that could possibly work”
+as a first baseline solution
+because it is the Right Thing™️ to do.
+Building and evaluating
+the simplest possible baseline
+provides many benefits:</p>
+<ul>
+<li>
+You get a basic prototype set up quickly
+</li>
+<li>
+You get some ballpark performance numbers
+</li>
+<li>
+You can ground early lemmas in concrete examples
+</li>
+<li>
+You are incentivized to start collecting more benchmarks
+</li>
+<li>
+You can start developing “push-button evaluation” scripts early
+</li>
+<li>
+You get a maximally simple model to help on-board junior team members
+</li>
+</ul>
+<p>However, the biggest benefit is that
+you reduce the risk of fooling
+yourself and the research community.</p>
+<p>Several of my favorite projects were inspired
+during reading group discussions.
+Some new technique would seem overly complex,
+so we would look through the paper to see
+how it compared against the
+most simple, obvious, naive baseline.
+But the authors almost never bothered
+to even build or run such a baseline!
+Instead,
+they would provide some hand wavy argument about
+how it “obviously could never work”.</p>
+<p>It turns out that the simplest baseline
+works much more often and much better
+than folks expect.
+Furthermore,
+if you can rustle up some meaningful benchmarks,
+build the simplest version of a system,
+and then look at profiling data from actually running it,
+you will very often come up with novel insights.
+The
+<a href="https://herbie.uwplse.org/">Herbie</a>,
+<a href="https://egraphs-good.github.io/">egg</a>, and
+<a href="https://github.com/uwplse/ruler">Ruler</a> projects
+all started by following this recipe
+(all won Distinguished Paper awards, not a coincidence).</p>
+<p>So, if we are in a meeting and someone
+asks how well an extremely naive approach would do,
+don’t hand wave some argument about
+how it “obviously could never work”.
+Thank them for reminding us to do the
+simplest thing first, and then go do it.
+The results will almost always surprise you.</p>
+<section id="Related">
+<h2>Related</h2>
+<ul>
+<li>
+<a href="https://slyubomirsky.github.io/lex.html">Lex Lyubomiricus</a>
+by <a href="https://slyubomirsky.github.io/">Steven Lyubomirsky</a>
+</li>
+<li>
+<a href="https://pavpanchekha.com/blog/research-process-2023.html">How I Think About Research Projects</a>
+by <a href="https://pavpanchekha.com/">Pavel Panchekha</a>
+</li>
+<li>
+<a href="https://www.cs.jhu.edu/~jason/advice/write-the-paper-first.html">Write the Paper First</a>
+by Jason Eisner
+</li>
+</ul>
+</section>
+</section>
+</body>
+</html>

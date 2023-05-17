@@ -1,0 +1,82 @@
+# [Zachary Tatlock][] / Build the Simplest Thing First
+
+Some reviewers find complexity irresistible.
+Maybe
+  they conflate complexity with significance or
+  they fear looking ignorant.
+Whatever the reason,
+  this unfortunate tendency
+  biases authors away from asking
+  the simplest questions first and
+  instead pushes them toward
+  unnecessary complexity.
+It is a terrible trap.
+
+You should always build
+  "the simplest thing that could possibly work"
+  as a first baseline solution
+  because it is the Right Thing™️ to do.
+Building and evaluating
+  the simplest possible baseline
+  provides many benefits:
+
+- You get a basic prototype set up quickly
+- You get some ballpark performance numbers
+- You can ground early lemmas in concrete examples
+- You are incentivized to start collecting more benchmarks
+- You can start developing "push-button evaluation" scripts early
+- You get a maximally simple model to help on-board junior team members
+
+However, the biggest benefit is that
+  you reduce the risk of fooling
+  yourself and the research community.
+
+Several of my favorite projects were inspired
+  during reading group discussions.
+Some new technique would seem overly complex,
+  so we would look through the paper to see
+  how it compared against the
+  most simple, obvious, naive baseline.
+But the authors almost never bothered
+  to even build or run such a baseline!
+Instead,
+  they would provide some hand wavy argument about
+  how it "obviously could never work".
+
+It turns out that the simplest baseline
+  works much more often and much better
+  than folks expect.
+Furthermore,
+  if you can rustle up some meaningful benchmarks,
+  build the simplest version of a system,
+  and then look at profiling data from actually running it,
+  you will very often come up with novel insights.
+The
+  [Herbie](https://herbie.uwplse.org/),
+  [egg](https://egraphs-good.github.io/), and
+  [Ruler](https://github.com/uwplse/ruler) projects
+  all started by following this recipe
+  (all won Distinguished Paper awards, not a coincidence).
+
+So, if we are in a meeting and someone
+  asks how well an extremely naive approach would do,
+  don't hand wave some argument about
+  how it "obviously could never work".
+Thank them for reminding us to do the
+  simplest thing first, and then go do it.
+The results will almost always surprise you.
+
+## Related
+
+- [Lex Lyubomiricus](
+    https://slyubomirsky.github.io/lex.html)
+    by [Steven Lyubomirsky][]
+- [How I Think About Research Projects](
+    https://pavpanchekha.com/blog/research-process-2023.html)
+    by [Pavel Panchekha][]
+- [Write the Paper First](
+    https://www.cs.jhu.edu/~jason/advice/write-the-paper-first.html)
+    by Jason Eisner
+
+
+

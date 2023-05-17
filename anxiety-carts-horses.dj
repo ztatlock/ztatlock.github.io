@@ -1,0 +1,174 @@
+# [Zachary Tatlock][] / Anxiety, Carts, Horses
+
+At some point or other,
+  many students thrash under anxiety.
+They are miserable and cannot make good progress,
+  which makes them more miserable and leads to less progress.
+It is a real bummer.
+
+From experience, such "anxiety traps"
+  generally fall into one of two categories:
+
+_Will this project ever be done? Will it even work?_
+
+> No. At least not in the way we hope, and that is OK.
+
+> Occasionally someone will want
+>   an upfront guarantee that
+>   a project idea will definitely succeed.
+> Anyone who promises guaranteed success
+>   is either pitching unambitious ideas
+>   or lying.
+
+> More often, doubt and worry cause trouble
+>   after the initial excitement about a project
+>   has given way to the endless challenges of
+>   proof engineering and system building.
+> Solving big problems
+>   is difficult and
+>   can gradually exhaust our energy.
+
+> Ambitious projects just come with
+>   tremendous uncertainty and
+>   require a staggering amount of effort.
+> This means the team will continually be
+>   working through setbacks,
+>   grinding through engineering tasks,
+>   and adjusting goals in ways that
+>   make our earlier efforts "useless".
+> Of course,
+>   none of the early work is actually useless.
+> We often couldn't have figured out the
+>   best approach without first observing what
+>   went wrong with the alternatives!
+
+> We mitigate risk by
+>   following [Lex Lyubomiricus][]
+>   [building the simplest thing first](build-simple-first.html),
+>   and striving to
+>   [fail fast](https://en.wikipedia.org/wiki/Fail-fast).
+> However,
+>   even after investing significant time and energy,
+>   failure is always an option.
+> If a project does fail, we will
+>   take some time to reflect and recharge,
+>   remind ourselves that
+>     mistakes are the only way we learn,
+>   write up the lessons learned
+>     as a technical report or blog post,
+>   and then start on the next project
+>     armed with valuable, hard-won experience.
+
+> Truth is,
+>   we have a very low failure rate.
+> While every project "fails"
+>   in the sense that we significantly
+>   modify the initial vision and goals,
+>   we almost always eventually pivot into success
+>   by persistently following the problem
+>   and learning along the way.
+> So have faith and keep pushing.
+> We will get there!
+
+
+_Am I "good enough"?_
+
+> *Yes.* You are more than good enough.
+
+> Avoid the terrible trap of
+>   comparing yourself to others.
+> It is always toxic and counterproductive.
+> You and everyone else have different
+>   strengths and challenges.
+
+> Long-term success is built on diligence and persistence.
+> Once you develop a good, healthy routine,
+>   you can be diligent and persistent by
+>   showing up to the lab or classroom
+>   every day and putting in good, mindful effort.
+> So you are good enough.
+
+> Good work often follows from _unconditionally assuming_
+>   a confident, optimistic attitude.
+> This assumption may feel backward:
+>   shouldn't we only get to feel confident _after_
+>   delivering successful results?
+> *No.*
+
+> First,
+>   you are good and should feel good, period.
+> Second,
+>   confidence is more responsible for
+>   causing success than
+>   the other way around.
+
+> If you need help rationalizing
+>   unconditional confidence, game it out:
+>   even if you were not "good enough" (though you are!),
+>   assuming you belong and can deliver great results
+>   will be more fun and significantly increase
+>   the chance of success, so go for it!
+
+
+The common element to both these strategies:
+  *assume you will succeed*,
+  even before you do.
+
+Of course, all this is easier said than done.
+Paying attention to your thoughts and feelings often helps.
+Notice how anxiety can become a habit.
+Establish routines to pull yourself out of the vicious cycle.
+For example:
+
+1. Take a deep breath and begin again.
+2. Remember, we can only do one small thing at a time.
+3. Pick one small thing and chip away at it.
+4. Don't worry about anything else for now.
+5. If worrying starts to bog you down, [goto]{.monospace} 1.
+
+If you feel real stuck,
+  take a break to nap, exercise, cook, etc.
+Or message me to chat and grab a beverage.
+Most situations will seem less dire
+  after stepping away for a bit.
+Over time,
+  things get easier because you will
+  increasingly be able to redirect energy
+  away from worrying and toward what you love.
+
+Some may dismiss the perspectives above,
+  noting the influence of
+  [survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias),
+  etc.
+They may even be partly correct:
+  the world is indeed
+  enormously random and
+  monstrously unfair.
+However,
+  such macro observations are not very
+  helpful for an individual.
+
+Truth is,
+  you can't win if you don't play.
+Folks who discourage you from even trying
+  are not your friends.
+You have an invitation to the big leagues,
+  so play your heart out.
+I am rooting for you.
+
+## Related
+
+- [Basic Advice](basic-advice.html)
+
+- [A Systems Model of Anxiety-driven Procrastination](
+    https://axle.design/a-systems-model-of-anxiety-driven-procrastination)
+
+- [Reflecting on Perceived Slights](
+    https://psyche.co/guides/how-to-take-things-less-personally-and-
+    avoid-mind-reading)
+
+- [Why Success Stories Are Just Propaganda](
+    https://www.martinweigel.org/blog/2017/11/13/
+    why-success-stories-are-just-propaganda)
+
+

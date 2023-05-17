@@ -57,6 +57,11 @@ p {
   max-width: 40rem;
 }
 
+blockquote {
+  max-width: 35rem;
+  margin-right: 0;
+}
+
 ul, ol {
   margin-left: 1rem;
   padding-left: 1rem;
@@ -81,13 +86,13 @@ a {
 }
 
 .quote {
-    font-style: italic;
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  color: #234;
 }
 
 .quote p {
-    padding-left: 1rem;
+  padding-left: 1rem;
 }
 
 ul.columns {
