@@ -10,7 +10,9 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 
 {.photo}
 :::
-  ![Deep Typechecking and Refactoring](__WEBFILES__/pubs/2008-oopsla-dtar/2008-oopsla-dtar-absimg.png)
+  ![Deep Typechecking and Refactoring](
+    __WEBFILES__/pubs/2008-oopsla-dtar/2008-oopsla-dtar-absimg.png
+  ){crossorigin="anonymous"}
 :::
 
 {.columns .columns-8rem}
