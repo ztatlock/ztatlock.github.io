@@ -523,7 +523,7 @@ Programming Language Design and Implementation (PLDI) 2009
 \
 Principles of Programming Languages (POPL) 2009
 
-{.pub}
+{.pub #2008-oopsla-dtar}
 *[Deep Typechecking and Refactoring](pub-2008-oopsla-dtar.html)* \
   [Zachary Tatlock][],
 \ [Chris Tucker][],
@@ -535,8 +535,8 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 
 ## Workshop Papers
 
-{.pub #2023-plarch-lakeroad %TODO%}
-*[Generate Compilers from Hardware Models!](https://pldi23.sigplan.org/home/plarch-2023)* \
+{.pub #2023-plarch-lakeroad}
+*[Generate Compilers from Hardware Models!](pub-2023-plarch-lakeroad.html)* \
   [Gus Henry Smith][Gus Smith],
 \ [Ben Kushigian][],
 \ [Vishal Canumalla][],

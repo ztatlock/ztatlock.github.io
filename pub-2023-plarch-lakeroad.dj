@@ -1,0 +1,62 @@
+# Generate Compilers from Hardware Models!
+
+  [Gus Henry Smith][Gus Smith],
+\ [Ben Kushigian][],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [René Just][],
+\ [Zachary Tatlock][]
+
+Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
+
+{.photo}
+:::
+  [![Generate Compilers from Hardware Models!](
+    pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-absimg.png
+  )](
+    pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf)
+- [arXiv](https://arxiv.org/abs/2305.09580)
+- [event](https://pldi23.sigplan.org/home/plarch-2023)
+- [bib](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.bib)
+
+{% TODO - [project](https://cseweb.ucsd.edu/~lerner/quail.html) %}
+{% TODO - [slides](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pptx) %}
+{% TODO - [poster](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-poster.pdf) %}
+
+
+## Abstract
+
+Compiler backends should be automatically generated from hardware design
+language (HDL) models of the hardware they target. Generating compiler
+components directly from HDL can provide stronger correctness guarantees, ease
+development effort, and encourage hardware exploration. Past work has already
+championed this idea; here we argue that advances in program synthesis make the
+approach more feasible. We present a concrete example by demonstrating how FPGA
+technology mappers can be automatically generated from SystemVerilog models of
+an FPGA’s primitives using program synthesis.
+
+
+## BibTeX
+
+{% TODO DOI *}
+
+{.bib}
+```
+@inproceedings{2023-plarch-lakeroad,
+  title     = {Generate Compilers from Hardware Models!},
+  author    = {Gus Henry Smith and Ben Kushigian and Vishal Canumalla and Andrew Cheung and René Just and Zachary Tatlock},
+  series    = {PLARCH 2023},
+  booktitle = {Workshop on Programming Languages and Computer Architecture (PLARCH) 2023},
+  publisher = {Association for Computing Machinery},
+}
+```
+
+\
+
+[📝 publications index](publications.html)
+
