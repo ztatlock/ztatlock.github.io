@@ -156,3 +156,20 @@ div.photo-narrow img {
 .course-vspace {
   margin-top: 2rem;
 }
+
+td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+.blue {
+  color: blue;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}

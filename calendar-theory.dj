@@ -1,0 +1,536 @@
+# [Zachary Tatlock][] / Calendar Theory
+
+[Gates 201]: https://norfolk.cs.washington.edu/directory/?search_string=gc201
+[Gates 253]: https://norfolk.cs.washington.edu/directory/?search_string=gc253
+[Gates 274]: https://norfolk.cs.washington.edu/directory/?search_string=gc274
+[Gates 276]: https://norfolk.cs.washington.edu/directory/?search_string=gc276
+[Gates 287]: https://norfolk.cs.washington.edu/directory/?search_string=gc287
+[Gates 387]: https://norfolk.cs.washington.edu/directory/?search_string=gc387
+
+Meetings are for
+  technical progress and
+  project planning.
+On the technical side,
+  we work together to
+  chip away at tough problems,
+  help everyone get unstuck, and
+  figure out immediate next steps.
+On the planning side,
+  we set bigger goals,
+  track progress, and
+  adapt as we learn.
+
+We will only meet when we have
+  a plan and concrete goals,
+  otherwise we can just
+  hang out in the lab.
+We will end meetings early
+  if we can accomplish our goals quickly,
+  or cancel them outright
+  if they do not have a good plan
+  [📕](https://www.tablegroup.com/product/dbm/).
+Doing so provides more time
+  to work in the lab together and
+  just enjoy life.
+
+Toward these goals,
+  we will collectively
+  maintain regular meeting
+  [cadence](#cadence) and
+  [structure](#structure).
+
+{#cadence}
+## Regular Meeting Cadence
+
+The beginning of the week is _tactical_,
+  focusing concretely on what we want to
+  accomplish in the next few days.
+The end of the week is _strategic_,
+  reflecting on progress and
+  how we should adjust plans.
+
+{.photo}
+:::
+  ![weekly meetings breakdown](img/calendar-theory.png)
+:::
+
+### Mondays
+
+Mondays are for _all_ project meetings.
+Every student should go to one project meeting[^1].
+It is better to do one project exceedingly well
+  rather than several projects at a mediocre level.
+
+### Tuesdays
+
+On Tuesdays
+  I will work in the lab.
+I hope you will join me!
+Historically,
+  working together in the lab is
+  where the best meetings happen
+  because they are motivated by
+  an immediate problem that we
+  can quickly chip away at together.
+If you see me in the lab,
+  I am there to collaborate,
+  so don't hesitate to "interrupt" me;
+  that's why I am there.
+
+During the school year, we will have
+  group lunch at 12:00 in the PLSE Lab ([Gates 253][])
+  with research presentations starting at 12:30.
+To the extent possible, all our
+  exams, practice talks, and visitor presentations
+  should be scheduled on Tuesdays as a PLSE Talk.
+However, my favorite PLSE Talks are
+  work-in-progress discussions and
+  live demos of prototype tools where
+  everyone in the lab can help brainstorm.
+
+Tuesdays afternoons are also available
+  for quick one-off meetings,
+  just message me.
+
+### Wednesdays
+
+Wednesdays are for doing big things.
+Avoid scheduling any recurring meetings on Wednesdays.
+Coordinating our "no meetings day"
+  helps everyone have enough time
+  to do deep, technical work.
+Wednesdays are a good time to (on demand)
+  find a conference room and
+  actively pair program / write / prove
+  with your team for a couple hours.
+
+If for some reason we cannot schedule an
+  exam or practice talk during
+  a Tuesday PLSE Talk slot,
+  then Wednesday afternoon is an
+  acceptable (though not ideal!)
+  backup option.
+
+### Thursdays
+
+On Thursdays
+  I will work in the lab.
+I hope you will join me!
+Historically,
+  working together in the lab is
+  where the best meetings happen
+  because they are motivated by
+  an immediate problem that we
+  can quickly chip away at together.
+If you see me in the lab,
+  I am there to collaborate,
+  so don't hesitate to "interrupt" me;
+  that's why I am there.
+
+The Allen School Colloquium
+  will be at 15:30.
+Please participate!
+In Autumn,
+  colloquium will be a mix of
+  distinguished lectures and
+  talks from labs across the Allen School.
+In Winter and Spring,
+  colloquium will mostly consist of
+  faculty candidate talks.
+These talks survey
+  what's going on across the
+  broader computing landscape.
+Even better,
+  they are a great opportunity to
+  observe what works (or doesn't)
+  when giving presentations.
+
+Thursday afternoons may also be OK
+  for quick one-off meetings.
+Again, just message me.
+
+### Fridays
+
+Fridays are for:
+
+- 30 minute one-on-one PhD student meetings with me in the morning
+
+    - You should also have an end-of-week meeting with any students you mentor!
+
+- Planning our goal for Monday's upcoming project meeting
+
+- 30 minute team-wide progress meeting at 15:00
+
+- 60 minute PL Reading Group at 15:30
+
+After our one-on-one,
+  you should prepare an agenda for
+  our upcoming project meeting on Monday.
+See below for some ideas on
+  what makes for a good agenda.
+
+At 15:00 we will have a 30 minute progress meeting.
+The first 10 minutes of the meeting will be
+  for folks to make a single slide
+  highlighting their progress from this week.
+You should also make another slide with a
+  screenshot of our shared project notes doc
+  with the goal and agenda for our upcoming
+  Monday project meeting
+  (this means the agenda has to already be in
+   our shared doc before the Friday Progress meeting!).
+The next 20 minutes of the meeting will be
+  for us all to go through the slides together
+  and hear what everyone has been up to.
+
+For your progress meeting presentation slides,
+  remember that _you have an audience_.
+Part of the goal of this meeting is for us all to
+  better understand what everyone is up to,
+  that way we can better support and encourage each other.
+You will never have enough time in one week for folks to
+  [grok](https://en.wikipedia.org/wiki/Grok)
+  what you're up to,
+  but week-over-week the big picture should start to gel,
+  especially when paired with occasional PLSE Talks etc.
+
+For the progress meeting,
+  you should already have the
+  agenda for the next Monday project
+  prepared before 15:00, and
+  and it should be written out in
+  our project meeting notes doc.
+You are encouraged to also prepare your
+  personal progress slide before the meeting,
+  but it is 100% OK to make it during the
+  first 10 minutes of the progress meeting;
+  that is why that time is reserved.
+We will make a fresh deck each week in
+  [this shared folder](
+    https://drive.google.com/drive/folders/
+    1-XSIQ6wM7oS3mA1kKcGmECbtAV1223nW).
+
+At 15:30 we will have PL Reading Group (PLRG)
+  to end the week with a lively discussion.
+Please check out the
+  [PLRG Principles](
+    https://docs.google.com/document/d/
+    1MArKA-kehiYP4ITnPBX10-z9Wz5R92UOu75hpPD2kMM/edit?usp=sharing)
+  and the
+  [PLRG Schedule](
+    https://docs.google.com/spreadsheets/d/
+    1taMVKyXKeSirRMfg7mSmJwOjhfcGNJxKPDHHkuIlREc/edit?usp=sharing).
+
+### Quarterly Cadence
+
+The quarter system is short and intense.
+On week 11,
+  we will cancel all regular meetings and
+  push hard to wrap up our quarter goals.
+On week 12,
+  we will cancel all regular meetings,
+  rest, and plan out the next quarter.
+
+
+{#structure}
+## Regular Meeting Structure
+
+Structuring frequent tasks is useful because
+  it frees up thinking and emotional energy
+  for other tasks.
+Below is a default meeting formula
+  we can adapt as our team and projects evolve.
+
+### Meeting Logistics
+
+Each meeting should have a:
+
+- [Calendar event](
+    https://support.google.com/calendar/answer/37115)
+  repeating the same time every week
+
+    - Please enable "Modify event" under "Guest permissions"
+      ([docs](https://support.google.com/calendar/
+        answer/72143#zippy=%2Clet-guests-edit-your-event)
+
+- [Shared document](
+    https://workspaceupdates.googleblog.com/2021/10/
+    create-meeting-notes-in-google-calendar.html)
+  for notes everyone on the team can access
+
+    - Ensure the doc is linked in the calendar event
+    - Ensure everyone o nthe team can access the doc
+
+- [Conference room reservation](
+    https://reserve.cs.washington.edu/room/day.php)
+  for holding the meeting
+
+    - Make sure the room is listed in the calendar event
+    - See the table below for ideal meeting room reservations
+
+- [Video call link](
+    https://itconnect.uw.edu/connect/phones/conferencing/
+    zoom-video-conferencing/schedule/host-meeting/)
+  for backup, just in case
+
+    - I strongly prefer meeting in person,
+      but it's good to be prepared
+    - Make sure anyone on the team can be the host
+    - Make sure all Zoom features are enabled
+      (screen share, chat, recording, etc.)
+
+
+Ideal meeting room reservations:
+
+|Day  | Time  | Meeting     | Room                           | Backup        |
+|-----|-------|-------------|--------------------------------|---------------|
+|Mon  | any   | Projects    | [Gates 274][]                  | [Gates 276][] |
+|Tue  | 12:00 | PLSE Lunch  | [Gates 253][] (PLSE Lab)       |               |
+|Fri  | any   | PhD 1:1s    | [Gates 201][] (Zach's Office)  |               |
+|Fri  | 15:00 | Progress    | [Gates 287][]                  | [Gates 387][] |
+|Fri  | 15:30 | PLRG        | [Gates 287][]                  | [Gates 387][] |
+
+
+### Meeting Preparation
+
+Every meeting should have a concrete, specific goal
+  written out explicitly in the meeting doc.
+Think "meeting in a sentence".
+Everyone should know
+  the goal a day (or more) before the meeting.
+
+Here's an example of
+  a simple and perfectly good meeting agenda:
+
+{.green}
+> 2023-05-15
+>
+> Draft pseudocode for main algorithm
+
+Here's an example of
+  a more detailed, but
+  also good meeting agenda
+  (though maybe too ambitious):
+
+{.green}
+> 2023-05-15
+>
+> Goals
+>
+> - Settle on operators for first DSL prototype
+>
+>     - Discuss tradeoffs for restricting only to affine cases
+>
+>         - Pros: easier to get end-to-end prototype working
+>
+>         - Cons: other components might overfit to these cases
+>
+>     - Agree on specs for each operator
+>
+> - Pick three example benchmarks to implement this week
+>
+> - Debug performance regression from nightly eval run last week
+>
+>     - See logs here (link)
+>
+>     - Devise strategy to reproduce
+>
+>         - Not observing this on my laptop or in CI
+
+Good agendas are:
+
+- *Concise*.
+  Folks can quickly determine how to prepare.
+
+- *Simple*.
+  Folks can easily determine what's needed
+    for the meeting to accomplish its goal.
+
+- *Realistic*.
+  The goal is achievable
+    within the allotted meeting time.
+
+- *Prioritized*.
+  The goal advances the most important project tasks.
+
+In contrast, here is an example of
+  a *BAD*{.red} meeting agenda:
+
+{.red}
+> 2023-05-15
+>
+> - Updates
+>
+> - Look at code
+>
+> - Make plans
+
+
+### Running Project Meetings
+
+Start on time and
+  stay on track
+  to accomplish the goal
+  before the meeting ends.
+This can be very tricky
+  when each cool idea sparks
+  three more cool ideas.
+Just jot such ideas down;
+  we will explore them
+  in the lab together after the meeting.
+
+Keep updates short.
+Ideally updates will largely happen in
+  one-on-one advisor meetings,
+  progress meetings, and
+  opportunistically in the lab.
+Most meetings will still need to begin
+  with a few minutes of updates
+  to get everyone synced.
+Watch for any updates that
+  should modify the meeting goal
+  and be ready to adapt.
+
+Ensure everyone participates.
+This can also be very tricky.
+I will do my best to watch for
+  any issues and help handle them early.
+If you notice an issue that isn't being handled,
+  please put it on our one-on-one agenda or
+  schedule a one-off to discuss.
+
+Reserve enough time to wrap up
+  with concrete tasks for the week.
+Think "What do I want to say
+  I accomplished by this Friday?"
+
+
+### Running Advisor Meetings
+
+One-on-one advisor meetings
+  are for regularly checking in on
+  how you are doing,
+  long-term (post-PhD) goals,
+  timing for TAing and internships,
+  etc.
+We should work on
+  whatever is most important for your
+  happiness and long-term success.
+That can also mean covering the
+  same sort of topics as project meetings.
+If you are mentoring another student,
+  we should always make time to
+  briefly check in on their progress as well.
+
+Like project meetings,
+  it's often helpful for
+  our one-on-one meetings
+  to have an explicit goal.
+Unlike project meetings,
+  we should usually still meet
+  even if there is no explicit goal.
+Checking in and making sure
+  things are going well
+  is always a good goal
+  for one-on-one meetings.
+
+
+## But... Why?
+
+Folks can do roughly four hours of
+  challenging technical work on
+  their main project each day.
+Since "peak working hours" are precious,
+  planning how to make the most of them
+  is an excellent investment.
+Having explicit structure
+  frees up time and energy
+  for more interesting work and
+  helps manage expectations for
+  everyone in the group.
+
+We have myriad other responsibilities
+  on top of research.
+The challenge is that
+  _all these other things are important too_:
+
+- course work
+- group lunch
+- reading group
+- department colloquia
+- mentoring junior students
+- volunteering for department service
+- socializing at PoCSci, TGIF, Friday Breakfast
+- etc.
+
+These all help support "the point" of a PhD,
+  i.e., developing the skills needed to conduct original research,
+  but they often contribute somewhat less directly than
+  just actually doing research.
+Avoid the trap of
+  [death by 1,000 papercuts](
+    https://english.stackexchange.com/questions/326713/
+    meaning-of-the-phrase-death-by-a-thousand-paper-cuts).
+
+It's very easy to get lost among our many obligations
+  and procrastinate on the
+  challenging, important tasks
+  that push our research forward.
+Pulling "stunts" to cram a week's worth of
+  work in before our next meeting or
+  attempting back-to-back all nighters
+  for a deadline is *very bad*.
+Not only does it lead to lower quality work,
+  but it will destroy your health over time,
+  both physically and mentally.
+It is much better to establish and maintain a
+  steady, sustainable [routine](basic-advice.html).
+
+Having too many meetings is a trap.
+If we are so busy we can't
+  prepare for or be fully present during a meeting,
+  then the meeting just
+  drains energy and eats into
+  the good working hours
+  it was supposed to support!
+It is better to just cancel such meetings and
+  get caught up instead.
+Of course, the best practice is to
+  never get so overcommitted
+  in the first place.
+
+Hopefully the ideas in
+  this document will help.
+Of course, this is all just a big experiment.
+Please message me if you have any suggestions[^2].
+We will try it out, iterate, and adapt as we learn!
+
+## Related
+
+- [Accountability Coop README](
+    https://docs.google.com/document/d/
+    1Jt9koaiLfgyOc91wwQvCMoPw0qG7tpE0ivxSJ7yJEXM)
+
+- [Make Plans Shorter](
+    https://lucasfcosta.com/2022/07/15/
+    long-term-plans-dont-work.html)
+
+[^1]: _Maybe_ two. Again, focus is key, avoid overcommitting.
+
+[^2]: Many thanks to the following folks for feedback on this doc:
+  \ [Anjali Pal][],
+  \ [Chandrakana Nandi][],
+  \ [Vishal Canumalla][],
+  \ [James Wilcox][],
+  \ [Dan Grossman][],
+  \ [Amy Zhu][],
+  \ [Pavel Panchekha][],
+  \ [Steven Lyubomirsky][],
+  \ [Adriana Schulz][],
+  \ [Max Willsey][],
+  \ [Chris Thachuk][]
+
+\
+
+[📝 notes index](notes.html)
+
