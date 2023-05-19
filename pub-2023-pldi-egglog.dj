@@ -1,0 +1,66 @@
+# Better Together: Unifying Datalog and Equality Saturation
+
+  [Yihong Zhang][],
+\ [Yisu Remy Wang][Remy Wang],
+\ [Oliver Flatt][],
+\ [David Cao][],
+\ [Philip Zucker][],
+\ [Eli Rosenthal][],
+\ [Zachary Tatlock][],
+\ [Max Willsey][]
+
+Programming Language Design and Implementation (PLDI) 2023
+
+{% TODO better absimg %}
+
+{.photo}
+:::
+  [![Better Together: Unifying Datalog and Equality Saturation](
+    pubs/2023-pldi-egglog/2023-pldi-egglog-absimg.png
+  )](
+    pubs/2023-pldi-egglog/2023-pldi-egglog.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2023-pldi-egglog/2023-pldi-egglog.pdf)
+- [arXiv](https://arxiv.org/abs/2304.04332)
+- [project](https://egraphs-good.github.io/)
+- [bib](pubs/2023-pldi-egglog/2023-pldi-egglog.bib)
+
+{% TODO - [publisher](https://dl.acm.org/doi/10.1145/1449764.1449768) %}
+{% TODO - [slides](pubs/2023-pldi-egglog/2023-pldi-egglog-slides.pptx) %}
+{% TODO - [poster](pubs/2023-pldi-egglog/2023-pldi-egglog-poster.pdf) %}
+
+## Abstract
+
+We present egglog, a fixpoint reasoning system that unifies Datalog and
+equality saturation (EqSat). Like Datalog, it supports efficient incremental
+execution, cooperating analyses, and lattice-based reasoning. Like EqSat, it
+supports term rewriting, efficient congruence closure, and extraction of
+optimized terms.
+
+We identify two recent applications -- a unification-based pointer analysis in
+Datalog and an EqSat-based floating-point term rewriter -- that have been
+hampered by features missing from Datalog but found in EqSat or vice-versa. We
+evaluate egglog by reimplementing those projects in egglog. The resulting
+systems in egglog are faster, simpler, and fix bugs found in the original
+systems.
+
+## BibTeX
+
+{% TODO - DOI and URL %}
+
+{.bib}
+```
+@inproceedings{2023-pldi-egglog,
+  title     = {Better Together: Unifying Datalog and Equality Saturation},
+  author    = {Yihong Zhang and Yisu Remy Wang and Oliver Flatt and David Cao and Philip Zucker and Eli Rosenthal and Zachary Tatlock and Max Willsey},
+  series    = {PLDI 2023},
+  booktitle = {Proceedings of the 44th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  publisher = {Association for Computing Machinery},
+}
+```
+
+[📝 publications index](publications.html)
+

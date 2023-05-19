@@ -17,6 +17,8 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
   )
 :::
 
+{% TODO arXiv %}
+
 {.columns .columns-8rem}
 - [publisher](https://dl.acm.org/doi/10.1145/1449764.1449768)
 - [paper](pubs/2008-oopsla-dtar/2008-oopsla-dtar.pdf)
@@ -67,8 +69,6 @@ order to perform a refactoring by several orders of magnitude.
   publisher = {Association for Computing Machinery},
 }
 ```
-
-\
 
 [📝 publications index](publications.html)
 

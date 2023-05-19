@@ -43,8 +43,6 @@ an FPGA’s primitives using program synthesis.
 
 ## BibTeX
 
-{% TODO DOI %}
-
 {.bib}
 ```
 @inproceedings{2023-plarch-lakeroad,
@@ -55,8 +53,6 @@ an FPGA’s primitives using program synthesis.
   publisher = {Association for Computing Machinery},
 }
 ```
-
-\
 
 [📝 publications index](publications.html)
 
