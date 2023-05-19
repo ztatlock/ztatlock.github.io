@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Sundial: True Solar Time</title>
+
+  <script src='zip-longitude.js'></script>
+  <style>
+    #display {
+      font-size: 2rem;
+      padding-top: 1rem;
+      text-align: center;
+    }
+
+    input {
+      font-size: 1.75rem;
+      width: 6rem;
+      text-align: right;
+    }
+
+    input:hover {
+      background: #ffd;
+      cursor: pointer;
+    }
+
+    .mono {
+      font-family: "Fira Mono", monospace;
+    }
+
+    button {
+      font-size: 1rem;
+      width: 7rem;
+      padding: 0.5rem;
+      margin: 1.0rem;
+    }
+
+    #buttons {
+      display: flex;
+      justify-content: center;
+      max-width: 40rem;
+    }
+  </style>
+</head>
+<body>
+
+  <p id="display">
+    True solar time at&nbsp;
+    <input type="text" id="input"></input><span id="deg">&deg;</span>
+    &nbsp;is&nbsp;
+    <span id="clock" class="mono">??:??:??</span>
+  </p>
+
+  <div id="buttons">
+    <button type="button" onclick="set_mode('longitude')">Longitude</button>
+    <button type="button" onclick="set_mode('zip')">ZIP</button>
+    <button type="button" onclick="toggle_huh()">Huh?</button>
+  </div>
+
+  <div id="huh" style="visibility:hidden;">
+  <hr>
+  <p>
+
+    <span class="red">
+      <b>The clock on your wall is probably lying to you!</b>
+    </span>
+    For most people, the sun isn't directly overhead at noon.
+    To fix this, your clock needs to diplay time based on
+    precise geographic location.
+
+  </p><p>
+
+    We already set time keeping devices
+      using our crude location in terms of
+      <a href="http://en.wikipedia.org/wiki/Time_zone">time zones</a>,
+      but that can lead to errors on the order of an hour!
+    If you subscribe to the evils of so-called
+      "<a href="https://en.wikipedia.org/wiki/Daylight_saving_time">daylight savings time</a>",
+      the error can even be two hours!!
+
+  </p><p>
+
+    If we had 48 time zones instead of 24,
+      the error would be greatly reduced.
+    96 would be even better, and so on.
+    If you continue down this path, you eventually just
+      compute the current time as a function of
+      <a href="http://en.wikipedia.org/wiki/Longitude">longitude</a>
+      (and <a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a>).
+      This webpage shows such "continuous timezone time".
+    Essentially, this is reverting back to <i>true solar time</i>,
+      or what folks used to measure with
+      <a href="http://en.wikipedia.org/wiki/Sundial">sundials</a>!
+
+  </p><p>
+
+    Right now, your system reports current time as
+      <span id="normal-time" class="mono">??:??:??</span>
+      which is off by
+      <span id="error-secs" class="mono">???</span> seconds
+      from what it should be for the location you entered above!
+
+  </p><p>
+
+    I'd been thinking about continuous timezones for a while,
+      but I was really inspired to build something after visiting
+      <a href="http://en.wikipedia.org/wiki/Jantar_Mantar_(Jaipur)">Jantar Mantar</a>
+      in Jaipur, India where I saw Samrat Yantra,
+      the world's largest sundial.
+
+  </p>
+  <div class="photo" style="margin-top:2rem;">
+
+    <img alt="Samrat Yantra, the world's largest sundial."
+         src="img/samrat-yantra-sundial.jpg" />
+
+  </div>
+  <p>
+    <br>
+  </p>
+  <p>
+    <a href="notes.html">📝 notes index</a>
+  </p>
+  </div>
+
+  <script>
+    var MODE = "longitude";
+    const MILLIS_IN_MINUTE = 60 * 1000;
+    const MILLIS_IN_HOUR = 60 * MILLIS_IN_MINUTE;
+
+    function solar_time(longitude) {
+      let now = new Date();
+      let solar_offset = 12 * MILLIS_IN_HOUR * longitude / 180;
+      let tz_offset = now.getTimezoneOffset() * MILLIS_IN_MINUTE;
+      return new Date(now.getTime() + solar_offset + tz_offset);
+    }
+
+    function show() {
+      let now = new Date();
+      elem("normal-time").innerHTML = time_str(now);
+
+      elem("clock").innerHTML = "??:??:??";
+      elem("error-secs").innerHTML = "???";
+
+      let input = elem("input").value.trim();
+      if(input === "") {
+        return;
+      }
+
+      var longitude = input;
+      if(MODE === "zip") {
+        longitude = zip_longitude[input];
+      }
+      longitude = Number(longitude);
+
+      if(!Number.isNaN(longitude)) {
+        let sol_now = solar_time(longitude);
+        elem("clock").innerHTML = time_str(sol_now);
+
+        let err = Math.abs(now.getTime() - sol_now.getTime());
+        elem("error-secs").innerHTML = Math.floor(err / 1000);
+      }
+    }
+
+    function time_str(d) {
+      let h = d.getHours().toString().padStart(2, '0');
+      let m = d.getMinutes().toString().padStart(2, '0');
+      let s = d.getSeconds().toString().padStart(2, '0');
+      return `${h}:${m}:${s}`;
+    }
+
+    function set_mode(m) {
+      MODE = m;
+      if(MODE === "longitude") {
+        elem("deg").style.color = "black";
+        get_longitude();
+      } else {
+        elem("deg").style.color = "white";
+        elem("input").value = "98195";
+      }
+      show();
+    }
+
+    function get_longitude() {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(use_geoloc, no_geoloc);
+      } else {
+        no_geoloc();
+      }
+      function use_geoloc(gl) {
+        elem("input").value = gl.coords.longitude;
+      }
+      function no_geoloc(e) {
+        alert("Sorry, could not get longitude.");
+        elem("input").value = "";
+      }
+    }
+
+    function toggle_huh() {
+      let huh_style = elem("huh").style;
+      if(huh_style.visibility === "hidden") {
+        huh_style.visibility = "visible";
+      } else {
+        huh_style.visibility = "hidden";
+      }
+    }
+
+    function elem(id) {
+      return document.getElementById(id);
+    }
+
+    setInterval(show, 1000);
+  </script>
+</body>
+</html>

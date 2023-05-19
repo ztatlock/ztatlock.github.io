@@ -1,62 +1,64 @@
 # [Zachary Tatlock][] / Talks
 
-* The egg Equality Saturation Toolkit \
-  UIUC, Compilers Seminar, May 2023
+- [Relational Equality Saturation in egg](talk-2023-05-egg-uiuc.html) \
+  University of Illinois at Urbana-Champaign,
+  [Compilers Seminar](https://compilerseminar.web.illinois.edu/),
+  May 2023
 
-* The egg Equality Saturation Toolkit \
+- The egg Equality Saturation Toolkit \
   UC San Diego, Databases Seminar, March 2023
 
-* The egg Equality Saturation Toolkit \
+- The egg Equality Saturation Toolkit \
   ETH Workshop on Dependable and Secure Software Systems, October 2022
 
-* Programming Languages for the Next Manufacturing Revolution \
+- Programming Languages for the Next Manufacturing Revolution \
   Department of Energy, July 2022
 
-* Towards Optimizing Multi-precision, Multi-format Numerical Codes \
+- Towards Optimizing Multi-precision, Multi-format Numerical Codes \
   Intel ARITH, October 2020
 
-* Synthesizing Backward through the Geometry Pipeline \
+- Synthesizing Backward through the Geometry Pipeline \
   University of Wisconsin, PL Seminar, August 2020
 
-* Towards Numerical Assistants \
+- Towards Numerical Assistants \
   Numerical Software Verification @ CAV, July 2020
 
-* TVM Relay: A Functional IR for Analysis and Optimization \
+- TVM Relay: A Functional IR for Analysis and Optimization \
   TVM Conference, May 2019
 
-* Synthesis of Floating Point Programs and Beyond \
+- Synthesis of Floating Point Programs and Beyond \
   Synthetic Minds, September 2019
 
-* Verifying Implementations of Distributed Systems \
+- Verifying Implementations of Distributed Systems \
   Galois Inc., September 2018
 
-* Formally Verifying Implementations of Distributed Systems \
+- Formally Verifying Implementations of Distributed Systems \
   Princeton University, DeepSpec Summer School, July 2018
 
-* Formally Verifying Implementations of Distributed Systems \
+- Formally Verifying Implementations of Distributed Systems \
   Oxford University, Coq Workshop at FLOC, July 2018
 
-* Navigating Your Career Path \
+- Navigating Your Career Path \
   Programming Languages Mentoring Workshop (PLMW), June 2018
 
-* [The FPBench Suite and Specification](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/17352) \
+- [The FPBench Suite and Specification](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/17352) \
   Dagstuhl on Analysis and Synthesis of Floating-point Programs, August 2017
 
-* Automatically Improving the Accuracy of Floating Point Expressions \
+- Automatically Improving the Accuracy of Floating Point Expressions \
   Max Planck Institute (MPI-SWS Saarbrüken), August 2017
 
-* Verifying Control Plane Policies in BGP \
+- Verifying Control Plane Policies in BGP \
   Mathematical Foundations of Programming Semantics (MFPS), June 2017
 
-* Automated Formal Verification for Border Gateway Protocol Configurations \
+- Automated Formal Verification for Border Gateway Protocol Configurations \
   Purdue University, April 2017
 
-* Automatically Improving the Accuracy of Floating Point Expressions \
+- Automatically Improving the Accuracy of Floating Point Expressions \
   University of Utah, February 2017
 
-* Dijkstra and De Millo: Challenges in Applying and Teaching Verification \
+- Dijkstra and De Millo: Challenges in Applying and Teaching Verification \
   Microsoft Research Faculty Summit, July 2016
 
-* Verifying Safety Cases for Radiotherapy Control \
+- Verifying Safety Cases for Radiotherapy Control \
   Verified Software: Theories, Tools, and Experiments (VSTTE), June 2016
 
