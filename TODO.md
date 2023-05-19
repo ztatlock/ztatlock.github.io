@@ -1,1 +1,2 @@
-- Port https://github.com/ztatlock/sundial
+- Make a "pub page" for each publication
+- Make a "talk page" for each talk
