@@ -49,15 +49,16 @@ systems.
 
 ## BibTeX
 
-{% TODO - DOI and URL %}
+{% TODO - URL and DOI %}
 
 {.bib}
 ```
-@inproceedings{2023-pldi-egglog,
+@article{2023-pldi-egglog,
   title     = {Better Together: Unifying Datalog and Equality Saturation},
   author    = {Yihong Zhang and Yisu Remy Wang and Oliver Flatt and David Cao and Philip Zucker and Eli Rosenthal and Zachary Tatlock and Max Willsey},
-  series    = {PLDI 2023},
-  booktitle = {Proceedings of the 44th ACM SIGPLAN Conference on Programming Language Design and Implementation},
+  journal   = {Proceedings of the ACM on Programming Languages},
+  number    = {PLDI},
+  year      = {2023},
   publisher = {Association for Computing Machinery},
 }
 ```

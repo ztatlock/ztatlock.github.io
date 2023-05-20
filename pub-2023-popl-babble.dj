@@ -1,0 +1,72 @@
+# babble: Learning Better Abstractions with E-Graphs and Anti-Unification
+
+  [David Cao][],
+\ [Rose Kunkel][],
+\ [Chandrakana Nandi][],
+\ [Max Willsey][],
+\ [Zachary Tatlock][],
+\ [Nadia Polikarpova][]
+
+Principles of Programming Languages (POPL) 2023
+
+{.photo}
+:::
+  [![babble: Learning Better Abstractions with E-Graphs and Anti-Unification](
+    pubs/2023-popl-babble/2023-popl-babble-absimg.png
+  )](
+    pubs/2023-popl-babble/2023-popl-babble.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [publisher](https://dl.acm.org/doi/abs/10.1145/3571207)
+- [paper](pubs/2023-popl-babble/2023-popl-babble.pdf)
+- [arXiv](https://arxiv.org/abs/2212.04596)
+- [talk](https://www.youtube.com/watch?v=ogGiKdhDmhU)
+- [bib](pubs/2023-popl-babble/2023-popl-babble.bib)
+
+{% TODO - [project]() %}
+{% TODO - [slides](pubs/2023-popl-babble/2023-popl-babble-slides.pptx) %}
+{% TODO - [poster](pubs/2023-popl-babble/2023-popl-babble-poster.pdf) %}
+
+
+## Abstract
+
+Library learning compresses a given corpus of programs by extracting common
+structure from the corpus into reusable library functions. Prior work on
+library learning suffers from two limitations that prevent it from scaling to
+larger, more complex inputs. First, it explores too many candidate library
+functions that are not useful for compression. Second, it is not robust to
+syntactic variation in the input.
+
+We propose library learning modulo theory (LLMT), a new library learning
+algorithm that additionally takes as input an equational theory for a given
+problem domain. LLMT uses e-graphs and equality saturation to compactly
+represent the space of programs equivalent modulo the theory, and uses a novel
+e-graph antiunification technique to find common patterns in the corpus more
+directly and efficiently.
+
+We implemented LLMT in a tool named babble. Our evaluation shows that babble
+achieves better compression orders of magnitude faster than the state of the
+art. We also provide a qualitative evaluation showing that babble learns
+reusable functions on inputs previously out of reach for library learning.
+
+
+## BibTeX
+
+{.bib}
+```
+@article{2023-popl-babble,
+  title     = {babble: Learning Better Abstractions with E-Graphs and Anti-Unification},
+  author    = {David Cao and Rose Kunkel and Chandrakana Nandi and Max Willsey and Zachary Tatlock and Nadia Polikarpova},
+  journal   = {Proceedings of the ACM on Programming Languages},
+  number    = {POPL},
+  year      = {2023},
+  publisher = {Association for Computing Machinery},
+  url       = {https://doi.org/10.1145/3571207},
+  doi       = {10.1145/3571207},
+}
+```
+
+[📝 publications index](publications.html)
+
