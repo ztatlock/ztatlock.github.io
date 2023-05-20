@@ -16,7 +16,7 @@
 Programming Language Design and Implementation (PLDI) 2023
 
 {.pub #2023-popl-babble}
-*[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](https://dl.acm.org/doi/abs/10.1145/3571207)* \
+*[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](pub-2023-popl-babble.html)* \
   [David Cao][],
 \ [Rose Kunkel][],
 \ [Chandrakana Nandi][],
