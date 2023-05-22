@@ -97,8 +97,8 @@ Programming Language Design and Implementation (PLDI) 2023
 \
 Principles of Programming Languages (POPL) 2023
 
-{.pub #2022-fmcad-proofs}
-*[Small Proofs from Congruence Closure](https://ieeexplore.ieee.org/document/10026585)* \
+{.pub #2022-fmcad-smallproofs}
+*[Small Proofs from Congruence Closure](pub-2022-fmcad-smallproofs.html)* \
   [Oliver Flatt][],
 \ [Samuel Coward][],
 \ [Max Willsey][],
@@ -107,7 +107,7 @@ Principles of Programming Languages (POPL) 2023
 \
 Formal Methods in Computer-Aided Design (FMCAD) 2022
 
-{.pub #2022-fmcad-proofs}
+{.pub #2022-ecoop-cakeml}
 *[Verified Compilation and Optimization of Floating-Point Programs in CakeML](https://drops.dagstuhl.de/opus/volltexte/2022/16229/)* \
   [Heiko Becker][],
 \ Robert Rabe,
@@ -120,7 +120,7 @@ Formal Methods in Computer-Aided Design (FMCAD) 2022
 \
 European Conference on Object-Oriented Programming (ECOOP) 2022
 
-{.pub #2022-ecoop-cakeml}
+{.pub #2022-tog-carpentry}
 *[Co-Optimization of Design and Fabrication Plans for Carpentry](https://dl.acm.org/doi/10.1145/3508499)* \
   [Haisen Zhao][],
 \ [Max Willsey][],
@@ -132,7 +132,7 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 \
 ACM Transactions on Graphics (TOG) 2022
 
-{.pub #2022-fmcad-proofs}
+{.pub #2022-popl-rematch}
 *[Relational e-matching](https://dl.acm.org/doi/10.1145/3498696)* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],

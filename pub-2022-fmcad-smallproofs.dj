@@ -1,0 +1,64 @@
+# Small Proofs from Congruence Closure
+
+  [Oliver Flatt][],
+\ [Samuel Coward][],
+\ [Max Willsey][],
+\ [Zachary Tatlock][],
+\ [Pavel Panchekha][]
+
+Formal Methods in Computer-Aided Design (FMCAD) 2022
+
+{.photo}
+:::
+  [![Small Proofs from Congruence Closure](
+    pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs-absimg.png
+  )](
+    pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [publisher](https://ieeexplore.ieee.org/document/10026585)
+- [paper](pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs.pdf)
+- [arXiv](https://arxiv.org/abs/2209.03398)
+- [talk](https://www.youtube.com/watch?v=_KnAHFdqWT0)
+- [slides](pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs-slides.pdf)
+- [project](https://egraphs-good.github.io/)
+- [code](https://github.com/egraphs-good/egg/)
+- [bib](pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs.bib)
+
+
+## Abstract
+
+Satisfiability Modulo Theory (SMT) solvers and equality saturation engines
+must generate proof certificates from e-graph-based congruence closure
+procedures to enable verification and conflict clause generation. Smaller
+proof certificates speed up these activities. Though the problem of generating
+proofs of minimal size is known to be NP-complete, existing proof minimization
+algorithms for congruence closure generate unnecessarily large proofs and
+introduce asymptotic overhead over the core congruence closure procedure. In
+this paper, we introduce an O(n^5^) time algorithm which generates optimal
+proofs under a new relaxed "proof tree size" metric that directly bounds proof
+size. We then relax this approach further to a practical O(n\ log(n)) greedy
+algorithm which generates small proofs with no asymptotic overhead. We
+implemented our techniques in the egg equality saturation toolkit, yielding
+the first certifying equality saturation engine. We show that our greedy
+approach in egg quickly generates substantially smaller proofs than the
+state-of-the-art Z3 SMT solver on a corpus of 3760 benchmarks.
+
+
+## BibTeX
+
+{.bib}
+```
+@inproceedings{2022-fmcad-smallproofs,
+  author    = {Oliver Flatt and Samuel Coward and Max Willsey and Zachary Tatlock and Pavel Panchekha},
+  booktitle = {Formal Methods in Computer-Aided Design (FMCAD) 2022},
+  title     = {Small Proofs from Congruence Closure},
+  year      = {2022},
+  doi       = {10.34727/2022/isbn.978-3-85448-053-2_13}
+}
+```
+
+[📝 publications index](publications.html)
+
