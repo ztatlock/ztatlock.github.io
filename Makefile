@@ -1,21 +1,21 @@
 FILES := https://cs.washington.edu/homes/ztatlock/WEBFILES
 PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
 
-%.html: %.dj REFS HEAD FOOT
+%.html: %.dj templates/REFS templates/HEAD templates/FOOT
 	$(eval TITLE := $(shell \
 			head -n 1 '$<' \
 			| tr -d '#[]' \
 			| sed 's#^[[:blank:]]*##' \
 			| sed 's#[[:blank:]]*$$##'))
-	@printf "BUILD : %-30s %s\n" "$@" "$(TITLE)"
-	@cat HEAD \
+	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
+	@cat templates/HEAD \
 		| sed 's#TITLE#$(TITLE)#' \
 		> $@
-	@cat $< REFS \
+	@cat $< templates/REFS \
 		| sed 's#__WEBFILES__#$(FILES)#' \
 		| djot \
 		>> $@
-	@cat FOOT >> $@
+	@cat templates/FOOT >> $@
 
 .PHONY: all
 all: $(PAGES)

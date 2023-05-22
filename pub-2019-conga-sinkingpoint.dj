@@ -1,0 +1,64 @@
+# Sinking Point: Dynamic Precision Tracking for Floating-point
+
+  [Bill Zorn][],
+\ [Dan Grossman][],
+\ [Zachary Tatlock][]
+
+Conference for Next Generation Arithmetic (CoNGA) 2019
+
+{.photo}
+:::
+  [![TITLE](
+    pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-absimg.png
+  )](
+    pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf
+  )
+:::
+
+{% TODO arXiv %}
+
+{.columns .columns-8rem}
+- [publisher](https://dl.acm.org/doi/10.1145/3316279.3316283)
+- [paper](pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf)
+- [talk](https://www.youtube.com/watch?v=nsKIUWlNrUU)
+- [slides](pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-slides.pdf)
+- [project](https://fpbench.org/)
+- [code](https://github.com/billzorn/titanic)
+- [bib](pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.bib)
+
+{% - [arXiv](TODO) %}
+
+## Abstract
+
+We present sinking-point, a floating-point-like number system that tracks
+precision dynamically though computations. With existing floating-point number
+systems, such as the venerable IEEE 754 standard, numerical results do not
+inherently contain any information about their precision or accuracy; to
+determine if a result is numerically accurate, a separate analysis must be
+performed. By contrast, sinking-point records the precision of each
+intermediate value and result computed, so highly imprecise results can be
+identified immediately. Compared to IEEE 754 floating-point, sinking-point’s
+representation requires only a few additional bits of storage, and
+computations require only a few additional bitwise operations. Sinking-point
+is fully generalizable, and can be extended to provide dynamic error tracking
+for nearly any digital number system, including posits.
+
+
+## BibTeX
+
+{.bib}
+```
+@inproceedings{2019-conga-sinking,
+  title     = {Sinking Point: Dynamic Precision Tracking for Floating-Point},
+  author    = {Bill Zorn and Dan Grossman and Zachary Tatlock},
+  series    = {CoNGA 2019},
+  booktitle = {Proceedings of the Conference for Next Generation Arithmetic 2019},
+  date      = {2019},
+  url       = {https://doi.org/10.1145/3316279.3316283},
+  doi       = {10.1145/3316279.3316283},
+  publisher = {Association for Computing Machinery},
+}
+```
+
+[📝 publications index](publications.html)
+

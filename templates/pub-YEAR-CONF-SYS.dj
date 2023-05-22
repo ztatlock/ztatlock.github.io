@@ -1,0 +1,45 @@
+# TITLE
+
+  [AUTHOR][],
+\ [AUTHOR][],
+\ [AUTHOR][]
+
+CONFERENCE (CONF) YEAR
+
+{.photo}
+:::
+  [![TITLE](
+    pubs/YEAR-CONF-SYS/YEAR-CONF-SYS-absimg.png
+  )](
+    pubs/YEAR-CONF-SYS/YEAR-CONF-SYS.pdf
+  )
+:::
+
+{% TODO arXiv %}
+
+{.columns .columns-8rem}
+- [publisher](TODO)
+- [paper](pubs/YEAR-CONF-SYS/YEAR-CONF-SYS.pdf)
+- [arXiv](TODO)
+- [talk](TODO)
+- [slides](pubs/YEAR-CONF-SYS/YEAR-CONF-SYS-slides.pptx)
+- [poster](pubs/YEAR-CONF-SYS/YEAR-CONF-SYS-poster.pdf)
+- [project](TODO)
+- [code](TODO)
+- [bib](pubs/YEAR-CONF-SYS/YEAR-CONF-SYS.bib)
+
+
+## Abstract
+
+TODO
+
+
+## BibTeX
+
+{.bib}
+```
+TODO
+```
+
+[📝 publications index](publications.html)
+

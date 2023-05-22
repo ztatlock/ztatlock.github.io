@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Sinking Point: Dynamic Precision Tracking for Floating-point</title>
+</head>
+<body>
+<section id="Sinking-Point-Dynamic-Precision-Tracking-for-Floating-point">
+<h1>Sinking Point: Dynamic Precision Tracking for Floating-point</h1>
+<p><a href="https://www.linkedin.com/in/bill-zorn-265872141">Bill Zorn</a>,
+&nbsp;<a href="https://homes.cs.washington.edu/~djg/">Dan Grossman</a>,
+&nbsp;<a href="https://ztatlock.net/">Zachary Tatlock</a></p>
+<p>Conference for Next Generation Arithmetic (CoNGA) 2019</p>
+<div class="photo">
+<p><a href="pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf"><img alt="TITLE" src="pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-absimg.png"></a></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="https://dl.acm.org/doi/10.1145/3316279.3316283">publisher</a>
+</li>
+<li>
+<a href="pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf">paper</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=nsKIUWlNrUU">talk</a>
+</li>
+<li>
+<a href="pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-slides.pdf">slides</a>
+</li>
+<li>
+<a href="https://fpbench.org/">project</a>
+</li>
+<li>
+<a href="https://github.com/billzorn/titanic">code</a>
+</li>
+<li>
+<a href="pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>We present sinking-point, a floating-point-like number system that tracks
+precision dynamically though computations. With existing floating-point number
+systems, such as the venerable IEEE 754 standard, numerical results do not
+inherently contain any information about their precision or accuracy; to
+determine if a result is numerically accurate, a separate analysis must be
+performed. By contrast, sinking-point records the precision of each
+intermediate value and result computed, so highly imprecise results can be
+identified immediately. Compared to IEEE 754 floating-point, sinking-point’s
+representation requires only a few additional bits of storage, and
+computations require only a few additional bitwise operations. Sinking-point
+is fully generalizable, and can be extended to provide dynamic error tracking
+for nearly any digital number system, including posits.</p>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@inproceedings{2019-conga-sinking,
+  title     = {Sinking Point: Dynamic Precision Tracking for Floating-Point},
+  author    = {Bill Zorn and Dan Grossman and Zachary Tatlock},
+  series    = {CoNGA 2019},
+  booktitle = {Proceedings of the Conference for Next Generation Arithmetic 2019},
+  date      = {2019},
+  url       = {https://doi.org/10.1145/3316279.3316283},
+  doi       = {10.1145/3316279.3316283},
+  publisher = {Association for Computing Machinery},
+}
+</code></pre>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>
