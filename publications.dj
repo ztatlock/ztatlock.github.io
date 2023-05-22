@@ -224,7 +224,7 @@ Computer-Aided Verification (CAV) 2019
 European Conference on Computer Systems (EuroSys) 2019
 
 {.pub #2019-conga-sinkingpoint}
-*[Sinking Point: Dynamic Precision Tracking for Floating-point](https://dl.acm.org/doi/10.1145/3316279.3316283)* \
+*[Sinking Point: Dynamic Precision Tracking for Floating-point](pub-2019-conga-sinkingpoint.html)* \
   [Bill Zorn][],
 \ [Dan Grossman][],
 \ [Zachary Tatlock][]
