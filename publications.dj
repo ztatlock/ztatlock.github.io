@@ -2,7 +2,10 @@
 
 ## Conference and Journal Papers
 
-{.pub #2023-pldi-egglog}
+{.pubs}
+:::
+
+{#2023-pldi-egglog}
 *[Better Together: Unifying Datalog and Equality Saturation](
   pub-2023-pldi-egglog.html
 )* \
@@ -17,7 +20,7 @@
 \
 Programming Language Design and Implementation (PLDI) 2023
 
-{.pub #2023-popl-babble}
+{#2023-popl-babble}
 *[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](
   pub-2023-popl-babble.html
 )* \
@@ -30,7 +33,7 @@ Programming Language Design and Implementation (PLDI) 2023
 \
 Principles of Programming Languages (POPL) 2023
 
-{.pub #2022-fmcad-smallproofs}
+{#2022-fmcad-smallproofs}
 *[Small Proofs from Congruence Closure](
   pub-2022-fmcad-smallproofs.html
 )* \
@@ -42,7 +45,7 @@ Principles of Programming Languages (POPL) 2023
 \
 Formal Methods in Computer-Aided Design (FMCAD) 2022
 
-{.pub #2022-ecoop-cakemlfp}
+{#2022-ecoop-cakemlfp}
 *[Verified Compilation and Optimization of Floating-Point Programs in CakeML](
   pub-2022-ecoop-cakemlfp.html
 )* \
@@ -57,7 +60,7 @@ Formal Methods in Computer-Aided Design (FMCAD) 2022
 \
 European Conference on Object-Oriented Programming (ECOOP) 2022
 
-{.pub #2022-tog-carpentry}
+{#2022-tog-carpentry}
 *[Co-Optimization of Design and Fabrication Plans for Carpentry](https://dl.acm.org/doi/10.1145/3508499)* \
   [Haisen Zhao][],
 \ [Max Willsey][],
@@ -69,7 +72,7 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 \
 ACM Transactions on Graphics (TOG) 2022
 
-{.pub #2022-popl-rematch}
+{#2022-popl-rematch}
 *[Relational e-matching](https://dl.acm.org/doi/10.1145/3498696)* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
@@ -78,7 +81,7 @@ ACM Transactions on Graphics (TOG) 2022
 \
 Principles of Programming Languages (POPL) 2022
 
-{.pub #2021-oopsla-ruler}
+{#2021-oopsla-ruler}
 *[Rewrite Rule Inference Using Equality Saturation](https://dl.acm.org/doi/abs/10.1145/3485496)* \
   [Chandrakana Nandi][],
 \ [Max Willsey][],
@@ -93,7 +96,7 @@ Principles of Programming Languages (POPL) 2022
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021 \
 ★ Distinguished Paper
 
-{.pub #2021-sff-3dp}
+{#2021-sff-3dp}
 *[A Roadmap Towards Parallel Printing for Desktop 3D Printers]()* \
   [Molly Aubrey Carton][Molly Carton],
 \ [Chandrakana Nandi][],
@@ -107,7 +110,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021 \
 \
 Solid Freeform Fabrication Symposium (SFF) 2021
 
-{.pub #2021-arith-herbie}
+{#2021-arith-herbie}
 *[Combining Precision Tuning and Rewriting](https://www.computer.org/csdl/proceedings-article/arith/2021/229300a001/1yDk1IkeJEc)* \
   [Brett Saiki][],
 \ [Oliver Flatt][],
@@ -117,7 +120,7 @@ Solid Freeform Fabrication Symposium (SFF) 2021
 \
 IEEE International Symposium on Computer Arithmetic (ARITH) 2021
 
-{.pub #2021-maps-glenside}
+{#2021-maps-glenside}
 *[Pure Tensor Program Rewriting via Access Patterns](https://dl.acm.org/doi/10.1145/3460945.3464953)* \
   [Gus Henry Smith][Gus Smith],
 \ [Andrew Liu][],
@@ -130,7 +133,7 @@ IEEE International Symposium on Computer Arithmetic (ARITH) 2021
 \
 Symposium on Machine Programming (MAPS) 2021
 
-{.pub #2021-iclr-dtr}
+{#2021-iclr-dtr}
 *[Dynamic Tensor Rematerialization](https://openreview.net/forum?id=Vfs_2RnOD0H)* \
   [Marisa Kirisame][],
 \ [Steven Lyubomirsky][],
@@ -144,7 +147,7 @@ Symposium on Machine Programming (MAPS) 2021
 International Conference on Learning Representations (ICLR) 2021 \
 ★ Spotlight Paper
 
-{.pub #2021-mlsys-nimble}
+{#2021-mlsys-nimble}
 *[Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference](https://proceedings.mlsys.org/paper/2021/hash/4e732ced3463d06de0ca9a15b6153677-Abstract.html)* \
   [Haichen Shen][],
 \ [Jared Roesch][],
@@ -158,7 +161,7 @@ International Conference on Learning Representations (ICLR) 2021 \
 \
 Conference on Machine Learning and Systems (MLSys) 2021
 
-{.pub #2021-popl-egg}
+{#2021-popl-egg}
 *[egg: Fast and Extensible Equality Saturation](https://dl.acm.org/doi/10.1145/3434304)* \
   [Max Willsey][],
 \ [Chandrakana Nandi][],
@@ -170,7 +173,7 @@ Conference on Machine Learning and Systems (MLSys) 2021
 Principles of Programming Languages (POPL) 2021 \
 ★ Distinguished Paper
 
-{.pub #2020-pldi-szalinski}
+{#2020-pldi-szalinski}
 *[Synthesizing Structured CAD Models with Equality Saturation and Inverse Transformations](https://dl.acm.org/doi/10.1145/3385412.3386012)* \
   [Chandrakana Nandi][],
 \ [Max Willsey][],
@@ -182,7 +185,7 @@ Principles of Programming Languages (POPL) 2021 \
 \
 Programming Language Design and Implementation (PLDI) 2020
 
-{.pub #2019-siga-carpentry}
+{#2019-siga-carpentry}
 *[Carpentry Compiler](https://dl.acm.org/doi/10.1145/3355089.3356518)* \
   [Chenming Wu][],
 \ [Haisen Zhao][],
@@ -193,7 +196,7 @@ Programming Language Design and Implementation (PLDI) 2020
 \
 SIGGRAPH Asia, ACM Transactions on Graphics (SIGA) 2019
 
-{.pub #2019-oopsla-troika}
+{#2019-oopsla-troika}
 *[Modular Verification of Web Page Layout](https://dl.acm.org/doi/10.1145/3360577)* \
   [Pavel Panchekha][],
 \ [Michael D. Ernst][Mike Ernst],
@@ -202,7 +205,7 @@ SIGGRAPH Asia, ACM Transactions on Graphics (SIGA) 2019
 \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2019
 
-{.pub #2019-ftpl-proofengineering}
+{#2019-ftpl-proofengineering}
 *[QED at Large: A Survey of Engineering of Formally Verified Software](https://www.nowpublishers.com/article/Details/PGL-045)* \
   [Talia Ringer][],
 \ [Karl Palmskog][],
@@ -212,7 +215,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2019
 \
 Foundations and Trends in Programming Languages (FTPL) 2019
 
-{.pub #2019-cav-icing}
+{#2019-cav-icing}
 *[Icing: Supporting Fast-Math Style Optimizations in a Verified Compiler](https://link.springer.com/chapter/10.1007/978-3-030-25543-5_10)* \
   [Heiko Becker][],
 \ [Eva Darulova][],
@@ -221,7 +224,7 @@ Foundations and Trends in Programming Languages (FTPL) 2019
 \
 Computer-Aided Verification (CAV) 2019
 
-{.pub #2019-eurosys-dslabs}
+{#2019-eurosys-dslabs}
 *[Teaching Rigorous Distributed Systems With Efficient Model Checking](https://dl.acm.org/doi/10.1145/3302424.3303947)* \
   [Ellis Michael][],
 \ [Doug Woos][],
@@ -231,7 +234,7 @@ Computer-Aided Verification (CAV) 2019
 \
 European Conference on Computer Systems (EuroSys) 2019
 
-{.pub #2019-conga-sinkingpoint}
+{#2019-conga-sinkingpoint}
 *[Sinking Point: Dynamic Precision Tracking for Floating-point](pub-2019-conga-sinkingpoint.html)* \
   [Bill Zorn][],
 \ [Dan Grossman][],
@@ -239,7 +242,7 @@ European Conference on Computer Systems (EuroSys) 2019
 \
 Conference for Next Generation Arithmetic (CoNGA) 2019
 
-{.pub #2018-icfp-reincarnate}
+{#2018-icfp-reincarnate}
 *[Functional Programming for Compiling and Decompiling Computer-aided Design](https://dl.acm.org/doi/10.1145/3236794)* \
   [Chandrakana Nandi][],
 \ [James R. Wilcox][James Wilcox],
@@ -250,7 +253,7 @@ Conference for Next Generation Arithmetic (CoNGA) 2019
 \
 International Conference on Functional Programming (ICFP) 2018
 
-{.pub #2018-fm-fpcombo}
+{#2018-fm-fpcombo}
 *[Combining Tools for Optimization and Analysis of Floating-Point Computations](https://link.springer.com/chapter/10.1007/978-3-319-95582-7_21)* \
   [Heiko Becker][],
 \ [Pavel Panchekha][],
@@ -259,7 +262,7 @@ International Conference on Functional Programming (ICFP) 2018
 \
 Formal Methods (FM) 2018
 
-{.pub #2018-itb-tcb}
+{#2018-itb-tcb}
 *[Software Verification with ITPs Should Use Binary Code Extraction to Reduce the TCB](https://link.springer.com/chapter/10.1007/978-3-319-94821-8_21)* \
   [Ramana Kumar][],
 \ [Eric Mullen][],
@@ -268,7 +271,7 @@ Formal Methods (FM) 2018
 \
 Interactive Theorem Proving (ITP) 2018
 
-{.pub #2018-mapl-relay}
+{#2018-mapl-relay}
 *[Relay: a New IR for Machine Learning Frameworks](https://dl.acm.org/doi/10.1145/3211346.3211348)* \
   [Jared Roesch][],
 \ [Steven Lyubomirsky][],
@@ -280,7 +283,7 @@ Interactive Theorem Proving (ITP) 2018
 \
 Machine Learning and Programming Languages (MAPL) 2018
 
-{.pub #2018-pldi-herbgrind}
+{#2018-pldi-herbgrind}
 *[Finding Root Causes of Floating Point Error](https://dl.acm.org/doi/10.1145/3296979.3192411)* \
   [Alex Sanchez-Stern][],
 \ [Pavel Panchekha][],
@@ -289,7 +292,7 @@ Machine Learning and Programming Languages (MAPL) 2018
 \
 Programming Language Design and Implementation (PLDI) 2018
 
-{.pub #2018-pldi-vizassert}
+{#2018-pldi-vizassert}
 *[Verifying that Web Pages have Accessible Layout](https://dl.acm.org/doi/10.1145/3192366.3192407)* \
   [Pavel Panchekha][],
 \ [Adam T. Geller][Adam Geller],
@@ -299,7 +302,7 @@ Programming Language Design and Implementation (PLDI) 2018
 \
 Programming Language Design and Implementation (PLDI) 2018
 
-{.pub #2018-popl-disel}
+{#2018-popl-disel}
 *[Programming and Proving with Distributed Protocols](https://dl.acm.org/doi/10.1145/3158116)* \
   [Ilya Sergey][],
 \ [James R. Wilcox][James Wilcox],
@@ -307,7 +310,7 @@ Programming Language Design and Implementation (PLDI) 2018
 \
 Principles of Programming Languages (POPL) 2018
 
-{.pub #2018-cpp-oeuf}
+{#2018-cpp-oeuf}
 *[Œuf: Minimizing the Coq Extraction TCB](https://dl.acm.org/doi/10.1145/3167089)* \
   [Eric Mullen][],
 \ [Stuart Pernsteiner][],
@@ -317,7 +320,7 @@ Principles of Programming Languages (POPL) 2018
 \
 Certified Programs and Proofs (CPP) 2018
 
-{.pub #2017-icalepcs-neutrons}
+{#2017-icalepcs-neutrons}
 *[Automatic Formal Verification for EPICS](https://accelconf.web.cern.ch/icalepcs2017/doi/JACoW-ICALEPCS2017-TUDPL02.html)* \
   [Jonathan Jacky][Jon Jacky],
 \ [Stefani Banerian][],
@@ -329,7 +332,7 @@ Certified Programs and Proofs (CPP) 2018
 \
 International Conference on Accelerator and Large Experimental Control Systems (ICALEPCS) 2017
 
-{.pub #2017-icfp-spacesearch}
+{#2017-icfp-spacesearch}
 *[SpaceSearch: A Library for Building and Verifying Solver-aided Tools](https://dl.acm.org/doi/10.1145/3110269)* \
   [Konstantin Weitz][],
 \ [Steven Lyubomirsky][],
@@ -340,7 +343,7 @@ International Conference on Accelerator and Large Experimental Control Systems (
 \
 International Conference on Functional Programming (ICFP) 2017
 
-{.pub #2017-snapl-disel}
+{#2017-snapl-disel}
 *[Programming Language Abstractions for Modularly Verified Distributed Systems](https://drops.dagstuhl.de/opus/volltexte/2017/7126/)* \
   [James R. Wilcox][James Wilcox],
 \ [Ilya Sergey][],
@@ -348,7 +351,7 @@ International Conference on Functional Programming (ICFP) 2017
 \
 Summit oN Advances in Programming Languages (SNAPL) 2017
 
-{.pub #2017-snapl-cad}
+{#2017-snapl-cad}
 *[Programming Language Tools and Techniques for 3D Printing](https://drops.dagstuhl.de/opus/volltexte/2017/7122/)* \
   [Chandrakana Nandi][],
 \ [Anat Caspi][],
@@ -357,7 +360,7 @@ Summit oN Advances in Programming Languages (SNAPL) 2017
 \
 Summit oN Advances in Programming Languages (SNAPL) 2017
 
-{.pub #2016-oopsla-bagpipe}
+{#2016-oopsla-bagpipe}
 *[Scalable Verification of Border Gateway Protocol Configurations with an SMT Solver](https://dl.acm.org/doi/10.1145/2983990.2984012)* \
   [Konstantin Weitz][],
 \ [Doug Woos][],
@@ -368,7 +371,7 @@ Summit oN Advances in Programming Languages (SNAPL) 2017
 \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2016
 
-{.pub #2016-netpl-bagpipe}
+{#2016-netpl-bagpipe}
 *[Formal Semantics and Automated Verification for the Border Gateway Protocol](https://conferences.sigcomm.org/sigcomm/2016/netpl.php)* \
   [Konstantin Weitz][],
 \ [Doug Woos][],
@@ -379,7 +382,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2016
 \
 ACM SIGCOMM Workshop on Networking and Programming Languages (NetPL) 2016
 
-{.pub #2016-cav-neutrons}
+{#2016-cav-neutrons}
 *[Investigating Safety of a Radiotherapy Machine Using System Models with Pluggable Checkers](https://link.springer.com/chapter/10.1007/978-3-319-41540-6_2)* \
   [Stuart Pernsteiner][],
 \ [Calvin Loncaric][],
@@ -391,7 +394,7 @@ ACM SIGCOMM Workshop on Networking and Programming Languages (NetPL) 2016
 \
 Computer-Aided Verification (CAV) 2016
 
-{.pub #2016-pldi-peek}
+{#2016-pldi-peek}
 *[Verified Peephole Optimizations for CompCert](https://dl.acm.org/doi/10.1145/2908080.2908109)* \
   [Eric Mullen][],
 \ [Daryl Zuniga][],
@@ -400,7 +403,7 @@ Computer-Aided Verification (CAV) 2016
 \
 Programming Language Design and Implementation (PLDI) 2016
 
-{.pub #2016-cpp-verdi}
+{#2016-cpp-verdi}
 *[Planning for Change in a Formal Verification of the Raft Consensus Protocol](https://dl.acm.org/doi/10.1145/2854065.2854081)* \
   [Doug Woos][],
 \ [James R. Wilcox][James Wilcox],
@@ -411,7 +414,7 @@ Programming Language Design and Implementation (PLDI) 2016
 \
 Certified Programs and Proofs (CPP) 2016
 
-{.pub #2015-pldi-verdi}
+{#2015-pldi-verdi}
 *[Verdi: A Framework for Implementing and Formally Verifying Distributed Systems](https://dl.acm.org/doi/10.1145/2737924.2737958)* \
   [James R. Wilcox][James Wilcox],
 \ [Doug Woos][],
@@ -423,7 +426,7 @@ Certified Programs and Proofs (CPP) 2016
 \
 Programming Language Design and Implementation (PLDI) 2015
 
-{.pub #2015-pldi-herbie}
+{#2015-pldi-herbie}
 *[Automatically Improving Accuracy for Floating Point Expressions](https://dl.acm.org/doi/10.1145/2737924.2737959)* \
   [Pavel Panchekha][],
 \ [Alex Sanchez-Stern][],
@@ -433,7 +436,7 @@ Programming Language Design and Implementation (PLDI) 2015
 Programming Language Design and Implementation (PLDI) 2015 \
 ★ Distinguished Paper
 
-{.pub #2015-icra-roboflow}
+{#2015-icra-roboflow}
 *[RoboFlow: A Flow-based Visual Programming Language for Mobile Manipulation Tasks](https://ieeexplore.ieee.org/document/7139973)* \
   [Sonya Alexandrova][],
 \ [Zachary Tatlock][],
@@ -441,7 +444,7 @@ Programming Language Design and Implementation (PLDI) 2015 \
 \
 International Conference on Robotics and Automation (ICRA) 2015
 
-{.pub #2015-snapl-neutrons}
+{#2015-snapl-neutrons}
 *[Toward a Dependability Case Language and Workflow for a Radiation Therapy System](https://drops.dagstuhl.de/opus/volltexte/2015/5020/)* \
   [Michael D. Ernst][Mike Ernst],
 \ [Dan Grossman][],
@@ -454,7 +457,7 @@ International Conference on Robotics and Automation (ICRA) 2015
 \
 Summit oN Advances in Programming Languages (SNAPL) 2015
 
-{.pub #2015-hri-roboflow}
+{#2015-hri-roboflow}
 *[Visual Robot Programming for Generalizable Mobile Manipulation Tasks](https://dl.acm.org/doi/10.1145/2701973.2702052)* \
   [Sonya Alexandrova][],
 \ [Zachary Tatlock][],
@@ -462,7 +465,7 @@ Summit oN Advances in Programming Languages (SNAPL) 2015
 \
 Human Robot Interaction (HRI) 2015
 
-{.pub #2014-osdi-jitk}
+{#2014-osdi-jitk}
 *[Jitk: A Trustworthy In-Kernel Interpreter Infrastructure](https://www.usenix.org/conference/osdi14/technical-sessions/presentation/wang_xi)* \
   [Xi Wang][],
 \ [David Lazar][],
@@ -472,7 +475,7 @@ Human Robot Interaction (HRI) 2015
 \
 Operating Systems Design and Implementation (OSDI) 2014
 
-{.pub #2014-pldi-reflex}
+{#2014-pldi-reflex}
 *[Automating Formal Proofs for Reactive Systems](https://dl.acm.org/doi/10.1145/2594291.2594338)* \
   [Daniel Ricketts][],
 \ [Valentin Robert][],
@@ -482,7 +485,7 @@ Operating Systems Design and Implementation (OSDI) 2014
 \
 Programming Language Design and Implementation (PLDI) 2014
 
-{.pub #2014-ndss-vtables}
+{#2014-ndss-vtables}
 *[SafeDispatch: Securing C++ Virtual Calls from Memory Corruption Attacks](https://www.ndss-symposium.org/ndss2014/programme/safedispatch-securing-c-virtual-calls-memory-corruption-attacks/)* \
   [Dongseok Jang][],
 \ [Zachary Tatlock][],
@@ -490,7 +493,7 @@ Programming Language Design and Implementation (PLDI) 2014
 \
 Network and Distributed System Security (NDSS) 2014
 
-{.pub #2012-security-quark}
+{#2012-security-quark}
 *[Establishing Browser Security Guarantees through Formal Shim Verification](https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/jang)* \
   [Dongseok Jang][],
 \ [Zachary Tatlock][],
@@ -498,7 +501,7 @@ Network and Distributed System Security (NDSS) 2014
 \
 USENIX Security Symposium (SECURITY) 2012
 
-{.pub #2011-lmcs-eqsat}
+{#2011-lmcs-eqsat}
 *[Equality Saturation: A New Approach to Optimization](https://lmcs.episciences.org/1016)* \
   [Ross Tate][],
 \ [Michael Stepp][],
@@ -507,14 +510,14 @@ USENIX Security Symposium (SECURITY) 2012
 \
 Logical Methods in Computer Science (LMCS) 2011
 
-{.pub #2010-pldi-xcert}
+{#2010-pldi-xcert}
 *[Bringing Extensibility to Verified Compilers](https://dl.acm.org/doi/10.1145/1806596.1806611)* \
   [Zachary Tatlock][],
 \ [Sorin Lerner][]
 \
 Programming Language Design and Implementation (PLDI) 2010
 
-{.pub #2009-pldi-pec}
+{#2009-pldi-pec}
 *[Proving Optimizations Correct using Parameterized Program Equivalence](https://dl.acm.org/doi/10.1145/1542476.1542513)* \
   [Sudipta Kundu][],
 \ [Zachary Tatlock][],
@@ -522,7 +525,7 @@ Programming Language Design and Implementation (PLDI) 2010
 \
 Programming Language Design and Implementation (PLDI) 2009
 
-{.pub #2009-popl-eqsat}
+{#2009-popl-eqsat}
 *[Equality Saturation: A New Approach to Optimization](https://dl.acm.org/doi/10.1145/1480881.1480915)* \
   [Ross Tate][],
 \ [Michael Stepp][],
@@ -531,7 +534,7 @@ Programming Language Design and Implementation (PLDI) 2009
 \
 Principles of Programming Languages (POPL) 2009
 
-{.pub #2008-oopsla-dtar}
+{#2008-oopsla-dtar}
 *[Deep Typechecking and Refactoring](pub-2008-oopsla-dtar.html)* \
   [Zachary Tatlock][],
 \ [Chris Tucker][],
@@ -540,10 +543,16 @@ Principles of Programming Languages (POPL) 2009
 \ [Sorin Lerner][] \
 Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 
+:::
+
 
 ## Workshop Papers
 
-{.pub #2023-plarch-lakeroad}
+{.pubs}
+:::
+
+
+{#2023-plarch-lakeroad}
 *[Generate Compilers from Hardware Models!](pub-2023-plarch-lakeroad.html)* \
   [Gus Henry Smith][Gus Smith],
 \ [Ben Kushigian][],
@@ -554,7 +563,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 \
 Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 
-{.pub #2021-correctness-xstack}
+{#2021-correctness-xstack}
 *[Guarding Numerics Amidst Rising Heterogeneity](https://ieeexplore.ieee.org/document/9651291)* \
   [Ganesh Gopalakrishnan][],
 \ [Ignacio Laguna][],
@@ -565,7 +574,7 @@ Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 \
 Software Correctness for HPC Applications (CORRECTNESS) 2021
 
-{.pub #2021-latte-3la}
+{#2021-latte-3la}
 *[From DSLs to Accelerator-Rich Platform Implementations: Addressing the Mapping Gap](https://capra.cs.cornell.edu/latte21/)* \
   [Bo-Yuan Huang][],
 \ [Steven Lyubomirsky][],
@@ -580,7 +589,7 @@ Software Correctness for HPC Applications (CORRECTNESS) 2021
 \
 Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE) 2021
 
-{.pub #2020-plateau-semviz}
+{#2020-plateau-semviz}
 *[The Essence of Program Semantics Visualizers: A Three-Axis Model](https://2020.plateau-workshop.org/program)* \
   [Josh Pollock][],
 \ [Grace Oh][],
@@ -590,14 +599,14 @@ Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE) 2021
 \
 Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU) 2020 \
 
-{.pub #2020-nsv-numassist}
+{#2020-nsv-numassist}
 *[Towards Numerical Assistants](https://link.springer.com/chapter/10.1007/978-3-030-63618-0_13)* \
   [Pavel Panchekha][],
 \ [Zachary Tatlock][]
 \
 Numerical Software Verification (NSV) 2020
 
-{.pub #2019-correctness-mpmf}
+{#2019-correctness-mpmf}
 *[Toward Multi-Precision, Multi-Format Numerics](https://www.computer.org/csdl/proceedings-article/correctness/2019/601500a019/1gyr5pHvaz6)* \
   [David Thien][],
 \ [Bill Zorn][],
@@ -606,7 +615,7 @@ Numerical Software Verification (NSV) 2020
 \
 Software Correctness for HPC Applications (CORRECTNESS) 2019
 
-{.pub #2019-splashe-theia}
+{#2019-splashe-theia}
 *[Theia: Automatically Generating Correct Program State Visualizations](https://dl.acm.org/doi/10.1145/3358711.3361625)* \
   [Josh Pollock][],
 \ [Jared Roesch][],
@@ -615,7 +624,7 @@ Software Correctness for HPC Applications (CORRECTNESS) 2019
 \
 ACM SIGPLAN International Symposium on SPLASH-E (SPLASH-E) 2019
 
-{.pub #2017-coqpl-verdi}
+{#2017-coqpl-verdi}
 *[Verification of Implementations of Distributed Systems Under Churn](https://popl17.sigplan.org/details/main/1/Verification-of-Implementations-of-Distributed-Systems-Under-Churn)* \
   [Ryan Doenges][],
 \ [James R. Wilcox][James Wilcox],
@@ -625,7 +634,7 @@ ACM SIGPLAN International Symposium on SPLASH-E (SPLASH-E) 2019
 \
 Workshop on Coq for Programming Languages (CoqPL) 2017
 
-{.pub #2016-nsv-fpbench}
+{#2016-nsv-fpbench}
 *[Toward a Standard Benchmark Format and Suite for Floating-Point Analysis](https://link.springer.com/chapter/10.1007/978-3-319-54292-8_6)* \
   [Nasrine Damouche][],
 \ [Matthieu Martel][],
@@ -636,13 +645,15 @@ Workshop on Coq for Programming Languages (CoqPL) 2017
 \
 Numerical Software Verification (NSV) 2016
 
-{.pub #2015-coqpl-peek}
+{#2015-coqpl-peek}
 *[Peek: A Formally Verified Peephole Optimization Framework for x86](https://coqpl.cs.washington.edu/program/)* \
   [Eric Mullen][],
 \ [Zachary Tatlock][],
 \ [Dan Grossman][]
 \
 Workshop on Coq for Programming Languages (CoqPL) 2015
+
+:::
 
 
 ## Aggregators

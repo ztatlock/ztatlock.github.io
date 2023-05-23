@@ -62,7 +62,10 @@ Please see my [students page](students.html) for more.
 
 ## Recent Publications
 
-{.pub #2023-plarch-lakeroad}
+{.pubs}
+:::
+
+{#2023-plarch-lakeroad}
 *[Generate Compilers from Hardware Models!](
   pub-2023-plarch-lakeroad.html
 )* \
@@ -75,7 +78,7 @@ Please see my [students page](students.html) for more.
 \
 Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 
-{.pub #2023-pldi-egglog}
+{#2023-pldi-egglog}
 *[Better Together: Unifying Datalog and Equality Saturation](
   pub-2023-pldi-egglog.html
 )* \
@@ -90,7 +93,7 @@ Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 \
 Programming Language Design and Implementation (PLDI) 2023
 
-{.pub #2023-popl-babble}
+{#2023-popl-babble}
 *[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](
   pub-2023-popl-babble.html
 )* \
@@ -103,7 +106,7 @@ Programming Language Design and Implementation (PLDI) 2023
 \
 Principles of Programming Languages (POPL) 2023
 
-{.pub #2022-fmcad-smallproofs}
+{#2022-fmcad-smallproofs}
 *[Small Proofs from Congruence Closure](
   pub-2022-fmcad-smallproofs.html
 )* \
@@ -115,7 +118,7 @@ Principles of Programming Languages (POPL) 2023
 \
 Formal Methods in Computer-Aided Design (FMCAD) 2022
 
-{.pub #2022-ecoop-cakemlfp}
+{#2022-ecoop-cakemlfp}
 *[Verified Compilation and Optimization of Floating-Point Programs in CakeML](
   pub-2022-ecoop-cakemlfp.html
 )* \
@@ -130,7 +133,7 @@ Formal Methods in Computer-Aided Design (FMCAD) 2022
 \
 European Conference on Object-Oriented Programming (ECOOP) 2022
 
-{.pub #2022-tog-carpentry}
+{#2022-tog-carpentry}
 *[Co-Optimization of Design and Fabrication Plans for Carpentry](https://dl.acm.org/doi/10.1145/3508499)* \
   [Haisen Zhao][],
 \ [Max Willsey][],
@@ -142,7 +145,7 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 \
 ACM Transactions on Graphics (TOG) 2022
 
-{.pub #2022-popl-rematch}
+{#2022-popl-rematch}
 *[Relational e-matching](https://dl.acm.org/doi/10.1145/3498696)* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
@@ -150,6 +153,8 @@ ACM Transactions on Graphics (TOG) 2022
 \ [Zachary Tatlock][]
 \
 Principles of Programming Languages (POPL) 2022
+
+:::
 
 Please see my [publications page](publications.html) for more.
 
