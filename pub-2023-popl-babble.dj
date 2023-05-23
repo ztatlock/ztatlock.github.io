@@ -19,10 +19,11 @@ Principles of Programming Languages (POPL) 2023
 :::
 
 {.columns .columns-8rem}
-- [publisher](https://dl.acm.org/doi/abs/10.1145/3571207)
 - [paper](pubs/2023-popl-babble/2023-popl-babble.pdf)
-- [arXiv](https://arxiv.org/abs/2212.04596)
 - [talk](https://www.youtube.com/watch?v=ogGiKdhDmhU)
+- [code](https://github.com/dcao/babble)
+- [publisher](https://dl.acm.org/doi/abs/10.1145/3571207)
+- [arXiv](https://arxiv.org/abs/2212.04596)
 - [bib](pubs/2023-popl-babble/2023-popl-babble.bib)
 
 {% TODO - [project]() %}
