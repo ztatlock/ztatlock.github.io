@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Verified Compilation and Optimization of Floating-Point Programs in CakeML</title>
+</head>
+<body>
+<section id="Verified-Compilation-and-Optimization-of-Floating-Point-Programs-in-CakeML">
+<h1>Verified Compilation and Optimization of Floating-Point Programs in CakeML</h1>
+<p><a href="https://people.mpi-sws.org/~hbecker/">Heiko Becker</a>,
+&nbsp;Robert Rabe,
+&nbsp;<a href="https://malyzajko.github.io/">Eva Darulova</a>,
+&nbsp;<a href="https://www.cse.chalmers.se/~myreen/">Magnus O. Myreen</a>,
+&nbsp;<a href="https://ztatlock.net/">Zachary Tatlock</a>,
+&nbsp;<a href="https://github.com/xrchz/">Ramana Kumar</a>,
+&nbsp;<a href="https://tanyongkiam.github.io/">Yong Kiam Tan</a>,
+&nbsp;<a href="https://acjf3.github.io/">Anthony Fox</a></p>
+<p>European Conference on Object-Oriented Programming (ECOOP) 2022</p>
+<div class="photo">
+<p><a href="pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf"><img alt="Verified Compilation and Optimization of Floating-Point Programs in CakeML" src="pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-absimg.png"></a></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf">paper</a>
+</li>
+<li>
+<a href="https://cakeml.org/">project</a>
+</li>
+<li>
+<a href="https://github.com/CakeML/cakeml/pull/865">code</a>
+</li>
+<li>
+<a href="https://drops.dagstuhl.de/opus/volltexte/2022/16229/">publisher</a>
+</li>
+<li>
+<a href="pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>Verified compilers such as CompCert and CakeML have become increasingly
+realistic over the last few years, but their support for floating-point
+arithmetic has thus far been limited. In particular, they lack the
+“fast-math-style” optimizations that unverified mainstream compilers perform.
+Supporting such optimizations in the setting of verified compilers is
+challenging because these optimizations, for the most part, do not preserve the
+IEEE-754 floating-point semantics. However, IEEE-754 floating-point numbers are
+finite approximations of the real numbers, and we argue that any compiler
+correctness result for fast-math optimizations should appeal to a real-valued
+semantics rather than the rigid IEEE-754 floating-point numbers.</p>
+<p>This paper presents RealCake, an extension of CakeML that achieves end-to-end
+correctness results for fast-math-style optimized compilation of floating-point
+arithmetic. This result is achieved by giving CakeML a flexible floating-point
+semantics and integrating an external proof-producing accuracy analysis.
+RealCake’s end-to-end theorems relate the I/O behavior of the original source
+program under real-number semantics to the observable I/O behavior of the
+compiler generated and fast-math-optimized machine code.</p>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@inproceedings{2022-ecoop-cakemlfp,
+  title      = {{Verified Compilation and Optimization of Floating-Point Programs in CakeML}},
+  author     = {Becker, Heiko and Rabe, Robert and Darulova, Eva and Myreen, Magnus O. and Tatlock, Zachary and Kumar, Ramana and Tan, Yong Kiam and Fox, Anthony},
+  series     = {Leibniz International Proceedings in Informatics (LIPIcs)},
+  booktitle  = {36th European Conference on Object-Oriented Programming (ECOOP 2022)},
+  url        = {https://drops.dagstuhl.de/opus/volltexte/2022/16229},
+  doi        = {10.4230/LIPIcs.ECOOP.2022.1},
+  publisher  = {Schloss Dagstuhl -- Leibniz-Zentrum f{ü}r Informatik},
+}
+</code></pre>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>

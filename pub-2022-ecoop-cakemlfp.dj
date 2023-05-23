@@ -1,0 +1,72 @@
+# Verified Compilation and Optimization of Floating-Point Programs in CakeML
+
+  [Heiko Becker][],
+\ Robert Rabe,
+\ [Eva Darulova][],
+\ [Magnus O. Myreen][],
+\ [Zachary Tatlock][],
+\ [Ramana Kumar][],
+\ [Yong Kiam Tan][],
+\ [Anthony Fox][]
+
+European Conference on Object-Oriented Programming (ECOOP) 2022
+
+{.photo}
+:::
+  [![Verified Compilation and Optimization of Floating-Point Programs in CakeML](
+    pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-absimg.png
+  )](
+    pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf)
+- [project](https://cakeml.org/)
+- [code](https://github.com/CakeML/cakeml/pull/865)
+- [publisher](https://drops.dagstuhl.de/opus/volltexte/2022/16229/)
+- [bib](pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.bib)
+
+{% - [talk](TODO) %}
+{% - [slides](pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-slides.pdf) %}
+{% TODO - [arXiv](TODO) %}
+
+## Abstract
+
+Verified compilers such as CompCert and CakeML have become increasingly
+realistic over the last few years, but their support for floating-point
+arithmetic has thus far been limited. In particular, they lack the
+“fast-math-style” optimizations that unverified mainstream compilers perform.
+Supporting such optimizations in the setting of verified compilers is
+challenging because these optimizations, for the most part, do not preserve the
+IEEE-754 floating-point semantics. However, IEEE-754 floating-point numbers are
+finite approximations of the real numbers, and we argue that any compiler
+correctness result for fast-math optimizations should appeal to a real-valued
+semantics rather than the rigid IEEE-754 floating-point numbers.
+
+This paper presents RealCake, an extension of CakeML that achieves end-to-end
+correctness results for fast-math-style optimized compilation of floating-point
+arithmetic. This result is achieved by giving CakeML a flexible floating-point
+semantics and integrating an external proof-producing accuracy analysis.
+RealCake’s end-to-end theorems relate the I/O behavior of the original source
+program under real-number semantics to the observable I/O behavior of the
+compiler generated and fast-math-optimized machine code.
+
+
+## BibTeX
+
+{.bib}
+```
+@inproceedings{2022-ecoop-cakemlfp,
+  title      = {{Verified Compilation and Optimization of Floating-Point Programs in CakeML}},
+  author     = {Becker, Heiko and Rabe, Robert and Darulova, Eva and Myreen, Magnus O. and Tatlock, Zachary and Kumar, Ramana and Tan, Yong Kiam and Fox, Anthony},
+  series     = {Leibniz International Proceedings in Informatics (LIPIcs)},
+  booktitle  = {36th European Conference on Object-Oriented Programming (ECOOP 2022)},
+  url        = {https://drops.dagstuhl.de/opus/volltexte/2022/16229},
+  doi        = {10.4230/LIPIcs.ECOOP.2022.1},
+  publisher  = {Schloss Dagstuhl -- Leibniz-Zentrum f{ü}r Informatik},
+}
+```
+
+[📝 publications index](publications.html)
+

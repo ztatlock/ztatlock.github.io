@@ -63,7 +63,9 @@ Please see my [students page](students.html) for more.
 ## Recent Publications
 
 {.pub #2023-plarch-lakeroad}
-*[Generate Compilers from Hardware Models!](pub-2023-plarch-lakeroad.html)* \
+*[Generate Compilers from Hardware Models!](
+  pub-2023-plarch-lakeroad.html
+)* \
   [Gus Henry Smith][Gus Smith],
 \ [Ben Kushigian][],
 \ [Vishal Canumalla][],
@@ -74,7 +76,9 @@ Please see my [students page](students.html) for more.
 Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 
 {.pub #2023-pldi-egglog}
-*[Better Together: Unifying Datalog and Equality Saturation](pub-2023-pldi-egglog.html)* \
+*[Better Together: Unifying Datalog and Equality Saturation](
+  pub-2023-pldi-egglog.html
+)* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
 \ [Oliver Flatt][],
@@ -87,7 +91,9 @@ Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 Programming Language Design and Implementation (PLDI) 2023
 
 {.pub #2023-popl-babble}
-*[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](pub-2023-popl-babble.html)* \
+*[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](
+  pub-2023-popl-babble.html
+)* \
   [David Cao][],
 \ [Rose Kunkel][],
 \ [Chandrakana Nandi][],
@@ -98,7 +104,9 @@ Programming Language Design and Implementation (PLDI) 2023
 Principles of Programming Languages (POPL) 2023
 
 {.pub #2022-fmcad-smallproofs}
-*[Small Proofs from Congruence Closure](pub-2022-fmcad-smallproofs.html)* \
+*[Small Proofs from Congruence Closure](
+  pub-2022-fmcad-smallproofs.html
+)* \
   [Oliver Flatt][],
 \ [Samuel Coward][],
 \ [Max Willsey][],
@@ -107,8 +115,10 @@ Principles of Programming Languages (POPL) 2023
 \
 Formal Methods in Computer-Aided Design (FMCAD) 2022
 
-{.pub #2022-ecoop-cakeml}
-*[Verified Compilation and Optimization of Floating-Point Programs in CakeML](https://drops.dagstuhl.de/opus/volltexte/2022/16229/)* \
+{.pub #2022-ecoop-cakemlfp}
+*[Verified Compilation and Optimization of Floating-Point Programs in CakeML](
+  pub-2022-ecoop-cakemlfp.html
+)* \
   [Heiko Becker][],
 \ Robert Rabe,
 \ [Eva Darulova][],

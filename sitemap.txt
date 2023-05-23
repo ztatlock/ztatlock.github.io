@@ -13,6 +13,7 @@ https://ztatlock.net/paper-recipe.html
 https://ztatlock.net/proverbs-poems.html
 https://ztatlock.net/pub-2008-oopsla-dtar.html
 https://ztatlock.net/pub-2019-conga-sinkingpoint.html
+https://ztatlock.net/pub-2022-ecoop-cakemlfp.html
 https://ztatlock.net/pub-2022-fmcad-smallproofs.html
 https://ztatlock.net/pub-2023-plarch-lakeroad.html
 https://ztatlock.net/pub-2023-pldi-egglog.html
