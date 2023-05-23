@@ -18,8 +18,15 @@ PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
 	@cat templates/FOOT >> $@
 
 .PHONY: all
-all: $(PAGES)
+all: $(PAGES) sitemap.txt
+
+sitemap.txt: $(wildcard *.html)
+	@echo "BUILD : $@"
+	@for page in *.html; do \
+		echo "https://ztatlock.net/$${page}"; \
+	done > $@
 
 .PHONY: clean
 clean:
 	rm -f $(PAGES)
+	rm -f sitemap.txt
