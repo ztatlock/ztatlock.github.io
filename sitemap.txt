@@ -38,4 +38,5 @@ https://ztatlock.net/pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs.pdf
 https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry.pdf
 https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf
 https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog.pdf
+https://ztatlock.net/pubs/2023-popl-babble/2023-popl-babble-slides.pdf
 https://ztatlock.net/pubs/2023-popl-babble/2023-popl-babble.pdf
