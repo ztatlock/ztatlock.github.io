@@ -22,13 +22,13 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 
 {.columns .columns-8rem}
 - [paper](pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf)
+- [slides](pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-slides.pdf)
 - [project](https://cakeml.org/)
 - [code](https://github.com/CakeML/cakeml/pull/865)
 - [publisher](https://drops.dagstuhl.de/opus/volltexte/2022/16229/)
 - [bib](pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.bib)
 
 {% - [talk](TODO) %}
-{% - [slides](pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-slides.pdf) %}
 {% TODO - [arXiv](TODO) %}
 
 ## Abstract
