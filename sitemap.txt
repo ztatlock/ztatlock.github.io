@@ -15,6 +15,7 @@ https://ztatlock.net/pub-2008-oopsla-dtar.html
 https://ztatlock.net/pub-2019-conga-sinkingpoint.html
 https://ztatlock.net/pub-2022-ecoop-cakemlfp.html
 https://ztatlock.net/pub-2022-fmcad-smallproofs.html
+https://ztatlock.net/pub-2022-tog-carpentry.html
 https://ztatlock.net/pub-2023-plarch-lakeroad.html
 https://ztatlock.net/pub-2023-pldi-egglog.html
 https://ztatlock.net/pub-2023-popl-babble.html
@@ -26,3 +27,14 @@ https://ztatlock.net/sundial.html
 https://ztatlock.net/talk-2023-05-egg-uiuc.html
 https://ztatlock.net/talks.html
 https://ztatlock.net/teaching.html
+https://ztatlock.net/pubs/2008-oopsla-dtar/2008-oopsla-dtar-poster.pdf
+https://ztatlock.net/pubs/2008-oopsla-dtar/2008-oopsla-dtar.pdf
+https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-slides.pdf
+https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf
+https://ztatlock.net/pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf
+https://ztatlock.net/pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs-slides.pdf
+https://ztatlock.net/pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs.pdf
+https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry.pdf
+https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf
+https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog.pdf
+https://ztatlock.net/pubs/2023-popl-babble/2023-popl-babble.pdf

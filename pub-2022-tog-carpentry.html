@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Co-Optimization of Design and Fabrication Plans for Carpentry</title>
+</head>
+<body>
+<section id="Co-Optimization-of-Design-and-Fabrication-Plans-for-Carpentry">
+<h1>Co-Optimization of Design and Fabrication Plans for Carpentry</h1>
+<p><a href="https://haisenzhao.github.io/">Haisen Zhao</a>,
+&nbsp;<a href="https://www.mwillsey.com/">Max Willsey</a>,
+&nbsp;<a href="http://amy.zhucchini.ca/">Amy Zhu</a>,
+&nbsp;<a href="https://cnandi.com/">Chandrakana Nandi</a>,
+&nbsp;<a href="https://ztatlock.net/">Zachary Tatlock</a>,
+&nbsp;<a href="https://people.csail.mit.edu/jsolomon/">Justin Solomon</a>,
+&nbsp;<a href="https://homes.cs.washington.edu/~adriana/">Adriana Schulz</a></p>
+<p>ACM Transactions on Graphics (TOG) 2022</p>
+<div class="photo">
+<p><a href="pubs/2022-tog-carpentry/2022-tog-carpentry.pdf"><img alt="Co-Optimization of Design and Fabrication Plans for Carpentry" src="pubs/2022-tog-carpentry/2022-tog-carpentry-absimg.png"></a></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="pubs/2022-tog-carpentry/2022-tog-carpentry.pdf">paper</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=P6AqNmSlwc4">teaser</a>
+</li>
+<li>
+<a href="https://haisenzhao.github.io/CODFC/index.html">project</a>
+</li>
+<li>
+<a href="https://github.com/helm-compiler">code</a>
+</li>
+<li>
+<a href="https://dl.acm.org/doi/10.1145/3508499">publisher</a>
+</li>
+<li>
+<a href="https://arxiv.org/abs/2107.12265">arXiv</a>
+</li>
+<li>
+<a href="pubs/2022-tog-carpentry/2022-tog-carpentry.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>Past work on optimizing fabrication plans given a carpentry design can provide
+Pareto-optimal plans trading off between material waste, fabrication time,
+precision, and other considerations. However, when developing fabrication
+plans, experts rarely restrict to a single design, instead considering families
+of design variations, sometimes adjusting designs to simplify fabrication.
+Jointly exploring the design and fabrication plan spaces for each design is
+intractable using current techniques. We present a new approach to jointly
+optimize design and fabrication plans for carpentered objects. To make this
+bi-level optimization tractable, we adapt recent work from program synthesis
+based on equality graphs (e-graphs), which encode sets of equivalent programs.
+Our insight is that subproblems within our bi-level problem share significant
+substructures. By representing both designs and fabrication plans in a new bag
+of parts (BOP) e-graph, we amortize the cost of optimizing design components
+shared among multiple candidates. Even using BOP e-graphs, the optimization
+space grows quickly in practice. Hence, we also show how a feedback-guided
+search strategy dubbed Iterative Contraction and Expansion on E-graphs (ICEE)
+can keep the size of the e-graph manageable and direct the search toward
+promising candidates. We illustrate the advantages of our pipeline through
+examples from the carpentry domain.</p>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@article{2022-tog-carpentry,
+  title        = {Co-Optimization of Design and Fabrication Plans for Carpentry},
+  author       = {Zhao, Haisen and Willsey, Max and Zhu, Amy and Nandi, Chandrakana and Tatlock, Zachary and Solomon, Justin and Schulz, Adriana},
+  journaltitle = {ACM Transactions on Graphics},
+  url          = {https://doi.org/10.1145/3508499},
+  doi          = {10.1145/3508499},
+  publisher    = {Association for Computing Machinery},
+}
+</code></pre>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>

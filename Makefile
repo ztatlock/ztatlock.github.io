@@ -22,9 +22,13 @@ all: $(PAGES) sitemap.txt
 
 sitemap.txt: $(wildcard *.html)
 	@echo "BUILD : $@"
+	@rm -f $@
 	@for page in *.html; do \
 		echo "https://ztatlock.net/$${page}"; \
-	done > $@
+	done >> $@
+	@for paper in pubs/*/*.pdf; do \
+		echo "https://ztatlock.net/$${paper}"; \
+	done >> $@
 
 .PHONY: clean
 clean:
