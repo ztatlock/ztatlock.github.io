@@ -75,7 +75,9 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 ACM Transactions on Graphics (TOG) 2022
 
 {#2022-popl-rematch}
-*[Relational e-matching](https://dl.acm.org/doi/10.1145/3498696)* \
+*[Relational e-matching](
+  pub-2022-popl-rematch.html
+)* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
 \ [Max Willsey][],
