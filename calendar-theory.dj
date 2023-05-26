@@ -49,10 +49,14 @@ The end of the week is _strategic_,
   reflecting on progress and
   how we should adjust plans.
 
-{.photo}
-:::
-  ![weekly meetings breakdown](img/calendar-theory.png)
-:::
+| Day   | AM 1     | AM 2      | PM 1       | PM 2           |
+|-------|----------|-----------|------------|----------------|
+| _Mon_ | Projects | Projects  | Projects   | Projects       |
+| _Tue_ | Lab      | Lab       | PLSE Talks | Quick One-offs |
+| _Wed_ | Focus    | Focus     | Focus      | Focus          |
+| _Thu_ | Lab      | Lab       | Lab        | CSE Colloq     |
+| _Fri_ | PhD 1:1s | PhD 1:1s  | Progress   | PLRG           |
+
 
 ### Mondays
 
