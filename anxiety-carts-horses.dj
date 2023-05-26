@@ -43,7 +43,7 @@ _Will this project ever be done? Will it even work?_
 >   went wrong with the alternatives!
 
 > We mitigate risk by
->   following [Lex Lyubomiricus][]
+>   following [Lex Lyubomiricus][],
 >   [building the simplest thing first](build-simple-first.html),
 >   and striving to
 >   [fail fast](https://en.wikipedia.org/wiki/Fail-fast).
