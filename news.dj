@@ -1,5 +1,10 @@
 # [Zachary Tatlock][] / News
 
+: July 2023
+
+  🎯 \ [Pavel][Pavel Panchekha] and I are co-organizing
+  [FPTalks 2023](https://fpbench.org/talks/fptalks23.html).
+
 : June 2023
 
   🗣️ \ [Yihong][Yihong Zhang] is presenting
@@ -9,6 +14,11 @@
   🗣️ \ [Gus][Gus Smith] is presenting
   [Lakeroad](pub-2023-plarch-lakeroad.html) at
   [PLARCH](https://pldi23.sigplan.org/details/plarch-2023-papers/7/Generate-Compilers-from-Hardware-Models-).
+
+  🗣️ \ [Oliver][Oliver Flatt] is giving a talk on
+  [tree automata](https://en.wikipedia.org/wiki/Tree_automaton) and
+  [egglog](pub-2023-pldi-egglog.html) at
+  [EGRAPHS 2023](https://pldi23.sigplan.org/home/egraphs-2023#program).
 
   🧰 \ [Max][Max Willsey] and I are co-organizing
   [EGRAPHS 2023](https://pldi23.sigplan.org/home/egraphs-2023#program).
