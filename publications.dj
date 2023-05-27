@@ -138,7 +138,9 @@ IEEE International Symposium on Computer Arithmetic (ARITH) 2021
 Symposium on Machine Programming (MAPS) 2021
 
 {#2021-iclr-dtr}
-*[Dynamic Tensor Rematerialization](https://openreview.net/forum?id=Vfs_2RnOD0H)* \
+*[Dynamic Tensor Rematerialization](
+  pub-2021-iclr-dtr.html
+)* \
   [Marisa Kirisame][],
 \ [Steven Lyubomirsky][],
 \ [Altan Haan][],

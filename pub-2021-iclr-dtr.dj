@@ -1,0 +1,68 @@
+# Dynamic Tensor Rematerialization
+
+  [Marisa Kirisame][],
+\ [Steven Lyubomirsky][],
+\ [Altan Haan][],
+\ [Jennifer Brennan][],
+\ [Mike He][],
+\ [Jared Roesch][],
+\ [Tianqi Chen][],
+\ [Zachary Tatlock][]
+
+International Conference on Learning Representations (ICLR) 2021 \
+★ Spotlight Paper
+
+{.photo}
+:::
+  [![Dynamic Tensor Rematerialization](
+    pubs/2021-iclr-dtr/2021-iclr-dtr-absimg.png
+  )](
+    pubs/2021-iclr-dtr/2021-iclr-dtr.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2021-iclr-dtr/2021-iclr-dtr.pdf)
+- [teaser](https://www.youtube.com/watch?v=kxlbpwBJzA4)
+- [talk](https://www.youtube.com/watch?v=S9KJ37Sx2XY)
+- [slides](pubs/2021-iclr-dtr/2021-iclr-dtr-slides.pdf)
+- [poster](pubs/2021-iclr-dtr/2021-iclr-dtr-poster.pdf)
+- [project](http://sampl.cs.washington.edu/projects/dtr.html)
+- [code](https://github.com/uwsampl/dtr-prototype)
+- [publisher](https://openreview.net/forum?id=Vfs_2RnOD0H)
+- [arXiv](https://arxiv.org/abs/2006.09616)
+- [bib](pubs/2021-iclr-dtr/2021-iclr-dtr.bib)
+
+
+## Abstract
+
+Checkpointing enables the training of deep learning models under restricted
+memory budgets by freeing intermediate activations from memory and recomputing
+them on demand. Current checkpointing techniques statically plan these
+recomputations offline and assume static computation graphs. We demonstrate
+that a simple online algorithm can achieve comparable performance by
+introducing Dynamic Tensor Rematerialization (DTR), a greedy online algorithm
+for checkpointing that is extensible and general, is parameterized by eviction
+policy, and supports dynamic models. We prove that DTR can train an N-layer
+linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor
+operations. DTR closely matches the performance of optimal static checkpointing
+in simulated experiments. We incorporate a DTR prototype into PyTorch merely by
+interposing on tensor allocations and operator calls and collecting lightweight
+metadata on tensors.
+
+
+## BibTeX
+
+{.bib}
+```
+@inproceedings{2021-iclr-dtr,
+  title     = {Dynamic Tensor Rematerialization},
+  author    = {Kirisame, Marisa and Lyubomirsky, Steven and Haan, Altan and Brennan, Jennifer and He, Mike and Roesch, Jared and Chen, Tianqi and Tatlock, Zachary},
+  booktitle = {International Conference on Learning Representations},
+  date      = {2021},
+  url       = {https://openreview.net/forum?id=Vfs_2RnOD0H},
+}
+```
+
+[📝 publications index](publications.html)
+

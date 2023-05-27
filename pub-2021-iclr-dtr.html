@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Dynamic Tensor Rematerialization</title>
+</head>
+<body>
+<section id="Dynamic-Tensor-Rematerialization">
+<h1>Dynamic Tensor Rematerialization</h1>
+<p><a href="https://marisakirisame.github.io/">Marisa Kirisame</a>,
+&nbsp;<a href="https://slyubomirsky.github.io/">Steven Lyubomirsky</a>,
+&nbsp;<a href="https://altanh.com/">Altan Haan</a>,
+&nbsp;<a href="https://jenniferbrennan.github.io/">Jennifer Brennan</a>,
+&nbsp;<a href="https://only.rs/">Mike He</a>,
+&nbsp;<a href="https://jroesch.github.io/">Jared Roesch</a>,
+&nbsp;<a href="https://tqchen.com/">Tianqi Chen</a>,
+&nbsp;<a href="https://ztatlock.net/">Zachary Tatlock</a></p>
+<p>International Conference on Learning Representations (ICLR) 2021<br>
+★ Spotlight Paper</p>
+<div class="photo">
+<p><a href="pubs/2021-iclr-dtr/2021-iclr-dtr.pdf"><img alt="Dynamic Tensor Rematerialization" src="pubs/2021-iclr-dtr/2021-iclr-dtr-absimg.png"></a></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="pubs/2021-iclr-dtr/2021-iclr-dtr.pdf">paper</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=kxlbpwBJzA4">teaser</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=S9KJ37Sx2XY">talk</a>
+</li>
+<li>
+<a href="pubs/2021-iclr-dtr/2021-iclr-dtr-slides.pdf">slides</a>
+</li>
+<li>
+<a href="pubs/2021-iclr-dtr/2021-iclr-dtr-poster.pdf">poster</a>
+</li>
+<li>
+<a href="http://sampl.cs.washington.edu/projects/dtr.html">project</a>
+</li>
+<li>
+<a href="https://github.com/uwsampl/dtr-prototype">code</a>
+</li>
+<li>
+<a href="https://openreview.net/forum?id=Vfs_2RnOD0H">publisher</a>
+</li>
+<li>
+<a href="https://arxiv.org/abs/2006.09616">arXiv</a>
+</li>
+<li>
+<a href="pubs/2021-iclr-dtr/2021-iclr-dtr.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>Checkpointing enables the training of deep learning models under restricted
+memory budgets by freeing intermediate activations from memory and recomputing
+them on demand. Current checkpointing techniques statically plan these
+recomputations offline and assume static computation graphs. We demonstrate
+that a simple online algorithm can achieve comparable performance by
+introducing Dynamic Tensor Rematerialization (DTR), a greedy online algorithm
+for checkpointing that is extensible and general, is parameterized by eviction
+policy, and supports dynamic models. We prove that DTR can train an N-layer
+linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor
+operations. DTR closely matches the performance of optimal static checkpointing
+in simulated experiments. We incorporate a DTR prototype into PyTorch merely by
+interposing on tensor allocations and operator calls and collecting lightweight
+metadata on tensors.</p>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@inproceedings{2021-iclr-dtr,
+  title     = {Dynamic Tensor Rematerialization},
+  author    = {Kirisame, Marisa and Lyubomirsky, Steven and Haan, Altan and Brennan, Jennifer and He, Mike and Roesch, Jared and Chen, Tianqi and Tatlock, Zachary},
+  booktitle = {International Conference on Learning Representations},
+  date      = {2021},
+  url       = {https://openreview.net/forum?id=Vfs_2RnOD0H},
+}
+</code></pre>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>
