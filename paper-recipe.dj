@@ -26,3 +26,25 @@ A great paper has to have 4 big components:
    - For "systems papers" this probably means tables and graphs.
    - For "theory papers" this probably theorems and proofs.
 
+
+## Related
+
+- [Build the Simplest Thing First](build-simple-first.html)
+
+- [Lex Lyubomiricus](
+    https://slyubomirsky.github.io/lex.html)
+    by [Steven Lyubomirsky][]
+
+- [Write the Paper First](
+    https://www.cs.jhu.edu/~jason/advice/write-the-paper-first.html)
+    by Jason Eisner
+
+- [Code and Contribution in Interactive Systems Research](
+    https://homes.cs.washington.edu/~jfogarty/publications/workshop-chi2017-codeandcontribution.pdf)
+    by James Fogarty
+
+- [What Makes a (Graphics) Systems Paper Beautiful](
+    https://graphics.stanford.edu/~kayvonf/notes/systemspaper/)
+    by Kayvon Fatahalian
+
+
