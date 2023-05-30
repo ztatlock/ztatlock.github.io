@@ -26,6 +26,8 @@ Programming Language Design and Implementation (PLDI) 2023
 - [paper](pubs/2023-pldi-egglog/2023-pldi-egglog.pdf)
 - [arXiv](https://arxiv.org/abs/2304.04332)
 - [project](https://egraphs-good.github.io/)
+- [code](https://github.com/egraphs-good/egglog)
+- [demo](https://egraphs-good.github.io/egglog/)
 - [bib](pubs/2023-pldi-egglog/2023-pldi-egglog.bib)
 
 {% TODO - [publisher](TODO) %}

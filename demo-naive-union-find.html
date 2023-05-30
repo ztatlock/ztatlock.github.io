@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <title>Naive Union-find Demo</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700");
+
+    html {
+      font-family: "Assistant", sans-serif;
+    }
+
+    h1, h2, h3 {
+      font-weight: normal;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    h2 {
+      font-size: 1.50rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    ol.code-edit {
+      font-family: monospace;
+      white-space: pre;
+      background: #ffffee;
+      border: 1px solid orange;
+      border-radius: 5px;
+      width: 25rem;
+      height: 20rem;
+      resize: both;
+      overflow: auto;
+      counter-reset: lineno;
+      padding-top: 0.5rem;
+      padding-left: 3.25rem;
+    }
+
+    ol.code-edit li {
+      counter-increment: lineno;
+    }
+
+    ol.code-edit li::marker {
+      content: counter(lineno) " | ";
+      margin-left: 0;
+      margin-right: 1rem;
+    }
+
+    pre.code-output {
+      background: #eeeeee;
+      border: 1px solid gray;
+      border-radius: 5px;
+      width: 28.25rem;
+      height: 20rem;
+      resize: both;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Code</h2>
+  <button id='step'>Step</button>
+  <button id='back'>Back</button>
+  <button id='play'>Play</button>
+  <button id='pause'>Pause</button>
+  <button id='reset'>Reset</button>
+  <ol id='code' class='code-edit'></ol>
+
+  <h2>Output</h2>
+  <pre id='output' class='code-output'></pre>
+
+  <h2>Viz</h2>
+  <pre id='graph'></pre>
+
+<script>
+  class UFCmd {
+    static Typ = {
+      nop    : 0,
+      mkset  : 1,
+      mksets : 2,
+      union  : 3,
+      find   : 4,
+    };
+
+    constructor(typ, arg) {
+      this.typ = typ;
+      this.arg = arg;
+    }
+
+    static nop() {
+      return new UFCmd(Cmd.Typ.nop, []);
+    }
+
+    static mkset() {
+      return new UFCmd(Cmd.Typ.mkset, []);
+    }
+
+    static mksets(n) {
+      return new UFCmd(Cmd.Typ.mksets, [n]);
+    }
+
+    static union(m, n) {
+      return new UFCmd(Cmd.Typ.union, [m, n]);
+    }
+
+    static find(n) {
+      return new UFCmd(Cmd.Typ.find, [n]);
+    }
+
+    static parse(line) {
+      // TODO
+    }
+
+    exec(uf) {
+      let m, n;
+      switch(this.typ) {
+        case Cmd.Typ.nop:
+          return {
+            output : [],
+          };
+
+        case Cmd.Typ.mkset:
+          return {
+            output : uf.mkset(),
+          };
+
+        case Cmd.Typ.mksets:
+          n = this.arg[0];
+          return {
+            output : uf.mksets(n),
+          };
+
+        case Cmd.Typ.union:
+          m = this.arg[0];
+          n = this.arg[1];
+          return {
+            output : uf.union(m, n),
+          };
+
+        case Cmd.Typ.find:
+          let n = this.arg[0];
+          return {
+            output : uf.find(n),
+          }
+
+        default:
+          alert('BOGUS');
+      }
+    }
+  }
+
+  function elem(id) {
+    return document.getElementById(id);
+  }
+
+  function reset() {
+    let code = elem('code');
+    const init_code = `
+      # Edit and run union-find commands:
+      #   mksets(N)   --> make N new sets
+      #   union(M, N) --> union set M with set N
+      #   find(N)     --> find the leader of set N
+
+      mksets(10)
+
+      union(1, 2)
+      union(3, 2)
+      union(5, 6)
+      union(7, 8)
+
+      find(4)
+      find(3)
+    `.trim();
+
+    // clear
+    while(code.firstChild) {
+      code.removeChild(code.firstChild);
+    }
+
+    // set editor to initial code
+    init_code.split('\n').forEach(line => {
+      let txt = document.createTextNode(line.trim());
+      let li = document.createElement('li');
+      li.appendChild(txt);
+      code.appendChild(li);
+    });
+
+    // let user edit
+    code.contentEditable = true;
+
+    // suppress red squiggles
+    code.spellcheck = false;
+  }
+  reset();
+  document
+    .querySelector('#reset')
+    .addEventListener('click', reset);
+
+</script>
+</body>
+</html>

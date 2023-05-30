@@ -7,6 +7,7 @@ https://ztatlock.net/calendar-theory.html
 https://ztatlock.net/collaborators.html
 https://ztatlock.net/contact.html
 https://ztatlock.net/cv.html
+https://ztatlock.net/demo-naive-union-find.html
 https://ztatlock.net/index.html
 https://ztatlock.net/news.html
 https://ztatlock.net/notes.html
