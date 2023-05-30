@@ -1,8 +1,8 @@
 # ztatlock.net
 
-This is the repo for [Zachary Tatlock's website](https://ztatlock.net).
-
-It uses
+This is the repo for
+  [Zachary Tatlock's website](https://ztatlock.net)
+  mostly built with
   [djot](https://djot.net/) and
   [make](https://www.gnu.org/software/make/).
 
