@@ -10,6 +10,7 @@ PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
 	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
 	@cat templates/HEAD.1 \
 		| sed 's#__TITLE__#$(TITLE)#' \
+		| sed 's#__CANON__#https://ztatlock.net/$@#' \
 		> $@
 	@([ -f "$*.meta" ] && cat "$*.meta" || true) >> $@
 	@cat templates/HEAD.2 >> $@
