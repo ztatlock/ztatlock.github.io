@@ -1,0 +1,11 @@
+user-agent: *
+disallow: *.bib
+disallow: *.dj
+disallow: *.md
+disallow: *.meta
+disallow: CNAME
+disallow: Makefile
+disallow: templates/
+disallow: zip-longitude.js
+
+sitemap: https://ztatlock.net/sitemap.txt
