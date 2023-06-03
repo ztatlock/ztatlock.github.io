@@ -54,13 +54,14 @@
     }
 
     pre.code-output {
-      background: #eeeeee;
+      background: #f0f0f0;
       border: 1px solid gray;
       border-radius: 5px;
       width: 28.25rem;
       height: 20rem;
       resize: both;
       overflow: auto;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -77,17 +78,69 @@
   <h2>Output</h2>
   <pre id='output' class='code-output'></pre>
 
+  <h2>State</h2>
+  <table id='state'></table>
+
   <h2>Viz</h2>
   <pre id='graph'></pre>
 
-<script>
+<script type='module'>
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+
+  class UF {
+    constructor() {
+      this.store = [];
+    }
+
+    mkset() {
+      let id = this.store.length;
+      this.store[id] = id;
+      return id;
+    }
+
+    find(id) {
+      let p = this.store[id];
+      if(id == p) {
+        return id;
+      } else {
+        let l = this.find(p);
+        this.store[id] = l;
+        return l;
+      }
+    }
+
+    union(id1, id2) {
+      let l1 = this.find(id1);
+      let l2 = this.find(id2);
+      let p = Math.min(l1, l2);
+      let c = Math.max(l1, l2);
+      this.store[c] = p;
+      return p
+    }
+
+    // convenience for editor
+    mksets(n) {
+      let res = [];
+      for(let i = 0; i < n; i++) {
+        res.push(this.mkset());
+      }
+      return res;
+    }
+
+    // for viz
+    parent(id) {
+      return this.store[id];
+    }
+  }
+
   class UFCmd {
     static Typ = {
-      nop    : 0,
-      mkset  : 1,
-      mksets : 2,
-      union  : 3,
-      find   : 4,
+      nop    : 'NOP',
+      mkset  : 'MKSET',
+      mksets : 'MKSETS',
+      union  : 'UNION',
+      find   : 'FIND',
     };
 
     constructor(typ, arg) {
@@ -96,63 +149,107 @@
     }
 
     static nop() {
-      return new UFCmd(Cmd.Typ.nop, []);
+      return new UFCmd(UFCmd.Typ.nop, []);
     }
 
     static mkset() {
-      return new UFCmd(Cmd.Typ.mkset, []);
+      return new UFCmd(UFCmd.Typ.mkset, []);
     }
 
     static mksets(n) {
-      return new UFCmd(Cmd.Typ.mksets, [n]);
+      return new UFCmd(UFCmd.Typ.mksets, [n]);
     }
 
     static union(m, n) {
-      return new UFCmd(Cmd.Typ.union, [m, n]);
+      return new UFCmd(UFCmd.Typ.union, [m, n]);
     }
 
     static find(n) {
-      return new UFCmd(Cmd.Typ.find, [n]);
+      return new UFCmd(UFCmd.Typ.find, [n]);
     }
 
     static parse(line) {
-      // TODO
+      // strip comments and whitespace
+      line = line.split('#')[0].replace(/<br>/, '').trim();
+
+      if(line.match(/^$/)) {
+        return UFCmd.nop();
+      }
+
+      if(line.match(/^mkset\s*\(\s*\)$/)) {
+        return UFCmd.mkset();
+      }
+
+      var found;
+
+      if(found = line.match(/^mksets\s*\(\s*([0-9]+)\s*\)$/)) {
+        let n = parseInt(found[1]);
+        return UFCmd.mksets(n);
+      }
+
+      if(found = line.match(/^union\s*\(\s*([0-9]+)\s*,\s*([0-9]+)\s*\)$/)) {
+        let n = parseInt(found[1]);
+        let m = parseInt(found[2]);
+        return UFCmd.union(n, m);
+      }
+
+      if(found = line.match(/^find\s*\(\s*([0-9]+)\s*\)$/)) {
+        let n = parseInt(found[1]);
+        return UFCmd.find(n);
+      }
+
+      let msg = `Could not parse: '${line}'`;
+      console.log(msg);
+      throw new Error(msg);
     }
 
     exec(uf) {
-      let m, n;
       switch(this.typ) {
-        case Cmd.Typ.nop:
-          return {
-            output : [],
-          };
+        case UFCmd.Typ.nop:
+          return;
 
-        case Cmd.Typ.mkset:
-          return {
-            output : uf.mkset(),
-          };
+        case UFCmd.Typ.mkset:
+          return uf.mkset();
 
-        case Cmd.Typ.mksets:
-          n = this.arg[0];
-          return {
-            output : uf.mksets(n),
-          };
+        case UFCmd.Typ.mksets:
+          return uf.mksets(this.arg[0]);
 
-        case Cmd.Typ.union:
-          m = this.arg[0];
-          n = this.arg[1];
-          return {
-            output : uf.union(m, n),
-          };
+        case UFCmd.Typ.union:
+          return uf.union(this.arg[0], this.arg[1]);
 
-        case Cmd.Typ.find:
-          let n = this.arg[0];
-          return {
-            output : uf.find(n),
-          }
+        case UFCmd.Typ.find:
+          return uf.find(this.arg[0]);
 
         default:
-          alert('BOGUS');
+          let msg = `exec: bogus command '${this}'`;
+          alert(msg);
+          console.log(msg);
+          throw new Error(msg);
+      }
+    }
+
+    toString() {
+      switch(this.typ) {
+        case UFCmd.Typ.nop:
+          return `nop`;
+
+        case UFCmd.Typ.mkset:
+          return `mkset()`;
+
+        case UFCmd.Typ.mksets:
+          return `mksets(${this.arg[0]})`;
+
+        case UFCmd.Typ.union:
+          return `union(${this.arg[0]}, ${this.arg[1]})`;
+
+        case UFCmd.Typ.find:
+          return `find(${this.arg[0]})`;
+
+        default:
+          let msg = `toString: bogus command '${this}'`;
+          alert(msg);
+          console.log(msg);
+          throw new Error(msg);
       }
     }
   }
@@ -161,8 +258,27 @@
     return document.getElementById(id);
   }
 
+  // playing and pausing
+  var is_playing = false;
+  setInterval(() => {
+    if(is_playing) {
+      step();
+    }
+  }, 1500);
+  document
+    .querySelector('#play')
+    .addEventListener('click', () => {
+      is_playing = true;
+    });
+  document
+    .querySelector('#pause')
+    .addEventListener('click', () => {
+      is_playing = false;
+    });
+
+  var uf = new UF();
+
   function reset() {
-    let code = elem('code');
     const init_code = `
       # Edit and run union-find commands:
       #   mksets(N)   --> make N new sets
@@ -180,10 +296,14 @@
       find(3)
     `.trim();
 
-    // clear
+    let code = elem('code');
+
+    // clear everything
+    uf = new UF();
     while(code.firstChild) {
       code.removeChild(code.firstChild);
     }
+    elem('output').innerHTML = '';
 
     // set editor to initial code
     init_code.split('\n').forEach(line => {
@@ -193,16 +313,87 @@
       code.appendChild(li);
     });
 
-    // let user edit
+    // styling etc.
     code.contentEditable = true;
-
-    // suppress red squiggles
     code.spellcheck = false;
+    code.firstChild.style.background = '#eef';
   }
-  reset();
   document
     .querySelector('#reset')
     .addEventListener('click', reset);
+  reset();
+
+  // TODO probably rewrite to make "back" easy
+  function step() {
+    let code = elem('code');
+    let lis = Array.from(code.children);
+
+    // parse commands and update highlights
+    let errs = [];
+    let cmds = lis.map((li, i) => {
+      li.style.background = '';
+      if(li.is_cur) {
+        li.style.background = 'yellow';
+      }
+      try {
+        return UFCmd.parse(li.innerHTML);
+      } catch(err) {
+        errs.push({
+          line: i,
+          text: li.innerHTML,
+        });
+        li.style.background = '#fdd';
+        return UFCmd.nop();
+      }
+    });
+
+    // bail if any errors
+    if(0 < errs.length) {
+      is_playing = false;
+      errs = errs
+        .map((e) => `${e.line.toString().padStart(3, ' ')} : "${e.text}"`)
+        .join('\n');
+      elem('output').innerHTML +=
+        `\nSorry, parsing failed on lines:\n${errs}\n\n`;
+      return;
+    }
+
+    // find and reset previous command
+    let prev_idx = lis.findIndex((li) => li.is_cur);
+    if(0 <= prev_idx) {
+      code.children[prev_idx].is_cur = false;
+      code.children[prev_idx].style.background = '';
+    }
+
+    // bump to next command unless at end
+    if(prev_idx + 1 < code.children.length) {
+      let cur_idx = prev_idx + 1;
+      code.children[cur_idx].is_cur = true;
+      code.children[cur_idx].style.background = 'yellow';
+
+      let output = cmds[cur_idx].exec(uf);
+      if(output) {
+        elem('output').innerHTML +=
+          `${cur_idx.toString().padStart(3, ' ')} : ` +
+          `${cmds[cur_idx].toString().padEnd(13, ' ')}` +
+          `--> ${output}\n`;
+      }
+
+      // TODO draw
+
+      // step till first non-nop
+      if(cmds[cur_idx].typ == UFCmd.Typ.nop) {
+        step();
+      }
+    } else { // back to top
+      uf = new UF();
+      elem('output').innerHTML = '';
+      code.children[0].style.background = '#eef';
+    }
+  }
+  document
+    .querySelector('#step')
+    .addEventListener('click', step);
 
 </script>
 </body>
