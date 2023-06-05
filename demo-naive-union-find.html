@@ -6,26 +6,12 @@
   <link rel="icon" href="img/favicon.png">
   <title>Naive Union-find Demo</title>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700");
-
     html {
-      font-family: "Assistant", sans-serif;
+      font-family: sans-serif;
     }
 
     h1, h2, h3 {
       font-weight: normal;
-    }
-
-    h1 {
-      font-size: 1.75rem;
-    }
-
-    h2 {
-      font-size: 1.50rem;
-    }
-
-    h3 {
-      font-size: 1.25rem;
     }
 
     ol.code-edit {
@@ -57,32 +43,71 @@
       background: #f0f0f0;
       border: 1px solid gray;
       border-radius: 5px;
-      width: 28.25rem;
-      height: 20rem;
+      width: 25rem;
+      height: 20.5rem;
       resize: both;
       overflow: auto;
       line-height: 1.5;
     }
+
+    .control {
+      font-size: 1rem;
+      margin-right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      vertical-align: middle;
+    }
+
+    .emoji-control {
+      font-size: 1.75rem;
+      width: 2.25rem;
+      padding: 0;
+      margin-right: 0.5rem;
+      background-color: #fff;
+      border: none;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    #state td {
+      padding: 0.5rem;
+      border: 1px solid gray;
+      font-family: monospace;
+    }
+
+    #code-div {
+      float: left;
+      margin-right: 2rem;
+    }
+
+    #output-div {
+      float: left;
+    }
+
   </style>
 </head>
 <body>
 
-  <h2>Code</h2>
-  <button id='step'>Step</button>
-  <button id='back'>Back</button>
-  <button id='play'>Play</button>
-  <button id='pause'>Pause</button>
-  <button id='reset'>Reset</button>
-  <ol id='code' class='code-edit'></ol>
+  <div>
+    <div id='code-div'>
+      <h2>Code</h2>
+      <ol id='code' class='code-edit'></ol>
+      <input type='button' class='emoji-control' id='play-pause' value='▶️'>
+      <button class='control' id='step'>Step</button>
+      <button class='control' id='back'>Back</button>
+      <button class='control' id='graph-trace'>Trace</button>
+      <button class='control' id='reset'>Reset</button>
+    </div>
+    <div id='output-div'>
+      <h2>Output</h2>
+      <pre id='output' class='code-output'></pre>
+    </div>
+  </div>
+  <div style='clear: both;'></div>
 
-  <h2>Output</h2>
-  <pre id='output' class='code-output'></pre>
-
-  <h2>State</h2>
+  <h2>Naive</h2>
   <table id='state'></table>
-
-  <h2>Viz</h2>
   <pre id='graph'></pre>
+
 
 <script type='module'>
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
@@ -119,7 +144,10 @@
       return p
     }
 
-    // convenience for editor
+    // TODO canon
+
+    // extras for UI
+
     mksets(n) {
       let res = [];
       for(let i = 0; i < n; i++) {
@@ -128,9 +156,20 @@
       return res;
     }
 
-    // for viz
     parent(id) {
       return this.store[id];
+    }
+
+    size() {
+      return this.store.length;
+    }
+
+    sets() {
+      let ss = [];
+      for(let i = 0; i < this.store.length; i ++) {
+        ss.push(i);
+      }
+      return ss;
     }
   }
 
@@ -260,21 +299,23 @@
 
   // playing and pausing
   var is_playing = false;
+  function play() {
+    is_playing = true;
+    elem('play-pause').value = '⏸️';
+  }
+  function pause() {
+    is_playing = false;
+    elem('play-pause').value = '▶️';
+  }
+  document
+    .querySelector('#play-pause')
+    .addEventListener('click', () =>
+      is_playing ? pause() : play())
   setInterval(() => {
     if(is_playing) {
       step();
     }
-  }, 1500);
-  document
-    .querySelector('#play')
-    .addEventListener('click', () => {
-      is_playing = true;
-    });
-  document
-    .querySelector('#pause')
-    .addEventListener('click', () => {
-      is_playing = false;
-    });
+  }, 1000);
 
   var uf = new UF();
 
@@ -287,19 +328,32 @@
 
       mksets(10)
 
-      union(1, 2)
-      union(3, 2)
-      union(5, 6)
-      union(7, 8)
+      union(0, 1)
+      union(2, 3)
+      union(4, 5)
+      union(6, 7)
+      union(8, 9)
 
-      find(4)
+      union(0, 2)
+      union(4, 6)
+
       find(3)
+
+      union(8, 0)
+      find(9)
+
+      union(0, 4)
+      find(5)
+      find(6)
+      find(7)
     `.trim();
 
     let code = elem('code');
 
     // clear everything
+    pause();
     uf = new UF();
+    draw();
     while(code.firstChild) {
       code.removeChild(code.firstChild);
     }
@@ -317,6 +371,7 @@
     code.contentEditable = true;
     code.spellcheck = false;
     code.firstChild.style.background = '#eef';
+    code.scroll(0, 0);
   }
   document
     .querySelector('#reset')
@@ -349,7 +404,7 @@
 
     // bail if any errors
     if(0 < errs.length) {
-      is_playing = false;
+      pause();
       errs = errs
         .map((e) => `${e.line.toString().padStart(3, ' ')} : "${e.text}"`)
         .join('\n');
@@ -368,32 +423,73 @@
     // bump to next command unless at end
     if(prev_idx + 1 < code.children.length) {
       let cur_idx = prev_idx + 1;
-      code.children[cur_idx].is_cur = true;
-      code.children[cur_idx].style.background = 'yellow';
+      let cur_cmd = cmds[cur_idx];
+      let cur_elt = code.children[cur_idx];
 
-      let output = cmds[cur_idx].exec(uf);
-      if(output) {
+      // mark and highlight current child li element
+      cur_elt.is_cur = true;
+      cur_elt.style.background = 'yellow';
+
+      // run the current command
+      let output = cur_cmd.exec(uf);
+      if(typeof output != 'undefined') {
         elem('output').innerHTML +=
-          `${cur_idx.toString().padStart(3, ' ')} : ` +
-          `${cmds[cur_idx].toString().padEnd(13, ' ')}` +
+          `${(cur_idx + 1).toString().padStart(3, ' ')} : ` +
+          `${cur_cmd.toString().padEnd(15, ' ')} ` +
           `--> ${output}\n`;
       }
 
-      // TODO draw
-
-      // step till first non-nop
-      if(cmds[cur_idx].typ == UFCmd.Typ.nop) {
+      if(cur_cmd.typ == UFCmd.Typ.nop) {
+        // step till first non-nop
         step();
+      } else {
+        // update viz
+        draw();
+        //cur_elt.scrollIntoView(false);
+        cur_elt.scrollIntoView({
+          behavior: 'auto',
+          block: 'nearest',
+          inline: 'start',
+        });
       }
-    } else { // back to top
+    } else {
+      // back to top
       uf = new UF();
+      draw();
       elem('output').innerHTML = '';
-      code.children[0].style.background = '#eef';
+      code.firstChild.style.background = '#eef';
+      //code.scroll(0, 0);
+      code.firstChild.scrollIntoView({
+          behavior: 'auto',
+          block: 'nearest',
+          inline: 'start',
+      });
     }
   }
   document
     .querySelector('#step')
     .addEventListener('click', step);
+
+  function draw() {
+    let ids = uf.sets();
+
+    // update state table
+    elem('state').innerHTML = `
+      <tr>
+        <td>Set ID</td>
+        ${ids.map((id) => `<td>${id}</td>`).join('\n')}
+      </tr><tr>
+        <td>Parent</td>
+        ${ids.map((id) => `<td>${uf.parent(id)}</td>`).join('\n')}
+      </tr>
+    `;
+
+    let mm = 'flowchart BT\n';
+    mm += ids.map((id) => `${id} --> ${uf.parent(id)}`).join('\n') + '\n';
+    mermaid.render('foo', mm).then((res) => {
+      elem('graph').innerHTML = res.svg;
+    });
+  }
 
 </script>
 </body>
