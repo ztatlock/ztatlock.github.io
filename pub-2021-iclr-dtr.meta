@@ -1,10 +1,10 @@
-<meta name="description" content="Learn about Dynamic Tensor Rematerialization (DTR), an extensible and general online algorithm for checkpointing deep learning models. DTR enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand. Unlike static checkpointing techniques, DTR supports dynamic models and achieves comparable performance. Discover how DTR can train an N-layer linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor operations. Explore the DTR prototype in PyTorch, which seamlessly integrates with tensor allocations and operator calls, collecting lightweight metadata on tensors for efficient training.">
+<meta name="description" content="Dynamic Tensor Rematerialization (DTR), is an online algorithm for checkpointing deep learning models. DTR enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand. Unlike static checkpointing techniques, DTR supports dynamic models and achieves comparable performance. DTR can train an N-layer linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor operations. DTR has been prototyped in PyTorch and the design seamlessly integrates with tensor allocations and operator calls, collecting lightweight metadata on tensors for efficient training.">
 
 <!-- OpenGraph -->
 <meta property="og:url" content="https://ztatlock.net/pub-2021-iclr-dtr.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dynamic Tensor Rematerialization">
-<meta property="og:description" content="Dynamic Tensor Rematerialization (DTR) is an online algorithm for checkpointing deep learning models. DTR enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand. Discover how DTR can train an N-layer linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor operations. Explore the DTR prototype in PyTorch, which seamlessly integrates with tensor allocations and operator calls, collecting lightweight metadata on tensors for efficient training.">
+<meta property="og:description" content="DTR is an online algorithm for checkpointing deep learning models that enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand.">
 <meta property="og:image" content="https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-absimg.png">
 
 <!-- Twitter -->
@@ -12,5 +12,5 @@
 <meta property="twitter:domain" content="ztatlock.net">
 <meta property="twitter:url" content="https://ztatlock.net/pub-2021-iclr-dtr.html">
 <meta name="twitter:title" content="Dynamic Tensor Rematerialization">
-<meta property="twitter:description" content="Dynamic Tensor Rematerialization (DTR) is an online algorithm for checkpointing deep learning models. DTR enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand. Discover how DTR can train an N-layer linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor operations. Explore the DTR prototype in PyTorch, which seamlessly integrates with tensor allocations and operator calls, collecting lightweight metadata on tensors for efficient training.">
+<meta property="twitter:description" content="DTR is an online algorithm for checkpointing deep learning models that enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand.">
 <meta name="twitter:image" content="https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-absimg.png">
