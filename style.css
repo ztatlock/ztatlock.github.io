@@ -126,13 +126,18 @@ hr {
 div.photo {
   display: flex;
   justify-content: center;
-  max-width: 35rem;
+  max-width: 40rem;
 }
 
 div.photo img {
   border-radius: 0.25rem!important;
   width: 100%;
   max-width: 30rem;
+}
+
+div.photo video {
+  width: 100%;
+  max-width: 40rem;
 }
 
 div.photo-narrow img {
