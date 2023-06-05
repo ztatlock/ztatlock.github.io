@@ -5,7 +5,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dynamic Tensor Rematerialization">
 <meta property="og:description" content="DTR is an online algorithm for checkpointing deep learning models that enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand.">
-<meta property="og:image" content="https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-absimg.png">
+<meta property="og:image" content="https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-meta.png">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
@@ -13,4 +13,4 @@
 <meta property="twitter:url" content="https://ztatlock.net/pub-2021-iclr-dtr.html">
 <meta name="twitter:title" content="Dynamic Tensor Rematerialization">
 <meta property="twitter:description" content="DTR is an online algorithm for checkpointing deep learning models that enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand.">
-<meta name="twitter:image" content="https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-absimg.png">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-meta.png">
