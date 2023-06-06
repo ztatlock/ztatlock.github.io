@@ -50,19 +50,29 @@ in simulated experiments. We incorporate a DTR prototype into PyTorch merely by
 interposing on tensor allocations and operator calls and collecting lightweight
 metadata on tensors.
 
-## Extra
 
-Real Time^TM^ vaporwave DTR by [Altan Haan][].
+## Talk
 
 {.photo}
 :::
 ``` =html
-<video controls playsinline>
-  <source src='pubs/2021-iclr-dtr/2021-iclr-dtr-vaporwave.mp4' type='video/mp4'>
-  Your browser does not support the video tag.
-</video>
+<iframe src="https://www.youtube.com/embed/S9KJ37Sx2XY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ```
 :::
+
+ICLR 2021 talk by [Steven Lyubomirsky][].
+
+
+## Extra
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/ExXwb7FGtW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+Real Time^TM^ vaporwave DTR by [Altan Haan][].
 
 
 ## BibTeX

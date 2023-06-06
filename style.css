@@ -135,13 +135,19 @@ div.photo img {
   max-width: 30rem;
 }
 
+div.photo-narrow img {
+  max-width: 15rem;
+}
+
+/* YouTube embeddings */
+div.photo iframe {
+  width: 40rem;
+  height: 25rem;
+}
+
 div.photo video {
   width: 100%;
   max-width: 40rem;
-}
-
-div.photo-narrow img {
-  max-width: 15rem;
 }
 
 .pubs p {
