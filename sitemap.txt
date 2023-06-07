@@ -26,6 +26,7 @@ https://ztatlock.net/pub-2023-pldi-egglog.html
 https://ztatlock.net/pub-2023-popl-babble.html
 https://ztatlock.net/publications.html
 https://ztatlock.net/research.html
+https://ztatlock.net/s-expressions.html
 https://ztatlock.net/service.html
 https://ztatlock.net/students.html
 https://ztatlock.net/sundial.html
