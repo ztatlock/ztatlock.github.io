@@ -117,6 +117,10 @@ ul.columns-16rem {
   column-width: 16rem;
 }
 
+dd {
+  margin-left: 1.5rem;
+}
+
 hr {
   max-width: 40rem;
   margin: 0;
