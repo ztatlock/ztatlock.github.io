@@ -141,8 +141,8 @@ div.photo-narrow img {
 
 /* YouTube embeddings */
 div.photo iframe {
-  width: 40rem;
-  height: 25rem;
+  width: 35rem;
+  height: 20rem;
 }
 
 div.photo video {

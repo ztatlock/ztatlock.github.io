@@ -53,6 +53,8 @@ metadata on tensors.
 
 ## Talk
 
+ICLR 2021 talk by [Steven Lyubomirsky][].
+
 {.photo}
 :::
 ``` =html
@@ -60,10 +62,10 @@ metadata on tensors.
 ```
 :::
 
-ICLR 2021 talk by [Steven Lyubomirsky][].
-
 
 ## Extra
+
+Real Time^TM^ vaporwave DTR by [Altan Haan][].
 
 {.photo}
 :::
@@ -72,7 +74,17 @@ ICLR 2021 talk by [Steven Lyubomirsky][].
 ```
 :::
 
-Real Time^TM^ vaporwave DTR by [Altan Haan][].
+\
+
+Part of a DTR demo by the whole team for the Spring 2020
+[ADA Center](https://adacenter.org/) Symposium.
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/VQqJOunVqvU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
 
 
 ## BibTeX
