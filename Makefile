@@ -21,19 +21,27 @@ PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
 	@cat templates/FOOT >> $@
 
 .PHONY: all
-all: $(PAGES) sitemap.txt
+all: $(PAGES) sitemap.txt sitemap.xml
 
-sitemap.txt: $(wildcard *.html)
+sitemap.txt: $(wildcard *.html) $(wildcard pubs/*/*.pdf)
 	@echo "BUILD : $@"
 	@rm -f $@
-	@for page in *.html; do \
+	@for page in *.html pubs/*/*.pdf; do \
 		echo "https://ztatlock.net/$${page}"; \
 	done >> $@
-	@for paper in pubs/*/*.pdf; do \
-		echo "https://ztatlock.net/$${paper}"; \
+
+sitemap.xml: $(wildcard *.html) $(wildcard pubs/*/*.pdf)
+	@echo "BUILD : $@"
+	@echo '<?xml version="1.0" encoding="UTF-8"?>' > $@
+	@echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $@
+	@for page in *.html pubs/*/*.pdf; do \
+		printf '<url>\n  <loc>%s</loc>\n  <lastmod>%s</lastmod>\n</url>\n' \
+			"https://ztatlock.net/$${page}" \
+			"$$(git log -1 --pretty="format:%as" "$${page}")"; \
 	done >> $@
+	@echo '</urlset>' >> $@
 
 .PHONY: clean
 clean:
 	rm -f $(PAGES)
-	rm -f sitemap.txt
+	rm -f sitemap.txt sitemap.xml
