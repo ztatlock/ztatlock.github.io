@@ -36,7 +36,9 @@ for page in *.html pubs/*/*.pdf; do
   if [ "$prev" \< "$mod" ]; then
     echo "SUBMIT : $page" | tee -a "$LOG"
     wget -a "$LOG" -O /dev/null "$(index-now-url "$page")"
-    printf "\n=%.0s\n\n" $(seq 80) >> "$LOG"
+    echo >> "$LOG"
+    printf "=%.0s" $(seq 80) >> "$LOG"
+    echo >> "$LOG"
   fi
 done
 
