@@ -1,2 +1,3 @@
-.DS_Store
 *.swp
+.DS_Store
+templates/index-now-log.txt
