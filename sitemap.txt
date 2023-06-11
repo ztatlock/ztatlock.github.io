@@ -17,6 +17,7 @@ https://ztatlock.net/proverbs-poems.html
 https://ztatlock.net/pub-2008-oopsla-dtar.html
 https://ztatlock.net/pub-2019-conga-sinkingpoint.html
 https://ztatlock.net/pub-2021-iclr-dtr.html
+https://ztatlock.net/pub-2021-mlsys-nimble.html
 https://ztatlock.net/pub-2022-ecoop-cakemlfp.html
 https://ztatlock.net/pub-2022-fmcad-smallproofs.html
 https://ztatlock.net/pub-2022-popl-rematch.html
@@ -40,6 +41,8 @@ https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf
 https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-poster.pdf
 https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-slides.pdf
 https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr.pdf
+https://ztatlock.net/pubs/2021-mlsys-nimble/2021-mlsys-nimble-slides.pdf
+https://ztatlock.net/pubs/2021-mlsys-nimble/2021-mlsys-nimble.pdf
 https://ztatlock.net/pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-slides.pdf
 https://ztatlock.net/pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf
 https://ztatlock.net/pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs-slides.pdf

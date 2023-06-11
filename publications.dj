@@ -154,7 +154,9 @@ International Conference on Learning Representations (ICLR) 2021 \
 ★ Spotlight Paper
 
 {#2021-mlsys-nimble}
-*[Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference](https://proceedings.mlsys.org/paper/2021/hash/4e732ced3463d06de0ca9a15b6153677-Abstract.html)* \
+*[Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference](
+  pub-2021-mlsys-nimble.html
+)* \
   [Haichen Shen][],
 \ [Jared Roesch][],
 \ [Zhi Chen][],
