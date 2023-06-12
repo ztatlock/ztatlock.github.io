@@ -8,10 +8,17 @@ PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
 			| sed 's#^[[:blank:]]*##' \
 			| sed 's#[[:blank:]]*$$##'))
 	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
-	@cat templates/HEAD.1 \
+	@if [ "$@" = "index.html" ]; then \
+		cat templates/HEAD.1 \
+		| sed 's#__TITLE__#$(TITLE)#' \
+		| sed 's#__CANON__#https://ztatlock.net/#' \
+		> $@; \
+	else \
+		cat templates/HEAD.1 \
 		| sed 's#__TITLE__#$(TITLE)#' \
 		| sed 's#__CANON__#https://ztatlock.net/$@#' \
-		> $@
+		> $@; \
+	fi
 	@([ -f "$*.meta" ] && cat "$*.meta" || true) >> $@
 	@cat templates/HEAD.2 >> $@
 	@cat $< templates/REFS \
