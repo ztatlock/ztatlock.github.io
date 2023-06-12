@@ -6,7 +6,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/about.html</loc>
-  <lastmod>2023-06-09</lastmod>
+  <lastmod>2023-06-11</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/anagram.html</loc>
@@ -30,7 +30,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/collaborators.html</loc>
-  <lastmod>2023-06-08</lastmod>
+  <lastmod>2023-06-11</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/contact.html</loc>
@@ -54,7 +54,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/notes.html</loc>
-  <lastmod>2023-06-09</lastmod>
+  <lastmod>2023-06-11</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/paper-recipe.html</loc>
@@ -67,6 +67,10 @@
 <url>
   <loc>https://ztatlock.net/pub-2008-oopsla-dtar.html</loc>
   <lastmod>2023-06-08</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pub-2009-pldi-pec.html</loc>
+  <lastmod></lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2019-conga-sinkingpoint.html</loc>
@@ -151,6 +155,10 @@
 <url>
   <loc>https://ztatlock.net/pubs/2008-oopsla-dtar/2008-oopsla-dtar.pdf</loc>
   <lastmod>2023-05-16</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2009-pldi-pec/2009-pldi-pec.pdf</loc>
+  <lastmod></lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-slides.pdf</loc>

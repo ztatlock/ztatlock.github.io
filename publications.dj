@@ -526,7 +526,9 @@ Logical Methods in Computer Science (LMCS) 2011
 Programming Language Design and Implementation (PLDI) 2010
 
 {#2009-pldi-pec}
-*[Proving Optimizations Correct using Parameterized Program Equivalence](https://dl.acm.org/doi/10.1145/1542476.1542513)* \
+*[Proving Optimizations Correct using Parameterized Program Equivalence](
+  pub-2009-pldi-pec.html
+)* \
   [Sudipta Kundu][],
 \ [Zachary Tatlock][],
 \ [Sorin Lerner][]
@@ -543,7 +545,9 @@ Programming Language Design and Implementation (PLDI) 2009
 Principles of Programming Languages (POPL) 2009
 
 {#2008-oopsla-dtar}
-*[Deep Typechecking and Refactoring](pub-2008-oopsla-dtar.html)* \
+*[Deep Typechecking and Refactoring](
+  pub-2008-oopsla-dtar.html
+)* \
   [Zachary Tatlock][],
 \ [Chris Tucker][],
 \ [David Shuffelton][],
