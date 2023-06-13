@@ -22,7 +22,18 @@ if [ $# -ne 1 ] || [ -z "$1" ]; then
 fi
 ycf="$1"
 
-# set up pub template and files dir
-cp templates/pub.dj "pub-${ycf}.dj"
-sed -i '' "s/YEAR-CONF-SYS/${ycf}/g" "pub-${ycf}.dj"
+# pub files
 mkdir "pubs/${ycf}"
+
+# pub template
+cp templates/pub.dj "pub-${ycf}.dj"
+sed -i '' \
+  -e "s#YEAR-CONF-SYS#${ycf}#g" \
+  "pub-${ycf}.dj"
+
+# pub meta
+cp templates/meta.html "pub-${ycf}.meta"
+sed -i '' \
+  -e "s#URL#https://ztatlock.net/pub-${ycf}.html#g" \
+  -e "s#IMAGE#https://ztatlock.net/pubs/${ycf}/${ycf}-meta.png#g" \
+  "pub-${ycf}.meta"
