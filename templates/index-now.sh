@@ -39,6 +39,7 @@ for page in *.html pubs/*/*.pdf; do
     echo >> "$LOG"
     printf "=%.0s" $(seq 80) >> "$LOG"
     echo >> "$LOG"
+    sleep 5
   fi
 done
 
