@@ -17,19 +17,25 @@ function error {
 cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit
 
 # ENSURE pub fields complete
-for field in 'TITLE' 'AUTHOR' 'CONF' 'YEAR'; do
+for field in 'TITLE' 'AUTHOR' 'CONF' 'YEAR' 'SPEAKER' 'YOUTUBEID'; do
   grep "$field" pub-*.dj \
-  && error "ERROR: found incomplete pub field '$field'!"
+  && error "ERROR: found incomplete pub field $field"
 done
 
 # ensure meta fields complete
 for field in 'DESCRIPTION' 'URL' 'TITLE' 'IMAGE'; do
   grep "$field" *.meta \
-  && error "ERROR: found incomplete meta field '$field'!"
+  && error "ERROR: found incomplete meta field $field"
+done
+
+# warn about missing metas
+for page in *.dj; do
+  [ -f "$(basename "$page" .dj).meta" ] \
+  || echo "WARNING: missing meta for $page"
 done
 
 # warn about TODO pub fields
 for field in 'TODO'; do
   grep "$field" pub-*.dj \
-  && echo "WARNING: found incomplete pub field '$field'!"
+  && echo "WARNING: found incomplete pub field $field"
 done

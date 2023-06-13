@@ -33,6 +33,18 @@ CONFERENCE (CONF) YEAR
 TODO
 
 
+## Talk
+
+CONF YEAR talk by [SPEAKER][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
 ## BibTeX
 
 {.bib}

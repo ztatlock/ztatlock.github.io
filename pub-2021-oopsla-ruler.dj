@@ -1,0 +1,85 @@
+# Rewrite Rule Inference Using Equality Saturation
+
+  [Chandrakana Nandi][],
+\ [Max Willsey][],
+\ [Amy Zhu][],
+\ [Yisu Remy Wang][Remy Wang],
+\ [Brett Saiki][],
+\ [Adam Anderson][],
+\ [Adriana Schulz][],
+\ [Dan Grossman][],
+\ [Zachary Tatlock][]
+
+Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021 \
+★ Distinguished Paper
+
+{.photo}
+:::
+  [![Rewrite Rule Inference Using Equality Saturation](
+    pubs/2021-oopsla-ruler/2021-oopsla-ruler-absimg.png
+  )](
+    pubs/2021-oopsla-ruler/2021-oopsla-ruler.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2021-oopsla-ruler/2021-oopsla-ruler.pdf)
+- [talk](https://www.youtube.com/watch?v=5VGTXMgebOo)
+- [slides](pubs/2021-oopsla-ruler/2021-oopsla-ruler-slides.pdf)
+- [code](https://github.com/uwplse/ruler)
+- [publisher](https://dl.acm.org/doi/abs/10.1145/3485496)
+- [arXiv](https://arxiv.org/abs/2108.10436)
+- [bib](pubs/2021-oopsla-ruler/2021-oopsla-ruler.bib)
+
+{% TODO - [project](TODO) %}
+
+## Abstract
+
+Many compilers, synthesizers, and theorem provers rely on rewrite rules to
+simplify expressions or prove equivalences. Developing rewrite rules can be
+difficult: rules may be subtly incorrect, profitable rules are easy to miss,
+and rulesets must be rechecked or extended whenever semantics are tweaked.
+Large rulesets can also be challenging to apply: redundant rules slow down
+rule-based search and frustrate debugging. This paper explores how equality
+saturation, a promising technique that uses e-graphs to apply rewrite rules,
+can also be used to infer rewrite rules. E-graphs can compactly represent the
+exponentially large sets of enumerated terms and potential rewrite rules. We
+show that equality saturation efficiently shrinks both sets, leading to faster
+synthesis of smaller, more general rulesets. We prototyped these strategies in
+a tool dubbed Ruler. Compared to a similar tool built on CVC4, Ruler
+synthesizes 5.8x smaller rulesets 25x faster without compromising on proving
+power. In an end-to-end case study, we show Ruler-synthesized rules which
+perform as well as those crafted by domain experts, and addressed a
+longstanding issue in a popular open source tool.
+
+
+## Talk
+
+OOPSLA 2021 talk by [Chandrakana Nandi][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/5VGTXMgebOo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
+
+## BibTeX
+
+{.bib}
+```
+@article{2021-oopsla-ruler,
+  title        = {Rewrite Rule Inference Using Equality Saturation},
+  author       = {Nandi, Chandrakana and Willsey, Max and Zhu, Amy and Wang, Yisu Remy and Saiki, Brett and Anderson, Adam and Schulz, Adriana and Grossman, Dan and Tatlock, Zachary},
+  journaltitle = {Proceedings of the ACM on Programming Languages},
+  url          = {https://doi.org/10.1145/3485496},
+  doi          = {10.1145/3485496},
+  number       = {OOPSLA},
+  publisher    = {Association for Computing Machinery},
+}
+```
+
+[📝 publications index](publications.html)
+
