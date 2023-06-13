@@ -7,6 +7,7 @@ https://ztatlock.net/build-simple-first.html
 https://ztatlock.net/calendar-theory.html
 https://ztatlock.net/collaborators.html
 https://ztatlock.net/contact.html
+https://ztatlock.net/course-recipe.html
 https://ztatlock.net/cv.html
 https://ztatlock.net/demo-naive-union-find.html
 https://ztatlock.net/index.html
@@ -16,6 +17,7 @@ https://ztatlock.net/paper-recipe.html
 https://ztatlock.net/proverbs-poems.html
 https://ztatlock.net/pub-2008-oopsla-dtar.html
 https://ztatlock.net/pub-2009-pldi-pec.html
+https://ztatlock.net/pub-2012-security-quark.html
 https://ztatlock.net/pub-2019-conga-sinkingpoint.html
 https://ztatlock.net/pub-2021-iclr-dtr.html
 https://ztatlock.net/pub-2021-mlsys-nimble.html
@@ -38,6 +40,9 @@ https://ztatlock.net/teaching.html
 https://ztatlock.net/pubs/2008-oopsla-dtar/2008-oopsla-dtar-poster.pdf
 https://ztatlock.net/pubs/2008-oopsla-dtar/2008-oopsla-dtar.pdf
 https://ztatlock.net/pubs/2009-pldi-pec/2009-pldi-pec.pdf
+https://ztatlock.net/pubs/2012-security-quark/2012-security-quark-poster.pdf
+https://ztatlock.net/pubs/2012-security-quark/2012-security-quark-slides.pdf
+https://ztatlock.net/pubs/2012-security-quark/2012-security-quark.pdf
 https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-slides.pdf
 https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf
 https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-poster.pdf

@@ -1,0 +1,70 @@
+# Establishing Browser Security Guarantees through Formal Shim Verification
+
+  [Dongseok Jang][],
+\ [Zachary Tatlock][],
+\ [Sorin Lerner][]
+
+USENIX Security Symposium (SECURITY) 2012
+
+{.photo}
+:::
+  [![Establishing Browser Security Guarantees through Formal Shim Verification](
+    pubs/2012-security-quark/2012-security-quark-absimg.png
+  )](
+    pubs/2012-security-quark/2012-security-quark.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2012-security-quark/2012-security-quark.pdf)
+- [talk](https://www.youtube.com/watch?v=AfqeFf66yzI)
+- [slides](pubs/2012-security-quark/2012-security-quark-slides.pdf)
+- [poster](pubs/2012-security-quark/2012-security-quark-poster.pdf)
+- [publisher](https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/jang)
+- [bib](pubs/2012-security-quark/2012-security-quark.bib)
+
+{% TODO - [project](http://goto.ucsd.edu/quark/) %}
+{% TODO - [code](http://goto.ucsd.edu/quark/quark-0807.tar.gz) %}
+{% TODO - [arXiv](TODO) %}
+
+
+## Abstract
+
+Web browsers mediate access to valuable private data in domains ranging from
+health care to banking. Despite this critical role, attackers routinely exploit
+browser vulnerabilities to exfiltrate private data and take over the underlying
+system. We present QUARK, a browser whose kernel has been implemented and
+verified in Coq. We give a specification of our kernel, show that the
+implementation satisfies the specification, and finally show that the
+specification implies several security properties, including tab
+non-interference, cookie integrity and confidentiality, and address bar
+integrity.
+
+
+## Talk
+
+USENIX SECURITY 2012 talk by [Zachary Tatlock][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/AfqeFf66yzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
+## BibTeX
+
+{.bib}
+```
+@inproceedings{2012-security-quark,
+  title     = {Establishing Browser Security Guarantees through Formal Shim Verification},
+  author    = {Jang, Dongseok and Tatlock, Zachary and Lerner, Sorin},
+  booktitle = {21st USENIX Security Symposium (USENIX Security 2012)},
+  url       = {https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/jang},
+  publisher = {USENIX Association},
+}
+```
+
+[📝 publications index](publications.html)
+
