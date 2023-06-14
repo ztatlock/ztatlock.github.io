@@ -119,7 +119,9 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021 \
 Solid Freeform Fabrication Symposium (SFF) 2021
 
 {#2021-arith-herbie}
-*[Combining Precision Tuning and Rewriting](https://www.computer.org/csdl/proceedings-article/arith/2021/229300a001/1yDk1IkeJEc)* \
+*[Combining Precision Tuning and Rewriting](
+  pub-2021-arith-herbie
+)* \
   [Brett Saiki][],
 \ [Oliver Flatt][],
 \ [Chandrakana Nandi][],

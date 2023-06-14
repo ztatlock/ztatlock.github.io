@@ -1,0 +1,16 @@
+<meta name="description" content="Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs.">
+
+<!-- OpenGraph -->
+<meta property="og:url" content="https://ztatlock.net/pub-2021-arith-herbie.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Combining Precision Tuning and Rewriting">
+<meta property="og:description" content="Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs.">
+<meta property="og:image" content="https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie-meta.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="ztatlock.net">
+<meta property="twitter:url" content="https://ztatlock.net/pub-2021-arith-herbie.html">
+<meta name="twitter:title" content="Combining Precision Tuning and Rewriting">
+<meta name="twitter:description" content="Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs.">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie-meta.png">

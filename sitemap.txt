@@ -19,6 +19,7 @@ https://ztatlock.net/pub-2008-oopsla-dtar.html
 https://ztatlock.net/pub-2009-pldi-pec.html
 https://ztatlock.net/pub-2012-security-quark.html
 https://ztatlock.net/pub-2019-conga-sinkingpoint.html
+https://ztatlock.net/pub-2021-arith-herbie.html
 https://ztatlock.net/pub-2021-iclr-dtr.html
 https://ztatlock.net/pub-2021-mlsys-nimble.html
 https://ztatlock.net/pub-2021-oopsla-ruler.html
@@ -47,6 +48,8 @@ https://ztatlock.net/pubs/2012-security-quark/2012-security-quark-slides.pdf
 https://ztatlock.net/pubs/2012-security-quark/2012-security-quark.pdf
 https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-slides.pdf
 https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint.pdf
+https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie-slides.pdf
+https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie.pdf
 https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-poster.pdf
 https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-slides.pdf
 https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr.pdf

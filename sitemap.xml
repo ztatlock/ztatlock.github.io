@@ -26,7 +26,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/calendar-theory.html</loc>
-  <lastmod>2023-06-11</lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/collaborators.html</loc>
@@ -85,6 +85,10 @@
   <lastmod>2023-06-12</lastmod>
 </url>
 <url>
+  <loc>https://ztatlock.net/pub-2021-arith-herbie.html</loc>
+  <lastmod></lastmod>
+</url>
+<url>
   <loc>https://ztatlock.net/pub-2021-iclr-dtr.html</loc>
   <lastmod>2023-06-08</lastmod>
 </url>
@@ -98,7 +102,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-sff-3dp.html</loc>
-  <lastmod></lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2022-ecoop-cakemlfp.html</loc>
@@ -130,7 +134,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/publications.html</loc>
-  <lastmod>2023-06-13</lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/research.html</loc>
@@ -197,6 +201,14 @@
   <lastmod>2023-05-21</lastmod>
 </url>
 <url>
+  <loc>https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie-slides.pdf</loc>
+  <lastmod></lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie.pdf</loc>
+  <lastmod></lastmod>
+</url>
+<url>
   <loc>https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr-poster.pdf</loc>
   <lastmod>2023-05-26</lastmod>
 </url>
@@ -226,11 +238,11 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2021-sff-3dp/2021-sff-3dp-slides.pdf</loc>
-  <lastmod></lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2021-sff-3dp/2021-sff-3dp.pdf</loc>
-  <lastmod></lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-slides.pdf</loc>

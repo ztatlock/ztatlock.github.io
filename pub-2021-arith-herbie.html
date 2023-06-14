@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Zachary Tatlock">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combining Precision Tuning and Rewriting</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://ztatlock.net/pub-2021-arith-herbie.html">
+<meta name="description" content="Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs.">
+
+<!-- OpenGraph -->
+<meta property="og:url" content="https://ztatlock.net/pub-2021-arith-herbie.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Combining Precision Tuning and Rewriting">
+<meta property="og:description" content="Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs.">
+<meta property="og:image" content="https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie-meta.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="ztatlock.net">
+<meta property="twitter:url" content="https://ztatlock.net/pub-2021-arith-herbie.html">
+<meta name="twitter:title" content="Combining Precision Tuning and Rewriting">
+<meta name="twitter:description" content="Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs.">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2021-arith-herbie/2021-arith-herbie-meta.png">
+  <script async src="https://analytics.umami.is/script.js" data-website-id="e9f6fa87-a4bb-48ac-84df-b2d190867eb9" data-domains="ztatlock.net"></script>
+</head>
+<body>
+<section id="Combining-Precision-Tuning-and-Rewriting">
+<h1>Combining Precision Tuning and Rewriting</h1>
+<p><a href="https://www.bsaiki.com/">Brett Saiki</a>,
+&nbsp;<a href="https://www.oflatt.com/">Oliver Flatt</a>,
+&nbsp;<a href="https://cnandi.com/">Chandrakana Nandi</a>,
+&nbsp;<a href="https://pavpanchekha.com/">Pavel Panchekha</a>,
+&nbsp;<a href="https://ztatlock.net/">Zachary Tatlock</a></p>
+<p>IEEE International Symposium on Computer Arithmetic (ARITH) 2021</p>
+<div class="photo">
+<p><a href="pubs/2021-arith-herbie/2021-arith-herbie.pdf"><img alt="Combining Precision Tuning and Rewriting" src="pubs/2021-arith-herbie/2021-arith-herbie-absimg.png"></a></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="pubs/2021-arith-herbie/2021-arith-herbie.pdf">paper</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=ytWhp0I8KVw">talk</a>
+</li>
+<li>
+<a href="pubs/2021-arith-herbie/2021-arith-herbie-slides.pdf">slides</a>
+</li>
+<li>
+<a href="https://herbie.uwplse.org/">project</a>
+</li>
+<li>
+<a href="https://github.com/herbie-fp/herbie">code</a>
+</li>
+<li>
+<a href="https://www.computer.org/csdl/proceedings-article/arith/2021/229300a001/1yDk1IkeJEc">publisher</a>
+</li>
+<li>
+<a href="pubs/2021-arith-herbie/2021-arith-herbie.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>Precision tuning and rewriting can improve both the accuracy and speed of
+floating point expressions, yet these techniques are typically applied
+separately. This paper explores how finer-grained interleaving of precision
+tuning and rewriting can help automatically generate a richer set of
+Pareto-optimal accuracy versus speed trade-offs.</p>
+<p>We introduce Pherbie (Pareto Herbie), a tool providing both precision tuning
+and rewriting, and evaluate interleaving these two strategies at different
+granularities. Our results demonstrate that finer-grained interleavings improve
+both the Pareto curve of candidate implementations and overall optimization
+time. On a popular set of tests from the FPBench suite, Pherbie finds both
+implementations that are significantly more accurate for a given cost and
+significantly faster for a given accuracy bound compared to baselines using
+precision tuning and rewriting alone or in sequence.</p>
+</section>
+<section id="Talk">
+<h2>Talk</h2>
+<p>ARITH 2021 talk by <a href="https://www.bsaiki.com/">Brett Saiki</a> and <a href="https://www.oflatt.com/">Oliver Flatt</a>.</p>
+<div class="photo">
+<iframe src="https://www.youtube.com/embed/ytWhp0I8KVw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@inproceedings{2021-arith-herbie,
+  title     = {Combining Precision Tuning and Rewriting},
+  author    = {Saiki, Brett and Flatt, Oliver and Nandi, Chandrakana and Panchekha, Pavel and Tatlock, Zachary},
+  series    = {ARITH 2021},
+  booktitle = {28th International Symposium on Computer Arithmetic},
+  date      = {2021},
+  doi       = {10.1109/ARITH51176.2021.00013},
+  publisher = {IEEE Computer Society},
+}
+</code></pre>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>
