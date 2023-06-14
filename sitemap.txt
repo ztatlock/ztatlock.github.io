@@ -22,6 +22,7 @@ https://ztatlock.net/pub-2019-conga-sinkingpoint.html
 https://ztatlock.net/pub-2021-iclr-dtr.html
 https://ztatlock.net/pub-2021-mlsys-nimble.html
 https://ztatlock.net/pub-2021-oopsla-ruler.html
+https://ztatlock.net/pub-2021-sff-3dp.html
 https://ztatlock.net/pub-2022-ecoop-cakemlfp.html
 https://ztatlock.net/pub-2022-fmcad-smallproofs.html
 https://ztatlock.net/pub-2022-popl-rematch.html
@@ -53,6 +54,8 @@ https://ztatlock.net/pubs/2021-mlsys-nimble/2021-mlsys-nimble-slides.pdf
 https://ztatlock.net/pubs/2021-mlsys-nimble/2021-mlsys-nimble.pdf
 https://ztatlock.net/pubs/2021-oopsla-ruler/2021-oopsla-ruler-slides.pdf
 https://ztatlock.net/pubs/2021-oopsla-ruler/2021-oopsla-ruler.pdf
+https://ztatlock.net/pubs/2021-sff-3dp/2021-sff-3dp-slides.pdf
+https://ztatlock.net/pubs/2021-sff-3dp/2021-sff-3dp.pdf
 https://ztatlock.net/pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp-slides.pdf
 https://ztatlock.net/pubs/2022-ecoop-cakemlfp/2022-ecoop-cakemlfp.pdf
 https://ztatlock.net/pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs-slides.pdf
