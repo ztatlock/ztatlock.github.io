@@ -1,0 +1,81 @@
+# Pure Tensor Program Rewriting via Access Patterns
+
+  [Gus Henry Smith][Gus Smith],
+\ [Andrew Liu][],
+\ [Steven Lyubomirsky][],
+\ [Scott Davidson][],
+\ [Joseph McMahan][],
+\ [Michael Taylor][],
+\ [Luis Ceze][],
+\ [Zachary Tatlock][]
+
+Symposium on Machine Programming (MAPS) 2021
+
+{.photo}
+:::
+  [![Pure Tensor Program Rewriting via Access Patterns](
+    pubs/2021-maps-glenside/2021-maps-glenside-absimg.png
+  )](
+    pubs/2021-maps-glenside/2021-maps-glenside.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2021-maps-glenside/2021-maps-glenside.pdf)
+- [talk](https://www.youtube.com/watch?v=zxfhurFdYVs)
+- [slides](pubs/2021-maps-glenside/2021-maps-glenside-slides.pdf)
+- [project](https://sampl.cs.washington.edu/projects/glenside.html)
+- [code](https://github.com/gussmith23/glenside)
+- [publisher](https://dl.acm.org/doi/10.1145/3460945.3464953)
+- [arXiv](https://arxiv.org/abs/2105.09377)
+- [bib](pubs/2021-maps-glenside/2021-maps-glenside.bib)
+
+
+## Abstract
+
+Tensor kernels in machine learning (ML) often correspond to pure mathematical
+expressions, making term rewriting an attractive strategy for optimization and
+mapping to specialized hardware accelerators. However, existing ML intermediate
+representations (IRs) tend to either be _pure but high-level_, making low-level
+rewrites to hardware targets inexpressible, or _low-level but impure_,
+hampering the use of term rewriting altogether.
+
+This paper introduces Glenside, a pure IR whose core abstraction — the access
+pattern — enables low-level, layout-aware, hardware-centric program rewrites.
+We demonstrate how term rewriting in Glenside can be used to map program
+fragments to hardware accelerator invocations and automatically discover
+classic data layout transformations like `im2col`. Glenside establishes a new
+foundation for exploring further term rewriting techniques in optimizing
+low-level tensor programs.
+
+
+## Talk
+
+MAPS 2021 talk by [Gus Smith][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/zxfhurFdYVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
+## BibTeX
+
+{.bib}
+```
+@inproceedings{2021-maps-glenside,
+  title     = {Pure Tensor Program Rewriting via Access Patterns (Representation Pearl)},
+  author    = {Smith, Gus Henry and Liu, Andrew and Lyubomirsky, Steven and Davidson, Scott and McMahan, Joseph and Taylor, Michael and Ceze, Luis and Tatlock, Zachary},
+  series    = {MAPS 2021},
+  booktitle = {Proceedings of the 5th ACM SIGPLAN International Symposium on Machine Programming},
+  date      = {2021},
+  url       = {https://doi.org/10.1145/3460945.3464953},
+  doi       = {10.1145/3460945.3464953},
+  publisher = {Association for Computing Machinery},
+}
+```
+
+[📝 publications index](publications.html)
+

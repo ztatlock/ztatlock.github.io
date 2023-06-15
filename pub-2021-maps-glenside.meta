@@ -1,0 +1,16 @@
+<meta name="description" content="Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.">
+
+<!-- OpenGraph -->
+<meta property="og:url" content="https://ztatlock.net/pub-2021-maps-glenside.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pure Tensor Program Rewriting via Access Patterns">
+<meta property="og:description" content="Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.">
+<meta property="og:image" content="https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside-meta.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="ztatlock.net">
+<meta property="twitter:url" content="https://ztatlock.net/pub-2021-maps-glenside.html">
+<meta name="twitter:title" content="Pure Tensor Program Rewriting via Access Patterns">
+<meta name="twitter:description" content="Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside-meta.png">

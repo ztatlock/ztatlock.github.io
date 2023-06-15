@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
   <loc>https://ztatlock.net/404.html</loc>
-  <lastmod>2023-06-08</lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/about.html</loc>
@@ -18,7 +18,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/basic-advice.html</loc>
-  <lastmod>2023-06-11</lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/build-simple-first.html</loc>
@@ -30,11 +30,11 @@
 </url>
 <url>
   <loc>https://ztatlock.net/collaborators.html</loc>
-  <lastmod>2023-06-11</lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/contact.html</loc>
-  <lastmod>2023-06-13</lastmod>
+  <lastmod>2023-06-14</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/course-recipe.html</loc>
@@ -91,6 +91,10 @@
 <url>
   <loc>https://ztatlock.net/pub-2021-iclr-dtr.html</loc>
   <lastmod>2023-06-08</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pub-2021-maps-glenside.html</loc>
+  <lastmod></lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-mlsys-nimble.html</loc>
@@ -219,6 +223,14 @@
 <url>
   <loc>https://ztatlock.net/pubs/2021-iclr-dtr/2021-iclr-dtr.pdf</loc>
   <lastmod>2023-05-26</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside-slides.pdf</loc>
+  <lastmod></lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside.pdf</loc>
+  <lastmod></lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2021-mlsys-nimble/2021-mlsys-nimble-slides.pdf</loc>

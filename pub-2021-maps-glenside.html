@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Zachary Tatlock">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure Tensor Program Rewriting via Access Patterns</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://ztatlock.net/pub-2021-maps-glenside.html">
+<meta name="description" content="Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.">
+
+<!-- OpenGraph -->
+<meta property="og:url" content="https://ztatlock.net/pub-2021-maps-glenside.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pure Tensor Program Rewriting via Access Patterns">
+<meta property="og:description" content="Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.">
+<meta property="og:image" content="https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside-meta.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="ztatlock.net">
+<meta property="twitter:url" content="https://ztatlock.net/pub-2021-maps-glenside.html">
+<meta name="twitter:title" content="Pure Tensor Program Rewriting via Access Patterns">
+<meta name="twitter:description" content="Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside-meta.png">
+  <script async src="https://analytics.umami.is/script.js" data-website-id="e9f6fa87-a4bb-48ac-84df-b2d190867eb9" data-domains="ztatlock.net"></script>
+</head>
+<body>
+<section id="Pure-Tensor-Program-Rewriting-via-Access-Patterns">
+<h1>Pure Tensor Program Rewriting via Access Patterns</h1>
+<p><a href="https://justg.us/">Gus Henry Smith</a>,
+&nbsp;<a href="https://github.com/hypercubestart/">Andrew Liu</a>,
+&nbsp;<a href="https://slyubomirsky.github.io/">Steven Lyubomirsky</a>,
+&nbsp;<a href="https://www.linkedin.com/in/scottdavidson92">Scott Davidson</a>,
+&nbsp;<a href="https://josephmcmahan.me/">Joseph McMahan</a>,
+&nbsp;<a href="https://michaeltaylor.org/">Michael Taylor</a>,
+&nbsp;<a href="https://ready.cs.washington.edu/~luisceze/">Luis Ceze</a>,
+&nbsp;<a href="https://ztatlock.net/">Zachary Tatlock</a></p>
+<p>Symposium on Machine Programming (MAPS) 2021</p>
+<div class="photo">
+<p><a href="pubs/2021-maps-glenside/2021-maps-glenside.pdf"><img alt="Pure Tensor Program Rewriting via Access Patterns" src="pubs/2021-maps-glenside/2021-maps-glenside-absimg.png"></a></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="pubs/2021-maps-glenside/2021-maps-glenside.pdf">paper</a>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=zxfhurFdYVs">talk</a>
+</li>
+<li>
+<a href="pubs/2021-maps-glenside/2021-maps-glenside-slides.pdf">slides</a>
+</li>
+<li>
+<a href="https://sampl.cs.washington.edu/projects/glenside.html">project</a>
+</li>
+<li>
+<a href="https://github.com/gussmith23/glenside">code</a>
+</li>
+<li>
+<a href="https://dl.acm.org/doi/10.1145/3460945.3464953">publisher</a>
+</li>
+<li>
+<a href="https://arxiv.org/abs/2105.09377">arXiv</a>
+</li>
+<li>
+<a href="pubs/2021-maps-glenside/2021-maps-glenside.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>Tensor kernels in machine learning (ML) often correspond to pure mathematical
+expressions, making term rewriting an attractive strategy for optimization and
+mapping to specialized hardware accelerators. However, existing ML intermediate
+representations (IRs) tend to either be <em>pure but high-level</em>, making low-level
+rewrites to hardware targets inexpressible, or <em>low-level but impure</em>,
+hampering the use of term rewriting altogether.</p>
+<p>This paper introduces Glenside, a pure IR whose core abstraction — the access
+pattern — enables low-level, layout-aware, hardware-centric program rewrites.
+We demonstrate how term rewriting in Glenside can be used to map program
+fragments to hardware accelerator invocations and automatically discover
+classic data layout transformations like <code>im2col</code>. Glenside establishes a new
+foundation for exploring further term rewriting techniques in optimizing
+low-level tensor programs.</p>
+</section>
+<section id="Talk">
+<h2>Talk</h2>
+<p>MAPS 2021 talk by <a href="https://justg.us/">Gus Smith</a>.</p>
+<div class="photo">
+<iframe src="https://www.youtube.com/embed/zxfhurFdYVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@inproceedings{2021-maps-glenside,
+  title     = {Pure Tensor Program Rewriting via Access Patterns (Representation Pearl)},
+  author    = {Smith, Gus Henry and Liu, Andrew and Lyubomirsky, Steven and Davidson, Scott and McMahan, Joseph and Taylor, Michael and Ceze, Luis and Tatlock, Zachary},
+  series    = {MAPS 2021},
+  booktitle = {Proceedings of the 5th ACM SIGPLAN International Symposium on Machine Programming},
+  date      = {2021},
+  url       = {https://doi.org/10.1145/3460945.3464953},
+  doi       = {10.1145/3460945.3464953},
+  publisher = {Association for Computing Machinery},
+}
+</code></pre>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>
