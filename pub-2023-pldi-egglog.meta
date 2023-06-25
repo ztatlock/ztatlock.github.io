@@ -1,0 +1,16 @@
+<meta name="description" content="The new egglog fixpoint reasoning system fully combines Datalog and Equality Saturation to provide composable analyses and enable incremental term rewriting.">
+
+<!-- OpenGraph -->
+<meta property="og:url" content="https://ztatlock.net/pub-2023-pldi-egglog.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Better Together: Unifying Datalog and Equality Saturation">
+<meta property="og:description" content="The new egglog fixpoint reasoning system fully combines Datalog and Equality Saturation to provide composable analyses and enable incremental term rewriting.">
+<meta property="og:image" content="https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog-meta.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="ztatlock.net">
+<meta property="twitter:url" content="https://ztatlock.net/pub-2023-pldi-egglog.html">
+<meta name="twitter:title" content="Better Together: Unifying Datalog and Equality Saturation">
+<meta name="twitter:description" content="The new egglog fixpoint reasoning system fully combines Datalog and Equality Saturation to provide composable analyses and enable incremental term rewriting.">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog-meta.png">
