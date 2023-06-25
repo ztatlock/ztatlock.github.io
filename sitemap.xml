@@ -94,7 +94,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-maps-glenside.html</loc>
-  <lastmod></lastmod>
+  <lastmod>2023-06-15</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-mlsys-nimble.html</loc>
@@ -106,7 +106,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-sff-3dp.html</loc>
-  <lastmod>2023-06-14</lastmod>
+  <lastmod>2023-06-15</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2022-ecoop-cakemlfp.html</loc>
@@ -138,7 +138,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/publications.html</loc>
-  <lastmod>2023-06-14</lastmod>
+  <lastmod>2023-06-15</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/research.html</loc>
@@ -226,11 +226,11 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside-slides.pdf</loc>
-  <lastmod></lastmod>
+  <lastmod>2023-06-15</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2021-maps-glenside/2021-maps-glenside.pdf</loc>
-  <lastmod></lastmod>
+  <lastmod>2023-06-15</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2021-mlsys-nimble/2021-mlsys-nimble-slides.pdf</loc>
@@ -291,6 +291,10 @@
 <url>
   <loc>https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf</loc>
   <lastmod>2023-05-18</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog-slides.pdf</loc>
+  <lastmod>2023-06-25</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog.pdf</loc>

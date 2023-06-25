@@ -44,7 +44,9 @@ sitemap.xml: $(wildcard *.html) $(wildcard pubs/*/*.pdf)
 	@for page in *.html pubs/*/*.pdf; do \
 		printf '<url>\n  <loc>%s</loc>\n  <lastmod>%s</lastmod>\n</url>\n' \
 			"https://ztatlock.net/$${page}" \
-			"$$(git log -1 --pretty="format:%cs" "$${page}")"; \
+			"$$(git ls-files --error-unmatch "$${page}" &> /dev/null \
+			 && git log -1 --pretty="format:%cs" "$${page}" \
+			 || date +%Y-%m-%d)"; \
 	done >> $@
 	@echo '</urlset>' >> $@
 
