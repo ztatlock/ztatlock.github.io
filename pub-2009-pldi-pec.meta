@@ -2,7 +2,7 @@
 
 <!-- OpenGraph -->
 <meta property="og:url" content="https://ztatlock.net/pub-2009-pldi-pec.html">
-<meta property="og:type" content="https://ztatlock.net/pub-2009-pldi-pec.html">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Proving Optimizations Correct using Parameterized Program Equivalence">
 <meta property="og:description" content="PEC automatically checks compiler optimization correctness by generalizing dynamic translation validation to verifying parameterized optimization templates.">
 <meta property="og:image" content="https://ztatlock.net/pubs/2009-pldi-pec/2009-pldi-pec-meta.png">
