@@ -1,0 +1,16 @@
+<meta name="description" content="Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives.">
+
+<!-- OpenGraph -->
+<meta property="og:url" content="https://ztatlock.net/pub-2019-conga-sinkingpoint.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sinking Point: Dynamic Precision Tracking for Floating-point">
+<meta property="og:description" content="Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives.">
+<meta property="og:image" content="https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-meta.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="ztatlock.net">
+<meta property="twitter:url" content="https://ztatlock.net/pub-2019-conga-sinkingpoint.html">
+<meta name="twitter:title" content="Sinking Point: Dynamic Precision Tracking for Floating-point">
+<meta name="twitter:description" content="Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives.">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2019-conga-sinkingpoint/2019-conga-sinkingpoint-meta.png">
