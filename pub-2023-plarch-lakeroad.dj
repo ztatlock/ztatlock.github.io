@@ -20,13 +20,14 @@ Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 
 {.columns .columns-8rem}
 - [paper](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf)
+- [slides](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pdf)
 - [arXiv](https://arxiv.org/abs/2305.09580)
 - [event](https://pldi23.sigplan.org/home/plarch-2023)
 - [bib](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.bib)
 
 {% TODO - [project](https://cseweb.ucsd.edu/~lerner/quail.html) %}
-{% TODO - [slides](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pptx) %}
 {% TODO - [poster](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-poster.pdf) %}
+{% TODO - talk %}
 
 
 ## Abstract

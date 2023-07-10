@@ -71,6 +71,7 @@ https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch-poster.pdf
 https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch-slides.pdf
 https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch.pdf
 https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry.pdf
+https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pdf
 https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf
 https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog-slides.pdf
 https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog.pdf
