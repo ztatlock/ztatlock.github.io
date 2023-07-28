@@ -10,6 +10,7 @@ https://ztatlock.net/contact.html
 https://ztatlock.net/course-recipe.html
 https://ztatlock.net/cv.html
 https://ztatlock.net/demo-naive-union-find.html
+https://ztatlock.net/games.html
 https://ztatlock.net/index.html
 https://ztatlock.net/news.html
 https://ztatlock.net/notes.html
@@ -34,6 +35,7 @@ https://ztatlock.net/pub-2023-pldi-egglog.html
 https://ztatlock.net/pub-2023-popl-babble.html
 https://ztatlock.net/publications.html
 https://ztatlock.net/research.html
+https://ztatlock.net/response-recipe.html
 https://ztatlock.net/s-expressions.html
 https://ztatlock.net/service.html
 https://ztatlock.net/students.html

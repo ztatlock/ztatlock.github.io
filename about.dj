@@ -169,4 +169,36 @@ If you thought daylight savings was bad,
   wait till you hear about timezones!
 
 
+## Conference Trailers
+
+I played a small part in the ICFP 2021 trailer,
+working with
+  [John Leo][] and
+  [Chandrakana Nandi][]:
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/nzcMpLkkCrc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+I helped my friends
+  [Alexandra Silva](https://alexandrasilva.org/),
+  [Ron Garcia](https://www.cs.ubc.ca/~rxg/),
+  [Loris D'Antoni](https://pages.cs.wisc.edu/~loris/),
+  [Deian Stefan](https://cseweb.ucsd.edu/~dstefan/), and
+  [Nadia Polikarpova](https://cseweb.ucsd.edu/~npolikarpova/)
+put together the conference trailers for POPL 2022:
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/707tBQ07I-A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
+
+
 
