@@ -2,8 +2,19 @@
 
 ## Courses at the University of Washington
 
+*UW CSE 507: Computer-Aided Reasoning for Software* \
+Graduate course
+  introducing automated reasoning techniques
+  for the design, analysis, and construction
+  of software
+
+{.columns .columns-8rem}
+- [2023 Autumn](https://courses.cs.washington.edu/courses/cse507/23au/)
+
+
 *UW CSE 505: Concepts of Programming Languages* \
-Graduate course using proof assistants to explore
+Graduate course
+  using proof assistants to explore
   transition systems,
   inductive invariants,
   type systems,
