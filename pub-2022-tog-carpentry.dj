@@ -22,14 +22,14 @@ ACM Transactions on Graphics (TOG) 2022
 {.columns .columns-8rem}
 - [paper](pubs/2022-tog-carpentry/2022-tog-carpentry.pdf)
 - [teaser](https://www.youtube.com/watch?v=P6AqNmSlwc4)
+- [talk](https://www.youtube.com/watch?v=vfFO_mJ4yPk)
+- [slides](pubs/2022-tog-carpentry/2022-tog-carpentry-slides.pdf)
 - [project](https://haisenzhao.github.io/CODFC/index.html)
 - [code](https://github.com/helm-compiler)
 - [publisher](https://dl.acm.org/doi/10.1145/3508499)
 - [arXiv](https://arxiv.org/abs/2107.12265)
 - [bib](pubs/2022-tog-carpentry/2022-tog-carpentry.bib)
 
-{% TODO - [talk](TODO) %}
-{% TODO - [slides](pubs/2022-tog-carpentry/2022-tog-carpentry-slides.pdf) %}
 {% TODO - [poster](pubs/2022-tog-carpentry/2022-tog-carpentry-poster.pdf) %}
 
 
@@ -54,6 +54,19 @@ search strategy dubbed Iterative Contraction and Expansion on E-graphs (ICEE)
 can keep the size of the e-graph manageable and direct the search toward
 promising candidates. We illustrate the advantages of our pipeline through
 examples from the carpentry domain.
+
+## Talk
+
+SIGGRAPH 2022 talk by [Amy Zhu][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/vfFO_mJ4yPk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
 
 
 ## BibTeX

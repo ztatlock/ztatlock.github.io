@@ -73,6 +73,7 @@ https://ztatlock.net/pubs/2022-fmcad-smallproofs/2022-fmcad-smallproofs.pdf
 https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch-poster.pdf
 https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch-slides.pdf
 https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch.pdf
+https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry-slides.pdf
 https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry.pdf
 https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pdf
 https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf
