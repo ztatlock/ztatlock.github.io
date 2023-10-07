@@ -22,11 +22,11 @@ Graduate course
   metatheory
 
 {.columns .columns-8rem}
-- [2023 Winter](https://sites.google.com/cs.washington.edu/cse-505-23wi/home)
-- [2021 Spring](https://sites.google.com/cs.washington.edu/cse-505-spring-2021)
-- [2020 Spring](https://sites.google.com/cs.washington.edu/cse-505-spring-2020)
-- [2019 Spring](https://sites.google.com/cs.washington.edu/cse-p505-19sp)
-- [2018 Autumn](https://sites.google.com/cs.washington.edu/cse-505-18au)
+- [2023 Winter](https://courses.cs.washington.edu/courses/cse505/23wi/)
+- [2021 Spring](https://courses.cs.washington.edu/courses/cse505/21sp/)
+- [2020 Spring](https://courses.cs.washington.edu/courses/cse505/20sp/)
+- [2019 Spring](https://courses.cs.washington.edu/courses/csep505/19sp/)
+- [2018 Autumn](https://courses.cs.washington.edu/courses/cse505/18au/)
 - [2017 Autumn](https://courses.cs.washington.edu/courses/cse505/17au/)
 - [2016 Autumn](https://courses.cs.washington.edu/courses/cse505/16au/)
 - [2015 Autumn](https://courses.cs.washington.edu/courses/cse505/15au/)
@@ -42,10 +42,10 @@ Undergraduate course exploring
   static vs. dynamic typing
 
 {.columns .columns-8rem}
-- [2022 Autumn](https://sites.google.com/cs.washington.edu/cse341autumn2022)
-- [2021 Winter](https://sites.google.com/cs.washington.edu/cse341winter2021/home)
-- [2020 Winter](https://sites.google.com/cs.washington.edu/cse-341-winter-2020)
-- [2019 Winter](https://sites.google.com/cs.washington.edu/cse341-19wi)
+- [2022 Autumn](https://courses.cs.washington.edu/courses/cse341/22au/)
+- [2021 Winter](https://courses.cs.washington.edu/courses/cse341/21wi/)
+- [2020 Winter](https://courses.cs.washington.edu/courses/cse341/20wi/)
+- [2019 Winter](https://courses.cs.washington.edu/courses/cse341/19wi/)
 - [2018 Winter](https://courses.cs.washington.edu/courses/cse341/18wi/)
 - [2015 Spring](https://courses.cs.washington.edu/courses/cse341/15sp/)
 - [2014 Spring](https://courses.cs.washington.edu/courses/cse341/14sp/)
@@ -69,16 +69,19 @@ Undergraduate course exploring
 {.course-vspace}
 *Special Topics Graduate Courses*
 
-  * [UW CSE 599Z: Accurate Computing, \ 2017 Spring](https://homes.cs.washington.edu/~ztatlock/599z-17sp/)
+  * [UW CSE 599Z: Accurate Computing, \ 2017 Spring](
+      https://homes.cs.washington.edu/~ztatlock/599z-17sp/)
 
     - Numerical computing and computational fabrication
 
-  * [UW CSE 599W: Systems Verification, \ 2016 Spring](https://courses.cs.washington.edu/courses/cse599w/16sp/)
+  * [UW CSE 599W: Systems Verification, \ 2016 Spring](
+      https://courses.cs.washington.edu/courses/cse599w/16sp/)
 
     - Formally verifying systems implementations
     - Co-taught with [Xi Wang][] and [Bryan Parno][]
 
-  * [UW CSE 506: Advanced Topics in Programming Languages, \ 2014 Winter](https://courses.cs.washington.edu/courses/cse506/14wi/)
+  * [UW CSE 506: Advanced Topics in Programming Languages, \ 2014 Winter](
+      https://courses.cs.washington.edu/courses/cse506/14wi/)
 
     - Proof assistants, dependent types, and systems verificiation
 
