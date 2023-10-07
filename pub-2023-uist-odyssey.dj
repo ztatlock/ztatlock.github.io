@@ -1,0 +1,99 @@
+# Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting
+
+  [Edward Misback][],
+\ [Caleb C. Chan][Caleb Chan],
+\ [Brett Saiki][],
+\ [Eunice Jun][],
+\ [Zachary Tatlock][],
+\ [Pavel Panchekha][]
+
+ACM Symposium on User Interface Software and Technology (UIST) 2023
+
+{.photo}
+:::
+  [![Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting](
+    pubs/2023-uist-odyssey/2023-uist-odyssey-absimg.gif
+  )](
+    pubs/2023-uist-odyssey/2023-uist-odyssey.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2023-uist-odyssey/2023-uist-odyssey.pdf)
+{% TODO - [teaser](TODO) %}
+{% TODO - [talk](TODO) %}
+{% TODO - [slides](pubs/2023-uist-odyssey/2023-uist-odyssey-slides.pdf) %}
+{% TODO - [poster](pubs/2023-uist-odyssey/2023-uist-odyssey-poster.pdf) %}
+{% - [project](TODO) %}
+- [code](https://github.com/herbie-fp/odyssey)
+- [VSCode](https://marketplace.visualstudio.com/items?itemName=herbie-fp.odyssey-fp)
+{% TODO - [publisher](TODO) %}
+- [arXiv](https://arxiv.org/abs/2305.10599)
+{% TODO - [bib](pubs/2023-uist-odyssey/2023-uist-odyssey.bib) %}
+
+
+## Abstract
+
+In recent years, researchers have proposed a number of automated tools to
+identify and improve floating-point rounding error in mathematical expressions.
+However, users struggle to effectively apply these tools. In this paper, we
+work with novices, experts, and tool developers to investigate user needs
+during the expression rewriting process. We find that users follow an iterative
+design process. They want to compare expressions on multiple input ranges,
+integrate and guide various rewriting tools, and understand where errors come
+from. We organize this investigation’s results into a three-stage workflow and
+implement that workflow in a new, extensible workbench dubbed Odyssey. Odyssey
+enables users to: (1) diagnose problems in an expression, (2) generate
+solutions automatically or by hand, and (3) tune their results.  Odyssey tracks
+a working set of expressions and turns a state-of-the-art automated tool
+“inside out,” giving the user access to internal heuristics, algorithms, and
+functionality. In a user study, Odyssey enabled five expert numerical analysts
+to solve challenging rewriting problems where state-of-the-art automated tools
+fail. In particular, the experts unanimously praised Odyssey’s novel support
+for interactive range modification and local error visualization.
+
+
+## Talk
+
+{.todo}
+:::
+TODO
+
+
+UIST 2023 talk by [Edward Misback][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+:::
+
+FPTalks 2023 talk by [Edward Misback][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/O1Sbk3ZZJ-s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
+{.todo}
+:::
+TODO
+
+
+## BibTeX
+
+{.bib}
+```
+TODO
+```
+
+:::
+
+[📝 publications index](publications.html)
+

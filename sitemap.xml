@@ -94,7 +94,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-iclr-dtr.html</loc>
-  <lastmod>2023-07-03</lastmod>
+  <lastmod>2023-10-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-maps-glenside.html</loc>
@@ -126,7 +126,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2022-tog-carpentry.html</loc>
-  <lastmod>2023-06-08</lastmod>
+  <lastmod>2023-10-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2023-plarch-lakeroad.html</loc>
@@ -139,6 +139,10 @@
 <url>
   <loc>https://ztatlock.net/pub-2023-popl-babble.html</loc>
   <lastmod>2023-07-03</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pub-2023-uist-odyssey.html</loc>
+  <lastmod>2023-10-07</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/publications.html</loc>
@@ -170,7 +174,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/talk-2023-05-egg-uiuc.html</loc>
-  <lastmod>2023-06-08</lastmod>
+  <lastmod>2023-10-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/talk-recipe.html</loc>
@@ -331,5 +335,9 @@
 <url>
   <loc>https://ztatlock.net/pubs/2023-popl-babble/2023-popl-babble.pdf</loc>
   <lastmod>2023-05-19</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2023-uist-odyssey/2023-uist-odyssey.pdf</loc>
+  <lastmod>2023-10-07</lastmod>
 </url>
 </urlset>

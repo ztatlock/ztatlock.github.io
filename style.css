@@ -188,3 +188,7 @@ td {
 .red {
   color: red;
 }
+
+.todo, .todo * {
+  display: none;
+}
