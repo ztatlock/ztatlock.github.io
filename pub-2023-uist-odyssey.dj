@@ -20,15 +20,16 @@ ACM Symposium on User Interface Software and Technology (UIST) 2023
 
 {.columns .columns-8rem}
 - [paper](pubs/2023-uist-odyssey/2023-uist-odyssey.pdf)
+- [code](https://github.com/herbie-fp/odyssey)
+- [VSCode](https://marketplace.visualstudio.com/items?itemName=herbie-fp.odyssey-fp)
+- [arXiv](https://arxiv.org/abs/2305.10599)
+
 {% TODO - [teaser](TODO) %}
 {% TODO - [talk](TODO) %}
 {% TODO - [slides](pubs/2023-uist-odyssey/2023-uist-odyssey-slides.pdf) %}
 {% TODO - [poster](pubs/2023-uist-odyssey/2023-uist-odyssey-poster.pdf) %}
-{% - [project](TODO) %}
-- [code](https://github.com/herbie-fp/odyssey)
-- [VSCode](https://marketplace.visualstudio.com/items?itemName=herbie-fp.odyssey-fp)
+{% TODO - [project](TODO) %}
 {% TODO - [publisher](TODO) %}
-- [arXiv](https://arxiv.org/abs/2305.10599)
 {% TODO - [bib](pubs/2023-uist-odyssey/2023-uist-odyssey.bib) %}
 
 
