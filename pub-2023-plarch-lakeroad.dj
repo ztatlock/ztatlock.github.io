@@ -20,6 +20,7 @@ Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 
 {.columns .columns-8rem}
 - [paper](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf)
+- [talk](https://www.youtube.com/watch?v=IkdRtgnJMU0)
 - [slides](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pdf)
 - [arXiv](https://arxiv.org/abs/2305.09580)
 - [event](https://pldi23.sigplan.org/home/plarch-2023)
@@ -41,6 +42,16 @@ approach more feasible. We present a concrete example by demonstrating how FPGA
 technology mappers can be automatically generated from SystemVerilog models of
 an FPGA’s primitives using program synthesis.
 
+## Talk
+
+PLARCH 2023 talk by [Gus Smith][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/IkdRtgnJMU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
 
 ## BibTeX
 

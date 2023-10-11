@@ -46,6 +46,17 @@ the first certifying equality saturation engine. We show that our greedy
 approach in egg quickly generates substantially smaller proofs than the
 state-of-the-art Z3 SMT solver on a corpus of 3760 benchmarks.
 
+## Talk
+
+FMCAD 2022 talk by [Oliver Flatt][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/_KnAHFdqWT0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
 
 ## BibTeX
 
