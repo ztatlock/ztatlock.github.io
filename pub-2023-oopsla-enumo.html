@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Zachary Tatlock">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equality Saturation Theory Exploration à la Carte</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://ztatlock.net/pub-2023-oopsla-enumo.html">
+<meta name="description" content="Enumo is a new DSL that makes EqSat rule inference programmable and scalable. Its core operators enable strategic guidance, supporting larger grammars and novel strategies previously out of scope.">
+
+<!-- OpenGraph -->
+<meta property="og:url" content="https://ztatlock.net/pub-2023-oopsla-enumo.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Equality Saturation Theory Exploration à la Carte">
+<meta property="og:description" content="Enumo is a new DSL that makes EqSat rule inference programmable and scalable. Its core operators enable strategic guidance, supporting larger grammars and novel strategies previously out of scope.">
+<meta property="og:image" content="https://ztatlock.net/pubs/2023-oopsla-enumo/2023-oopsla-enumo-meta.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="ztatlock.net">
+<meta property="twitter:url" content="https://ztatlock.net/pub-2023-oopsla-enumo.html">
+<meta name="twitter:title" content="Equality Saturation Theory Exploration à la Carte">
+<meta name="twitter:description" content="Enumo is a new DSL that makes EqSat rule inference programmable and scalable. Its core operators enable strategic guidance, supporting larger grammars and novel strategies previously out of scope.">
+<meta name="twitter:image" content="https://ztatlock.net/pubs/2023-oopsla-enumo/2023-oopsla-enumo-meta.png">
+  <script async src="https://analytics.umami.is/script.js" data-website-id="e9f6fa87-a4bb-48ac-84df-b2d190867eb9" data-domains="ztatlock.net"></script>
+</head>
+<body>
+<section id="Equality-Saturation-Theory-Exploration-la-Carte">
+<h1>Equality Saturation Theory Exploration à la Carte</h1>
+<p><a href="https://ajpal.github.io/">Anjali Pal</a>,
+&nbsp;<a href="https://www.bsaiki.com/">Brett Saiki</a>,
+&nbsp;<a href="https://rtjoa.com/">Ryan Tjoa</a>,
+&nbsp;<a href="https://thia.codes/">Cynthia Richey</a>,
+&nbsp;<a href="http://amy.zhucchini.ca/">Amy Zhu</a>,
+&nbsp;<a href="https://www.oflatt.com/">Oliver Flatt</a>,
+&nbsp;<a href="https://www.mwillsey.com/">Max Willsey</a>,
+&nbsp;<a href="https://ztatlock.net/">Zachary Tatlock</a>,
+&nbsp;<a href="https://cnandi.com/">Chandrakana Nandi</a></p>
+<p>Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA) 2023</p>
+<div class="photo">
+<p><a href="pubs/2023-oopsla-enumo/2023-oopsla-enumo.pdf"><img alt="Equality Saturation Theory Exploration à la Carte" src="pubs/2023-oopsla-enumo/2023-oopsla-enumo-absimg.png"></a></p>
+</div>
+<ul class="columns columns-8rem">
+<li>
+<a href="pubs/2023-oopsla-enumo/2023-oopsla-enumo.pdf">paper</a>
+</li>
+<li>
+<a href="https://github.com/uwplse/ruler">code</a>
+</li>
+<li>
+<a href="https://dl.acm.org/doi/10.1145/3622834">publisher</a>
+</li>
+<li>
+<a href="pubs/2023-oopsla-enumo/2023-oopsla-enumo.bib">bib</a>
+</li>
+</ul>
+<section id="Abstract">
+<h2>Abstract</h2>
+<p>Rewrite rules are critical in equality saturation, an increasingly popular
+technique in optimizing compilers, synthesizers, and verifiers. Unfortunately,
+developing high-quality rulesets is difficult and error-prone. Recent work on
+automatically inferring rewrite rules does not scale to large terms or
+grammars, and existing rule inference tools are monolithic and opaque. Equality
+saturation users therefore struggle to guide inference and incrementally
+construct rulesets. As a result, most users still manually develop and maintain
+rulesets.</p>
+<p>This paper proposes Enumo, a new domain-specific language for programmable
+theory exploration. Enumo provides a small set of core operators that enable
+users to strategically guide rule inference and incrementally build rulesets.
+Short Enumo programs easily replicate results from state-of-the-art tools, but
+Enumo programs can also scale to infer deeper rules from larger grammars than
+prior approaches. Its composable operators even facilitate developing new
+strategies for ruleset inference. We introduce a new fast-forwarding strategy
+that does not require evaluating terms in the target language, and can thus
+support domains that were out of scope for prior work.</p>
+<p>We evaluate Enumo and fast-forwarding across a variety of domains. Compared to
+state-of-the-art techniques, Enumo can synthesize better rulesets over a
+diverse set of domains, in some cases matching the effects of
+manually-developed rulesets in systems driven by equality saturation.</p>
+</section>
+<section id="Talk">
+<h2>Talk</h2>
+<p>OOPSLA 2023 talk by <a href="https://ajpal.github.io/">Anjali Pal</a>.</p>
+<div class="photo">
+<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</section>
+<section id="BibTeX">
+<h2>BibTeX</h2>
+<pre class="bib"><code>@article{2023-oopsla-enumo,
+  title        = {Equality Saturation Theory Exploration \`{a} La Carte},
+  author       = {Pal, Anjali and Saiki, Brett and Tjoa, Ryan and Richey, Cynthia and Zhu, Amy and Flatt, Oliver and Willsey, Max and Tatlock, Zachary and Nandi, Chandrakana},
+  journaltitle = {Proceedings of the ACM on Programming Languages},
+  year         = {2023},
+  url          = {https://doi.org/10.1145/3622834},
+  doi          = {10.1145/3622834},
+  number       = {OOPSLA},
+  publisher    = {Association for Computing Machinery},
+}
+</code></pre>
+<p><a href="publications.html">📝 publications index</a></p>
+</section>
+</section>
+</body>
+</html>

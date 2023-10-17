@@ -5,6 +5,23 @@
 {.pubs}
 :::
 
+{#2023-oopsla-enumo}
+*[Equality Saturation Theory Exploration à la Carte](
+  pub-2023-oopsla-enumo.html
+)* \
+  [Anjali Pal][],
+\ [Brett Saiki][],
+\ [Ryan Tjoa][],
+\ [Cynthia Richey][],
+\ [Amy Zhu][],
+\ [Oliver Flatt][],
+\ [Max Willsey][],
+\ [Zachary Tatlock][],
+\ [Chandrakana Nandi][]
+\
+Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2023
+
+
 {#2023-uist-odyssey}
 *[Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting](
   pub-2023-uist-odyssey.html

@@ -118,7 +118,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2022-fmcad-smallproofs.html</loc>
-  <lastmod>2023-07-08</lastmod>
+  <lastmod>2023-10-10</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2022-popl-rematch.html</loc>
@@ -129,8 +129,12 @@
   <lastmod>2023-10-07</lastmod>
 </url>
 <url>
+  <loc>https://ztatlock.net/pub-2023-oopsla-enumo.html</loc>
+  <lastmod>2023-10-17</lastmod>
+</url>
+<url>
   <loc>https://ztatlock.net/pub-2023-plarch-lakeroad.html</loc>
-  <lastmod>2023-07-10</lastmod>
+  <lastmod>2023-10-10</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2023-pldi-egglog.html</loc>
@@ -311,6 +315,10 @@
 <url>
   <loc>https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry.pdf</loc>
   <lastmod>2023-05-25</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2023-oopsla-enumo/2023-oopsla-enumo.pdf</loc>
+  <lastmod>2023-10-17</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pdf</loc>

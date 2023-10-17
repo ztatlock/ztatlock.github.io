@@ -30,6 +30,7 @@ https://ztatlock.net/pub-2022-ecoop-cakemlfp.html
 https://ztatlock.net/pub-2022-fmcad-smallproofs.html
 https://ztatlock.net/pub-2022-popl-rematch.html
 https://ztatlock.net/pub-2022-tog-carpentry.html
+https://ztatlock.net/pub-2023-oopsla-enumo.html
 https://ztatlock.net/pub-2023-plarch-lakeroad.html
 https://ztatlock.net/pub-2023-pldi-egglog.html
 https://ztatlock.net/pub-2023-popl-babble.html
@@ -76,6 +77,7 @@ https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch-slides.pdf
 https://ztatlock.net/pubs/2022-popl-rematch/2022-popl-rematch.pdf
 https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry-slides.pdf
 https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry.pdf
+https://ztatlock.net/pubs/2023-oopsla-enumo/2023-oopsla-enumo.pdf
 https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-slides.pdf
 https://ztatlock.net/pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.pdf
 https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog-slides.pdf
