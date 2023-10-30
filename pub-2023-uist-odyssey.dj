@@ -21,6 +21,7 @@ ACM Symposium on User Interface Software and Technology (UIST) 2023
 {.columns .columns-8rem}
 - [paper](pubs/2023-uist-odyssey/2023-uist-odyssey.pdf)
 - [code](https://github.com/herbie-fp/odyssey)
+- [publisher](https://dl.acm.org/doi/10.1145/3586183.3606819)
 - [VSCode](https://marketplace.visualstudio.com/items?itemName=herbie-fp.odyssey-fp)
 - [arXiv](https://arxiv.org/abs/2305.10599)
 
@@ -29,7 +30,6 @@ ACM Symposium on User Interface Software and Technology (UIST) 2023
 {% TODO - [slides](pubs/2023-uist-odyssey/2023-uist-odyssey-slides.pdf) %}
 {% TODO - [poster](pubs/2023-uist-odyssey/2023-uist-odyssey-poster.pdf) %}
 {% TODO - [project](TODO) %}
-{% TODO - [publisher](TODO) %}
 {% TODO - [bib](pubs/2023-uist-odyssey/2023-uist-odyssey.bib) %}
 
 
@@ -82,19 +82,22 @@ FPTalks 2023 talk by [Edward Misback][].
 :::
 
 
-{.todo}
-:::
-TODO
-
-
 ## BibTeX
 
 {.bib}
 ```
-TODO
+@inproceedings{2023-uist-odyssey,
+  author    = {Misback, Edward and Chan, Caleb C. and Saiki, Brett and Jun, Eunice and Tatlock, Zachary and Panchekha, Pavel},
+  title     = {Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting},
+  year      = {2023},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3586183.3606819},
+  booktitle = {Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology},
+  articleno = {77},
+  numpages  = {15},
+  series    = {UIST '23}
+}
 ```
-
-:::
 
 [📝 publications index](publications.html)
 
