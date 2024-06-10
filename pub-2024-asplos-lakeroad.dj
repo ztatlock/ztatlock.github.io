@@ -1,0 +1,62 @@
+# FPGA Technology Mapping Using Sketch-Guided Program Synthesis
+
+  [Gus Henry Smith][Gus Smith],
+\ [Benjamin Kushigian][Ben Kushigian],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [Steven Lyubomirsky][],
+\ [Sorawee Porncharoenwase][],
+\ [René Just][],
+\ [Gilbert Louis Bernstein][Gilbert Bernstein],
+\ [Zachary Tatlock][]
+
+Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2024
+
+{.photo}
+:::
+  [![FPGA Technology Mapping Using Sketch-Guided Program Synthesis](
+    pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-absimg.png
+  )](
+    pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.pdf)
+- [teaser](TODO)
+- [talk](TODO)
+- [slides](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-slides.pdf)
+- [poster](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-poster.pdf)
+- [project](TODO)
+- [code](TODO)
+- [publisher](TODO)
+- [arXiv](TODO)
+- [bib](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.bib)
+
+
+## Abstract
+
+TODO
+
+
+## Talk
+
+CONF YEAR talk by [Gus Smith][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
+## BibTeX
+
+{.bib}
+```
+TODO
+```
+
+[📝 publications index](publications.html)
+

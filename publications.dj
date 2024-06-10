@@ -5,6 +5,22 @@
 {.pubs}
 :::
 
+{#2024-asplos-lakeroad}
+*[FPGA Technology Mapping Using Sketch-Guided Program Synthesis](
+  pub-2024-asplos-lakeroad.html
+)* \
+  [Gus Henry Smith][Gus Smith],
+\ [Benjamin Kushigian][Ben Kushigian],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [Steven Lyubomirsky][],
+\ [Sorawee Porncharoenwase][],
+\ [René Just][],
+\ [Gilbert Louis Bernstein][Gilbert Bernstein],
+\ [Zachary Tatlock][]
+\
+Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2024
+
 {#2024-programming-magicmarkup}
 *[Magic Markup: Maintaining Document-External Markup with an LLM](
   pub-2024-programming-magicmarkup.html
