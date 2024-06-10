@@ -5,6 +5,16 @@
 {.pubs}
 :::
 
+{#2024-programming-magicmarkup}
+*[Magic Markup: Maintaining Document-External Markup with an LLM](
+  pub-2024-programming-magicmarkup.html
+)* \
+  [Edward Misback][],
+\ [Zachary Tatlock][],
+\ [Steven L. Tanimoto][]
+\
+&lt;Programming&gt; 2024
+
 {#2023-oopsla-enumo}
 *[Equality Saturation Theory Exploration à la Carte](
   pub-2023-oopsla-enumo.html

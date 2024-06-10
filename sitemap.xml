@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
   <loc>https://ztatlock.net/404.html</loc>
-  <lastmod>2023-06-14</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/about.html</loc>
-  <lastmod>2023-07-28</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/anagram.html</loc>
@@ -26,7 +26,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/calendar-theory.html</loc>
-  <lastmod>2023-07-31</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/collaborators.html</loc>
@@ -54,7 +54,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/index.html</loc>
-  <lastmod>2023-10-17</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/news.html</loc>
@@ -62,7 +62,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/notes.html</loc>
-  <lastmod>2023-06-26</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/paper-recipe.html</loc>
@@ -86,7 +86,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2019-conga-sinkingpoint.html</loc>
-  <lastmod>2023-07-08</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-arith-herbie.html</loc>
@@ -102,7 +102,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-mlsys-nimble.html</loc>
-  <lastmod>2023-06-11</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2021-oopsla-ruler.html</loc>
@@ -130,7 +130,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2023-oopsla-enumo.html</loc>
-  <lastmod>2023-10-17</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2023-plarch-lakeroad.html</loc>
@@ -138,15 +138,19 @@
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2023-pldi-egglog.html</loc>
-  <lastmod>2023-06-25</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2023-popl-babble.html</loc>
-  <lastmod>2023-07-03</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pub-2023-uist-odyssey.html</loc>
-  <lastmod>2023-10-30</lastmod>
+  <lastmod>2024-03-05</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pub-2024-programming-magicmarkup.html</loc>
+  <lastmod>2024-06-10</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/publications.html</loc>
@@ -170,7 +174,7 @@
 </url>
 <url>
   <loc>https://ztatlock.net/students.html</loc>
-  <lastmod>2023-10-17</lastmod>
+  <lastmod>2024-03-05</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/sundial.html</loc>
@@ -347,5 +351,9 @@
 <url>
   <loc>https://ztatlock.net/pubs/2023-uist-odyssey/2023-uist-odyssey.pdf</loc>
   <lastmod>2023-10-07</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2024-programming-magicmarkup/2024-programming-magicmarkup.pdf</loc>
+  <lastmod>2024-06-10</lastmod>
 </url>
 </urlset>

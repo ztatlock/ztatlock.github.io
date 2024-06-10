@@ -1,0 +1,79 @@
+# Magic Markup: Maintaining Document-External Markup with an LLM
+
+  [Edward Misback][],
+\ [Zachary Tatlock][],
+\ [Steven L. Tanimoto][]
+
+&lt;Programming&gt; 2024
+
+{.photo}
+:::
+  [![Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting](
+    pubs/2023-uist-odyssey/2023-uist-odyssey-absimg.gif
+  )](
+    pubs/2023-uist-odyssey/2023-uist-odyssey.pdf
+  )
+:::
+
+{.columns .columns-8rem}
+- [paper](pubs/2024-programming-magicmarkup/2024-programming-magicmarkup.pdf)
+{% TODO - [code](https://github.com/herbie-fp/odyssey) %}
+{% TODO - [publisher](https://dl.acm.org/doi/10.1145/3586183.3606819) %}
+{% TODO - [VSCode](https://marketplace.visualstudio.com/items?itemName=herbie-fp.odyssey-fp) %}
+{% TODO - [arXiv](https://arxiv.org/abs/2305.10599) %}
+
+{% TODO - [teaser](TODO) %}
+{% TODO - [talk](TODO) %}
+{% TODO - [slides](pubs/2023-uist-odyssey/2023-uist-odyssey-slides.pdf) %}
+{% TODO - [poster](pubs/2023-uist-odyssey/2023-uist-odyssey-poster.pdf) %}
+{% TODO - [project](TODO) %}
+{% TODO - [bib](pubs/2023-uist-odyssey/2023-uist-odyssey.bib) %}
+
+
+## Abstract
+
+Text documents, including programs, typically have human-readable semantic
+structure. Historically, programmatic access to these semantics has
+required explicit in-document tagging. Especially in systems where the text
+has an execution semantics, this means it is an opt-in feature that is hard
+to support properly. Today, language models offer a new method: metadata
+can be bound to entities in changing text using a model's human-like
+understanding of semantics, with no requirements on the document structure.
+This method expands the applications of document annotation, a fundamental
+operation in program writing, debugging, maintenance, and presentation. We
+contribute a system that employs an intelligent agent to re-tag modified
+programs, enabling rich annotations to automatically follow code as it
+evolves. We also contribute a formal problem definition, an empirical
+synthetic benchmark suite, and our benchmark generator. Our system achieves
+an accuracy of 90% on our benchmarks and can replace a document's tags in
+parallel at a rate of 5 seconds per tag. While there remains significant
+room for improvement, we find performance reliable enough to justify
+further exploration of applications.
+
+
+## Talk
+
+{.todo}
+:::
+TODO
+:::
+
+&lt;Programming&gt; 2024 talk by [Edward Misback][].
+
+{.photo}
+:::
+``` =html
+<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+```
+:::
+
+
+## BibTeX
+
+{.bib}
+```
+TODO
+```
+
+[📝 publications index](publications.html)
+

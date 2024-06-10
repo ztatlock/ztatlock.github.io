@@ -35,6 +35,7 @@ https://ztatlock.net/pub-2023-plarch-lakeroad.html
 https://ztatlock.net/pub-2023-pldi-egglog.html
 https://ztatlock.net/pub-2023-popl-babble.html
 https://ztatlock.net/pub-2023-uist-odyssey.html
+https://ztatlock.net/pub-2024-programming-magicmarkup.html
 https://ztatlock.net/publications.html
 https://ztatlock.net/research.html
 https://ztatlock.net/response-recipe.html
@@ -85,3 +86,4 @@ https://ztatlock.net/pubs/2023-pldi-egglog/2023-pldi-egglog.pdf
 https://ztatlock.net/pubs/2023-popl-babble/2023-popl-babble-slides.pdf
 https://ztatlock.net/pubs/2023-popl-babble/2023-popl-babble.pdf
 https://ztatlock.net/pubs/2023-uist-odyssey/2023-uist-odyssey.pdf
+https://ztatlock.net/pubs/2024-programming-magicmarkup/2024-programming-magicmarkup.pdf
