@@ -41,6 +41,23 @@ We rigorously prove our results while
 
 ## News
 
+: January 2026
+
+  🗣️ \ We have a [Dagstuhl on EGRAPHS](
+    https://www.dagstuhl.de/seminars/seminar-calendar/seminar-details/26022)!
+
+: June 2025
+
+  🧰 \ PLDI 2025 was a huge success!
+  Many thanks to everyone who helped
+  me out as Program Chair!!
+
+: February 2025
+
+  🗣️ \ [SIGPLAN Research Highlights featured our POPL paper on egg](
+    https://www.sigplan.org/Highlights/Papers/)!
+
+
 : October 2023
 
   🗣️ \ [Anjali][Anjali Pal] is presenting
@@ -113,23 +130,14 @@ Please see [past news](news.html) for more.
 ## Current Students
 
 {.columns .columns-16rem}
-- [Max Willsey][], Postdoctoral Scholar
-- [Gus Smith][], PhD Student
+- [Haobin Ni][], Postdoctoral Scholar
 - [Amy Zhu][], PhD Student
-- [Edward Misback][], PhD Student
 - [Anjali Pal][], PhD Student
 - [Yihong Zhang][], PhD Student
 - [Oliver Flatt][], PhD Student
 - [Kevin Mu][], PhD Student
-- [Brett Saiki][], MS Student
-- [Andrew Cheung][], MS Student
-- [Cynthia Richey][], MS Student
-- [Vishal Canumalla][], BS Student
-- [Caleb Chan][], BS Student
-- [Ryan Tjoa][], BS Student
-- [Aditya Akhileshwaran][], BS Student
-- [Varun Pradeep][], BS Student
-- [Zhiyuan (Kevin) Yan][Zhiyuan Yan], BS Student
+- [Brett Saiki][], PhD Student
+- [Noah Huck][], BS Student
 
 Please see my [students page](students.html) for more.
 
@@ -138,6 +146,95 @@ Please see my [students page](students.html) for more.
 
 {.pubs}
 :::
+
+{#2025-asplos-realexpr}
+*[Target-Aware Implementation of Real Expressions](
+  https://dl.acm.org/doi/10.1145/3669940.3707277
+)* \
+  [Brett Saiki][],
+\ [Jackson Brough][],
+\ [Jonas Regehr][],
+\ [Jesús Ponce][],
+\ [Varun Pradeep][],
+\ [Aditya Akhileshwaran][],
+\ [Zachary Tatlock][],
+\ [Pavel Panchekha][]
+\
+Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2025
+
+{#2024-todaes-3la}
+*[Application-level Validation of Accelerator Designs Using a Formal Software/Hardware Interface](
+  https://dl.acm.org/doi/10.1145/3639051
+)* \
+  [Bo-Yuan Huang][],
+\ [Steven Lyubomirsky][],
+\ [Yi Li][],
+\ [Mike He][],
+\ [Gus Henry Smith][Gus Smith],
+\ [Thierry Tambe][],
+\ [Akash Gaonkar][],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [Gu-Yeon Wei][],
+\ [Aarti Gupta][],
+\ [Zachary Tatlock][],
+\ [Sharad Malik][]
+\
+ACM Transactions on Design Automation of Electronic Systems (TODAES) 2024
+
+{#2024-tog-illusionknitting}
+*[Computational Illusion Knitting](
+  https://dl.acm.org/doi/10.1145/3658231
+)* \
+  [Amy Zhu][],
+\ [Yuxuan Mei][],
+\ [Benjamin Jones][],
+\ [Zachary Tatlock][],
+\ [Adriana Schulz][]
+\
+ACM Transactions on Graphics (TOG) 2024
+
+{#2024-asplos-lakeroad}
+*[FPGA Technology Mapping Using Sketch-Guided Program Synthesis](
+  pub-2024-asplos-lakeroad.html
+)* \
+  [Gus Henry Smith][Gus Smith],
+\ [Benjamin Kushigian][Ben Kushigian],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [Steven Lyubomirsky][],
+\ [Sorawee Porncharoenwase][],
+\ [René Just][],
+\ [Gilbert Louis Bernstein][Gilbert Bernstein],
+\ [Zachary Tatlock][]
+\
+Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2024
+
+{#2024-programming-magicmarkup}
+*[Magic Markup: Maintaining Document-External Markup with an LLM](
+  pub-2024-programming-magicmarkup.html
+)* \
+  [Edward Misback][],
+\ [Zachary Tatlock][],
+\ [Steven L. Tanimoto][]
+\
+<Programming> 2024
+
+{#2023-oopsla-enumo}
+*[Equality Saturation Theory Exploration à la Carte](
+  pub-2023-oopsla-enumo.html
+)* \
+  [Anjali Pal][],
+\ [Brett Saiki][],
+\ [Ryan Tjoa][],
+\ [Cynthia Richey][],
+\ [Amy Zhu][],
+\ [Oliver Flatt][],
+\ [Max Willsey][],
+\ [Zachary Tatlock][],
+\ [Chandrakana Nandi][]
+\
+Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2023
 
 {#2023-uist-odyssey}
 *[Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting](
