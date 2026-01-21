@@ -5,6 +5,53 @@
 {.pubs}
 :::
 
+{#2025-asplos-realexpr}
+*[Target-Aware Implementation of Real Expressions](
+  https://dl.acm.org/doi/10.1145/3669940.3707277
+)* \
+  [Brett Saiki][],
+\ [Jackson Brough][],
+\ [Jonas Regehr][],
+\ [Jesús Ponce][],
+\ [Varun Pradeep][],
+\ [Aditya Akhileshwaran][],
+\ [Zachary Tatlock][],
+\ [Pavel Panchekha][]
+\
+Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2025
+
+{#2024-todaes-3la}
+*[Application-level Validation of Accelerator Designs Using a Formal Software/Hardware Interface](
+  https://dl.acm.org/doi/10.1145/3639051
+)* \
+  [Bo-Yuan Huang][],
+\ [Steven Lyubomirsky][],
+\ [Yi Li][],
+\ [Mike He][],
+\ [Gus Henry Smith][Gus Smith],
+\ [Thierry Tambe][],
+\ [Akash Gaonkar][],
+\ [Vishal Canumalla][],
+\ [Andrew Cheung][],
+\ [Gu-Yeon Wei][],
+\ [Aarti Gupta][],
+\ [Zachary Tatlock][],
+\ [Sharad Malik][]
+\
+ACM Transactions on Design Automation of Electronic Systems (TODAES) 2024
+
+{#2024-tog-illusionknitting}
+*[Computational Illusion Knitting](
+  https://dl.acm.org/doi/10.1145/3658231
+)* \
+  [Amy Zhu][],
+\ [Yuxuan Mei][],
+\ [Benjamin Jones][],
+\ [Zachary Tatlock][],
+\ [Adriana Schulz][]
+\
+ACM Transactions on Graphics (TOG) 2024
+
 {#2024-asplos-lakeroad}
 *[FPGA Technology Mapping Using Sketch-Guided Program Synthesis](
   pub-2024-asplos-lakeroad.html
@@ -632,6 +679,15 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 {.pubs}
 :::
 
+{#2023-farm-twine}
+*[Exploring Self-Embedded Knitting Programs with Twine](
+  https://dl.acm.org/doi/10.1145/3609023.3609805
+)* \
+  [Amy Zhu][],
+\ [Adriana Schulz][],
+\ [Zachary Tatlock][]
+\
+ACM SIGPLAN International Workshop on Functional Art, Music, Modelling and Design (FARM) 2023
 
 {#2023-plarch-lakeroad}
 *[Generate Compilers from Hardware Models!](pub-2023-plarch-lakeroad.html)* \
