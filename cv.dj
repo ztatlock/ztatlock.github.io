@@ -4,6 +4,43 @@
 
 `https://ztatlock.net`
 
+## Selected Recent Highlights (2024-2026)
+
+### _Leadership_
+
+- 2026 - 2029 PLDI Steering Committee
+- 2026 - 2029 PACMPL Advisory Board Member
+- 2025 PLDI Program Committee Chair
+- 2025 FPTalks Co-Organizer
+
+### _Invited Talks_
+
+- Everything is a compiler, try Equality Saturation! \
+  Brown University, PL and Graphics groups, February 2026
+
+- When You've Got EqSat, Everything Is a Compiler \
+  Cornell University, November 2024
+
+- Analysis and Optimizations with Equality Saturation \
+  Marktoberdorf Summer School, August 2024
+
+### _Selected Publications (2024-2025)_
+
+- *Target-Aware Implementation of Real Expressions* \
+  Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2025
+
+- *Application-level Validation of Accelerator Designs Using a Formal Software/Hardware Interface* \
+  ACM Transactions on Design Automation of Electronic Systems (TODAES) 2024
+
+- *Computational Illusion Knitting* \
+  ACM Transactions on Graphics (TOG) 2024
+
+- *FPGA Technology Mapping Using Sketch-Guided Program Synthesis* \
+  Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2024
+
+- *Magic Markup: Maintaining Document-External Markup with an LLM* \
+  <Programming> 2024
+
 ## Experience
 
 - *University of Washington, Seattle, WA* \
@@ -149,7 +186,7 @@
   * PhD Student at UC San Diego
 
 ### _Graduated Bachelors Students_
-#
+
 - [Alex Fischman][], BS 2025
 
   * Jane Street
@@ -166,10 +203,6 @@
 
   * OCaml Compiler Team at Jane Street
 
-- Kirsten Graham, BS 2024
-
-  * Jane Street
-
 - Aditya Akhileshwaran, BS 2024
 
 - Varun Pradeep, BS 2024
@@ -181,6 +214,8 @@
 - Brett Saiki, BS 2023
 
   * MS Student at the University of Washington
+
+- Caleb Chan, BS 2023
 
 - Andrew Cheung, BS 2023
 
@@ -747,7 +782,7 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
 * Distinguished Paper Award for "Rewrite Rule Inference Using Equality Saturation" \
   ACM SIGPLAN Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021
 
-* Spotlight Papaer Award for "Dynamic Tensor Rematerialization" \
+* Spotlight Paper Award for "Dynamic Tensor Rematerialization" \
   International Conference on Learning Representations (ICLR) 2021
 
 * Distinguished Paper Award for "egg: Fast and Extensible Equality Saturation" \
@@ -767,8 +802,14 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
 
 ## Invited Talks
 
+* Everything is a compiler, try Equality Saturation! \
+  Brown University, PL and Graphics groups, February 2026
+
 * When You've Got EqSat, Everything Is a Compiler \
-  Cornell University, Fall 2024
+  Cornell University, November 2024
+
+* Analysis and Optimizations with Equality Saturation \
+  Marktoberdorf Summer School, August 2024
 
 * Relational Equality Saturation in egg \
   Synopsys Inc., Fall 2023
@@ -877,7 +918,9 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
 
 - 2026 - 2029 PLDI Steering Committee
 - 2026 - 2029 PACMPL Advisory Board Member
+- 2022 - Present EGRAPHS Community Advisory Board
 - 2025 PLDI Program Committee Chair
+- 2025 FPTalks Co-Organizer
 - 2024 PLDI Workshops Co-chair
 - 2023 FPTalks Co-Organizer
 - 2023 EGRAPHS Workshop Co-Organizer
@@ -908,6 +951,7 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
 
 ### _Department_
 
+- 2025 - 2027 : UW CSE Faculty Graduate Admissions Co-chair
 - 2022 - 2024 : UW CSE Faculty Recruiting Co-chair
 - 2020 - 2021 : UW CSE Undergraduate Admissions Committee
 - 2019 - 2020 : UW CSE Diversity Committee
@@ -957,4 +1001,3 @@ I have also helped
 
 - BRASS: A Picture is Worth a Billion Bits: Adaptive Visualization of Big Data \
   Co-PI; DARPA; $7,500,000; 2015 – 2019
-
