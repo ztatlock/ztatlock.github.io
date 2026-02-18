@@ -1,2 +1,1 @@
-- Make a "pub page" for each publication
-- Make a "talk page" for each talk
+Legacy note: backlog is now tracked in `ROADMAP.md`.
