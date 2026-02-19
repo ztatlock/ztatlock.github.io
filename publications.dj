@@ -617,7 +617,7 @@ Network and Distributed System Security (NDSS) 2014
 
 {#2012-security-quark}
 *[Establishing Browser Security Guarantees through Formal Shim Verification](
-  pub-2012-security-quark
+  pub-2012-security-quark.html
 )* \
   [Dongseok Jang][],
 \ [Zachary Tatlock][],
@@ -805,5 +805,4 @@ Workshop on Coq for Programming Languages (CoqPL) 2015
 - [DROPS](https://drops.dagstuhl.de/opus/ergebnis.php?wer=opus&suchart=teil&Lines_Displayed=10&sort=o.date_year+DESC%2C+o.title&suchfeld1=oa.person&suchwert1=Tatlock%2C+Zachary)
 - [IEEE Xplore](https://ieeexplore.ieee.org/author/37085529136)
 - [SpringerLink](https://link.springer.com/search?dc.creator=Zachary%20Tatlock)
-
 
