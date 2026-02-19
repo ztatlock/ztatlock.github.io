@@ -49,8 +49,6 @@ systems.
 
 ## BibTeX
 
-{% TODO - URL and DOI %}
-
 {.bib}
 ```
 @article{2023-pldi-egglog,
@@ -60,8 +58,9 @@ systems.
   number    = {PLDI},
   year      = {2023},
   publisher = {Association for Computing Machinery},
+  url       = {https://doi.org/10.1145/3591239},
+  doi       = {10.1145/3591239},
 }
 ```
 
 [📝 publications index](publications.html)
-

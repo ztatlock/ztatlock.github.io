@@ -41,11 +41,29 @@ Use this file as the single backlog source instead of scattered TODO notes.
 - [ ] Fill arXiv TODO for `pub-2021-sff-3dp` (`pub-2021-sff-3dp.dj:33`).
 - [ ] Fill talk/arXiv TODOs for `pub-2022-ecoop-cakemlfp` (`pub-2022-ecoop-cakemlfp.dj:31`, `pub-2022-ecoop-cakemlfp.dj:32`).
 - [ ] Resolve TODO-tagged poster item for `pub-2022-tog-carpentry` (`pub-2022-tog-carpentry.dj:33`).
-- [ ] Resolve project/teaser/talk/arXiv TODOs and video placeholder for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:30`, `pub-2023-oopsla-enumo.dj:31`, `pub-2023-oopsla-enumo.dj:32`, `pub-2023-oopsla-enumo.dj:35`, `pub-2023-oopsla-enumo.dj:67`, `pub-2023-oopsla-enumo.dj:72`).
-- [ ] Resolve TODO-tagged project/poster/talk items for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:29`, `pub-2023-plarch-lakeroad.dj:30`, `pub-2023-plarch-lakeroad.dj:31`).
-- [ ] Resolve TODO-tagged talk and URL/DOI note for `pub-2023-pldi-egglog` (`pub-2023-pldi-egglog.dj:33`, `pub-2023-pldi-egglog.dj:52`).
-- [ ] Resolve TODO-tagged project/poster items for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:30`, `pub-2023-popl-babble.dj:31`).
-- [ ] Resolve TODO-tagged teaser/talk/slides/poster/project/bib items plus talk/video placeholders for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:28`, `pub-2023-uist-odyssey.dj:29`, `pub-2023-uist-odyssey.dj:30`, `pub-2023-uist-odyssey.dj:31`, `pub-2023-uist-odyssey.dj:32`, `pub-2023-uist-odyssey.dj:33`, `pub-2023-uist-odyssey.dj:61`, `pub-2023-uist-odyssey.dj:69`).
+- [ ] Resolve TODO-tagged `project` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:30`).
+- [ ] Resolve TODO-tagged `teaser` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:31`).
+- [ ] Resolve TODO-tagged `talk` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:32`).
+- [ ] Resolve TODO-tagged `slides` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:33`).
+- [ ] Resolve TODO-tagged `poster` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:34`).
+- [ ] Resolve TODO-tagged `arXiv` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:35`).
+- [ ] Replace standalone TODO marker in talk section for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:67`).
+- [ ] Replace talk video ID placeholder for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:72`).
+- [x] Resolve TODO-tagged `project` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:29`).
+- [ ] Resolve TODO-tagged `poster` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:30`).
+- [x] Replace TODO-tagged talk note for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:31`).
+- [ ] Resolve TODO-tagged `talk` link for `pub-2023-pldi-egglog` (`pub-2023-pldi-egglog.dj:33`).
+- [x] Resolve TODO-tagged URL/DOI note for `pub-2023-pldi-egglog` (`pub-2023-pldi-egglog.dj:52`).
+- [ ] Resolve TODO-tagged `project` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:30`).
+- [ ] Resolve TODO-tagged `poster` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:31`).
+- [ ] Resolve TODO-tagged `teaser` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:28`).
+- [ ] Resolve TODO-tagged `talk` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:29`).
+- [ ] Resolve TODO-tagged `slides` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:30`).
+- [ ] Resolve TODO-tagged `poster` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:31`).
+- [ ] Resolve TODO-tagged `project` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:32`).
+- [ ] Resolve TODO-tagged `bib` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:33`).
+- [ ] Replace talk TODO block text for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:61`).
+- [ ] Replace talk video ID placeholder for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:69`).
 - [ ] Fill `teaser` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:26`).
 - [ ] Fill `talk` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:27`).
 - [ ] Fill `project` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:30`).

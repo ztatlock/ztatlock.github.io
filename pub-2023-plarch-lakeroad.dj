@@ -26,9 +26,8 @@ Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 - [event](https://pldi23.sigplan.org/home/plarch-2023)
 - [bib](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad.bib)
 
-{% TODO - [project](https://cseweb.ucsd.edu/~lerner/quail.html) %}
+- [project](https://cseweb.ucsd.edu/~lerner/quail.html)
 {% TODO - [poster](pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-poster.pdf) %}
-{% TODO - talk %}
 
 
 ## Abstract
@@ -67,4 +66,3 @@ PLARCH 2023 talk by [Gus Smith][].
 ```
 
 [📝 publications index](publications.html)
-
