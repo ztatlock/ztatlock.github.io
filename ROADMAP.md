@@ -62,4 +62,4 @@ Use this file as the single backlog source instead of scattered TODO notes.
 ## Known Non-TODO Follow-Ups From Review
 
 - [ ] Fix broken publication link target missing `.html` suffix (`publications.dj:620`).
-- [ ] Decide whether hidden `{% TODO ... %}` blocks should keep shipping to production or be treated as release blockers.
+- [ ] Decide whether hidden template TODO blocks in publication source files should keep shipping to production or be treated as release blockers.
