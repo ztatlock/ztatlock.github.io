@@ -20,17 +20,12 @@ ACM Symposium on User Interface Software and Technology (UIST) 2023
 
 {.columns .columns-8rem}
 - [paper](pubs/2023-uist-odyssey/2023-uist-odyssey.pdf)
+- [talk](https://www.youtube.com/watch?v=2uCkUodZ22A)
 - [code](https://github.com/herbie-fp/odyssey)
 - [publisher](https://dl.acm.org/doi/10.1145/3586183.3606819)
 - [VSCode](https://marketplace.visualstudio.com/items?itemName=herbie-fp.odyssey-fp)
 - [arXiv](https://arxiv.org/abs/2305.10599)
-
-{% TODO - [teaser](TODO) %}
-{% TODO - [talk](TODO) %}
-{% TODO - [slides](pubs/2023-uist-odyssey/2023-uist-odyssey-slides.pdf) %}
-{% TODO - [poster](pubs/2023-uist-odyssey/2023-uist-odyssey-poster.pdf) %}
-{% TODO - [project](TODO) %}
-{% TODO - [bib](pubs/2023-uist-odyssey/2023-uist-odyssey.bib) %}
+- [bib](pubs/2023-uist-odyssey/2023-uist-odyssey.bib)
 
 
 ## Abstract
@@ -56,20 +51,13 @@ for interactive range modification and local error visualization.
 
 ## Talk
 
-{.todo}
-:::
-TODO
-
-
 UIST 2023 talk by [Edward Misback][].
 
 {.photo}
 :::
 ``` =html
-<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/2uCkUodZ22A" title="UIST 2023 talk by Edward Misback" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ```
-:::
-
 :::
 
 FPTalks 2023 talk by [Edward Misback][].
@@ -100,4 +88,3 @@ FPTalks 2023 talk by [Edward Misback][].
 ```
 
 [📝 publications index](publications.html)
-

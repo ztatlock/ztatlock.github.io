@@ -1,7 +1,31 @@
-FILES := https://cs.washington.edu/homes/ztatlock/WEBFILES
-PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
+FILES          := https://cs.washington.edu/homes/ztatlock/WEBFILES
+ALL_DJ         := $(wildcard *.dj)
+GENERATED_HTML := $(patsubst %.dj,%.html,$(ALL_DJ))
 
-%.html: %.dj $(wildcard templates/*)
+DRAFT_DJ       := $(shell rg -l '^\# DRAFT$$' $(ALL_DJ) 2>/dev/null || true)
+PUBLIC_DJ      := $(filter-out $(DRAFT_DJ),$(ALL_DJ))
+
+PAGES          := $(patsubst %.dj,%.html,$(PUBLIC_DJ))
+DRAFT_PAGES    := $(patsubst %.dj,%.html,$(DRAFT_DJ))
+STATIC_HTML    := $(filter-out 404.html,\
+                   $(filter-out $(GENERATED_HTML),$(wildcard *.html)))
+
+SITEMAP_PDFS   := $(wildcard pubs/*/*.pdf)
+SITEMAP_HTML   := $(sort $(STATIC_HTML) $(PAGES))
+
+CHECK          := scripts/check.sh
+INDEX_NOW      := scripts/index-now.sh
+MKPUB          := scripts/mkpub.sh
+PUB_INVENTORY  := scripts/build_pub_inventory.py
+
+INVENTORY_PREVIEW_OUT  := state/inventory
+INVENTORY_WEBFILES_OUT := /Users/ztatlock/Desktop/WEBFILES/inventory
+
+INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
+YCF           ?=
+
+.SECONDEXPANSION:
+%.html: %.dj $$(wildcard $$*.meta) $(wildcard templates/*)
 	$(eval TITLE := $(shell \
 			head -n 1 '$<' \
 			| tr -d '#[]' \
@@ -30,18 +54,30 @@ PAGES := $(patsubst %.dj,%.html,$(wildcard *.dj))
 .PHONY: all
 all: $(PAGES) sitemap.txt sitemap.xml
 
-sitemap.txt: $(wildcard *.html) $(wildcard pubs/*/*.pdf)
+.PHONY: help
+help:
+	@printf '%s\n' \
+		'make all' \
+		'make drafts' \
+		'make check' \
+		'make inventory [INVENTORY_OUT=/path/to/out-dir]' \
+		'make inventory-webfiles' \
+		'make mkpub YCF=YEAR-CONF-SYS' \
+		'make index-now' \
+		'make clean'
+
+sitemap.txt: $(SITEMAP_HTML) $(SITEMAP_PDFS)
 	@echo "BUILD : $@"
 	@rm -f $@
-	@for page in *.html pubs/*/*.pdf; do \
+	@for page in $(SITEMAP_HTML) $(SITEMAP_PDFS); do \
 		echo "https://ztatlock.net/$${page}"; \
 	done >> $@
 
-sitemap.xml: $(wildcard *.html) $(wildcard pubs/*/*.pdf)
+sitemap.xml: $(SITEMAP_HTML) $(SITEMAP_PDFS)
 	@echo "BUILD : $@"
 	@echo '<?xml version="1.0" encoding="UTF-8"?>' > $@
 	@echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $@
-	@for page in *.html pubs/*/*.pdf; do \
+	@for page in $(SITEMAP_HTML) $(SITEMAP_PDFS); do \
 		printf '<url>\n  <loc>%s</loc>\n  <lastmod>%s</lastmod>\n</url>\n' \
 			"https://ztatlock.net/$${page}" \
 			"$$(git ls-files --error-unmatch "$${page}" &> /dev/null \
@@ -50,7 +86,34 @@ sitemap.xml: $(wildcard *.html) $(wildcard pubs/*/*.pdf)
 	done >> $@
 	@echo '</urlset>' >> $@
 
+.PHONY: drafts
+drafts: $(DRAFT_PAGES)
+
+.PHONY: check
+check:
+	@bash $(CHECK)
+
+.PHONY: inventory
+inventory:
+	@python3 $(PUB_INVENTORY) --out-dir "$(INVENTORY_OUT)"
+
+.PHONY: inventory-webfiles
+inventory-webfiles:
+	@python3 $(PUB_INVENTORY) --out-dir "$(INVENTORY_WEBFILES_OUT)"
+
+.PHONY: mkpub
+mkpub:
+	@[ -n "$(YCF)" ] || { \
+		echo "Usage: make mkpub YCF=YEAR-CONF-SYS" >&2; \
+		exit 1; \
+	}
+	@bash $(MKPUB) "$(YCF)"
+
+.PHONY: index-now
+index-now:
+	@bash $(INDEX_NOW)
+
 .PHONY: clean
 clean:
-	rm -f $(PAGES)
+	rm -f $(GENERATED_HTML)
 	rm -f sitemap.txt sitemap.xml

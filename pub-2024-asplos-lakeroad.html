@@ -8,21 +8,21 @@
   <link rel="icon" href="img/favicon.png">
   <link rel="stylesheet" href="style.css">
   <link rel="canonical" href="https://ztatlock.net/pub-2024-asplos-lakeroad.html">
-<meta name="description" content="DESCRIPTION">
+<meta name="description" content="Lakeroad applies sketch-guided program synthesis to FPGA technology mapping, improving mapping coverage while providing correctness guarantees.">
 
 <!-- OpenGraph -->
 <meta property="og:url" content="https://ztatlock.net/pub-2024-asplos-lakeroad.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="TITLE">
-<meta property="og:description" content="DESCRIPTION">
+<meta property="og:title" content="FPGA Technology Mapping Using Sketch-Guided Program Synthesis">
+<meta property="og:description" content="Lakeroad applies sketch-guided program synthesis to FPGA technology mapping, improving mapping coverage while providing correctness guarantees.">
 <meta property="og:image" content="https://ztatlock.net/pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-meta.png">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta property="twitter:domain" content="ztatlock.net">
 <meta property="twitter:url" content="https://ztatlock.net/pub-2024-asplos-lakeroad.html">
-<meta name="twitter:title" content="TITLE">
-<meta name="twitter:description" content="DESCRIPTION">
+<meta name="twitter:title" content="FPGA Technology Mapping Using Sketch-Guided Program Synthesis">
+<meta name="twitter:description" content="Lakeroad applies sketch-guided program synthesis to FPGA technology mapping, improving mapping coverage while providing correctness guarantees.">
 <meta name="twitter:image" content="https://ztatlock.net/pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-meta.png">
   <script async src="https://analytics.umami.is/script.js" data-website-id="e9f6fa87-a4bb-48ac-84df-b2d190867eb9" data-domains="ztatlock.net"></script>
 </head>
@@ -47,28 +47,16 @@
 <a href="pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.pdf">paper</a>
 </li>
 <li>
-<a href="TODO">teaser</a>
+<a href="https://www.youtube.com/watch?v=2XgOWAtJ8vs">talk</a>
 </li>
 <li>
-<a href="TODO">talk</a>
+<a href="https://github.com/gussmith23/lakeroad">code</a>
 </li>
 <li>
-<a href="pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-slides.pdf">slides</a>
+<a href="https://doi.org/10.1145/3620665.3640387">publisher</a>
 </li>
 <li>
-<a href="pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-poster.pdf">poster</a>
-</li>
-<li>
-<a href="TODO">project</a>
-</li>
-<li>
-<a href="TODO">code</a>
-</li>
-<li>
-<a href="TODO">publisher</a>
-</li>
-<li>
-<a href="TODO">arXiv</a>
+<a href="https://arxiv.org/abs/2401.16526">arXiv</a>
 </li>
 <li>
 <a href="pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.bib">bib</a>
@@ -76,18 +64,45 @@
 </ul>
 <section id="Abstract">
 <h2>Abstract</h2>
-<p>TODO</p>
+<p>FPGA technology mapping is the process of implementing a hardware
+design expressed in high-level HDL (hardware design language) code
+using the low-level, architecture-specific primitives of the target
+FPGA. As FPGAs become increasingly heterogeneous, achieving high
+performance requires hardware synthesis tools that better support
+mapping to complex, highly configurable primitives like digital
+signal processors (DSPs). Current tools support DSP mapping via
+handwritten special-case mapping rules, which are laborious to
+write, error-prone, and often overlook mapping opportunities. We
+introduce Lakeroad, a principled approach to technology mapping via
+sketch-guided program synthesis. Lakeroad leverages two
+techniques, architecture-independent sketch templates and
+semantics extraction from HDL, to provide extensible technology
+mapping with stronger correctness guarantees and higher coverage of
+mapping opportunities than state-of-the-art tools. Across
+representative microbenchmarks, Lakeroad produces 2–3.5× the
+number of optimal mappings compared to proprietary
+state-of-the-art tools and 6–44× the number of optimal mappings
+compared to popular open-source tools, while also providing
+correctness guarantees not given by any other tool.</p>
 </section>
 <section id="Talk">
 <h2>Talk</h2>
 <p>ASPLOS 2024 talk by <a href="https://justg.us/">Gus Smith</a>.</p>
 <div class="photo">
-<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/2XgOWAtJ8vs" title="ASPLOS 2024 talk by Gus Smith" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 </section>
 <section id="BibTeX">
 <h2>BibTeX</h2>
-<pre class="bib"><code>TODO
+<pre class="bib"><code>@inproceedings{2024-asplos-lakeroad,
+  author    = {Smith, Gus Henry and Kushigian, Benjamin and Canumalla, Vishal and Cheung, Andrew and Lyubomirsky, Steven and Porncharoenwase, Sorawee and Just, René and Bernstein, Gilbert Louis and Tatlock, Zachary},
+  title     = {FPGA Technology Mapping Using Sketch-Guided Program Synthesis},
+  year      = {2024},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3620665.3640387},
+  booktitle = {29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2},
+  series    = {ASPLOS '24}
+}
 </code></pre>
 <p><a href="publications.html">📝 publications index</a></p>
 </section>

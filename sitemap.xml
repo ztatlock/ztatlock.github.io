@@ -37,20 +37,12 @@
   <lastmod>2023-06-14</lastmod>
 </url>
 <url>
-  <loc>https://ztatlock.net/course-recipe.html</loc>
-  <lastmod>2023-06-12</lastmod>
-</url>
-<url>
   <loc>https://ztatlock.net/cv.html</loc>
   <lastmod>2026-02-18</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/demo-naive-union-find.html</loc>
   <lastmod>2023-06-05</lastmod>
-</url>
-<url>
-  <loc>https://ztatlock.net/games.html</loc>
-  <lastmod>2023-07-28</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/index.html</loc>
@@ -63,10 +55,6 @@
 <url>
   <loc>https://ztatlock.net/notes.html</loc>
   <lastmod>2024-03-05</lastmod>
-</url>
-<url>
-  <loc>https://ztatlock.net/paper-recipe.html</loc>
-  <lastmod>2023-10-07</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/proverbs-poems.html</loc>
@@ -165,14 +153,6 @@
   <lastmod>2023-07-01</lastmod>
 </url>
 <url>
-  <loc>https://ztatlock.net/response-recipe.html</loc>
-  <lastmod>2023-07-28</lastmod>
-</url>
-<url>
-  <loc>https://ztatlock.net/s-expressions.html</loc>
-  <lastmod>2023-06-08</lastmod>
-</url>
-<url>
   <loc>https://ztatlock.net/service.html</loc>
   <lastmod>2026-01-21</lastmod>
 </url>
@@ -189,20 +169,12 @@
   <lastmod>2023-10-07</lastmod>
 </url>
 <url>
-  <loc>https://ztatlock.net/talk-recipe.html</loc>
-  <lastmod>2023-10-07</lastmod>
-</url>
-<url>
   <loc>https://ztatlock.net/talks.html</loc>
   <lastmod>2026-02-18</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/teaching.html</loc>
   <lastmod>2026-01-21</lastmod>
-</url>
-<url>
-  <loc>https://ztatlock.net/why-skepticism.html</loc>
-  <lastmod>2023-07-06</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2008-oopsla-dtar/2008-oopsla-dtar-poster.pdf</loc>
@@ -323,6 +295,10 @@
 <url>
   <loc>https://ztatlock.net/pubs/2022-tog-carpentry/2022-tog-carpentry.pdf</loc>
   <lastmod>2023-05-25</lastmod>
+</url>
+<url>
+  <loc>https://ztatlock.net/pubs/2023-oopsla-enumo/2023-oopsla-enumo-slides.pdf</loc>
+  <lastmod>2026-03-19</lastmod>
 </url>
 <url>
   <loc>https://ztatlock.net/pubs/2023-oopsla-enumo/2023-oopsla-enumo.pdf</loc>

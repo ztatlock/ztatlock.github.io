@@ -23,20 +23,35 @@ Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2
 
 {.columns .columns-8rem}
 - [paper](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.pdf)
-- [teaser](TODO)
-- [talk](TODO)
-- [slides](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-slides.pdf)
-- [poster](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-poster.pdf)
-- [project](TODO)
-- [code](TODO)
-- [publisher](TODO)
-- [arXiv](TODO)
+- [talk](https://www.youtube.com/watch?v=2XgOWAtJ8vs)
+- [code](https://github.com/gussmith23/lakeroad)
+- [publisher](https://doi.org/10.1145/3620665.3640387)
+- [arXiv](https://arxiv.org/abs/2401.16526)
 - [bib](pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.bib)
 
 
 ## Abstract
 
-TODO
+FPGA technology mapping is the process of implementing a hardware
+design expressed in high-level HDL (hardware design language) code
+using the low-level, architecture-specific primitives of the target
+FPGA. As FPGAs become increasingly heterogeneous, achieving high
+performance requires hardware synthesis tools that better support
+mapping to complex, highly configurable primitives like digital
+signal processors (DSPs). Current tools support DSP mapping via
+handwritten special-case mapping rules, which are laborious to
+write, error-prone, and often overlook mapping opportunities. We
+introduce Lakeroad, a principled approach to technology mapping via
+sketch-guided program synthesis. Lakeroad leverages two
+techniques, architecture-independent sketch templates and
+semantics extraction from HDL, to provide extensible technology
+mapping with stronger correctness guarantees and higher coverage of
+mapping opportunities than state-of-the-art tools. Across
+representative microbenchmarks, Lakeroad produces 2–3.5× the
+number of optimal mappings compared to proprietary
+state-of-the-art tools and 6–44× the number of optimal mappings
+compared to popular open-source tools, while also providing
+correctness guarantees not given by any other tool.
 
 
 ## Talk
@@ -46,7 +61,7 @@ ASPLOS 2024 talk by [Gus Smith][].
 {.photo}
 :::
 ``` =html
-<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/2XgOWAtJ8vs" title="ASPLOS 2024 talk by Gus Smith" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ```
 :::
 
@@ -55,7 +70,15 @@ ASPLOS 2024 talk by [Gus Smith][].
 
 {.bib}
 ```
-TODO
+@inproceedings{2024-asplos-lakeroad,
+  author    = {Smith, Gus Henry and Kushigian, Benjamin and Canumalla, Vishal and Cheung, Andrew and Lyubomirsky, Steven and Porncharoenwase, Sorawee and Just, René and Bernstein, Gilbert Louis and Tatlock, Zachary},
+  title     = {FPGA Technology Mapping Using Sketch-Guided Program Synthesis},
+  year      = {2024},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3620665.3640387},
+  booktitle = {29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2},
+  series    = {ASPLOS '24}
+}
 ```
 
 [📝 publications index](publications.html)

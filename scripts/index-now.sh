@@ -24,11 +24,17 @@ function index-now-url {
   echo "https://www.bing.com/indexnow?url=${DOM}/${1}&key=${KEY}"
 }
 
-PREV="templates/index-now-prev.txt"
-LOG="templates/index-now-log.txt"
+PREV="state/index-now-prev.txt"
+LOG="state/index-now-log.txt"
 
-# get previous run date
-prev="$(cat "$PREV")"
+mkdir -p state
+
+# default to a very old date if local run-state has not been initialized yet
+if [ -f "$PREV" ]; then
+  prev="$(cat "$PREV")"
+else
+  prev="1970-01-01"
+fi
 
 # submit any updated pages
 for page in *.html pubs/*/*.pdf; do
@@ -37,7 +43,7 @@ for page in *.html pubs/*/*.pdf; do
     echo "SUBMIT : $page" | tee -a "$LOG"
     wget -a "$LOG" -O /dev/null "$(index-now-url "$page")"
     echo >> "$LOG"
-    printf "=%.0s" $(seq 80) >> "$LOG"
+    printf '=%.0s' $(seq 80) >> "$LOG"
     echo >> "$LOG"
     sleep 5
   fi

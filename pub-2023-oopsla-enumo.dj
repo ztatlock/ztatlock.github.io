@@ -23,16 +23,12 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2023
 
 {.columns .columns-8rem}
 - [paper](pubs/2023-oopsla-enumo/2023-oopsla-enumo.pdf)
+- [slides](pubs/2023-oopsla-enumo/2023-oopsla-enumo-slides.pdf)
+- [talk](https://youtu.be/cwMpjtNJba8)
 - [code](https://github.com/uwplse/ruler)
 - [publisher](https://dl.acm.org/doi/10.1145/3622834)
+- [arXiv](https://arxiv.org/abs/2304.04265)
 - [bib](pubs/2023-oopsla-enumo/2023-oopsla-enumo.bib)
-
-{% - [project](TODO) %}
-{% - [teaser](TODO) %}
-{% - [talk](TODO) %}
-{% - [slides](pubs/2023-oopsla-enumo/2023-oopsla-enumo-slides.pdf) %}
-{% - [poster](pubs/2023-oopsla-enumo/2023-oopsla-enumo-poster.pdf) %}
-{% - [arXiv](TODO) %}
 
 ## Abstract
 
@@ -64,12 +60,10 @@ manually-developed rulesets in systems driven by equality saturation.
 
 OOPSLA 2023 talk by [Anjali Pal][].
 
-{% TODO %}
-
 {.photo}
 :::
 ``` =html
-<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/cwMpjtNJba8" title="OOPSLA 2023 talk by Anjali Pal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ```
 :::
 
@@ -91,4 +85,3 @@ OOPSLA 2023 talk by [Anjali Pal][].
 ```
 
 [📝 publications index](publications.html)
-

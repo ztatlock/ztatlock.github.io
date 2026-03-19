@@ -8,26 +8,20 @@
 
 {.photo}
 :::
-  [![Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting](
-    pubs/2023-uist-odyssey/2023-uist-odyssey-absimg.gif
+  [![Magic Markup: Maintaining Document-External Markup with an LLM](
+    pubs/2024-programming-magicmarkup/2024-programming-magicmarkup-absimg.png
   )](
-    pubs/2023-uist-odyssey/2023-uist-odyssey.pdf
+    pubs/2024-programming-magicmarkup/2024-programming-magicmarkup.pdf
   )
 :::
 
 {.columns .columns-8rem}
 - [paper](pubs/2024-programming-magicmarkup/2024-programming-magicmarkup.pdf)
-{% TODO - [code](https://github.com/herbie-fp/odyssey) %}
-{% TODO - [publisher](https://dl.acm.org/doi/10.1145/3586183.3606819) %}
-{% TODO - [VSCode](https://marketplace.visualstudio.com/items?itemName=herbie-fp.odyssey-fp) %}
-{% TODO - [arXiv](https://arxiv.org/abs/2305.10599) %}
-
-{% TODO - [teaser](TODO) %}
-{% TODO - [talk](TODO) %}
-{% TODO - [slides](pubs/2023-uist-odyssey/2023-uist-odyssey-slides.pdf) %}
-{% TODO - [poster](pubs/2023-uist-odyssey/2023-uist-odyssey-poster.pdf) %}
-{% TODO - [project](TODO) %}
-{% TODO - [bib](pubs/2023-uist-odyssey/2023-uist-odyssey.bib) %}
+- [code](https://github.com/elmisback/magic-markup)
+- [demo](https://observablehq.com/@elmisback/magic-markup-demo)
+- [publisher](https://doi.org/10.1145/3660829.3660836)
+- [arXiv](https://arxiv.org/abs/2403.03481)
+- [bib](pubs/2024-programming-magicmarkup/2024-programming-magicmarkup.bib)
 
 
 ## Abstract
@@ -50,30 +44,19 @@ parallel at a rate of 5 seconds per tag. While there remains significant
 room for improvement, we find performance reliable enough to justify
 further exploration of applications.
 
-
-## Talk
-
-{.todo}
-:::
-TODO
-:::
-
-&lt;Programming&gt; 2024 talk by [Edward Misback][].
-
-{.photo}
-:::
-``` =html
-<iframe src="https://www.youtube.com/embed/YOUTUBEID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-```
-:::
-
-
 ## BibTeX
 
 {.bib}
 ```
-TODO
+@inproceedings{2024-programming-magicmarkup,
+  author    = {Misback, Edward and Tatlock, Zachary and Tanimoto, Steven L.},
+  title     = {Magic Markup: Maintaining Document-External Markup with an LLM},
+  year      = {2024},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3660829.3660836},
+  booktitle = {Companion Proceedings of the 8th International Conference on the Art, Science, and Engineering of Programming},
+  series    = {<Programming> Companion '24}
+}
 ```
 
 [📝 publications index](publications.html)
-
