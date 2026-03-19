@@ -14,10 +14,12 @@ more interpretable without forcing a risky large-bang reorganization.
 
 - The repo root is extremely flat.
 - Authored sources and generated outputs live together.
-- `templates/` currently mixes template assets and executable shell helpers.
-- Documentation and policy notes have no obvious home.
-- Some important state snapshots live outside the repo, but that convention was
-  not previously documented.
+- Some helper scripts still encode machine-local and platform-local
+  assumptions.
+- Important archival state still lives outside the repo and depends on local
+  conventions.
+- Cross-cutting content such as metadata and publication state still lacks a
+  cleaner single-source-of-truth model.
 
 ## Proposed Boundaries
 
@@ -67,7 +69,7 @@ cleanup.
 
 ## Next Structural Campaign
 
-The next likely structural campaign after the current morning cleanup is:
+The next likely structural campaign from the current repo state is:
 
 - make the authored-source vs built-output split explicit
 - move toward an intentional build/deploy pipeline instead of treating the repo

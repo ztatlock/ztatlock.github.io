@@ -23,9 +23,10 @@ Prefer the top-level `make` targets when they exist:
   checks without dirtying tracked site outputs in the live repo.
 - `index-now.sh`
   Submits updated pages to IndexNow and stores its local run-state under
-  `state/`.
+  `state/`. It currently assumes `wget`.
 - `mkpub.sh`
-  Scaffolds a new publication page and its meta file from the templates.
+  Scaffolds a new publication page and its current raw HTML meta sidecar from
+  the templates. It currently assumes BSD/macOS `sed -i ''`.
 
 ## Conventions
 
@@ -33,3 +34,5 @@ Prefer the top-level `make` targets when they exist:
 - Keep local generated/runtime state under `state/`.
 - Keep larger archival state outside the repo in `~/Desktop/WEBFILES/` unless
   there is a clear reason to version it in git.
+- Keep portability assumptions explicit when a script relies on a tool such as
+  `wget`, `rsync`, or BSD/macOS `sed`.

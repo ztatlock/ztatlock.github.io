@@ -1,4 +1,3 @@
 *.swp
 .DS_Store
 __pycache__/
-templates/index-now-log.txt

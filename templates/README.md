@@ -15,7 +15,8 @@ page scaffolding.
 - `REFS`
   Shared Djot reference definitions appended to every generated page.
 - `meta.html`
-  Starter page-meta snippet for description, OpenGraph, and Twitter tags.
+  Starter page-meta snippet for the current raw HTML `*.meta` sidecar system.
+  This is likely to be replaced when page metadata becomes structured.
 - `pub.dj`
   Publication page scaffold used by `scripts/mkpub.sh`.
 

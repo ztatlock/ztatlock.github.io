@@ -12,7 +12,8 @@ This is the repo for
   `make all` and the sitemaps.
 - Use `make drafts` to build draft pages locally when needed.
 - `REFS` provides global reference links included for each page.
-- Each page includes a common header and footer (`HEAD`, `FOOT`).
+- Each page includes shared head/body fragments
+  (`HEAD.1`, `HEAD.2`, `FOOT`).
 - Each page's title is taken from the first line of its source `.dj`.
 - All pages use the same, very simple `style.css`.
 - Human-authored policy/spec docs live under [docs/](docs/README.md).
@@ -34,5 +35,15 @@ This is the repo for
 - The canonical archive copy of the publication artifact inventory lives in
   `~/Desktop/WEBFILES/inventory/` and can be refreshed with
   `make inventory-webfiles`.
+
+## Local Requirements
+
+The current local workflow assumes:
+
+- `bash`, `make`, `python3`, `git`
+- `djot`, `rg`, `rsync`
+- `wget` for `make index-now`
+
+`scripts/mkpub.sh` currently assumes BSD/macOS `sed -i ''`.
 
 Issues and/or PRs to fix typos or missing content are welcome!
