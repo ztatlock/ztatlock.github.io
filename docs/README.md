@@ -52,6 +52,9 @@ meant to be read, maintained, and extended over time.
   Current root-level file classes and tracked generated outputs.
 - `plans/publication-artifact-followup.md`
   Resume point for the current publication-artifact cleanup.
+- `plans/page-metadata-and-ssg.md`
+  Design direction for replacing raw page `*.meta` files and deciding whether
+  the site should ever migrate to Jekyll or another SSG.
 - `plans/repo-layout.md`
   Staged direction for making the repo less flat and more modular.
 

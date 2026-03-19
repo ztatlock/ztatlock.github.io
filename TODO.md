@@ -7,6 +7,8 @@
 - Keep the current root-level file classes documented in
   `docs/policy/root-layout.md`.
 - Keep small self-describing docs current when support directories change.
+- Design a smaller metadata system with generated defaults so raw page
+  `*.meta` files do not need to survive forever.
 - Revisit which generated outputs are intentionally tracked in git and which
   eventually deserve a better home than the repo root.
 
@@ -27,5 +29,7 @@
 - Make the authored-source vs built-output split explicit.
 - Move toward an intentional build/deploy pipeline instead of serving the repo
   root directly.
+- Revisit whether the eventual source/build/deploy split should stay custom or
+  migrate to Jekyll or another more conventional SSG.
 - Search older website copies and personal archives for missing publication
   artifacts.
