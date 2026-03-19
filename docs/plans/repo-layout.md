@@ -49,9 +49,10 @@ more interpretable without forcing a risky large-bang reorganization.
 
 ### Stage 2
 
+- Keep the current root-level file classes and tracked-output policy
+  documented in `docs/policy/root-layout.md`.
 - Decide whether any repo-versioned generated artifacts belong in `manifests/`
   or deserve a separate home.
-- Document which generated outputs are intentionally tracked and which are not.
 
 ### Stage 3
 

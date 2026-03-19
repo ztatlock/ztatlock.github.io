@@ -4,9 +4,11 @@
 
 - Keep improving repo structure and discoverability without doing a risky
   source/build/deploy migration yet.
-- Add small self-describing docs where useful, e.g. a `templates/README.md`.
-- Review which generated outputs are intentionally tracked in git and which are
-  just build artifacts.
+- Keep the current root-level file classes documented in
+  `docs/policy/root-layout.md`.
+- Keep small self-describing docs current when support directories change.
+- Revisit which generated outputs are intentionally tracked in git and which
+  eventually deserve a better home than the repo root.
 
 ## Publication Artifacts
 

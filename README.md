@@ -19,6 +19,10 @@ This is the repo for
 - Executable helpers live under `scripts/`.
 - Small versioned structured manifests live under `manifests/`.
 - Local generated/runtime state lives under `state/`.
+- Current root-level file classes and tracked-output rules are documented in
+  [docs/policy/root-layout.md](docs/policy/root-layout.md).
+- Template/build inputs are documented in
+  [templates/README.md](templates/README.md).
 - Common support entry points are exposed as `make` targets such as
   `make check`, `make inventory`, `make inventory-webfiles`,
   `make mkpub YCF=...`, and `make index-now`.

@@ -48,6 +48,8 @@ meant to be read, maintained, and extended over time.
 
 - `policy/publication-artifacts.md`
   Publication storage and linking policy.
+- `policy/root-layout.md`
+  Current root-level file classes and tracked generated outputs.
 - `plans/publication-artifact-followup.md`
   Resume point for the current publication-artifact cleanup.
 - `plans/repo-layout.md`
@@ -57,5 +59,6 @@ meant to be read, maintained, and extended over time.
 
 - Keep `templates/HEAD.*`, `templates/FOOT`, `templates/REFS`,
   `templates/meta.html`, and `templates/pub.dj` in `templates/`.
+- Keep `docs/policy/root-layout.md` current as the root-level file mix changes.
 - Revisit whether any versioned generated artifacts deserve a separate home
   beyond `manifests/`.
