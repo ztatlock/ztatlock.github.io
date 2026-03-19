@@ -13,8 +13,28 @@ function error {
   exit 1
 }
 
-# go to repo root
-cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit
+function cleanup {
+  if [ -n "${scratch_dir:-}" ] && [ -d "$scratch_dir" ]; then
+    rm -rf "$scratch_dir"
+  fi
+}
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+scratch_dir="$(mktemp -d "${TMPDIR:-/tmp}/ztatlock-check.XXXXXX")"
+trap cleanup EXIT
+
+rsync -a \
+  --exclude '.git/' \
+  --exclude 'state/' \
+  "$repo_root/" "$scratch_dir/"
+
+cd "$scratch_dir" || exit
+
+generated_html=()
+for src in *.dj; do
+  generated_html+=("${src%.dj}.html")
+done
+rm -f "${generated_html[@]}" sitemap.txt sitemap.xml
 
 make all >/dev/null
 

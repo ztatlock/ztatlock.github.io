@@ -80,7 +80,7 @@ sitemap.xml: $(SITEMAP_HTML) $(SITEMAP_PDFS)
 	@for page in $(SITEMAP_HTML) $(SITEMAP_PDFS); do \
 		printf '<url>\n  <loc>%s</loc>\n  <lastmod>%s</lastmod>\n</url>\n' \
 			"https://ztatlock.net/$${page}" \
-			"$$(git ls-files --error-unmatch "$${page}" &> /dev/null \
+			"$$(git ls-files --error-unmatch "$${page}" >/dev/null 2>&1 \
 			 && git log -1 --pretty="format:%cs" "$${page}" \
 			 || date +%Y-%m-%d)"; \
 	done >> $@

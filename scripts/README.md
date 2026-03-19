@@ -19,7 +19,8 @@ Prefer the top-level `make` targets when they exist:
   `make inventory-webfiles` refreshes the canonical archive copy under
   `~/Desktop/WEBFILES/inventory/`.
 - `check.sh`
-  Rebuilds the site and runs structural validation checks.
+  Rebuilds the site in an isolated scratch copy and runs structural validation
+  checks without dirtying tracked site outputs in the live repo.
 - `index-now.sh`
   Submits updated pages to IndexNow and stores its local run-state under
   `state/`.

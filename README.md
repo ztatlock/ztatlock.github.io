@@ -26,6 +26,8 @@ This is the repo for
 - Common support entry points are exposed as `make` targets such as
   `make check`, `make inventory`, `make inventory-webfiles`,
   `make mkpub YCF=...`, and `make index-now`.
+- `make check` validates in an isolated scratch copy so routine checks should
+  not dirty tracked site outputs in the live repo.
 - Publication storage/linking policy is documented in
   [docs/policy/publication-artifacts.md](docs/policy/publication-artifacts.md).
 - Repo-local inventory previews live under `state/inventory/`.
