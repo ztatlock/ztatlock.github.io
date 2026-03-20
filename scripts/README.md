@@ -38,16 +38,18 @@ Prefer the top-level `make` targets when they exist:
   Adds a new placeholder entry to `manifests/publication-metadata.json` for
   `mkpub.sh` and other structured metadata workflows.
 - `page_metadata.py`
-  Shared metadata helpers for generated publication metadata and metadata
-  source validation.
+  Shared metadata helpers for generated page metadata and metadata source
+  validation across both simple non-publication pages and publication pages.
 - `render_meta.py`
   Emits `<meta>` HTML for a page by rendering generated publication metadata
-  or falling back to a legacy raw `.meta` sidecar.
+  or simple page metadata, and otherwise falls back to a legacy raw `.meta`
+  sidecar.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
   and validates `.meta` structure plus a few stable metadata invariants
   (`og:url`, `twitter:url`, `twitter:domain`, `og:type`, `twitter:card`).
-  It also validates `manifests/publication-metadata.json`.
+  It also validates `manifests/page-metadata.json` and
+  `manifests/publication-metadata.json`.
 
 ## Conventions
 

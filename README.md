@@ -24,6 +24,8 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
 - `img/`: shared site images/icons.
 - `docs/`: human-authored policy/spec docs (see [docs/README.md](docs/README.md)).
 - `manifests/`: small versioned structured manifests.
+  Simple non-publication pages now source metadata from
+  `manifests/page-metadata.json`.
   Publication pages now source metadata from
   `manifests/publication-metadata.json`.
 - `state/`: local generated/runtime state (gitignored contents).
@@ -69,8 +71,10 @@ Multi-machine guardrail:
 
 1. Edit `<page>.dj`.
 2. Update or add metadata:
+   - for simple non-publication pages listed in `manifests/page-metadata.json`,
+     edit `manifests/page-metadata.json`
    - for publication pages, edit `manifests/publication-metadata.json`
-   - for legacy non-publication pages, edit `<page>.meta`
+   - for remaining special-case pages, edit `<page>.meta`
 3. Rebuild with `make <page>.html` or `make all`.
 4. Commit both source and regenerated outputs.
 

@@ -29,7 +29,7 @@ INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
 YCF           ?=
 
 .SECONDEXPANSION:
-%.html: %.dj $$(wildcard $$*.meta) $(wildcard templates/*) $(PAGE_META) $(RENDER_META) manifests/publication-metadata.json
+%.html: %.dj $$(wildcard $$*.meta) $(wildcard templates/*) $(PAGE_META) $(RENDER_META) manifests/page-metadata.json manifests/publication-metadata.json
 	$(eval TITLE := $(shell \
 			head -n 1 '$<' \
 			| tr -d '#[]' \

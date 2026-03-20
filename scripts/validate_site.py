@@ -7,7 +7,13 @@ import re
 import sys
 from pathlib import Path
 
-from page_metadata import validate_publication_metadata
+from page_metadata import (
+    MetadataError,
+    load_general_page_metadata,
+    load_publication_metadata,
+    validate_general_page_metadata,
+    validate_publication_metadata,
+)
 
 IGNORED_TARGET_PREFIXES = (
     "http://",
@@ -123,6 +129,32 @@ def find_metadata_issues(root: Path) -> list[str]:
     return issues
 
 
+def find_missing_metadata_warnings(root: Path) -> list[str]:
+    warnings: list[str] = []
+    structured_pages: set[str] = set()
+
+    try:
+        structured_pages.update(load_general_page_metadata(root).keys())
+    except MetadataError:
+        pass
+
+    try:
+        structured_pages.update(f"pub-{slug}" for slug in load_publication_metadata(root).keys())
+    except MetadataError:
+        pass
+
+    for path in sorted(root.glob("*.dj")):
+        text = path.read_text(encoding="utf-8")
+        if re.search(r"^# DRAFT$", text, re.MULTILINE):
+            continue
+        if path.stem in structured_pages:
+            continue
+        if not (root / f"{path.stem}.meta").exists():
+            warnings.append(f"{path.name}: missing metadata source")
+
+    return warnings
+
+
 def print_section(title: str, issues: list[str]) -> None:
     if not issues:
         return
@@ -147,7 +179,9 @@ def main() -> int:
     placeholder_issues = find_placeholder_issues(root)
     broken_link_issues = find_broken_link_issues(root)
     metadata_issues = find_metadata_issues(root)
+    general_page_metadata_issues = validate_general_page_metadata(root)
     publication_metadata_issues = validate_publication_metadata(root)
+    missing_metadata_warnings = find_missing_metadata_warnings(root)
 
     if placeholder_issues:
         print_section(
@@ -161,16 +195,24 @@ def main() -> int:
         )
     if metadata_issues:
         print_section("ERROR: found invalid page metadata", metadata_issues)
+    if general_page_metadata_issues:
+        print_section(
+            "ERROR: found invalid page metadata source",
+            general_page_metadata_issues,
+        )
     if publication_metadata_issues:
         print_section(
             "ERROR: found invalid publication metadata source",
             publication_metadata_issues,
         )
+    if missing_metadata_warnings:
+        print_section("WARNING: missing page metadata", missing_metadata_warnings)
 
     return 1 if (
         placeholder_issues
         or broken_link_issues
         or metadata_issues
+        or general_page_metadata_issues
         or publication_metadata_issues
     ) else 0
 

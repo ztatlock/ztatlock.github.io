@@ -225,11 +225,13 @@ Current recommendation:
 ## Current Incremental Implementation
 
 As of March 20, 2026, the repo has started this migration for publication
-pages only:
+pages and the simplest non-publication pages:
 
+- simple non-publication page metadata now lives in
+  `manifests/page-metadata.json`
 - publication metadata now lives in
   `manifests/publication-metadata.json`
-- the build renders publication `<meta>` tags from that manifest
-- legacy raw `*.meta` sidecars remain in place for non-publication pages
+- the build renders generated `<meta>` tags from those manifests
+- legacy raw `*.meta` sidecars remain in place for the special-case pages
 
 This is intentionally only a first slice, not the full metadata redesign.

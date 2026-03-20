@@ -64,12 +64,3 @@ for src in "${draft_pages[@]}"; do
 done
 
 python3 scripts/validate_site.py --root .
-
-for page in *.dj; do
-  rg -q '^# DRAFT$' "$page" && continue
-  case "$page" in
-    pub-*.dj) continue ;;
-  esac
-  [ -f "$(basename "$page" .dj).meta" ] \
-  || echo "WARNING: missing meta for $page"
-done

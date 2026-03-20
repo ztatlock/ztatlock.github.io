@@ -1,0 +1,41 @@
+{
+  "404": {
+    "description": "404: Not Found"
+  },
+  "anxiety-carts-horses": {
+    "description": "Confidence and optimism do not come from success. It's the other way around."
+  },
+  "calendar-theory": {
+    "description": "How we manage the weekly calendar on our team."
+  },
+  "contact": {
+    "description": "Where and how to reach me."
+  },
+  "cv": {
+    "description": "CV: education, employment, students, publications, service, etc."
+  },
+  "news": {
+    "description": "Recent papers, talks, and events from my group."
+  },
+  "notes": {
+    "description": "Short writeups on research advice, group management, and programming."
+  },
+  "proverbs-poems": {
+    "description": "Sayings, quotes, maxims, and witticisms that I have found useful over the years."
+  },
+  "publications": {
+    "description": "Academic research papers I have published with students and collaborators."
+  },
+  "research": {
+    "description": "Our current and past computer science research projects."
+  },
+  "service": {
+    "description": "Reviewing for program committees, serving on committees, organizing events, department leadership, etc."
+  },
+  "talks": {
+    "description": "Talks I have given during invited visits, colloqia, conferences, workshops."
+  },
+  "teaching": {
+    "description": "Computer science courses I have taught over the years."
+  }
+}
