@@ -19,6 +19,7 @@ INDEX_NOW      := scripts/index-now.sh
 MKPUB          := scripts/mkpub.sh
 PUB_INVENTORY  := scripts/build_pub_inventory.py
 PAGE_META      := scripts/page_metadata.py
+PAGE_SOURCE    := scripts/page_source.py
 RENDER_META    := scripts/render_meta.py
 VALIDATE_SITE  := scripts/validate_site.py
 
@@ -29,12 +30,8 @@ INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
 YCF           ?=
 
 .SECONDEXPANSION:
-%.html: %.dj $(wildcard templates/*) $(PAGE_META) $(RENDER_META) manifests/page-metadata.json manifests/publication-metadata.json
-	$(eval TITLE := $(shell \
-			head -n 1 '$<' \
-			| tr -d '#[]' \
-			| sed 's#^[[:blank:]]*##' \
-			| sed 's#[[:blank:]]*$$##'))
+%.html: %.dj $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(RENDER_META) manifests/page-metadata.json manifests/publication-metadata.json
+	$(eval TITLE := $(shell python3 $(PAGE_SOURCE) title --root . --page "$*"))
 	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
 	@if [ "$@" = "index.html" ]; then \
 		cat templates/HEAD.1 \
@@ -49,7 +46,8 @@ YCF           ?=
 	fi
 	@python3 $(RENDER_META) --root . --page "$*" --title "$(TITLE)" >> $@
 	@cat templates/HEAD.2 >> $@
-	@cat $< templates/REFS \
+	@python3 $(PAGE_SOURCE) body --root . --page "$*" \
+		| cat - templates/REFS \
 		| sed 's#__WEBFILES__#$(FILES)#' \
 		| djot \
 		>> $@

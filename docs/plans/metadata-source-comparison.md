@@ -13,7 +13,9 @@ the long-term design.
 As of March 20, 2026:
 
 - 41 public `*.dj` pages exist
-- 20 public non-publication pages source metadata from
+- 3 public non-publication pages currently source metadata from YAML front
+  matter in `*.dj`
+- 17 public non-publication pages still source metadata from
   `manifests/page-metadata.json`
 - 21 public publication pages source metadata from
   `manifests/publication-metadata.json`
@@ -33,10 +35,10 @@ The current structured metadata schema is intentionally small:
 In practice, the current manifests are sparse:
 
 - `manifests/page-metadata.json`
-  - 20 / 20 entries use `description`
-  - 4 / 20 entries use `share_description`
-  - 4 / 20 entries use `image_path`
-  - 1 / 20 entries uses `title`
+  - 17 / 17 entries use `description`
+  - 3 / 17 entries use `share_description`
+  - 3 / 17 entries use `image_path`
+  - 0 / 17 entries use `title`
 - `manifests/publication-metadata.json`
   - 21 / 21 entries use `description`
   - 2 / 21 entries use `share_description`
@@ -207,6 +209,10 @@ whether publications eventually want a richer single source of truth than
 
 Teach the build to support page-local front matter for non-publication pages
 *in addition to* the current manifests.
+
+This phase is now underway as a small pilot, but the mixed-mode support should
+still be treated as a prototype until we decide whether the ergonomics are
+actually better than the manifest-only approach.
 
 Rules:
 

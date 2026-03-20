@@ -35,9 +35,10 @@ rules we should follow until a later explicit source/build/deploy migration.
 
 Top-level `*.dj` files are authored page sources.
 
-- Their first line provides the page title.
-- Public page metadata is sourced from structured manifests under
-  `manifests/`.
+- Their page title comes from the first non-empty level-1 heading after any
+  optional front matter.
+- Public page metadata is currently sourced from structured metadata under
+  `manifests/`, plus front matter for the small non-publication pilot set.
 - Draft pages may temporarily omit metadata while they remain drafts.
 - A source file whose contents include a `# DRAFT` heading is treated as a
   draft page.

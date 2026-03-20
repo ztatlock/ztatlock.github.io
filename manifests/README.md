@@ -17,8 +17,9 @@ These are not:
 ## Current Manifests
 
 - `page-metadata.json`
-  Structured source of truth for public non-publication pages. Entries use
-  defaults plus a small number of authored overrides such as a description
+  Structured source of truth for public non-publication pages that have not
+  yet moved to YAML front matter during the front-matter prototype. Entries
+  use defaults plus a small number of authored overrides such as a description
   blurb, custom share image, share-specific description, or title override.
 - `publication-artifact-curation.tsv`
   Manual curation judgments layered on top of the observational publication

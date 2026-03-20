@@ -11,7 +11,8 @@ This repo is a static website generated from Djot source files. Keep changes sou
 - After each coherent commit, `git push` so other machines and future sessions
   do not drift.
 - Edit `*.dj` (content) first. For head metadata, edit
-  `manifests/page-metadata.json` for public non-publication pages and
+  YAML front matter in migrated public non-publication pages, otherwise
+  `manifests/page-metadata.json` for public non-publication pages, and
   `manifests/publication-metadata.json` for publication pages. Draft pages may
   omit metadata while they remain drafts. Then regenerate matching `*.html`
   with `make`.

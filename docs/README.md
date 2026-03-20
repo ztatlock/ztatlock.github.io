@@ -55,6 +55,9 @@ meant to be read, maintained, and extended over time.
 - `plans/page-metadata-and-ssg.md`
   Design direction for replacing raw page `*.meta` files and deciding whether
   the site should ever migrate to Jekyll or another SSG.
+- `plans/metadata-source-comparison.md`
+  Controlled comparison of shared manifests, page-local sidecars, and YAML
+  front matter as metadata sources.
 - `plans/repo-layout.md`
   Staged direction for making the repo less flat and more modular.
 

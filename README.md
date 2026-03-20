@@ -11,7 +11,8 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
   `make all` and the sitemaps; use `make drafts` to build them locally.
 - Each page includes shared head/body fragments
   (`HEAD.1`, `HEAD.2`, `FOOT`) and uses the same simple `style.css`.
-- Each page's title is taken from the first line of its source `.dj`.
+- Each page's title is taken from the first non-empty level-1 heading after
+  any optional front matter.
 - `REFS` provides global reference links included for each page.
 - `templates/`: shared page wrappers and global references
   (see [templates/README.md](templates/README.md)).
@@ -22,8 +23,8 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
 - `img/`: shared site images/icons.
 - `docs/`: human-authored policy/spec docs (see [docs/README.md](docs/README.md)).
 - `manifests/`: small versioned structured manifests.
-  Public non-publication pages now source metadata from
-  `manifests/page-metadata.json`.
+  Public non-publication pages currently source metadata from a mixed-mode
+  front-matter/manifest setup during the front-matter prototype.
   Public publication pages now source metadata from
   `manifests/publication-metadata.json`.
 - `state/`: local generated/runtime state (gitignored contents).
@@ -69,7 +70,9 @@ Multi-machine guardrail:
 
 1. Edit `<page>.dj`.
 2. Update or add metadata:
-   - for public non-publication pages, edit `manifests/page-metadata.json`
+   - for public non-publication pages, prefer YAML front matter in the page
+     source when a page has been migrated; otherwise edit
+     `manifests/page-metadata.json`
    - for public publication pages, edit `manifests/publication-metadata.json`
    - draft pages may omit metadata while they remain drafts
 3. Rebuild with `make <page>.html` or `make all`.
@@ -78,7 +81,11 @@ Multi-machine guardrail:
 Notes:
 - If a page has both `<page>.dj` and `<page>.html`, treat `.dj` as
   source of truth.
-- The first line of each `.dj` file provides the page title.
+- The page title comes from the first non-empty level-1 heading after any
+  optional front matter.
+- The current front-matter prototype intentionally supports only the flat
+  scalar metadata fields already in use: `description`, `share_description`,
+  `image_path`, and `title`.
 - Add or update named references in `templates/REFS` when using
   `[Name][]` links.
 

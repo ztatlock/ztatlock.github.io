@@ -10,10 +10,13 @@ from pathlib import Path
 from page_metadata import (
     MetadataError,
     load_general_page_metadata,
+    load_front_matter_general_metadata,
     load_publication_metadata,
+    publication_slug,
     validate_general_page_metadata,
     validate_publication_metadata,
 )
+from page_source import PageSourceError, read_page_source
 
 IGNORED_TARGET_PREFIXES = (
     "http://",
@@ -76,10 +79,26 @@ def find_missing_metadata_warnings(root: Path) -> list[str]:
         pass
 
     for path in sorted(root.glob("*.dj")):
-        text = path.read_text(encoding="utf-8")
-        if re.search(r"^# DRAFT$", text, re.MULTILINE):
+        try:
+            source = read_page_source(path.stem, root)
+        except PageSourceError:
             continue
+
+        if source.is_draft:
+            continue
+
+        if publication_slug(path.stem) is not None:
+            if f"pub-{publication_slug(path.stem)}" in structured_pages:
+                continue
+            warnings.append(f"{path.name}: missing structured metadata entry")
+            continue
+
         if path.stem in structured_pages:
+            continue
+        try:
+            if load_front_matter_general_metadata(path.stem, root) is not None:
+                continue
+        except MetadataError:
             continue
         warnings.append(f"{path.name}: missing structured metadata entry")
 
