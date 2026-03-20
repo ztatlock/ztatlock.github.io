@@ -25,8 +25,6 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
 - `manifests/`: small versioned structured manifests.
   Public non-publication pages currently source metadata from YAML front
   matter in `*.dj`.
-  `manifests/page-metadata.json` remains as an empty mixed-mode fallback path
-  during the prototype.
   Public publication pages now source metadata from
   `manifests/publication-metadata.json`.
 - `state/`: local generated/runtime state (gitignored contents).
@@ -74,8 +72,6 @@ Multi-machine guardrail:
 2. Update or add metadata:
    - for public non-publication pages, edit YAML front matter in the page
      source
-   - `manifests/page-metadata.json` remains available only as a temporary
-     fallback path during the front-matter prototype
    - for public publication pages, edit `manifests/publication-metadata.json`
    - draft pages may omit metadata while they remain drafts
 3. Rebuild with `make <page>.html` or `make all`.

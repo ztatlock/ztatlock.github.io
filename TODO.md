@@ -7,9 +7,8 @@
 - Keep the current root-level file classes documented in
   `docs/policy/root-layout.md`.
 - Keep small self-describing docs current when support directories change.
-- Assess whether to keep the mixed-mode fallback now that current public
-  non-publication pages use YAML front matter, while keeping publication
-  metadata under separate design review.
+- Keep publication metadata under separate design review while ordinary pages
+  now use YAML front matter directly.
 - Revisit which generated outputs are intentionally tracked in git and which
   eventually deserve a better home than the repo root.
 

@@ -240,16 +240,16 @@ migration away from raw sidecars:
 - draft pages may still build without metadata while they remain drafts
 
 This is a substantial milestone, but not the full metadata redesign.
-The next design question is how to move non-publication metadata closer to
-content via front matter, and whether publication metadata should eventually
-fold into a broader publication single source of truth.
+The next design question is no longer how to move ordinary pages closer to
+content. That has now happened. The remaining metadata-design question is
+whether publication metadata should eventually fold into a broader publication
+single source of truth.
 
 As of the current prototype:
 
 - all current public non-publication pages now use YAML front matter in
   `*.dj` (currently 20 public pages)
-- `manifests/page-metadata.json` is currently empty and retained only as a
-  mixed-mode fallback path during the prototype
+- the mixed-mode fallback has been removed for ordinary public pages
 - publication pages remain on `manifests/publication-metadata.json`
 - the current parser intentionally supports only the flat scalar metadata
   fields already in use: `description`, `share_description`, `image_path`,

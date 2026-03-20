@@ -8,15 +8,9 @@ import sys
 from pathlib import Path
 
 from page_metadata import (
-    MetadataError,
-    load_general_page_metadata,
-    load_front_matter_general_metadata,
-    load_publication_metadata,
-    publication_slug,
     validate_general_page_metadata,
     validate_publication_metadata,
 )
-from page_source import PageSourceError, read_page_source
 
 IGNORED_TARGET_PREFIXES = (
     "http://",
@@ -64,47 +58,6 @@ def find_legacy_metadata_issues(root: Path) -> list[str]:
     return issues
 
 
-def find_missing_metadata_warnings(root: Path) -> list[str]:
-    warnings: list[str] = []
-    structured_pages: set[str] = set()
-
-    try:
-        structured_pages.update(load_general_page_metadata(root).keys())
-    except MetadataError:
-        pass
-
-    try:
-        structured_pages.update(f"pub-{slug}" for slug in load_publication_metadata(root).keys())
-    except MetadataError:
-        pass
-
-    for path in sorted(root.glob("*.dj")):
-        try:
-            source = read_page_source(path.stem, root)
-        except PageSourceError:
-            continue
-
-        if source.is_draft:
-            continue
-
-        if publication_slug(path.stem) is not None:
-            if f"pub-{publication_slug(path.stem)}" in structured_pages:
-                continue
-            warnings.append(f"{path.name}: missing structured metadata entry")
-            continue
-
-        if path.stem in structured_pages:
-            continue
-        try:
-            if load_front_matter_general_metadata(path.stem, root) is not None:
-                continue
-        except MetadataError:
-            continue
-        warnings.append(f"{path.name}: missing structured metadata entry")
-
-    return warnings
-
-
 def print_section(title: str, issues: list[str]) -> None:
     if not issues:
         return
@@ -131,7 +84,6 @@ def main() -> int:
     legacy_metadata_issues = find_legacy_metadata_issues(root)
     general_page_metadata_issues = validate_general_page_metadata(root)
     publication_metadata_issues = validate_publication_metadata(root)
-    missing_metadata_warnings = find_missing_metadata_warnings(root)
 
     if placeholder_issues:
         print_section(
@@ -155,8 +107,6 @@ def main() -> int:
             "ERROR: found invalid publication metadata source",
             publication_metadata_issues,
         )
-    if missing_metadata_warnings:
-        print_section("WARNING: missing page metadata", missing_metadata_warnings)
 
     return 1 if (
         placeholder_issues

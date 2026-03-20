@@ -42,15 +42,14 @@ Prefer the top-level `make` targets when they exist:
   validation across both public non-publication pages and publication pages.
 - `page_source.py`
   Shared page-source parser used to strip non-publication front matter from
-  Djot input, extract page titles after front matter, and support mixed-mode
-  front-matter metadata during the prototype.
+  Djot input and extract page titles after front matter.
 - `render_meta.py`
-  Emits `<meta>` HTML for a page by rendering non-publication front matter or
-  manifest metadata, plus publication metadata from the publication manifest.
+  Emits `<meta>` HTML for a page by rendering non-publication front matter
+  plus publication metadata from the publication manifest.
   Draft pages may intentionally emit no metadata while they remain drafts.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
-  validates `manifests/page-metadata.json` and
+  validates non-publication front matter and
   `manifests/publication-metadata.json`.
   It also rejects any legacy raw `.meta` sidecars.
 

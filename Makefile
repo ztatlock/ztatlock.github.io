@@ -30,7 +30,7 @@ INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
 YCF           ?=
 
 .SECONDEXPANSION:
-%.html: %.dj $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(RENDER_META) manifests/page-metadata.json manifests/publication-metadata.json
+%.html: %.dj $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(RENDER_META) manifests/publication-metadata.json
 	$(eval TITLE := $(shell python3 $(PAGE_SOURCE) title --root . --page "$*"))
 	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
 	@if [ "$@" = "index.html" ]; then \

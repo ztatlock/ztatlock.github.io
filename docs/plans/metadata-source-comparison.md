@@ -15,8 +15,6 @@ As of March 20, 2026:
 - 41 public `*.dj` pages exist
 - 20 public non-publication pages currently source metadata from YAML front
   matter in `*.dj`
-- 0 public non-publication pages currently require
-  `manifests/page-metadata.json`
 - 21 public publication pages source metadata from
   `manifests/publication-metadata.json`
 - 7 draft pages exist and may intentionally omit metadata while they remain
@@ -32,13 +30,8 @@ The current structured metadata schema is intentionally small:
   - `image_path`
   - `title`
 
-In practice, the current manifests are sparse:
+In practice, the current publication manifest is sparse:
 
-- `manifests/page-metadata.json`
-  - 0 / 0 entries use `description`
-  - 0 / 0 entries use `share_description`
-  - 0 / 0 entries use `image_path`
-  - 0 / 0 entries use `title`
 - `manifests/publication-metadata.json`
   - 21 / 21 entries use `description`
   - 2 / 21 entries use `share_description`
@@ -65,15 +58,14 @@ Any next-step design should respect these constraints:
 
 Keep the current model:
 
-- `manifests/page-metadata.json` for public non-publication pages
 - `manifests/publication-metadata.json` for publication pages
 
 ### Strengths
 
-- already implemented and stable
+- already implemented and stable for publications
 - easy to validate centrally
 - easy to inspect global metadata coverage
-- low migration cost because the repo is already here
+- low migration cost because the repo already uses the publication manifest
 - no Djot parsing changes required
 - publication scaffolding already knows how to update the publication manifest
 
@@ -88,8 +80,8 @@ Keep the current model:
 
 ### Assessment
 
-This is the safest near-term operational state, but probably not the best
-long-term end state.
+This remains the publication-side status quo, but it is no longer the current
+ordinary-page model.
 
 ## Candidate B: Page-Local Sidecars
 
@@ -211,18 +203,16 @@ Teach the build to support page-local front matter for non-publication pages
 *in addition to* the current manifests.
 
 This phase is now implemented and all current public non-publication pages
-have migrated, but the mixed-mode support should still be treated as a
-prototype until we decide whether the ergonomics are actually better than the
-manifest-only approach and whether the fallback path should survive.
+have migrated. The ordinary-page fallback path has now been removed because it
+was empty and added complexity without adding real capability.
 
 Rules:
 
 - if a non-publication page has front matter, it wins
-- otherwise fall back to the current manifest-based metadata
 - publication pages continue using `manifests/publication-metadata.json`
 - draft pages may still omit metadata entirely
 
-This keeps the repo safe while letting us test the long-term direction.
+This kept the repo safe while testing the long-term direction.
 
 ### Phase 2: Tiny Pilot
 
@@ -259,9 +249,8 @@ If the pilot is clearly better, migrate in batches:
 - public non-publication pages first
 - revisit publications only after deciding whether they should remain
   metadata-only or become part of a broader publication data model
-- remove `manifests/page-metadata.json` only after the non-publication
-  migration is complete and we have explicitly decided whether the fallback
-  path is still useful
+- ordinary pages now use front matter directly; revisit only if a future need
+  for a shared ordinary-page manifest reappears
 
 ## Open Questions
 

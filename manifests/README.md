@@ -16,11 +16,6 @@ These are not:
 
 ## Current Manifests
 
-- `page-metadata.json`
-  Currently an empty mixed-mode fallback manifest retained during the
-  front-matter prototype. Public non-publication pages now source metadata
-  from YAML front matter in `*.dj`, but the manifest path remains available so
-  the prototype can still fall back cleanly if needed.
 - `publication-artifact-curation.tsv`
   Manual curation judgments layered on top of the observational publication
   inventory.
