@@ -1,3 +1,7 @@
+---
+description: Our current and past computer science research projects.
+---
+
 # [Zachary Tatlock][] / Research
 
 My primary goal is to help
@@ -117,5 +121,4 @@ We've worked on:
   Deep typechecking and refactoring for embedded DB queries in Java
 
 Please see our [publications](publications.html) for more.
-
 

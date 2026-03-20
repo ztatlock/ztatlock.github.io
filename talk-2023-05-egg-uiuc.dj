@@ -1,3 +1,8 @@
+---
+description: A May 2023 UIUC Compilers Seminar talk surveying egg and relational techniques for scaling equality saturation.
+image_path: pubs/2023-pldi-egglog/2023-pldi-egglog-meta.png
+---
+
 # Relational Equality Saturation in egg
 
 at [University of Illinois at Urbana-Champaign](
@@ -43,5 +48,4 @@ languages techniques to computational fabrication.
 <iframe src="https://drive.google.com/file/d/1pKcWWGz95aXvfUetCi16tAXcDskag4om/preview" width="640" height="480" allow="autoplay"></iframe>
 ```
 :::
-
 

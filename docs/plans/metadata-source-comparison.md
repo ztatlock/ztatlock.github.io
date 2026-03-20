@@ -13,9 +13,9 @@ the long-term design.
 As of March 20, 2026:
 
 - 41 public `*.dj` pages exist
-- 3 public non-publication pages currently source metadata from YAML front
+- 20 public non-publication pages currently source metadata from YAML front
   matter in `*.dj`
-- 17 public non-publication pages still source metadata from
+- 0 public non-publication pages currently require
   `manifests/page-metadata.json`
 - 21 public publication pages source metadata from
   `manifests/publication-metadata.json`
@@ -35,10 +35,10 @@ The current structured metadata schema is intentionally small:
 In practice, the current manifests are sparse:
 
 - `manifests/page-metadata.json`
-  - 17 / 17 entries use `description`
-  - 3 / 17 entries use `share_description`
-  - 3 / 17 entries use `image_path`
-  - 0 / 17 entries use `title`
+  - 0 / 0 entries use `description`
+  - 0 / 0 entries use `share_description`
+  - 0 / 0 entries use `image_path`
+  - 0 / 0 entries use `title`
 - `manifests/publication-metadata.json`
   - 21 / 21 entries use `description`
   - 2 / 21 entries use `share_description`
@@ -210,9 +210,10 @@ whether publications eventually want a richer single source of truth than
 Teach the build to support page-local front matter for non-publication pages
 *in addition to* the current manifests.
 
-This phase is now underway as a small pilot, but the mixed-mode support should
-still be treated as a prototype until we decide whether the ergonomics are
-actually better than the manifest-only approach.
+This phase is now implemented and all current public non-publication pages
+have migrated, but the mixed-mode support should still be treated as a
+prototype until we decide whether the ergonomics are actually better than the
+manifest-only approach and whether the fallback path should survive.
 
 Rules:
 
@@ -239,6 +240,9 @@ Success criteria:
 - editing ergonomics feel better, not worse
 - the publication metadata path stays untouched during the pilot
 
+Phase 2 succeeded and the migration broadened to all current public
+non-publication pages without output regressions.
+
 ### Phase 3: Decision Point
 
 After the pilot, decide explicitly:
@@ -256,7 +260,8 @@ If the pilot is clearly better, migrate in batches:
 - revisit publications only after deciding whether they should remain
   metadata-only or become part of a broader publication data model
 - remove `manifests/page-metadata.json` only after the non-publication
-  migration is complete
+  migration is complete and we have explicitly decided whether the fallback
+  path is still useful
 
 ## Open Questions
 

@@ -23,8 +23,10 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
 - `img/`: shared site images/icons.
 - `docs/`: human-authored policy/spec docs (see [docs/README.md](docs/README.md)).
 - `manifests/`: small versioned structured manifests.
-  Public non-publication pages currently source metadata from a mixed-mode
-  front-matter/manifest setup during the front-matter prototype.
+  Public non-publication pages currently source metadata from YAML front
+  matter in `*.dj`.
+  `manifests/page-metadata.json` remains as an empty mixed-mode fallback path
+  during the prototype.
   Public publication pages now source metadata from
   `manifests/publication-metadata.json`.
 - `state/`: local generated/runtime state (gitignored contents).
@@ -70,9 +72,10 @@ Multi-machine guardrail:
 
 1. Edit `<page>.dj`.
 2. Update or add metadata:
-   - for public non-publication pages, prefer YAML front matter in the page
-     source when a page has been migrated; otherwise edit
-     `manifests/page-metadata.json`
+   - for public non-publication pages, edit YAML front matter in the page
+     source
+   - `manifests/page-metadata.json` remains available only as a temporary
+     fallback path during the front-matter prototype
    - for public publication pages, edit `manifests/publication-metadata.json`
    - draft pages may omit metadata while they remain drafts
 3. Rebuild with `make <page>.html` or `make all`.

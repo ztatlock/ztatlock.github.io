@@ -17,10 +17,10 @@ These are not:
 ## Current Manifests
 
 - `page-metadata.json`
-  Structured source of truth for public non-publication pages that have not
-  yet moved to YAML front matter during the front-matter prototype. Entries
-  use defaults plus a small number of authored overrides such as a description
-  blurb, custom share image, share-specific description, or title override.
+  Currently an empty mixed-mode fallback manifest retained during the
+  front-matter prototype. Public non-publication pages now source metadata
+  from YAML front matter in `*.dj`, but the manifest path remains available so
+  the prototype can still fall back cleanly if needed.
 - `publication-artifact-curation.tsv`
   Manual curation judgments layered on top of the observational publication
   inventory.

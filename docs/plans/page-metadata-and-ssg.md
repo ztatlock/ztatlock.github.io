@@ -231,7 +231,7 @@ Current recommendation:
 As of March 20, 2026, all public pages have completed the first metadata
 migration away from raw sidecars:
 
-- public non-publication page metadata now lives in
+- public non-publication page metadata initially moved into
   `manifests/page-metadata.json`
 - public publication metadata now lives in
   `manifests/publication-metadata.json`
@@ -246,10 +246,10 @@ fold into a broader publication single source of truth.
 
 As of the current prototype:
 
-- a small pilot set of non-publication pages now uses YAML front matter in
-  `*.dj`
-- the remaining public non-publication pages still use
-  `manifests/page-metadata.json`
+- all current public non-publication pages now use YAML front matter in
+  `*.dj` (currently 20 public pages)
+- `manifests/page-metadata.json` is currently empty and retained only as a
+  mixed-mode fallback path during the prototype
 - publication pages remain on `manifests/publication-metadata.json`
 - the current parser intentionally supports only the flat scalar metadata
   fields already in use: `description`, `share_description`, `image_path`,
