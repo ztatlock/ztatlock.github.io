@@ -18,6 +18,7 @@ CHECK_ENV      := scripts/check_env.sh
 INDEX_NOW      := scripts/index-now.sh
 MKPUB          := scripts/mkpub.sh
 PUB_INVENTORY  := scripts/build_pub_inventory.py
+VALIDATE_SITE  := scripts/validate_site.py
 
 INVENTORY_PREVIEW_OUT  := state/inventory
 INVENTORY_WEBFILES_OUT := /Users/ztatlock/Desktop/WEBFILES/inventory
@@ -61,6 +62,7 @@ help:
 		'make all' \
 		'make drafts' \
 		'make check' \
+		'make validate-site' \
 		'make env-check' \
 		'make inventory [INVENTORY_OUT=/path/to/out-dir]' \
 		'make inventory-webfiles' \
@@ -98,6 +100,10 @@ check:
 .PHONY: env-check
 env-check:
 	@bash $(CHECK_ENV)
+
+.PHONY: validate-site
+validate-site:
+	@python3 $(VALIDATE_SITE) --root .
 
 .PHONY: inventory
 inventory:

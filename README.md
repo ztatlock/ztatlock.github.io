@@ -46,7 +46,10 @@ Commands:
 - `make env-check` — verify local prerequisites and current portability
   assumptions.
 - `make check` — validate in an isolated scratch copy (does not dirty the
-  live repo).
+  live repo) and catch broken local links, unresolved placeholders, and
+  malformed or inconsistent `.meta` files.
+- `make validate-site` — run the site/link/metadata validator against the
+  current working tree.
 - `make inventory` — build publication artifact inventory locally
   (previews in `state/inventory/`).
 - `make inventory-webfiles` — refresh the canonical archive copy in

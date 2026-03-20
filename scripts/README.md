@@ -6,6 +6,7 @@ Prefer the top-level `make` targets when they exist:
 
 - `make check`
 - `make env-check`
+- `make validate-site`
 - `make inventory`
 - `make inventory-webfiles`
 - `make mkpub YCF=YEAR-CONF-SYS`
@@ -21,7 +22,8 @@ Prefer the top-level `make` targets when they exist:
   `~/Desktop/WEBFILES/inventory/`.
 - `check.sh`
   Rebuilds the site in an isolated scratch copy and runs structural validation
-  checks without dirtying tracked site outputs in the live repo.
+  checks without dirtying tracked site outputs in the live repo. It also
+  checks that draft outputs stay out of the public build and sitemaps.
 - `check_env.sh`
   Verifies the local command/tool prerequisites and reports current
   portability assumptions for optional workflows.
@@ -31,6 +33,10 @@ Prefer the top-level `make` targets when they exist:
 - `mkpub.sh`
   Scaffolds a new publication page and its current raw HTML meta sidecar from
   the templates. It currently assumes BSD/macOS `sed -i ''`.
+- `validate_site.py`
+  Validates generated HTML for unresolved placeholders and broken local links,
+  and validates `.meta` structure plus a few stable metadata invariants
+  (`og:url`, `twitter:url`, `twitter:domain`, `og:type`, `twitter:card`).
 
 ## Conventions
 

@@ -23,6 +23,21 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 scratch_dir="$(mktemp -d "${TMPDIR:-/tmp}/ztatlock-check.XXXXXX")"
 trap cleanup EXIT
 
+cd "$repo_root" || exit
+
+draft_pages=()
+while IFS= read -r src; do
+  [ -n "$src" ] || continue
+  draft_pages+=("$src")
+done < <(rg -l '^# DRAFT$' *.dj 2>/dev/null || true)
+
+for src in "${draft_pages[@]}"; do
+  html="${src%.dj}.html"
+  if git ls-files --error-unmatch "$html" >/dev/null 2>&1; then
+    error "ERROR: tracked draft output $html should not be committed"
+  fi
+done
+
 rsync -a \
   --exclude '.git/' \
   --exclude 'state/' \
@@ -38,53 +53,17 @@ rm -f "${generated_html[@]}" sitemap.txt sitemap.xml
 
 make all >/dev/null
 
-draft_pages=()
-while IFS= read -r src; do
-  [ -n "$src" ] || continue
-  draft_pages+=("$src")
-done < <(rg -l '^# DRAFT$' *.dj 2>/dev/null || true)
 for src in "${draft_pages[@]}"; do
   html="${src%.dj}.html"
-  if [ -e "$html" ] && git ls-files --error-unmatch "$html" >/dev/null 2>&1; then
-    error "ERROR: tracked draft output $html should not be committed"
+  if [ -e "$html" ]; then
+    error "ERROR: draft page $html was built by make all"
   fi
   if rg -q "https://ztatlock.net/$html" sitemap.txt sitemap.xml; then
     error "ERROR: draft page $html is listed in the sitemap"
   fi
 done
 
-placeholder_hits="$(rg -n 'TODO|YOUTUBEID|href=\"TODO\"|content=\"TITLE\"|content=\"DESCRIPTION\"|CONF YEAR' pub-*.html || true)"
-if [ -n "$placeholder_hits" ]; then
-  printf '%s\n' "$placeholder_hits"
-  error "ERROR: found unresolved publication placeholders in generated HTML"
-fi
-
-broken_links="$(python3 - <<'PY'
-import os
-import re
-
-attr_re = re.compile(r'(?:href|src)="([^"]+)"')
-problems = []
-
-for fn in sorted(name for name in os.listdir('.') if name.endswith('.html')):
-    with open(fn, encoding='utf-8') as fh:
-        text = fh.read()
-    for target in attr_re.findall(text):
-        if target.startswith(('http://', 'https://', 'mailto:', 'tel:', '#', 'data:', 'javascript:')):
-            continue
-        path = target.split('#', 1)[0].split('?', 1)[0]
-        if not path:
-            continue
-        if not os.path.exists(path):
-            problems.append(f'{fn}: {target}')
-
-print('\n'.join(problems))
-PY
-)"
-if [ -n "$broken_links" ]; then
-  printf '%s\n' "$broken_links"
-  error "ERROR: found broken local links in generated HTML"
-fi
+python3 scripts/validate_site.py --root .
 
 for page in *.dj; do
   rg -q '^# DRAFT$' "$page" && continue
