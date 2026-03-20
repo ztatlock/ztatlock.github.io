@@ -18,6 +18,8 @@ CHECK_ENV      := scripts/check_env.sh
 INDEX_NOW      := scripts/index-now.sh
 MKPUB          := scripts/mkpub.sh
 PUB_INVENTORY  := scripts/build_pub_inventory.py
+PAGE_META      := scripts/page_metadata.py
+RENDER_META    := scripts/render_meta.py
 VALIDATE_SITE  := scripts/validate_site.py
 
 INVENTORY_PREVIEW_OUT  := state/inventory
@@ -27,7 +29,7 @@ INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
 YCF           ?=
 
 .SECONDEXPANSION:
-%.html: %.dj $$(wildcard $$*.meta) $(wildcard templates/*)
+%.html: %.dj $$(wildcard $$*.meta) $(wildcard templates/*) $(PAGE_META) $(RENDER_META) manifests/publication-metadata.json
 	$(eval TITLE := $(shell \
 			head -n 1 '$<' \
 			| tr -d '#[]' \
@@ -45,7 +47,7 @@ YCF           ?=
 		| sed 's#__CANON__#https://ztatlock.net/$@#' \
 		> $@; \
 	fi
-	@([ -f "$*.meta" ] && cat "$*.meta" || true) >> $@
+	@python3 $(RENDER_META) --root . --page "$*" --title "$(TITLE)" >> $@
 	@cat templates/HEAD.2 >> $@
 	@cat $< templates/REFS \
 		| sed 's#__WEBFILES__#$(FILES)#' \

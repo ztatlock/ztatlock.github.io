@@ -1,0 +1,68 @@
+{
+  "2008-oopsla-dtar": {
+    "description": "QUAIL introduces deep typechecking to ensure dynamic query safety and simplify refactoring in systems combining Java code with a database backend."
+  },
+  "2009-pldi-pec": {
+    "description": "PEC automatically checks compiler optimization correctness by generalizing dynamic translation validation to verifying parameterized optimization templates."
+  },
+  "2012-security-quark": {
+    "description": "Quark is a web browser kernel formally verified in Coq to ensure tab non-interference, cookie integrity, and address bar security via formal shim verification."
+  },
+  "2019-conga-sinkingpoint": {
+    "description": "Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives."
+  },
+  "2021-arith-herbie": {
+    "description": "Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs."
+  },
+  "2021-iclr-dtr": {
+    "description": "Dynamic Tensor Rematerialization (DTR), is an online algorithm for checkpointing deep learning models. DTR enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand. Unlike static checkpointing techniques, DTR supports dynamic models and achieves comparable performance. For example, DTR can train an N-layer linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor operations. We prototyped in PyTorch simply by interposing on tensor allocations and operator calls.",
+    "share_description": "DTR is an online algorithm for checkpointing deep learning models that enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand."
+  },
+  "2021-maps-glenside": {
+    "description": "Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations."
+  },
+  "2021-mlsys-nimble": {
+    "description": "Nimble: flexible optimization, compilation, and execution of dynamic neural networks with control flow and dynamically-shaped data structures on CPU and GPU.",
+    "share_description": "Flexible optimization, compilation, and execution of dynamic neural networks with control flow and dynamically-shaped data structures on CPU and GPU."
+  },
+  "2021-oopsla-ruler": {
+    "description": "Ruler uses equality saturation and e-graphs to infer rewrite rules, leading to 25x faster synthesis of 5.8x smaller rulesets that match or exceed experts."
+  },
+  "2021-sff-3dp": {
+    "description": "Project investigating multi-headed desktop printers for simultaneous parallel 3D printing, aiming to reduce fabrication time and enhance rapid prototyping."
+  },
+  "2022-ecoop-cakemlfp": {
+    "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics."
+  },
+  "2022-fmcad-smallproofs": {
+    "description": "A practical O(n log(n)) method for generating small proofs from congruence closure, plus a novel optimal O(n^5) algorithm. Implemented in egg, faster than Z3."
+  },
+  "2022-popl-rematch": {
+    "description": "Relational e-matching uses DB query techniques to provide optimal e-matching, simple implementation, and orders-of-magnitude speedup vs. conventional methods."
+  },
+  "2022-tog-carpentry": {
+    "description": "Joint optimization of carpentry designs & fabrication plans with e-graphs. Discovering Pareto-optimal tradeoffs to bridge design-to-fabrication gaps."
+  },
+  "2023-oopsla-enumo": {
+    "description": "Enumo is a new DSL that makes EqSat rule inference programmable and scalable. Its core operators enable strategic guidance, supporting larger grammars and novel strategies previously out of scope."
+  },
+  "2023-plarch-lakeroad": {
+    "description": "Generate Compilers from Hardware Models! - PLARCH @ PLDI 2023",
+    "image_path": "pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-absimg.png"
+  },
+  "2023-pldi-egglog": {
+    "description": "The new egglog fixpoint reasoning system fully combines Datalog and Equality Saturation to provide composable analyses and enable incremental term rewriting."
+  },
+  "2023-popl-babble": {
+    "description": "LLMT, a new library learning algorithm implemented in our tool 'babble', efficiently identifies common patterns in code corpora via anti-unification to improve both compression and scalability."
+  },
+  "2023-uist-odyssey": {
+    "description": "The interactive Odyssey workbench aids in floating-point error diagnosis, repair, and fine-tuning. See our paper from UIST 2023 and try the VSCode plugin!"
+  },
+  "2024-asplos-lakeroad": {
+    "description": "Lakeroad applies sketch-guided program synthesis to FPGA technology mapping, improving mapping coverage while providing correctness guarantees."
+  },
+  "2024-programming-magicmarkup": {
+    "description": "Magic Markup keeps document-external annotations aligned as text evolves using an LLM-backed re-tagging system."
+  }
+}

@@ -1,0 +1,208 @@
+#!/usr/bin/env python3
+
+from __future__ import annotations
+
+import html
+import json
+from pathlib import Path
+
+SITE_URL = "https://ztatlock.net"
+PUBLICATION_METADATA = Path("manifests/publication-metadata.json")
+PUBLICATION_ALLOWED_FIELDS = {"description", "share_description", "image_path"}
+
+
+class MetadataError(ValueError):
+    pass
+
+
+def canonical_url(page_stem: str) -> str:
+    if page_stem == "index":
+        return f"{SITE_URL}/"
+    return f"{SITE_URL}/{page_stem}.html"
+
+
+def publication_slug(page_stem: str) -> str | None:
+    if page_stem.startswith("pub-"):
+        return page_stem.removeprefix("pub-")
+    return None
+
+
+def default_publication_image_path(slug: str) -> str:
+    return f"pubs/{slug}/{slug}-meta.png"
+
+
+def absolute_url(path_or_url: str) -> str:
+    if path_or_url.startswith(("http://", "https://")):
+        return path_or_url
+    return f"{SITE_URL}/{path_or_url.lstrip('/')}"
+
+
+def escape_content(value: str) -> str:
+    return html.escape(value, quote=False).replace('"', "&quot;")
+
+
+def read_raw_meta(page_stem: str, root: Path) -> str:
+    path = root / f"{page_stem}.meta"
+    if not path.exists():
+        return ""
+    text = path.read_text(encoding="utf-8")
+    if text and not text.endswith("\n"):
+        text += "\n"
+    return text
+
+
+def load_publication_metadata(root: Path) -> dict[str, dict[str, str]]:
+    path = root / PUBLICATION_METADATA
+    if not path.exists():
+        raise MetadataError(f"Missing publication metadata manifest: {path}")
+
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as err:
+        raise MetadataError(f"{path}:{err.lineno}: invalid JSON: {err.msg}") from err
+
+    if not isinstance(raw, dict):
+        raise MetadataError(f"{path}: expected a JSON object keyed by publication slug")
+
+    rows: dict[str, dict[str, str]] = {}
+    for slug, entry in raw.items():
+        if not isinstance(slug, str) or not slug:
+            raise MetadataError(f"{path}: invalid publication slug {slug!r}")
+        if not isinstance(entry, dict):
+            raise MetadataError(f"{path}: entry for {slug} must be a JSON object")
+
+        unknown_fields = sorted(set(entry) - PUBLICATION_ALLOWED_FIELDS)
+        if unknown_fields:
+            raise MetadataError(
+                f"{path}: entry for {slug} has unknown fields: {', '.join(unknown_fields)}"
+            )
+
+        description = entry.get("description")
+        if not isinstance(description, str) or not description.strip():
+            raise MetadataError(f"{path}: missing description for {slug}")
+
+        share_description = entry.get("share_description")
+        if share_description is not None and not isinstance(share_description, str):
+            raise MetadataError(f"{path}: share_description for {slug} must be a string or null")
+
+        image_path = entry.get("image_path")
+        if image_path is not None and not isinstance(image_path, str):
+            raise MetadataError(f"{path}: image_path for {slug} must be a string or null")
+
+        rows[slug] = {
+            "description": description.strip(),
+            "share_description": (share_description or "").strip(),
+            "image_path": (image_path or "").strip(),
+        }
+
+    return rows
+
+
+def write_publication_metadata(root: Path, rows: dict[str, dict[str, str]]) -> None:
+    path = root / PUBLICATION_METADATA
+    serialized: dict[str, dict[str, str]] = {}
+    for slug in sorted(rows):
+        row = rows[slug]
+        entry = {"description": row["description"]}
+        if row.get("share_description"):
+            entry["share_description"] = row["share_description"]
+        if row.get("image_path"):
+            entry["image_path"] = row["image_path"]
+        serialized[slug] = entry
+
+    path.write_text(
+        json.dumps(serialized, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def add_publication_metadata_entry(
+    root: Path,
+    slug: str,
+    description: str = "TODO",
+) -> None:
+    rows = load_publication_metadata(root)
+    if slug in rows:
+        raise MetadataError(f"Publication metadata entry for {slug} already exists")
+    rows[slug] = {
+        "description": description,
+        "share_description": "",
+        "image_path": "",
+    }
+    write_publication_metadata(root, rows)
+
+
+def render_publication_meta(page_stem: str, title: str, root: Path) -> str:
+    slug = publication_slug(page_stem)
+    if slug is None:
+        raise MetadataError(f"{page_stem} is not a publication page")
+
+    rows = load_publication_metadata(root)
+    if slug not in rows:
+        raise MetadataError(f"Missing publication metadata for {page_stem}")
+
+    row = rows[slug]
+    description = row["description"]
+    share_description = row["share_description"] or description
+    image_path = row["image_path"] or default_publication_image_path(slug)
+    url = canonical_url(page_stem)
+
+    escaped_title = escape_content(title)
+    escaped_description = escape_content(description)
+    escaped_share_description = escape_content(share_description)
+    escaped_url = escape_content(url)
+    escaped_image = escape_content(absolute_url(image_path))
+
+    lines = [
+        f'<meta name="description" content="{escaped_description}">',
+        "",
+        "<!-- OpenGraph -->",
+        f'<meta property="og:url" content="{escaped_url}">',
+        '<meta property="og:type" content="website">',
+        f'<meta property="og:title" content="{escaped_title}">',
+        f'<meta property="og:description" content="{escaped_share_description}">',
+        f'<meta property="og:image" content="{escaped_image}">',
+        "",
+        "<!-- Twitter -->",
+        '<meta name="twitter:card" content="summary_large_image">',
+        '<meta property="twitter:domain" content="ztatlock.net">',
+        f'<meta property="twitter:url" content="{escaped_url}">',
+        f'<meta name="twitter:title" content="{escaped_title}">',
+        f'<meta name="twitter:description" content="{escaped_share_description}">',
+        f'<meta name="twitter:image" content="{escaped_image}">',
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def render_page_meta(page_stem: str, title: str, root: Path) -> str:
+    if publication_slug(page_stem) is not None:
+        return render_publication_meta(page_stem, title, root)
+    return read_raw_meta(page_stem, root)
+
+
+def validate_publication_metadata(root: Path) -> list[str]:
+    issues: list[str] = []
+    try:
+        rows = load_publication_metadata(root)
+    except MetadataError as err:
+        return [str(err)]
+
+    page_slugs = sorted(path.stem.removeprefix("pub-") for path in root.glob("pub-*.dj"))
+    manifest_slugs = sorted(rows)
+
+    missing = sorted(set(page_slugs) - set(manifest_slugs))
+    extra = sorted(set(manifest_slugs) - set(page_slugs))
+    for slug in missing:
+        issues.append(f"pub-{slug}.dj: missing manifest entry in {PUBLICATION_METADATA}")
+    for slug in extra:
+        issues.append(f"{PUBLICATION_METADATA}: entry for missing page pub-{slug}.dj")
+
+    for slug, row in rows.items():
+        image_path = row["image_path"] or default_publication_image_path(slug)
+        if image_path.startswith(("http://", "https://")):
+            continue
+        if not (root / image_path).exists():
+            issues.append(f"{PUBLICATION_METADATA}: image path for {slug} does not exist: {image_path}")
+
+    return issues

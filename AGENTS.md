@@ -10,7 +10,9 @@ This repo is a static website generated from Djot source files. Keep changes sou
   is understood and resolved explicitly.
 - After each coherent commit, `git push` so other machines and future sessions
   do not drift.
-- Edit `*.dj` (content) and `*.meta` (head metadata), then regenerate matching `*.html` with `make`.
+- Edit `*.dj` (content) first. For head metadata, edit legacy `*.meta` files
+  for non-publication pages and `manifests/publication-metadata.json` for
+  publication pages. Then regenerate matching `*.html` with `make`.
 - Do not hand-edit generated `*.html` when a same-named `.dj` file exists.
 - Top-level standalone HTML pages without `.dj` sources are `anagram.html`, `demo-naive-union-find.html`, and `sundial.html`.
 - If you add `[Name][]` links, add/update the matching reference in `templates/REFS`.

@@ -7,6 +7,8 @@ import re
 import sys
 from pathlib import Path
 
+from page_metadata import validate_publication_metadata
+
 IGNORED_TARGET_PREFIXES = (
     "http://",
     "https://",
@@ -145,6 +147,7 @@ def main() -> int:
     placeholder_issues = find_placeholder_issues(root)
     broken_link_issues = find_broken_link_issues(root)
     metadata_issues = find_metadata_issues(root)
+    publication_metadata_issues = validate_publication_metadata(root)
 
     if placeholder_issues:
         print_section(
@@ -158,8 +161,18 @@ def main() -> int:
         )
     if metadata_issues:
         print_section("ERROR: found invalid page metadata", metadata_issues)
+    if publication_metadata_issues:
+        print_section(
+            "ERROR: found invalid publication metadata source",
+            publication_metadata_issues,
+        )
 
-    return 1 if placeholder_issues or broken_link_issues or metadata_issues else 0
+    return 1 if (
+        placeholder_issues
+        or broken_link_issues
+        or metadata_issues
+        or publication_metadata_issues
+    ) else 0
 
 
 if __name__ == "__main__":

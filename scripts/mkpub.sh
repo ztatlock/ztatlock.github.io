@@ -31,9 +31,5 @@ sed -i '' \
   -e "s#YEAR-CONF-SYS#${ycf}#g" \
   "pub-${ycf}.dj"
 
-# pub meta
-cp templates/meta.html "pub-${ycf}.meta"
-sed -i '' \
-  -e "s#URL#https://ztatlock.net/pub-${ycf}.html#g" \
-  -e "s#IMAGE#https://ztatlock.net/pubs/${ycf}/${ycf}-meta.png#g" \
-  "pub-${ycf}.meta"
+# publication metadata manifest entry
+python3 scripts/add_publication_metadata.py --root . --slug "${ycf}"

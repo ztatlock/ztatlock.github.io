@@ -221,3 +221,15 @@ Current recommendation:
 - redesign page metadata first
 - treat a full SSG migration as a later architectural campaign, not as the
   immediate fix for `.meta` file sprawl
+
+## Current Incremental Implementation
+
+As of March 20, 2026, the repo has started this migration for publication
+pages only:
+
+- publication metadata now lives in
+  `manifests/publication-metadata.json`
+- the build renders publication `<meta>` tags from that manifest
+- legacy raw `*.meta` sidecars remain in place for non-publication pages
+
+This is intentionally only a first slice, not the full metadata redesign.

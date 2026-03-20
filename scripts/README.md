@@ -31,12 +31,23 @@ Prefer the top-level `make` targets when they exist:
   Submits updated pages to IndexNow and stores its local run-state under
   `state/`. It currently assumes `wget`.
 - `mkpub.sh`
-  Scaffolds a new publication page and its current raw HTML meta sidecar from
-  the templates. It currently assumes BSD/macOS `sed -i ''`.
+  Scaffolds a new publication page directory and adds a placeholder entry to
+  `manifests/publication-metadata.json`. It currently assumes BSD/macOS
+  `sed -i ''`.
+- `add_publication_metadata.py`
+  Adds a new placeholder entry to `manifests/publication-metadata.json` for
+  `mkpub.sh` and other structured metadata workflows.
+- `page_metadata.py`
+  Shared metadata helpers for generated publication metadata and metadata
+  source validation.
+- `render_meta.py`
+  Emits `<meta>` HTML for a page by rendering generated publication metadata
+  or falling back to a legacy raw `.meta` sidecar.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
   and validates `.meta` structure plus a few stable metadata invariants
   (`og:url`, `twitter:url`, `twitter:domain`, `og:type`, `twitter:card`).
+  It also validates `manifests/publication-metadata.json`.
 
 ## Conventions
 
