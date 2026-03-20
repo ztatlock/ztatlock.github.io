@@ -17,8 +17,9 @@ These are not:
 ## Current Manifests
 
 - `page-metadata.json`
-  Structured source of truth for simple non-publication pages that only need
-  default metadata behavior plus an authored description blurb.
+  Structured source of truth for non-publication pages whose metadata can be
+  expressed as defaults plus a small number of authored overrides such as a
+  description blurb or custom share image.
 - `publication-artifact-curation.tsv`
   Manual curation judgments layered on top of the observational publication
   inventory.

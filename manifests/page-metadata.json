@@ -32,8 +32,16 @@
   "service": {
     "description": "Reviewing for program committees, serving on committees, organizing events, department leadership, etc."
   },
+  "students": {
+    "description": "Current and former students, postdocs, and theses from Zachary Tatlock's advising at the University of Washington.",
+    "image_path": "img/zachary-tatlock-atrium.jpg"
+  },
   "talks": {
     "description": "Talks I have given during invited visits, colloqia, conferences, workshops."
+  },
+  "talk-2023-05-egg-uiuc": {
+    "description": "A May 2023 UIUC Compilers Seminar talk surveying egg and relational techniques for scaling equality saturation.",
+    "image_path": "pubs/2023-pldi-egglog/2023-pldi-egglog-meta.png"
   },
   "teaching": {
     "description": "Computer science courses I have taught over the years."

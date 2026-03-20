@@ -225,13 +225,14 @@ Current recommendation:
 ## Current Incremental Implementation
 
 As of March 20, 2026, the repo has started this migration for publication
-pages and the simplest non-publication pages:
+pages and a growing set of non-publication pages with defaultable metadata:
 
-- simple non-publication page metadata now lives in
+- non-publication page metadata now lives in
   `manifests/page-metadata.json`
 - publication metadata now lives in
   `manifests/publication-metadata.json`
 - the build renders generated `<meta>` tags from those manifests
-- legacy raw `*.meta` sidecars remain in place for the special-case pages
+- legacy raw `*.meta` sidecars remain in place only for the still-unmigrated
+  special-case pages
 
 This is intentionally only a first slice, not the full metadata redesign.
