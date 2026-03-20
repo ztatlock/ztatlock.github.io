@@ -31,5 +31,7 @@
   root directly.
 - Revisit whether the eventual source/build/deploy split should stay custom or
   migrate to Jekyll or another more conventional SSG.
+- Create and integrate a replacement first-party Neutrons project page, since
+  the historical external site is gone.
 - Search older website copies and personal archives for missing publication
   artifacts.

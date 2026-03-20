@@ -28,7 +28,10 @@ notes.
 
 ### General Site Content
 
-- [ ] Add missing Neutrons project link in the August 2017 news entry (`news.dj:117`).
+- [ ] Decide what the August 2017 Neutrons news item should link to now that
+  the historical project page is gone (`news.dj:117`).
+- [ ] Decide what the stale Neutrons project link on the research page should
+  point to until a replacement page exists (`research.dj:80`).
 - [ ] Implement or remove `canon` TODO in the union-find demo (`demo-naive-union-find.html:147`).
 - [ ] Refactor union-find demo state/history for easier "back" behavior (`demo-naive-union-find.html:381`).
 
