@@ -15,7 +15,8 @@ This repo is a static website generated from Djot source files. Keep changes sou
 - Top-level standalone HTML pages without `.dj` sources are `anagram.html`, `demo-naive-union-find.html`, and `sundial.html`.
 - If you add `[Name][]` links, add/update the matching reference in `templates/REFS`.
 - Publication assets live in `pubs/<year-conf-sys>/`, with page source in `pub-<year-conf-sys>.dj`.
-- Track pending work in `ROADMAP.md` so the backlog stays centralized.
+- Track actionable backlog items in `ROADMAP.md`.
+- Keep broader structural plans and design notes in `TODO.md` and `docs/plans/`.
 
 ## Build And Checks
 - Build all generated pages and sitemaps: `make all`

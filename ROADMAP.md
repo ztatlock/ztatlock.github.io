@@ -1,9 +1,11 @@
 # ROADMAP
 
-Last updated: 2026-02-19.
+Last updated: 2026-03-20.
 
 This is the working checklist for maintenance and collaboration.
-Use this file as the single backlog source instead of scattered TODO notes.
+Use this file as the actionable backlog for concrete repo tasks.
+Use `TODO.md` and `docs/plans/` for broader strategy and longer-horizon design
+notes.
 
 ## How To Use This File
 
@@ -15,7 +17,7 @@ Use this file as the single backlog source instead of scattered TODO notes.
 
 - [x] Add minimal collaboration guide (`AGENTS.md`).
 - [x] Update README with real workflow and structure (`README.md`).
-- [ ] Keep `AGENTS.md`, `README.md`, and `ROADMAP.md` in sync as workflow changes.
+- [x] Document multi-machine pull/push workflow in `AGENTS.md` and `README.md`.
 
 ## Migrated Backlog From TODO.md
 
@@ -41,62 +43,16 @@ Use this file as the single backlog source instead of scattered TODO notes.
 - [ ] Fill arXiv TODO for `pub-2021-sff-3dp` (`pub-2021-sff-3dp.dj:33`).
 - [ ] Fill talk/arXiv TODOs for `pub-2022-ecoop-cakemlfp` (`pub-2022-ecoop-cakemlfp.dj:31`, `pub-2022-ecoop-cakemlfp.dj:32`).
 - [ ] Resolve TODO-tagged poster item for `pub-2022-tog-carpentry` (`pub-2022-tog-carpentry.dj:33`).
-- [ ] Resolve TODO-tagged `project` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:30`).
-- [ ] Resolve TODO-tagged `teaser` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:31`).
-- [ ] Resolve TODO-tagged `talk` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:32`).
-- [ ] Resolve TODO-tagged `slides` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:33`).
-- [ ] Resolve TODO-tagged `poster` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:34`).
-- [ ] Resolve TODO-tagged `arXiv` link for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:35`).
-- [ ] Replace standalone TODO marker in talk section for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:67`).
-- [ ] Replace talk video ID placeholder for `pub-2023-oopsla-enumo` (`pub-2023-oopsla-enumo.dj:72`).
-- [x] Resolve TODO-tagged `project` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:29`).
 - [ ] Resolve TODO-tagged `poster` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:30`).
-- [x] Replace TODO-tagged talk note for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:31`).
 - [ ] Resolve TODO-tagged `talk` link for `pub-2023-pldi-egglog` (`pub-2023-pldi-egglog.dj:33`).
-- [x] Resolve TODO-tagged URL/DOI note for `pub-2023-pldi-egglog` (`pub-2023-pldi-egglog.dj:52`).
 - [ ] Resolve TODO-tagged `project` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:30`).
 - [ ] Resolve TODO-tagged `poster` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:31`).
-- [ ] Resolve TODO-tagged `teaser` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:28`).
-- [ ] Resolve TODO-tagged `talk` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:29`).
-- [ ] Resolve TODO-tagged `slides` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:30`).
-- [ ] Resolve TODO-tagged `poster` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:31`).
-- [ ] Resolve TODO-tagged `project` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:32`).
-- [ ] Resolve TODO-tagged `bib` link for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:33`).
-- [ ] Replace talk TODO block text for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:61`).
-- [ ] Replace talk video ID placeholder for `pub-2023-uist-odyssey` (`pub-2023-uist-odyssey.dj:69`).
-- [ ] Fill `teaser` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:26`).
-- [ ] Fill `talk` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:27`).
-- [ ] Fill `project` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:30`).
-- [ ] Fill `code` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:31`).
-- [ ] Fill `publisher` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:32`).
-- [ ] Fill `arXiv` link for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:33`).
-- [ ] Replace abstract placeholder for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:39`).
-- [x] Replace talk text placeholder for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:44`).
-- [ ] Replace talk video ID placeholder for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:49`).
-- [ ] Replace BibTeX placeholder for `pub-2024-asplos-lakeroad` (`pub-2024-asplos-lakeroad.dj:58`).
-- [ ] Resolve TODO-tagged `code` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:20`).
-- [ ] Resolve TODO-tagged `publisher` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:21`).
-- [ ] Resolve TODO-tagged `VSCode` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:22`).
-- [ ] Resolve TODO-tagged `arXiv` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:23`).
-- [ ] Resolve TODO-tagged `teaser` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:25`).
-- [ ] Resolve TODO-tagged `talk` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:26`).
-- [ ] Resolve TODO-tagged `slides` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:27`).
-- [ ] Resolve TODO-tagged `poster` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:28`).
-- [ ] Resolve TODO-tagged `project` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:29`).
-- [ ] Resolve TODO-tagged `bib` link for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:30`).
-- [ ] Replace talk TODO block text for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:58`).
-- [ ] Replace talk video ID placeholder for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:66`).
-- [ ] Replace BibTeX placeholder for `pub-2024-programming-magicmarkup` (`pub-2024-programming-magicmarkup.dj:75`).
-
-### Publication Metadata Placeholders
-
-- [ ] Replace unresolved metadata placeholders in `pub-2024-asplos-lakeroad.meta` (`pub-2024-asplos-lakeroad.meta:1`, `pub-2024-asplos-lakeroad.meta:6`, `pub-2024-asplos-lakeroad.meta:7`, `pub-2024-asplos-lakeroad.meta:14`, `pub-2024-asplos-lakeroad.meta:15`).
 
 ### Template Placeholders (Intentional Scaffolding)
 
 - [ ] Keep or revise template TODO placeholders for new publication scaffolds (`templates/pub.dj:20`, `templates/pub.dj:21`, `templates/pub.dj:24`, `templates/pub.dj:25`, `templates/pub.dj:26`, `templates/pub.dj:27`, `templates/pub.dj:33`, `templates/pub.dj:38`, `templates/pub.dj:43`, `templates/pub.dj:52`).
-- [ ] Confirm required publication placeholder checks still match policy (`templates/check.sh:20`).
-- [ ] Confirm checker behavior for TODO-tagged publication fields is still the policy we want (`templates/check.sh:37`, `templates/check.sh:38`).
+- [ ] Keep or revise raw HTML metadata scaffold placeholders (`templates/meta.html:1`, `templates/meta.html:4`, `templates/meta.html:6`, `templates/meta.html:7`, `templates/meta.html:8`, `templates/meta.html:13`, `templates/meta.html:14`, `templates/meta.html:15`, `templates/meta.html:16`).
+- [ ] Confirm required publication placeholder checks still match policy (`scripts/check.sh:56`).
 
 ## Known Non-TODO Follow-Ups From Review
 

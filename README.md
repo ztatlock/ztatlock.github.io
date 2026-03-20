@@ -102,7 +102,8 @@ so generated HTML and sitemap files are committed.
 
 ## Roadmap
 
-Outstanding TODOs and follow-up work are tracked in
-[ROADMAP.md](ROADMAP.md) and [TODO.md](TODO.md).
+- Use [ROADMAP.md](ROADMAP.md) for actionable backlog items.
+- Use [TODO.md](TODO.md) and [docs/plans/](docs/plans/) for broader strategy
+  and longer-horizon design work.
 
 Issues and/or PRs to fix typos or missing content are welcome!
