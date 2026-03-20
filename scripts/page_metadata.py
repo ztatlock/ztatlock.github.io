@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 from pathlib import Path
 
 SITE_URL = "https://ztatlock.net"
@@ -11,6 +12,7 @@ GENERAL_PAGE_METADATA = Path("manifests/page-metadata.json")
 PUBLICATION_METADATA = Path("manifests/publication-metadata.json")
 GENERAL_ALLOWED_FIELDS = {"description", "share_description", "image_path", "title"}
 PUBLICATION_ALLOWED_FIELDS = {"description", "share_description", "image_path"}
+DRAFT_HEADING_RE = re.compile(r"^# DRAFT$", re.MULTILINE)
 
 
 class MetadataError(ValueError):
@@ -47,14 +49,11 @@ def escape_content(value: str) -> str:
     return html.escape(value, quote=False).replace('"', "&quot;")
 
 
-def read_raw_meta(page_stem: str, root: Path) -> str:
-    path = root / f"{page_stem}.meta"
+def is_draft_page(page_stem: str, root: Path) -> bool:
+    path = root / f"{page_stem}.dj"
     if not path.exists():
-        return ""
-    text = path.read_text(encoding="utf-8")
-    if text and not text.endswith("\n"):
-        text += "\n"
-    return text
+        return False
+    return bool(DRAFT_HEADING_RE.search(path.read_text(encoding="utf-8")))
 
 
 def load_general_page_metadata(root: Path) -> dict[str, dict[str, str]]:
@@ -272,12 +271,24 @@ def render_general_page_meta(page_stem: str, title: str, root: Path) -> str:
 
 
 def render_page_meta(page_stem: str, title: str, root: Path) -> str:
-    if publication_slug(page_stem) is not None:
+    slug = publication_slug(page_stem)
+    if is_draft_page(page_stem, root):
+        if slug is not None:
+            rows = load_publication_metadata(root)
+            if slug in rows:
+                return render_publication_meta(page_stem, title, root)
+            return ""
+        general_rows = load_general_page_metadata(root)
+        if page_stem in general_rows:
+            return render_general_page_meta(page_stem, title, root)
+        return ""
+
+    if slug is not None:
         return render_publication_meta(page_stem, title, root)
     general_rows = load_general_page_metadata(root)
     if page_stem in general_rows:
         return render_general_page_meta(page_stem, title, root)
-    return read_raw_meta(page_stem, root)
+    raise MetadataError(f"Missing structured page metadata for {page_stem}")
 
 
 def validate_general_page_metadata(root: Path) -> list[str]:
@@ -303,8 +314,6 @@ def validate_general_page_metadata(root: Path) -> list[str]:
         image_path = row["image_path"] or default_page_image_path()
         if not image_path.startswith(("http://", "https://")) and not (root / image_path).exists():
             issues.append(f"{GENERAL_PAGE_METADATA}: image path for {stem} does not exist: {image_path}")
-        if (root / f"{stem}.meta").exists():
-            issues.append(f"{GENERAL_PAGE_METADATA}: {stem}.meta still exists alongside structured metadata")
 
     return issues
 
@@ -316,7 +325,11 @@ def validate_publication_metadata(root: Path) -> list[str]:
     except MetadataError as err:
         return [str(err)]
 
-    page_slugs = sorted(path.stem.removeprefix("pub-") for path in root.glob("pub-*.dj"))
+    page_slugs = sorted(
+        path.stem.removeprefix("pub-")
+        for path in root.glob("pub-*.dj")
+        if not is_draft_page(path.stem, root)
+    )
     manifest_slugs = sorted(rows)
 
     missing = sorted(set(page_slugs) - set(manifest_slugs))
@@ -332,7 +345,5 @@ def validate_publication_metadata(root: Path) -> list[str]:
             continue
         if not (root / image_path).exists():
             issues.append(f"{PUBLICATION_METADATA}: image path for {slug} does not exist: {image_path}")
-        if (root / f"pub-{slug}.meta").exists():
-            issues.append(f"{PUBLICATION_METADATA}: pub-{slug}.meta still exists alongside structured metadata")
 
     return issues

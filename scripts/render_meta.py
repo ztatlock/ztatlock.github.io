@@ -18,7 +18,7 @@ def main() -> int:
     parser.add_argument(
         "--root",
         default=".",
-        help="Site root containing manifests, source pages, and optional legacy .meta files.",
+        help="Site root containing manifests and source pages.",
     )
     args = parser.parse_args()
 

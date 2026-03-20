@@ -42,14 +42,13 @@ Prefer the top-level `make` targets when they exist:
   validation across both simple non-publication pages and publication pages.
 - `render_meta.py`
   Emits `<meta>` HTML for a page by rendering generated publication metadata
-  or simple page metadata, and otherwise falls back to a legacy raw `.meta`
-  sidecar.
+  or non-publication page metadata. Draft pages may intentionally emit no
+  metadata while they remain drafts.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
-  and validates `.meta` structure plus a few stable metadata invariants
-  (`og:url`, `twitter:url`, `twitter:domain`, `og:type`, `twitter:card`).
-  It also validates `manifests/page-metadata.json` and
+  validates `manifests/page-metadata.json` and
   `manifests/publication-metadata.json`.
+  It also rejects any legacy raw `.meta` sidecars.
 
 ## Conventions
 

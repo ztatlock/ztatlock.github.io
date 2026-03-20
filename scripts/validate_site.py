@@ -28,21 +28,6 @@ PLACEHOLDER_RE = re.compile(
     r'TODO|YOUTUBEID|href="TODO"|content="TITLE"|content="DESCRIPTION"|CONF YEAR'
 )
 HTML_LINK_RE = re.compile(r'(?:href|src)="([^"]+)"')
-META_ATTR_RE = re.compile(r'([A-Za-z_:][-A-Za-z0-9_:]*)="([^"]*)"')
-REQUIRED_META_FIELDS = {
-    "description",
-    "og:description",
-    "og:image",
-    "og:title",
-    "og:type",
-    "og:url",
-    "twitter:card",
-    "twitter:description",
-    "twitter:domain",
-    "twitter:image",
-    "twitter:title",
-    "twitter:url",
-}
 
 
 def find_placeholder_issues(root: Path) -> list[str]:
@@ -69,63 +54,10 @@ def find_broken_link_issues(root: Path) -> list[str]:
     return issues
 
 
-def canonical_url(path: Path) -> str:
-    if path.stem == "index":
-        return "https://ztatlock.net/"
-    return f"https://ztatlock.net/{path.stem}.html"
-
-
-def find_metadata_issues(root: Path) -> list[str]:
+def find_legacy_metadata_issues(root: Path) -> list[str]:
     issues: list[str] = []
-
     for path in sorted(root.glob("*.meta")):
-        fields: dict[str, str] = {}
-        for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-            stripped = line.strip()
-            if not stripped or stripped.startswith("<!--"):
-                continue
-            if not stripped.startswith("<meta "):
-                continue
-            if not stripped.endswith(">"):
-                issues.append(f"{path.name}:{lineno}: malformed meta tag")
-                continue
-
-            body = stripped[len("<meta ") : -1].strip()
-            matches = list(META_ATTR_RE.finditer(body))
-            residue = META_ATTR_RE.sub("", body).strip()
-            if residue:
-                issues.append(f"{path.name}:{lineno}: malformed meta attributes: {residue}")
-
-            attrs = {match.group(1): match.group(2) for match in matches}
-            key = attrs.get("name") or attrs.get("property")
-            if not key:
-                issues.append(f"{path.name}:{lineno}: missing meta name/property")
-                continue
-            if "content" not in attrs or not attrs["content"]:
-                issues.append(f"{path.name}:{lineno}: missing meta content for {key}")
-                continue
-            if key in fields:
-                issues.append(f"{path.name}:{lineno}: duplicate meta entry for {key}")
-                continue
-            fields[key] = attrs["content"]
-
-        missing = sorted(REQUIRED_META_FIELDS - fields.keys())
-        if missing:
-            issues.append(f"{path.name}: missing required fields: {', '.join(missing)}")
-            continue
-
-        expected = canonical_url(path)
-        if fields["og:url"] != expected:
-            issues.append(f"{path.name}: og:url should be {expected}")
-        if fields["twitter:url"] != expected:
-            issues.append(f"{path.name}: twitter:url should be {expected}")
-        if fields["twitter:domain"] != "ztatlock.net":
-            issues.append(f"{path.name}: twitter:domain should be ztatlock.net")
-        if fields["og:type"] != "website":
-            issues.append(f"{path.name}: og:type should be website")
-        if fields["twitter:card"] != "summary_large_image":
-            issues.append(f"{path.name}: twitter:card should be summary_large_image")
-
+        issues.append(f"{path.name}: legacy raw .meta sidecars are no longer supported")
     return issues
 
 
@@ -149,8 +81,7 @@ def find_missing_metadata_warnings(root: Path) -> list[str]:
             continue
         if path.stem in structured_pages:
             continue
-        if not (root / f"{path.stem}.meta").exists():
-            warnings.append(f"{path.name}: missing metadata source")
+        warnings.append(f"{path.name}: missing structured metadata entry")
 
     return warnings
 
@@ -178,7 +109,7 @@ def main() -> int:
 
     placeholder_issues = find_placeholder_issues(root)
     broken_link_issues = find_broken_link_issues(root)
-    metadata_issues = find_metadata_issues(root)
+    legacy_metadata_issues = find_legacy_metadata_issues(root)
     general_page_metadata_issues = validate_general_page_metadata(root)
     publication_metadata_issues = validate_publication_metadata(root)
     missing_metadata_warnings = find_missing_metadata_warnings(root)
@@ -193,8 +124,8 @@ def main() -> int:
             "ERROR: found broken local links in generated HTML",
             broken_link_issues,
         )
-    if metadata_issues:
-        print_section("ERROR: found invalid page metadata", metadata_issues)
+    if legacy_metadata_issues:
+        print_section("ERROR: found legacy raw page metadata files", legacy_metadata_issues)
     if general_page_metadata_issues:
         print_section(
             "ERROR: found invalid page metadata source",
@@ -211,7 +142,7 @@ def main() -> int:
     return 1 if (
         placeholder_issues
         or broken_link_issues
-        or metadata_issues
+        or legacy_metadata_issues
         or general_page_metadata_issues
         or publication_metadata_issues
     ) else 0

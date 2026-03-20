@@ -54,7 +54,6 @@ notes.
 ### Template Placeholders (Intentional Scaffolding)
 
 - [ ] Keep or revise template TODO placeholders for new publication scaffolds (`templates/pub.dj:20`, `templates/pub.dj:21`, `templates/pub.dj:24`, `templates/pub.dj:25`, `templates/pub.dj:26`, `templates/pub.dj:27`, `templates/pub.dj:33`, `templates/pub.dj:38`, `templates/pub.dj:43`, `templates/pub.dj:52`).
-- [ ] Keep or revise raw HTML metadata scaffold placeholders (`templates/meta.html:1`, `templates/meta.html:4`, `templates/meta.html:6`, `templates/meta.html:7`, `templates/meta.html:8`, `templates/meta.html:13`, `templates/meta.html:14`, `templates/meta.html:15`, `templates/meta.html:16`).
 - [ ] Confirm required publication placeholder checks still match policy (`scripts/check.sh:56`).
 
 ## Known Non-TODO Follow-Ups From Review

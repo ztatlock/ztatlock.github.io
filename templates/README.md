@@ -14,9 +14,6 @@ page scaffolding.
   The closing `</body>` and `</html>` tags.
 - `REFS`
   Shared Djot reference definitions appended to every generated page.
-- `meta.html`
-  Starter page-meta snippet for the current raw HTML `*.meta` sidecar system.
-  This is likely to be replaced when page metadata becomes structured.
 - `pub.dj`
   Publication page scaffold used by `scripts/mkpub.sh`.
 
@@ -24,7 +21,7 @@ page scaffolding.
 
 - Keep this directory non-executable.
 - Document new template inputs here when the build starts depending on them.
-- Placeholder tokens are fine in scaffolds such as `meta.html` and `pub.dj`,
+- Placeholder tokens are fine in scaffolds such as `pub.dj`,
   but generated public pages should not ship unresolved placeholders.
 - Prefer updating `scripts/mkpub.sh` and `scripts/check.sh` alongside template
   changes so scaffolding and validation stay in sync.

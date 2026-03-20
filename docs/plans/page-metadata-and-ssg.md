@@ -6,8 +6,10 @@ static-site generator.
 
 ## Current Situation
 
-The repo currently maintains one optional raw HTML `*.meta` sidecar per page.
-In practice, every public page now has one.
+Historically, the repo maintained one raw HTML `*.meta` sidecar per public
+page. That system has now been replaced by structured metadata manifests for
+all public pages, but the historical pain points still explain the migration
+direction captured in this note.
 
 That gives the site good social/share metadata, but it has real costs:
 
@@ -25,7 +27,7 @@ Examples of the current brittleness:
 
 ## Current Repo Observations
 
-The current corpus strongly suggests that most of the `*.meta` HTML is
+The pre-migration corpus strongly suggested that most of the `*.meta` HTML was
 mechanical rather than truly authored:
 
 - 41 public `*.meta` files currently exist
@@ -135,7 +137,7 @@ Pages should only override what is actually special, typically:
 ### Publication Pages Need A Better Path
 
 Publication pages are the clearest case where metadata matters and where the
-current sidecar pattern is annoying.
+historical sidecar pattern was annoying.
 
 The build should be able to derive or accept structured values for:
 
@@ -149,19 +151,19 @@ creating a raw HTML `*.meta` file.
 
 ## Migration Shape I Would Recommend
 
-### Stage 1
+### Stage 1 (Completed For Public Pages)
 
 Keep the current site generator and flat page layout, but introduce a
 structured metadata format with generated defaults.
 
-The least disruptive version is:
+The least disruptive version was:
 
-- allow page-local structured metadata
+- allow structured metadata in shared manifests
 - generate metadata tags from that structure
-- continue supporting existing `*.meta` files temporarily for compatibility
+- keep draft pages flexible while they remain drafts
 
-This stage would let us simplify the metadata system without changing the
-overall site architecture.
+This stage simplified the metadata system without changing the overall site
+architecture.
 
 ### Stage 2
 
@@ -175,12 +177,12 @@ At this point we should choose one of:
 My bias is toward YAML front matter because it is more conventional and gives
 us a better bridge to future tools.
 
-### Stage 3
+### Stage 3 (Completed For Public Pages)
 
 Deprecate raw HTML `*.meta` files.
 
-Once all public pages have migrated to structured metadata plus defaults, the
-build should stop accepting raw `*.meta` blobs.
+All public pages have now migrated to structured metadata plus defaults, and
+the build rejects raw `*.meta` blobs.
 
 ### Stage 4
 
@@ -224,15 +226,17 @@ Current recommendation:
 
 ## Current Incremental Implementation
 
-As of March 20, 2026, the repo has started this migration for publication
-pages and a growing set of non-publication pages with defaultable metadata:
+As of March 20, 2026, all public pages have completed the first metadata
+migration away from raw sidecars:
 
-- non-publication page metadata now lives in
+- public non-publication page metadata now lives in
   `manifests/page-metadata.json`
-- publication metadata now lives in
+- public publication metadata now lives in
   `manifests/publication-metadata.json`
 - the build renders generated `<meta>` tags from those manifests
-- legacy raw `*.meta` sidecars remain in place only for the still-unmigrated
-  special-case pages
+- public pages no longer use raw `*.meta` sidecars
+- draft pages may still build without metadata while they remain drafts
 
-This is intentionally only a first slice, not the full metadata redesign.
+This is a substantial milestone, but not the full metadata redesign.
+The next design question is whether metadata should stay in shared manifests
+or move closer to content via front matter or page-local structured sidecars.

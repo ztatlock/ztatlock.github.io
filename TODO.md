@@ -7,8 +7,8 @@
 - Keep the current root-level file classes documented in
   `docs/policy/root-layout.md`.
 - Keep small self-describing docs current when support directories change.
-- Design a smaller metadata system with generated defaults so raw page
-  `*.meta` files do not need to survive forever.
+- Decide whether structured page metadata should remain in shared manifests or
+  move closer to content via front matter or page-local sidecars.
 - Revisit which generated outputs are intentionally tracked in git and which
   eventually deserve a better home than the repo root.
 
