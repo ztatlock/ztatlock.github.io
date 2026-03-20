@@ -55,6 +55,12 @@ Commands:
 
 ## Editing Workflow
 
+Multi-machine guardrail:
+- At the start of a session, run `git status`, and if the tree is clean run
+  `git pull --ff-only` before making changes.
+- If the tree is dirty, stop and resolve that state before pulling.
+- After each coherent commit, `git push` so other machines stay in sync.
+
 1. Edit `<page>.dj`.
 2. Update or add `<page>.meta` if metadata should change.
 3. Rebuild with `make <page>.html` or `make all`.

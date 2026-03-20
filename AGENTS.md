@@ -3,6 +3,13 @@
 This repo is a static website generated from Djot source files. Keep changes source-first and predictable.
 
 ## Ground Rules
+- This repo is edited from multiple machines. At the start of a session, run
+  `git status` and, if the tree is clean, `git pull --ff-only` before making
+  changes.
+- If the tree is dirty at the start of a session, do not pull until the state
+  is understood and resolved explicitly.
+- After each coherent commit, `git push` so other machines and future sessions
+  do not drift.
 - Edit `*.dj` (content) and `*.meta` (head metadata), then regenerate matching `*.html` with `make`.
 - Do not hand-edit generated `*.html` when a same-named `.dj` file exists.
 - Top-level standalone HTML pages without `.dj` sources are `anagram.html`, `demo-naive-union-find.html`, and `sundial.html`.
@@ -13,7 +20,8 @@ This repo is a static website generated from Djot source files. Keep changes sou
 ## Build And Checks
 - Build all generated pages and sitemaps: `make all`
 - Build one page: `make <page>.html`
-- Run placeholder checks: `bash templates/check.sh`
+- Check local prerequisites and assumptions: `make env-check`
+- Run validation checks: `make check`
 
 ## Before Committing
 - Ensure edited `.dj` pages have regenerated `.html`.
