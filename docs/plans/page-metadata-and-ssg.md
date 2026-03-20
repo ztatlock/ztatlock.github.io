@@ -220,7 +220,9 @@ Current recommendation:
 
 - keep Djot for now
 - do not migrate to Jekyll in the near term
-- redesign page metadata first
+- move non-publication page metadata toward YAML front matter
+- keep publication metadata under separate review while the broader
+  publication-data model is still unsettled
 - treat a full SSG migration as a later architectural campaign, not as the
   immediate fix for `.meta` file sprawl
 
@@ -238,5 +240,6 @@ migration away from raw sidecars:
 - draft pages may still build without metadata while they remain drafts
 
 This is a substantial milestone, but not the full metadata redesign.
-The next design question is whether metadata should stay in shared manifests
-or move closer to content via front matter or page-local structured sidecars.
+The next design question is how to move non-publication metadata closer to
+content via front matter, and whether publication metadata should eventually
+fold into a broader publication single source of truth.

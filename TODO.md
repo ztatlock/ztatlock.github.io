@@ -7,8 +7,8 @@
 - Keep the current root-level file classes documented in
   `docs/policy/root-layout.md`.
 - Keep small self-describing docs current when support directories change.
-- Decide whether structured page metadata should remain in shared manifests or
-  move closer to content via front matter or page-local sidecars.
+- Prototype mixed-mode YAML front matter for non-publication pages while
+  keeping publication metadata under separate design review.
 - Revisit which generated outputs are intentionally tracked in git and which
   eventually deserve a better home than the repo root.
 
