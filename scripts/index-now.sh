@@ -9,7 +9,7 @@ function handle_err {
 }
 
 function error {
-  echo "$1" 2>&1
+  echo "$1" >&2
   exit 1
 }
 

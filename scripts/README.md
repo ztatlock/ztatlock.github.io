@@ -39,7 +39,7 @@ Prefer the top-level `make` targets when they exist:
   `mkpub.sh` and other structured metadata workflows.
 - `page_metadata.py`
   Shared metadata helpers for generated page metadata and metadata source
-  validation across both simple non-publication pages and publication pages.
+  validation across both public non-publication pages and publication pages.
 - `render_meta.py`
   Emits `<meta>` HTML for a page by rendering generated publication metadata
   or non-publication page metadata. Draft pages may intentionally emit no

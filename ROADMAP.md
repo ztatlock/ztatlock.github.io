@@ -54,7 +54,7 @@ notes.
 ### Template Placeholders (Intentional Scaffolding)
 
 - [ ] Keep or revise template TODO placeholders for new publication scaffolds (`templates/pub.dj:20`, `templates/pub.dj:21`, `templates/pub.dj:24`, `templates/pub.dj:25`, `templates/pub.dj:26`, `templates/pub.dj:27`, `templates/pub.dj:33`, `templates/pub.dj:38`, `templates/pub.dj:43`, `templates/pub.dj:52`).
-- [ ] Confirm required publication placeholder checks still match policy (`scripts/check.sh:56`).
+- [ ] Confirm required publication placeholder checks still match policy (`scripts/validate_site.py:33`).
 
 ## Known Non-TODO Follow-Ups From Review
 

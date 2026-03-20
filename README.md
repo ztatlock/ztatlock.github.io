@@ -15,8 +15,8 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
 - `REFS` provides global reference links included for each page.
 - `templates/`: shared page wrappers and global references
   (see [templates/README.md](templates/README.md)).
-- `scripts/`: executable helpers (`check.sh`, `mkpub.sh`, `index-now.sh`,
-  `build_pub_inventory.py`).
+- `scripts/`: executable helpers and metadata/build utilities
+  (see [scripts/README.md](scripts/README.md)).
 - `pubs/<year-conf-sys>/`: publication assets (PDF, bib, images, slides,
   posters, etc.).
 - `img/`: shared site images/icons.

@@ -11,7 +11,7 @@ from page_metadata import MetadataError, render_page_meta
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Render page metadata HTML from structured or legacy sources."
+        description="Render page metadata HTML from structured page manifests."
     )
     parser.add_argument("--page", required=True, help="Page stem without .html")
     parser.add_argument("--title", required=True, help="Rendered page title")
