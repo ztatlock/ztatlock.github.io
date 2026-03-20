@@ -14,6 +14,7 @@ SITEMAP_PDFS   := $(wildcard pubs/*/*.pdf)
 SITEMAP_HTML   := $(sort $(STATIC_HTML) $(PAGES))
 
 CHECK          := scripts/check.sh
+CHECK_ENV      := scripts/check_env.sh
 INDEX_NOW      := scripts/index-now.sh
 MKPUB          := scripts/mkpub.sh
 PUB_INVENTORY  := scripts/build_pub_inventory.py
@@ -60,6 +61,7 @@ help:
 		'make all' \
 		'make drafts' \
 		'make check' \
+		'make env-check' \
 		'make inventory [INVENTORY_OUT=/path/to/out-dir]' \
 		'make inventory-webfiles' \
 		'make mkpub YCF=YEAR-CONF-SYS' \
@@ -92,6 +94,10 @@ drafts: $(DRAFT_PAGES)
 .PHONY: check
 check:
 	@bash $(CHECK)
+
+.PHONY: env-check
+env-check:
+	@bash $(CHECK_ENV)
 
 .PHONY: inventory
 inventory:

@@ -36,11 +36,15 @@ Standalone top-level pages without `.dj` sources:
 Prerequisites: `bash`, `make`, `python3`, `git`, `djot`, `rg`, `rsync`.
 `scripts/mkpub.sh` assumes BSD/macOS `sed -i ''`.
 `wget` is only needed for `make index-now`.
+Run `make env-check` to verify the current local environment and portability
+assumptions.
 
 Commands:
 - `make all` — build all `*.dj → *.html` pages plus sitemaps.
 - `make <page>.html` — rebuild one page.
 - `make clean` — remove generated pages and sitemap files.
+- `make env-check` — verify local prerequisites and current portability
+  assumptions.
 - `make check` — validate in an isolated scratch copy (does not dirty the
   live repo).
 - `make inventory` — build publication artifact inventory locally

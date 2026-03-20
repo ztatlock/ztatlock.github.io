@@ -5,6 +5,7 @@ This directory holds executable helpers for working on the website repo.
 Prefer the top-level `make` targets when they exist:
 
 - `make check`
+- `make env-check`
 - `make inventory`
 - `make inventory-webfiles`
 - `make mkpub YCF=YEAR-CONF-SYS`
@@ -21,6 +22,9 @@ Prefer the top-level `make` targets when they exist:
 - `check.sh`
   Rebuilds the site in an isolated scratch copy and runs structural validation
   checks without dirtying tracked site outputs in the live repo.
+- `check_env.sh`
+  Verifies the local command/tool prerequisites and reports current
+  portability assumptions for optional workflows.
 - `index-now.sh`
   Submits updated pages to IndexNow and stores its local run-state under
   `state/`. It currently assumes `wget`.
