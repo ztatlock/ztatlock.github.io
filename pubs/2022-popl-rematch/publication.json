@@ -1,0 +1,19 @@
+{
+  "title": "Relational e-matching",
+  "authors": [
+    { "name": "Yihong Zhang", "ref": "Yihong Zhang" },
+    { "name": "Yisu Remy Wang", "ref": "Remy Wang" },
+    { "name": "Max Willsey", "ref": "Max Willsey" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+  ],
+  "venue": "Principles of Programming Languages (POPL)",
+  "description": "Relational e-matching uses DB query techniques to provide optimal e-matching, simple implementation, and orders-of-magnitude speedup vs. conventional methods.",
+  "links": {
+    "teaser": "https://www.youtube.com/watch?v=yHqPYphl440",
+    "talk": "https://www.youtube.com/watch?v=88Mq1Zba_1I",
+    "project": "https://egraphs-good.github.io/",
+    "code": "https://github.com/egraphs-good/egg/tree/relational",
+    "publisher": "https://dl.acm.org/doi/10.1145/3498696",
+    "arxiv": "https://arxiv.org/abs/2108.02290"
+  }
+}

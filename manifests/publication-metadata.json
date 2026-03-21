@@ -20,14 +20,8 @@
   "2022-ecoop-cakemlfp": {
     "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics."
   },
-  "2022-popl-rematch": {
-    "description": "Relational e-matching uses DB query techniques to provide optimal e-matching, simple implementation, and orders-of-magnitude speedup vs. conventional methods."
-  },
   "2022-tog-carpentry": {
     "description": "Joint optimization of carpentry designs & fabrication plans with e-graphs. Discovering Pareto-optimal tradeoffs to bridge design-to-fabrication gaps."
-  },
-  "2023-oopsla-enumo": {
-    "description": "Enumo is a new DSL that makes EqSat rule inference programmable and scalable. Its core operators enable strategic guidance, supporting larger grammars and novel strategies previously out of scope."
   },
   "2023-plarch-lakeroad": {
     "description": "Generate Compilers from Hardware Models! - PLARCH @ PLDI 2023",
