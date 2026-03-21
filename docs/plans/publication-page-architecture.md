@@ -15,10 +15,10 @@ As of March 21, 2026:
 
 - 21 publication pages exist as top-level `pub-<slug>.dj` sources
 - 21 publication asset directories exist under `pubs/<slug>/`
-- publication page metadata is now in mixed mode:
-  20 migrated pages now source metadata and page bodies from local
-  `publication.json` records, while 1 untouched page still falls back to
-  `manifests/publication-metadata.json`
+- all 21 public detailed publication pages now source metadata and page
+  bodies from local `publication.json` records
+- `manifests/publication-metadata.json` is currently empty and retained only
+  as a temporary legacy fallback during transition cleanup
 - top-level `pub-<slug>.dj` files remain as transition-time build anchors and
   draft/public status stubs
 - publication assets already live locally and canonically in their own
@@ -111,7 +111,6 @@ across:
 - the publication page
 - [publications.dj](/Users/ztatlock/www/ztatlock.github.io/publications.dj)
 - sometimes [index.dj](/Users/ztatlock/www/ztatlock.github.io/index.dj)
-- [manifests/publication-metadata.json](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-metadata.json)
 
 So the duplication problem is not only “page body vs. asset directory.”
 It is also “publication page vs. site-wide lists.”
@@ -373,8 +372,7 @@ Recommended first-cut authored fields:
 - `badges`
   for things like spotlight/distinguished paper notes
 - `description`
-  the share/metadata blurb currently living in
-  `manifests/publication-metadata.json`
+  the share/metadata blurb attached to the publication record
 - `share_description`
   optional shorter social/share blurb when it differs from `description`
 - `meta_image_path`

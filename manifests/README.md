@@ -22,8 +22,7 @@ These are not:
   Use `present` only for archive-presence heuristic misses, not to override a
   missing canonical repo file or page link.
 - `publication-metadata.json`
-  Structured fallback source for publication page metadata blurbs and rare
-  publication-specific overrides such as share descriptions or image-path
-  overrides.
-  During the current publication pilot, pages with
-  `pubs/<slug>/publication.json` source metadata there instead.
+  Legacy publication metadata fallback retained temporarily during transition
+  cleanup.
+  It is currently empty because all public detailed publication pages now
+  source metadata from `pubs/<slug>/publication.json`.

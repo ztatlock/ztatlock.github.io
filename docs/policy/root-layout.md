@@ -39,10 +39,10 @@ Top-level `*.dj` files are authored page sources.
   optional front matter.
 - Public non-publication page metadata is currently sourced from YAML front
   matter in `*.dj`.
-- Public publication page metadata is currently in mixed mode:
-  migrated pages may source metadata from `pubs/<slug>/publication.json`,
-  while untouched pages still fall back to structured metadata under
-  `manifests/`.
+- Public publication page metadata is currently sourced from
+  `pubs/<slug>/publication.json`.
+- `manifests/publication-metadata.json` is retained only as an empty legacy
+  fallback during transition cleanup.
 - For migrated public publication pages, the top-level `pub-<slug>.dj` file
   should stay a minimal transition stub/build anchor rather than a second full
   page body.

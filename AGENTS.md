@@ -12,8 +12,8 @@ This repo is a static website generated from Djot source files. Keep changes sou
   do not drift.
 - Edit `*.dj` (content) first. For head metadata, edit
   YAML front matter for public non-publication pages and
-  publication-local `pubs/<slug>/publication.json` when a page uses the new
-  local-record path, otherwise `manifests/publication-metadata.json`.
+  publication-local `pubs/<slug>/publication.json` for public publication
+  pages.
   Draft pages may omit metadata while they remain drafts.
   Then regenerate matching `*.html` with `make`.
 - Do not hand-edit generated `*.html` when a same-named `.dj` file exists.

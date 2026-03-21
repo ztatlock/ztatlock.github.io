@@ -1,0 +1,28 @@
+{
+  "title": "Generate Compilers from Hardware Models!",
+  "authors": [
+    { "name": "Gus Henry Smith", "ref": "Gus Smith" },
+    { "name": "Ben Kushigian", "ref": "Ben Kushigian" },
+    { "name": "Vishal Canumalla", "ref": "Vishal Canumalla" },
+    { "name": "Andrew Cheung", "ref": "Andrew Cheung" },
+    { "name": "René Just", "ref": "René Just" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+  ],
+  "venue": "Workshop on Programming Languages and Computer Architecture (PLARCH)",
+  "description": "Generate Compilers from Hardware Models! - PLARCH @ PLDI 2023",
+  "links": {
+    "code": "https://github.com/gussmith23/lakeroad",
+    "event": "https://pldi23.sigplan.org/home/plarch-2023",
+    "arxiv": "https://arxiv.org/abs/2305.09580"
+  },
+  "talks": [
+    {
+      "event": "PLARCH 2023",
+      "speakers": [
+        { "name": "Gus Smith", "ref": "Gus Smith" }
+      ],
+      "url": "https://www.youtube.com/watch?v=IkdRtgnJMU0",
+      "embed": "https://www.youtube.com/embed/IkdRtgnJMU0"
+    }
+  ]
+}

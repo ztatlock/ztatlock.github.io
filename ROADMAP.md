@@ -49,7 +49,7 @@ notes.
 - [ ] Decide whether `2022-ecoop-cakemlfp` should expose a public talk link and, if so, add it to the canonical publication record (`pubs/2022-ecoop-cakemlfp/publication.json:16`).
 - [ ] Decide whether `2022-ecoop-cakemlfp` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2022-ecoop-cakemlfp/publication.json:16`).
 - [ ] Decide whether `2022-tog-carpentry` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2022-tog-carpentry/publication.json:13`).
-- [ ] Resolve TODO-tagged `poster` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:30`).
+- [ ] Decide whether `2023-plarch-lakeroad` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2023-plarch-lakeroad/publication.json:16`).
 - [ ] Decide whether `2023-pldi-egglog` should expose a public talk link and, if so, add it to the canonical publication record (`pubs/2023-pldi-egglog/publication.json:13`).
 - [ ] Decide whether `2023-popl-babble` should expose a project link and, if so, add it to the canonical publication record (`pubs/2023-popl-babble/publication.json:15`).
 - [ ] Decide whether `2023-popl-babble` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2023-popl-babble/publication.json:15`).

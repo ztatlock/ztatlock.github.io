@@ -10,15 +10,15 @@ the long-term design.
 
 ## Current State
 
-As of March 20, 2026:
+As of March 21, 2026:
 
 - 41 public `*.dj` pages exist
 - 20 public non-publication pages currently source metadata from YAML front
   matter in `*.dj`
-- publication pages are now in mixed mode:
-  migrated pages may source metadata from `pubs/<slug>/publication.json`,
-  while untouched pages still source metadata from
-  `manifests/publication-metadata.json`
+- all current public publication pages now source metadata from
+  `pubs/<slug>/publication.json`
+- `manifests/publication-metadata.json` is currently empty and retained only
+  as a temporary legacy fallback
 - 7 draft pages exist and may intentionally omit metadata while they remain
   drafts
 - public pages no longer use raw `*.meta` sidecars
@@ -32,14 +32,8 @@ The current structured metadata schema is intentionally small:
   - `image_path`
   - `title`
 
-In practice, the fallback publication manifest is sparse:
-
-- `manifests/publication-metadata.json`
-  - 1 / 1 entry uses `description`
-  - 0 / 1 entries use `share_description`
-  - 1 / 1 entry uses `image_path`
-
-This is a strong sign that defaults are working and that the core question is
+In practice, the old fallback publication manifest is now empty. This is a
+strong sign that defaults are working and that the core question is
 mostly about *where* metadata should live, not about inventing a richer
 metadata schema.
 
@@ -69,7 +63,7 @@ Keep the current model:
 - easy to inspect global metadata coverage
 - low migration cost because the repo already uses the publication manifest
 - no Djot parsing changes required
-- publication scaffolding already knows how to update the publication manifest
+- shared metadata is easy to audit globally when it exists
 
 ### Weaknesses
 
@@ -82,8 +76,8 @@ Keep the current model:
 
 ### Assessment
 
-This remains the publication-side status quo, but it is no longer the current
-ordinary-page model.
+This was the initial publication-side transition model, but it is no longer
+the current steady state.
 
 ## Candidate B: Page-Local Sidecars
 
@@ -211,7 +205,7 @@ was empty and added complexity without adding real capability.
 Rules:
 
 - if a non-publication page has front matter, it wins
-- publication pages continue using `manifests/publication-metadata.json`
+- publication pages now use `pubs/<slug>/publication.json`
 - draft pages may still omit metadata entirely
 
 This kept the repo safe while testing the long-term direction.
