@@ -79,7 +79,7 @@ Multi-machine guardrail:
 Notes:
 - If a page has both `<page>.dj` and `<page>.html`, treat `.dj` as
   source of truth.
-- For migrated public publication pages, the top-level `pub-<slug>.dj` file
+- For public publication pages, the top-level `pub-<slug>.dj` file
   should stay a minimal transition stub/build anchor; the publication-local
   record under `pubs/<slug>/` is the body/metadata source of truth.
 - The page title comes from the first non-empty level-1 heading after any

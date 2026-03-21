@@ -40,9 +40,8 @@ Prefer the top-level `make` targets when they exist:
   `pubs/<slug>/publication.json`.
 - `page_source.py`
   Shared page-source parser used to strip non-publication front matter from
-  Djot input and extract page titles after front matter. It also supports the
-  current publication-record transition by rendering migrated publication
-  pages from per-publication local records.
+  Djot input and extract page titles after front matter. It also renders
+  public publication pages from per-publication local records.
 - `publication_record.py`
   Shared loader and Djot renderer for publication-local records in
   `pubs/<slug>/publication.json`.

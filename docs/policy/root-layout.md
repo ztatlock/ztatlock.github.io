@@ -41,7 +41,7 @@ Top-level `*.dj` files are authored page sources.
   matter in `*.dj`.
 - Public publication page metadata is currently sourced from
   `pubs/<slug>/publication.json`.
-- For migrated public publication pages, the top-level `pub-<slug>.dj` file
+- For public publication pages, the top-level `pub-<slug>.dj` file
   should stay a minimal transition stub/build anchor rather than a second full
   page body.
 - Draft pages may temporarily omit metadata while they remain drafts.

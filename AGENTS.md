@@ -21,7 +21,7 @@ This repo is a static website generated from Djot source files. Keep changes sou
 - If you add `[Name][]` links, add/update the matching reference in `templates/REFS`.
 - Publication assets and migrated publication-local records live in
   `pubs/<year-conf-sys>/`.
-  For migrated public pages, top-level `pub-<year-conf-sys>.dj` files should
+  For public publication pages, top-level `pub-<year-conf-sys>.dj` files should
   stay minimal transition stubs/build anchors.
 - Track actionable backlog items in `ROADMAP.md`.
 - Keep broader structural plans and design notes in `TODO.md` and `docs/plans/`.
