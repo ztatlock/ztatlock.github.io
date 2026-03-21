@@ -41,9 +41,9 @@ notes.
 - [ ] Decide whether `2009-pldi-pec` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2009-pldi-pec/publication.json:10`).
 - [ ] Resolve TODO-tagged project/code/arXiv items for `pub-2012-security-quark` (`pub-2012-security-quark.dj:26`, `pub-2012-security-quark.dj:27`, `pub-2012-security-quark.dj:28`).
 - [ ] Fill arXiv TODOs for `pub-2019-conga-sinkingpoint` (`pub-2019-conga-sinkingpoint.dj:18`, `pub-2019-conga-sinkingpoint.dj:29`).
-- [ ] Fill arXiv TODO for `pub-2021-arith-herbie` (`pub-2021-arith-herbie.dj:29`).
-- [ ] Fill project TODO for `pub-2021-oopsla-ruler` (`pub-2021-oopsla-ruler.dj:34`).
-- [ ] Fill arXiv TODO for `pub-2021-sff-3dp` (`pub-2021-sff-3dp.dj:33`).
+- [ ] Decide whether `2021-arith-herbie` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-arith-herbie/publication.json:13`).
+- [ ] Decide whether `2021-oopsla-ruler` should expose a project link and, if so, add it to the canonical publication record (`pubs/2021-oopsla-ruler/publication.json:16`).
+- [ ] Decide whether `2021-sff-3dp` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-sff-3dp/publication.json:17`).
 - [ ] Fill talk/arXiv TODOs for `pub-2022-ecoop-cakemlfp` (`pub-2022-ecoop-cakemlfp.dj:31`, `pub-2022-ecoop-cakemlfp.dj:32`).
 - [ ] Decide whether `2022-tog-carpentry` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2022-tog-carpentry/publication.json:13`).
 - [ ] Resolve TODO-tagged `poster` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:30`).

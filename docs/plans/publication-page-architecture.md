@@ -16,8 +16,8 @@ As of March 20, 2026:
 - 21 publication pages exist as top-level `pub-<slug>.dj` sources
 - 21 publication asset directories exist under `pubs/<slug>/`
 - publication page metadata is now in mixed mode:
-  12 migrated pages now source metadata and page bodies from local
-  `publication.json` records, while 9 untouched pages still fall back to
+  15 migrated pages now source metadata and page bodies from local
+  `publication.json` records, while 6 untouched pages still fall back to
   `manifests/publication-metadata.json`
 - top-level `pub-<slug>.dj` files remain as transition-time build anchors and
   draft/public status stubs

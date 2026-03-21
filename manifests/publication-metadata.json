@@ -8,15 +8,6 @@
   "2019-conga-sinkingpoint": {
     "description": "Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives."
   },
-  "2021-arith-herbie": {
-    "description": "Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs."
-  },
-  "2021-oopsla-ruler": {
-    "description": "Ruler uses equality saturation and e-graphs to infer rewrite rules, leading to 25x faster synthesis of 5.8x smaller rulesets that match or exceed experts."
-  },
-  "2021-sff-3dp": {
-    "description": "Project investigating multi-headed desktop printers for simultaneous parallel 3D printing, aiming to reduce fabrication time and enhance rapid prototyping."
-  },
   "2022-ecoop-cakemlfp": {
     "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics."
   },
