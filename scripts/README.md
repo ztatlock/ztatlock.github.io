@@ -36,9 +36,8 @@ Prefer the top-level `make` targets when they exist:
 - `page_metadata.py`
   Shared metadata helpers for generated page metadata and metadata source
   validation across both public non-publication pages and publication pages.
-  Publication pages currently support mixed-mode metadata: local
-  `pubs/<slug>/publication.json` records when present, manifest fallback
-  otherwise.
+  Public publication pages source metadata from
+  `pubs/<slug>/publication.json`.
 - `page_source.py`
   Shared page-source parser used to strip non-publication front matter from
   Djot input and extract page titles after front matter. It also supports the
@@ -52,13 +51,12 @@ Prefer the top-level `make` targets when they exist:
   draft-status stub for `mkpub.sh`.
 - `render_meta.py`
   Emits `<meta>` HTML for a page by rendering non-publication front matter
-  plus publication metadata from either a publication-local record or the
-  publication manifest fallback.
+  plus publication metadata from a publication-local record.
   Draft pages may intentionally emit no metadata while they remain drafts.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
-  validates non-publication front matter and the current mixed publication
-  metadata sources.
+  validates non-publication front matter and publication-local metadata
+  sources.
   It also rejects any legacy raw `.meta` sidecars.
 
 ## Conventions

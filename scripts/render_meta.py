@@ -11,14 +11,14 @@ from page_metadata import MetadataError, render_page_meta
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Render page metadata HTML from front matter or structured metadata manifests."
+        description="Render page metadata HTML from page-local front matter or publication-local records."
     )
     parser.add_argument("--page", required=True, help="Page stem without .html")
     parser.add_argument("--title", required=True, help="Rendered page title")
     parser.add_argument(
         "--root",
         default=".",
-        help="Site root containing manifests and source pages.",
+        help="Site root containing source pages and publication records.",
     )
     args = parser.parse_args()
 

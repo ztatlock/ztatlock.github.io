@@ -17,8 +17,6 @@ As of March 21, 2026:
 - 21 publication asset directories exist under `pubs/<slug>/`
 - all 21 public detailed publication pages now source metadata and page
   bodies from local `publication.json` records
-- `manifests/publication-metadata.json` is currently empty and retained only
-  as a temporary legacy fallback during transition cleanup
 - top-level `pub-<slug>.dj` files remain as transition-time build anchors and
   draft/public status stubs
 - publication assets already live locally and canonically in their own
@@ -802,12 +800,11 @@ single source of truth rather than merely a new way to generate the same page.
 
 ### Phase 6: Broader Migration
 
-If the pilot feels clearly better:
+This phase is now complete:
 
-- migrate more publication pages in batches
-- migrate publication metadata out of
-  `manifests/publication-metadata.json` and into per-publication records
-- remove top-level authored `pub-*.dj` sources
+- migrated more publication pages in batches
+- moved publication metadata into per-publication records
+- kept top-level `pub-*.dj` files as transition-time stubs/build anchors for now
 
 ### Phase 7: URL Cutover
 

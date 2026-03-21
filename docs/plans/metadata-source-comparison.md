@@ -17,8 +17,6 @@ As of March 21, 2026:
   matter in `*.dj`
 - all current public publication pages now source metadata from
   `pubs/<slug>/publication.json`
-- `manifests/publication-metadata.json` is currently empty and retained only
-  as a temporary legacy fallback
 - 7 draft pages exist and may intentionally omit metadata while they remain
   drafts
 - public pages no longer use raw `*.meta` sidecars
@@ -32,8 +30,7 @@ The current structured metadata schema is intentionally small:
   - `image_path`
   - `title`
 
-In practice, the old fallback publication manifest is now empty. This is a
-strong sign that defaults are working and that the core question is
+This is a strong sign that defaults are working and that the core question is
 mostly about *where* metadata should live, not about inventing a richer
 metadata schema.
 
@@ -52,7 +49,7 @@ Any next-step design should respect these constraints:
 
 ## Candidate A: Shared Manifests
 
-Keep the current model:
+Keep the old shared-manifest model:
 
 - `manifests/publication-metadata.json` for publication pages
 

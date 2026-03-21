@@ -21,8 +21,3 @@ These are not:
   inventory.
   Use `present` only for archive-presence heuristic misses, not to override a
   missing canonical repo file or page link.
-- `publication-metadata.json`
-  Legacy publication metadata fallback retained temporarily during transition
-  cleanup.
-  It is currently empty because all public detailed publication pages now
-  source metadata from `pubs/<slug>/publication.json`.

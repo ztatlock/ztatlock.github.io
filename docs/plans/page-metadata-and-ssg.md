@@ -252,8 +252,6 @@ As of the current prototype:
 - the mixed-mode fallback has been removed for ordinary public pages
 - all current public publication pages now use
   `pubs/<slug>/publication.json`
-- `manifests/publication-metadata.json` is currently empty and retained only
-  as a temporary legacy fallback
 - the current parser intentionally supports only the flat scalar metadata
   fields already in use: `description`, `share_description`, `image_path`,
   and `title`
