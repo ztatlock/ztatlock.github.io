@@ -43,6 +43,9 @@ Top-level `*.dj` files are authored page sources.
   migrated pages may source metadata from `pubs/<slug>/publication.json`,
   while untouched pages still fall back to structured metadata under
   `manifests/`.
+- For migrated public publication pages, the top-level `pub-<slug>.dj` file
+  should stay a minimal transition stub/build anchor rather than a second full
+  page body.
 - Draft pages may temporarily omit metadata while they remain drafts.
 - A source file whose contents include a `# DRAFT` heading is treated as a
   draft page.

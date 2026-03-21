@@ -38,7 +38,7 @@ notes.
 ### Publication Pages
 
 - [ ] Fill arXiv TODO for `pub-2008-oopsla-dtar` (`pub-2008-oopsla-dtar.dj:20`).
-- [ ] Fill arXiv TODO for `pub-2009-pldi-pec` (`pub-2009-pldi-pec.dj:27`).
+- [ ] Decide whether `2009-pldi-pec` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2009-pldi-pec/publication.json:10`).
 - [ ] Resolve TODO-tagged project/code/arXiv items for `pub-2012-security-quark` (`pub-2012-security-quark.dj:26`, `pub-2012-security-quark.dj:27`, `pub-2012-security-quark.dj:28`).
 - [ ] Fill arXiv TODOs for `pub-2019-conga-sinkingpoint` (`pub-2019-conga-sinkingpoint.dj:18`, `pub-2019-conga-sinkingpoint.dj:29`).
 - [ ] Fill arXiv TODO for `pub-2021-arith-herbie` (`pub-2021-arith-herbie.dj:29`).

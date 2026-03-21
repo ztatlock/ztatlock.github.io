@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 from pathlib import Path
 
 from page_source import PageSourceError, read_page_source
@@ -20,6 +21,8 @@ SITE_URL = "https://ztatlock.net"
 PUBLICATION_METADATA = Path("manifests/publication-metadata.json")
 GENERAL_ALLOWED_FIELDS = {"description", "share_description", "image_path", "title"}
 PUBLICATION_ALLOWED_FIELDS = {"description", "share_description", "image_path"}
+MIGRATED_PUBLICATION_SECTION_RE = re.compile(r"^##\s+(Abstract|Talk|BibTeX)$", re.MULTILINE)
+MIGRATED_PUBLICATION_TODO_RE = re.compile(r"\bTODO\b")
 
 
 class MetadataError(ValueError):
@@ -343,6 +346,14 @@ def validate_publication_metadata(root: Path) -> list[str]:
 
             if record is not None:
                 record_slugs.append(slug)
+                source_text = path.read_text(encoding="utf-8")
+                legacy_sections = sorted(set(MIGRATED_PUBLICATION_SECTION_RE.findall(source_text)))
+                for section in legacy_sections:
+                    issues.append(
+                        f"{path}: migrated publication page should stay a minimal stub, found ## {section}"
+                    )
+                if MIGRATED_PUBLICATION_TODO_RE.search(source_text):
+                    issues.append(f"{path}: migrated publication page should not contain TODO")
                 image_path = publication_metadata_image_path(root, record)
                 if not image_path.startswith(("http://", "https://")) and not (root / image_path).exists():
                     issues.append(
