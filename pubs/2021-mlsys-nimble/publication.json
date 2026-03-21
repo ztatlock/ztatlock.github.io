@@ -1,0 +1,24 @@
+{
+  "title": "Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference",
+  "authors": [
+    { "name": "Haichen Shen", "ref": "Haichen Shen" },
+    { "name": "Jared Roesch", "ref": "Jared Roesch" },
+    { "name": "Zhi Chen", "ref": "Zhi Chen" },
+    { "name": "Wei Chen", "ref": "Wei Chen" },
+    { "name": "Yong Wu", "ref": "Yong Wu" },
+    { "name": "Mu Li", "ref": "Mu Li" },
+    { "name": "Vin Sharma", "ref": "Vin Sharma" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Yida Wang", "ref": "Yida Wang" }
+  ],
+  "venue": "Conference on Machine Learning and Systems (MLSys)",
+  "description": "Nimble: flexible optimization, compilation, and execution of dynamic neural networks with control flow and dynamically-shaped data structures on CPU and GPU.",
+  "share_description": "Flexible optimization, compilation, and execution of dynamic neural networks with control flow and dynamically-shaped data structures on CPU and GPU.",
+  "links": {
+    "talk": "https://slideslive.com/38952766/oral-nimble-efficiently-compiling-dynamic-neural-networks-for-model-inference",
+    "project": "https://tvm.apache.org/",
+    "code": "https://github.com/apache/tvm",
+    "publisher": "https://proceedings.mlsys.org/paper_files/paper/2021/hash/5b47430e24a5a1f9fe21f0e8eb814131-Abstract.html",
+    "arxiv": "https://arxiv.org/abs/2006.03031"
+  }
+}

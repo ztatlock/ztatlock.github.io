@@ -17,10 +17,6 @@
   "2021-maps-glenside": {
     "description": "Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations."
   },
-  "2021-mlsys-nimble": {
-    "description": "Nimble: flexible optimization, compilation, and execution of dynamic neural networks with control flow and dynamically-shaped data structures on CPU and GPU.",
-    "share_description": "Flexible optimization, compilation, and execution of dynamic neural networks with control flow and dynamically-shaped data structures on CPU and GPU."
-  },
   "2021-oopsla-ruler": {
     "description": "Ruler uses equality saturation and e-graphs to infer rewrite rules, leading to 25x faster synthesis of 5.8x smaller rulesets that match or exceed experts."
   },
@@ -51,9 +47,6 @@
   },
   "2023-popl-babble": {
     "description": "LLMT, a new library learning algorithm implemented in our tool 'babble', efficiently identifies common patterns in code corpora via anti-unification to improve both compression and scalability."
-  },
-  "2023-uist-odyssey": {
-    "description": "The interactive Odyssey workbench aids in floating-point error diagnosis, repair, and fine-tuning. See our paper from UIST 2023 and try the VSCode plugin!"
   },
   "2024-programming-magicmarkup": {
     "description": "Magic Markup keeps document-external annotations aligned as text evolves using an LLM-backed re-tagging system."
