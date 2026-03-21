@@ -2,9 +2,6 @@
   "2008-oopsla-dtar": {
     "description": "QUAIL introduces deep typechecking to ensure dynamic query safety and simplify refactoring in systems combining Java code with a database backend."
   },
-  "2009-pldi-pec": {
-    "description": "PEC automatically checks compiler optimization correctness by generalizing dynamic translation validation to verifying parameterized optimization templates."
-  },
   "2012-security-quark": {
     "description": "Quark is a web browser kernel formally verified in Coq to ensure tab non-interference, cookie integrity, and address bar security via formal shim verification."
   },

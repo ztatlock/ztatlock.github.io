@@ -1,0 +1,25 @@
+{
+  "title": "Proving Optimizations Correct using Parameterized Program Equivalence",
+  "authors": [
+    { "name": "Sudipta Kundu", "ref": "Sudipta Kundu" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Sorin Lerner", "ref": "Sorin Lerner" }
+  ],
+  "venue": "Programming Language Design and Implementation (PLDI)",
+  "description": "PEC automatically checks compiler optimization correctness by generalizing dynamic translation validation to verifying parameterized optimization templates.",
+  "links": {
+    "project": "https://cseweb.ucsd.edu//~lerner/collider.html",
+    "code": "https://github.com/ztatlock/pec",
+    "publisher": "https://dl.acm.org/doi/10.1145/1542476.1542513"
+  },
+  "talks": [
+    {
+      "event": "PLDI 2009",
+      "speakers": [
+        { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+      ],
+      "url": "https://www.youtube.com/watch?v=K52rv0U0v-A",
+      "embed": "https://www.youtube.com/embed/K52rv0U0v-A"
+    }
+  ]
+}
