@@ -39,8 +39,10 @@ Top-level `*.dj` files are authored page sources.
   optional front matter.
 - Public non-publication page metadata is currently sourced from YAML front
   matter in `*.dj`.
-- Public publication page metadata is currently sourced from structured
-  metadata under `manifests/`.
+- Public publication page metadata is currently in mixed mode:
+  migrated pages may source metadata from `pubs/<slug>/publication.json`,
+  while untouched pages still fall back to structured metadata under
+  `manifests/`.
 - Draft pages may temporarily omit metadata while they remain drafts.
 - A source file whose contents include a `# DRAFT` heading is treated as a
   draft page.

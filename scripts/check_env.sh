@@ -48,17 +48,6 @@ function check_optional_command {
   fi
 }
 
-function check_mkpub_sed_assumption {
-  local sed_file="$tmpdir/sed-test.txt"
-  printf 'foo\n' > "$sed_file"
-  if sed -i '' -e 's#foo#bar#' "$sed_file" >/dev/null 2>&1 \
-     && [ "$(cat "$sed_file")" = "bar" ]; then
-    ok "BSD/macOS sed -i '' works for scripts/mkpub.sh"
-  else
-    warn "scripts/mkpub.sh assumes BSD/macOS sed -i ''; current sed is not compatible"
-  fi
-}
-
 trap cleanup EXIT
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -73,7 +62,6 @@ for cmd in bash make python3 git djot rg rsync; do
 done
 
 check_optional_command "wget" "make index-now"
-check_mkpub_sed_assumption
 
 printf '\n'
 if [ "$failures" -gt 0 ]; then

@@ -22,14 +22,4 @@ if [ $# -ne 1 ] || [ -z "$1" ]; then
 fi
 ycf="$1"
 
-# pub files
-mkdir "pubs/${ycf}"
-
-# pub template
-cp templates/pub.dj "pub-${ycf}.dj"
-sed -i '' \
-  -e "s#YEAR-CONF-SYS#${ycf}#g" \
-  "pub-${ycf}.dj"
-
-# publication metadata manifest entry
-python3 scripts/add_publication_metadata.py --root . --slug "${ycf}"
+python3 scripts/scaffold_publication.py --root . --slug "${ycf}"

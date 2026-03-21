@@ -19,7 +19,10 @@ This repo is a static website generated from Djot source files. Keep changes sou
 - Do not hand-edit generated `*.html` when a same-named `.dj` file exists.
 - Top-level standalone HTML pages without `.dj` sources are `anagram.html`, `demo-naive-union-find.html`, and `sundial.html`.
 - If you add `[Name][]` links, add/update the matching reference in `templates/REFS`.
-- Publication assets live in `pubs/<year-conf-sys>/`, with page source in `pub-<year-conf-sys>.dj`.
+- Publication assets and migrated publication-local records live in
+  `pubs/<year-conf-sys>/`.
+  Top-level `pub-<year-conf-sys>.dj` files currently remain as build anchors
+  and draft/public status stubs during the transition.
 - Track actionable backlog items in `ROADMAP.md`.
 - Keep broader structural plans and design notes in `TODO.md` and `docs/plans/`.
 

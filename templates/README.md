@@ -14,14 +14,18 @@ page scaffolding.
   The closing `</body>` and `</html>` tags.
 - `REFS`
   Shared Djot reference definitions appended to every generated page.
-- `pub.dj`
-  Publication page scaffold used by `scripts/mkpub.sh`.
+- `pub-stub.dj`
+  Minimal draft-status stub used by `scripts/mkpub.sh` during the current
+  publication transition.
+- `publication.json`
+  Publication-local record scaffold used by `scripts/mkpub.sh`.
 
 ## Conventions
 
 - Keep this directory non-executable.
 - Document new template inputs here when the build starts depending on them.
-- Placeholder tokens are fine in scaffolds such as `pub.dj`,
+- Placeholder tokens are fine in scaffolds such as `pub-stub.dj` and
+  `publication.json`,
   but generated public pages should not ship unresolved placeholders.
 - Prefer updating `scripts/mkpub.sh` and `scripts/check.sh` alongside template
   changes so scaffolding and validation stay in sync.

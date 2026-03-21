@@ -233,7 +233,7 @@ migration away from raw sidecars:
 
 - public non-publication page metadata initially moved into
   `manifests/page-metadata.json`
-- public publication metadata now lives in
+- public publication metadata initially lived in
   `manifests/publication-metadata.json`
 - the build renders generated `<meta>` tags from those manifests
 - public pages no longer use raw `*.meta` sidecars
@@ -251,7 +251,7 @@ As of the current prototype:
   `*.dj` (currently 20 public pages)
 - the mixed-mode fallback has been removed for ordinary public pages
 - publication pages are now in mixed mode:
-  pilot pages may use `pubs/<slug>/publication.json`, with
+  migrated pages may use `pubs/<slug>/publication.json`, with
   `manifests/publication-metadata.json` retained as fallback for untouched
   pages
 - the current parser intentionally supports only the flat scalar metadata

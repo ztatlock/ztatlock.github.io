@@ -64,7 +64,7 @@ meant to be read, maintained, and extended over time.
 ## Near-Term Cleanup
 
 - Keep `templates/HEAD.*`, `templates/FOOT`, `templates/REFS`,
-  and `templates/pub.dj` in `templates/`.
+  `templates/pub-stub.dj`, and `templates/publication.json` in `templates/`.
 - Keep `docs/policy/root-layout.md` current as the root-level file mix changes.
 - Revisit whether any versioned generated artifacts deserve a separate home
   beyond `manifests/`.

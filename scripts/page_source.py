@@ -100,18 +100,29 @@ def read_page_source(page_stem: str, root: Path) -> PageSource:
     path = page_path(page_stem, root)
     slug = publication_slug(page_stem)
     if slug is not None:
+        if path.exists():
+            text = path.read_text(encoding="utf-8")
+            front_matter, body = split_front_matter(text, path)
+            is_draft = bool(DRAFT_HEADING_RE.search(text))
+        else:
+            text = ""
+            front_matter = {}
+            body = ""
+            is_draft = False
+
+        if is_draft:
+            return PageSource(
+                front_matter=front_matter,
+                body=body,
+                title=extract_title(body, path),
+                is_draft=True,
+            )
+
         try:
             record = load_optional_publication_record(root, slug)
         except PublicationRecordError as err:
             raise PageSourceError(str(err)) from err
         if record is not None:
-            front_matter: dict[str, str] = {}
-            is_draft = False
-            if path.exists():
-                text = path.read_text(encoding="utf-8")
-                front_matter, _ = split_front_matter(text, path)
-                is_draft = bool(DRAFT_HEADING_RE.search(text))
-
             return PageSource(
                 front_matter=front_matter,
                 body=render_publication_body(root, record),

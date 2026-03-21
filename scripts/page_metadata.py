@@ -135,40 +135,6 @@ def load_publication_metadata(root: Path) -> dict[str, dict[str, str]]:
     return rows
 
 
-def write_publication_metadata(root: Path, rows: dict[str, dict[str, str]]) -> None:
-    path = root / PUBLICATION_METADATA
-    serialized: dict[str, dict[str, str]] = {}
-    for slug in sorted(rows):
-        row = rows[slug]
-        entry = {"description": row["description"]}
-        if row.get("share_description"):
-            entry["share_description"] = row["share_description"]
-        if row.get("image_path"):
-            entry["image_path"] = row["image_path"]
-        serialized[slug] = entry
-
-    path.write_text(
-        json.dumps(serialized, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
-
-
-def add_publication_metadata_entry(
-    root: Path,
-    slug: str,
-    description: str = "TODO",
-) -> None:
-    rows = load_publication_metadata(root)
-    if slug in rows:
-        raise MetadataError(f"Publication metadata entry for {slug} already exists")
-    rows[slug] = {
-        "description": description,
-        "share_description": "",
-        "image_path": "",
-    }
-    write_publication_metadata(root, rows)
-
-
 def render_metadata_block(
     *,
     title: str,
@@ -297,15 +263,6 @@ def render_page_meta(page_stem: str, title: str, root: Path) -> str:
                 raise MetadataError(
                     f"{root / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
                 )
-            try:
-                record = load_optional_publication_record(root, slug)
-            except PublicationRecordError as err:
-                raise MetadataError(str(err)) from err
-            if record is not None:
-                return render_publication_meta(page_stem, title, root)
-            rows = load_publication_metadata(root)
-            if slug in rows:
-                return render_publication_meta(page_stem, title, root)
             return ""
         if source.front_matter:
             return render_general_page_meta(page_stem, title, root)
