@@ -11,13 +11,13 @@ duplication and root-level sprawl.
 
 ## Current State
 
-As of March 20, 2026:
+As of March 21, 2026:
 
 - 21 publication pages exist as top-level `pub-<slug>.dj` sources
 - 21 publication asset directories exist under `pubs/<slug>/`
 - publication page metadata is now in mixed mode:
-  15 migrated pages now source metadata and page bodies from local
-  `publication.json` records, while 6 untouched pages still fall back to
+  17 migrated pages now source metadata and page bodies from local
+  `publication.json` records, while 4 untouched pages still fall back to
   `manifests/publication-metadata.json`
 - top-level `pub-<slug>.dj` files remain as transition-time build anchors and
   draft/public status stubs

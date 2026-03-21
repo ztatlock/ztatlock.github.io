@@ -1,12 +1,6 @@
 {
-  "2008-oopsla-dtar": {
-    "description": "QUAIL introduces deep typechecking to ensure dynamic query safety and simplify refactoring in systems combining Java code with a database backend."
-  },
   "2012-security-quark": {
     "description": "Quark is a web browser kernel formally verified in Coq to ensure tab non-interference, cookie integrity, and address bar security via formal shim verification."
-  },
-  "2019-conga-sinkingpoint": {
-    "description": "Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives."
   },
   "2022-ecoop-cakemlfp": {
     "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics."

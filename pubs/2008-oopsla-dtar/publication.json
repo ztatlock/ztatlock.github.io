@@ -1,0 +1,16 @@
+{
+  "title": "Deep Typechecking and Refactoring",
+  "authors": [
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Chris Tucker", "ref": "Chris Tucker" },
+    { "name": "David Shuffelton", "ref": "David Shuffelton" },
+    { "name": "Ranjit Jhala", "ref": "Ranjit Jhala" },
+    { "name": "Sorin Lerner", "ref": "Sorin Lerner" }
+  ],
+  "venue": "Object-Oriented Programming, Systems, Languages & Applications (OOPSLA)",
+  "description": "QUAIL introduces deep typechecking to ensure dynamic query safety and simplify refactoring in systems combining Java code with a database backend.",
+  "links": {
+    "project": "https://cseweb.ucsd.edu/~lerner/quail.html",
+    "publisher": "https://dl.acm.org/doi/10.1145/1449764.1449768"
+  }
+}

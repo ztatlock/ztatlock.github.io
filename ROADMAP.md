@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-20.
+Last updated: 2026-03-21.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -37,10 +37,10 @@ notes.
 
 ### Publication Pages
 
-- [ ] Fill arXiv TODO for `pub-2008-oopsla-dtar` (`pub-2008-oopsla-dtar.dj:20`).
+- [ ] Decide whether `2008-oopsla-dtar` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2008-oopsla-dtar/publication.json:13`).
 - [ ] Decide whether `2009-pldi-pec` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2009-pldi-pec/publication.json:10`).
 - [ ] Resolve TODO-tagged project/code/arXiv items for `pub-2012-security-quark` (`pub-2012-security-quark.dj:26`, `pub-2012-security-quark.dj:27`, `pub-2012-security-quark.dj:28`).
-- [ ] Fill arXiv TODOs for `pub-2019-conga-sinkingpoint` (`pub-2019-conga-sinkingpoint.dj:18`, `pub-2019-conga-sinkingpoint.dj:29`).
+- [ ] Decide whether `2019-conga-sinkingpoint` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2019-conga-sinkingpoint/publication.json:14`).
 - [ ] Decide whether `2021-arith-herbie` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-arith-herbie/publication.json:13`).
 - [ ] Decide whether `2021-oopsla-ruler` should expose a project link and, if so, add it to the canonical publication record (`pubs/2021-oopsla-ruler/publication.json:16`).
 - [ ] Decide whether `2021-sff-3dp` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-sff-3dp/publication.json:17`).

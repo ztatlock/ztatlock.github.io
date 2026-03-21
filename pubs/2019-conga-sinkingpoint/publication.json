@@ -1,0 +1,16 @@
+{
+  "title": "Sinking Point: Dynamic Precision Tracking for Floating-point",
+  "authors": [
+    { "name": "Bill Zorn", "ref": "Bill Zorn" },
+    { "name": "Dan Grossman", "ref": "Dan Grossman" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+  ],
+  "venue": "Conference for Next Generation Arithmetic (CoNGA)",
+  "description": "Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives.",
+  "links": {
+    "talk": "https://www.youtube.com/watch?v=nsKIUWlNrUU",
+    "project": "https://fpbench.org/",
+    "code": "https://github.com/billzorn/titanic",
+    "publisher": "https://dl.acm.org/doi/10.1145/3316279.3316283"
+  }
+}
