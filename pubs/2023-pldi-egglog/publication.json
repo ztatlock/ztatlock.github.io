@@ -1,0 +1,22 @@
+{
+  "title": "Better Together: Unifying Datalog and Equality Saturation",
+  "authors": [
+    { "name": "Yihong Zhang", "ref": "Yihong Zhang" },
+    { "name": "Yisu Remy Wang", "ref": "Remy Wang" },
+    { "name": "Oliver Flatt", "ref": "Oliver Flatt" },
+    { "name": "David Cao", "ref": "David Cao" },
+    { "name": "Philip Zucker", "ref": "Philip Zucker" },
+    { "name": "Eli Rosenthal", "ref": "Eli Rosenthal" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Max Willsey", "ref": "Max Willsey" }
+  ],
+  "venue": "Programming Language Design and Implementation (PLDI)",
+  "description": "The new egglog fixpoint reasoning system fully combines Datalog and Equality Saturation to provide composable analyses and enable incremental term rewriting.",
+  "links": {
+    "project": "https://egraphs-good.github.io/",
+    "code": "https://github.com/egraphs-good/egglog",
+    "demo": "https://egraphs-good.github.io/egglog/",
+    "publisher": "https://dl.acm.org/doi/10.1145/3591239",
+    "arxiv": "https://arxiv.org/abs/2304.04332"
+  }
+}

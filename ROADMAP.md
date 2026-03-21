@@ -45,9 +45,9 @@ notes.
 - [ ] Fill project TODO for `pub-2021-oopsla-ruler` (`pub-2021-oopsla-ruler.dj:34`).
 - [ ] Fill arXiv TODO for `pub-2021-sff-3dp` (`pub-2021-sff-3dp.dj:33`).
 - [ ] Fill talk/arXiv TODOs for `pub-2022-ecoop-cakemlfp` (`pub-2022-ecoop-cakemlfp.dj:31`, `pub-2022-ecoop-cakemlfp.dj:32`).
-- [ ] Resolve TODO-tagged poster item for `pub-2022-tog-carpentry` (`pub-2022-tog-carpentry.dj:33`).
+- [ ] Decide whether `2022-tog-carpentry` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2022-tog-carpentry/publication.json:13`).
 - [ ] Resolve TODO-tagged `poster` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:30`).
-- [ ] Resolve TODO-tagged `talk` link for `pub-2023-pldi-egglog` (`pub-2023-pldi-egglog.dj:33`).
+- [ ] Decide whether `2023-pldi-egglog` should expose a public talk link and, if so, add it to the canonical publication record (`pubs/2023-pldi-egglog/publication.json:13`).
 - [ ] Resolve TODO-tagged `project` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:30`).
 - [ ] Resolve TODO-tagged `poster` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:31`).
 

@@ -20,15 +20,9 @@
   "2022-ecoop-cakemlfp": {
     "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics."
   },
-  "2022-tog-carpentry": {
-    "description": "Joint optimization of carpentry designs & fabrication plans with e-graphs. Discovering Pareto-optimal tradeoffs to bridge design-to-fabrication gaps."
-  },
   "2023-plarch-lakeroad": {
     "description": "Generate Compilers from Hardware Models! - PLARCH @ PLDI 2023",
     "image_path": "pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-absimg.png"
-  },
-  "2023-pldi-egglog": {
-    "description": "The new egglog fixpoint reasoning system fully combines Datalog and Equality Saturation to provide composable analyses and enable incremental term rewriting."
   },
   "2023-popl-babble": {
     "description": "LLMT, a new library learning algorithm implemented in our tool 'babble', efficiently identifies common patterns in code corpora via anti-unification to improve both compression and scalability."

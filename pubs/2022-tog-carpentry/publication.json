@@ -1,0 +1,33 @@
+{
+  "title": "Co-Optimization of Design and Fabrication Plans for Carpentry",
+  "authors": [
+    { "name": "Haisen Zhao", "ref": "Haisen Zhao" },
+    { "name": "Max Willsey", "ref": "Max Willsey" },
+    { "name": "Amy Zhu", "ref": "Amy Zhu" },
+    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Justin Solomon", "ref": "Justin Solomon" },
+    { "name": "Adriana Schulz", "ref": "Adriana Schulz" }
+  ],
+  "venue": "ACM Transactions on Graphics (TOG)",
+  "description": "Joint optimization of carpentry designs & fabrication plans with e-graphs. Discovering Pareto-optimal tradeoffs to bridge design-to-fabrication gaps.",
+  "links": {
+    "teaser": "https://www.youtube.com/watch?v=P6AqNmSlwc4",
+    "talk": "https://www.youtube.com/watch?v=vfFO_mJ4yPk",
+    "project": "https://haisenzhao.github.io/CODFC/index.html",
+    "code": "https://github.com/helm-compiler",
+    "publisher": "https://dl.acm.org/doi/10.1145/3508499",
+    "arxiv": "https://arxiv.org/abs/2107.12265"
+  },
+  "talks": [
+    {
+      "event": "SIGGRAPH 2022",
+      "speakers": [
+        { "name": "Amy Zhu", "ref": "Amy Zhu" }
+      ],
+      "url": "https://www.youtube.com/watch?v=vfFO_mJ4yPk",
+      "embed": "https://www.youtube.com/embed/vfFO_mJ4yPk",
+      "title": "YouTube video player"
+    }
+  ]
+}
