@@ -1,0 +1,36 @@
+{
+  "title": "Dynamic Tensor Rematerialization",
+  "authors": [
+    { "name": "Marisa Kirisame", "ref": "Marisa Kirisame" },
+    { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" },
+    { "name": "Altan Haan", "ref": "Altan Haan" },
+    { "name": "Jennifer Brennan", "ref": "Jennifer Brennan" },
+    { "name": "Mike He", "ref": "Mike He" },
+    { "name": "Jared Roesch", "ref": "Jared Roesch" },
+    { "name": "Tianqi Chen", "ref": "Tianqi Chen" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+  ],
+  "venue": "International Conference on Learning Representations (ICLR)",
+  "badges": [
+    "★ Spotlight Paper"
+  ],
+  "description": "Dynamic Tensor Rematerialization (DTR), is an online algorithm for checkpointing deep learning models. DTR enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand. Unlike static checkpointing techniques, DTR supports dynamic models and achieves comparable performance. For example, DTR can train an N-layer linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor operations. We prototyped in PyTorch simply by interposing on tensor allocations and operator calls.",
+  "share_description": "DTR is an online algorithm for checkpointing deep learning models that enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand.",
+  "links": {
+    "teaser": "https://www.youtube.com/watch?v=kxlbpwBJzA4",
+    "project": "http://sampl.cs.washington.edu/projects/dtr.html",
+    "code": "https://github.com/uwsampl/dtr-prototype",
+    "publisher": "https://openreview.net/forum?id=Vfs_2RnOD0H",
+    "arxiv": "https://arxiv.org/abs/2006.09616"
+  },
+  "talks": [
+    {
+      "event": "ICLR 2021",
+      "speakers": [
+        { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" }
+      ],
+      "url": "https://www.youtube.com/watch?v=S9KJ37Sx2XY",
+      "embed": "https://www.youtube.com/embed/S9KJ37Sx2XY"
+    }
+  ]
+}

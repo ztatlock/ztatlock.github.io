@@ -15,7 +15,9 @@ As of March 20, 2026:
 - 41 public `*.dj` pages exist
 - 20 public non-publication pages currently source metadata from YAML front
   matter in `*.dj`
-- 21 public publication pages source metadata from
+- publication pages are now in mixed mode:
+  pilot pages may source metadata from `pubs/<slug>/publication.json`,
+  while untouched pages still source metadata from
   `manifests/publication-metadata.json`
 - 7 draft pages exist and may intentionally omit metadata while they remain
   drafts
@@ -30,7 +32,7 @@ The current structured metadata schema is intentionally small:
   - `image_path`
   - `title`
 
-In practice, the current publication manifest is sparse:
+In practice, the fallback publication manifest is sparse:
 
 - `manifests/publication-metadata.json`
   - 21 / 21 entries use `description`

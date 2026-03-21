@@ -7,6 +7,14 @@ import json
 from pathlib import Path
 
 from page_source import PageSourceError, read_page_source
+from publication_record import (
+    PublicationRecordError,
+    default_meta_image_path,
+    load_optional_publication_record,
+    publication_metadata_image_path,
+    publication_record_path,
+    publication_slug,
+)
 
 SITE_URL = "https://ztatlock.net"
 PUBLICATION_METADATA = Path("manifests/publication-metadata.json")
@@ -22,16 +30,6 @@ def canonical_url(page_stem: str) -> str:
     if page_stem == "index":
         return f"{SITE_URL}/"
     return f"{SITE_URL}/{page_stem}.html"
-
-
-def publication_slug(page_stem: str) -> str | None:
-    if page_stem.startswith("pub-"):
-        return page_stem.removeprefix("pub-")
-    return None
-
-
-def default_publication_image_path(slug: str) -> str:
-    return f"pubs/{slug}/{slug}-meta.png"
 
 
 def default_page_image_path() -> str:
@@ -212,6 +210,23 @@ def render_publication_meta(page_stem: str, title: str, root: Path) -> str:
     if slug is None:
         raise MetadataError(f"{page_stem} is not a publication page")
 
+    try:
+        record = load_optional_publication_record(root, slug)
+    except PublicationRecordError as err:
+        raise MetadataError(str(err)) from err
+    if record is not None:
+        description = record.description
+        share_description = record.share_description or description
+        image_path = publication_metadata_image_path(root, record)
+        url = canonical_url(page_stem)
+        return render_metadata_block(
+            title=title,
+            description=description,
+            share_description=share_description,
+            image_path=image_path,
+            url=url,
+        )
+
     rows = load_publication_metadata(root)
     if slug not in rows:
         raise MetadataError(f"Missing publication metadata for {page_stem}")
@@ -219,7 +234,7 @@ def render_publication_meta(page_stem: str, title: str, root: Path) -> str:
     row = rows[slug]
     description = row["description"]
     share_description = row["share_description"] or description
-    image_path = row["image_path"] or default_publication_image_path(slug)
+    image_path = row["image_path"] or default_meta_image_path(slug)
     url = canonical_url(page_stem)
 
     return render_metadata_block(
@@ -282,6 +297,12 @@ def render_page_meta(page_stem: str, title: str, root: Path) -> str:
                 raise MetadataError(
                     f"{root / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
                 )
+            try:
+                record = load_optional_publication_record(root, slug)
+            except PublicationRecordError as err:
+                raise MetadataError(str(err)) from err
+            if record is not None:
+                return render_publication_meta(page_stem, title, root)
             rows = load_publication_metadata(root)
             if slug in rows:
                 return render_publication_meta(page_stem, title, root)
@@ -345,6 +366,7 @@ def validate_publication_metadata(root: Path) -> list[str]:
         rows = {}
 
     page_slugs: list[str] = []
+    record_slugs: list[str] = []
     for path in sorted(root.glob("pub-*.dj")):
         try:
             source = read_page_source(path.stem, root)
@@ -355,19 +377,37 @@ def validate_publication_metadata(root: Path) -> list[str]:
         if source.front_matter:
             issues.append(f"{path}: front matter metadata for publication pages is not supported yet")
         if not source.is_draft:
-            page_slugs.append(path.stem.removeprefix("pub-"))
+            slug = path.stem.removeprefix("pub-")
+            try:
+                record = load_optional_publication_record(root, slug)
+            except PublicationRecordError as err:
+                issues.append(str(err))
+                continue
+
+            if record is not None:
+                record_slugs.append(slug)
+                image_path = publication_metadata_image_path(root, record)
+                if not image_path.startswith(("http://", "https://")) and not (root / image_path).exists():
+                    issues.append(
+                        f"{publication_record_path(root, slug)}: image path does not exist: {image_path}"
+                    )
+            else:
+                page_slugs.append(slug)
 
     manifest_slugs = sorted(rows)
 
     missing = sorted(set(page_slugs) - set(manifest_slugs))
-    extra = sorted(set(manifest_slugs) - set(page_slugs))
+    duplicate = sorted(set(manifest_slugs) & set(record_slugs))
+    extra = sorted(set(manifest_slugs) - set(page_slugs) - set(record_slugs))
     for slug in missing:
         issues.append(f"pub-{slug}.dj: missing manifest entry in {PUBLICATION_METADATA}")
+    for slug in duplicate:
+        issues.append(f"{PUBLICATION_METADATA}: entry for {slug} duplicates local publication record")
     for slug in extra:
         issues.append(f"{PUBLICATION_METADATA}: entry for missing page pub-{slug}.dj")
 
     for slug, row in rows.items():
-        image_path = row["image_path"] or default_publication_image_path(slug)
+        image_path = row["image_path"] or default_meta_image_path(slug)
         if image_path.startswith(("http://", "https://")):
             continue
         if not (root / image_path).exists():

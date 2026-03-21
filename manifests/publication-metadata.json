@@ -14,10 +14,6 @@
   "2021-arith-herbie": {
     "description": "Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs."
   },
-  "2021-iclr-dtr": {
-    "description": "Dynamic Tensor Rematerialization (DTR), is an online algorithm for checkpointing deep learning models. DTR enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand. Unlike static checkpointing techniques, DTR supports dynamic models and achieves comparable performance. For example, DTR can train an N-layer linear feedforward network on an Ω(√ N) memory budget with only O(N) tensor operations. We prototyped in PyTorch simply by interposing on tensor allocations and operator calls.",
-    "share_description": "DTR is an online algorithm for checkpointing deep learning models that enables training under restricted memory budgets by freeing intermediate activations from memory and recomputing them on demand."
-  },
   "2021-maps-glenside": {
     "description": "Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations."
   },
@@ -58,9 +54,6 @@
   },
   "2023-uist-odyssey": {
     "description": "The interactive Odyssey workbench aids in floating-point error diagnosis, repair, and fine-tuning. See our paper from UIST 2023 and try the VSCode plugin!"
-  },
-  "2024-asplos-lakeroad": {
-    "description": "Lakeroad applies sketch-guided program synthesis to FPGA technology mapping, improving mapping coverage while providing correctness guarantees."
   },
   "2024-programming-magicmarkup": {
     "description": "Magic Markup keeps document-external annotations aligned as text evolves using an LLM-backed re-tagging system."

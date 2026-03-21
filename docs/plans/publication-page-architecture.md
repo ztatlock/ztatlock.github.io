@@ -15,7 +15,9 @@ As of March 20, 2026:
 
 - 21 publication pages exist as top-level `pub-<slug>.dj` sources
 - 21 publication asset directories exist under `pubs/<slug>/`
-- publication page metadata lives separately in
+- publication page metadata is now in mixed mode:
+  pilot pages may source metadata from local `publication.json` records,
+  while untouched pages still fall back to
   `manifests/publication-metadata.json`
 - publication assets already live locally and canonically in their own
   per-publication directories
@@ -378,7 +380,7 @@ Recommended first-cut authored fields:
   canonical `<slug>-meta.*` asset
 - `links`
   for external and optional links such as:
-  `teaser`, `project`, `code`, `demo`, `publisher`, `arxiv`, `event`,
+  `talk`, `teaser`, `project`, `code`, `demo`, `publisher`, `arxiv`, `event`,
   `vscode`
 - `talks`
   optional ordered array of talk entries for pages that render a `Talk`
@@ -478,6 +480,7 @@ Recommended shape:
 
 ```json
 {
+  "talk": "https://www.youtube.com/watch?v=2XgOWAtJ8vs",
   "code": "https://github.com/gussmith23/lakeroad",
   "publisher": "https://doi.org/10.1145/3620665.3640387",
   "arxiv": "https://arxiv.org/abs/2401.16526"
@@ -490,6 +493,8 @@ Rules:
 - the renderer should emit the standard ordered link cluster
 - local `paper`, `slides`, `poster`, and `bib` links should be added
   automatically when their canonical files exist
+- `links.talk` should be allowed for pages that have a public talk URL but do
+  not render a full `Talk` section
 
 #### `talks`
 
@@ -510,7 +515,8 @@ Recommended shape:
 Rules:
 
 - if `talks` is non-empty, the page gets a `## Talk` section
-- the first talk entry provides the standard `talk` link in the link cluster
+- if `links.talk` is absent, the first talk entry provides the standard
+  `talk` link in the link cluster
 - additional talk entries render in the section but do not add extra link
   badges to the link cluster
 - `speakers` should reuse the same simple author-like shape as `authors`

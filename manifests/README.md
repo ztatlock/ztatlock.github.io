@@ -22,6 +22,8 @@ These are not:
   Use `present` only for archive-presence heuristic misses, not to override a
   missing canonical repo file or page link.
 - `publication-metadata.json`
-  Structured source of truth for publication page metadata blurbs and rare
+  Structured fallback source for publication page metadata blurbs and rare
   publication-specific overrides such as share descriptions or image-path
-  overrides. The build generates publication `<meta>` HTML from this manifest.
+  overrides.
+  During the current publication pilot, pages with
+  `pubs/<slug>/publication.json` source metadata there instead.

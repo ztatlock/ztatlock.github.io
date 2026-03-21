@@ -250,7 +250,10 @@ As of the current prototype:
 - all current public non-publication pages now use YAML front matter in
   `*.dj` (currently 20 public pages)
 - the mixed-mode fallback has been removed for ordinary public pages
-- publication pages remain on `manifests/publication-metadata.json`
+- publication pages are now in mixed mode:
+  pilot pages may use `pubs/<slug>/publication.json`, with
+  `manifests/publication-metadata.json` retained as fallback for untouched
+  pages
 - the current parser intentionally supports only the flat scalar metadata
   fields already in use: `description`, `share_description`, `image_path`,
   and `title`

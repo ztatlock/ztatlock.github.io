@@ -1,0 +1,32 @@
+{
+  "title": "FPGA Technology Mapping Using Sketch-Guided Program Synthesis",
+  "authors": [
+    { "name": "Gus Henry Smith", "ref": "Gus Smith" },
+    { "name": "Benjamin Kushigian", "ref": "Ben Kushigian" },
+    { "name": "Vishal Canumalla", "ref": "Vishal Canumalla" },
+    { "name": "Andrew Cheung", "ref": "Andrew Cheung" },
+    { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" },
+    { "name": "Sorawee Porncharoenwase", "ref": "Sorawee Porncharoenwase" },
+    { "name": "René Just", "ref": "René Just" },
+    { "name": "Gilbert Louis Bernstein", "ref": "Gilbert Bernstein" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+  ],
+  "venue": "Architectural Support for Programming Languages and Operating Systems (ASPLOS)",
+  "description": "Lakeroad applies sketch-guided program synthesis to FPGA technology mapping, improving mapping coverage while providing correctness guarantees.",
+  "links": {
+    "code": "https://github.com/gussmith23/lakeroad",
+    "publisher": "https://doi.org/10.1145/3620665.3640387",
+    "arxiv": "https://arxiv.org/abs/2401.16526"
+  },
+  "talks": [
+    {
+      "event": "ASPLOS 2024",
+      "speakers": [
+        { "name": "Gus Smith", "ref": "Gus Smith" }
+      ],
+      "url": "https://www.youtube.com/watch?v=2XgOWAtJ8vs",
+      "embed": "https://www.youtube.com/embed/2XgOWAtJ8vs",
+      "title": "ASPLOS 2024 talk by Gus Smith"
+    }
+  ]
+}

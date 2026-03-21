@@ -8,6 +8,13 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from publication_record import (
+    PublicationRecordError,
+    load_optional_publication_record,
+    publication_slug,
+    render_publication_body,
+)
+
 DRAFT_HEADING_RE = re.compile(r"^# DRAFT$", re.MULTILINE)
 TITLE_HEADING_RE = re.compile(r"^#\s+(.*\S)\s*$")
 FRONT_MATTER_KEY_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)\s*:\s*(.*)$")
@@ -91,6 +98,27 @@ def extract_title(body: str, path: Path) -> str:
 
 def read_page_source(page_stem: str, root: Path) -> PageSource:
     path = page_path(page_stem, root)
+    slug = publication_slug(page_stem)
+    if slug is not None:
+        try:
+            record = load_optional_publication_record(root, slug)
+        except PublicationRecordError as err:
+            raise PageSourceError(str(err)) from err
+        if record is not None:
+            front_matter: dict[str, str] = {}
+            is_draft = False
+            if path.exists():
+                text = path.read_text(encoding="utf-8")
+                front_matter, _ = split_front_matter(text, path)
+                is_draft = bool(DRAFT_HEADING_RE.search(text))
+
+            return PageSource(
+                front_matter=front_matter,
+                body=render_publication_body(root, record),
+                title=record.title,
+                is_draft=is_draft,
+            )
+
     if not path.exists():
         raise PageSourceError(f"Missing source page: {path}")
 

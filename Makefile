@@ -20,8 +20,11 @@ MKPUB          := scripts/mkpub.sh
 PUB_INVENTORY  := scripts/build_pub_inventory.py
 PAGE_META      := scripts/page_metadata.py
 PAGE_SOURCE    := scripts/page_source.py
+PUBLICATION_RECORD := scripts/publication_record.py
 RENDER_META    := scripts/render_meta.py
 VALIDATE_SITE  := scripts/validate_site.py
+
+PUBLICATION_INPUTS := $(wildcard pubs/*/*)
 
 INVENTORY_PREVIEW_OUT  := state/inventory
 INVENTORY_WEBFILES_OUT := /Users/ztatlock/Desktop/WEBFILES/inventory
@@ -30,7 +33,7 @@ INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
 YCF           ?=
 
 .SECONDEXPANSION:
-%.html: %.dj $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(RENDER_META) manifests/publication-metadata.json
+%.html: %.dj $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(RENDER_META) manifests/publication-metadata.json $(PUBLICATION_INPUTS)
 	$(eval TITLE := $(shell python3 $(PAGE_SOURCE) title --root . --page "$*"))
 	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
 	@if [ "$@" = "index.html" ]; then \

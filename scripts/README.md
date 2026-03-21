@@ -33,24 +33,34 @@ Prefer the top-level `make` targets when they exist:
 - `mkpub.sh`
   Scaffolds a new publication page directory and adds a placeholder entry to
   `manifests/publication-metadata.json`. It currently assumes BSD/macOS
-  `sed -i ''`.
+  `sed -i ''`. It has not yet been migrated to the new publication-local
+  record pilot.
 - `add_publication_metadata.py`
   Adds a new placeholder entry to `manifests/publication-metadata.json` for
   `mkpub.sh` and other structured metadata workflows.
 - `page_metadata.py`
   Shared metadata helpers for generated page metadata and metadata source
   validation across both public non-publication pages and publication pages.
+  Publication pages currently support mixed-mode metadata: local
+  `pubs/<slug>/publication.json` records when present, manifest fallback
+  otherwise.
 - `page_source.py`
   Shared page-source parser used to strip non-publication front matter from
-  Djot input and extract page titles after front matter.
+  Djot input and extract page titles after front matter. It also supports the
+  current publication-record pilot by rendering selected publication pages
+  from per-publication local records.
+- `publication_record.py`
+  Shared loader and Djot renderer for publication-local records in
+  `pubs/<slug>/publication.json`.
 - `render_meta.py`
   Emits `<meta>` HTML for a page by rendering non-publication front matter
-  plus publication metadata from the publication manifest.
+  plus publication metadata from either a publication-local record or the
+  publication manifest fallback.
   Draft pages may intentionally emit no metadata while they remain drafts.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
-  validates non-publication front matter and
-  `manifests/publication-metadata.json`.
+  validates non-publication front matter and the current mixed publication
+  metadata sources.
   It also rejects any legacy raw `.meta` sidecars.
 
 ## Conventions
