@@ -11,9 +11,6 @@
   "2021-arith-herbie": {
     "description": "Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs."
   },
-  "2021-maps-glenside": {
-    "description": "Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations."
-  },
   "2021-oopsla-ruler": {
     "description": "Ruler uses equality saturation and e-graphs to infer rewrite rules, leading to 25x faster synthesis of 5.8x smaller rulesets that match or exceed experts."
   },
@@ -22,9 +19,6 @@
   },
   "2022-ecoop-cakemlfp": {
     "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics."
-  },
-  "2022-fmcad-smallproofs": {
-    "description": "A practical O(n log(n)) method for generating small proofs from congruence closure, plus a novel optimal O(n^5) algorithm. Implemented in egg, faster than Z3."
   },
   "2022-popl-rematch": {
     "description": "Relational e-matching uses DB query techniques to provide optimal e-matching, simple implementation, and orders-of-magnitude speedup vs. conventional methods."
@@ -44,8 +38,5 @@
   },
   "2023-popl-babble": {
     "description": "LLMT, a new library learning algorithm implemented in our tool 'babble', efficiently identifies common patterns in code corpora via anti-unification to improve both compression and scalability."
-  },
-  "2024-programming-magicmarkup": {
-    "description": "Magic Markup keeps document-external annotations aligned as text evolves using an LLM-backed re-tagging system."
   }
 }

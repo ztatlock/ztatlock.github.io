@@ -1,0 +1,16 @@
+{
+  "title": "Magic Markup: Maintaining Document-External Markup with an LLM",
+  "authors": [
+    { "name": "Edward Misback", "ref": "Edward Misback" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Steven L. Tanimoto", "ref": "Steven L. Tanimoto" }
+  ],
+  "venue": "<Programming>",
+  "description": "Magic Markup keeps document-external annotations aligned as text evolves using an LLM-backed re-tagging system.",
+  "links": {
+    "code": "https://github.com/elmisback/magic-markup",
+    "demo": "https://observablehq.com/@elmisback/magic-markup-demo",
+    "publisher": "https://doi.org/10.1145/3660829.3660836",
+    "arxiv": "https://arxiv.org/abs/2403.03481"
+  }
+}

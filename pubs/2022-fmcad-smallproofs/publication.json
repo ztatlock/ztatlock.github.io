@@ -1,0 +1,29 @@
+{
+  "title": "Small Proofs from Congruence Closure",
+  "authors": [
+    { "name": "Oliver Flatt", "ref": "Oliver Flatt" },
+    { "name": "Samuel Coward", "ref": "Samuel Coward" },
+    { "name": "Max Willsey", "ref": "Max Willsey" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Pavel Panchekha", "ref": "Pavel Panchekha" }
+  ],
+  "venue": "Formal Methods in Computer-Aided Design (FMCAD)",
+  "description": "A practical O(n log(n)) method for generating small proofs from congruence closure, plus a novel optimal O(n^5) algorithm. Implemented in egg, faster than Z3.",
+  "links": {
+    "project": "https://egraphs-good.github.io/",
+    "code": "https://github.com/egraphs-good/egg/",
+    "publisher": "https://ieeexplore.ieee.org/document/10026585",
+    "arxiv": "https://arxiv.org/abs/2209.03398"
+  },
+  "talks": [
+    {
+      "event": "FMCAD 2022",
+      "speakers": [
+        { "name": "Oliver Flatt", "ref": "Oliver Flatt" }
+      ],
+      "url": "https://www.youtube.com/watch?v=_KnAHFdqWT0",
+      "embed": "https://www.youtube.com/embed/_KnAHFdqWT0",
+      "title": "YouTube video player"
+    }
+  ]
+}

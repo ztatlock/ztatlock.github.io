@@ -1,0 +1,32 @@
+{
+  "title": "Pure Tensor Program Rewriting via Access Patterns",
+  "authors": [
+    { "name": "Gus Henry Smith", "ref": "Gus Smith" },
+    { "name": "Andrew Liu", "ref": "Andrew Liu" },
+    { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" },
+    { "name": "Scott Davidson", "ref": "Scott Davidson" },
+    { "name": "Joseph McMahan", "ref": "Joseph McMahan" },
+    { "name": "Michael Taylor", "ref": "Michael Taylor" },
+    { "name": "Luis Ceze", "ref": "Luis Ceze" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+  ],
+  "venue": "Symposium on Machine Programming (MAPS)",
+  "description": "Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.",
+  "links": {
+    "project": "https://sampl.cs.washington.edu/projects/glenside.html",
+    "code": "https://github.com/gussmith23/glenside",
+    "publisher": "https://dl.acm.org/doi/10.1145/3460945.3464953",
+    "arxiv": "https://arxiv.org/abs/2105.09377"
+  },
+  "talks": [
+    {
+      "event": "MAPS 2021",
+      "speakers": [
+        { "name": "Gus Smith", "ref": "Gus Smith" }
+      ],
+      "url": "https://www.youtube.com/watch?v=zxfhurFdYVs",
+      "embed": "https://www.youtube.com/embed/zxfhurFdYVs",
+      "title": "YouTube video player"
+    }
+  ]
+}
