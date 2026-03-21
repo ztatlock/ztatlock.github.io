@@ -35,9 +35,9 @@ The current structured metadata schema is intentionally small:
 In practice, the fallback publication manifest is sparse:
 
 - `manifests/publication-metadata.json`
-  - 4 / 4 entries use `description`
-  - 0 / 4 entries use `share_description`
-  - 1 / 4 entries uses `image_path`
+  - 1 / 1 entry uses `description`
+  - 0 / 1 entries use `share_description`
+  - 1 / 1 entry uses `image_path`
 
 This is a strong sign that defaults are working and that the core question is
 mostly about *where* metadata should live, not about inventing a richer

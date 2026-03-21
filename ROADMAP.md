@@ -39,17 +39,20 @@ notes.
 
 - [ ] Decide whether `2008-oopsla-dtar` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2008-oopsla-dtar/publication.json:13`).
 - [ ] Decide whether `2009-pldi-pec` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2009-pldi-pec/publication.json:10`).
-- [ ] Resolve TODO-tagged project/code/arXiv items for `pub-2012-security-quark` (`pub-2012-security-quark.dj:26`, `pub-2012-security-quark.dj:27`, `pub-2012-security-quark.dj:28`).
+- [ ] Decide whether `2012-security-quark` should expose a project link and, if so, add it to the canonical publication record (`pubs/2012-security-quark/publication.json:11`).
+- [ ] Decide whether `2012-security-quark` should expose a code link and, if so, add it to the canonical publication record (`pubs/2012-security-quark/publication.json:11`).
+- [ ] Decide whether `2012-security-quark` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2012-security-quark/publication.json:11`).
 - [ ] Decide whether `2019-conga-sinkingpoint` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2019-conga-sinkingpoint/publication.json:14`).
 - [ ] Decide whether `2021-arith-herbie` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-arith-herbie/publication.json:13`).
 - [ ] Decide whether `2021-oopsla-ruler` should expose a project link and, if so, add it to the canonical publication record (`pubs/2021-oopsla-ruler/publication.json:16`).
 - [ ] Decide whether `2021-sff-3dp` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-sff-3dp/publication.json:17`).
-- [ ] Fill talk/arXiv TODOs for `pub-2022-ecoop-cakemlfp` (`pub-2022-ecoop-cakemlfp.dj:31`, `pub-2022-ecoop-cakemlfp.dj:32`).
+- [ ] Decide whether `2022-ecoop-cakemlfp` should expose a public talk link and, if so, add it to the canonical publication record (`pubs/2022-ecoop-cakemlfp/publication.json:16`).
+- [ ] Decide whether `2022-ecoop-cakemlfp` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2022-ecoop-cakemlfp/publication.json:16`).
 - [ ] Decide whether `2022-tog-carpentry` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2022-tog-carpentry/publication.json:13`).
 - [ ] Resolve TODO-tagged `poster` link for `pub-2023-plarch-lakeroad` (`pub-2023-plarch-lakeroad.dj:30`).
 - [ ] Decide whether `2023-pldi-egglog` should expose a public talk link and, if so, add it to the canonical publication record (`pubs/2023-pldi-egglog/publication.json:13`).
-- [ ] Resolve TODO-tagged `project` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:30`).
-- [ ] Resolve TODO-tagged `poster` link for `pub-2023-popl-babble` (`pub-2023-popl-babble.dj:31`).
+- [ ] Decide whether `2023-popl-babble` should expose a project link and, if so, add it to the canonical publication record (`pubs/2023-popl-babble/publication.json:15`).
+- [ ] Decide whether `2023-popl-babble` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2023-popl-babble/publication.json:15`).
 
 ### Template Placeholders (Intentional Scaffolding)
 

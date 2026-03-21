@@ -1,0 +1,20 @@
+{
+  "title": "Verified Compilation and Optimization of Floating-Point Programs in CakeML",
+  "authors": [
+    { "name": "Heiko Becker", "ref": "Heiko Becker" },
+    { "name": "Robert Rabe" },
+    { "name": "Eva Darulova", "ref": "Eva Darulova" },
+    { "name": "Magnus O. Myreen", "ref": "Magnus O. Myreen" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Ramana Kumar", "ref": "Ramana Kumar" },
+    { "name": "Yong Kiam Tan", "ref": "Yong Kiam Tan" },
+    { "name": "Anthony Fox", "ref": "Anthony Fox" }
+  ],
+  "venue": "European Conference on Object-Oriented Programming (ECOOP)",
+  "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics.",
+  "links": {
+    "project": "https://cakeml.org/",
+    "code": "https://github.com/CakeML/cakeml/pull/865",
+    "publisher": "https://drops.dagstuhl.de/opus/volltexte/2022/16229/"
+  }
+}

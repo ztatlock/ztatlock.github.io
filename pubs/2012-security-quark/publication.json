@@ -1,0 +1,23 @@
+{
+  "title": "Establishing Browser Security Guarantees through Formal Shim Verification",
+  "authors": [
+    { "name": "Dongseok Jang", "ref": "Dongseok Jang" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Sorin Lerner", "ref": "Sorin Lerner" }
+  ],
+  "venue": "USENIX Security Symposium (SECURITY)",
+  "description": "Quark is a web browser kernel formally verified in Coq to ensure tab non-interference, cookie integrity, and address bar security via formal shim verification.",
+  "links": {
+    "publisher": "https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/jang"
+  },
+  "talks": [
+    {
+      "event": "USENIX SECURITY 2012",
+      "speakers": [
+        { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+      ],
+      "url": "https://www.youtube.com/watch?v=AfqeFf66yzI",
+      "embed": "https://www.youtube.com/embed/AfqeFf66yzI"
+    }
+  ]
+}

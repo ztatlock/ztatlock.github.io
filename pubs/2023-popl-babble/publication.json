@@ -1,0 +1,19 @@
+{
+  "title": "babble: Learning Better Abstractions with E-Graphs and Anti-Unification",
+  "authors": [
+    { "name": "David Cao", "ref": "David Cao" },
+    { "name": "Rose Kunkel", "ref": "Rose Kunkel" },
+    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },
+    { "name": "Max Willsey", "ref": "Max Willsey" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
+    { "name": "Nadia Polikarpova", "ref": "Nadia Polikarpova" }
+  ],
+  "venue": "Principles of Programming Languages (POPL)",
+  "description": "LLMT, a new library learning algorithm implemented in our tool 'babble', efficiently identifies common patterns in code corpora via anti-unification to improve both compression and scalability.",
+  "links": {
+    "talk": "https://www.youtube.com/watch?v=ogGiKdhDmhU",
+    "code": "https://github.com/dcao/babble",
+    "publisher": "https://dl.acm.org/doi/abs/10.1145/3571207",
+    "arxiv": "https://arxiv.org/abs/2212.04596"
+  }
+}

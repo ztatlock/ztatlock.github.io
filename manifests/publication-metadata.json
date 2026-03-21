@@ -1,15 +1,6 @@
 {
-  "2012-security-quark": {
-    "description": "Quark is a web browser kernel formally verified in Coq to ensure tab non-interference, cookie integrity, and address bar security via formal shim verification."
-  },
-  "2022-ecoop-cakemlfp": {
-    "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics."
-  },
   "2023-plarch-lakeroad": {
     "description": "Generate Compilers from Hardware Models! - PLARCH @ PLDI 2023",
     "image_path": "pubs/2023-plarch-lakeroad/2023-plarch-lakeroad-absimg.png"
-  },
-  "2023-popl-babble": {
-    "description": "LLMT, a new library learning algorithm implemented in our tool 'babble', efficiently identifies common patterns in code corpora via anti-unification to improve both compression and scalability."
   }
 }
