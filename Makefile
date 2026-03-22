@@ -22,9 +22,13 @@ PAGE_META      := scripts/page_metadata.py
 PAGE_SOURCE    := scripts/page_source.py
 PUBLICATION_RECORD := scripts/publication_record.py
 RENDER_META    := scripts/render_meta.py
+RENDER_REFS    := scripts/render_site_refs.py
 VALIDATE_SITE  := scripts/validate_site.py
+RENDERED_REFS  := state/site.refs.djot
 
 PUBLICATION_INPUTS := $(wildcard pubs/*/*)
+SITE_DATA         := $(wildcard site/data/*)
+SITEBUILD_MODULES := $(wildcard scripts/sitebuild/*.py)
 
 INVENTORY_PREVIEW_OUT  := state/inventory
 INVENTORY_WEBFILES_OUT := /Users/ztatlock/Desktop/WEBFILES/inventory
@@ -33,7 +37,11 @@ INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
 YCF           ?=
 
 .SECONDEXPANSION:
-%.html: %.dj $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(RENDER_META) $(PUBLICATION_INPUTS)
+$(RENDERED_REFS): $(RENDER_REFS) $(SITE_DATA) $(SITEBUILD_MODULES) templates/REFS
+	@mkdir -p "$(dir $@)"
+	@python3 $(RENDER_REFS) --root . > $@
+
+%.html: %.dj Makefile $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(RENDER_META) $(RENDERED_REFS) $(PUBLICATION_INPUTS) $(SITE_DATA) $(SITEBUILD_MODULES)
 	$(eval TITLE := $(shell python3 $(PAGE_SOURCE) title --root . --page "$*"))
 	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
 	@if [ "$@" = "index.html" ]; then \
@@ -49,9 +57,11 @@ YCF           ?=
 	fi
 	@python3 $(RENDER_META) --root . --page "$*" --title "$(TITLE)" >> $@
 	@cat templates/HEAD.2 >> $@
-	@python3 $(PAGE_SOURCE) body --root . --page "$*" \
-		| cat - templates/REFS \
-		| sed 's#__WEBFILES__#$(FILES)#' \
+	@{ \
+		python3 $(PAGE_SOURCE) body --root . --page "$*"; \
+		printf '\n\n'; \
+		cat $(RENDERED_REFS); \
+	} | sed 's#__WEBFILES__#$(FILES)#' \
 		| djot \
 		>> $@
 	@cat templates/FOOT >> $@
@@ -64,6 +74,7 @@ help:
 	@printf '%s\n' \
 		'make all' \
 		'make drafts' \
+		'make test' \
 		'make check' \
 		'make validate-site' \
 		'make env-check' \
@@ -99,6 +110,14 @@ drafts: $(DRAFT_PAGES)
 .PHONY: check
 check:
 	@bash $(CHECK)
+
+.PHONY: test
+test:
+	@python3 -m unittest \
+		tests/test_people_registry.py \
+		tests/test_people_refs.py \
+		tests/test_people_refs_audit.py \
+		tests/test_djot_refs.py
 
 .PHONY: env-check
 env-check:

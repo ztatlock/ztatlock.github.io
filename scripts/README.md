@@ -1,11 +1,14 @@
 # Scripts
 
 This directory holds executable helpers for working on the website repo.
+It also now holds the small reusable Python modules for the staged
+source/build/data redesign under `scripts/sitebuild/`.
 
 Prefer the top-level `make` targets when they exist:
 
 - `make check`
 - `make env-check`
+- `make test`
 - `make validate-site`
 - `make inventory`
 - `make inventory-webfiles`
@@ -20,6 +23,10 @@ Prefer the top-level `make` targets when they exist:
   `make inventory` writes a repo-local preview under `state/inventory/`.
   `make inventory-webfiles` refreshes the canonical archive copy under
   `~/Desktop/WEBFILES/inventory/`.
+- `audit_people_refs.py`
+  Audit script for the post-cutover steady state.
+  It checks the manual `templates/REFS` remainder for duplicate labels and
+  accidental overlap with person refs owned by `site/data/people.json`.
 - `check.sh`
   Rebuilds the site in an isolated scratch copy and runs structural validation
   checks without dirtying tracked site outputs in the live repo. It also
@@ -52,6 +59,13 @@ Prefer the top-level `make` targets when they exist:
   Emits `<meta>` HTML for a page by rendering non-publication front matter
   plus publication metadata from a publication-local record.
   Draft pages may intentionally emit no metadata while they remain drafts.
+- `render_people_refs.py`
+  Prototype preview script that renders Djot people-reference definitions from
+  `site/data/people.json`.
+- `render_site_refs.py`
+  Renders the composed Djot ref bundle used by the live site build:
+  generated people refs from `site/data/people.json` plus the tiny manual
+  non-person remainder in `templates/REFS`.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
   validates non-publication front matter and publication-local metadata
@@ -61,6 +75,8 @@ Prefer the top-level `make` targets when they exist:
 ## Conventions
 
 - Put new executable helpers here, not in `templates/`.
+- Keep reusable build/data logic in small Python modules under
+  `scripts/sitebuild/`.
 - Keep local generated/runtime state under `state/`.
 - Keep larger archival state outside the repo in `~/Desktop/WEBFILES/` unless
   there is a clear reason to version it in git.

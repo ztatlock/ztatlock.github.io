@@ -13,7 +13,8 @@ page scaffolding.
 - `FOOT`
   The closing `</body>` and `</html>` tags.
 - `REFS`
-  Shared Djot reference definitions appended to every generated page.
+  Tiny hand-maintained non-person Djot reference remainder appended to every
+  generated page alongside generated people refs from `site/data/people.json`.
 - `pub-stub.dj`
   Minimal draft-status stub used by `scripts/mkpub.sh` during the current
   publication transition.

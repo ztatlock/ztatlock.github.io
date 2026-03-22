@@ -13,7 +13,8 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
   (`HEAD.1`, `HEAD.2`, `FOOT`) and uses the same simple `style.css`.
 - Each page's title is taken from the first non-empty level-1 heading after
   any optional front matter.
-- `REFS` provides global reference links included for each page.
+- `site/data/people.json` provides the canonical people-link registry.
+- `templates/REFS` holds only the tiny manual non-person reference remainder.
 - `templates/`: shared page wrappers and global references
   (see [templates/README.md](templates/README.md)).
 - `scripts/`: executable helpers and metadata/build utilities
@@ -21,6 +22,9 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
 - `pubs/<year-conf-sys>/`: publication assets (PDF, bib, images, slides,
   posters, etc.).
 - `img/`: shared site images/icons.
+- `site/`: staged next-architecture source area for structured site data and
+  other redesign prototypes.
+- `tests/`: focused unit tests for new route/data build modules.
 - `docs/`: human-authored policy/spec docs (see [docs/README.md](docs/README.md)).
 - `manifests/`: small versioned structured manifests.
   Public non-publication pages currently source metadata from YAML front
@@ -48,6 +52,7 @@ Commands:
 - `make clean` — remove generated pages and sitemap files.
 - `make env-check` — verify local prerequisites and current portability
   assumptions.
+- `make test` — run focused unit tests for the new route/data build modules.
 - `make check` — validate in an isolated scratch copy (does not dirty the
   live repo) and catch broken local links, unresolved placeholders, and
   missing or inconsistent structured metadata.
@@ -79,6 +84,8 @@ Multi-machine guardrail:
 Notes:
 - If a page has both `<page>.dj` and `<page>.html`, treat `.dj` as
   source of truth.
+- The staged redesign prototype now seeds shared cross-page data in
+  `site/data/people.json`, with focused unit tests under `tests/`.
 - For public publication pages, the top-level `pub-<slug>.dj` file
   should stay a minimal transition stub/build anchor; the publication-local
   record under `pubs/<slug>/` is the body/metadata source of truth.
@@ -87,8 +94,10 @@ Notes:
 - The current front-matter prototype intentionally supports only the flat
   scalar metadata fields already in use: `description`, `share_description`,
   `image_path`, and `title`.
-- Add or update named references in `templates/REFS` when using
+- Add or update person references in `site/data/people.json` when using
   `[Name][]` links.
+  Keep `templates/REFS` only for non-person references such as `PGAS` or
+  `UW`.
 
 ## Publication Bootstrap
 

@@ -18,7 +18,9 @@ This repo is a static website generated from Djot source files. Keep changes sou
   Then regenerate matching `*.html` with `make`.
 - Do not hand-edit generated `*.html` when a same-named `.dj` file exists.
 - Top-level standalone HTML pages without `.dj` sources are `anagram.html`, `demo-naive-union-find.html`, and `sundial.html`.
-- If you add `[Name][]` links, add/update the matching reference in `templates/REFS`.
+- If you add a person reference link like `[Name][]`, add/update the matching
+  entry in `site/data/people.json`.
+  Keep `templates/REFS` only for the tiny non-person manual remainder.
 - Publication assets and migrated publication-local records live in
   `pubs/<year-conf-sys>/`.
   For public publication pages, top-level `pub-<year-conf-sys>.dj` files should
