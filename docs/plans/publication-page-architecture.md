@@ -126,10 +126,14 @@ But the actual publication locality already lives under:
 Since backward compatibility with old URLs is explicitly not a goal, we are
 free to choose a more rational final URL shape if that improves the design.
 
-### 6. `templates/REFS` Is Part Of The Current Publication Rendering Model
+### 6. Site-Wide Djot Refs Are Part Of The Current Publication Rendering Model
 
 Publication pages and publication listings currently rely on the global
-reference registry in [templates/REFS](/Users/ztatlock/www/ztatlock.github.io/templates/REFS).
+Djot reference machinery.
+Today, person refs are generated from
+[site/data/people.json](/Users/ztatlock/www/ztatlock.github.io/site/data/people.json),
+while [templates/REFS](/Users/ztatlock/www/ztatlock.github.io/templates/REFS)
+holds only the tiny manual non-person remainder.
 
 This matters especially for author rendering, where the current content uses
 patterns like:
@@ -139,9 +143,9 @@ patterns like:
 - `[Ben Kushigian][]`
 
 So the first-cut publication schema should **not** force us to solve a full
-cross-site people registry immediately.
+cross-site people model immediately.
 It should support a pragmatic author representation that can still render
-through the existing global refs file.
+through the current site-wide refs bundle.
 
 ### 7. `publications.dj` Is Broader Than The Detailed Publication Page Set
 
@@ -173,7 +177,8 @@ does this:
 
 - renders the page head from shared templates
 - takes the page body as Djot
-- appends [templates/REFS](/Users/ztatlock/www/ztatlock.github.io/templates/REFS)
+- appends a composed site refs bundle
+  (generated people refs plus the tiny manual remainder)
 - runs the combined content through `djot`
 
 This is important for publication design.
@@ -389,8 +394,8 @@ The slug itself should remain implicit from the directory name.
 For the first cut:
 
 - `authors` should be simple structured entries that can still render through
-  [templates/REFS](/Users/ztatlock/www/ztatlock.github.io/templates/REFS),
-  for example plain names plus an optional ref key
+  the current site-wide refs bundle, for example plain names plus an optional
+  ref key
 - `venue` should optimize for clean rendering rather than overfitting a fully
   normalized conference ontology on day one
 
@@ -457,7 +462,7 @@ Rules:
 
 - `name` is always the display text
 - `ref` is optional and maps to an entry in
-  [templates/REFS](/Users/ztatlock/www/ztatlock.github.io/templates/REFS)
+  the current site-wide Djot refs bundle
 - when `ref` is absent, the renderer should emit plain text rather than a
   broken Djot reference
 
@@ -714,8 +719,13 @@ Author names currently have some formatting and alias variation, for example:
 - `[Gus Henry Smith][Gus Smith]`
 - `[Yisu Remy Wang][Remy Wang]`
 
-So a future people registry may be worth having, but it should be treated as a
-separate design problem.
+So a broader people model may be worth having, but it should be treated as a
+design problem beyond the first publication-record step.
+
+The repo now has an early people registry at
+[site/data/people.json](/Users/ztatlock/www/ztatlock.github.io/site/data/people.json),
+but publication generation should still avoid overfitting to a grand unified
+people model too early.
 
 The first publication-record design should be allowed to use a pragmatic
 representation for authors, even if it is not the final forever model.
@@ -736,7 +746,7 @@ Decide and write down:
   detailed publication pages
 
 This phase should stay pragmatic.
-Do not overfit for a future people registry yet.
+Do not overfit for a full cross-site people model yet.
 
 ### Phase 2: Build A Renderer Against One Stable Output Shape
 

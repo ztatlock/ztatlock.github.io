@@ -27,8 +27,19 @@
 ## Future Campaigns
 
 - Make the authored-source vs built-output split explicit.
-- Move toward an intentional build/deploy pipeline instead of serving the repo
-  root directly.
+- Move toward an intentional route-aware source/build/deploy pipeline instead
+  of serving the repo root directly.
+- Introduce a small shared data model for cross-page facts such as people,
+  talks, students, and selected CV records, while keeping prose near prose and
+  publication-local facts near publication bundles.
+- Reduce repeated per-page build subprocess overhead so `make all` and
+  `make check` stay fast enough to run routinely, likely by consolidating
+  title/body/meta work into fewer Python entry points and revisiting safe
+  parallelism.
+- Keep the redesign implementation disciplined:
+  pure Python modules with narrow responsibilities, explicit
+  schemas/invariants, small unit tests for route/data resolution, and thin
+  Make commands on top.
 - Revisit whether the eventual source/build/deploy split should stay custom or
   migrate to Jekyll or another more conventional SSG.
 - Create and integrate a replacement first-party Neutrons project page, since

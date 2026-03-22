@@ -60,6 +60,18 @@ meant to be read, maintained, and extended over time.
   front matter as metadata sources.
 - `plans/repo-layout.md`
   Staged direction for making the repo less flat and more modular.
+- `plans/build-system-route-model.md`
+  Why the current flat-root build model is straining and what a minimal
+  route-aware model would need to represent.
+- `plans/publication-output-cutover.md`
+  Focused design note on whether publication pages should move from
+  root-level outputs into their own directories.
+- `plans/source-build-deploy-redesign.md`
+  Broader redesign direction for introducing `site/`, `build/`, and explicit
+  deployment.
+- `plans/site-architecture-spec.md`
+  Draft concrete architecture spec for the next source/build/data/deploy
+  redesign campaign.
 
 ## Near-Term Cleanup
 
