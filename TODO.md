@@ -7,8 +7,9 @@
 - Keep the current root-level file classes documented in
   `docs/policy/root-layout.md`.
 - Keep small self-describing docs current when support directories change.
-- Keep publication metadata under separate design review while ordinary pages
-  now use YAML front matter directly.
+- Keep the current root-served production build and the route-aware preview
+  build coherent while the broader source/build/deploy migration is still in
+  progress.
 - Revisit which generated outputs are intentionally tracked in git and which
   eventually deserve a better home than the repo root.
 

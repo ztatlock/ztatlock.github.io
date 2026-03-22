@@ -14,6 +14,8 @@ rules we should follow until a later explicit source/build/deploy migration.
 
 ## Top-Level Directories
 
+- `build/`
+  Gitignored route-aware preview output from the new Python preview builder.
 - `docs/`
   Human-authored policy, specs, and campaign notes.
 - `img/`
@@ -24,10 +26,15 @@ rules we should follow until a later explicit source/build/deploy migration.
   Repo-hosted publication artifacts served directly by the site.
 - `scripts/`
   Executable maintenance helpers.
+- `site/`
+  Staged next-architecture source area for structured site data and related
+  redesign prototypes.
 - `state/`
   Local generated/runtime state and repo-local previews.
 - `templates/`
   Non-executable build and scaffolding inputs.
+- `tests/`
+  Focused unit tests for the new route/data/build modules.
 
 ## Top-Level File Classes
 
@@ -86,6 +93,7 @@ Current examples include:
   `scripts/`, `manifests/`, `state/`, or `templates/`, not at the repo root.
 - New generated previews, reports, and runtime state should go under `state/`,
   not at the repo root.
+- Route-aware preview output should go under `build/`, not at the repo root.
 - Draft `*.dj` pages should not have tracked `*.html` outputs.
 - Public non-draft `*.dj` pages should continue to have tracked `*.html`
   outputs until the later build/deploy migration happens.

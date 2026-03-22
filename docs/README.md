@@ -78,7 +78,8 @@ meant to be read, maintained, and extended over time.
   source layout.
 - `plans/route-build-engine-slice-2.md`
   Consolidation slice for collapsing duplicated rendering and metadata logic
-  and adding route-driven sitemap generation for `build/`.
+  and adding route-driven sitemap generation for `build/`, followed by shared
+  artifact-validation helpers for legacy and preview builds.
 
 ## Near-Term Cleanup
 

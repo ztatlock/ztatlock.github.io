@@ -31,6 +31,9 @@ This repo is a static website generated from Djot source files. Keep changes sou
 ## Build And Checks
 - Build all generated pages and sitemaps: `make all`
 - Build one page: `make <page>.html`
+- Build the route-aware preview site: `make build-preview`
+- Validate the route-aware preview site: `make check-preview`
+- Run focused unit tests for route/data/build helpers: `make test`
 - Check local prerequisites and assumptions: `make env-check`
 - Run validation checks: `make check`
 

@@ -180,21 +180,26 @@ for the broader redesign.
 Today the repo has:
 
 - no `.github/workflows/` Pages workflow
-- no explicit build output directory
+- an explicit non-production preview output directory at `build/`
 - top-level generated HTML committed directly in the repo root
 - GitHub Pages-style root-serving setup through committed files like
   [CNAME](/Users/ztatlock/www/ztatlock.github.io/CNAME) and
   [robots.txt](/Users/ztatlock/www/ztatlock.github.io/robots.txt)
 
-So the current model is effectively:
+So the current model is now split in two:
 
-- edit source in the repo root
-- generate outputs into the same repo root
-- commit generated outputs
-- let Pages serve that branch/root layout directly
+- production path:
+  - edit source in the repo root
+  - generate outputs into the same repo root
+  - commit generated outputs
+  - let Pages serve that branch/root layout directly
+- preview path:
+  - read from the current repo-root source layout
+  - build a future-oriented preview site into `build/`
+  - validate that preview separately before any later cutover
 
-That model has been simple, but it is now the main thing preventing cleaner
-structure.
+The production path is still the main thing preventing cleaner structure.
+The preview path is the current bridge toward a better source/build split.
 
 ## Why Publication Cutover Exposed The Bigger Problem
 
