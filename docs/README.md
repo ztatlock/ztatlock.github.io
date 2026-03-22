@@ -80,6 +80,9 @@ meant to be read, maintained, and extended over time.
   Consolidation slice for collapsing duplicated rendering and metadata logic
   and adding route-driven sitemap generation for `build/`, followed by shared
   artifact-validation helpers for legacy and preview builds.
+- `plans/route-build-engine-slice-3.md`
+  Source-layout-awareness slice for making the preview engine read from
+  configured source roots before any real source-file move into `site/`.
 
 ## Near-Term Cleanup
 

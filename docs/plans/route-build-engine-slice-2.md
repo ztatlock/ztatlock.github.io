@@ -232,6 +232,11 @@ After these three pieces land, pause and inspect:
 Do not force more cleanup into the same slice if the first three steps already
 form a clean checkpoint.
 
+The next follow-up after this checkpoint is captured in
+[route-build-engine-slice-3.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/route-build-engine-slice-3.md):
+make the new engine source-layout-aware before moving real source files into
+`site/`.
+
 ## What Slice 2 Should Not Do
 
 Slice 2 should **not**:
