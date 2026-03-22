@@ -97,6 +97,20 @@ Slice 1 should **not**:
 
 The preview builder should be real, but still non-production at first.
 
+## Next Planned Follow-Up
+
+The next slice after this prototype is not another route-discovery change.
+
+It is a consolidation slice:
+
+- extract one shared render core for:
+  - route-aware metadata rendering
+  - page HTML document assembly
+- then add route-driven sitemap generation for `build/`
+
+That follow-up is captured in
+[route-build-engine-slice-2.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/route-build-engine-slice-2.md).
+
 ## Future Route Model Now
 
 This slice should use the intended future output rules.

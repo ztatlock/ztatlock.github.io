@@ -76,6 +76,9 @@ meant to be read, maintained, and extended over time.
   Initial implementation slice for the redesign: a future-oriented
   preview builder that writes to `build/` while still reading from the current
   source layout.
+- `plans/route-build-engine-slice-2.md`
+  Consolidation slice for collapsing duplicated rendering and metadata logic
+  and adding route-driven sitemap generation for `build/`.
 
 ## Near-Term Cleanup
 

@@ -739,6 +739,16 @@ Later in this phase, implement in Python:
 At this phase, local preview builds should target `build/`, while the current
 root-level build remains the production path temporarily.
 
+The immediate next cleanup inside this phase should be:
+
+- one shared render core for:
+  - route-aware metadata rendering
+  - page HTML document assembly
+- route-driven sitemap generation for `build/`
+
+That is the first point where the new engine starts replacing duplicated legacy
+logic instead of merely previewing future routes.
+
 ### Phase 3: Migrate Source Into `site/`
 
 Move:

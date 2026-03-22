@@ -417,6 +417,11 @@ target the future output layout immediately:
 - build a real preview site into `build/`
 - use the future publication output shape in that preview build
 - validate the route model and preview build together
+- then collapse duplicated build logic by extracting:
+  - one shared render core
+    - route-aware metadata rendering
+    - page HTML document assembly
+  - route-driven sitemap generation for `build/`
 
 ### Phase 3
 
