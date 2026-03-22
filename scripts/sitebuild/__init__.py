@@ -1,1 +1,1 @@
-"""Foundational modules for the next site build architecture."""
+"""Reusable modules for the staged route-aware site build redesign."""

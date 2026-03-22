@@ -6,10 +6,6 @@ import argparse
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
 from scripts.sitebuild.preview_builder import PreviewBuildError, build_preview_site
 from scripts.sitebuild.route_model import RouteModelError
 from scripts.sitebuild.site_config import load_site_config

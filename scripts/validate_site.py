@@ -7,48 +7,19 @@ import re
 import sys
 from pathlib import Path
 
-from page_metadata import (
+from scripts.page_metadata import (
     validate_general_page_metadata,
     validate_publication_metadata,
 )
-
-IGNORED_TARGET_PREFIXES = (
-    "http://",
-    "https://",
-    "mailto:",
-    "tel:",
-    "#",
-    "data:",
-    "javascript:",
+from scripts.sitebuild.artifact_validate import (
+    find_broken_link_issues,
+    find_placeholder_issues,
+    top_level_html_files,
 )
-PLACEHOLDER_RE = re.compile(
+
+LEGACY_PLACEHOLDER_RE = re.compile(
     r'TODO|YOUTUBEID|href="TODO"|content="TITLE"|content="DESCRIPTION"|CONF YEAR'
 )
-HTML_LINK_RE = re.compile(r'(?:href|src)="([^"]+)"')
-
-
-def find_placeholder_issues(root: Path) -> list[str]:
-    issues: list[str] = []
-    for path in sorted(root.glob("pub-*.html")):
-        for lineno, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-            if PLACEHOLDER_RE.search(line):
-                issues.append(f"{path.name}:{lineno}: {line.strip()}")
-    return issues
-
-
-def find_broken_link_issues(root: Path) -> list[str]:
-    issues: list[str] = []
-    for path in sorted(root.glob("*.html")):
-        text = path.read_text(encoding="utf-8")
-        for target in HTML_LINK_RE.findall(text):
-            if target.startswith(IGNORED_TARGET_PREFIXES):
-                continue
-            relpath = target.split("#", 1)[0].split("?", 1)[0]
-            if not relpath:
-                continue
-            if not (root / relpath).exists():
-                issues.append(f"{path.name}: {target}")
-    return issues
 
 
 def find_legacy_metadata_issues(root: Path) -> list[str]:
@@ -78,9 +49,18 @@ def main() -> int:
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
+    html_files = top_level_html_files(root)
 
-    placeholder_issues = find_placeholder_issues(root)
-    broken_link_issues = find_broken_link_issues(root)
+    placeholder_issues = find_placeholder_issues(
+        html_files=[path for path in html_files if path.name.startswith("pub-")],
+        relative_to=root,
+        placeholder_re=LEGACY_PLACEHOLDER_RE,
+    )
+    broken_link_issues = find_broken_link_issues(
+        html_files=html_files,
+        artifact_root=root,
+        relative_to=root,
+    )
     legacy_metadata_issues = find_legacy_metadata_issues(root)
     general_page_metadata_issues = validate_general_page_metadata(root)
     publication_metadata_issues = validate_publication_metadata(root)

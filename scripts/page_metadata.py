@@ -6,8 +6,8 @@ import html
 import re
 from pathlib import Path
 
-from page_source import PageSourceError, read_page_source
-from publication_record import (
+from scripts.page_source import PageSourceError, read_page_source
+from scripts.publication_record import (
     PublicationRecordError,
     load_optional_publication_record,
     publication_metadata_image_path,
@@ -115,6 +115,15 @@ def render_metadata_block(
 
 
 def render_publication_meta(page_stem: str, title: str, root: Path) -> str:
+    return render_publication_meta_for_url(page_stem, title, canonical_url(page_stem), root)
+
+
+def render_publication_meta_for_url(
+    page_stem: str,
+    title: str,
+    url: str,
+    root: Path,
+) -> str:
     slug = publication_slug(page_stem)
     if slug is None:
         raise MetadataError(f"{page_stem} is not a publication page")
@@ -131,8 +140,6 @@ def render_publication_meta(page_stem: str, title: str, root: Path) -> str:
     description = record.description
     share_description = record.share_description or description
     image_path = publication_metadata_image_path(root, record)
-    url = canonical_url(page_stem)
-
     return render_metadata_block(
         title=title,
         description=description,
@@ -161,6 +168,15 @@ def load_front_matter_general_metadata(page_stem: str, root: Path) -> dict[str, 
 
 
 def render_general_page_meta(page_stem: str, title: str, root: Path) -> str:
+    return render_general_page_meta_for_url(page_stem, title, canonical_url(page_stem), root)
+
+
+def render_general_page_meta_for_url(
+    page_stem: str,
+    title: str,
+    url: str,
+    root: Path,
+) -> str:
     row = load_front_matter_general_metadata(page_stem, root)
     if row is None:
         raise MetadataError(f"Missing front matter metadata for {page_stem}")
@@ -169,8 +185,6 @@ def render_general_page_meta(page_stem: str, title: str, root: Path) -> str:
     share_description = row["share_description"] or description
     image_path = row["image_path"] or default_page_image_path()
     rendered_title = row["title"] or title
-    url = canonical_url(page_stem)
-
     return render_metadata_block(
         title=rendered_title,
         description=description,
@@ -181,6 +195,16 @@ def render_general_page_meta(page_stem: str, title: str, root: Path) -> str:
 
 
 def render_page_meta(page_stem: str, title: str, root: Path) -> str:
+    return render_page_meta_for_url(page_stem, title, canonical_url=canonical_url(page_stem), root=root)
+
+
+def render_page_meta_for_url(
+    page_stem: str,
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+) -> str:
     slug = publication_slug(page_stem)
     try:
         source = read_page_source(page_stem, root)
@@ -195,7 +219,7 @@ def render_page_meta(page_stem: str, title: str, root: Path) -> str:
                 )
             return ""
         if source.front_matter:
-            return render_general_page_meta(page_stem, title, root)
+            return render_general_page_meta_for_url(page_stem, title, canonical_url, root)
         return ""
 
     if slug is not None:
@@ -203,10 +227,10 @@ def render_page_meta(page_stem: str, title: str, root: Path) -> str:
             raise MetadataError(
                 f"{root / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
             )
-        return render_publication_meta(page_stem, title, root)
+        return render_publication_meta_for_url(page_stem, title, canonical_url, root)
 
     if source.front_matter:
-        return render_general_page_meta(page_stem, title, root)
+        return render_general_page_meta_for_url(page_stem, title, canonical_url, root)
     raise MetadataError(f"Missing front matter metadata for {page_stem}")
 
 

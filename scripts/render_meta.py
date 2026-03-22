@@ -6,7 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from page_metadata import MetadataError, render_page_meta
+from scripts.page_metadata import MetadataError, render_page_meta
 
 
 def main() -> int:

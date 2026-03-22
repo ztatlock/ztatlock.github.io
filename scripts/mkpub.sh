@@ -22,4 +22,4 @@ if [ $# -ne 1 ] || [ -z "$1" ]; then
 fi
 ycf="$1"
 
-python3 scripts/scaffold_publication.py --root . --slug "${ycf}"
+python3 -m scripts.scaffold_publication --root . --slug "${ycf}"

@@ -63,4 +63,4 @@ for src in "${draft_pages[@]}"; do
   fi
 done
 
-python3 scripts/validate_site.py --root .
+python3 -m scripts.validate_site --root .

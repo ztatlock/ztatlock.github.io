@@ -6,7 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from publication_record import publication_page_stem
+from scripts.publication_record import publication_page_stem
 
 PUB_STUB_TEMPLATE = Path("templates/pub-stub.dj")
 PUBLICATION_JSON_TEMPLATE = Path("templates/publication.json")

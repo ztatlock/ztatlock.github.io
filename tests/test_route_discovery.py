@@ -42,6 +42,8 @@ class RouteDiscoveryTests(unittest.TestCase):
             [
                 "pub-2024-asplos-lakeroad.dj",
                 "pubs/2024-asplos-lakeroad/publication.json",
+                "pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.bib",
+                "pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-abstract.md",
             ],
         )
 

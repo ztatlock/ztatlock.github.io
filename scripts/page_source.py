@@ -8,7 +8,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from publication_record import (
+from scripts.publication_record import (
     PublicationRecordError,
     load_optional_publication_record,
     publication_slug,

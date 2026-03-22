@@ -21,7 +21,13 @@ PUB_INVENTORY  := scripts/build_pub_inventory.py
 PAGE_META      := scripts/page_metadata.py
 PAGE_SOURCE    := scripts/page_source.py
 PUBLICATION_RECORD := scripts/publication_record.py
-RENDER_META    := scripts/render_meta.py
+RENDER_REFS_MODULE := scripts.render_site_refs
+RENDER_PAGE_HTML_MODULE := scripts.render_page_html
+VALIDATE_SITE_MODULE := scripts.validate_site
+BUILD_PREVIEW_MODULE := scripts.build_preview_site
+RENDER_ROUTES_MODULE := scripts.render_routes
+VALIDATE_PREVIEW_MODULE := scripts.validate_preview_build
+RENDER_PAGE_HTML := scripts/render_page_html.py
 RENDER_REFS    := scripts/render_site_refs.py
 VALIDATE_SITE  := scripts/validate_site.py
 BUILD_PREVIEW  := scripts/build_preview_site.py
@@ -43,36 +49,26 @@ YCF           ?=
 .SECONDEXPANSION:
 $(RENDERED_REFS): $(RENDER_REFS) $(SITE_DATA) $(SITEBUILD_MODULES) templates/REFS
 	@mkdir -p "$(dir $@)"
-	@python3 $(RENDER_REFS) --root . > $@
+	@python3 -m $(RENDER_REFS_MODULE) --root . > $@
 
 $(ROUTES_PREVIEW): $(RENDER_ROUTES) $(SITEBUILD_MODULES) $(PUBLICATION_INPUTS) $(SITE_DATA) $(wildcard *.dj) $(wildcard *.html) Makefile
 	@mkdir -p "$(dir $@)"
-	@python3 $(RENDER_ROUTES) --root . > $@
+	@python3 -m $(RENDER_ROUTES_MODULE) --root . > $@
 
-%.html: %.dj Makefile $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(RENDER_META) $(RENDERED_REFS) $(PUBLICATION_INPUTS) $(SITE_DATA) $(SITEBUILD_MODULES)
-	$(eval TITLE := $(shell python3 $(PAGE_SOURCE) title --root . --page "$*"))
-	@printf "BUILD : %-35s %s\n" "$@" "$(TITLE)"
+%.html: %.dj Makefile $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(RENDER_PAGE_HTML) $(RENDERED_REFS) $(PUBLICATION_INPUTS) $(SITE_DATA) $(SITEBUILD_MODULES)
+	@printf "BUILD : %-35s\n" "$@"
 	@if [ "$@" = "index.html" ]; then \
-		cat templates/HEAD.1 \
-		| sed 's#__TITLE__#$(TITLE)#' \
-		| sed 's#__CANON__#https://ztatlock.net/#' \
-		> $@; \
+		CANON="https://ztatlock.net/"; \
 	else \
-		cat templates/HEAD.1 \
-		| sed 's#__TITLE__#$(TITLE)#' \
-		| sed 's#__CANON__#https://ztatlock.net/$@#' \
-		> $@; \
-	fi
-	@python3 $(RENDER_META) --root . --page "$*" --title "$(TITLE)" >> $@
-	@cat templates/HEAD.2 >> $@
-	@{ \
-		python3 $(PAGE_SOURCE) body --root . --page "$*"; \
-		printf '\n\n'; \
-		cat $(RENDERED_REFS); \
-	} | sed 's#__WEBFILES__#$(FILES)#' \
-		| djot \
-		>> $@
-	@cat templates/FOOT >> $@
+		CANON="https://ztatlock.net/$@"; \
+	fi; \
+	python3 -m $(RENDER_PAGE_HTML_MODULE) \
+		--root . \
+		--page "$*" \
+		--canonical-url "$$CANON" \
+		--refs-file "$(RENDERED_REFS)" \
+		--webfiles-url "$(FILES)" \
+		> $@
 
 .PHONY: all
 all: $(PAGES) sitemap.txt sitemap.xml
@@ -124,11 +120,11 @@ check:
 
 .PHONY: build-preview
 build-preview:
-	@python3 $(BUILD_PREVIEW) --root .
+	@python3 -m $(BUILD_PREVIEW_MODULE) --root .
 
 .PHONY: check-preview
 check-preview: build-preview
-	@python3 $(VALIDATE_PREVIEW) --root .
+	@python3 -m $(VALIDATE_PREVIEW_MODULE) --root .
 
 .PHONY: routes-preview
 routes-preview: $(ROUTES_PREVIEW)
@@ -138,7 +134,9 @@ test:
 	@python3 -m unittest \
 		tests/test_route_model.py \
 		tests/test_route_discovery.py \
-		tests/test_preview_builder.py \
+		tests/test_page_renderer.py \
+		tests/test_sitemap_builder.py \
+		tests/test_artifact_validate.py \
 		tests/test_preview_validate.py \
 		tests/test_people_registry.py \
 		tests/test_people_refs.py \
@@ -151,7 +149,7 @@ env-check:
 
 .PHONY: validate-site
 validate-site:
-	@python3 $(VALIDATE_SITE) --root .
+	@python3 -m $(VALIDATE_SITE_MODULE) --root .
 
 .PHONY: inventory
 inventory:

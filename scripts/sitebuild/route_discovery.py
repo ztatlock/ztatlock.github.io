@@ -3,14 +3,9 @@
 from __future__ import annotations
 
 import re
-import sys
 from pathlib import Path
 
-SCRIPTS_DIR = Path(__file__).resolve().parents[1]
-if str(SCRIPTS_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPTS_DIR))
-
-from publication_record import (
+from scripts.publication_record import (
     PublicationRecordError,
     publication_assets,
     publication_record_path,
@@ -66,7 +61,20 @@ def _publication_page_route(config: SiteConfig, stub_path: Path) -> Route:
         raise RouteDiscoveryError(f"missing publication record for public page {stem}: {record_path}")
 
     public_url = f"/pubs/{slug}/"
-    source_paths = (stub_path,) if not record_path.exists() else (stub_path, record_path)
+    source_paths: tuple[Path, ...]
+    if not record_path.exists():
+        source_paths = (stub_path,)
+    else:
+        assets = publication_assets(config.root, slug)
+        ordered_paths: list[Path] = [
+            stub_path,
+            record_path,
+            assets.bib,
+            assets.abstract,
+        ]
+        if assets.extra is not None:
+            ordered_paths.append(assets.extra)
+        source_paths = tuple(ordered_paths)
     return Route(
         kind="publication_page",
         key=slug,
