@@ -46,8 +46,8 @@ def build_preview_site(config: SiteConfig) -> tuple[Route, ...]:
     config.build_dir.mkdir(parents=True)
 
     refs_text = load_and_render_site_refs(
-        people_path=config.root / "site" / "data" / "people.json",
-        refs_path=config.root / "templates" / "REFS",
+        people_path=config.people_data_path,
+        refs_path=config.manual_refs_path,
     )
     aliases = _route_aliases(routes)
 
@@ -62,13 +62,17 @@ def build_preview_site(config: SiteConfig) -> tuple[Route, ...]:
             page_stem,
             canonical_url=route.canonical_url,
             refs_text=refs_text,
-            root=config.root,
+            root=config.repo_root,
+            site_url=config.site_url,
             webfiles_url=config.webfiles_url,
             aliases=aliases,
+            page_source_dir=config.page_source_dir,
+            publications_dir=config.publications_dir,
+            templates_dir=config.templates_dir,
         )
-        _write_text(config.build_dir / route.output_relpath, html_text)
+        _write_text(config.build_dir / normalize_output_relpath(route.output_relpath), html_text)
 
-    sitemap_entries = build_sitemap_entries(routes, root=config.root)
+    sitemap_entries = build_sitemap_entries(routes, root=config.repo_root)
     _write_text(config.build_dir / "sitemap.txt", render_sitemap_txt(sitemap_entries))
     _write_text(config.build_dir / "sitemap.xml", render_sitemap_xml(sitemap_entries))
 

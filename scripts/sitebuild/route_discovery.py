@@ -1,4 +1,4 @@
-"""Discover future-oriented preview routes from the current repo layout."""
+"""Discover future-oriented preview routes from the configured source layout."""
 
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ def _is_draft_page(path: Path) -> bool:
 
 def _ordinary_page_routes(config: SiteConfig) -> list[Route]:
     routes: list[Route] = []
-    for path in sorted(config.root.glob("*.dj")):
+    for path in sorted(config.page_source_dir.glob("*.dj")):
         stem = path.stem
         if publication_slug(stem) is not None:
             continue
@@ -55,7 +55,11 @@ def _publication_page_route(config: SiteConfig, stub_path: Path) -> Route:
     if slug is None:
         raise RouteDiscoveryError(f"not a publication page stem: {stem}")
 
-    record_path = publication_record_path(config.root, slug)
+    record_path = publication_record_path(
+        config.repo_root,
+        slug,
+        publications_dir=config.publications_dir,
+    )
     is_draft = _is_draft_page(stub_path)
     if not is_draft and not record_path.exists():
         raise RouteDiscoveryError(f"missing publication record for public page {stem}: {record_path}")
@@ -65,7 +69,11 @@ def _publication_page_route(config: SiteConfig, stub_path: Path) -> Route:
     if not record_path.exists():
         source_paths = (stub_path,)
     else:
-        assets = publication_assets(config.root, slug)
+        assets = publication_assets(
+            config.repo_root,
+            slug,
+            publications_dir=config.publications_dir,
+        )
         ordered_paths: list[Path] = [
             stub_path,
             record_path,
@@ -89,7 +97,7 @@ def _publication_page_route(config: SiteConfig, stub_path: Path) -> Route:
 def _publication_page_routes(config: SiteConfig) -> list[Route]:
     return [
         _publication_page_route(config, path)
-        for path in sorted(config.root.glob("pub-*.dj"))
+        for path in sorted(config.page_source_dir.glob("pub-*.dj"))
     ]
 
 
@@ -116,13 +124,13 @@ def _top_level_static_routes(config: SiteConfig) -> list[Route]:
     routes: list[Route] = []
 
     for name in TOP_LEVEL_STATIC_FILENAMES:
-        path = config.root / name
+        path = config.static_source_dir / name
         if path.exists():
             routes.append(
                 _static_route(config, key=name, source_path=path, output_relpath=name)
             )
 
-    for path in sorted(config.root.glob("*.txt")):
+    for path in sorted(config.static_source_dir.glob("*.txt")):
         if path.name == "sitemap.txt":
             continue
         if path.name in TOP_LEVEL_STATIC_FILENAMES:
@@ -131,20 +139,20 @@ def _top_level_static_routes(config: SiteConfig) -> list[Route]:
             _static_route(config, key=path.name, source_path=path, output_relpath=path.name)
         )
 
-    generated_stems = {path.stem for path in config.root.glob("*.dj")}
-    for path in sorted(config.root.glob("*.html")):
+    generated_stems = {path.stem for path in config.page_source_dir.glob("*.dj")}
+    for path in sorted(config.static_source_dir.glob("*.html")):
         if path.stem in generated_stems:
             continue
         routes.append(
             _static_route(config, key=path.name, source_path=path, output_relpath=path.name)
         )
 
-    img_dir = config.root / "img"
+    img_dir = config.shared_img_dir
     if img_dir.exists():
         for path in sorted(img_dir.rglob("*")):
             if not path.is_file():
                 continue
-            relpath = path.relative_to(config.root).as_posix()
+            relpath = f"img/{path.relative_to(img_dir).as_posix()}"
             routes.append(_static_route(config, key=relpath, source_path=path, output_relpath=relpath))
 
     return routes
@@ -160,7 +168,11 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
 
         slug = route.key
         try:
-            assets = publication_assets(config.root, slug)
+            assets = publication_assets(
+                config.repo_root,
+                slug,
+                publications_dir=config.publications_dir,
+            )
         except PublicationRecordError as err:
             raise RouteDiscoveryError(str(err)) from err
 
@@ -177,7 +189,7 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
             asset_paths.append(assets.poster)
 
         for path in asset_paths:
-            relpath = path.relative_to(config.root).as_posix()
+            relpath = f"pubs/{path.relative_to(config.publications_dir).as_posix()}"
             if relpath in seen:
                 continue
             seen.add(relpath)

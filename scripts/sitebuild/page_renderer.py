@@ -76,16 +76,25 @@ def render_page_html(
     canonical_url: str,
     refs_text: str,
     root: Path,
+    site_url: str,
     webfiles_url: str,
     aliases: dict[str, str] | None = None,
+    page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
+    templates_dir: Path | None = None,
 ) -> str:
-    templates_dir = root / "templates"
-    head_1 = _read_template(templates_dir / "HEAD.1")
-    head_2 = _read_template(templates_dir / "HEAD.2")
-    foot = _read_template(templates_dir / "FOOT")
+    actual_templates_dir = templates_dir or (root / "templates")
+    head_1 = _read_template(actual_templates_dir / "HEAD.1")
+    head_2 = _read_template(actual_templates_dir / "HEAD.2")
+    foot = _read_template(actual_templates_dir / "FOOT")
 
     try:
-        source = read_page_source(page_stem, root)
+        source = read_page_source(
+            page_stem,
+            root,
+            page_source_dir=page_source_dir,
+            publications_dir=publications_dir,
+        )
     except PageSourceError as err:
         raise PageRenderError(str(err)) from err
 
@@ -95,6 +104,9 @@ def render_page_html(
             source.title,
             canonical_url=canonical_url,
             root=root,
+            site_url=site_url,
+            page_source_dir=page_source_dir,
+            publications_dir=publications_dir,
         )
     except MetadataError as err:
         raise PageRenderError(str(err)) from err

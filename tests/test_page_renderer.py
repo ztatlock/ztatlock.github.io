@@ -26,6 +26,7 @@ class PageRendererTests(unittest.TestCase):
             canonical_url=canonical,
             refs_text=self.refs_text,
             root=ROOT,
+            site_url=self.config.site_url,
             webfiles_url=self.config.webfiles_url,
         )
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
@@ -38,6 +39,7 @@ class PageRendererTests(unittest.TestCase):
             canonical_url=canonical,
             refs_text=self.refs_text,
             root=ROOT,
+            site_url=self.config.site_url,
             webfiles_url=self.config.webfiles_url,
             aliases={
                 "img/favicon.png": "/img/favicon.png",

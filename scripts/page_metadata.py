@@ -25,20 +25,20 @@ class MetadataError(ValueError):
     pass
 
 
-def canonical_url(page_stem: str) -> str:
+def canonical_url(page_stem: str, *, site_url: str = SITE_URL) -> str:
     if page_stem == "index":
-        return f"{SITE_URL}/"
-    return f"{SITE_URL}/{page_stem}.html"
+        return f"{site_url}/"
+    return f"{site_url}/{page_stem}.html"
 
 
 def default_page_image_path() -> str:
     return "img/favicon-meta.png"
 
 
-def absolute_url(path_or_url: str) -> str:
+def absolute_url(path_or_url: str, *, site_url: str = SITE_URL) -> str:
     if path_or_url.startswith(("http://", "https://")):
         return path_or_url
-    return f"{SITE_URL}/{path_or_url.lstrip('/')}"
+    return f"{site_url}/{path_or_url.lstrip('/')}"
 
 
 def escape_content(value: str) -> str:
@@ -85,12 +85,13 @@ def render_metadata_block(
     share_description: str,
     image_path: str,
     url: str,
+    site_url: str = SITE_URL,
 ) -> str:
     escaped_title = escape_content(title)
     escaped_description = escape_content(description)
     escaped_share_description = escape_content(share_description)
     escaped_url = escape_content(url)
-    escaped_image = escape_content(absolute_url(image_path))
+    escaped_image = escape_content(absolute_url(image_path, site_url=site_url))
 
     lines = [
         f'<meta name="description" content="{escaped_description}">',
@@ -114,8 +115,20 @@ def render_metadata_block(
     return "\n".join(lines)
 
 
-def render_publication_meta(page_stem: str, title: str, root: Path) -> str:
-    return render_publication_meta_for_url(page_stem, title, canonical_url(page_stem), root)
+def render_publication_meta(
+    page_stem: str,
+    title: str,
+    root: Path,
+    *,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_publication_meta_for_url(
+        page_stem,
+        title,
+        canonical_url(page_stem, site_url=site_url),
+        root,
+        site_url=site_url,
+    )
 
 
 def render_publication_meta_for_url(
@@ -123,35 +136,53 @@ def render_publication_meta_for_url(
     title: str,
     url: str,
     root: Path,
+    *,
+    publications_dir: Path | None = None,
+    site_url: str = SITE_URL,
 ) -> str:
     slug = publication_slug(page_stem)
     if slug is None:
         raise MetadataError(f"{page_stem} is not a publication page")
 
     try:
-        record = load_optional_publication_record(root, slug)
+        record = load_optional_publication_record(
+            root,
+            slug,
+            publications_dir=publications_dir,
+        )
     except PublicationRecordError as err:
         raise MetadataError(str(err)) from err
     if record is None:
         raise MetadataError(
-            f"Missing publication metadata record for {page_stem}: {publication_record_path(root, slug)}"
+            "Missing publication metadata record for "
+            f"{page_stem}: {publication_record_path(root, slug, publications_dir=publications_dir)}"
         )
 
     description = record.description
     share_description = record.share_description or description
-    image_path = publication_metadata_image_path(root, record)
+    image_path = publication_metadata_image_path(
+        root,
+        record,
+        publications_dir=publications_dir,
+    )
     return render_metadata_block(
         title=title,
         description=description,
         share_description=share_description,
         image_path=image_path,
         url=url,
+        site_url=site_url,
     )
 
 
-def load_front_matter_general_metadata(page_stem: str, root: Path) -> dict[str, str] | None:
+def load_front_matter_general_metadata(
+    page_stem: str,
+    root: Path,
+    *,
+    page_source_dir: Path | None = None,
+) -> dict[str, str] | None:
     try:
-        source = read_page_source(page_stem, root)
+        source = read_page_source(page_stem, root, page_source_dir=page_source_dir)
     except PageSourceError as err:
         raise MetadataError(str(err)) from err
 
@@ -159,16 +190,28 @@ def load_front_matter_general_metadata(page_stem: str, root: Path) -> dict[str, 
         return None
     if publication_slug(page_stem) is not None:
         raise MetadataError(
-            f"{root / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
+            f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
         )
     return normalize_general_metadata_entry(
         source.front_matter,
-        context=f"{root / f'{page_stem}.dj'}: front matter",
+        context=f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter",
     )
 
 
-def render_general_page_meta(page_stem: str, title: str, root: Path) -> str:
-    return render_general_page_meta_for_url(page_stem, title, canonical_url(page_stem), root)
+def render_general_page_meta(
+    page_stem: str,
+    title: str,
+    root: Path,
+    *,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_general_page_meta_for_url(
+        page_stem,
+        title,
+        canonical_url(page_stem, site_url=site_url),
+        root,
+        site_url=site_url,
+    )
 
 
 def render_general_page_meta_for_url(
@@ -176,8 +219,15 @@ def render_general_page_meta_for_url(
     title: str,
     url: str,
     root: Path,
+    *,
+    page_source_dir: Path | None = None,
+    site_url: str = SITE_URL,
 ) -> str:
-    row = load_front_matter_general_metadata(page_stem, root)
+    row = load_front_matter_general_metadata(
+        page_stem,
+        root,
+        page_source_dir=page_source_dir,
+    )
     if row is None:
         raise MetadataError(f"Missing front matter metadata for {page_stem}")
 
@@ -191,11 +241,24 @@ def render_general_page_meta_for_url(
         share_description=share_description,
         image_path=image_path,
         url=url,
+        site_url=site_url,
     )
 
 
-def render_page_meta(page_stem: str, title: str, root: Path) -> str:
-    return render_page_meta_for_url(page_stem, title, canonical_url=canonical_url(page_stem), root=root)
+def render_page_meta(
+    page_stem: str,
+    title: str,
+    root: Path,
+    *,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_page_meta_for_url(
+        page_stem,
+        title,
+        canonical_url=canonical_url(page_stem, site_url=site_url),
+        root=root,
+        site_url=site_url,
+    )
 
 
 def render_page_meta_for_url(
@@ -204,10 +267,18 @@ def render_page_meta_for_url(
     *,
     canonical_url: str,
     root: Path,
+    page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
+    site_url: str = SITE_URL,
 ) -> str:
     slug = publication_slug(page_stem)
     try:
-        source = read_page_source(page_stem, root)
+        source = read_page_source(
+            page_stem,
+            root,
+            page_source_dir=page_source_dir,
+            publications_dir=publications_dir,
+        )
     except PageSourceError as err:
         raise MetadataError(str(err)) from err
 
@@ -215,33 +286,84 @@ def render_page_meta_for_url(
         if slug is not None:
             if source.front_matter:
                 raise MetadataError(
-                    f"{root / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
+                    f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
                 )
             return ""
         if source.front_matter:
-            return render_general_page_meta_for_url(page_stem, title, canonical_url, root)
+            return render_general_page_meta_for_url(
+                page_stem,
+                title,
+                canonical_url,
+                root,
+                page_source_dir=page_source_dir,
+                site_url=site_url,
+            )
         return ""
 
     if slug is not None:
         if source.front_matter:
             raise MetadataError(
-                f"{root / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
+                f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
             )
-        return render_publication_meta_for_url(page_stem, title, canonical_url, root)
+        return render_publication_meta_for_url(
+            page_stem,
+            title,
+            canonical_url,
+            root,
+            publications_dir=publications_dir,
+            site_url=site_url,
+        )
 
     if source.front_matter:
-        return render_general_page_meta_for_url(page_stem, title, canonical_url, root)
+        return render_general_page_meta_for_url(
+            page_stem,
+            title,
+            canonical_url,
+            root,
+            page_source_dir=page_source_dir,
+            site_url=site_url,
+        )
     raise MetadataError(f"Missing front matter metadata for {page_stem}")
 
 
-def validate_general_page_metadata(root: Path) -> list[str]:
+def resolve_public_asset_source_path(
+    path_or_url: str,
+    *,
+    root: Path,
+    publications_dir: Path | None = None,
+    static_source_dir: Path | None = None,
+    shared_img_dir: Path | None = None,
+) -> Path | None:
+    if path_or_url.startswith(("http://", "https://")):
+        return None
+
+    normalized = path_or_url.lstrip("/")
+    if normalized.startswith("pubs/"):
+        actual_publications_dir = publications_dir or (root / "pubs")
+        return actual_publications_dir / normalized.removeprefix("pubs/")
+    if normalized.startswith("img/"):
+        actual_shared_img_dir = shared_img_dir or (root / "img")
+        return actual_shared_img_dir / normalized.removeprefix("img/")
+
+    actual_static_source_dir = static_source_dir or root
+    return actual_static_source_dir / normalized
+
+
+def validate_general_page_metadata(
+    root: Path,
+    *,
+    page_source_dir: Path | None = None,
+    static_source_dir: Path | None = None,
+    shared_img_dir: Path | None = None,
+) -> list[str]:
     issues: list[str] = []
-    publication_stems = {path.stem for path in root.glob("pub-*.dj")}
-    page_stem_set = {path.stem for path in root.glob("*.dj")} - publication_stems
+    actual_page_source_dir = page_source_dir or root
+    publication_stems = {path.stem for path in actual_page_source_dir.glob("pub-*.dj")}
+    page_stem_set = {path.stem for path in actual_page_source_dir.glob("*.dj")} - publication_stems
 
     for stem in sorted(page_stem_set):
         try:
-            source = read_page_source(stem, root)
+            source = read_page_source(stem, root, page_source_dir=actual_page_source_dir)
         except PageSourceError as err:
             issues.append(str(err))
             continue
@@ -250,29 +372,48 @@ def validate_general_page_metadata(root: Path) -> list[str]:
             try:
                 row = normalize_general_metadata_entry(
                     source.front_matter,
-                    context=f"{root / f'{stem}.dj'}: front matter",
+                    context=f"{actual_page_source_dir / f'{stem}.dj'}: front matter",
                 )
             except MetadataError as err:
                 issues.append(str(err))
                 continue
 
             image_path = row["image_path"] or default_page_image_path()
-            if not image_path.startswith(("http://", "https://")) and not (root / image_path).exists():
-                issues.append(f"{root / f'{stem}.dj'}: image path does not exist: {image_path}")
+            source_image_path = resolve_public_asset_source_path(
+                image_path,
+                root=root,
+                static_source_dir=static_source_dir,
+                shared_img_dir=shared_img_dir,
+            )
+            if source_image_path is not None and not source_image_path.exists():
+                issues.append(f"{actual_page_source_dir / f'{stem}.dj'}: image path does not exist: {image_path}")
             continue
 
         if source.is_draft:
             continue
-        issues.append(f"{root / f'{stem}.dj'}: missing front matter metadata")
+        issues.append(f"{actual_page_source_dir / f'{stem}.dj'}: missing front matter metadata")
 
     return issues
 
 
-def validate_publication_metadata(root: Path) -> list[str]:
+def validate_publication_metadata(
+    root: Path,
+    *,
+    page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
+    static_source_dir: Path | None = None,
+    shared_img_dir: Path | None = None,
+) -> list[str]:
     issues: list[str] = []
-    for path in sorted(root.glob("pub-*.dj")):
+    actual_page_source_dir = page_source_dir or root
+    for path in sorted(actual_page_source_dir.glob("pub-*.dj")):
         try:
-            source = read_page_source(path.stem, root)
+            source = read_page_source(
+                path.stem,
+                root,
+                page_source_dir=actual_page_source_dir,
+                publications_dir=publications_dir,
+            )
         except PageSourceError as err:
             issues.append(str(err))
             continue
@@ -282,14 +423,18 @@ def validate_publication_metadata(root: Path) -> list[str]:
         if not source.is_draft:
             slug = path.stem.removeprefix("pub-")
             try:
-                record = load_optional_publication_record(root, slug)
+                record = load_optional_publication_record(
+                    root,
+                    slug,
+                    publications_dir=publications_dir,
+                )
             except PublicationRecordError as err:
                 issues.append(str(err))
                 continue
 
             if record is None:
                 issues.append(
-                    f"{path}: missing canonical publication record {publication_record_path(root, slug)}"
+                    f"{path}: missing canonical publication record {publication_record_path(root, slug, publications_dir=publications_dir)}"
                 )
                 continue
 
@@ -301,10 +446,21 @@ def validate_publication_metadata(root: Path) -> list[str]:
                 )
             if MIGRATED_PUBLICATION_TODO_RE.search(source_text):
                 issues.append(f"{path}: migrated publication page should not contain TODO")
-            image_path = publication_metadata_image_path(root, record)
-            if not image_path.startswith(("http://", "https://")) and not (root / image_path).exists():
+            image_path = publication_metadata_image_path(
+                root,
+                record,
+                publications_dir=publications_dir,
+            )
+            source_image_path = resolve_public_asset_source_path(
+                image_path,
+                root=root,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+                shared_img_dir=shared_img_dir,
+            )
+            if source_image_path is not None and not source_image_path.exists():
                 issues.append(
-                    f"{publication_record_path(root, slug)}: image path does not exist: {image_path}"
+                    f"{publication_record_path(root, slug, publications_dir=publications_dir)}: image path does not exist: {image_path}"
                 )
 
     return issues

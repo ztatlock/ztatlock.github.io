@@ -94,12 +94,17 @@ def publication_slug(page_stem: str) -> str | None:
     return None
 
 
-def publication_dir(root: Path, slug: str) -> Path:
-    return root / SITE_PUBLICATIONS_PATH / slug
+def default_publications_dir(root: Path) -> Path:
+    return root / SITE_PUBLICATIONS_PATH
 
 
-def publication_record_path(root: Path, slug: str) -> Path:
-    return publication_dir(root, slug) / PUBLICATION_RECORD_NAME
+def publication_dir(root: Path, slug: str, *, publications_dir: Path | None = None) -> Path:
+    base_dir = publications_dir or default_publications_dir(root)
+    return base_dir / slug
+
+
+def publication_record_path(root: Path, slug: str, *, publications_dir: Path | None = None) -> Path:
+    return publication_dir(root, slug, publications_dir=publications_dir) / PUBLICATION_RECORD_NAME
 
 
 def publication_page_stem(slug: str) -> str:
@@ -119,6 +124,10 @@ def default_meta_image_path(slug: str) -> str:
 
 def relative_site_path(path: Path, root: Path) -> str:
     return path.relative_to(root).as_posix()
+
+
+def relative_publication_site_path(path: Path, *, publications_dir: Path) -> str:
+    return f"pubs/{path.relative_to(publications_dir).as_posix()}"
 
 
 def _normalize_optional_string(
@@ -241,8 +250,13 @@ def _normalize_talks(raw: object, *, context: str) -> tuple[PublicationTalk, ...
     )
 
 
-def load_publication_record(root: Path, slug: str) -> PublicationRecord:
-    path = publication_record_path(root, slug)
+def load_publication_record(
+    root: Path,
+    slug: str,
+    *,
+    publications_dir: Path | None = None,
+) -> PublicationRecord:
+    path = publication_record_path(root, slug, publications_dir=publications_dir)
     if not path.exists():
         raise PublicationRecordError(f"Missing publication record: {path}")
 
@@ -297,11 +311,16 @@ def load_publication_record(root: Path, slug: str) -> PublicationRecord:
     )
 
 
-def load_optional_publication_record(root: Path, slug: str) -> PublicationRecord | None:
-    path = publication_record_path(root, slug)
+def load_optional_publication_record(
+    root: Path,
+    slug: str,
+    *,
+    publications_dir: Path | None = None,
+) -> PublicationRecord | None:
+    path = publication_record_path(root, slug, publications_dir=publications_dir)
     if not path.exists():
         return None
-    return load_publication_record(root, slug)
+    return load_publication_record(root, slug, publications_dir=publications_dir)
 
 
 def _find_optional_asset(pub_dir: Path, stem: str, extensions: tuple[str, ...]) -> Path | None:
@@ -312,8 +331,14 @@ def _find_optional_asset(pub_dir: Path, stem: str, extensions: tuple[str, ...]) 
     return None
 
 
-def publication_assets(root: Path, slug: str) -> PublicationAssets:
-    pub_dir = publication_dir(root, slug)
+def publication_assets(
+    root: Path,
+    slug: str,
+    *,
+    publications_dir: Path | None = None,
+) -> PublicationAssets:
+    actual_publications_dir = publications_dir or default_publications_dir(root)
+    pub_dir = publication_dir(root, slug, publications_dir=actual_publications_dir)
     if not pub_dir.exists():
         raise PublicationRecordError(f"Missing publication directory: {pub_dir}")
 
@@ -349,14 +374,20 @@ def publication_assets(root: Path, slug: str) -> PublicationAssets:
     )
 
 
-def publication_metadata_image_path(root: Path, record: PublicationRecord) -> str:
+def publication_metadata_image_path(
+    root: Path,
+    record: PublicationRecord,
+    *,
+    publications_dir: Path | None = None,
+) -> str:
     if record.meta_image_path:
         return record.meta_image_path
 
-    assets = publication_assets(root, record.slug)
+    actual_publications_dir = publications_dir or default_publications_dir(root)
+    assets = publication_assets(root, record.slug, publications_dir=actual_publications_dir)
     if assets.metaimg is not None:
-        return relative_site_path(assets.metaimg, root)
-    return relative_site_path(assets.absimg, root)
+        return relative_publication_site_path(assets.metaimg, publications_dir=actual_publications_dir)
+    return relative_publication_site_path(assets.absimg, publications_dir=actual_publications_dir)
 
 
 def _person_djot(person: PublicationPerson) -> str:
@@ -409,15 +440,20 @@ def _link_label(key: str) -> str:
     return LINK_LABELS.get(key, key)
 
 
-def _render_links(record: PublicationRecord, assets: PublicationAssets, root: Path) -> str:
+def _render_links(
+    record: PublicationRecord,
+    assets: PublicationAssets,
+    *,
+    publications_dir: Path,
+) -> str:
     links: dict[str, str] = {
-        "paper": relative_site_path(assets.paper, root),
-        "bib": relative_site_path(assets.bib, root),
+        "paper": relative_publication_site_path(assets.paper, publications_dir=publications_dir),
+        "bib": relative_publication_site_path(assets.bib, publications_dir=publications_dir),
     }
     if assets.slides is not None:
-        links["slides"] = relative_site_path(assets.slides, root)
+        links["slides"] = relative_publication_site_path(assets.slides, publications_dir=publications_dir)
     if assets.poster is not None:
-        links["poster"] = relative_site_path(assets.poster, root)
+        links["poster"] = relative_publication_site_path(assets.poster, publications_dir=publications_dir)
 
     links.update(record.links)
     if "talk" not in links and record.talks:
@@ -456,14 +492,20 @@ def _render_talks(record: PublicationRecord) -> str:
     return "\n".join(blocks)
 
 
-def render_publication_body(root: Path, record: PublicationRecord) -> str:
-    assets = publication_assets(root, record.slug)
+def render_publication_body(
+    root: Path,
+    record: PublicationRecord,
+    *,
+    publications_dir: Path | None = None,
+) -> str:
+    actual_publications_dir = publications_dir or default_publications_dir(root)
+    assets = publication_assets(root, record.slug, publications_dir=actual_publications_dir)
     abstract_text = assets.abstract.read_text(encoding="utf-8").strip()
     bib_text = assets.bib.read_text(encoding="utf-8").rstrip()
     extra_text = assets.extra.read_text(encoding="utf-8").strip() if assets.extra else ""
 
-    preview_image = relative_site_path(assets.absimg, root)
-    paper_path = relative_site_path(assets.paper, root)
+    preview_image = relative_publication_site_path(assets.absimg, publications_dir=actual_publications_dir)
+    paper_path = relative_publication_site_path(assets.paper, publications_dir=actual_publications_dir)
 
     blocks = [
         f"# {record.title}",
@@ -474,7 +516,7 @@ def render_publication_body(root: Path, record: PublicationRecord) -> str:
         "",
         _render_photo_block(preview_image, paper_path, record.title),
         "",
-        _render_links(record, assets, root),
+        _render_links(record, assets, publications_dir=actual_publications_dir),
         "",
         "",
         "## Abstract",

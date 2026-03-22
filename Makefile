@@ -134,7 +134,9 @@ test:
 	@python3 -m unittest \
 		tests/test_route_model.py \
 		tests/test_route_discovery.py \
+		tests/test_page_metadata.py \
 		tests/test_page_renderer.py \
+		tests/test_preview_builder.py \
 		tests/test_sitemap_builder.py \
 		tests/test_artifact_validate.py \
 		tests/test_preview_validate.py \

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -61,3 +63,99 @@ class RouteDiscoveryTests(unittest.TestCase):
         key = "pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.pdf"
         route = find_route(self.routes, kind="static_file", key=key)
         self.assertEqual(route.public_url, "/pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.pdf")
+
+    def test_discovers_routes_from_configured_source_layout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+            shared_img_dir = static_source_dir / "img"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            shared_img_dir.mkdir(parents=True)
+
+            (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
+            (page_source_dir / "pub-2025-test-demo.dj").write_text("# Demo\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+            (shared_img_dir / "logo.png").write_bytes(b"PNG")
+
+            pub_dir = publications_dir / "2025-test-demo"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "badges": [],
+                        "description": "Demo description",
+                        "share_description": "",
+                        "meta_image_path": "",
+                        "links": {},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (pub_dir / "2025-test-demo-abstract.md").write_text(
+                "Demo abstract.\n",
+                encoding="utf-8",
+            )
+            (pub_dir / "2025-test-demo.bib").write_text(
+                "@inproceedings{demo,\n  title={Demo}\n}\n",
+                encoding="utf-8",
+            )
+            (pub_dir / "2025-test-demo.pdf").write_bytes(b"%PDF-1.4\n")
+            (pub_dir / "2025-test-demo-absimg.png").write_bytes(b"PNG")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+                shared_img_dir=shared_img_dir,
+            )
+            routes = discover_routes(config)
+
+            about_route = find_route(routes, kind="ordinary_page", key="about")
+            self.assertEqual(
+                [path.relative_to(root).as_posix() for path in about_route.source_paths],
+                ["site/pages/about.dj"],
+            )
+
+            publication_route = find_route(
+                routes,
+                kind="publication_page",
+                key="2025-test-demo",
+            )
+            self.assertEqual(
+                [path.relative_to(root).as_posix() for path in publication_route.source_paths],
+                [
+                    "site/pages/pub-2025-test-demo.dj",
+                    "site/pubs/2025-test-demo/publication.json",
+                    "site/pubs/2025-test-demo/2025-test-demo.bib",
+                    "site/pubs/2025-test-demo/2025-test-demo-abstract.md",
+                ],
+            )
+            self.assertEqual(
+                publication_route.output_relpath,
+                "pubs/2025-test-demo/index.html",
+            )
+
+            style_route = find_route(routes, kind="static_file", key="style.css")
+            self.assertEqual(style_route.output_relpath, "style.css")
+
+            image_route = find_route(routes, kind="static_file", key="img/logo.png")
+            self.assertEqual(image_route.output_relpath, "img/logo.png")
+
+            paper_route = find_route(
+                routes,
+                kind="static_file",
+                key="pubs/2025-test-demo/2025-test-demo.pdf",
+            )
+            self.assertEqual(
+                paper_route.output_relpath,
+                "pubs/2025-test-demo/2025-test-demo.pdf",
+            )

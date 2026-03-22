@@ -96,8 +96,15 @@ def extract_title(body: str, path: Path) -> str:
     raise PageSourceError(f"{path}: missing level-1 heading")
 
 
-def read_page_source(page_stem: str, root: Path) -> PageSource:
-    path = page_path(page_stem, root)
+def read_page_source(
+    page_stem: str,
+    root: Path,
+    *,
+    page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
+) -> PageSource:
+    actual_page_source_dir = page_source_dir or root
+    path = page_path(page_stem, actual_page_source_dir)
     slug = publication_slug(page_stem)
     if slug is not None:
         if path.exists():
@@ -119,13 +126,21 @@ def read_page_source(page_stem: str, root: Path) -> PageSource:
             )
 
         try:
-            record = load_optional_publication_record(root, slug)
+            record = load_optional_publication_record(
+                root,
+                slug,
+                publications_dir=publications_dir,
+            )
         except PublicationRecordError as err:
             raise PageSourceError(str(err)) from err
         if record is not None:
             return PageSource(
                 front_matter=front_matter,
-                body=render_publication_body(root, record),
+                body=render_publication_body(
+                    root,
+                    record,
+                    publications_dir=publications_dir,
+                ),
                 title=record.title,
                 is_draft=is_draft,
             )

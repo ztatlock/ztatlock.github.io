@@ -8,15 +8,15 @@ from pathlib import Path
 
 from scripts.sitebuild.djot_refs import load_and_render_site_refs
 from scripts.sitebuild.page_renderer import PageRenderError, render_page_html
-from scripts.sitebuild.site_config import load_site_config
+from scripts.sitebuild.site_config import SiteConfig, load_site_config
 
 
-def _load_refs_text(root: Path, refs_file: Path | None) -> str:
+def _load_refs_text(config: SiteConfig, refs_file: Path | None) -> str:
     if refs_file is not None:
         return refs_file.read_text(encoding="utf-8")
     return load_and_render_site_refs(
-        people_path=root / "site" / "data" / "people.json",
-        refs_path=root / "templates" / "REFS",
+        people_path=config.people_data_path,
+        refs_path=config.manual_refs_path,
     )
 
 
@@ -37,7 +37,7 @@ def main() -> int:
     root = Path(args.root).resolve()
     config = load_site_config(root)
     refs_file = Path(args.refs_file).resolve() if args.refs_file else None
-    refs_text = _load_refs_text(root, refs_file)
+    refs_text = _load_refs_text(config, refs_file)
     webfiles_url = args.webfiles_url or config.webfiles_url
 
     try:
@@ -46,8 +46,12 @@ def main() -> int:
                 args.page,
                 canonical_url=args.canonical_url,
                 refs_text=refs_text,
-                root=root,
+                root=config.repo_root,
+                site_url=config.site_url,
                 webfiles_url=webfiles_url,
+                page_source_dir=config.page_source_dir,
+                publications_dir=config.publications_dir,
+                templates_dir=config.templates_dir,
             )
         )
     except PageRenderError as err:

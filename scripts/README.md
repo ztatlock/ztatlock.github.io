@@ -31,8 +31,10 @@ Prefer the top-level `make` targets when they exist:
   `~/Desktop/WEBFILES/inventory/`.
 - `build_preview_site.py`
   Builds the future-oriented preview site into `build/` while still reading
-  from the current source layout. The preview build now includes route-driven
-  `build/sitemap.txt` and `build/sitemap.xml`.
+  from the current source layout by default.
+  The preview path is now source-layout-aware through `SiteConfig`, and the
+  preview build includes route-driven `build/sitemap.txt` and
+  `build/sitemap.xml`.
 - `audit_people_refs.py`
   Audit script for the post-cutover steady state.
   It checks the manual `templates/REFS` remainder for duplicate labels and
