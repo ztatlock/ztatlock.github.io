@@ -1,0 +1,633 @@
+{
+  "people": {
+    "aarti-gupta": {
+      "name": "Aarti Gupta",
+      "url": "https://www.cs.princeton.edu/~aartig/"
+    },
+    "adam-anderson": {
+      "name": "Adam Anderson",
+      "url": "https://github.com/AdamEAnderson/"
+    },
+    "adam-chlipala": {
+      "name": "Adam Chlipala",
+      "url": "http://adam.chlipala.net/"
+    },
+    "adam-geller": {
+      "name": "Adam Geller",
+      "url": "https://www.cs.ubc.ca/~atgeller/"
+    },
+    "aditya-akhileshwaran": {
+      "name": "Aditya Akhileshwaran",
+      "url": "https://www.linkedin.com/in/adiakhil"
+    },
+    "adriana-schulz": {
+      "name": "Adriana Schulz",
+      "url": "https://homes.cs.washington.edu/~adriana/"
+    },
+    "akash-gaonkar": {
+      "name": "Akash Gaonkar",
+      "url": "https://pl.cs.princeton.edu/generals/agaonkar.html"
+    },
+    "alex-fischman": {
+      "name": "Alex Fischman",
+      "url": "https://www.linkedin.com/in/alex-fischman-775259265/"
+    },
+    "alex-sanchez-stern": {
+      "name": "Alex Sanchez-Stern",
+      "url": "http://alex.uwplse.org/"
+    },
+    "altan-haan": {
+      "name": "Altan Haan",
+      "url": "https://altanh.com/"
+    },
+    "amy-zhu": {
+      "name": "Amy Zhu",
+      "url": "http://amy.zhucchini.ca/"
+    },
+    "anat-caspi": {
+      "name": "Anat Caspi",
+      "url": "https://www.ece.uw.edu/people/anat-caspi/"
+    },
+    "andrew-cheung": {
+      "name": "Andrew Cheung",
+      "url": "https://ninehusky.github.io/"
+    },
+    "andrew-liu": {
+      "name": "Andrew Liu",
+      "url": "https://github.com/hypercubestart/"
+    },
+    "ang-li": {
+      "name": "Ang Li",
+      "url": "http://www.angliphd.com/"
+    },
+    "anjali-pal": {
+      "name": "Anjali Pal",
+      "url": "https://ajpal.github.io/"
+    },
+    "anthony-fox": {
+      "name": "Anthony Fox",
+      "url": "https://acjf3.github.io/"
+    },
+    "antony-hosking": {
+      "name": "Antony Hosking",
+      "url": "https://hosking.github.io/"
+    },
+    "arvind-krishnamurthy": {
+      "name": "Arvind Krishnamurthy",
+      "url": "https://www.cs.washington.edu/people/faculty/arvind/"
+    },
+    "ben-kushigian": {
+      "name": "Benjamin Kushigian",
+      "url": "https://bkushigian.github.io/",
+      "aliases": ["Ben Kushigian"]
+    },
+    "benjamin-jones": {
+      "name": "Benjamin Jones",
+      "url": "https://bentodjones.com/"
+    },
+    "bill-harris": {
+      "name": "Bill Harris",
+      "url": "https://billharris.tech/"
+    },
+    "bill-zorn": {
+      "name": "Bill Zorn",
+      "url": "https://www.linkedin.com/in/bill-zorn-265872141"
+    },
+    "bo-yuan-huang": {
+      "name": "Bo-Yuan Huang",
+      "url": "https://bo-yuan-huang.github.io/"
+    },
+    "brett-saiki": {
+      "name": "Brett Saiki",
+      "url": "https://www.bsaiki.com/"
+    },
+    "bryan-parno": {
+      "name": "Bryan Parno",
+      "url": "https://www.andrew.cmu.edu/user/bparno/"
+    },
+    "caleb-chan": {
+      "name": "Caleb C. Chan",
+      "url": "https://www.linkedin.com/in/caleb-chan-0777aa216/",
+      "aliases": ["Caleb Chan"]
+    },
+    "calvin-loncaric": {
+      "name": "Calvin Loncaric",
+      "url": "https://calvin.loncaric.us/"
+    },
+    "chandrakana-nandi": {
+      "name": "Chandrakana Nandi",
+      "url": "https://cnandi.com/"
+    },
+    "chen-qiu": {
+      "name": "Chen Qiu",
+      "url": "https://www.linkedin.com/in/jasonqiu951/"
+    },
+    "chenming-wu": {
+      "name": "Chenming Wu",
+      "url": "https://chenming-wu.github.io/"
+    },
+    "chris-thachuk": {
+      "name": "Chris Thachuk",
+      "url": "https://thachuk.com/"
+    },
+    "chris-tucker": {
+      "name": "Chris Tucker",
+      "url": "https://www.linkedin.com/in/ctucker/"
+    },
+    "cindy-rubio-gonzalez": {
+      "name": "Cindy Rubio-González",
+      "url": "https://web.cs.ucdavis.edu/~rubio/"
+    },
+    "cynthia-richey": {
+      "name": "Cynthia Richey",
+      "url": "https://thia.codes/"
+    },
+    "dan-grossman": {
+      "name": "Dan Grossman",
+      "url": "https://homes.cs.washington.edu/~djg/"
+    },
+    "dan-suciu": {
+      "name": "Dan Suciu",
+      "url": "https://homes.cs.washington.edu/~suciu/"
+    },
+    "daniel-ricketts": {
+      "name": "Daniel Ricketts",
+      "url": "http://cseweb.ucsd.edu/~daricket/"
+    },
+    "daryl-zuniga": {
+      "name": "Daryl Zuniga",
+      "url": "https://darzu.io/"
+    },
+    "david-cao": {
+      "name": "David Cao",
+      "url": "https://cao.sh/"
+    },
+    "david-lazar": {
+      "name": "David Lazar",
+      "url": "https://davidlazar.org/"
+    },
+    "david-shuffelton": {
+      "name": "David Shuffelton",
+      "url": "https://www.linkedin.com/in/david-shuffelton-3209412/"
+    },
+    "david-thien": {
+      "name": "David Thien",
+      "url": "http://davidthien.com/"
+    },
+    "dongseok-jang": {
+      "name": "Dongseok Jang",
+      "url": "http://cseweb.ucsd.edu/~d1jang/"
+    },
+    "doug-woos": {
+      "name": "Doug Woos",
+      "url": "https://www.dougwoos.com/"
+    },
+    "edward-misback": {
+      "name": "Edward Misback",
+      "url": "https://elmisback.github.io/"
+    },
+    "eli-rosenthal": {
+      "name": "Eli Rosenthal",
+      "url": "https://www.linkedin.com/in/eli-rosenthal-79230264/"
+    },
+    "ellis-michael": {
+      "name": "Ellis Michael",
+      "url": "https://ellismichael.com/"
+    },
+    "emina-torlak": {
+      "name": "Emina Torlak",
+      "url": "https://homes.cs.washington.edu/~emina/"
+    },
+    "eric-mullen": {
+      "name": "Eric Mullen",
+      "url": "https://sliverdragon37.github.io/"
+    },
+    "eunice-jun": {
+      "name": "Eunice Jun",
+      "url": "https://homes.cs.washington.edu/~emjun/"
+    },
+    "eva-darulova": {
+      "name": "Eva Darulova",
+      "url": "https://malyzajko.github.io/"
+    },
+    "ganesh-gopalakrishnan": {
+      "name": "Ganesh Gopalakrishnan",
+      "url": "https://www.cs.utah.edu/~ganesh/"
+    },
+    "gilbert-bernstein": {
+      "name": "Gilbert Louis Bernstein",
+      "url": "https://www.gilbertbernstein.com/",
+      "aliases": ["Gilbert Bernstein"]
+    },
+    "grace-oh": {
+      "name": "Grace Oh",
+      "url": "https://www.linkedin.com/in/ggraceoh/"
+    },
+    "gu-yeon-wei": {
+      "name": "Gu-Yeon Wei",
+      "url": "https://msvlsi.seas.harvard.edu/"
+    },
+    "gus-smith": {
+      "name": "Gus Henry Smith",
+      "url": "https://justg.us/",
+      "aliases": ["Gus Smith"]
+    },
+    "haichen-shen": {
+      "name": "Haichen Shen",
+      "url": "https://shenhaichen.com/"
+    },
+    "haisen-zhao": {
+      "name": "Haisen Zhao",
+      "url": "https://haisenzhao.github.io/"
+    },
+    "hank-levy": {
+      "name": "Hank Levy",
+      "url": "https://www.cs.washington.edu/people/faculty/levy"
+    },
+    "haobin-ni": {
+      "name": "Haobin Ni",
+      "url": "https://haobin.cx/"
+    },
+    "heiko-becker": {
+      "name": "Heiko Becker",
+      "url": "https://people.mpi-sws.org/~hbecker/"
+    },
+    "ian-briggs": {
+      "name": "Ian Briggs",
+      "url": "https://ianbriggs.dev/"
+    },
+    "ignacio-laguna": {
+      "name": "Ignacio Laguna",
+      "url": "https://lagunaresearch.org/"
+    },
+    "ilya-sergey": {
+      "name": "Ilya Sergey",
+      "url": "https://ilyasergey.net/"
+    },
+    "jackson-brough": {
+      "name": "Jackson Brough",
+      "url": "https://www.linkedin.com/in/jacksonbrough/"
+    },
+    "james-wilcox": {
+      "name": "James Wilcox",
+      "url": "https://jamesrwilcox.com/"
+    },
+    "jared-roesch": {
+      "name": "Jared Roesch",
+      "url": "https://jroesch.github.io/"
+    },
+    "jeffrey-i-lipton": {
+      "name": "Jeffrey I. Lipton",
+      "url": "https://jeffreyianlipton.com/",
+      "aliases": ["Jeff Lipton"]
+    },
+    "jennifer-brennan": {
+      "name": "Jennifer Brennan",
+      "url": "https://jenniferbrennan.github.io/"
+    },
+    "jesus-ponce": {
+      "name": "Jesús Ponce",
+      "url": "https://jjptech.work/"
+    },
+    "jifan-zhang": {
+      "name": "Jifan Zhang",
+      "url": "https://homes.cs.washington.edu/~jifan/"
+    },
+    "john-leo": {
+      "name": "John Leo",
+      "url": "https://www.halfaya.org/"
+    },
+    "jon-jacky": {
+      "name": "Jon Jacky",
+      "url": "http://staff.washington.edu/jon/"
+    },
+    "jonas-regehr": {
+      "name": "Jonas Regehr",
+      "url": "https://jonasregehr.github.io/"
+    },
+    "joseph-mcmahan": {
+      "name": "Joseph McMahan",
+      "url": "https://josephmcmahan.me/"
+    },
+    "josh-pollock": {
+      "name": "Josh Pollock",
+      "url": "https://joshmpollock.com/"
+    },
+    "juliet-oh": {
+      "name": "Juliet Oh",
+      "url": "https://www.linkedin.com/in/juliet-oh-37bb59132/"
+    },
+    "justin-adsuara": {
+      "name": "Justin Adsuara",
+      "url": "https://github.com/justinads"
+    },
+    "justin-solomon": {
+      "name": "Justin Solomon",
+      "url": "https://people.csail.mit.edu/jsolomon/"
+    },
+    "keith-simmons": {
+      "name": "Keith Simmons",
+      "url": "https://www.linkedin.com/in/keith-simmons-66221ab3/"
+    },
+    "kirsten-graham": {
+      "name": "Kirsten Graham",
+      "url": "https://kirstenmg.github.io/"
+    },
+    "karl-palmskog": {
+      "name": "Karl Palmskog",
+      "url": "https://setoid.com/"
+    },
+    "kevin-mu": {
+      "name": "Kevin Mu",
+      "url": "https://dl.acm.org/profile/99659821375"
+    },
+    "konstantin-weitz": {
+      "name": "Konstantin Weitz",
+      "url": "https://www.konne.me/"
+    },
+    "logan-weber": {
+      "name": "Logan Weber",
+      "url": "https://weberlo.github.io/"
+    },
+    "luis-ceze": {
+      "name": "Luis Ceze",
+      "url": "https://ready.cs.washington.edu/~luisceze/"
+    },
+    "luke-nelson": {
+      "name": "Luke Nelson",
+      "url": "https://homes.cs.washington.edu/~lukenels/"
+    },
+    "magnus-o-myreen": {
+      "name": "Magnus O. Myreen",
+      "url": "https://www.cse.chalmers.se/~myreen/"
+    },
+    "marisa-kirisame": {
+      "name": "Marisa Kirisame",
+      "url": "https://marisakirisame.github.io/"
+    },
+    "matthieu-martel": {
+      "name": "Matthieu Martel",
+      "url": "https://perso.univ-perp.fr/mmartel/"
+    },
+    "max-willsey": {
+      "name": "Max Willsey",
+      "url": "https://www.mwillsey.com/"
+    },
+    "maya-cakmak": {
+      "name": "Maya Cakmak",
+      "url": "https://homes.cs.washington.edu/~mcakmak/"
+    },
+    "melissa-hovik": {
+      "name": "Melissa Hovik",
+      "url": "https://homes.cs.washington.edu/~medskm/"
+    },
+    "miranda-edwards": {
+      "name": "Miranda Edwards",
+      "url": "https://www.linkedin.com/in/miranda-edwards/"
+    },
+    "michael-ernst": {
+      "name": "Michael Ernst",
+      "url": "https://homes.cs.washington.edu/~mernst/",
+      "aliases": ["Mike Ernst"]
+    },
+    "michael-stepp": {
+      "name": "Michael Stepp",
+      "url": "http://goto.ucsd.edu/~mstepp/"
+    },
+    "michael-taylor": {
+      "name": "Michael Taylor",
+      "url": "https://michaeltaylor.org/"
+    },
+    "mike-he": {
+      "name": "Mike He",
+      "url": "https://only.rs/"
+    },
+    "milos-gligoric": {
+      "name": "Milos Gligoric",
+      "url": "https://users.ece.utexas.edu/~gligoric/"
+    },
+    "molly-carton": {
+      "name": "Molly Aubrey Carton",
+      "url": "https://www.linkedin.com/in/macarton/",
+      "aliases": ["Molly Carton"]
+    },
+    "mu-li": {
+      "name": "Mu Li",
+      "url": "https://www.amazon.science/author/mu-li"
+    },
+    "nadia-polikarpova": {
+      "name": "Nadia Polikarpova",
+      "url": "https://cseweb.ucsd.edu/~npolikarpova/"
+    },
+    "nasrine-damouche": {
+      "name": "Nasrine Damouche",
+      "url": "https://perso.univ-perp.fr/nasrine.damouche/"
+    },
+    "nickolai-zeldovich": {
+      "name": "Nickolai Zeldovich",
+      "url": "http://people.csail.mit.edu/nickolai/"
+    },
+    "noah-huck": {
+      "name": "Noah Huck",
+      "url": "https://www.linkedin.com/in/noahhuck/"
+    },
+    "oliver-flatt": {
+      "name": "Oliver Flatt",
+      "url": "https://www.oflatt.com/"
+    },
+    "paul-curry": {
+      "name": "Paul Curry",
+      "url": "https://www.linkedin.com/in/paulmichaelcurry/"
+    },
+    "pavel-panchekha": {
+      "name": "Pavel Panchekha",
+      "url": "https://pavpanchekha.com/"
+    },
+    "philip-guo": {
+      "name": "Philip Guo",
+      "url": "https://pg.ucsd.edu/"
+    },
+    "philip-zucker": {
+      "name": "Philip Zucker",
+      "url": "https://www.philipzucker.com/"
+    },
+    "ramana-kumar": {
+      "name": "Ramana Kumar",
+      "url": "https://github.com/xrchz/"
+    },
+    "ranjit-jhala": {
+      "name": "Ranjit Jhala",
+      "url": "https://ranjitjhala.github.io/"
+    },
+    "remy-wang": {
+      "name": "Yisu Remy Wang",
+      "url": "https://remy.wang/",
+      "aliases": ["Remy Wang"]
+    },
+    "rene-just": {
+      "name": "René Just",
+      "url": "https://homes.cs.washington.edu/~rjust/"
+    },
+    "rose-kunkel": {
+      "name": "Rose Kunkel",
+      "url": "https://github.com/rosekunkel"
+    },
+    "ross-tate": {
+      "name": "Ross Tate",
+      "url": "https://rosstate.org/"
+    },
+    "ryan-doenges": {
+      "name": "Ryan Doenges",
+      "url": "http://ryandoeng.es/"
+    },
+    "ryan-tjoa": {
+      "name": "Ryan Tjoa",
+      "url": "https://rtjoa.com/"
+    },
+    "samuel-coward": {
+      "name": "Samuel Coward",
+      "url": "http://samuelcoward.co.uk/"
+    },
+    "scott-davidson": {
+      "name": "Scott Davidson",
+      "url": "https://www.linkedin.com/in/scottdavidson92"
+    },
+    "seth-pendergrass": {
+      "name": "Seth Pendergrass",
+      "url": "https://rgb.sh/"
+    },
+    "sharad-malik": {
+      "name": "Sharad Malik",
+      "url": "https://www.princeton.edu/~sharad/"
+    },
+    "shoaib-kamil": {
+      "name": "Shoaib Kamil",
+      "url": "https://research.adobe.com/person/shoaib-kamil/"
+    },
+    "sonya-alexandrova": {
+      "name": "Sonya Alexandrova",
+      "url": "https://scholar.google.com/citations?user=LidK--MAAAAJ&hl=en"
+    },
+    "sorawee-porncharoenwase": {
+      "name": "Sorawee Porncharoenwase",
+      "url": "https://github.com/sorawee"
+    },
+    "sorin-lerner": {
+      "name": "Sorin Lerner",
+      "url": "http://cseweb.ucsd.edu/~lerner/"
+    },
+    "stefan-heule": {
+      "name": "Stefan Heule",
+      "url": "https://stefanheule.com/"
+    },
+    "stefani-banerian": {
+      "name": "Stefani Banerian",
+      "url": "https://www.researchgate.net/profile/Stefani_Banerian"
+    },
+    "steve-anton": {
+      "name": "Steve Anton",
+      "url": "https://github.com/steveanton"
+    },
+    "steven-lyubomirsky": {
+      "name": "Steven Lyubomirsky",
+      "url": "https://slyubomirsky.github.io/"
+    },
+    "steven-tanimoto": {
+      "name": "Steven L. Tanimoto",
+      "url": "https://www.cs.washington.edu/people/faculty/tanimoto",
+      "aliases": ["Steve Tanimoto"]
+    },
+    "stuart-pernsteiner": {
+      "name": "Stuart Pernsteiner",
+      "url": "http://www.pernsteiner.org/"
+    },
+    "sudipta-kundu": {
+      "name": "Sudipta Kundu",
+      "url": "http://mesl.ucsd.edu/sudipta/"
+    },
+    "suresh-jagannathan": {
+      "name": "Suresh Jagannathan",
+      "url": "https://www.cs.purdue.edu/homes/suresh/"
+    },
+    "talia-ringer": {
+      "name": "Talia Ringer",
+      "url": "https://dependenttyp.es/"
+    },
+    "taylor-blau": {
+      "name": "Taylor Blau",
+      "url": "https://ttaylorr.com/"
+    },
+    "thierry-tambe": {
+      "name": "Thierry Tambe",
+      "url": "https://scholar.harvard.edu/ttambe/home"
+    },
+    "tianqi-chen": {
+      "name": "Tianqi Chen",
+      "url": "https://tqchen.com/"
+    },
+    "tom-anderson": {
+      "name": "Tom Anderson",
+      "url": "https://www.cs.washington.edu/people/faculty/tom/"
+    },
+    "valentin-robert": {
+      "name": "Valentin Robert",
+      "url": "http://cseweb.ucsd.edu/~vrobert/"
+    },
+    "varun-pradeep": {
+      "name": "Varun Pradeep",
+      "url": "https://www.linkedin.com/in/varun-pradeep-6aaabb1a0"
+    },
+    "vin-sharma": {
+      "name": "Vin Sharma",
+      "url": "https://www.amazon.science/author/vin-sharma"
+    },
+    "vishal-canumalla": {
+      "name": "Vishal Canumalla",
+      "url": "https://vcanumalla.github.io/"
+    },
+    "wei-chen": {
+      "name": "Wei Chen",
+      "url": "https://www.amazon.science/author/wei-chen"
+    },
+    "xi-wang": {
+      "name": "Xi Wang",
+      "url": "https://homes.cs.washington.edu/~xi/"
+    },
+    "yi-li": {
+      "name": "Yi Li",
+      "url": "https://ece.princeton.edu/people/yi-li"
+    },
+    "yida-wang": {
+      "name": "Yida Wang",
+      "url": "http://yidawang.org/"
+    },
+    "yihong-zhang": {
+      "name": "Yihong Zhang",
+      "url": "https://effect.systems/"
+    },
+    "yong-kiam-tan": {
+      "name": "Yong Kiam Tan",
+      "url": "https://tanyongkiam.github.io/"
+    },
+    "yong-wu": {
+      "name": "Yong Wu",
+      "url": "https://www.amazon.science/author/yong-wu"
+    },
+    "yuxuan-mei": {
+      "name": "Yuxuan Mei",
+      "url": "https://ymei.wescreates.wesleyan.edu/"
+    },
+    "zachary-tatlock": {
+      "name": "Zachary Tatlock",
+      "url": "https://ztatlock.net/"
+    },
+    "zhi-chen": {
+      "name": "Zhi Chen",
+      "url": "https://www.amazon.science/author/zhi-chen"
+    },
+    "zhiyuan-yan": {
+      "name": "Zhiyuan Yan",
+      "url": "https://www.linkedin.com/in/zhiyuan-yan-234649254"
+    }
+  }
+}
