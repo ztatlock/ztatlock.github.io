@@ -24,6 +24,7 @@ Repo for [Zachary Tatlock's website](https://ztatlock.net), built with
 - `img/`: shared site images/icons.
 - `site/`: staged next-architecture source area for structured site data and
   other redesign prototypes.
+- `build/`: gitignored preview output for the new route-aware builder.
 - `tests/`: focused unit tests for new route/data build modules.
 - `docs/`: human-authored policy/spec docs (see [docs/README.md](docs/README.md)).
 - `manifests/`: small versioned structured manifests.
@@ -53,6 +54,10 @@ Commands:
 - `make env-check` — verify local prerequisites and current portability
   assumptions.
 - `make test` — run focused unit tests for the new route/data build modules.
+- `make routes-preview` — render the future-oriented preview route table to
+  `state/routes-preview.json`.
+- `make build-preview` — build the route-aware preview site into `build/`.
+- `make check-preview` — validate the preview site under `build/`.
 - `make check` — validate in an isolated scratch copy (does not dirty the
   live repo) and catch broken local links, unresolved placeholders, and
   missing or inconsistent structured metadata.
@@ -86,6 +91,10 @@ Notes:
   source of truth.
 - The staged redesign prototype now seeds shared cross-page data in
   `site/data/people.json`, with focused unit tests under `tests/`.
+- The first route-aware preview-builder slice is now live behind the preview
+  commands above.
+  It still reads from the current source layout while writing a future-oriented
+  site preview under `build/`.
 - For public publication pages, the top-level `pub-<slug>.dj` file
   should stay a minimal transition stub/build anchor; the publication-local
   record under `pubs/<slug>/` is the body/metadata source of truth.

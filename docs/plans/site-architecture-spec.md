@@ -410,12 +410,17 @@ Freeze the architecture and invariants.
 
 ### Phase 2
 
-Build the new Python route/data/build engine against the current repo,
-targeting `build/` only.
+Build the new Python route/data/build engine against the current repo, but
+target the future output layout immediately:
+
+- keep current source locations for now
+- build a real preview site into `build/`
+- use the future publication output shape in that preview build
+- validate the route model and preview build together
 
 ### Phase 3
 
-Move source into `site/` while keeping the new engine working.
+Move source into `site/` once the preview builder is trusted.
 
 ### Phase 4
 

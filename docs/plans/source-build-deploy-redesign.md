@@ -715,7 +715,17 @@ Decide and document:
 
 ### Phase 2: Build The New Route-Aware Build Engine
 
-Implement in Python:
+Start with a future-oriented preview slice:
+
+- explicit route model
+- deterministic route discovery from the current source tree
+- real preview builds into `build/`
+- route invariants and preview-build validation
+
+Use the intended future output layout immediately, especially for publication
+pages.
+
+Later in this phase, implement in Python:
 
 - page discovery
 - route computation
@@ -726,7 +736,8 @@ Implement in Python:
 - static-file copying
 - validation against the new layout
 
-At this phase, local builds should target `build/` only.
+At this phase, local preview builds should target `build/`, while the current
+root-level build remains the production path temporarily.
 
 ### Phase 3: Migrate Source Into `site/`
 
@@ -745,6 +756,10 @@ Keep repo support material at root:
 - `state/`
 - `Makefile`
 - `README.md`
+
+This source move should happen only after the preview builder is trusted
+enough that the source migration is mostly mechanical rather than
+architecturally exploratory.
 
 ### Phase 4: Add GitHub Pages Workflow
 

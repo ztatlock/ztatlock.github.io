@@ -7,7 +7,10 @@ source/build/data redesign under `scripts/sitebuild/`.
 Prefer the top-level `make` targets when they exist:
 
 - `make check`
+- `make check-preview`
+- `make build-preview`
 - `make env-check`
+- `make routes-preview`
 - `make test`
 - `make validate-site`
 - `make inventory`
@@ -23,6 +26,9 @@ Prefer the top-level `make` targets when they exist:
   `make inventory` writes a repo-local preview under `state/inventory/`.
   `make inventory-webfiles` refreshes the canonical archive copy under
   `~/Desktop/WEBFILES/inventory/`.
+- `build_preview_site.py`
+  Builds the future-oriented preview site into `build/` while still reading
+  from the current source layout.
 - `audit_people_refs.py`
   Audit script for the post-cutover steady state.
   It checks the manual `templates/REFS` remainder for duplicate labels and
@@ -62,10 +68,16 @@ Prefer the top-level `make` targets when they exist:
 - `render_people_refs.py`
   Prototype preview script that renders Djot people-reference definitions from
   `site/data/people.json`.
+- `render_routes.py`
+  Emits the deterministic route table for the preview builder to
+  `state/routes-preview.json`.
 - `render_site_refs.py`
   Renders the composed Djot ref bundle used by the live site build:
   generated people refs from `site/data/people.json` plus the tiny manual
   non-person remainder in `templates/REFS`.
+- `validate_preview_build.py`
+  Validates the preview site under `build/` for unresolved placeholders and
+  broken local links.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
   validates non-publication front matter and publication-local metadata
@@ -77,6 +89,9 @@ Prefer the top-level `make` targets when they exist:
 - Put new executable helpers here, not in `templates/`.
 - Keep reusable build/data logic in small Python modules under
   `scripts/sitebuild/`.
+- Keep the new preview builder route/build logic there too:
+  route discovery, route validation, preview building, and preview
+  validation.
 - Keep local generated/runtime state under `state/`.
 - Keep larger archival state outside the repo in `~/Desktop/WEBFILES/` unless
   there is a clear reason to version it in git.

@@ -24,7 +24,11 @@ PUBLICATION_RECORD := scripts/publication_record.py
 RENDER_META    := scripts/render_meta.py
 RENDER_REFS    := scripts/render_site_refs.py
 VALIDATE_SITE  := scripts/validate_site.py
+BUILD_PREVIEW  := scripts/build_preview_site.py
+RENDER_ROUTES  := scripts/render_routes.py
+VALIDATE_PREVIEW := scripts/validate_preview_build.py
 RENDERED_REFS  := state/site.refs.djot
+ROUTES_PREVIEW := state/routes-preview.json
 
 PUBLICATION_INPUTS := $(wildcard pubs/*/*)
 SITE_DATA         := $(wildcard site/data/*)
@@ -40,6 +44,10 @@ YCF           ?=
 $(RENDERED_REFS): $(RENDER_REFS) $(SITE_DATA) $(SITEBUILD_MODULES) templates/REFS
 	@mkdir -p "$(dir $@)"
 	@python3 $(RENDER_REFS) --root . > $@
+
+$(ROUTES_PREVIEW): $(RENDER_ROUTES) $(SITEBUILD_MODULES) $(PUBLICATION_INPUTS) $(SITE_DATA) $(wildcard *.dj) $(wildcard *.html) Makefile
+	@mkdir -p "$(dir $@)"
+	@python3 $(RENDER_ROUTES) --root . > $@
 
 %.html: %.dj Makefile $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(RENDER_META) $(RENDERED_REFS) $(PUBLICATION_INPUTS) $(SITE_DATA) $(SITEBUILD_MODULES)
 	$(eval TITLE := $(shell python3 $(PAGE_SOURCE) title --root . --page "$*"))
@@ -76,6 +84,9 @@ help:
 		'make drafts' \
 		'make test' \
 		'make check' \
+		'make build-preview' \
+		'make check-preview' \
+		'make routes-preview' \
 		'make validate-site' \
 		'make env-check' \
 		'make inventory [INVENTORY_OUT=/path/to/out-dir]' \
@@ -111,9 +122,24 @@ drafts: $(DRAFT_PAGES)
 check:
 	@bash $(CHECK)
 
+.PHONY: build-preview
+build-preview:
+	@python3 $(BUILD_PREVIEW) --root .
+
+.PHONY: check-preview
+check-preview: build-preview
+	@python3 $(VALIDATE_PREVIEW) --root .
+
+.PHONY: routes-preview
+routes-preview: $(ROUTES_PREVIEW)
+
 .PHONY: test
 test:
 	@python3 -m unittest \
+		tests/test_route_model.py \
+		tests/test_route_discovery.py \
+		tests/test_preview_builder.py \
+		tests/test_preview_validate.py \
 		tests/test_people_registry.py \
 		tests/test_people_refs.py \
 		tests/test_people_refs_audit.py \

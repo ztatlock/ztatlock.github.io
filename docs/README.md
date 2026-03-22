@@ -72,6 +72,10 @@ meant to be read, maintained, and extended over time.
 - `plans/site-architecture-spec.md`
   Draft concrete architecture spec for the next source/build/data/deploy
   redesign campaign.
+- `plans/route-build-engine-slice-1.md`
+  Initial implementation slice for the redesign: a future-oriented
+  preview builder that writes to `build/` while still reading from the current
+  source layout.
 
 ## Near-Term Cleanup
 
