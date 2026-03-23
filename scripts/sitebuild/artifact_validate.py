@@ -1,4 +1,4 @@
-"""Shared HTML artifact validation helpers for legacy and preview builds."""
+"""Shared HTML artifact validation helpers for built site output."""
 
 from __future__ import annotations
 

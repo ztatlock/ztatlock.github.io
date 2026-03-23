@@ -1,4 +1,4 @@
-"""Discover future-oriented preview routes from the configured source layout."""
+"""Discover routes from the configured source layout."""
 
 from __future__ import annotations
 
@@ -137,7 +137,7 @@ def _recursive_static_tree_routes(config: SiteConfig) -> list[Route]:
         relpath = path.relative_to(config.static_source_dir).as_posix()
         if relpath in GENERATED_PREVIEW_OUTPUTS:
             raise RouteDiscoveryError(
-                f"{path}: reserved static path conflicts with generated preview artifact: {relpath}"
+                f"{path}: reserved static path conflicts with generated build artifact: {relpath}"
             )
         routes.append(
             _static_route(

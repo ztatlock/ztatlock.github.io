@@ -12,7 +12,7 @@ from scripts.sitebuild.artifact_validate import (
     find_placeholder_issues,
     recursive_html_files,
 )
-from scripts.sitebuild.preview_validate import find_sitemap_file_issues
+from scripts.sitebuild.build_validate import find_sitemap_file_issues
 from scripts.sitebuild.route_discovery import discover_routes
 from scripts.sitebuild.site_config import SiteConfig, load_site_config
 from scripts.sitebuild.sitemap_builder import build_sitemap_entries, render_sitemap_txt, render_sitemap_xml
@@ -33,7 +33,7 @@ def _print_section(title: str, issues: list[str]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Validate preview source invariants and the site built under build/."
+        description="Validate source invariants and the site built under build/."
     )
     parser.add_argument("--root", default=".", help="repo root")
     args = parser.parse_args()
@@ -63,22 +63,22 @@ def main() -> int:
 
     if source_issues:
         _print_section(
-            "ERROR: found invalid preview source",
+            "ERROR: found invalid site source",
             source_issues,
         )
     if placeholder_issues:
         _print_section(
-            "ERROR: found unresolved placeholders in preview HTML",
+            "ERROR: found unresolved placeholders in built HTML",
             placeholder_issues,
         )
     if broken_link_issues:
         _print_section(
-            "ERROR: found broken local links in preview HTML",
+            "ERROR: found broken local links in built HTML",
             broken_link_issues,
         )
     if sitemap_issues:
         _print_section(
-            "ERROR: found invalid preview sitemaps",
+            "ERROR: found invalid build sitemaps",
             sitemap_issues,
         )
 

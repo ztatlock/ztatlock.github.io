@@ -33,7 +33,7 @@ class ArtifactValidateTests(unittest.TestCase):
                 ["index.html"],
             )
 
-    def test_preview_placeholder_policy_allows_todo_outside_publications(self) -> None:
+    def test_placeholder_policy_allows_todo_outside_publications(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             (root / "demo.html").write_text("<!-- TODO demo note -->", encoding="utf-8")
@@ -45,7 +45,7 @@ class ArtifactValidateTests(unittest.TestCase):
             )
             self.assertEqual(issues, [])
 
-    def test_preview_placeholder_policy_flags_publication_todo(self) -> None:
+    def test_placeholder_policy_flags_publication_todo(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             pub_dir = root / "pubs" / "demo"

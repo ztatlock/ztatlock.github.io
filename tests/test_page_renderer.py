@@ -20,7 +20,7 @@ class PageRendererTests(unittest.TestCase):
         )
 
     def test_render_ordinary_page_uses_explicit_canonical_url(self) -> None:
-        canonical = "https://example.com/about-preview"
+        canonical = "https://example.com/about"
         html = render_page_html(
             "about",
             canonical_url=canonical,

@@ -1,4 +1,4 @@
-"""Build the authoritative site into build/."""
+"""Build the authoritative site artifact into build/."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from .route_model import Route, normalize_output_relpath
 from .site_config import SiteConfig
 from .sitemap_builder import build_sitemap_entries, render_sitemap_txt, render_sitemap_xml
 
-PreviewBuildError = PageRenderError
+SiteBuildError = PageRenderError
 
 
 def _route_aliases(routes: tuple[Route, ...]) -> dict[str, str]:
@@ -24,6 +24,7 @@ def _route_aliases(routes: tuple[Route, ...]) -> dict[str, str]:
         if route.kind == "ordinary_page" and route.key == "index":
             aliases["index.html"] = route.public_url
     return aliases
+
 
 def _write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -36,7 +37,7 @@ def _copy_static_route(route: Route, *, config: SiteConfig) -> None:
     shutil.copy2(route.source_paths[0], destination)
 
 
-def build_preview_site(config: SiteConfig) -> tuple[Route, ...]:
+def build_site(config: SiteConfig) -> tuple[Route, ...]:
     routes = discover_routes(config)
 
     if config.build_dir.exists():

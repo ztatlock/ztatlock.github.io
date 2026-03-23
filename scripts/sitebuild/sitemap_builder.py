@@ -1,4 +1,4 @@
-"""Route-driven sitemap generation for preview builds."""
+"""Route-driven sitemap generation for the route-aware build."""
 
 from __future__ import annotations
 

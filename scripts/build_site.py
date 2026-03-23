@@ -6,7 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from scripts.sitebuild.preview_builder import PreviewBuildError, build_preview_site
+from scripts.sitebuild.site_builder import SiteBuildError, build_site
 from scripts.sitebuild.route_model import RouteModelError
 from scripts.sitebuild.site_config import load_site_config
 
@@ -20,8 +20,8 @@ def main() -> int:
 
     config = load_site_config(Path(args.root))
     try:
-        build_preview_site(config)
-    except (PreviewBuildError, RouteModelError) as err:
+        build_site(config)
+    except (SiteBuildError, RouteModelError) as err:
         print(err, file=sys.stderr)
         return 1
     return 0

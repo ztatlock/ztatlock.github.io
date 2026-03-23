@@ -5,12 +5,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.sitebuild.preview_builder import build_preview_site
+from scripts.sitebuild.site_builder import build_site
 from scripts.sitebuild.site_config import load_site_config
 
 
-class PreviewBuilderTests(unittest.TestCase):
-    def test_builds_preview_from_configured_source_layout(self) -> None:
+class SiteBuilderTests(unittest.TestCase):
+    def test_builds_site_from_configured_source_layout(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             page_source_dir = root / "site" / "pages"
@@ -29,10 +29,10 @@ class PreviewBuilderTests(unittest.TestCase):
 
             (page_source_dir / "about.dj").write_text(
                 "---\n"
-                "description: About preview page\n"
+                "description: About page\n"
                 "---\n"
                 "# About\n\n"
-                "Preview body.\n",
+                "Site body.\n",
                 encoding="utf-8",
             )
 
@@ -90,12 +90,12 @@ class PreviewBuilderTests(unittest.TestCase):
                 static_source_dir=static_source_dir,
             )
 
-            routes = build_preview_site(config)
+            routes = build_site(config)
             self.assertTrue(routes)
 
             about_html = (config.build_dir / "about.html").read_text(encoding="utf-8")
             self.assertIn('href="https://ztatlock.net/about.html"', about_html)
-            self.assertIn("Preview body.", about_html)
+            self.assertIn("Site body.", about_html)
 
             publication_html = (
                 config.build_dir / "pubs" / "2025-test-demo" / "index.html"
@@ -133,10 +133,10 @@ class PreviewBuilderTests(unittest.TestCase):
 
             (page_source_dir / "about.dj").write_text(
                 "---\n"
-                "description: About preview page\n"
+                "description: About page\n"
                 "---\n"
                 "# About\n\n"
-                "Preview body.\n",
+                "Site body.\n",
                 encoding="utf-8",
             )
 
@@ -179,11 +179,11 @@ class PreviewBuilderTests(unittest.TestCase):
                 static_source_dir=static_source_dir,
             )
 
-            routes = build_preview_site(config)
+            routes = build_site(config)
             self.assertTrue(routes)
 
             about_html = (config.build_dir / "about.html").read_text(encoding="utf-8")
-            self.assertIn("Preview body.", about_html)
+            self.assertIn("Site body.", about_html)
 
             self.assertFalse((config.build_dir / "pubs" / "2025-test-draft" / "index.html").exists())
             self.assertFalse((config.build_dir / "pubs" / "2025-test-draft" / "2025-test-draft.pdf").exists())

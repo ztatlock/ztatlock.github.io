@@ -1,4 +1,4 @@
-"""Preview-specific validation helpers."""
+"""Validation helpers for generated build artifacts."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ def find_sitemap_file_issues(
         return issues
 
     if expected_txt is not None and txt_path.read_text(encoding="utf-8") != expected_txt:
-        issues.append("sitemap.txt does not match route-driven preview sitemap")
+        issues.append("sitemap.txt does not match route-driven sitemap")
     if expected_xml is not None and xml_path.read_text(encoding="utf-8") != expected_xml:
-        issues.append("sitemap.xml does not match route-driven preview sitemap")
+        issues.append("sitemap.xml does not match route-driven sitemap")
     return issues

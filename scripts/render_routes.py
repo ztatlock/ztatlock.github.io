@@ -13,7 +13,7 @@ from scripts.sitebuild.site_config import load_site_config
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Render the future-oriented preview route table."
+        description="Render the authoritative route table."
     )
     parser.add_argument("--root", default=".", help="repo root")
     args = parser.parse_args()

@@ -1,4 +1,4 @@
-"""Shared HTML page renderer for legacy and preview builds."""
+"""Shared HTML page renderer for the route-aware build."""
 
 from __future__ import annotations
 

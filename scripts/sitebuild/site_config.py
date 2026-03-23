@@ -1,4 +1,4 @@
-"""Shared configuration for route discovery and preview builds."""
+"""Shared configuration for route discovery and route-aware builds."""
 
 from __future__ import annotations
 

@@ -8,14 +8,14 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
-from scripts import validate_preview_build
-from scripts.sitebuild.preview_builder import build_preview_site
+from scripts import validate_build
+from scripts.sitebuild.build_validate import find_sitemap_file_issues
+from scripts.sitebuild.site_builder import build_site
 from scripts.sitebuild.site_config import load_site_config
-from scripts.sitebuild.preview_validate import find_sitemap_file_issues
 
 
-class PreviewValidateTests(unittest.TestCase):
-    def test_reports_missing_preview_sitemap_files(self) -> None:
+class BuildValidateTests(unittest.TestCase):
+    def test_reports_missing_sitemap_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             self.assertEqual(
@@ -35,12 +35,12 @@ class PreviewValidateTests(unittest.TestCase):
                     expected_xml="<right/>\n",
                 ),
                 [
-                    "sitemap.txt does not match route-driven preview sitemap",
-                    "sitemap.xml does not match route-driven preview sitemap",
+                    "sitemap.txt does not match route-driven sitemap",
+                    "sitemap.xml does not match route-driven sitemap",
                 ],
             )
 
-    def test_preview_validator_reports_source_metadata_issues(self) -> None:
+    def test_build_validator_reports_source_metadata_issues(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             pages_dir = root / "site" / "pages"
@@ -56,11 +56,11 @@ class PreviewValidateTests(unittest.TestCase):
 
             (pages_dir / "about.dj").write_text(
                 "---\n"
-                "description: About preview page\n"
+                "description: About page\n"
                 "image_path: img/missing.png\n"
                 "---\n"
                 "# About\n\n"
-                "Preview body.\n",
+                "Body.\n",
                 encoding="utf-8",
             )
             (templates_dir / "HEAD.1").write_text(
@@ -75,19 +75,19 @@ class PreviewValidateTests(unittest.TestCase):
             (static_dir / "style.css").write_text("body {}\n", encoding="utf-8")
 
             config = load_site_config(root)
-            build_preview_site(config)
+            build_site(config)
 
             stdout = io.StringIO()
             with (
-                patch("sys.argv", ["validate_preview_build", "--root", str(root)]),
+                patch("sys.argv", ["validate_build", "--root", str(root)]),
                 redirect_stdout(stdout),
             ):
-                self.assertEqual(validate_preview_build.main(), 1)
+                self.assertEqual(validate_build.main(), 1)
 
-            self.assertIn("ERROR: found invalid preview source", stdout.getvalue())
+            self.assertIn("ERROR: found invalid site source", stdout.getvalue())
             self.assertIn("img/missing.png", stdout.getvalue())
 
-    def test_preview_validator_accepts_bundle_only_publications(self) -> None:
+    def test_build_validator_accepts_bundle_only_publications(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             pages_dir = root / "site" / "pages"
@@ -105,10 +105,10 @@ class PreviewValidateTests(unittest.TestCase):
 
             (pages_dir / "about.dj").write_text(
                 "---\n"
-                "description: About preview page\n"
+                "description: About page\n"
                 "---\n"
                 "# About\n\n"
-                "Preview body.\n",
+                "Body.\n",
                 encoding="utf-8",
             )
             pub_dir = pubs_dir / "2025-test-demo"
@@ -148,12 +148,12 @@ class PreviewValidateTests(unittest.TestCase):
                 data_dir=data_dir,
                 static_source_dir=static_dir,
             )
-            build_preview_site(config)
+            build_site(config)
 
             stdout = io.StringIO()
             with (
-                patch("sys.argv", ["validate_preview_build", "--root", str(root)]),
+                patch("sys.argv", ["validate_build", "--root", str(root)]),
                 redirect_stdout(stdout),
             ):
-                self.assertEqual(validate_preview_build.main(), 0)
+                self.assertEqual(validate_build.main(), 0)
             self.assertEqual(stdout.getvalue(), "")

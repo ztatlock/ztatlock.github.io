@@ -4,9 +4,9 @@ CHECK_ENV := scripts/check_env.sh
 INDEX_NOW := scripts/index-now.sh
 MKPUB := scripts/mkpub.sh
 
-BUILD_SITE_MODULE := scripts.build_preview_site
+BUILD_SITE_MODULE := scripts.build_site
 RENDER_ROUTES_MODULE := scripts.render_routes
-VALIDATE_SITE_MODULE := scripts.validate_preview_build
+VALIDATE_SITE_MODULE := scripts.validate_build
 PUB_INVENTORY_MODULE := scripts.build_pub_inventory
 
 ROUTES_OUT := state/routes.json
@@ -57,10 +57,10 @@ test:
 		tests/test_source_validate.py \
 		tests/test_page_metadata.py \
 		tests/test_page_renderer.py \
-		tests/test_preview_builder.py \
+		tests/test_site_builder.py \
 		tests/test_sitemap_builder.py \
 		tests/test_artifact_validate.py \
-		tests/test_preview_validate.py \
+		tests/test_build_validate.py \
 		tests/test_people_registry.py \
 		tests/test_people_refs.py \
 		tests/test_people_refs_audit.py \
