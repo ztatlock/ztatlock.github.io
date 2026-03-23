@@ -12,9 +12,12 @@ Prefer the top-level `make` targets when they exist:
 - `make test`
 - `make env-check`
 - `make inventory`
-- `make inventory-webfiles`
 - `make mkpub YCF=YEAR-CONF-SYS`
 - `make index-now`
+
+Optional personal-maintenance helper:
+
+- `make inventory-webfiles`
 
 ## Current Scripts
 
@@ -41,7 +44,7 @@ Prefer the top-level `make` targets when they exist:
   Builds the publication-artifact inventory by merging filesystem observation
   with `manifests/publication-artifact-curation.tsv`.
   `make inventory` writes a repo-local inventory snapshot under `state/inventory/`.
-  `make inventory-webfiles` refreshes the archive copy under
+  `make inventory-webfiles` refreshes the personal archive copy under
   `~/Desktop/WEBFILES/inventory/`.
 - `check_env.sh`
   Verifies local command/tool prerequisites and reports portability

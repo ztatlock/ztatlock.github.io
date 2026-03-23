@@ -46,55 +46,46 @@ meant to be read, maintained, and extended over time.
 
 ## Current Docs
 
+### Current Reference Docs
+
 - `policy/publication-artifacts.md`
   Publication storage and linking policy.
 - `policy/root-layout.md`
   Current root-level layout now that authored source lives under `site/` and
   generated site output lives under `build/`.
+- `plans/source-build-deploy-redesign.md`
+  Big-picture redesign narrative from flat-root site to the current
+  source/build split.
+- `plans/site-architecture-spec.md`
+  The concrete architecture spec for the current site/build/data layout.
+- `plans/source-move-cutover-plan.md`
+  The implemented cutover campaign that moved authored source into `site/` and
+  made the route-aware build authoritative.
 - `plans/publication-artifact-followup.md`
   Resume point for the current publication-artifact cleanup.
-- `plans/page-metadata-and-ssg.md`
-  Design direction for replacing raw page `*.meta` files and deciding whether
-  the site should ever migrate to Jekyll or another SSG.
-- `plans/metadata-source-comparison.md`
-  Controlled comparison of shared manifests, page-local sidecars, and YAML
-  front matter as metadata sources.
-- `plans/repo-layout.md`
-  Staged direction for making the repo less flat and more modular.
-- `plans/build-system-route-model.md`
-  Why the current flat-root build model is straining and what a minimal
-  route-aware model would need to represent.
-- `plans/publication-output-cutover.md`
-  Focused design note on whether publication pages should move from
-  root-level outputs into their own directories.
-- `plans/source-build-deploy-redesign.md`
-  Broader redesign direction for introducing `site/`, `build/`, and explicit
-  deployment.
-- `plans/site-architecture-spec.md`
-  Draft concrete architecture spec for the next source/build/data/deploy
-  redesign campaign.
+
+### Historical Design / Campaign Notes
+
 - `plans/route-build-engine-slice-1.md`
-  Initial implementation slice for the redesign: a future-oriented
-  route-aware builder that writes to `build/` while still reading from the
-  current source layout.
+  Initial route-aware builder slice before the full cutover.
 - `plans/route-build-engine-slice-2.md`
-  Consolidation slice for collapsing duplicated rendering and metadata logic
-  and adding route-driven sitemap generation for `build/`, followed by shared
-  artifact-validation helpers for the route-aware build.
+  Rendering/sitemap consolidation slice.
 - `plans/route-build-engine-slice-3.md`
-  Source-layout-awareness slice for making the route-aware engine read from
-  configured source roots before any real source-file move into `site/`.
+  Source-layout-awareness slice before files moved into `site/`.
 - `plans/route-build-engine-slice-4.md`
-  Publication-source-model slice for removing the new engine's dependence on
-  top-level publication stubs before the real `site/` source move.
+  Publication-source-model cleanup before the source move.
 - `plans/route-build-engine-slice-5.md`
-  Final source-move-readiness slice for making the new path authoritative for
-  source validation and for turning `static_source_dir` into a true recursive
-  copy tree before any real files move into `site/`.
-- `plans/source-move-cutover-plan.md`
-  Concrete coordinated plan for moving authored source into `site/`, cutting
-  over the command surface, switching Pages deployment to `build/`, and
-  deleting bridge-only legacy code.
+  Final source-move-readiness slice.
+- `plans/build-system-route-model.md`
+  Early route-model design note from the flat-root build era.
+- `plans/publication-output-cutover.md`
+  Early publication-route cutover exploration.
+- `plans/repo-layout.md`
+  Earlier staged repo-layout exploration.
+- `plans/page-metadata-and-ssg.md`
+  Metadata and SSG exploration note.
+- `plans/metadata-source-comparison.md`
+  Comparison of metadata-source alternatives.
 
 ## Near-Term Cleanup
 

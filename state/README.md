@@ -8,6 +8,7 @@ Examples:
 - script run-state such as last-submitted timestamps
 - local logs from helper scripts
 - repo-local generated snapshots such as `state/inventory/`
+  and route-table outputs
 
 This is distinct from:
 

@@ -52,8 +52,6 @@ Commands:
   Run focused unit tests for the route/data/build modules.
 - `make inventory`
   Build publication artifact inventory locally under `state/inventory/`.
-- `make inventory-webfiles`
-  Refresh the archive copy under `~/Desktop/WEBFILES/inventory/`.
 - `make mkpub YCF=YEAR-CONF-SYS`
   Scaffold a new publication-local record.
 - `make env-check`
@@ -62,6 +60,10 @@ Commands:
   Ping IndexNow after publishing.
 - `make clean`
   Remove generated local build artifacts.
+
+Optional personal-maintenance helper:
+- `make inventory-webfiles`
+  Refresh the local archive copy under `~/Desktop/WEBFILES/inventory/`.
 
 ## Editing Workflow
 
