@@ -66,6 +66,11 @@ bridge constraints are now narrower:
 - the legacy production build still points the config at the current repo-root
   layout
 
+The next follow-up after this checkpoint is captured in
+[route-build-engine-slice-4.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/route-build-engine-slice-4.md):
+remove the preview engine's remaining dependence on top-level publication
+stubs and make publication discovery/status fully publication-local.
+
 ## Slice Goal
 
 Make the preview engine source-layout-aware **without moving files yet**.

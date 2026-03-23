@@ -26,6 +26,8 @@ Prefer the top-level `make` targets when they exist:
 - `build_pub_inventory.py`
   Builds the publication-artifact inventory by merging filesystem observation
   with `manifests/publication-artifact-curation.tsv`.
+  It now discovers publications from `pubs/<slug>/publication.json` instead of
+  top-level stubs.
   `make inventory` writes a repo-local preview under `state/inventory/`.
   `make inventory-webfiles` refreshes the canonical archive copy under
   `~/Desktop/WEBFILES/inventory/`.
@@ -51,7 +53,7 @@ Prefer the top-level `make` targets when they exist:
   `state/`. It currently assumes `wget`.
 - `mkpub.sh`
   Scaffolds a new publication-local record under `pubs/<slug>/` plus a
-  top-level draft-status stub `pub-<slug>.dj`.
+  temporary top-level legacy stub `pub-<slug>.dj`.
 - `page_metadata.py`
   Shared metadata helpers for generated page metadata and metadata source
   validation across both public non-publication pages and publication pages.
@@ -60,13 +62,14 @@ Prefer the top-level `make` targets when they exist:
 - `page_source.py`
   Shared page-source parser used to strip non-publication front matter from
   Djot input and extract page titles after front matter. It also renders
-  public publication pages from per-publication local records.
+  public publication pages from per-publication local records, with
+  publication-local draft status from `pubs/<slug>/publication.json`.
 - `publication_record.py`
   Shared loader and Djot renderer for publication-local records in
   `pubs/<slug>/publication.json`.
 - `scaffold_publication.py`
-  Creates a new publication-local scaffold from templates plus a top-level
-  draft-status stub for `mkpub.sh`.
+  Creates a new draft publication-local scaffold from templates plus the
+  temporary legacy stub used by `mkpub.sh`.
 - `render_meta.py`
   Emits `<meta>` HTML for a page by rendering non-publication front matter
   plus publication metadata from a publication-local record.
@@ -90,6 +93,9 @@ Prefer the top-level `make` targets when they exist:
   broken local links, and route-driven sitemap correctness.
   It stays a thin preview-specific entrypoint on top of shared artifact
   validation helpers plus preview-only sitemap checks.
+- `validate_publication_sources.py`
+  Validates publication-local source invariants that must stay true while the
+  legacy root build and temporary publication stubs still coexist.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
   validates non-publication front matter and publication-local metadata

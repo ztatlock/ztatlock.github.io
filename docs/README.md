@@ -83,6 +83,9 @@ meant to be read, maintained, and extended over time.
 - `plans/route-build-engine-slice-3.md`
   Source-layout-awareness slice for making the preview engine read from
   configured source roots before any real source-file move into `site/`.
+- `plans/route-build-engine-slice-4.md`
+  Publication-source-model slice for removing the new engine's dependence on
+  top-level publication stubs before the real `site/` source move.
 
 ## Near-Term Cleanup
 

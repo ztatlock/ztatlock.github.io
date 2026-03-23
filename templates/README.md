@@ -16,10 +16,11 @@ page scaffolding.
   Tiny hand-maintained non-person Djot reference remainder appended to every
   generated page alongside generated people refs from `site/data/people.json`.
 - `pub-stub.dj`
-  Minimal draft-status stub used by `scripts/mkpub.sh` during the current
-  publication transition.
+  Minimal temporary legacy-build stub used by `scripts/mkpub.sh` during the
+  current publication transition.
 - `publication.json`
-  Publication-local record scaffold used by `scripts/mkpub.sh`.
+  Publication-local record scaffold used by `scripts/mkpub.sh`; new
+  scaffolds start with `"draft": true`.
 
 ## Conventions
 

@@ -49,8 +49,9 @@ Top-level `*.dj` files are authored page sources.
 - Public publication page metadata is currently sourced from
   `pubs/<slug>/publication.json`.
 - For public publication pages, the top-level `pub-<slug>.dj` file
-  should stay a minimal transition stub/build anchor rather than a second full
-  page body.
+  should stay a minimal temporary legacy-build stub rather than a second full
+  page body. The preview engine now treats `pubs/<slug>/publication.json` as
+  the source of truth for publication existence, status, body, and metadata.
 - Draft pages may temporarily omit metadata while they remain drafts.
 - A source file whose contents include a `# DRAFT` heading is treated as a
   draft page.

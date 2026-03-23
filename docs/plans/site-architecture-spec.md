@@ -425,17 +425,28 @@ target the future output layout immediately:
 
 ### Phase 3
 
-Move source into `site/` once the preview builder is trusted.
+Finalize the new engine's publication source model before any real source move:
+
+- publication discovery from `site/pubs/*/publication.json`
+- publication-local draft status
+- no architectural dependence on top-level publication stubs
+- no redirect/compatibility layer for old `pub-*.html` URLs
 
 ### Phase 4
 
-Add GitHub Pages workflow for deploying `build/`.
+Move source into `site/` once the new engine's source model is fully aligned
+with the intended steady state.
 
 ### Phase 5
 
-Remove old committed generated outputs and root-level publication stubs.
+Add GitHub Pages workflow for deploying `build/`.
 
 ### Phase 6
+
+Remove old committed generated outputs, publication stubs, and the legacy
+root-served build path.
+
+### Phase 7
 
 Clean up remaining transitional assumptions and docs.
 
@@ -457,6 +468,8 @@ These still need deliberate decisions:
 3. whether some CV data should remain prose-first longer
 4. whether copied static standalone HTML pages should stay under `static/` or
    get their own small convention
+5. whether one focused static-source cleanup slice should happen before the
+   real source move, or whether that cleanup should land as part of the move
 
 ## Recommendation
 

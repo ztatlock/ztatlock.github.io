@@ -24,7 +24,9 @@ This repo is a static website generated from Djot source files. Keep changes sou
 - Publication assets and migrated publication-local records live in
   `pubs/<year-conf-sys>/`.
   For public publication pages, top-level `pub-<year-conf-sys>.dj` files should
-  stay minimal transition stubs/build anchors.
+  stay minimal temporary legacy-build stubs; the preview engine now treats
+  `pubs/<slug>/publication.json` as the source of truth for publication
+  existence, status, body, and metadata.
 - Track actionable backlog items in `ROADMAP.md`.
 - Keep broader structural plans and design notes in `TODO.md` and `docs/plans/`.
 
@@ -40,4 +42,5 @@ This repo is a static website generated from Djot source files. Keep changes sou
 ## Before Committing
 - Ensure edited `.dj` pages have regenerated `.html`.
 - Ensure `sitemap.txt` and `sitemap.xml` are updated (via `make all`).
+- Run `make check`.
 - If new TODO markers are added, add/update matching checklist entries in `ROADMAP.md`.

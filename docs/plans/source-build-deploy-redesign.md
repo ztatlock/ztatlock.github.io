@@ -754,7 +754,20 @@ The immediate next cleanup inside this phase should be:
 That is the first point where the new engine starts replacing duplicated legacy
 logic instead of merely previewing future routes.
 
-### Phase 3: Migrate Source Into `site/`
+### Phase 3: Finalize The New Engine's Source Model
+
+Before moving real files, remove the biggest remaining mismatch between the new
+engine and the intended steady state:
+
+- publication discovery should come from `site/pubs/*/publication.json`
+- publication draft/public status should become publication-local
+- the new engine should stop depending on top-level `pub-*.dj` stubs
+- backward compatibility for old `pub-*.html` URLs should remain a non-goal
+
+This phase should strengthen the new engine directly, not evolve the legacy
+root-served build.
+
+### Phase 4: Migrate Source Into `site/`
 
 Move:
 
@@ -776,7 +789,7 @@ This source move should happen only after the preview builder is trusted
 enough that the source migration is mostly mechanical rather than
 architecturally exploratory.
 
-### Phase 4: Add GitHub Pages Workflow
+### Phase 5: Add GitHub Pages Workflow
 
 Add:
 
@@ -790,7 +803,7 @@ to:
 
 At that point, generated site output should no longer need to be committed.
 
-### Phase 5: Remove Old Root-Level Generated Site Outputs
+### Phase 6: Remove Old Root-Level Generated Site Outputs
 
 Delete the old committed generated outputs once the workflow is trusted:
 
@@ -800,7 +813,7 @@ Delete the old committed generated outputs once the workflow is trusted:
 
 Those should become build artifacts, not tracked source files.
 
-### Phase 6: Clean Up Transitional Assumptions
+### Phase 7: Clean Up Transitional Assumptions
 
 Remove:
 
@@ -816,6 +829,13 @@ The best next implementation direction is:
 - move build orchestration into Python
 - introduce `site/` and `build/`
 - deploy `build/` through GitHub Pages Actions
+
+In the near term, the clean next slice is:
+
+- freeze the legacy build as a temporary oracle only
+- simplify the new engine's publication model
+- then decide whether static-source cleanup should happen separately or as part
+  of the real source move
 
 That is the cleanest way to preserve simplicity while making the repo more
 rational, modular, and route-aware.

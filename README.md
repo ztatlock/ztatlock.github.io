@@ -84,7 +84,8 @@ Multi-machine guardrail:
    - for public publication pages, edit `pubs/<slug>/publication.json`
    - draft pages may omit metadata while they remain drafts
 3. Rebuild with `make <page>.html` or `make all`.
-4. Commit both source and regenerated outputs.
+4. Run `make check`.
+5. Commit both source and regenerated outputs.
 
 Notes:
 - If a page has both `<page>.dj` and `<page>.html`, treat `.dj` as
@@ -96,8 +97,9 @@ Notes:
   It still reads from the current source layout while writing a future-oriented
   site preview under `build/`.
 - For public publication pages, the top-level `pub-<slug>.dj` file
-  should stay a minimal transition stub/build anchor; the publication-local
-  record under `pubs/<slug>/` is the body/metadata source of truth.
+  should stay a minimal temporary stub for the legacy root build only; the
+  publication-local record under `pubs/<slug>/` is the preview engine's
+  source of truth for publication existence, status, body, and metadata.
 - The page title comes from the first non-empty level-1 heading after any
   optional front matter.
 - The current front-matter prototype intentionally supports only the flat
@@ -118,14 +120,21 @@ make mkpub YCF=YEAR-CONF-SYS
 
 This creates:
 - `pub-YEAR-CONF-SYS.dj`
-  a minimal draft-status stub used during the current transition
+  a minimal temporary legacy-build stub
 - `pubs/YEAR-CONF-SYS/publication.json`
 - `pubs/YEAR-CONF-SYS/YEAR-CONF-SYS-abstract.md`
 - `pubs/YEAR-CONF-SYS/YEAR-CONF-SYS.bib`
 
+The scaffolded publication record starts with `"draft": true`.
+
 Then fill in placeholders, add canonical assets under `pubs/YEAR-CONF-SYS/`,
-remove `# DRAFT` from `pub-YEAR-CONF-SYS.dj` when the page is ready to
-publish, and rebuild with:
+and when the page is ready to publish:
+
+- remove `"draft": true` from `pubs/YEAR-CONF-SYS/publication.json`
+- remove `# DRAFT` from `pub-YEAR-CONF-SYS.dj` so the temporary legacy stub
+  stays in sync
+
+Then rebuild with:
 
 ```bash
 make pub-YEAR-CONF-SYS.html
