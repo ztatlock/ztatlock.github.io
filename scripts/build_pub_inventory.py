@@ -4,15 +4,17 @@ from __future__ import annotations
 
 import argparse
 import csv
-import re
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+from scripts.publication_record import (
+    PUBLICATION_RECORD_NAME,
+    PublicationRecord,
+    load_publication_record,
+)
 
-LINK_RE = re.compile(r"^\s*-\s+\[([^\]]+)\]\(([^)]+)\)")
-TITLE_RE = re.compile(r"^#\s*(.*)$")
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".webp")
 SLIDE_SRC_EXTS = (".pptx", ".key")
 
@@ -101,31 +103,6 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def read_title(page: Path) -> str:
-    with page.open(encoding="utf-8") as fh:
-        for line in fh:
-            match = TITLE_RE.match(line.strip())
-            if match:
-                return match.group(1).strip()
-    return page.stem
-
-
-def read_links(page: Path) -> dict[str, str]:
-    links: dict[str, str] = {}
-    with page.open(encoding="utf-8") as fh:
-        for raw in fh:
-            stripped = raw.strip()
-            if stripped.startswith("{%"):
-                continue
-            match = LINK_RE.match(raw)
-            if not match:
-                continue
-            label = match.group(1).strip().lower()
-            target = match.group(2).strip()
-            links[label] = target
-    return links
-
-
 def first_existing(paths: Iterable[Path]) -> str:
     for path in paths:
         if path.exists():
@@ -185,10 +162,41 @@ def gather_webfiles_candidates(webfiles_root: Path, slug: str) -> tuple[list[Pat
     return slide_candidates, talk_candidates
 
 
-def build_record(repo_root: Path, webfiles_root: Path, page: Path) -> PubRecord:
-    slug = page.stem.removeprefix("pub-")
-    title = read_title(page)
-    links = read_links(page)
+def discover_publication_slugs(repo_root: Path) -> list[str]:
+    publications_dir = repo_root / "pubs"
+    return sorted(path.parent.name for path in publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}"))
+
+
+def _local_publication_link(slug: str, path_name: str) -> str:
+    if not path_name:
+        return ""
+    return f"pubs/{slug}/{path_name}"
+
+
+def _publication_page_links(
+    slug: str,
+    record: PublicationRecord,
+    *,
+    site_paper_pdf_path: str,
+    site_bib_path: str,
+    site_slides_pdf_path: str,
+    site_poster_pdf_path: str,
+) -> dict[str, str]:
+    links = dict(record.links)
+    links["paper"] = _local_publication_link(slug, site_paper_pdf_path)
+    links["bib"] = _local_publication_link(slug, site_bib_path)
+    if site_slides_pdf_path:
+        links["slides"] = _local_publication_link(slug, site_slides_pdf_path)
+    if site_poster_pdf_path:
+        links["poster"] = _local_publication_link(slug, site_poster_pdf_path)
+    if "talk" not in links and record.talks:
+        links["talk"] = record.talks[0].url
+    return links
+
+
+def build_record(repo_root: Path, webfiles_root: Path, slug: str) -> PubRecord:
+    record = load_publication_record(repo_root, slug)
+    title = record.title
     pub_dir = repo_root / "pubs" / slug
 
     site_paper_pdf_path = first_existing([pub_dir / f"{slug}.pdf"])
@@ -203,6 +211,14 @@ def build_record(repo_root: Path, webfiles_root: Path, page: Path) -> PubRecord:
         pub_dir / f"{slug}-slides{ext}" for ext in SLIDE_SRC_EXTS
     )
     site_poster_pdf_path = first_existing([pub_dir / f"{slug}-poster.pdf"])
+    links = _publication_page_links(
+        slug,
+        record,
+        site_paper_pdf_path=site_paper_pdf_path,
+        site_bib_path=site_bib_path,
+        site_slides_pdf_path=site_slides_pdf_path,
+        site_poster_pdf_path=site_poster_pdf_path,
+    )
 
     archive_slide_candidates, archive_talk_candidates = gather_webfiles_candidates(
         webfiles_root, slug
@@ -241,7 +257,7 @@ def build_record(repo_root: Path, webfiles_root: Path, page: Path) -> PubRecord:
     return PubRecord(
         slug=slug,
         title=title,
-        page=page.name,
+        page=f"pub-{slug}.html",
         repo_dir=str(pub_dir.relative_to(repo_root)),
         site_paper_pdf_path=site_paper_pdf_path,
         site_paper_pdf_status=status_for_path(site_paper_pdf_path),
@@ -647,8 +663,8 @@ def main() -> None:
         else (repo_root / CURATION_FILE)
     )
 
-    pages = sorted(repo_root.glob("pub-*.dj"))
-    records = [build_record(repo_root, webfiles_root, page) for page in pages]
+    slugs = discover_publication_slugs(repo_root)
+    records = [build_record(repo_root, webfiles_root, slug) for slug in slugs]
     curation = load_curation(curation_path, {record.slug for record in records})
     validate_curation(curation, records, curation_path)
 

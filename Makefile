@@ -24,12 +24,14 @@ PUBLICATION_RECORD := scripts/publication_record.py
 RENDER_REFS_MODULE := scripts.render_site_refs
 RENDER_PAGE_HTML_MODULE := scripts.render_page_html
 VALIDATE_SITE_MODULE := scripts.validate_site
+VALIDATE_PUBLICATION_SOURCES_MODULE := scripts.validate_publication_sources
 BUILD_PREVIEW_MODULE := scripts.build_preview_site
 RENDER_ROUTES_MODULE := scripts.render_routes
 VALIDATE_PREVIEW_MODULE := scripts.validate_preview_build
 RENDER_PAGE_HTML := scripts/render_page_html.py
 RENDER_REFS    := scripts/render_site_refs.py
 VALIDATE_SITE  := scripts/validate_site.py
+VALIDATE_PUBLICATION_SOURCES := scripts/validate_publication_sources.py
 BUILD_PREVIEW  := scripts/build_preview_site.py
 RENDER_ROUTES  := scripts/render_routes.py
 VALIDATE_PREVIEW := scripts/validate_preview_build.py
@@ -55,7 +57,7 @@ $(ROUTES_PREVIEW): $(RENDER_ROUTES) $(SITEBUILD_MODULES) $(PUBLICATION_INPUTS) $
 	@mkdir -p "$(dir $@)"
 	@python3 -m $(RENDER_ROUTES_MODULE) --root . > $@
 
-%.html: %.dj Makefile $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(RENDER_PAGE_HTML) $(RENDERED_REFS) $(PUBLICATION_INPUTS) $(SITE_DATA) $(SITEBUILD_MODULES)
+%.html: validate-publication-sources %.dj Makefile $(wildcard templates/*) $(PAGE_META) $(PAGE_SOURCE) $(PUBLICATION_RECORD) $(VALIDATE_PUBLICATION_SOURCES) $(RENDER_PAGE_HTML) $(RENDERED_REFS) $(PUBLICATION_INPUTS) $(SITE_DATA) $(SITEBUILD_MODULES)
 	@printf "BUILD : %-35s\n" "$@"
 	@if [ "$@" = "index.html" ]; then \
 		CANON="https://ztatlock.net/"; \
@@ -71,7 +73,7 @@ $(ROUTES_PREVIEW): $(RENDER_ROUTES) $(SITEBUILD_MODULES) $(PUBLICATION_INPUTS) $
 		> $@
 
 .PHONY: all
-all: $(PAGES) sitemap.txt sitemap.xml
+all: validate-publication-sources $(PAGES) sitemap.txt sitemap.xml
 
 .PHONY: help
 help:
@@ -91,14 +93,14 @@ help:
 		'make index-now' \
 		'make clean'
 
-sitemap.txt: $(SITEMAP_HTML) $(SITEMAP_PDFS)
+sitemap.txt: validate-publication-sources $(SITEMAP_HTML) $(SITEMAP_PDFS)
 	@echo "BUILD : $@"
 	@rm -f $@
 	@for page in $(SITEMAP_HTML) $(SITEMAP_PDFS); do \
 		echo "https://ztatlock.net/$${page}"; \
 	done >> $@
 
-sitemap.xml: $(SITEMAP_HTML) $(SITEMAP_PDFS)
+sitemap.xml: validate-publication-sources $(SITEMAP_HTML) $(SITEMAP_PDFS)
 	@echo "BUILD : $@"
 	@echo '<?xml version="1.0" encoding="UTF-8"?>' > $@
 	@echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $@
@@ -112,7 +114,11 @@ sitemap.xml: $(SITEMAP_HTML) $(SITEMAP_PDFS)
 	@echo '</urlset>' >> $@
 
 .PHONY: drafts
-drafts: $(DRAFT_PAGES)
+drafts: validate-publication-sources $(DRAFT_PAGES)
+
+.PHONY: validate-publication-sources
+validate-publication-sources:
+	@python3 -m $(VALIDATE_PUBLICATION_SOURCES_MODULE) --root .
 
 .PHONY: check
 check:
@@ -123,7 +129,7 @@ build-preview:
 	@python3 -m $(BUILD_PREVIEW_MODULE) --root .
 
 .PHONY: check-preview
-check-preview: build-preview
+check-preview: validate-publication-sources build-preview
 	@python3 -m $(VALIDATE_PREVIEW_MODULE) --root .
 
 .PHONY: routes-preview
@@ -132,6 +138,9 @@ routes-preview: $(ROUTES_PREVIEW)
 .PHONY: test
 test:
 	@python3 -m unittest \
+		tests/test_build_pub_inventory.py \
+		tests/test_publication_record.py \
+		tests/test_scaffold_publication.py \
 		tests/test_route_model.py \
 		tests/test_route_discovery.py \
 		tests/test_page_metadata.py \

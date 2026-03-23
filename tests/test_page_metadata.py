@@ -103,3 +103,42 @@ class PageMetadataTests(unittest.TestCase):
                 publications_dir=pubs,
             )
             self.assertEqual(issues, [])
+
+    def test_validate_publication_metadata_rejects_stub_record_draft_mismatch(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+
+            slug = "2025-test-demo"
+            (pages / f"pub-{slug}.dj").write_text("# Demo\n", encoding="utf-8")
+            pub_dir = pubs / slug
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "draft": True,
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "description": "Demo description",
+                        "links": {},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            issues = validate_publication_metadata(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+            )
+            self.assertEqual(
+                issues,
+                [
+                    f"{pages / f'pub-{slug}.dj'}: draft status must stay in sync with {pub_dir / 'publication.json'}"
+                ],
+            )
