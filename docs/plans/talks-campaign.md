@@ -16,7 +16,7 @@ cross-page views that clearly benefit from it.
 
 The goal is not to invent a giant talks system.
 The goal is to remove repeated, list-shaped talk facts from hand-authored pages
-while keeping prose and special-case pages simple.
+while keeping talk-local prose/assets with the talk that they belong to.
 
 ## Why Talks First
 
@@ -57,6 +57,53 @@ Important current observations:
 - publication bundles also track talk links, but those are publication-local
   talks or videos and are not the same domain as the invited/public talks page
 
+### Pattern Summary
+
+The current talks page has 25 entries.
+
+Observed date patterns:
+
+- 23 entries use a month-plus-year date such as `February 2026`
+- 2 entries use a season-plus-year date such as `Fall 2023`
+
+Observed title-link patterns:
+
+- 22 entries use a plain unlinked title
+- 2 entries use an external title link
+- 1 entry uses a local title link to a dedicated talk page
+
+Observed host/venue patterns:
+
+- most entries have one display line after the title
+- 2 entries split the host and date onto separate continuation lines
+- 1 entry uses a two-part host/series display where the second segment is
+  linked (`Compilers Seminar`)
+
+Observed content-shape patterns:
+
+- duplicate titles are common, so title alone is not a stable identifier
+- the list is reverse-chronological
+- all current entries are talks by Zach, so the first schema does not need a
+  speaker field
+- dedicated talk prose/media is currently exceptional rather than the norm
+- exactly one current entry points at a local talk page, so that case should be
+  treated as an explicit first-slice decision rather than hidden in the schema
+
+### Consequences For The First Schema
+
+These patterns imply:
+
+- the model needs a stable identity independent of title
+- the schema needs a structured date model that supports both month/year and
+  season/year
+- the schema needs one primary title link slot
+- the schema needs a small amount of structured host/series support, but not a
+  general event model
+- the schema does not need to model speakers, abstracts, or detail-page prose
+  in the first slice
+- the one existing local talk-page link must be handled deliberately, not by
+  quietly distorting the common-case schema
+
 ## Boundary Of The Domain
 
 This campaign should start with a deliberately narrow definition of "talk":
@@ -81,33 +128,142 @@ If a later slice shows a clean way to connect invited talks and
 publication-local talks, that should be a later decision rather than a starting
 assumption.
 
-## Likely Canonical Record
+## Likely Canonical Source Model
 
-The likely first target is:
+The likely first target is a new bundle root:
 
-- `site/data/talks.json`
+- `site/talks/<slug>/talk.json`
 
-That file should stay intentionally small.
+Each talk bundle should be allowed to stay extremely small.
+A simple talk may only need:
 
-The initial schema should probably support only the fields the current talks
-page actually needs, such as:
+- `talk.json`
 
-- stable key
+But the model should also allow optional talk-local files such as:
+
+- `extra.dj`
+- local images
+- talk-local attachments if they ever clearly earn their keep
+
+This mirrors the successful `site/pubs/<slug>/publication.json` pattern:
+
+- keep local facts with the record
+- allow optional per-record assets or prose
+- derive global lists from the bundles when needed
+
+### Why Bundles Instead Of One Global `talks.json`
+
+The bundle model is a better fit here because talks may naturally grow:
+
+- a dedicated talk page
+- talk-specific prose
+- embeds or media
+- local assets
+
+The current dedicated talk page at
+`site/pages/talk-2023-05-egg-uiuc.dj` is already a signal that talk-local
+context is real, even if it is still rare.
+
+So the intended model is:
+
+- keep talk-local facts in `site/talks/<slug>/`
+- derive a global in-memory talk table during the build
+- render the talks index from those bundles
+
+That is a little more file structure than one flat JSON list, but it is a
+cleaner long-term shape.
+
+### Draft Minimal `talk.json` Schema
+
+The first `talk.json` schema should probably support only the fields the
+current talks page actually needs, such as:
+
 - title
-- date
-- event / host text
-- optional secondary host / series text
-- optional local page path
+- structured date
+- one or more host / series display segments
 - optional external URL
 
 Possible extensions, only if they clearly earn their keep:
 
+- `extra.dj` for local detail-page prose
+- local media/assets
 - speakers
 - location
 - category / talk kind
-- short description or abstract reference
 
 The first schema should not try to model every conceivable talk attribute.
+
+The first schema should be intentionally small and should map directly to the
+current page shape.
+
+At a high level:
+
+```text
+site/talks/
+  2026-02-brown-eqsat/
+    talk.json
+  2023-05-uiuc-egg/
+    talk.json
+    extra.dj
+```
+
+Example `talk.json`:
+
+```json
+{
+  "title": "Everything is a compiler, try Equality Saturation!",
+  "when": { "year": 2026, "month": 2 },
+  "at": [
+    { "text": "Brown University" },
+    { "text": "PL and Graphics groups" }
+  ],
+  "url": "https://events.brown.edu/computer-science/event/326439-bvc-seminar-zachary-tatlock-university-of"
+}
+```
+
+Suggested field meanings:
+
+- bundle slug
+  The directory name is the stable identifier, for example
+  `2026-02-brown-eqsat`. The schema does not need a second synthetic `key`
+  field unless experience later shows that it earns its keep.
+- `title`
+  Canonical rendered title text for the list entry.
+- `when`
+  Structured date object with required `year` and exactly one of:
+  - `month`
+  - `season`
+- `at`
+  Ordered display segments for the host / venue / series portion of the entry.
+  Each segment has:
+  - required `text`
+  - optional `url`
+- `url`
+  Optional external primary link, used when the title should link externally.
+- `extra.dj`
+  Optional talk-local prose file. If present, it is a signal that the bundle
+  may deserve a dedicated detail page.
+
+First-slice rendering rule:
+
+- if `url` is present, link the title externally
+- else render the title as plain text
+
+First-slice bundle rule:
+
+- all talk bundles participate in the global talks index
+- no dedicated talk-page route is required in the first slice
+- if a bundle has `extra.dj`, treat that as future-facing talk-local content,
+  not an immediate requirement to add a new route class
+
+First-slice date rendering rule:
+
+- `month` renders as `Month YYYY`
+- `season` renders as `Season YYYY`
+
+This should reproduce the common entry shape cleanly.
+The one current local talk-page link remains the main explicit first-slice
+decision to resolve.
 
 ## Relationship To Existing Pages
 
@@ -118,19 +274,22 @@ This should be the first projection target.
 The likely steady state is:
 
 - hand-authored page header / framing remains in Djot
-- repeated talk entries are generated from `site/data/talks.json`
+- repeated talk entries are generated from discovered talk bundles
 
 ### Dedicated Talk Pages
 
-Dedicated talk pages should remain ordinary pages under `site/pages/`.
+Dedicated talk pages should move toward living with the talk bundle rather than
+remaining separate ordinary pages forever.
 
-The talks data model should probably support an optional link to a local talk
-page, but it should not try to absorb those pages into the data file.
+That does not mean the first slice has to add talk detail-page routes.
+It means the campaign should leave a clean path for a later slice to say:
+
+- if `site/talks/<slug>/extra.dj` exists, build `build/talks/<slug>/index.html`
 
 That keeps the domain clean:
 
-- shared list facts in `site/data/talks.json`
-- talk-specific prose/media on ordinary talk pages
+- shared list facts in talk bundles
+- talk-specific prose/media in the same bundle when needed
 
 ### `site/pages/cv.dj`
 
@@ -143,13 +302,19 @@ CV sections once the talks projection pattern is proven.
 
 The first talks data model should validate a small number of clear invariants:
 
-- each talk key is unique
+- each talk bundle slug is unique
 - talk records have a canonical title
-- each talk has a usable date representation for sorting
-- at most one outward-facing primary link is used for the main list entry
-  unless we explicitly decide otherwise
-- local talk-page paths, when present, must resolve to real authored pages
+- each talk has `when.year` plus exactly one of `when.month` or
+  `when.season`
+- `when.month`, when present, is a valid month number
+- `when.season`, when present, is one of a very small allowed set such as
+  `spring`, `summer`, `fall`, `winter`
+- each talk has a usable date representation for reverse-chronological sorting
+- each talk has at least one `at` segment
+- `talk.json` must exist for every talk bundle
+- `extra.dj`, when present, must live in the same bundle
 - no generated talk entry should require hidden page-specific exceptions
+- entries should remain stable under deterministic sort order
 
 These should be enforced with small focused tests.
 
@@ -165,22 +330,57 @@ The likely sequence is:
 2. define the smallest useful talks schema
    Keep it honest to the current page instead of overgeneralizing.
 
-3. add a talks loader/validator plus tests
-   Fail clearly on duplicate keys, invalid dates, and broken local page links.
+3. add a talks bundle loader/validator plus tests
+   Fail clearly on invalid bundle contents, invalid dates, and broken optional
+   local files.
 
 4. add a tiny talks renderer/projection helper
-   Generate the repeated talks list body from canonical records.
+   Generate the repeated talks list body from discovered talk bundles.
 
 5. switch `site/pages/talks.dj` to use the projection
    Keep header/prose local to the page.
 
 6. stop and reassess
    Only after the talks page is clean should we decide whether to reuse the
-   records in CV or elsewhere.
+   bundles in CV or elsewhere, or whether to introduce dedicated talk-page
+   routes from `extra.dj`.
+
+## First Slice Recommendation
+
+The first implementation slice should stay deliberately narrow:
+
+1. add `site/talks/<slug>/talk.json` bundles for the current talks page
+2. add a talks bundle loader/validator plus tests
+3. add a projection helper that can render the repeated talks list body
+4. switch `site/pages/talks.dj` to use that projection
+5. keep `site/pages/talk-2023-05-egg-uiuc.dj` unchanged for now
+
+That is the right size because it:
+
+- establishes the canonical bundle model
+- proves the projection pattern on one real page
+- avoids taking on talk detail routes in the same slice
+- leaves the one exceptional local talk page in place as a clean future test
+  case
+
+### Explicit Stop Point
+
+After that first slice lands, stop and reassess before doing more.
+
+Questions for that checkpoint:
+
+- does the bundle model feel clean in day-to-day editing?
+- does the generated talks page remain easy to review?
+- does the UIUC talk page still look like a good candidate for folding into a
+  later `extra.dj` + talk-detail-route slice?
+- do we want CV reuse next, or should talks remain isolated until later?
+
+The campaign should not move past that checkpoint automatically.
+This is where we should reflect and choose the next slice deliberately.
 
 ## Expected Benefits
 
-- one canonical source for the talks page
+- one canonical source model for the talks page
 - easier incremental updates when a new talk is added
 - less repeated structured editing
 - a low-risk proving ground for later students/publications campaigns
@@ -189,7 +389,7 @@ The likely sequence is:
 
 - building a universal event system
 - folding publication-local talk videos into the same schema immediately
-- auto-generating all talk detail pages
+- auto-generating all talk detail pages in the first slice
 - rewriting CV or news in the same campaign
 - designing around hypothetical future fields before the current page demands
   them
@@ -198,6 +398,9 @@ The likely sequence is:
 
 The next planning step after this note should be:
 
-- do a detailed talks-page pattern audit and draft the first talks schema
+- keep the existing `talk-2023-05-egg-uiuc.dj` page separate in the first
+  slice
+- implement the first bundle-level talks schema and talks-page projection
+- stop and reassess before introducing any talk detail routes or CV reuse
 
 Only after that should we break the talks campaign into implementation slices.

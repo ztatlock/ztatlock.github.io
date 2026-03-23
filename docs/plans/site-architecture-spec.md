@@ -119,7 +119,6 @@ Current canonical records:
 
 Likely next campaign domains:
 
-- `site/data/talks.json`
 - `site/data/students.json`
 - selected projection-oriented records for CV, funding, or similar repeated
   factual domains if they clearly earn their keep
@@ -129,6 +128,16 @@ The rule is:
 - if a fact appears in many places, consider structured data
 - if it is mostly local to one page or publication, keep it local
 - prose should stay in Djot, not in JSON
+
+Refined rule:
+
+- use `site/data/` for flat shared registries with no per-record local prose or
+  assets, such as `people.json`
+- use bundle roots like `site/pubs/` when each record may grow local assets,
+  local prose, or its own detail page
+- future domains should follow the same principle; for example, the planned
+  talks campaign is likely to introduce `site/talks/<slug>/talk.json` bundles
+  rather than one global `talks.json` file
 
 ### `site/static/`
 
@@ -286,6 +295,8 @@ Important clarifications:
 
 - publication bundles are already canonical; the future publications campaign
   should project from them rather than invent a second publication registry
+- the talks campaign is now expected to use talk-local bundles under
+  `site/talks/` rather than a single global `site/data/talks.json`
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV and news should come later, after we have enough experience projecting

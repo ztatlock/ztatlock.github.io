@@ -52,13 +52,19 @@ Why first:
 
 Likely target:
 
-- `site/data/talks.json`
+- `site/talks/<slug>/talk.json`
 
 Likely outcomes:
 
-- a canonical talk record set
+- a canonical set of talk-local bundles
 - projection into `site/pages/talks.dj`
 - later reuse in selected CV or news sections if that proves valuable
+
+Important design choice:
+
+- keep talk-local facts with each talk bundle
+- derive any global talk table from those bundles at build time
+- do not start with one giant cross-site `talks.json` file
 
 The detailed planning note for this campaign is:
 
