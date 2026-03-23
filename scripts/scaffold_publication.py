@@ -55,7 +55,10 @@ def scaffold_publication(root: Path, slug: str) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Scaffold a new publication-local record and draft status stub."
+        description=(
+            "Scaffold a new draft publication-local record plus the temporary "
+            "legacy publication stub."
+        )
     )
     parser.add_argument("--slug", required=True, help="Publication slug, e.g. 2026-conf-paper")
     parser.add_argument(

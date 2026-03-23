@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.sitebuild.route_discovery import discover_routes
+from scripts.sitebuild.route_discovery import RouteDiscoveryError, discover_routes
 from scripts.sitebuild.site_config import load_site_config
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,7 +42,6 @@ class RouteDiscoveryTests(unittest.TestCase):
         self.assertEqual(
             [path.relative_to(ROOT).as_posix() for path in route.source_paths],
             [
-                "pub-2024-asplos-lakeroad.dj",
                 "pubs/2024-asplos-lakeroad/publication.json",
                 "pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.bib",
                 "pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-abstract.md",
@@ -77,7 +76,6 @@ class RouteDiscoveryTests(unittest.TestCase):
             shared_img_dir.mkdir(parents=True)
 
             (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
-            (page_source_dir / "pub-2025-test-demo.dj").write_text("# Demo\n", encoding="utf-8")
             (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
             (shared_img_dir / "logo.png").write_bytes(b"PNG")
 
@@ -133,7 +131,6 @@ class RouteDiscoveryTests(unittest.TestCase):
             self.assertEqual(
                 [path.relative_to(root).as_posix() for path in publication_route.source_paths],
                 [
-                    "site/pages/pub-2025-test-demo.dj",
                     "site/pubs/2025-test-demo/publication.json",
                     "site/pubs/2025-test-demo/2025-test-demo.bib",
                     "site/pubs/2025-test-demo/2025-test-demo-abstract.md",
@@ -159,3 +156,92 @@ class RouteDiscoveryTests(unittest.TestCase):
                 paper_route.output_relpath,
                 "pubs/2025-test-demo/2025-test-demo.pdf",
             )
+
+    def test_discovers_draft_publication_route_from_record_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+            shared_img_dir = static_source_dir / "img"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            shared_img_dir.mkdir(parents=True)
+
+            (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            pub_dir = publications_dir / "2025-test-draft"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "draft": True,
+                        "title": "Draft Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "description": "Draft demo description",
+                        "links": {},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+                shared_img_dir=shared_img_dir,
+            )
+            routes = discover_routes(config)
+
+            route = find_route(routes, kind="publication_page", key="2025-test-draft")
+            self.assertTrue(route.is_draft)
+            self.assertEqual(
+                [path.relative_to(root).as_posix() for path in route.source_paths],
+                ["site/pubs/2025-test-draft/publication.json"],
+            )
+
+    def test_rejects_public_publication_route_missing_canonical_assets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+            shared_img_dir = static_source_dir / "img"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            shared_img_dir.mkdir(parents=True)
+
+            (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            pub_dir = publications_dir / "2025-test-broken"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Broken Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "description": "Broken demo description",
+                        "links": {},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+                shared_img_dir=shared_img_dir,
+            )
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)

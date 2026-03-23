@@ -107,23 +107,14 @@ def read_page_source(
     path = page_path(page_stem, actual_page_source_dir)
     slug = publication_slug(page_stem)
     if slug is not None:
+        text = ""
+        front_matter: dict[str, str] = {}
+        body = ""
+        stub_is_draft = False
         if path.exists():
             text = path.read_text(encoding="utf-8")
             front_matter, body = split_front_matter(text, path)
-            is_draft = bool(DRAFT_HEADING_RE.search(text))
-        else:
-            text = ""
-            front_matter = {}
-            body = ""
-            is_draft = False
-
-        if is_draft:
-            return PageSource(
-                front_matter=front_matter,
-                body=body,
-                title=extract_title(body, path),
-                is_draft=True,
-            )
+            stub_is_draft = bool(DRAFT_HEADING_RE.search(text))
 
         try:
             record = load_optional_publication_record(
@@ -134,6 +125,16 @@ def read_page_source(
         except PublicationRecordError as err:
             raise PageSourceError(str(err)) from err
         if record is not None:
+            if record.draft:
+                title = record.title
+                if not title and path.exists():
+                    title = extract_title(body, path)
+                return PageSource(
+                    front_matter=front_matter,
+                    body=body,
+                    title=title,
+                    is_draft=True,
+                )
             return PageSource(
                 front_matter=front_matter,
                 body=render_publication_body(
@@ -142,7 +143,14 @@ def read_page_source(
                     publications_dir=publications_dir,
                 ),
                 title=record.title,
-                is_draft=is_draft,
+                is_draft=False,
+            )
+        if stub_is_draft:
+            return PageSource(
+                front_matter=front_matter,
+                body=body,
+                title=extract_title(body, path),
+                is_draft=True,
             )
 
     if not path.exists():

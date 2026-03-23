@@ -6,8 +6,12 @@ import re
 from pathlib import Path
 
 from scripts.publication_record import (
+    EXTRA_CONTENT_NAME,
+    PUBLICATION_RECORD_NAME,
     PublicationRecordError,
     publication_assets,
+    load_publication_record,
+    publication_dir,
     publication_record_path,
     publication_slug,
 )
@@ -49,33 +53,40 @@ def _ordinary_page_routes(config: SiteConfig) -> list[Route]:
     return routes
 
 
-def _publication_page_route(config: SiteConfig, stub_path: Path) -> Route:
-    stem = stub_path.stem
-    slug = publication_slug(stem)
-    if slug is None:
-        raise RouteDiscoveryError(f"not a publication page stem: {stem}")
-
-    record_path = publication_record_path(
-        config.repo_root,
-        slug,
-        publications_dir=config.publications_dir,
-    )
-    is_draft = _is_draft_page(stub_path)
-    if not is_draft and not record_path.exists():
-        raise RouteDiscoveryError(f"missing publication record for public page {stem}: {record_path}")
-
-    public_url = f"/pubs/{slug}/"
-    source_paths: tuple[Path, ...]
-    if not record_path.exists():
-        source_paths = (stub_path,)
-    else:
-        assets = publication_assets(
+def _publication_page_route(config: SiteConfig, slug: str) -> Route:
+    record_path = publication_record_path(config.repo_root, slug, publications_dir=config.publications_dir)
+    try:
+        record = load_publication_record(
             config.repo_root,
             slug,
             publications_dir=config.publications_dir,
         )
+    except PublicationRecordError as err:
+        raise RouteDiscoveryError(str(err)) from err
+
+    pub_dir = publication_dir(
+        config.repo_root,
+        slug,
+        publications_dir=config.publications_dir,
+    )
+    extra_path = pub_dir / EXTRA_CONTENT_NAME
+    public_url = f"/pubs/{slug}/"
+    source_paths: tuple[Path, ...]
+    if record.draft:
+        ordered_paths: list[Path] = [record_path]
+        if extra_path.exists():
+            ordered_paths.append(extra_path)
+        source_paths = tuple(ordered_paths)
+    else:
+        try:
+            assets = publication_assets(
+                config.repo_root,
+                slug,
+                publications_dir=config.publications_dir,
+            )
+        except PublicationRecordError as err:
+            raise RouteDiscoveryError(str(err)) from err
         ordered_paths: list[Path] = [
-            stub_path,
             record_path,
             assets.bib,
             assets.abstract,
@@ -90,15 +101,13 @@ def _publication_page_route(config: SiteConfig, stub_path: Path) -> Route:
         output_relpath=f"pubs/{slug}/index.html",
         public_url=public_url,
         canonical_url=canonical_url(config.site_url, public_url),
-        is_draft=is_draft,
+        is_draft=record.draft,
     )
 
 
 def _publication_page_routes(config: SiteConfig) -> list[Route]:
-    return [
-        _publication_page_route(config, path)
-        for path in sorted(config.page_source_dir.glob("pub-*.dj"))
-    ]
+    records = sorted(config.publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}"))
+    return [_publication_page_route(config, path.parent.name) for path in records]
 
 
 def _static_route(

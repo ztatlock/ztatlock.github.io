@@ -77,6 +77,7 @@ class PublicationAssets:
 @dataclass(frozen=True)
 class PublicationRecord:
     slug: str
+    draft: bool
     title: str
     authors: tuple[PublicationPerson, ...]
     venue: str
@@ -141,6 +142,19 @@ def _normalize_optional_string(
     if not isinstance(raw, str):
         raise PublicationRecordError(f"{context}: {field} must be a string or null")
     return raw.strip()
+
+
+def _normalize_optional_boolean(
+    raw: object,
+    *,
+    context: str,
+    field: str,
+) -> bool:
+    if raw is None:
+        return False
+    if not isinstance(raw, bool):
+        raise PublicationRecordError(f"{context}: {field} must be a boolean or null")
+    return raw
 
 
 def _normalize_required_string(
@@ -271,6 +285,7 @@ def load_publication_record(
     unknown_fields = sorted(
         set(raw)
         - {
+            "draft",
             "title",
             "authors",
             "venue",
@@ -289,6 +304,7 @@ def load_publication_record(
 
     return PublicationRecord(
         slug=slug,
+        draft=_normalize_optional_boolean(raw.get("draft"), context=str(path), field="draft"),
         title=_normalize_required_string(raw.get("title"), context=str(path), field="title"),
         authors=_normalize_people(raw.get("authors"), context=f"{path}.authors"),
         venue=_normalize_required_string(raw.get("venue"), context=str(path), field="venue"),

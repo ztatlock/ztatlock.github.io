@@ -7,5 +7,7 @@ This publication is still under construction.
 The canonical publication record for this page lives in
 `pubs/YEAR-CONF-SYS/publication.json`.
 
-Remove `# DRAFT` from this file when the local record and canonical assets are
-ready to publish.
+While the legacy root build still exists, keep this `# DRAFT` heading in sync
+with `"draft": true` in that record.
+
+This stub is temporary and will be deleted when publication stubs are retired.
