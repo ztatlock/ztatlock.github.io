@@ -85,7 +85,7 @@ def _talk_collection_index_route(config: SiteConfig) -> Route | None:
     )
 
 
-def _collection_index_routes(config: SiteConfig) -> list[Route]:
+def _talks_index_routes(config: SiteConfig) -> list[Route]:
     routes: list[Route] = []
     talks_route = _talk_collection_index_route(config)
     if talks_route is not None:
@@ -237,11 +237,11 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
 
 def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     ordinary_routes = _ordinary_page_routes(config)
-    collection_index_routes = _collection_index_routes(config)
+    talks_index_routes = _talks_index_routes(config)
     publication_routes = _publication_page_routes(config)
     page_routes = tuple(
         sorted(
-            (*ordinary_routes, *collection_index_routes, *publication_routes),
+            (*ordinary_routes, *talks_index_routes, *publication_routes),
             key=lambda route: route.output_relpath,
         )
     )
