@@ -9,7 +9,7 @@ is easy to resume later without re-deriving context.
   public watch URL, usually YouTube.
 - Local archival copies of talks should live in `~/Desktop/WEBFILES`.
 - Small first-party artifacts that the site serves directly should live in the
-  repo under `pubs/<slug>/`.
+  repo under `site/pubs/<slug>/`.
 - Large source artifacts and preservation copies should live in `WEBFILES`.
 - Missing required repo publication artifacts are errors.
 - Missing slide PDFs and poster PDFs are warnings until manually curated.
@@ -22,7 +22,7 @@ The current canonical policy doc is:
 
 ## Current Inventory
 
-Repo-local preview inventory output lives in:
+Repo-local inventory output lives in:
 
 - `state/inventory/`
 

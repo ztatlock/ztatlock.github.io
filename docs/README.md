@@ -8,13 +8,14 @@ meant to be read, maintained, and extended over time.
 - `policy/`
   Long-lived policy and specification documents.
 - `plans/`
-  Active work notes and resumable campaign docs.
+  Current reference notes plus historical campaign/design notes.
 
 ## What Belongs Here
 
 - storage/linking policy
 - repository layout decisions
 - work-in-progress campaign notes
+- implemented campaign records worth keeping for future context
 - future migration plans
 
 ## What Does Not Belong Here

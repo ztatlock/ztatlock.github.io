@@ -101,8 +101,9 @@ It should only do the last readiness work that the real source move depends on.
 
 Today:
 
-- [validate_site.py](/Users/ztatlock/www/ztatlock.github.io/scripts/validate_site.py)
-  owns source metadata validation
+- legacy `validate_site.py` (now retired in favor of
+  [validate_build.py](/Users/ztatlock/www/ztatlock.github.io/scripts/validate_build.py))
+  owned source metadata validation
 - [validate_build.py](/Users/ztatlock/www/ztatlock.github.io/scripts/validate_build.py)
   only validates built preview HTML plus sitemaps
 

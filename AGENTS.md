@@ -24,7 +24,7 @@ source-first and predictable.
   matching entry in `site/data/people.json`.
   Keep `site/templates/REFS` only for the tiny non-person manual remainder.
 - Publication assets and publication-local records live in
-  `site/pubs/<year-conf-sys>/`.
+  `site/pubs/<slug>/`.
 - Authored publication page links in Djot should use `pubs/<slug>/`, not
   `pub-<slug>.html`.
 - Track actionable backlog items in `ROADMAP.md`.
@@ -35,7 +35,7 @@ source-first and predictable.
 - Build the authoritative site: `make build`
 - Validate authoritative source plus the built site: `make check`
 - Render the authoritative route table: `make routes`
-- Run focused unit tests for route/data/build helpers: `make test`
+- Auto-discover and run focused unit tests under `tests/`: `make test`
 - Check local prerequisites and assumptions: `make env-check`
 - Build publication inventory snapshots: `make inventory`
 

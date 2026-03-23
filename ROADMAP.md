@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-21.
+Last updated: 2026-03-23.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -21,7 +21,7 @@ notes.
 
 ## Migrated Backlog From TODO.md
 
-- [ ] Make a publication page for each publication (migrated from legacy `TODO.md`).
+- [x] Make a publication page for each publication (`site/pubs/`).
 - [ ] Make a talk page for each talk (migrated from legacy `TODO.md`).
 
 ## Open TODOs In Source Files
@@ -29,37 +29,37 @@ notes.
 ### General Site Content
 
 - [ ] Decide what the August 2017 Neutrons news item should link to now that
-  the historical project page is gone (`news.dj:117`).
+  the historical project page is gone (`site/pages/news.dj`).
 - [ ] Decide what the stale Neutrons project link on the research page should
-  point to until a replacement page exists (`research.dj:80`).
-- [ ] Implement or remove `canon` TODO in the union-find demo (`demo-naive-union-find.html:147`).
-- [ ] Refactor union-find demo state/history for easier "back" behavior (`demo-naive-union-find.html:381`).
+  point to until a replacement page exists (`site/pages/research.dj`).
+- [ ] Implement or remove `canon` TODO in the union-find demo (`site/static/demo-naive-union-find.html`).
+- [ ] Refactor union-find demo state/history for easier "back" behavior (`site/static/demo-naive-union-find.html`).
 
 ### Publication Pages
 
-- [ ] Decide whether `2008-oopsla-dtar` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2008-oopsla-dtar/publication.json:13`).
-- [ ] Decide whether `2009-pldi-pec` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2009-pldi-pec/publication.json:10`).
-- [ ] Decide whether `2012-security-quark` should expose a project link and, if so, add it to the canonical publication record (`pubs/2012-security-quark/publication.json:11`).
-- [ ] Decide whether `2012-security-quark` should expose a code link and, if so, add it to the canonical publication record (`pubs/2012-security-quark/publication.json:11`).
-- [ ] Decide whether `2012-security-quark` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2012-security-quark/publication.json:11`).
-- [ ] Decide whether `2019-conga-sinkingpoint` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2019-conga-sinkingpoint/publication.json:14`).
-- [ ] Decide whether `2021-arith-herbie` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-arith-herbie/publication.json:13`).
-- [ ] Decide whether `2021-oopsla-ruler` should expose a project link and, if so, add it to the canonical publication record (`pubs/2021-oopsla-ruler/publication.json:16`).
-- [ ] Decide whether `2021-sff-3dp` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2021-sff-3dp/publication.json:17`).
-- [ ] Decide whether `2022-ecoop-cakemlfp` should expose a public talk link and, if so, add it to the canonical publication record (`pubs/2022-ecoop-cakemlfp/publication.json:16`).
-- [ ] Decide whether `2022-ecoop-cakemlfp` should expose an arXiv link and, if so, add it to the canonical publication record (`pubs/2022-ecoop-cakemlfp/publication.json:16`).
-- [ ] Decide whether `2022-tog-carpentry` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2022-tog-carpentry/publication.json:13`).
-- [ ] Decide whether `2023-plarch-lakeroad` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2023-plarch-lakeroad/publication.json:16`).
-- [ ] Decide whether `2023-pldi-egglog` should expose a public talk link and, if so, add it to the canonical publication record (`pubs/2023-pldi-egglog/publication.json:13`).
-- [ ] Decide whether `2023-popl-babble` should expose a project link and, if so, add it to the canonical publication record (`pubs/2023-popl-babble/publication.json:15`).
-- [ ] Decide whether `2023-popl-babble` should expose a poster link and, if so, add it to the canonical publication record (`pubs/2023-popl-babble/publication.json:15`).
+- [ ] Decide whether `2008-oopsla-dtar` should expose an arXiv link and, if so, add it to the canonical publication record (`site/pubs/2008-oopsla-dtar/publication.json`).
+- [ ] Decide whether `2009-pldi-pec` should expose an arXiv link and, if so, add it to the canonical publication record (`site/pubs/2009-pldi-pec/publication.json`).
+- [ ] Decide whether `2012-security-quark` should expose a project link and, if so, add it to the canonical publication record (`site/pubs/2012-security-quark/publication.json`).
+- [ ] Decide whether `2012-security-quark` should expose a code link and, if so, add it to the canonical publication record (`site/pubs/2012-security-quark/publication.json`).
+- [ ] Decide whether `2012-security-quark` should expose an arXiv link and, if so, add it to the canonical publication record (`site/pubs/2012-security-quark/publication.json`).
+- [ ] Decide whether `2019-conga-sinkingpoint` should expose an arXiv link and, if so, add it to the canonical publication record (`site/pubs/2019-conga-sinkingpoint/publication.json`).
+- [ ] Decide whether `2021-arith-herbie` should expose an arXiv link and, if so, add it to the canonical publication record (`site/pubs/2021-arith-herbie/publication.json`).
+- [ ] Decide whether `2021-oopsla-ruler` should expose a project link and, if so, add it to the canonical publication record (`site/pubs/2021-oopsla-ruler/publication.json`).
+- [ ] Decide whether `2021-sff-3dp` should expose an arXiv link and, if so, add it to the canonical publication record (`site/pubs/2021-sff-3dp/publication.json`).
+- [ ] Decide whether `2022-ecoop-cakemlfp` should expose a public talk link and, if so, add it to the canonical publication record (`site/pubs/2022-ecoop-cakemlfp/publication.json`).
+- [ ] Decide whether `2022-ecoop-cakemlfp` should expose an arXiv link and, if so, add it to the canonical publication record (`site/pubs/2022-ecoop-cakemlfp/publication.json`).
+- [ ] Decide whether `2022-tog-carpentry` should expose a poster link and, if so, add it to the canonical publication record (`site/pubs/2022-tog-carpentry/publication.json`).
+- [ ] Decide whether `2023-plarch-lakeroad` should expose a poster link and, if so, add it to the canonical publication record (`site/pubs/2023-plarch-lakeroad/publication.json`).
+- [ ] Decide whether `2023-pldi-egglog` should expose a public talk link and, if so, add it to the canonical publication record (`site/pubs/2023-pldi-egglog/publication.json`).
+- [ ] Decide whether `2023-popl-babble` should expose a project link and, if so, add it to the canonical publication record (`site/pubs/2023-popl-babble/publication.json`).
+- [ ] Decide whether `2023-popl-babble` should expose a poster link and, if so, add it to the canonical publication record (`site/pubs/2023-popl-babble/publication.json`).
 
 ### Template Placeholders (Intentional Scaffolding)
 
-- [ ] Keep or revise template TODO placeholders for new publication scaffolds (`templates/pub-stub.dj:1`, `templates/pub-stub.dj:8`, `templates/publication.json:2`, `templates/publication.json:4`, `templates/publication.json:6`, `templates/publication.json:7`).
-- [ ] Confirm required publication placeholder checks still match policy (`scripts/validate_site.py:22`).
+- [ ] Keep or revise placeholder values for new publication scaffolds (`site/templates/publication.json`).
+- [ ] Confirm unresolved placeholder policy still matches the authoritative validator (`scripts/validate_build.py`, `scripts/sitebuild/artifact_validate.py`).
 
 ## Known Non-TODO Follow-Ups From Review
 
-- [x] Fix broken publication link target missing `.html` suffix (`publications.dj:620`).
-- [ ] Decide whether hidden template TODO blocks in publication source files should keep shipping to production or be treated as release blockers.
+- [x] Canonicalize authored publication links to `pubs/<slug>/` paths (`site/pages/index.dj`, `site/pages/news.dj`, `site/pages/publications.dj`).
+- [ ] Decide whether unresolved scaffold placeholders in draft publication records should remain acceptable until publication (`site/templates/publication.json`, `scripts/validate_build.py`, `scripts/sitebuild/artifact_validate.py`).

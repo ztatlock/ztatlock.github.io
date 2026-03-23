@@ -133,10 +133,10 @@ The assumption is deeply baked in:
   special case of top-level stub files.
 - [page_metadata.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_metadata.py)
   derives canonical URLs from page stems by appending `.html`.
-- [validate_site.py](/Users/ztatlock/www/ztatlock.github.io/scripts/validate_site.py)
-  scans top-level `*.html` and top-level `pub-*.html`.
-- [check.sh](/Users/ztatlock/www/ztatlock.github.io/scripts/check.sh)
-  treats draft detection and generated-output cleanup as top-level-page logic.
+- legacy `validate_site.py` (now retired) scanned top-level `*.html` and
+  top-level `pub-*.html`.
+- legacy `check.sh` (now retired) treated draft detection and
+  generated-output cleanup as top-level-page logic.
 - authored links in [index.dj](/Users/ztatlock/www/ztatlock.github.io/index.dj),
   [news.dj](/Users/ztatlock/www/ztatlock.github.io/news.dj), and
   [publications.dj](/Users/ztatlock/www/ztatlock.github.io/publications.dj)

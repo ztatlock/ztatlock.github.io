@@ -19,7 +19,29 @@ Optional personal-maintenance helper:
 
 - `make inventory-webfiles`
 
-## Current Scripts
+## Primary CLI Entry Points
+
+- `build_site.py`
+  CLI entrypoint behind `make build`.
+- `validate_build.py`
+  CLI entrypoint behind `make check`.
+- `render_routes.py`
+  Emits the authoritative route table to `state/routes.json`.
+- `build_pub_inventory.py`
+  Builds the publication-artifact inventory by merging filesystem observation
+  with `manifests/publication-artifact-curation.tsv`.
+  `make inventory` writes a repo-local inventory snapshot under `state/inventory/`.
+  `make inventory-webfiles` refreshes the personal archive copy under
+  `~/Desktop/WEBFILES/inventory/`.
+- `mkpub.sh`
+  Scaffolds a new publication-local record under `site/pubs/<slug>/`.
+- `check_env.sh`
+  Verifies local command/tool prerequisites and reports portability
+  assumptions.
+- `index-now.sh`
+  Submits updated pages to IndexNow and stores local run-state under `state/`.
+
+## Shared Build Modules
 
 - `sitebuild/artifact_validate.py`
   Shared HTML artifact-validation helpers for the authoritative `build/`
@@ -38,46 +60,30 @@ Optional personal-maintenance helper:
   Shared source/build configuration.
 - `sitebuild/source_validate.py`
   Config-driven source validation for the authoritative path.
-- `build_site.py`
-  CLI entrypoint behind `make build`.
-- `build_pub_inventory.py`
-  Builds the publication-artifact inventory by merging filesystem observation
-  with `manifests/publication-artifact-curation.tsv`.
-  `make inventory` writes a repo-local inventory snapshot under `state/inventory/`.
-  `make inventory-webfiles` refreshes the personal archive copy under
-  `~/Desktop/WEBFILES/inventory/`.
-- `check_env.sh`
-  Verifies local command/tool prerequisites and reports portability
-  assumptions.
-- `index-now.sh`
-  Submits updated pages to IndexNow and stores local run-state under `state/`.
-- `mkpub.sh`
-  Scaffolds a new publication-local record under `site/pubs/<slug>/`.
 - `page_metadata.py`
   Shared metadata helpers for page metadata rendering and source validation.
 - `page_source.py`
-  Shared Djot page-source parser and publication-page source loader.
+  Shared ordinary-page parser plus publication-page source renderer.
 - `publication_record.py`
   Shared loader and helpers for publication-local records in
   `site/pubs/<slug>/publication.json`.
+
+## Manual / Diagnostic Helpers
+
 - `render_meta.py`
-  Emits `<meta>` HTML for a page by rendering non-publication front matter and
-  publication metadata.
+  Emits `<meta>` HTML for one ordinary page or publication page.
+- `audit_people_refs.py`
+  Audits generated people refs against the manual non-person remainder.
 - `render_people_refs.py`
-  Prototype helper that renders Djot people-reference definitions from
+  Manual helper that renders Djot people-reference definitions from
   `site/data/people.json`.
-- `render_routes.py`
-  Emits the authoritative route table to `state/routes.json`.
 - `render_site_refs.py`
-  Renders the composed Djot refs bundle used by the build:
+  Manual helper that renders the composed Djot refs bundle used by the build:
   generated people refs from `site/data/people.json` plus the tiny manual
   non-person remainder in `site/templates/REFS`.
 - `scaffold_publication.py`
-  Creates a new draft publication-local scaffold from templates.
-- `validate_build.py`
-  Validates authoritative source invariants plus the built site under `build/`
-  for unresolved placeholders, broken local links, and route-driven sitemap
-  correctness.
+  Underlying Python helper used by `mkpub.sh` to create a new draft
+  publication-local scaffold from templates.
 
 ## Conventions
 

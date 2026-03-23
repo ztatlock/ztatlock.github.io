@@ -7,7 +7,7 @@ source with a small Python build engine behind `make`.
 
 - `site/pages/`
   Authored Djot pages.
-- `site/pubs/<year-conf-sys>/`
+- `site/pubs/<slug>/`
   Publication records and local publication assets.
 - `site/static/`
   Copied public static/config files, shared `img/`, and standalone authored
@@ -49,7 +49,7 @@ Commands:
 - `make routes`
   Render the authoritative route table to `state/routes.json`.
 - `make test`
-  Run focused unit tests for the route/data/build modules.
+  Auto-discover and run focused unit tests under `tests/`.
 - `make inventory`
   Build publication artifact inventory locally under `state/inventory/`.
 - `make mkpub YCF=YEAR-CONF-SYS`
