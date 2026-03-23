@@ -30,6 +30,19 @@
 - Make the authored-source vs built-output split explicit.
 - Move toward an intentional route-aware source/build/deploy pipeline instead
   of serving the repo root directly.
+- For the real source move into `site/`, treat these as required cutover items,
+  not optional follow-up:
+  - flip the new engine's default source roots to `site/pages`, `site/pubs`,
+    `site/static`, and `site/templates`
+  - cut over or retire the legacy root-only `make all`, `make <page>.html`,
+    and `make check` path
+  - remove preview-validator dependence on publication-stub bridge checks once
+    stubs are gone
+  - remove the legacy publication-link reverse-rewrite bridge
+  - stop default scaffold generation of legacy publication stubs
+  - update contributor-facing docs to the post-move workflow
+  - if any bridge-only code survives the move, do an immediate cleanup pass
+    with no other scope
 - Introduce a small shared data model for cross-page facts such as people,
   talks, students, and selected CV records, while keeping prose near prose and
   publication-local facts near publication bundles.

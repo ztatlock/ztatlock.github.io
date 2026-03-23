@@ -810,6 +810,29 @@ authoritative:
 - either retire or clearly demote the old root-only `make all` / `make check`
   path instead of letting it silently define the architecture after the move
 
+More concretely, the source-move phase should include:
+
+- changing `SiteConfig` defaults so the new engine reads from:
+  - `site/pages/`
+  - `site/pubs/`
+  - `site/static/`
+  - `site/templates/`
+- updating the public command surface so the normal contributor workflow no
+  longer centers the legacy root build
+- deciding the fate of the legacy one-page root target shape
+  (`make <page>.html`) in the same phase, not later
+- removing gated publication-stub bridge checks from the authoritative preview
+  validator once top-level stubs are removed
+- removing the temporary reverse-rewrite layer that maps canonical publication
+  links back to `pub-*.html` for the legacy root build
+- stopping default scaffold generation of legacy publication stubs
+- updating contributor-facing docs (`README.md`, `AGENTS.md`, related notes) so
+  they describe the post-move workflow honestly
+
+If any of the bridge-only pieces above are not deleted inside the move itself,
+there should be an immediate cleanup pass right after the move with no other
+scope.
+
 ### Phase 6: Add GitHub Pages Workflow
 
 Add:

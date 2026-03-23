@@ -447,6 +447,34 @@ mostly mechanical.
 This phase must also include command-surface cutover or retirement of the
 legacy root-only build/check path.
 
+Phase 5 is not complete unless it also does the following:
+
+- flip the default source roots in the new engine from the repo root to:
+  - `site/pages/`
+  - `site/pubs/`
+  - `site/static/`
+  - `site/templates/`
+- cut over or retire the legacy root-only commands that still define the old
+  architecture:
+  - `make all`
+  - `make <page>.html`
+  - `make check`
+- remove preview-validator dependence on the temporary publication-stub bridge
+  once top-level `pub-*.dj` stubs are gone
+- remove the remaining legacy-only reverse-rewrite bridge for canonical
+  publication links in the root build path
+- stop defaulting new publication scaffolds to create legacy stubs
+- flip contributor-facing docs so the normal workflow describes the new
+  authoritative build/check path rather than the legacy root build
+
+Immediate cleanup after Phase 5, if not folded into the phase itself, should
+delete the remaining bridge-only branches:
+
+- repo-root static-route bridge behavior
+- publication-stub bridge validation
+- legacy publication-link reverse-rewrite glue
+- legacy-stub scaffolding defaults
+
 ### Phase 6
 
 Add GitHub Pages workflow for deploying `build/`.
