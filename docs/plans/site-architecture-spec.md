@@ -444,6 +444,8 @@ Finish source-move readiness in the new engine before moving real files:
 
 Move source into `site/` once the new engine is ready enough that the move is
 mostly mechanical.
+This phase must also include command-surface cutover or retirement of the
+legacy root-only build/check path.
 
 ### Phase 6
 

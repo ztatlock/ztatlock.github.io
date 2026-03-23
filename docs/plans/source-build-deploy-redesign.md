@@ -800,6 +800,16 @@ This source move should happen only after the preview builder is trusted
 enough that the source migration is mostly mechanical rather than
 architecturally exploratory.
 
+This phase is not only file moves.
+It also needs the command-surface cutover that makes the new engine
+authoritative:
+
+- flip the preview/source-aware command defaults to the real `site/` layout
+- remove preview-validator dependence on temporary publication-stub bridge
+  checks
+- either retire or clearly demote the old root-only `make all` / `make check`
+  path instead of letting it silently define the architecture after the move
+
 ### Phase 6: Add GitHub Pages Workflow
 
 Add:
