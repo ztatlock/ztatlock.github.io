@@ -800,6 +800,12 @@ This source move should happen only after the preview builder is trusted
 enough that the source migration is mostly mechanical rather than
 architecturally exploratory.
 
+In practice, the source move and the GitHub Pages workflow cutover should be
+treated as one short coordinated campaign.
+Leaving the repo in a long-lived state where source has moved but publication
+still depends on tracked root outputs would reintroduce the split-brain design
+we are trying to eliminate.
+
 This phase is not only file moves.
 It also needs the command-surface cutover that makes the new engine
 authoritative:

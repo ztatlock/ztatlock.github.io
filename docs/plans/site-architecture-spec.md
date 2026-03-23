@@ -446,6 +446,8 @@ Move source into `site/` once the new engine is ready enough that the move is
 mostly mechanical.
 This phase must also include command-surface cutover or retirement of the
 legacy root-only build/check path.
+In practice, this phase should be landed as one short coordinated campaign with
+the GitHub Pages deployment cutover, not as a long-lived half-switched state.
 
 Phase 5 is not complete unless it also does the following:
 

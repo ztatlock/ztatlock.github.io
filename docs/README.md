@@ -90,6 +90,10 @@ meant to be read, maintained, and extended over time.
   Final source-move-readiness slice for making the new path authoritative for
   source validation and for turning `static_source_dir` into a true recursive
   copy tree before any real files move into `site/`.
+- `plans/source-move-cutover-plan.md`
+  Concrete coordinated plan for moving authored source into `site/`, cutting
+  over the command surface, switching Pages deployment to `build/`, and
+  deleting bridge-only legacy code.
 
 ## Near-Term Cleanup
 
