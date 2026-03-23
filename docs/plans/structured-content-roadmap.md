@@ -91,7 +91,7 @@ Important constraint:
 - the current publications index is only partially backed by canonical local
   bundles today
 
-The real job is to complete canonical local bundle coverage and then project
+The real job is now to finish the collection-route cleanup and then project
 publication-list structure from `site/pubs/<slug>/publication.json` records
 instead of hand-maintaining the repeated listing shape in
 `site/pages/publications.dj`
@@ -110,17 +110,16 @@ shape explicitly instead of drifting into it piecemeal.
 Another important scoping note:
 
 - the current `site/pages/publications.dj` lists 69 entries
-- 24 of those entries currently have canonical local bundles under
+- all 69 indexed publications now have canonical local bundles under
   `site/pubs/`
-- 45 indexed publications still need local bundles
+- 48 of those bundles are currently minimal `detail_page: false` records
 
 So the publications campaign is explicitly a staged project.
 It now has to separate:
 
-- finishing canonical local bundle coverage
 - deciding the collection index route shape
 - projecting the page incrementally without pretending all entries are already
-  fully canonicalized in the same way
+  equally rich local publication pages
 
 ### 3. Students
 

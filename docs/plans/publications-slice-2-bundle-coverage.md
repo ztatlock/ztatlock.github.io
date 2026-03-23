@@ -1,6 +1,6 @@
 # Publications Slice 2: Bundle Coverage
 
-Status: Planned
+Status: Implemented
 
 This note details the second implementation slice of the publications
 structured-content campaign.
@@ -22,14 +22,14 @@ This slice should make the following statement true:
 - every publication currently listed on the site has a canonical local bundle
   under `site/pubs/<slug>/publication.json`
 
-## Current State
+## Starting State
 
-Right now:
+This slice started from:
 
 - `site/pages/publications.dj` lists `69` publication entries
-- `24` of those entries already have local bundles under `site/pubs/`
-- `45` entries still do not
-- the remaining gap is:
+- `24` of those entries already had local bundles under `site/pubs/`
+- `45` entries still did not
+- the remaining gap was:
   - `36` main-section publications
   - `9` workshop-section publications
 
@@ -81,6 +81,25 @@ This slice should not yet require:
 - local PDFs/BibTeX/abstracts/images for newly backfilled minimal bundles
 - any route change away from `/publications.html`
 - any projection macros in the publications index
+
+## Outcome
+
+This slice is now implemented.
+
+The current repo state after this slice is:
+
+- `site/pages/publications.dj` still lists `69` publication entries
+- all `69` indexed publications now have canonical non-draft bundles under
+  `site/pubs/`
+- bundle `listing_group` counts now match the current hand-authored index:
+  - `58` `main`
+  - `11` `workshop`
+- `48` publications are currently in minimal `detail_page: false` mode
+- richer existing `detail_page: true` bundles remain intact
+
+The temporary coverage validator is also implemented and now enforces the
+pre-projection consistency contract between the hand-authored index and the
+bundle set.
 
 ## Recommended Scope
 
@@ -184,6 +203,10 @@ Checkpoint:
 - validator can detect section/listing-group mismatch
 - validator can detect orphan non-draft bundles
 
+Result:
+
+- implemented
+
 ### Step 2: Workshop Backfill
 
 Backfill the remaining workshop publications first.
@@ -200,6 +223,10 @@ Checkpoint:
 - validator stays green
 - inventory still behaves honestly
 
+Result:
+
+- implemented
+
 ### Step 3: Main-Section Backfill
 
 Backfill the remaining `36` main-section publications.
@@ -213,6 +240,10 @@ Recommended discipline:
 Checkpoint:
 
 - every indexed publication now has a local bundle
+
+Result:
+
+- implemented
 
 ### Step 4: Final Verification
 
@@ -230,6 +261,10 @@ Also verify that there are still no unexpected tracked output diffs in:
 - `*.html`
 - `sitemap.txt`
 - `sitemap.xml`
+
+Result:
+
+- all passed
 
 ## Tests
 

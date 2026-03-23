@@ -40,17 +40,19 @@ payoff.
 
 ## Current Status
 
-Slice 1 of this campaign is now implemented.
+Slices 1 and 2 of this campaign are now implemented.
 
 That means:
 
-- the repo now supports a minimal published publication-bundle mode for
-  canonical local records without local detail pages
+- the repo supports a minimal published publication-bundle mode for canonical
+  local records without local detail pages
 - existing richer publication bundles have been aligned to that model
-- a small pilot set of formerly external-only publications now has local
-  bundles under `site/pubs/`
+- every publication currently listed in `site/pages/publications.dj` now has a
+  canonical non-draft local bundle under `site/pubs/`
+- temporary source validation now keeps the hand-authored publications index
+  and the bundle set from drifting apart while projection has not landed yet
 
-The next likely slice is therefore Slice 2: expand bundle coverage.
+The next likely slice is therefore Slice 3: collection index route cutover.
 
 ## Current Audit
 
@@ -73,12 +75,15 @@ Current observed facts:
   - `Workshop Papers`
 - it has `1` clearly hand-authored section:
   - `Aggregators`
-- `24` entries currently have canonical local bundles under `site/pubs/`
-- `24` title links currently point to local `pubs/<slug>/`
-- `45` title links currently point directly to external URLs
-- the remaining bundle-coverage gap is:
-  - `36` main-section publications
-  - `9` workshop-section publications
+- all `69` indexed publications now have canonical local bundles under
+  `site/pubs/`
+- current bundle coverage by `listing_group` is:
+  - `58` `main`
+  - `11` `workshop`
+- `48` publications are currently represented as minimal index-backed bundles
+  with `detail_page: false`
+- the hand-authored index still mixes local `pubs/<slug>/` links and direct
+  external title links
 
 ### Consequences Of The Audit
 
@@ -89,10 +94,10 @@ These facts imply:
   local bundle
 - but the current non-draft publication-page model is too rich to backfill all
   missing bundles in one step
-- we need a cleaner minimal bundle model before bulk bundle coverage and index
-  projection will be simple
-- route shape, bundle coverage, and projection should be treated as related but
-  separable subproblems
+- the minimal bundle model was the right prerequisite for full bundle coverage
+- route shape and projection remain related but separable next steps
+- the repo is now in a much stronger state to change the collection wrapper
+  without also doing a giant content backfill in the same slice
 
 ## Desired End State
 
@@ -251,6 +256,10 @@ Likely scope:
 
 Stop and reassess after this slice.
 
+Status:
+
+- implemented
+
 ### Slice 3: Collection Index Route Cutover
 
 Goal:
@@ -323,25 +332,20 @@ As this campaign proceeds, we want:
 
 The next publications slice should be:
 
-- bundle coverage for the remaining publications index entries
+- collection index route cutover
 
 Concretely, that means:
 
-1. backfill the remaining `45` publication bundles from the current hand-
-   authored index
-2. keep those new bundles intentionally minimal unless a real local detail page
-   already exists
-3. add temporary validation that enforces:
-   - every indexed publication slug has a bundle
-   - every non-draft bundle appears in the current index exactly once
-   - each non-draft bundle's `listing_group` matches the index section where it
-     appears
-4. stop and reassess before route cutover or index projection
+1. decide whether the clean collection shape should be `site/pubs/index.dj`
+   with canonical `/pubs/`
+2. move only the wrapper/index location and publication-detail backlinks
+3. keep `site/pages/publications.dj` hand-authored for one more slice if that
+   makes the route change easier to review
+4. stop and reassess before projecting repeated publication-entry blocks
 
-That is the cleanest next move because it finishes canonical local publication
-coverage while the current index is still stable and readable, and it
-establishes the temporary invariants we need before later route and projection
-slices.
+That is the cleanest next move because bundle coverage is now complete, and the
+main remaining architectural asymmetry is the collection wrapper and route
+shape rather than content coverage.
 
 The detailed planning notes for the first two slices are:
 
