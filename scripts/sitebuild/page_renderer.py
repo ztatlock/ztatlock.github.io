@@ -10,6 +10,7 @@ from scripts.page_metadata import MetadataError, render_route_meta_for_url
 from scripts.page_source import (
     PageSourceError,
     read_page_source,
+    read_publications_index_source,
     read_publication_page_source,
     read_talks_index_source,
 )
@@ -110,6 +111,13 @@ def render_page_html(
             source = read_talks_index_source(
                 root,
                 talks_dir=talks_dir,
+            )
+        elif route_kind == "publications_index_page":
+            if route_key != "publications":
+                raise PageRenderError(f"unsupported publications index route key: {route_key}")
+            source = read_publications_index_source(
+                root,
+                publications_dir=publications_dir,
             )
         elif route_kind == "publication_page":
             source = read_publication_page_source(

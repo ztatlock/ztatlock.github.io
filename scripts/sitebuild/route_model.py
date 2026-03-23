@@ -6,7 +6,13 @@ from dataclasses import asdict, dataclass
 from pathlib import Path, PurePosixPath
 from typing import Literal
 
-RouteKind = Literal["ordinary_page", "talks_index_page", "publication_page", "static_file"]
+RouteKind = Literal[
+    "ordinary_page",
+    "talks_index_page",
+    "publications_index_page",
+    "publication_page",
+    "static_file",
+]
 
 
 class RouteModelError(ValueError):

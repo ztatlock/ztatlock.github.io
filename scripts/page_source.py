@@ -8,6 +8,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from scripts.publication_index import publications_index_path
 from scripts.publication_record import (
     PublicationRecord,
     PublicationRecordError,
@@ -43,6 +44,14 @@ def talks_index_source_path(
     talks_dir: Path | None = None,
 ) -> Path:
     return talks_index_path(root, talks_dir=talks_dir)
+
+
+def publications_index_source_path(
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+) -> Path:
+    return publications_index_path(root, publications_dir=publications_dir)
 
 
 def normalize_front_matter_value(raw_value: str) -> str:
@@ -138,6 +147,19 @@ def read_talks_index_source(
         talks_index_source_path(
             root,
             talks_dir=talks_dir,
+        )
+    )
+
+
+def read_publications_index_source(
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        publications_index_source_path(
+            root,
+            publications_dir=publications_dir,
         )
     )
 

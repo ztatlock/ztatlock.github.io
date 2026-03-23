@@ -11,9 +11,9 @@ class PublicationIndexTests(unittest.TestCase):
     def test_loads_entries_from_current_hand_authored_index_shape(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
-            pages = root / "site" / "pages"
-            pages.mkdir(parents=True)
-            (pages / "publications.dj").write_text(
+            pubs = root / "site" / "pubs"
+            pubs.mkdir(parents=True)
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"
@@ -46,7 +46,7 @@ class PublicationIndexTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            entries = load_publications_index_entries(root, page_source_dir=pages)
+            entries = load_publications_index_entries(root, publications_dir=pubs)
 
             self.assertEqual([entry.slug for entry in entries], ["2025-test-main", "2025-test-workshop"])
             self.assertEqual(entries[0].listing_group, "main")
@@ -66,9 +66,9 @@ class PublicationIndexTests(unittest.TestCase):
     def test_rejects_duplicate_slug(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
-            pages = root / "site" / "pages"
-            pages.mkdir(parents=True)
-            (pages / "publications.dj").write_text(
+            pubs = root / "site" / "pubs"
+            pubs.mkdir(parents=True)
+            (pubs / "index.dj").write_text(
                 "# Publications\n\n"
                 "## Conference and Journal Papers\n\n"
                 "{#2025-test-main}\n"
@@ -87,4 +87,4 @@ class PublicationIndexTests(unittest.TestCase):
             )
 
             with self.assertRaises(PublicationIndexError):
-                load_publications_index_entries(root, page_source_dir=pages)
+                load_publications_index_entries(root, publications_dir=pubs)

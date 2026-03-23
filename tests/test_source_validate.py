@@ -25,7 +25,7 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "publications.dj").write_text(
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"
@@ -57,7 +57,7 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(
                 find_source_issues(config),
-                [f"{pages / 'publications.dj'}: indexed publication missing canonical bundle: 2025-test-demo"],
+                [f"{pubs / 'index.dj'}: indexed publication missing canonical bundle: 2025-test-demo"],
             )
 
     def test_reports_non_draft_publication_bundle_missing_from_index(self) -> None:
@@ -75,7 +75,7 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "publications.dj").write_text(
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"
@@ -119,7 +119,7 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(
                 find_source_issues(config),
-                [f"{pages / 'publications.dj'}: non-draft publication bundle missing from publications index: 2025-test-demo"],
+                [f"{pubs / 'index.dj'}: non-draft publication bundle missing from publications index: 2025-test-demo"],
             )
 
     def test_reports_publications_listing_group_mismatch(self) -> None:
@@ -137,7 +137,7 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "publications.dj").write_text(
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"
@@ -188,7 +188,7 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [
-                    f"{pages / 'publications.dj'}: listing_group mismatch for 2025-test-demo: "
+                    f"{pubs / 'index.dj'}: listing_group mismatch for 2025-test-demo: "
                     "index=main, bundle=workshop"
                 ],
             )
@@ -208,7 +208,7 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "publications.dj").write_text(
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"
@@ -511,6 +511,160 @@ class SourceValidateTests(unittest.TestCase):
                 [f"{pages / 'index.dj'}: legacy talks link should use canonical collection path: talks.html -> talks/"],
             )
 
+    def test_reports_legacy_publications_index_link(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home\n"
+                "---\n"
+                "# Home\n\n"
+                "[Publications](publications.html)\n",
+                encoding="utf-8",
+            )
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "{#2025-test-demo}\n"
+                "*[Demo Paper](https://example.test/paper)* \\\n"
+                "  Demo Author\n"
+                "\\\n"
+                "DemoConf 2025\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "## Aggregators\n",
+                encoding="utf-8",
+            )
+            pub_dir = pubs / "2025-test-demo"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/paper"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'index.dj'}: legacy publications index link should use canonical collection path: "
+                    "publications.html -> pubs/"
+                ],
+            )
+
+    def test_reports_legacy_publications_wrapper_after_cutover(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "publications.dj").write_text(
+                "---\n"
+                "description: Legacy publications wrapper\n"
+                "---\n"
+                "# Publications\n",
+                encoding="utf-8",
+            )
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "{#2025-test-demo}\n"
+                "*[Demo Paper](https://example.test/paper)* \\\n"
+                "  Demo Author\n"
+                "\\\n"
+                "DemoConf 2025\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "## Aggregators\n",
+                encoding="utf-8",
+            )
+            pub_dir = pubs / "2025-test-demo"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/paper"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'publications.dj'}: publications index wrapper must move to {pubs / 'index.dj'}"
+                ],
+            )
+
     def test_accepts_configured_static_image_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
@@ -629,7 +783,7 @@ class SourceValidateTests(unittest.TestCase):
             img_dir.mkdir(parents=True)
             (img_dir / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "publications.dj").write_text(
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"
@@ -694,7 +848,7 @@ class SourceValidateTests(unittest.TestCase):
             img_dir.mkdir(parents=True)
             (img_dir / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "publications.dj").write_text(
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"
@@ -762,7 +916,7 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "publications.dj").write_text(
+            (pubs / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"

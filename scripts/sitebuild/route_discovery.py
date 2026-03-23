@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from scripts.page_source import DRAFT_HEADING_RE
+from scripts.publication_index import publications_index_path
 from scripts.publication_record import (
     EXTRA_CONTENT_NAME,
     PUBLICATION_RECORD_NAME,
@@ -90,6 +91,39 @@ def _talks_index_routes(config: SiteConfig) -> list[Route]:
     talks_route = _talk_collection_index_route(config)
     if talks_route is not None:
         routes.append(talks_route)
+    return routes
+
+
+def _publication_collection_index_route(config: SiteConfig) -> Route | None:
+    index_path = publications_index_path(
+        config.repo_root,
+        publications_dir=config.publications_dir,
+    )
+    if not index_path.exists():
+        return None
+
+    legacy_publications_page = config.page_source_dir / "publications.dj"
+    if legacy_publications_page.exists():
+        raise RouteDiscoveryError(
+            f"{legacy_publications_page}: publications index wrapper must live at {index_path}"
+        )
+
+    return Route(
+        kind="publications_index_page",
+        key="publications",
+        source_paths=(index_path,),
+        output_relpath="pubs/index.html",
+        public_url="/pubs/",
+        canonical_url=canonical_url(config.site_url, "/pubs/"),
+        is_draft=_is_draft_page(index_path),
+    )
+
+
+def _publications_index_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    publications_route = _publication_collection_index_route(config)
+    if publications_route is not None:
+        routes.append(publications_route)
     return routes
 
 
@@ -261,10 +295,16 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
 def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     ordinary_routes = _ordinary_page_routes(config)
     talks_index_routes = _talks_index_routes(config)
+    publications_index_routes = _publications_index_routes(config)
     publication_routes = _publication_page_routes(config)
     page_routes = tuple(
         sorted(
-            (*ordinary_routes, *talks_index_routes, *publication_routes),
+            (
+                *ordinary_routes,
+                *talks_index_routes,
+                *publications_index_routes,
+                *publication_routes,
+            ),
             key=lambda route: route.output_relpath,
         )
     )

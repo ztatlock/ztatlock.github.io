@@ -630,5 +630,5 @@ def render_publication_body(
         ]
     )
 
-    blocks.extend(["", "", "[📝 publications index](publications.html)"])
+    blocks.extend(["", "", "[📝 publications index](pubs/)"])
     return "\n".join(blocks) + "\n"

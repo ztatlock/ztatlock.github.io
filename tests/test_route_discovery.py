@@ -142,6 +142,15 @@ class RouteDiscoveryTests(unittest.TestCase):
                 ],
             )
 
+    def test_discovers_publications_index_route(self) -> None:
+        route = find_route(self.routes, kind="publications_index_page", key="publications")
+        self.assertEqual(route.output_relpath, "pubs/index.html")
+        self.assertEqual(route.public_url, "/pubs/")
+        self.assertEqual(
+            [path.relative_to(ROOT).as_posix() for path in route.source_paths],
+            ["site/pubs/index.dj"],
+        )
+
     def test_rejects_legacy_and_collection_talk_wrappers_together(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
@@ -163,6 +172,31 @@ class RouteDiscoveryTests(unittest.TestCase):
                 root,
                 page_source_dir=page_source_dir,
                 talks_dir=talks_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
+
+    def test_rejects_legacy_and_collection_publications_wrappers_together(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "publications.dj").write_text("# Publications\n", encoding="utf-8")
+            (publications_dir / "index.dj").write_text("# Publications\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
                 publications_dir=publications_dir,
                 static_source_dir=static_source_dir,
             )

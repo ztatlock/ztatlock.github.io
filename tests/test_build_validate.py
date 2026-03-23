@@ -182,7 +182,7 @@ class BuildValidateTests(unittest.TestCase):
                 "Body.\n",
                 encoding="utf-8",
             )
-            (pages_dir / "publications.dj").write_text(
+            (pubs_dir / "index.dj").write_text(
                 "---\n"
                 "description: Publications\n"
                 "---\n\n"

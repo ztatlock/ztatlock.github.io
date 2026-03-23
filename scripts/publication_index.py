@@ -6,9 +6,13 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from scripts.publication_record import PublicationPerson, publication_year
+from scripts.publication_record import (
+    PublicationPerson,
+    default_publications_dir,
+    publication_year,
+)
 
-PUBLICATIONS_INDEX_NAME = "publications.dj"
+PUBLICATIONS_INDEX_NAME = "index.dj"
 LISTING_GROUP_BY_SECTION = {
     "Conference and Journal Papers": "main",
     "Workshop Papers": "workshop",
@@ -34,9 +38,9 @@ class PublicationIndexEntry:
     badges: tuple[str, ...]
 
 
-def publications_index_path(root: Path, *, page_source_dir: Path | None = None) -> Path:
-    pages_dir = page_source_dir or (root / "site" / "pages")
-    return pages_dir / PUBLICATIONS_INDEX_NAME
+def publications_index_path(root: Path, *, publications_dir: Path | None = None) -> Path:
+    actual_publications_dir = publications_dir or default_publications_dir(root)
+    return actual_publications_dir / PUBLICATIONS_INDEX_NAME
 
 
 def _normalized_url(raw: str) -> str:
@@ -139,9 +143,9 @@ def _parse_entry_block(
 def load_publications_index_entries(
     root: Path,
     *,
-    page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
 ) -> tuple[PublicationIndexEntry, ...]:
-    path = publications_index_path(root, page_source_dir=page_source_dir)
+    path = publications_index_path(root, publications_dir=publications_dir)
     if not path.exists():
         raise PublicationIndexError(f"Missing publications index source: {path}")
 
