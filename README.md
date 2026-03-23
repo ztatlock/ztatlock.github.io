@@ -93,6 +93,8 @@ Notes:
 - Do not hand-edit generated files under `build/`.
 - Authored publication page links in Djot should use `pubs/<slug>/`, not
   `pub-<slug>.html`.
+- Authored publications collection links in Djot should use `pubs/`, not
+  `publications.html`.
 - Authored talks index links in Djot should use `talks/`, not `talks.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.

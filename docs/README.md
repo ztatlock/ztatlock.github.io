@@ -69,12 +69,15 @@ meant to be read, maintained, and extended over time.
   and next-checkpoint questions.
 - `plans/publications-campaign.md`
   Current publications structured-content campaign note, including the
-  implemented bundle-coverage milestone, collection-index decision point, and
+  implemented bundle-coverage and collection-route milestones, plus the
   current recommended next slice.
 - `plans/publications-slice-2-bundle-coverage.md`
   Implemented record of the bundle-coverage slice that made every indexed
   publication a canonical local bundle before the publications route-cutover
   and projection work.
+- `plans/publications-slice-3-route-cutover.md`
+  Implemented record of the publications route-cutover slice that moved the
+  wrapper to `site/pubs/index.dj` and canonicalized `/pubs/`.
 - `plans/talks-slice-2-collection-index.md`
   Implemented record of the talks-index-route slice that moved the talks
   wrapper to `site/talks/index.dj` and canonicalized `/talks/`.

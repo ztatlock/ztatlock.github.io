@@ -40,19 +40,22 @@ payoff.
 
 ## Current Status
 
-Slices 1 and 2 of this campaign are now implemented.
+Slices 1 through 3 of this campaign are now implemented.
 
 That means:
 
 - the repo supports a minimal published publication-bundle mode for canonical
   local records without local detail pages
 - existing richer publication bundles have been aligned to that model
-- every publication currently listed in `site/pages/publications.dj` now has a
+- every publication currently listed in the hand-authored publications index
+  now has a
   canonical non-draft local bundle under `site/pubs/`
 - temporary source validation now keeps the hand-authored publications index
   and the bundle set from drifting apart while projection has not landed yet
+- the hand-authored publications wrapper now lives at `site/pubs/index.dj`
+- the canonical collection route is now `/pubs/`
 
-The next likely slice is therefore Slice 3: collection index route cutover.
+The next likely slice is therefore Slice 4: publication index projection.
 
 ## Current Audit
 
@@ -61,8 +64,8 @@ Current relevant sources:
 - `site/pubs/<slug>/publication.json`
   Canonical local publication records for the subset of publications that
   currently have bundles.
-- `site/pages/publications.dj`
-  Current hand-authored publication index page.
+- `site/pubs/index.dj`
+  Current hand-authored publication index wrapper.
 - `scripts/publication_record.py`
   Canonical publication loading and page rendering helpers.
 
@@ -82,6 +85,7 @@ Current observed facts:
   - `11` `workshop`
 - `48` publications are currently represented as minimal index-backed bundles
   with `detail_page: false`
+- the canonical collection route is now `/pubs/`
 - the hand-authored index still mixes local `pubs/<slug>/` links and direct
   external title links
 
@@ -96,8 +100,8 @@ These facts imply:
   missing bundles in one step
 - the minimal bundle model was the right prerequisite for full bundle coverage
 - route shape and projection remain related but separable next steps
-- the repo is now in a much stronger state to change the collection wrapper
-  without also doing a giant content backfill in the same slice
+- the collection wrapper and route shape are now aligned with the bundle root
+- the next real step is projection, not more route cleanup
 
 ## Desired End State
 
@@ -269,10 +273,11 @@ Goal:
 
 Likely scope:
 
-- add a publications collection index wrapper at `site/pubs/index.dj`
-- decide whether the canonical route becomes `/pubs/`
+- add an explicit `publications_index_page` route kind
+- move the publications collection index wrapper to `site/pubs/index.dj`
+- canonicalize the collection route at `/pubs/`
 - update publication detail page backlinks away from `publications.html`
-- update authored internal links accordingly
+- rewrite authored internal links from `publications.html` to `pubs/`
 - keep the repeated publication list body hand-authored for this slice
 
 Why here:
@@ -284,6 +289,10 @@ Why here:
   projection work
 
 Stop and reassess after this slice.
+
+Status:
+
+- implemented
 
 ### Slice 4: Publication Index Projection
 
@@ -332,22 +341,20 @@ As this campaign proceeds, we want:
 
 The next publications slice should be:
 
-- collection index route cutover
+- publication index projection
 
 Concretely, that means:
 
-1. decide whether the clean collection shape should be `site/pubs/index.dj`
-   with canonical `/pubs/`
-2. move only the wrapper/index location and publication-detail backlinks
-3. keep `site/pages/publications.dj` hand-authored for one more slice if that
-   makes the route change easier to review
-4. stop and reassess before projecting repeated publication-entry blocks
+1. keep `site/pubs/index.dj` as the authored wrapper
+2. introduce generated list blocks for the repeated publication-entry sections
+3. keep framing and `Aggregators` hand-authored
+4. stop and reassess before any artifact-enrichment work
 
-That is the cleanest next move because bundle coverage is now complete, and the
-main remaining architectural asymmetry is the collection wrapper and route
-shape rather than content coverage.
+That is the cleanest next move because the collection shape is now stable and
+the remaining repeated structure lives in the hand-authored index body.
 
-The detailed planning notes for the first two slices are:
+The detailed planning notes for the first three implemented slices are:
 
 - [publications-slice-1-minimal-bundle-model.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-1-minimal-bundle-model.md)
 - [publications-slice-2-bundle-coverage.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-2-bundle-coverage.md)
+- [publications-slice-3-route-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-3-route-cutover.md)

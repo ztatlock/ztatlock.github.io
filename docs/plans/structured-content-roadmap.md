@@ -91,25 +91,25 @@ Important constraint:
 - the current publications index is only partially backed by canonical local
   bundles today
 
-The real job is now to finish the collection-route cleanup and then project
-publication-list structure from `site/pubs/<slug>/publication.json` records
-instead of hand-maintaining the repeated listing shape in
-`site/pages/publications.dj`
+The real job is now to project publication-list structure from
+`site/pubs/<slug>/publication.json` records instead of hand-maintaining the
+repeated listing shape in `site/pubs/index.dj`
 
-An important first decision for that campaign is whether publications should
-mirror the talks collection shape:
+The current recommended next slice is:
+
+- keep `site/pubs/index.dj` as the authored wrapper
+- project the repeated publication-entry sections from bundle data
+- keep framing and `Aggregators` hand-authored
+
+That collection-shape decision is now implemented:
 
 - collection root under `site/pubs/`
 - authored index wrapper at `site/pubs/index.dj`
 - canonical collection URL at `/pubs/`
 
-The current repo still uses `site/pages/publications.dj` and
-`/publications.html`, so the publications campaign should decide that route
-shape explicitly instead of drifting into it piecemeal.
-
 Another important scoping note:
 
-- the current `site/pages/publications.dj` lists 69 entries
+- the current `site/pubs/index.dj` lists 69 entries
 - all 69 indexed publications now have canonical local bundles under
   `site/pubs/`
 - 48 of those bundles are currently minimal `detail_page: false` records

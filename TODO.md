@@ -29,12 +29,9 @@
   publications now, then students, with later
   collaborators/funding/CV/news work only where structured data clearly earns
   its keep.
-- Before the publications route-cutover slice starts, confirm whether the clean
-  collection shape should be `site/pubs/index.dj` with canonical `/pubs/`,
-  mirroring the current talks index pattern under `site/talks/index.dj`.
-- After the route-cutover decision, project the repeated publications index
-  lists from publication bundles while keeping framing and aggregators
-  hand-authored.
+- Keep the hand-authored publications wrapper at `site/pubs/index.dj`, then
+  project the repeated publication index lists from publication bundles while
+  keeping framing and aggregators hand-authored.
 - Introduce small shared data models only for cross-page facts that are
   actually reused, while keeping prose near prose and publication-local facts
   near publication bundles.
