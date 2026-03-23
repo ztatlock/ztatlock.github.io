@@ -9,9 +9,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from scripts.publication_record import (
+    PublicationRecord,
     PublicationRecordError,
-    load_optional_publication_record,
-    publication_slug,
+    load_publication_record,
     render_publication_body,
 )
 
@@ -101,50 +101,60 @@ def read_page_source(
     root: Path,
     *,
     page_source_dir: Path | None = None,
-    publications_dir: Path | None = None,
 ) -> PageSource:
     actual_page_source_dir = page_source_dir or root
     path = page_path(page_stem, actual_page_source_dir)
-    if path.exists():
-        text = path.read_text(encoding="utf-8")
-        front_matter, body = split_front_matter(text, path)
+    if not path.exists():
+        raise PageSourceError(f"Missing source page: {path}")
+    text = path.read_text(encoding="utf-8")
+    front_matter, body = split_front_matter(text, path)
+    return PageSource(
+        front_matter=front_matter,
+        body=body,
+        title=extract_title(body, path),
+        is_draft=bool(DRAFT_HEADING_RE.search(text)),
+    )
+
+
+def publication_page_source(record: PublicationRecord, root: Path, *, publications_dir: Path | None = None) -> PageSource:
+    if record.draft:
         return PageSource(
-            front_matter=front_matter,
-            body=body,
-            title=extract_title(body, path),
-            is_draft=bool(DRAFT_HEADING_RE.search(text)),
+            front_matter={},
+            body="",
+            title=record.title,
+            is_draft=True,
         )
+    return PageSource(
+        front_matter={},
+        body=render_publication_body(
+            root,
+            record,
+            publications_dir=publications_dir,
+        ),
+        title=record.title,
+        is_draft=False,
+    )
 
-    slug = publication_slug(page_stem)
-    if slug is not None:
-        try:
-            record = load_optional_publication_record(
-                root,
-                slug,
-                publications_dir=publications_dir,
-            )
-        except PublicationRecordError as err:
-            raise PageSourceError(str(err)) from err
-        if record is not None:
-            if record.draft:
-                return PageSource(
-                    front_matter={},
-                    body="",
-                    title=record.title,
-                    is_draft=True,
-                )
-            return PageSource(
-                front_matter={},
-                body=render_publication_body(
-                    root,
-                    record,
-                    publications_dir=publications_dir,
-                ),
-                title=record.title,
-                is_draft=False,
-            )
 
-    raise PageSourceError(f"Missing source page: {path}")
+def read_publication_page_source(
+    slug: str,
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+) -> PageSource:
+    try:
+        record = load_publication_record(
+            root,
+            slug,
+            publications_dir=publications_dir,
+        )
+    except PublicationRecordError as err:
+        raise PageSourceError(str(err)) from err
+    return publication_page_source(
+        record,
+        root,
+        publications_dir=publications_dir,
+    )
 
 
 def main() -> int:
@@ -152,7 +162,9 @@ def main() -> int:
         description="Extract normalized title or Djot body from a page source."
     )
     parser.add_argument("action", choices={"title", "body"})
-    parser.add_argument("--page", required=True, help="Page stem without .dj")
+    selector = parser.add_mutually_exclusive_group(required=True)
+    selector.add_argument("--page", help="Ordinary page stem without .dj")
+    selector.add_argument("--publication", help="Publication slug, e.g. 2024-asplos-lakeroad")
     parser.add_argument(
         "--root",
         default=".",
@@ -161,7 +173,11 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        source = read_page_source(args.page, Path(args.root).resolve())
+        root = Path(args.root).resolve()
+        if args.page is not None:
+            source = read_page_source(args.page, root)
+        else:
+            source = read_publication_page_source(args.publication, root)
     except PageSourceError as err:
         print(err, file=sys.stderr)
         return 1

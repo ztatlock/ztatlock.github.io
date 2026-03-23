@@ -22,6 +22,7 @@ class PageRendererTests(unittest.TestCase):
     def test_render_ordinary_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/about"
         html = render_page_html(
+            "ordinary_page",
             "about",
             canonical_url=canonical,
             refs_text=self.refs_text,
@@ -38,7 +39,8 @@ class PageRendererTests(unittest.TestCase):
     def test_render_publication_page_uses_explicit_canonical_url_and_aliases(self) -> None:
         canonical = "https://ztatlock.net/pubs/2024-asplos-lakeroad/"
         html = render_page_html(
-            "pub-2024-asplos-lakeroad",
+            "publication_page",
+            "2024-asplos-lakeroad",
             canonical_url=canonical,
             refs_text=self.refs_text,
             root=ROOT,

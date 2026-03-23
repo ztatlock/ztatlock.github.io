@@ -19,10 +19,6 @@ HTML_LINK_RE = re.compile(r'(?:href|src)="([^"]+)"')
 PUBLICATION_TODO_RE = re.compile(r"\bTODO\b")
 
 
-def top_level_html_files(root: Path) -> list[Path]:
-    return sorted(path for path in root.glob("*.html") if path.is_file())
-
-
 def recursive_html_files(root: Path) -> list[Path]:
     return sorted(path for path in root.rglob("*.html") if path.is_file())
 

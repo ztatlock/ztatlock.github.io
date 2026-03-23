@@ -5,8 +5,6 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
-from scripts.publication_record import publication_page_stem
-
 from .djot_refs import load_and_render_site_refs
 from .page_renderer import PageRenderError, render_page_html
 from .route_discovery import discover_routes
@@ -56,9 +54,9 @@ def build_site(config: SiteConfig) -> tuple[Route, ...]:
             continue
         if route.is_draft:
             continue
-        page_stem = route.key if route.kind == "ordinary_page" else publication_page_stem(route.key)
         html_text = render_page_html(
-            page_stem,
+            route.kind,
+            route.key,
             canonical_url=route.canonical_url,
             refs_text=refs_text,
             root=config.repo_root,

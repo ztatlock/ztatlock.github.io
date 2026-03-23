@@ -10,12 +10,13 @@ from scripts.page_source import PageSourceError, page_path, read_page_source
 from scripts.publication_record import (
     PUBLICATION_RECORD_NAME,
     PublicationRecordError,
+    default_publications_dir,
     load_publication_record,
-    load_optional_publication_record,
     publication_metadata_image_path,
-    publication_slug,
+    publication_page_path,
 )
 from scripts.sitebuild.site_config import SITE_URL
+
 GENERAL_ALLOWED_FIELDS = {"description", "share_description", "image_path", "title"}
 
 
@@ -122,24 +123,28 @@ def render_metadata_block(
     return "\n".join(lines)
 
 
+def publication_canonical_url(slug: str, *, site_url: str = SITE_URL) -> str:
+    return absolute_url(publication_page_path(slug), site_url=site_url)
+
+
 def render_publication_meta(
-    page_stem: str,
+    slug: str,
     title: str,
     root: Path,
     *,
     site_url: str = SITE_URL,
 ) -> str:
-    return render_publication_meta_for_url(
-        page_stem,
+    return render_publication_meta_for_slug(
+        slug,
         title,
-        canonical_url(page_stem, site_url=site_url),
+        publication_canonical_url(slug, site_url=site_url),
         root,
         site_url=site_url,
     )
 
 
-def render_publication_meta_for_url(
-    page_stem: str,
+def render_publication_meta_for_slug(
+    slug: str,
     title: str,
     url: str,
     root: Path,
@@ -147,23 +152,14 @@ def render_publication_meta_for_url(
     publications_dir: Path | None = None,
     site_url: str = SITE_URL,
 ) -> str:
-    slug = publication_slug(page_stem)
-    if slug is None:
-        raise MetadataError(f"{page_stem} is not a publication page")
-
     try:
-        record = load_optional_publication_record(
+        record = load_publication_record(
             root,
             slug,
             publications_dir=publications_dir,
         )
     except PublicationRecordError as err:
         raise MetadataError(str(err)) from err
-    if record is None:
-        raise MetadataError(
-            "Missing publication metadata record for "
-            f"{page_stem}: {publication_record_path(root, slug, publications_dir=publications_dir)}"
-        )
 
     description = record.description
     share_description = record.share_description or description
@@ -196,10 +192,6 @@ def load_front_matter_general_metadata(
 
     if not source.front_matter:
         return None
-    if not page_path(page_stem, actual_page_source_dir).exists() and publication_slug(page_stem) is not None:
-        raise MetadataError(
-            f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
-        )
     return normalize_general_metadata_entry(
         source.front_matter,
         context=f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter",
@@ -279,26 +271,38 @@ def render_page_meta_for_url(
     publications_dir: Path | None = None,
     site_url: str = SITE_URL,
 ) -> str:
+    return render_route_meta_for_url(
+        "ordinary_page",
+        page_stem,
+        title,
+        canonical_url=canonical_url,
+        root=root,
+        page_source_dir=page_source_dir,
+        publications_dir=publications_dir,
+        site_url=site_url,
+    )
+
+
+def render_ordinary_page_meta_for_url(
+    page_stem: str,
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    page_source_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
     actual_page_source_dir = page_source_dir or root
-    ordinary_source_path = page_path(page_stem, actual_page_source_dir)
-    slug = publication_slug(page_stem) if not ordinary_source_path.exists() else None
     try:
         source = read_page_source(
             page_stem,
             root,
             page_source_dir=actual_page_source_dir,
-            publications_dir=publications_dir,
         )
     except PageSourceError as err:
         raise MetadataError(str(err)) from err
 
     if source.is_draft:
-        if slug is not None:
-            if source.front_matter:
-                raise MetadataError(
-                    f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
-                )
-            return ""
         if source.front_matter:
             return render_general_page_meta_for_url(
                 page_stem,
@@ -310,20 +314,6 @@ def render_page_meta_for_url(
             )
         return ""
 
-    if slug is not None:
-        if source.front_matter:
-            raise MetadataError(
-                f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
-            )
-        return render_publication_meta_for_url(
-            page_stem,
-            title,
-            canonical_url,
-            root,
-            publications_dir=publications_dir,
-            site_url=site_url,
-        )
-
     if source.front_matter:
         return render_general_page_meta_for_url(
             page_stem,
@@ -334,6 +324,48 @@ def render_page_meta_for_url(
             site_url=site_url,
         )
     raise MetadataError(f"Missing front matter metadata for {page_stem}")
+
+
+def render_route_meta_for_url(
+    route_kind: str,
+    route_key: str,
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
+    if route_kind == "ordinary_page":
+        return render_ordinary_page_meta_for_url(
+            route_key,
+            title,
+            canonical_url=canonical_url,
+            root=root,
+            page_source_dir=page_source_dir,
+            site_url=site_url,
+        )
+    if route_kind == "publication_page":
+        try:
+            record = load_publication_record(
+                root,
+                route_key,
+                publications_dir=publications_dir,
+            )
+        except PublicationRecordError as err:
+            raise MetadataError(str(err)) from err
+        if record.draft:
+            return ""
+        return render_publication_meta_for_slug(
+            route_key,
+            title,
+            canonical_url,
+            root,
+            publications_dir=publications_dir,
+            site_url=site_url,
+        )
+    raise MetadataError(f"unsupported route kind for metadata rendering: {route_kind}")
 
 
 def resolve_public_asset_source_path(
@@ -348,10 +380,10 @@ def resolve_public_asset_source_path(
 
     normalized = path_or_url.lstrip("/")
     if normalized.startswith("pubs/"):
-        actual_publications_dir = publications_dir or (root / "pubs")
+        actual_publications_dir = publications_dir or default_publications_dir(root)
         return actual_publications_dir / normalized.removeprefix("pubs/")
 
-    actual_static_source_dir = static_source_dir or root
+    actual_static_source_dir = static_source_dir or (root / "site" / "static")
     return actual_static_source_dir / normalized
 
 
@@ -408,7 +440,7 @@ def validate_publication_record_metadata(
     static_source_dir: Path | None = None,
 ) -> list[str]:
     issues: list[str] = []
-    actual_publications_dir = publications_dir or (root / "pubs")
+    actual_publications_dir = publications_dir or default_publications_dir(root)
 
     for path in sorted(actual_publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}")):
         slug = path.parent.name

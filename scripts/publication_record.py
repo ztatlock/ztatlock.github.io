@@ -89,12 +89,6 @@ class PublicationRecord:
     talks: tuple[PublicationTalk, ...]
 
 
-def publication_slug(page_stem: str) -> str | None:
-    if page_stem.startswith("pub-"):
-        return page_stem.removeprefix("pub-")
-    return None
-
-
 def default_publications_dir(root: Path) -> Path:
     return root / SITE_PUBLICATIONS_PATH
 
@@ -106,10 +100,6 @@ def publication_dir(root: Path, slug: str, *, publications_dir: Path | None = No
 
 def publication_record_path(root: Path, slug: str, *, publications_dir: Path | None = None) -> Path:
     return publication_dir(root, slug, publications_dir=publications_dir) / PUBLICATION_RECORD_NAME
-
-
-def publication_page_stem(slug: str) -> str:
-    return f"pub-{slug}"
 
 
 def publication_page_path(slug: str) -> str:

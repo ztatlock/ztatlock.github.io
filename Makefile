@@ -48,23 +48,7 @@ help:
 
 .PHONY: test
 test:
-	@python3 -m unittest \
-		tests/test_build_pub_inventory.py \
-		tests/test_publication_record.py \
-		tests/test_scaffold_publication.py \
-		tests/test_route_model.py \
-		tests/test_route_discovery.py \
-		tests/test_source_validate.py \
-		tests/test_page_metadata.py \
-		tests/test_page_renderer.py \
-		tests/test_site_builder.py \
-		tests/test_sitemap_builder.py \
-		tests/test_artifact_validate.py \
-		tests/test_build_validate.py \
-		tests/test_people_registry.py \
-		tests/test_people_refs.py \
-		tests/test_people_refs_audit.py \
-		tests/test_djot_refs.py
+	@python3 -m unittest discover -s tests -p 'test_*.py' -t .
 
 .PHONY: env-check
 env-check:

@@ -6,8 +6,8 @@ import re
 import subprocess
 from pathlib import Path
 
-from scripts.page_metadata import MetadataError, render_page_meta_for_url
-from scripts.page_source import PageSourceError, read_page_source
+from scripts.page_metadata import MetadataError, render_route_meta_for_url
+from scripts.page_source import PageSourceError, read_page_source, read_publication_page_source
 
 HTML_TARGET_RE = re.compile(r'((?:href|src)=["\'])([^"\']+)(["\'])')
 IGNORED_TARGET_PREFIXES = (
@@ -71,7 +71,8 @@ def rewrite_local_html_targets(html_text: str, *, aliases: dict[str, str]) -> st
 
 
 def render_page_html(
-    page_stem: str,
+    route_kind: str,
+    route_key: str,
     *,
     canonical_url: str,
     refs_text: str,
@@ -89,18 +90,27 @@ def render_page_html(
     foot = _read_template(actual_templates_dir / "FOOT")
 
     try:
-        source = read_page_source(
-            page_stem,
-            root,
-            page_source_dir=page_source_dir,
-            publications_dir=publications_dir,
-        )
+        if route_kind == "ordinary_page":
+            source = read_page_source(
+                route_key,
+                root,
+                page_source_dir=page_source_dir,
+            )
+        elif route_kind == "publication_page":
+            source = read_publication_page_source(
+                route_key,
+                root,
+                publications_dir=publications_dir,
+            )
+        else:
+            raise PageRenderError(f"unsupported route kind for page rendering: {route_kind}")
     except PageSourceError as err:
         raise PageRenderError(str(err)) from err
 
     try:
-        metadata_html = render_page_meta_for_url(
-            page_stem,
+        metadata_html = render_route_meta_for_url(
+            route_kind,
+            route_key,
             source.title,
             canonical_url=canonical_url,
             root=root,
