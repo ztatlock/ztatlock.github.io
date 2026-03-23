@@ -182,6 +182,27 @@ class BuildValidateTests(unittest.TestCase):
                 "Body.\n",
                 encoding="utf-8",
             )
+            (pages_dir / "publications.dj").write_text(
+                "---\n"
+                "description: Publications\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "{#2025-test-demo}\n"
+                "*[Demo Paper](https://example.test/paper)* \\\n"
+                "  Demo Author\n"
+                "\\\n"
+                "DemoConf 2025\n\n"
+                ":::\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "## Aggregators\n\n"
+                "- [DBLP](https://dblp.org/)\n",
+                encoding="utf-8",
+            )
             pub_dir = pubs_dir / "2025-test-demo"
             pub_dir.mkdir()
             (pub_dir / "publication.json").write_text(

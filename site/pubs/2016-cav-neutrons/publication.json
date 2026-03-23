@@ -1,0 +1,35 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Investigating Safety of a Radiotherapy Machine Using System Models with Pluggable Checkers",
+  "authors": [
+    {
+      "name": "Stuart Pernsteiner"
+    },
+    {
+      "name": "Calvin Loncaric"
+    },
+    {
+      "name": "Emina Torlak"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Xi Wang"
+    },
+    {
+      "name": "Michael D. Ernst",
+      "ref": "Mike Ernst"
+    },
+    {
+      "name": "Jonathan Jacky",
+      "ref": "Jon Jacky"
+    }
+  ],
+  "venue": "Computer-Aided Verification (CAV)",
+  "links": {
+    "publisher": "https://link.springer.com/chapter/10.1007/978-3-319-41540-6_2"
+  }
+}

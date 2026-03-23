@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Software Verification with ITPs Should Use Binary Code Extraction to Reduce the TCB",
+  "authors": [
+    {
+      "name": "Ramana Kumar"
+    },
+    {
+      "name": "Eric Mullen"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Magnus O. Myreen"
+    }
+  ],
+  "venue": "Interactive Theorem Proving (ITP)",
+  "links": {
+    "publisher": "https://link.springer.com/chapter/10.1007/978-3-319-94821-8_21"
+  }
+}

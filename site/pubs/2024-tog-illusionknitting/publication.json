@@ -1,0 +1,27 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Computational Illusion Knitting",
+  "authors": [
+    {
+      "name": "Amy Zhu"
+    },
+    {
+      "name": "Yuxuan Mei"
+    },
+    {
+      "name": "Benjamin Jones"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Adriana Schulz"
+    }
+  ],
+  "venue": "ACM Transactions on Graphics (TOG)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3658231"
+  }
+}

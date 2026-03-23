@@ -1,0 +1,21 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Visual Robot Programming for Generalizable Mobile Manipulation Tasks",
+  "authors": [
+    {
+      "name": "Sonya Alexandrova"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Maya Cakmak"
+    }
+  ],
+  "venue": "Human Robot Interaction (HRI)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/2701973.2702052"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Jitk: A Trustworthy In-Kernel Interpreter Infrastructure",
+  "authors": [
+    {
+      "name": "Xi Wang"
+    },
+    {
+      "name": "David Lazar"
+    },
+    {
+      "name": "Nickolai Zeldovich"
+    },
+    {
+      "name": "Adam Chlipala"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Operating Systems Design and Implementation (OSDI)",
+  "links": {
+    "publisher": "https://www.usenix.org/conference/osdi14/technical-sessions/presentation/wang_xi"
+  }
+}

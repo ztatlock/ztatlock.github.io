@@ -1,0 +1,27 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "QED at Large: A Survey of Engineering of Formally Verified Software",
+  "authors": [
+    {
+      "name": "Talia Ringer"
+    },
+    {
+      "name": "Karl Palmskog"
+    },
+    {
+      "name": "Ilya Sergey"
+    },
+    {
+      "name": "Milos Gligoric"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Foundations and Trends in Programming Languages (FTPL)",
+  "links": {
+    "publisher": "https://www.nowpublishers.com/article/Details/PGL-045"
+  }
+}

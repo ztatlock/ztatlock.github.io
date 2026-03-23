@@ -1,0 +1,18 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "publisher",
+  "title": "Towards Numerical Assistants",
+  "authors": [
+    {
+      "name": "Pavel Panchekha"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Numerical Software Verification (NSV)",
+  "links": {
+    "publisher": "https://link.springer.com/chapter/10.1007/978-3-030-63618-0_13"
+  }
+}

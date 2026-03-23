@@ -1,0 +1,38 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Toward a Dependability Case Language and Workflow for a Radiation Therapy System",
+  "authors": [
+    {
+      "name": "Michael D. Ernst",
+      "ref": "Mike Ernst"
+    },
+    {
+      "name": "Dan Grossman"
+    },
+    {
+      "name": "Jonathan Jacky",
+      "ref": "Jon Jacky"
+    },
+    {
+      "name": "Calvin Loncaric"
+    },
+    {
+      "name": "Stuart Pernsteiner"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Emina Torlak"
+    },
+    {
+      "name": "Xi Wang"
+    }
+  ],
+  "venue": "Summit oN Advances in Programming Languages (SNAPL)",
+  "links": {
+    "publisher": "https://drops.dagstuhl.de/opus/volltexte/2015/5020/"
+  }
+}

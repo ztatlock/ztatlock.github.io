@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Icing: Supporting Fast-Math Style Optimizations in a Verified Compiler",
+  "authors": [
+    {
+      "name": "Heiko Becker"
+    },
+    {
+      "name": "Eva Darulova"
+    },
+    {
+      "name": "Magnus O. Myreen"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Computer-Aided Verification (CAV)",
+  "links": {
+    "publisher": "https://link.springer.com/chapter/10.1007/978-3-030-25543-5_10"
+  }
+}

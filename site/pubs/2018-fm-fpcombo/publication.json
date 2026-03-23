@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Combining Tools for Optimization and Analysis of Floating-Point Computations",
+  "authors": [
+    {
+      "name": "Heiko Becker"
+    },
+    {
+      "name": "Pavel Panchekha"
+    },
+    {
+      "name": "Eva Darulova"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Formal Methods (FM)",
+  "links": {
+    "publisher": "https://link.springer.com/chapter/10.1007/978-3-319-95582-7_21"
+  }
+}

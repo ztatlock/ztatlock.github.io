@@ -1,0 +1,43 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "event",
+  "title": "From DSLs to Accelerator-Rich Platform Implementations: Addressing the Mapping Gap",
+  "authors": [
+    {
+      "name": "Bo-Yuan Huang"
+    },
+    {
+      "name": "Steven Lyubomirsky"
+    },
+    {
+      "name": "Thierry Tambe"
+    },
+    {
+      "name": "Yi Li"
+    },
+    {
+      "name": "Mike He"
+    },
+    {
+      "name": "Gus Henry Smith",
+      "ref": "Gus Smith"
+    },
+    {
+      "name": "Gu-Yeon Wei"
+    },
+    {
+      "name": "Aarti Gupta"
+    },
+    {
+      "name": "Sharad Malik"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Workshop on Languages, Tools, and Techniques for Accelerator Design (LATTE)",
+  "links": {
+    "event": "https://capra.cs.cornell.edu/latte21/"
+  }
+}

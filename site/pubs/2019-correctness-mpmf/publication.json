@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "publisher",
+  "title": "Toward Multi-Precision, Multi-Format Numerics",
+  "authors": [
+    {
+      "name": "David Thien"
+    },
+    {
+      "name": "Bill Zorn"
+    },
+    {
+      "name": "Pavel Panchekha"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Software Correctness for HPC Applications (CORRECTNESS)",
+  "links": {
+    "publisher": "https://www.computer.org/csdl/proceedings-article/correctness/2019/601500a019/1gyr5pHvaz6"
+  }
+}

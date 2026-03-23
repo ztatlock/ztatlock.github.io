@@ -1,0 +1,21 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "SafeDispatch: Securing C++ Virtual Calls from Memory Corruption Attacks",
+  "authors": [
+    {
+      "name": "Dongseok Jang"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Sorin Lerner"
+    }
+  ],
+  "venue": "Network and Distributed System Security (NDSS)",
+  "links": {
+    "publisher": "https://www.ndss-symposium.org/ndss2014/programme/safedispatch-securing-c-virtual-calls-memory-corruption-attacks/"
+  }
+}

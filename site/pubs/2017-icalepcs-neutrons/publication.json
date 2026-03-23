@@ -1,0 +1,35 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Automatic Formal Verification for EPICS",
+  "authors": [
+    {
+      "name": "Jonathan Jacky",
+      "ref": "Jon Jacky"
+    },
+    {
+      "name": "Stefani Banerian"
+    },
+    {
+      "name": "Michael D. Ernst",
+      "ref": "Mike Ernst"
+    },
+    {
+      "name": "Calvin Loncaric"
+    },
+    {
+      "name": "Stuart Pernsteiner"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Emina Torlak"
+    }
+  ],
+  "venue": "International Conference on Accelerator and Large Experimental Control Systems (ICALEPCS)",
+  "links": {
+    "publisher": "https://accelconf.web.cern.ch/icalepcs2017/doi/JACoW-ICALEPCS2017-TUDPL02.html"
+  }
+}

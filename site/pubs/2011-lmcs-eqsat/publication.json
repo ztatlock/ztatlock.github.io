@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Equality Saturation: A New Approach to Optimization",
+  "authors": [
+    {
+      "name": "Ross Tate"
+    },
+    {
+      "name": "Michael Stepp"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Sorin Lerner"
+    }
+  ],
+  "venue": "Logical Methods in Computer Science (LMCS)",
+  "links": {
+    "publisher": "https://lmcs.episciences.org/1016"
+  }
+}

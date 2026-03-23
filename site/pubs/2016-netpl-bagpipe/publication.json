@@ -1,0 +1,31 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "event",
+  "title": "Formal Semantics and Automated Verification for the Border Gateway Protocol",
+  "authors": [
+    {
+      "name": "Konstantin Weitz"
+    },
+    {
+      "name": "Doug Woos"
+    },
+    {
+      "name": "Emina Torlak"
+    },
+    {
+      "name": "Michael D. Ernst",
+      "ref": "Mike Ernst"
+    },
+    {
+      "name": "Arvind Krishnamurthy"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "ACM SIGCOMM Workshop on Networking and Programming Languages (NetPL)",
+  "links": {
+    "event": "https://conferences.sigcomm.org/sigcomm/2016/netpl.php"
+  }
+}

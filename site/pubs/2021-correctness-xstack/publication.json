@@ -1,0 +1,30 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "publisher",
+  "title": "Guarding Numerics Amidst Rising Heterogeneity",
+  "authors": [
+    {
+      "name": "Ganesh Gopalakrishnan"
+    },
+    {
+      "name": "Ignacio Laguna"
+    },
+    {
+      "name": "Ang Li"
+    },
+    {
+      "name": "Pavel Panchekha"
+    },
+    {
+      "name": "Cindy Rubio-González"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Software Correctness for HPC Applications (CORRECTNESS)",
+  "links": {
+    "publisher": "https://ieeexplore.ieee.org/document/9651291"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Application-level Validation of Accelerator Designs Using a Formal Software/Hardware Interface",
+  "authors": [
+    {
+      "name": "Bo-Yuan Huang"
+    },
+    {
+      "name": "Steven Lyubomirsky"
+    },
+    {
+      "name": "Yi Li"
+    },
+    {
+      "name": "Mike He"
+    },
+    {
+      "name": "Gus Henry Smith",
+      "ref": "Gus Smith"
+    },
+    {
+      "name": "Thierry Tambe"
+    },
+    {
+      "name": "Akash Gaonkar"
+    },
+    {
+      "name": "Vishal Canumalla"
+    },
+    {
+      "name": "Andrew Cheung"
+    },
+    {
+      "name": "Gu-Yeon Wei"
+    },
+    {
+      "name": "Aarti Gupta"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Sharad Malik"
+    }
+  ],
+  "venue": "ACM Transactions on Design Automation of Electronic Systems (TODAES)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3639051"
+  }
+}

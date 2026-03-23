@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Verified Peephole Optimizations for CompCert",
+  "authors": [
+    {
+      "name": "Eric Mullen"
+    },
+    {
+      "name": "Daryl Zuniga"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Dan Grossman"
+    }
+  ],
+  "venue": "Programming Language Design and Implementation (PLDI)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/2908080.2908109"
+  }
+}

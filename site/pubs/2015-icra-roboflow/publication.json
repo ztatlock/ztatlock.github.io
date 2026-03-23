@@ -1,0 +1,21 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "RoboFlow: A Flow-based Visual Programming Language for Mobile Manipulation Tasks",
+  "authors": [
+    {
+      "name": "Sonya Alexandrova"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Maya Cakmak"
+    }
+  ],
+  "venue": "International Conference on Robotics and Automation (ICRA)",
+  "links": {
+    "publisher": "https://ieeexplore.ieee.org/document/7139973"
+  }
+}

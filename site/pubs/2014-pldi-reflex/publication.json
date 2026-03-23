@@ -1,0 +1,27 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Automating Formal Proofs for Reactive Systems",
+  "authors": [
+    {
+      "name": "Daniel Ricketts"
+    },
+    {
+      "name": "Valentin Robert"
+    },
+    {
+      "name": "Dongseok Jang"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Sorin Lerner"
+    }
+  ],
+  "venue": "Programming Language Design and Implementation (PLDI)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/2594291.2594338"
+  }
+}

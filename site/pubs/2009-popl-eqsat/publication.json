@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Equality Saturation: A New Approach to Optimization",
+  "authors": [
+    {
+      "name": "Ross Tate"
+    },
+    {
+      "name": "Michael Stepp"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Sorin Lerner"
+    }
+  ],
+  "venue": "Principles of Programming Languages (POPL)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/1480881.1480915"
+  }
+}

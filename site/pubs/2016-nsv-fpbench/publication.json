@@ -1,0 +1,30 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "publisher",
+  "title": "Toward a Standard Benchmark Format and Suite for Floating-Point Analysis",
+  "authors": [
+    {
+      "name": "Nasrine Damouche"
+    },
+    {
+      "name": "Matthieu Martel"
+    },
+    {
+      "name": "Pavel Panchekha"
+    },
+    {
+      "name": "Chen Qiu"
+    },
+    {
+      "name": "Alex Sanchez-Stern"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Numerical Software Verification (NSV)",
+  "links": {
+    "publisher": "https://link.springer.com/chapter/10.1007/978-3-319-54292-8_6"
+  }
+}

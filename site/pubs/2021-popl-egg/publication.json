@@ -1,0 +1,34 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "egg: Fast and Extensible Equality Saturation",
+  "authors": [
+    {
+      "name": "Max Willsey"
+    },
+    {
+      "name": "Chandrakana Nandi"
+    },
+    {
+      "name": "Yisu Remy Wang",
+      "ref": "Remy Wang"
+    },
+    {
+      "name": "Oliver Flatt"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Pavel Panchekha"
+    }
+  ],
+  "venue": "Principles of Programming Languages (POPL)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3434304"
+  },
+  "badges": [
+    "★ Distinguished Paper"
+  ]
+}

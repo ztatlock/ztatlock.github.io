@@ -1,0 +1,18 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Bringing Extensibility to Verified Compilers",
+  "authors": [
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Sorin Lerner"
+    }
+  ],
+  "venue": "Programming Language Design and Implementation (PLDI)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/1806596.1806611"
+  }
+}

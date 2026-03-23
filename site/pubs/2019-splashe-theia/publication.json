@@ -1,0 +1,24 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "publisher",
+  "title": "Theia: Automatically Generating Correct Program State Visualizations",
+  "authors": [
+    {
+      "name": "Josh Pollock"
+    },
+    {
+      "name": "Jared Roesch"
+    },
+    {
+      "name": "Doug Woos"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "ACM SIGPLAN International Symposium on SPLASH-E (SPLASH-E)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3358711.3361625"
+  }
+}

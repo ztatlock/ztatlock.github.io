@@ -1,0 +1,28 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "event",
+  "title": "Verification of Implementations of Distributed Systems Under Churn",
+  "authors": [
+    {
+      "name": "Ryan Doenges"
+    },
+    {
+      "name": "James R. Wilcox",
+      "ref": "James Wilcox"
+    },
+    {
+      "name": "Doug Woos"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Karl Palmskog"
+    }
+  ],
+  "venue": "Workshop on Coq for Programming Languages (CoqPL)",
+  "links": {
+    "event": "https://popl17.sigplan.org/details/main/1/Verification-of-Implementations-of-Distributed-Systems-Under-Churn"
+  }
+}

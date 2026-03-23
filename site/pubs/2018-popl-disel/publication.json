@@ -1,0 +1,22 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Programming and Proving with Distributed Protocols",
+  "authors": [
+    {
+      "name": "Ilya Sergey"
+    },
+    {
+      "name": "James R. Wilcox",
+      "ref": "James Wilcox"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Principles of Programming Languages (POPL)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3158116"
+  }
+}

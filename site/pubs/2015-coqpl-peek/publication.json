@@ -1,0 +1,21 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "event",
+  "title": "Peek: A Formally Verified Peephole Optimization Framework for x86",
+  "authors": [
+    {
+      "name": "Eric Mullen"
+    },
+    {
+      "name": "Zachary Tatlock"
+    },
+    {
+      "name": "Dan Grossman"
+    }
+  ],
+  "venue": "Workshop on Coq for Programming Languages (CoqPL)",
+  "links": {
+    "event": "https://coqpl.cs.washington.edu/program/"
+  }
+}

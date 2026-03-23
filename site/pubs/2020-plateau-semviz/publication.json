@@ -1,0 +1,28 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "event",
+  "title": "The Essence of Program Semantics Visualizers: A Three-Axis Model",
+  "authors": [
+    {
+      "name": "Josh Pollock"
+    },
+    {
+      "name": "Grace Oh"
+    },
+    {
+      "name": "Eunice Jun"
+    },
+    {
+      "name": "Philip J. Guo",
+      "ref": "Philip Guo"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Workshop on Evaluation and Usability of Programming Languages and Tools (PLATEAU)",
+  "links": {
+    "event": "https://2020.plateau-workshop.org/program"
+  }
+}

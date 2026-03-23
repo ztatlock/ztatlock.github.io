@@ -5,7 +5,18 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from scripts.publication_record import EXTRA_CONTENT_NAME, publication_page_path
+from scripts.publication_index import (
+    PublicationIndexError,
+    load_publications_index_entries,
+    publications_index_path,
+)
+from scripts.publication_record import (
+    EXTRA_CONTENT_NAME,
+    PUBLICATION_RECORD_NAME,
+    PublicationRecordError,
+    load_publication_record,
+    publication_page_path,
+)
 from scripts.talk_record import TALKS_INDEX_NAME, find_talk_record_issues, talks_index_path
 from scripts.page_metadata import (
     validate_general_source_metadata_path,
@@ -130,6 +141,63 @@ def _find_talk_projection_issues(config: SiteConfig) -> list[str]:
     return issues
 
 
+def _find_publication_index_coverage_issues(config: SiteConfig) -> list[str]:
+    index_path = publications_index_path(
+        config.repo_root,
+        page_source_dir=config.page_source_dir,
+    )
+    non_draft_records_by_slug: dict[str, object] = {}
+    for path in sorted(config.publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}")):
+        slug = path.parent.name
+        try:
+            record = load_publication_record(
+                config.repo_root,
+                slug,
+                publications_dir=config.publications_dir,
+            )
+        except PublicationRecordError:
+            continue
+        if not record.draft:
+            non_draft_records_by_slug[slug] = record
+
+    if not non_draft_records_by_slug and not index_path.exists():
+        return []
+
+    if not index_path.exists():
+        return [f"{index_path}: publications index page is required when publication bundles exist"]
+
+    try:
+        entries = load_publications_index_entries(
+            config.repo_root,
+            page_source_dir=config.page_source_dir,
+        )
+    except PublicationIndexError as err:
+        return [str(err)]
+
+    issues: list[str] = []
+    index_entries_by_slug = {entry.slug: entry for entry in entries}
+
+    for entry in entries:
+        record = non_draft_records_by_slug.get(entry.slug)
+        if record is None:
+            issues.append(
+                f"{index_path}: indexed publication missing canonical bundle: {entry.slug}"
+            )
+            continue
+        if record.listing_group != entry.listing_group:
+            issues.append(
+                f"{index_path}: listing_group mismatch for {entry.slug}: "
+                f"index={entry.listing_group}, bundle={record.listing_group}"
+            )
+
+    for slug in sorted(non_draft_records_by_slug):
+        if slug not in index_entries_by_slug:
+            issues.append(
+                f"{index_path}: non-draft publication bundle missing from publications index: {slug}"
+            )
+    return issues
+
+
 def find_source_issues(config: SiteConfig) -> list[str]:
     return (
         validate_general_page_metadata(
@@ -148,6 +216,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             talks_dir=config.talks_dir,
         )
         + _find_talk_projection_issues(config)
+        + _find_publication_index_coverage_issues(config)
         + _find_legacy_publication_link_issues(config)
         + _find_legacy_talks_link_issues(config)
         + _find_root_layout_drift_issues(config)

@@ -1,0 +1,28 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Automatically Improving Accuracy for Floating Point Expressions",
+  "authors": [
+    {
+      "name": "Pavel Panchekha"
+    },
+    {
+      "name": "Alex Sanchez-Stern"
+    },
+    {
+      "name": "James R. Wilcox",
+      "ref": "James Wilcox"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Programming Language Design and Implementation (PLDI)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/2737924.2737959"
+  },
+  "badges": [
+    "★ Distinguished Paper"
+  ]
+}

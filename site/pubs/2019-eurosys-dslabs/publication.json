@@ -1,0 +1,29 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Teaching Rigorous Distributed Systems With Efficient Model Checking",
+  "authors": [
+    {
+      "name": "Ellis Michael"
+    },
+    {
+      "name": "Doug Woos"
+    },
+    {
+      "name": "Thomas E. Anderson",
+      "ref": "Tom Anderson"
+    },
+    {
+      "name": "Michael D. Ernst",
+      "ref": "Mike Ernst"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "European Conference on Computer Systems (EuroSys)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3302424.3303947"
+  }
+}

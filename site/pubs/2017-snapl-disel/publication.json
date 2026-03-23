@@ -1,0 +1,22 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "Programming Language Abstractions for Modularly Verified Distributed Systems",
+  "authors": [
+    {
+      "name": "James R. Wilcox",
+      "ref": "James Wilcox"
+    },
+    {
+      "name": "Ilya Sergey"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "Summit oN Advances in Programming Languages (SNAPL)",
+  "links": {
+    "publisher": "https://drops.dagstuhl.de/opus/volltexte/2017/7126/"
+  }
+}

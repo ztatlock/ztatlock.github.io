@@ -1,0 +1,31 @@
+{
+  "detail_page": false,
+  "listing_group": "main",
+  "primary_link": "publisher",
+  "title": "SpaceSearch: A Library for Building and Verifying Solver-aided Tools",
+  "authors": [
+    {
+      "name": "Konstantin Weitz"
+    },
+    {
+      "name": "Steven Lyubomirsky"
+    },
+    {
+      "name": "Stefan Heule"
+    },
+    {
+      "name": "Emina Torlak"
+    },
+    {
+      "name": "Michael D. Ernst",
+      "ref": "Mike Ernst"
+    },
+    {
+      "name": "Zachary Tatlock"
+    }
+  ],
+  "venue": "International Conference on Functional Programming (ICFP)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3110269"
+  }
+}
