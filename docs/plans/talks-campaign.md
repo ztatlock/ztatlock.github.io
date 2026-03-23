@@ -1,7 +1,7 @@
 # Talks Campaign
 
-This note captures the next structured-content campaign in detail before the
-implementation is split into slices.
+This note captures the talks structured-content campaign, the implemented
+opening slices, and the current next-checkpoint questions.
 
 It builds on:
 
@@ -22,7 +22,7 @@ while keeping talk-local prose/assets with the talk that they belong to.
 
 Talks are the right first structured-content campaign because:
 
-- `site/pages/talks.dj` is list-shaped and relatively small
+- the talks index is list-shaped and relatively small
 - the repeated fields are obvious
 - the page has low structural complexity compared with students or
   publications
@@ -36,8 +36,8 @@ campaigns.
 
 Current relevant sources:
 
-- `site/pages/talks.dj`
-  Main talks page with 25 list entries.
+- `site/talks/index.dj`
+  Main talks collection index wrapper, projected from 25 talk bundles.
 - `site/pages/talk-2023-05-egg-uiuc.dj`
   One dedicated talk detail page.
 - `site/pages/cv.dj`
@@ -108,7 +108,7 @@ These patterns imply:
 
 This campaign should start with a deliberately narrow definition of "talk":
 
-- invited/public talks that belong on `site/pages/talks.dj`
+- invited/public talks that belong on `site/talks/index.dj`
 
 This campaign should not initially absorb:
 
@@ -270,14 +270,23 @@ decision to resolve.
 
 ## Relationship To Existing Pages
 
-### `site/pages/talks.dj`
+### Talks Index Wrapper
 
-This should be the first projection target.
+Slice 2 moved the talks wrapper to:
 
-The likely steady state is:
+- `site/talks/index.dj`
+
+The current talks index model is now:
 
 - hand-authored page header / framing remains in Djot
 - repeated talk entries are generated from discovered talk bundles
+- the public route is `/talks/`
+
+That matches the intended collection model:
+
+- singleton pages under `site/pages/`
+- collection indexes under the collection root
+- collection items under the same collection root
 
 ### Dedicated Talk Pages
 
@@ -400,13 +409,19 @@ This is where we should reflect and choose the next slice deliberately.
 
 ## Current Recommendation
 
-The first slice is now the starting checkpoint for this campaign.
+Slices 1 and 2 were the right opening steps for this campaign:
 
-The next step should be:
+- slice 1 established talk bundles and projection from canonical talk records
+- slice 2 introduced the collection index pattern via `site/talks/index.dj`
+  and `/talks/`
 
-- stop and reassess at the first-slice checkpoint
-- keep the existing `talk-2023-05-egg-uiuc.dj` page separate until we
-  deliberately choose a talk-detail-route slice
-- avoid taking on CV reuse or publication-talk unification before that review
+The right move now is to stop and reassess before planning slice 3.
 
-Only after that should we plan the next talks slice.
+Questions for the next checkpoint:
+
+- does `site/talks/index.dj` feel like the right long-term pattern for
+  collection indexes?
+- does the new route kind feel small and honest enough to reuse later for
+  `site/pubs/index.dj`?
+- should the next talks slice be a talk detail-page slice from `extra.dj`, or
+  should we first reuse the collection-index pattern elsewhere?

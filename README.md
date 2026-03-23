@@ -10,6 +10,8 @@ source with a small Python build engine behind `make`.
 - `site/talks/<slug>/`
   Talk-local records for invited/public talks, with room for optional future
   talk-local prose or assets.
+- `site/talks/index.dj`
+  Authored talks collection index wrapper rendered at `/talks/`.
 - `site/pubs/<slug>/`
   Publication records and local publication assets.
 - `site/static/`
@@ -36,7 +38,7 @@ Metadata rules:
 - Public non-publication pages source metadata from YAML front matter in
   `site/pages/*.dj`.
 - The talks index is projected from talk-local records under
-  `site/talks/<slug>/talk.json`.
+  `site/talks/<slug>/talk.json` into `site/talks/index.dj`.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -91,6 +93,7 @@ Notes:
 - Do not hand-edit generated files under `build/`.
 - Authored publication page links in Djot should use `pubs/<slug>/`, not
   `pub-<slug>.html`.
+- Authored talks index links in Djot should use `talks/`, not `talks.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.
   Keep `site/templates/REFS` only for non-person references such as `PGAS`

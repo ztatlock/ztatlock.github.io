@@ -57,7 +57,7 @@ Likely target:
 Likely outcomes:
 
 - a canonical set of talk-local bundles
-- projection into `site/pages/talks.dj`
+- projection into `site/talks/index.dj`
 - later reuse in selected CV or news sections if that proves valuable
 
 Important design choice:

@@ -111,6 +111,10 @@ site/pubs/2024-asplos-lakeroad/
 
 Talk-local bundles for invited/public talks.
 
+This root also owns the authored talks collection index wrapper:
+
+- `site/talks/index.dj`
+
 Each talk directory can remain small, for example:
 
 ```text
@@ -124,8 +128,8 @@ And may later grow optional talk-local content such as:
 - local images
 - talk-local attachments
 
-The talks index page can project from those bundles without requiring every
-talk to become its own route immediately.
+The talks index projects from those bundles without requiring every talk to
+become its own route immediately.
 
 ### `site/data/`
 
@@ -195,6 +199,8 @@ build/
   index.html
   about.html
   publications.html
+  talks/
+    index.html
   pubs/
     2024-asplos-lakeroad/
       index.html
@@ -240,6 +246,18 @@ The route model should be computed in one place and consumed by:
 - public URL: `/<stem>.html`, except `index -> /`
 - canonical URL: `https://ztatlock.net/<...>`
 - draft status: `# DRAFT` in the Djot source
+
+### Talks Index Page Route
+
+- source: `site/talks/index.dj`
+- output: `build/talks/index.html`
+- public URL: `/talks/`
+- canonical URL: `https://ztatlock.net/talks/`
+- draft status: `# DRAFT` in the Djot source
+
+This is intentionally talks-specific for now.
+If later campaigns clearly want the same pattern, we can generalize it
+deliberately instead of pretending that abstraction already exists.
 
 ### Publication Page Route
 
