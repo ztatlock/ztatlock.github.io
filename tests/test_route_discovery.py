@@ -79,6 +79,67 @@ class RouteDiscoveryTests(unittest.TestCase):
         self.assertTrue(route.is_draft)
         self.assertEqual(route.output_relpath, "course-recipe.html")
 
+    def test_discovers_talks_page_route_with_talk_bundle_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            talks_dir = root / "site" / "talks"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            talks_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "talks.dj").write_text("# Talks\n\n__TALKS_LIST__\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            brown_dir = talks_dir / "2026-02-brown-eqsat"
+            brown_dir.mkdir()
+            (brown_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Everything is a compiler, try Equality Saturation!",
+                        "when": {"year": 2026, "month": 2},
+                        "at": [{"text": "Brown University"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            uiuc_dir = talks_dir / "2023-05-uiuc-egg"
+            uiuc_dir.mkdir()
+            (uiuc_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Relational Equality Saturation in egg",
+                        "when": {"year": 2023, "month": 5},
+                        "at": [{"text": "University of Illinois at Urbana-Champaign"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                talks_dir=talks_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+            routes = discover_routes(config)
+
+            route = find_route(routes, kind="ordinary_page", key="talks")
+            self.assertEqual(
+                [path.relative_to(root).as_posix() for path in route.source_paths],
+                [
+                    "site/pages/talks.dj",
+                    "site/talks/2023-05-uiuc-egg/talk.json",
+                    "site/talks/2026-02-brown-eqsat/talk.json",
+                ],
+            )
+
     def test_discovers_static_file_route(self) -> None:
         route = find_route(self.routes, kind="static_file", key="style.css")
         self.assertEqual(route.output_relpath, "style.css")

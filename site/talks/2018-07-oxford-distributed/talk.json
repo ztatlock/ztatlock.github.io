@@ -1,0 +1,8 @@
+{
+  "title": "Formally Verifying Implementations of Distributed Systems",
+  "when": { "year": 2018, "month": 7 },
+  "at": [
+    { "text": "Oxford University" },
+    { "text": "Coq Workshop at FLOC" }
+  ]
+}

@@ -10,6 +10,121 @@ from scripts.sitebuild.source_validate import find_source_issues
 
 
 class SourceValidateTests(unittest.TestCase):
+    def test_reports_invalid_talk_bundle_record(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home\n"
+                "---\n"
+                "# Home\n",
+                encoding="utf-8",
+            )
+            (pages / "talks.dj").write_text(
+                "---\n"
+                "description: Talks\n"
+                "---\n"
+                "# Talks\n\n"
+                "__TALKS_LIST__\n",
+                encoding="utf-8",
+            )
+
+            talk_dir = talks / "2026-02-brown-eqsat"
+            talk_dir.mkdir()
+            (talk_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Demo",
+                        "when": {"year": 2026},
+                        "at": [{"text": "Brown University"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{talk_dir / 'talk.json'}.when: must provide exactly one of month or season"],
+            )
+
+    def test_reports_missing_talks_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "talks.dj").write_text(
+                "---\n"
+                "description: Talks\n"
+                "---\n"
+                "# Talks\n\n"
+                "Manual list.\n",
+                encoding="utf-8",
+            )
+
+            talk_dir = talks / "2026-02-brown-eqsat"
+            talk_dir.mkdir()
+            (talk_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Demo",
+                        "when": {"year": 2026, "month": 2},
+                        "at": [{"text": "Brown University"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{pages / 'talks.dj'}: talks page must contain __TALKS_LIST__"],
+            )
+
     def test_accepts_configured_static_image_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

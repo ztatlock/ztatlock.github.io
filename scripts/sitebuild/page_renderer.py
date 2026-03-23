@@ -9,6 +9,8 @@ from pathlib import Path
 from scripts.page_metadata import MetadataError, render_route_meta_for_url
 from scripts.page_source import PageSourceError, read_page_source, read_publication_page_source
 
+from .talk_projection import TalkProjectionError, apply_page_projections
+
 HTML_TARGET_RE = re.compile(r'((?:href|src)=["\'])([^"\']+)(["\'])')
 IGNORED_TARGET_PREFIXES = (
     "http://",
@@ -81,6 +83,7 @@ def render_page_html(
     webfiles_url: str,
     aliases: dict[str, str] | None = None,
     page_source_dir: Path | None = None,
+    talks_dir: Path | None = None,
     publications_dir: Path | None = None,
     templates_dir: Path | None = None,
 ) -> str:
@@ -121,7 +124,17 @@ def render_page_html(
     except MetadataError as err:
         raise PageRenderError(str(err)) from err
 
-    djot_input = source.body.rstrip() + "\n\n" + refs_text
+    try:
+        rendered_body = apply_page_projections(
+            route_key,
+            source.body,
+            root=root,
+            talks_dir=talks_dir,
+        )
+    except TalkProjectionError as err:
+        raise PageRenderError(str(err)) from err
+
+    djot_input = rendered_body.rstrip() + "\n\n" + refs_text
     djot_input = djot_input.replace("__WEBFILES__", webfiles_url)
     body_html = _run_djot(djot_input)
 

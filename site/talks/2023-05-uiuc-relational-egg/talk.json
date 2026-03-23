@@ -1,0 +1,9 @@
+{
+  "title": "Relational Equality Saturation in egg",
+  "when": { "year": 2023, "month": 5 },
+  "at": [
+    { "text": "University of Illinois at Urbana-Champaign" },
+    { "text": "Compilers Seminar", "url": "https://compilerseminar.web.illinois.edu/" }
+  ],
+  "url": "talk-2023-05-egg-uiuc.html"
+}

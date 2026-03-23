@@ -14,6 +14,7 @@ class SiteBuilderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             page_source_dir = root / "site" / "pages"
+            talks_dir = root / "site" / "talks"
             publications_dir = root / "site" / "pubs"
             templates_dir = root / "site" / "templates"
             data_dir = root / "site" / "data"
@@ -21,6 +22,7 @@ class SiteBuilderTests(unittest.TestCase):
             img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
+            talks_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
             templates_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
@@ -33,6 +35,31 @@ class SiteBuilderTests(unittest.TestCase):
                 "---\n"
                 "# About\n\n"
                 "Site body.\n",
+                encoding="utf-8",
+            )
+            (page_source_dir / "talks.dj").write_text(
+                "---\n"
+                "description: Talks page\n"
+                "---\n"
+                "# Talks\n\n"
+                "__TALKS_LIST__\n",
+                encoding="utf-8",
+            )
+
+            talk_dir = talks_dir / "2026-02-brown-eqsat"
+            talk_dir.mkdir()
+            (talk_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Everything is a compiler, try Equality Saturation!",
+                        "when": {"year": 2026, "month": 2},
+                        "at": [
+                            {"text": "Brown University"},
+                            {"text": "PL and Graphics groups"},
+                        ],
+                        "url": "https://events.brown.edu/demo",
+                    }
+                ),
                 encoding="utf-8",
             )
 
@@ -84,6 +111,7 @@ class SiteBuilderTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=page_source_dir,
+                talks_dir=talks_dir,
                 publications_dir=publications_dir,
                 templates_dir=templates_dir,
                 data_dir=data_dir,
@@ -96,6 +124,11 @@ class SiteBuilderTests(unittest.TestCase):
             about_html = (config.build_dir / "about.html").read_text(encoding="utf-8")
             self.assertIn('href="https://ztatlock.net/about.html"', about_html)
             self.assertIn("Site body.", about_html)
+
+            talks_html = (config.build_dir / "talks.html").read_text(encoding="utf-8")
+            self.assertIn("Everything is a compiler, try Equality Saturation!", talks_html)
+            self.assertIn("Brown University, PL and Graphics groups, February 2026", talks_html)
+            self.assertIn('href="https://events.brown.edu/demo"', talks_html)
 
             publication_html = (
                 config.build_dir / "pubs" / "2025-test-demo" / "index.html"
@@ -119,6 +152,7 @@ class SiteBuilderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             page_source_dir = root / "site" / "pages"
+            talks_dir = root / "site" / "talks"
             publications_dir = root / "site" / "pubs"
             templates_dir = root / "site" / "templates"
             data_dir = root / "site" / "data"
@@ -126,6 +160,7 @@ class SiteBuilderTests(unittest.TestCase):
             img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
+            talks_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
             templates_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
@@ -173,6 +208,7 @@ class SiteBuilderTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=page_source_dir,
+                talks_dir=talks_dir,
                 publications_dir=publications_dir,
                 templates_dir=templates_dir,
                 data_dir=data_dir,

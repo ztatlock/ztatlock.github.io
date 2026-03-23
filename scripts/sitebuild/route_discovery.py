@@ -14,6 +14,7 @@ from scripts.publication_record import (
     publication_dir,
     publication_record_path,
 )
+from scripts.talk_record import TALK_RECORD_NAME, discover_talk_slugs, talk_record_path
 
 from .route_model import Route, RouteModelError, canonical_url, validate_routes
 from .site_config import SiteConfig
@@ -35,11 +36,26 @@ def _ordinary_page_routes(config: SiteConfig) -> list[Route]:
         stem = path.stem
 
         public_url = "/" if stem == "index" else f"/{stem}.html"
+        source_paths: tuple[Path, ...] = (path,)
+        if stem == "talks":
+            talk_record_paths = tuple(
+                talk_record_path(
+                    config.repo_root,
+                    slug,
+                    talks_dir=config.talks_dir,
+                )
+                for slug in discover_talk_slugs(
+                    config.repo_root,
+                    talks_dir=config.talks_dir,
+                )
+                if (config.talks_dir / slug / TALK_RECORD_NAME).exists()
+            )
+            source_paths = (path, *talk_record_paths)
         routes.append(
             Route(
                 kind="ordinary_page",
                 key=stem,
-                source_paths=(path,),
+                source_paths=source_paths,
                 output_relpath=f"{stem}.html",
                 public_url=public_url,
                 canonical_url=canonical_url(config.site_url, public_url),

@@ -6,12 +6,14 @@ import re
 from pathlib import Path
 
 from scripts.publication_record import EXTRA_CONTENT_NAME, publication_page_path
+from scripts.talk_record import find_talk_record_issues
 from scripts.page_metadata import (
     validate_general_page_metadata,
     validate_publication_record_metadata,
 )
 
 from .site_config import SiteConfig
+from .talk_projection import TALKS_LIST_PLACEHOLDER
 
 LEGACY_PUBLICATION_LINK_RE = re.compile(r"\b(pub-\d{4}[-a-z0-9]*\.html)\b")
 ROOT_STATIC_SOURCE_NAMES = (
@@ -72,6 +74,24 @@ def _find_root_layout_drift_issues(config: SiteConfig) -> list[str]:
     return issues
 
 
+def _find_talk_projection_issues(config: SiteConfig) -> list[str]:
+    if not config.talks_dir.exists():
+        return []
+
+    talk_dirs = [path for path in sorted(config.talks_dir.iterdir()) if path.is_dir()]
+    if not talk_dirs:
+        return []
+
+    talks_page = config.page_source_dir / "talks.dj"
+    if not talks_page.exists():
+        return [f"{talks_page}: talks page is required when talk bundles exist"]
+
+    text = talks_page.read_text(encoding="utf-8")
+    if TALKS_LIST_PLACEHOLDER not in text:
+        return [f"{talks_page}: talks page must contain {TALKS_LIST_PLACEHOLDER}"]
+    return []
+
+
 def find_source_issues(config: SiteConfig) -> list[str]:
     return (
         validate_general_page_metadata(
@@ -85,6 +105,11 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             publications_dir=config.publications_dir,
             static_source_dir=config.static_source_dir,
         )
+        + find_talk_record_issues(
+            config.repo_root,
+            talks_dir=config.talks_dir,
+        )
+        + _find_talk_projection_issues(config)
         + _find_legacy_publication_link_issues(config)
         + _find_root_layout_drift_issues(config)
     )

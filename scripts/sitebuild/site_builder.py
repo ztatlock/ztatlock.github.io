@@ -64,6 +64,7 @@ def build_site(config: SiteConfig) -> tuple[Route, ...]:
             webfiles_url=config.webfiles_url,
             aliases=aliases,
             page_source_dir=config.page_source_dir,
+            talks_dir=config.talks_dir,
             publications_dir=config.publications_dir,
             templates_dir=config.templates_dir,
         )
