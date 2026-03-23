@@ -1,9 +1,9 @@
 # Site Architecture Spec
 
-Status: Draft 1
+Status: Current reference architecture
 
-This note is the first concrete architecture spec for the next major website
-redesign campaign.
+This note describes the current website architecture after the source/build
+cutover.
 
 It builds on the earlier design notes:
 
@@ -11,9 +11,8 @@ It builds on the earlier design notes:
 - [publication-output-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-output-cutover.md)
 - [source-build-deploy-redesign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/source-build-deploy-redesign.md)
 
-The goal here is not to finalize every detail immediately.
-The goal is to make the target architecture concrete enough that we can judge
-it as a system rather than as a collection of individual ideas.
+Those earlier notes remain useful as historical context, but this document is
+the current high-level source of truth for the site/build/data layout.
 
 ## Design Priorities
 
@@ -39,9 +38,9 @@ These are explicit commitments, not loose aspirations:
 
 This is the intended engineering style for the redesign.
 
-## Target Top-Level Repo Shape
+## Top-Level Repo Shape
 
-The repo should eventually look roughly like:
+The repo now looks roughly like:
 
 ```text
 repo/
@@ -114,12 +113,16 @@ truth.
 
 This directory should stay small and disciplined.
 
-Likely first-cut records:
+Current canonical records:
 
 - `site/data/people.json`
+
+Likely next campaign domains:
+
 - `site/data/talks.json`
 - `site/data/students.json`
-- `site/data/cv/`
+- selected projection-oriented records for CV, funding, or similar repeated
+  factual domains if they clearly earn their keep
 
 The rule is:
 
@@ -174,7 +177,7 @@ build/
   sitemap.xml
 ```
 
-This is the artifact that should eventually be deployed.
+This is the deployed site artifact.
 
 ## Route Model
 
@@ -236,7 +239,7 @@ That means:
 
 These are related but distinct layers.
 
-## First-Cut Shared Data Domains
+## Shared Data Domains
 
 ### People Registry
 
@@ -270,29 +273,26 @@ That audit justified the split now live in the current repo:
 - a very small hand-maintained remainder for non-person references in
   `templates/REFS`
 
-### Talks
+### Upcoming Structured Content Campaigns
 
-Likely useful if the talks page is generated from shared records.
+The next planned content/data campaigns should grow from the current canonical
+domains in this order:
 
-But this should only be introduced once we know the page really benefits from
-it.
+1. talks
+2. students
+3. publication-list projection from publication bundles
 
-### Students
+Important clarifications:
 
-Likely useful because student facts are cross-cutting and structured.
+- publication bundles are already canonical; the future publications campaign
+  should project from them rather than invent a second publication registry
+- collaborators may become a small adjacent campaign, but they should not
+  derail the main sequence above
+- CV and news should come later, after we have enough experience projecting
+  structured subsections from canonical records
 
-### CV Records
-
-Likely useful for sections like:
-
-- positions
-- education
-- awards
-- service
-- teaching
-
-But the CV should not become one giant JSON blob if a few smaller structured
-sections are cleaner.
+The medium-term roadmap for those campaigns is captured in
+[structured-content-roadmap.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/structured-content-roadmap.md).
 
 ## Build Phases
 

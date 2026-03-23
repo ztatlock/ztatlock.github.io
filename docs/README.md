@@ -8,15 +8,17 @@ meant to be read, maintained, and extended over time.
 - `policy/`
   Long-lived policy and specification documents.
 - `plans/`
-  Current reference notes plus historical campaign/design notes.
+  Current reference notes, medium-term campaign roadmaps, and historical
+  campaign/design notes.
 
 ## What Belongs Here
 
 - storage/linking policy
 - repository layout decisions
-- work-in-progress campaign notes
+- current reference architecture notes
+- medium-term campaign roadmaps
 - implemented campaign records worth keeping for future context
-- future migration plans
+- historical migration plans
 
 ## What Does Not Belong Here
 
@@ -59,6 +61,9 @@ meant to be read, maintained, and extended over time.
   source/build split.
 - `plans/site-architecture-spec.md`
   The concrete architecture spec for the current site/build/data layout.
+- `plans/structured-content-roadmap.md`
+  Medium-term campaign roadmap for growing structured single sources of truth
+  on top of the new site/build architecture.
 - `plans/source-move-cutover-plan.md`
   The implemented cutover campaign that moved authored source into `site/` and
   made the route-aware build authoritative.
@@ -96,3 +101,18 @@ meant to be read, maintained, and extended over time.
 - Keep `docs/policy/root-layout.md` current as the root-level file mix changes.
 - Revisit whether any versioned generated artifacts deserve a separate home
   beyond `manifests/`.
+
+## Reading Order
+
+For someone orienting to the repo now:
+
+1. `README.md`
+   Current contributor workflow and command surface.
+2. `policy/root-layout.md`
+   What lives at the repo root versus under `site/` and `build/`.
+3. `plans/site-architecture-spec.md`
+   Current architecture and design principles.
+4. `plans/structured-content-roadmap.md`
+   Medium-term plan for the next content/data campaigns.
+5. Historical slice notes in `plans/`
+   Useful background, but no longer the primary source of truth.

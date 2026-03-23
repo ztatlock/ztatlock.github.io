@@ -24,9 +24,14 @@
 
 ## Future Campaigns
 
-- Introduce a small shared data model for cross-page facts such as people,
-  talks, students, and selected CV records, while keeping prose near prose and
-  publication-local facts near publication bundles.
+- Follow the structured-content campaign sequence in
+  `docs/plans/structured-content-roadmap.md`:
+  talks first, then students, then publication-list projection, with later
+  collaborators/funding/CV/news work only where structured data clearly earns
+  its keep.
+- Introduce small shared data models only for cross-page facts that are
+  actually reused, while keeping prose near prose and publication-local facts
+  near publication bundles.
 - Reduce repeated per-page build subprocess overhead so `make build` and
   `make check` stay fast enough to run routinely, likely by consolidating
   title/body/meta work into fewer Python entry points and revisiting safe
