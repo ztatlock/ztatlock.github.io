@@ -64,6 +64,9 @@ meant to be read, maintained, and extended over time.
 - `plans/structured-content-roadmap.md`
   Medium-term campaign roadmap for growing structured single sources of truth
   on top of the new site/build architecture.
+- `plans/talks-campaign.md`
+  Detailed note for the next structured-content campaign before it is broken
+  into implementation slices.
 - `plans/source-move-cutover-plan.md`
   The implemented cutover campaign that moved authored source into `site/` and
   made the route-aware build authoritative.

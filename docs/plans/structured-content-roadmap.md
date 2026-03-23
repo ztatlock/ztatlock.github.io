@@ -60,6 +60,10 @@ Likely outcomes:
 - projection into `site/pages/talks.dj`
 - later reuse in selected CV or news sections if that proves valuable
 
+The detailed planning note for this campaign is:
+
+- [talks-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/talks-campaign.md)
+
 ### 2. Students
 
 This should be the next major campaign.
