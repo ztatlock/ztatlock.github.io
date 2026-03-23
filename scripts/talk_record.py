@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 TALK_RECORD_NAME = "talk.json"
+TALKS_INDEX_NAME = "index.dj"
 EXTRA_CONTENT_NAME = "extra.dj"
 ALLOWED_SEASONS = frozenset({"spring", "summer", "fall", "winter"})
 SEASON_ORDER = {
@@ -45,6 +46,10 @@ class TalkRecord:
 
 def talks_root(root: Path, *, talks_dir: Path | None = None) -> Path:
     return (talks_dir or (root / "site" / "talks")).resolve()
+
+
+def talks_index_path(root: Path, *, talks_dir: Path | None = None) -> Path:
+    return talks_root(root, talks_dir=talks_dir) / TALKS_INDEX_NAME
 
 
 def talk_dir(root: Path, slug: str, *, talks_dir: Path | None = None) -> Path:
@@ -219,6 +224,8 @@ def find_talk_record_issues(
         return issues
 
     for path in sorted(actual_talks_dir.iterdir()):
+        if path.name == TALKS_INDEX_NAME and path.is_file():
+            continue
         if not path.is_dir():
             issues.append(f"{path}: talk bundles must be directories")
             continue

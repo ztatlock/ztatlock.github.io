@@ -45,13 +45,14 @@ def render_talks_list_djot(
 
 
 def apply_page_projections(
-    page_stem: str,
+    route_kind: str,
+    route_key: str,
     body: str,
     *,
     root: Path,
     talks_dir: Path | None = None,
 ) -> str:
-    if page_stem != "talks" or TALKS_LIST_PLACEHOLDER not in body:
+    if route_kind != "talks_index_page" or route_key != "talks" or TALKS_LIST_PLACEHOLDER not in body:
         return body
     rendered = render_talks_list_djot(root, talks_dir=talks_dir).rstrip()
     return body.replace(TALKS_LIST_PLACEHOLDER, rendered)

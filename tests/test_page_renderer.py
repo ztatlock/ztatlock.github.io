@@ -63,6 +63,23 @@ class PageRendererTests(unittest.TestCase):
             html,
         )
 
+    def test_render_talks_index_page_uses_explicit_canonical_url(self) -> None:
+        canonical = "https://example.com/talks/"
+        html = render_page_html(
+            "talks_index_page",
+            "talks",
+            canonical_url=canonical,
+            refs_text=self.refs_text,
+            root=ROOT,
+            site_url=self.config.site_url,
+            webfiles_url=self.config.webfiles_url,
+            talks_dir=self.config.talks_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
+        )
+        self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
+        self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+
     def test_rewrites_static_asset_target(self) -> None:
         html = '<link rel="stylesheet" href="style.css">'
         rewritten = rewrite_local_html_targets(
@@ -70,6 +87,14 @@ class PageRendererTests(unittest.TestCase):
             aliases={"style.css": "/style.css"},
         )
         self.assertIn('href="/style.css"', rewritten)
+
+    def test_rewrites_collection_index_target(self) -> None:
+        html = '<a href="talks/">Talks</a>'
+        rewritten = rewrite_local_html_targets(
+            html,
+            aliases={"talks/": "/talks/"},
+        )
+        self.assertIn('href="/talks/"', rewritten)
 
     def test_leaves_external_targets_alone(self) -> None:
         html = '<a href="https://example.com/">x</a>'

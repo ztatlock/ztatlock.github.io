@@ -15,6 +15,7 @@ from scripts.publication_record import (
     publication_record_path,
 )
 from scripts.talk_record import TALK_RECORD_NAME, discover_talk_slugs, talk_record_path
+from scripts.talk_record import TALKS_INDEX_NAME, talks_index_path
 
 from .route_model import Route, RouteModelError, canonical_url, validate_routes
 from .site_config import SiteConfig
@@ -36,32 +37,59 @@ def _ordinary_page_routes(config: SiteConfig) -> list[Route]:
         stem = path.stem
 
         public_url = "/" if stem == "index" else f"/{stem}.html"
-        source_paths: tuple[Path, ...] = (path,)
-        if stem == "talks":
-            talk_record_paths = tuple(
-                talk_record_path(
-                    config.repo_root,
-                    slug,
-                    talks_dir=config.talks_dir,
-                )
-                for slug in discover_talk_slugs(
-                    config.repo_root,
-                    talks_dir=config.talks_dir,
-                )
-                if (config.talks_dir / slug / TALK_RECORD_NAME).exists()
-            )
-            source_paths = (path, *talk_record_paths)
         routes.append(
             Route(
                 kind="ordinary_page",
                 key=stem,
-                source_paths=source_paths,
+                source_paths=(path,),
                 output_relpath=f"{stem}.html",
                 public_url=public_url,
                 canonical_url=canonical_url(config.site_url, public_url),
                 is_draft=_is_draft_page(path),
             )
         )
+    return routes
+
+
+def _talk_collection_index_route(config: SiteConfig) -> Route | None:
+    index_path = talks_index_path(config.repo_root, talks_dir=config.talks_dir)
+    if not index_path.exists():
+        return None
+
+    legacy_talks_page = config.page_source_dir / "talks.dj"
+    if legacy_talks_page.exists():
+        raise RouteDiscoveryError(
+            f"{legacy_talks_page}: talks index wrapper must live at {index_path}"
+        )
+
+    talk_record_paths = tuple(
+        talk_record_path(
+            config.repo_root,
+            slug,
+            talks_dir=config.talks_dir,
+        )
+        for slug in discover_talk_slugs(
+            config.repo_root,
+            talks_dir=config.talks_dir,
+        )
+        if (config.talks_dir / slug / TALK_RECORD_NAME).exists()
+    )
+    return Route(
+        kind="talks_index_page",
+        key="talks",
+        source_paths=(index_path, *talk_record_paths),
+        output_relpath="talks/index.html",
+        public_url="/talks/",
+        canonical_url=canonical_url(config.site_url, "/talks/"),
+        is_draft=_is_draft_page(index_path),
+    )
+
+
+def _collection_index_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    talks_route = _talk_collection_index_route(config)
+    if talks_route is not None:
+        routes.append(talks_route)
     return routes
 
 
@@ -209,8 +237,14 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
 
 def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     ordinary_routes = _ordinary_page_routes(config)
+    collection_index_routes = _collection_index_routes(config)
     publication_routes = _publication_page_routes(config)
-    page_routes = tuple(sorted((*ordinary_routes, *publication_routes), key=lambda route: route.output_relpath))
+    page_routes = tuple(
+        sorted(
+            (*ordinary_routes, *collection_index_routes, *publication_routes),
+            key=lambda route: route.output_relpath,
+        )
+    )
     static_routes = (
         _static_routes(config)
         + _publication_asset_routes(config, page_routes)

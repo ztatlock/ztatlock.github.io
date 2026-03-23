@@ -37,7 +37,7 @@ class SiteBuilderTests(unittest.TestCase):
                 "Site body.\n",
                 encoding="utf-8",
             )
-            (page_source_dir / "talks.dj").write_text(
+            (talks_dir / "index.dj").write_text(
                 "---\n"
                 "description: Talks page\n"
                 "---\n"
@@ -125,7 +125,7 @@ class SiteBuilderTests(unittest.TestCase):
             self.assertIn('href="https://ztatlock.net/about.html"', about_html)
             self.assertIn("Site body.", about_html)
 
-            talks_html = (config.build_dir / "talks.html").read_text(encoding="utf-8")
+            talks_html = (config.build_dir / "talks" / "index.html").read_text(encoding="utf-8")
             self.assertIn("Everything is a compiler, try Equality Saturation!", talks_html)
             self.assertIn("Brown University, PL and Graphics groups, February 2026", talks_html)
             self.assertIn('href="https://events.brown.edu/demo"', talks_html)
@@ -147,6 +147,7 @@ class SiteBuilderTests(unittest.TestCase):
             self.assertTrue((config.build_dir / "demo.html").exists())
             self.assertTrue((config.build_dir / "img" / "logo.png").exists())
             self.assertTrue((config.build_dir / "pubs" / "2025-test-demo" / "2025-test-demo.pdf").exists())
+            self.assertFalse((config.build_dir / "talks.html").exists())
 
     def test_skips_draft_publication_without_stub_or_public_assets(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

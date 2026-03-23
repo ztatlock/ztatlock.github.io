@@ -6,7 +6,13 @@ import html
 from pathlib import Path
 from urllib.parse import urlparse
 
-from scripts.page_source import PageSourceError, page_path, read_page_source
+from scripts.page_source import (
+    PageSourceError,
+    page_path,
+    read_page_source,
+    read_source_path,
+    talks_index_source_path,
+)
 from scripts.publication_record import (
     PUBLICATION_RECORD_NAME,
     PublicationRecordError,
@@ -184,9 +190,8 @@ def load_front_matter_general_metadata(
     *,
     page_source_dir: Path | None = None,
 ) -> dict[str, str] | None:
-    actual_page_source_dir = page_source_dir or root
     try:
-        source = read_page_source(page_stem, root, page_source_dir=actual_page_source_dir)
+        source = read_page_source(page_stem, root, page_source_dir=page_source_dir)
     except PageSourceError as err:
         raise MetadataError(str(err)) from err
 
@@ -194,7 +199,21 @@ def load_front_matter_general_metadata(
         return None
     return normalize_general_metadata_entry(
         source.front_matter,
-        context=f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter",
+        context=f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter",
+    )
+
+
+def load_front_matter_general_metadata_for_path(path: Path) -> dict[str, str] | None:
+    try:
+        source = read_source_path(path)
+    except PageSourceError as err:
+        raise MetadataError(str(err)) from err
+
+    if not source.front_matter:
+        return None
+    return normalize_general_metadata_entry(
+        source.front_matter,
+        context=f"{path}: front matter",
     )
 
 
@@ -223,13 +242,27 @@ def render_general_page_meta_for_url(
     page_source_dir: Path | None = None,
     site_url: str = SITE_URL,
 ) -> str:
-    row = load_front_matter_general_metadata(
-        page_stem,
-        root,
-        page_source_dir=page_source_dir,
+    actual_page_source_dir = page_source_dir or root
+    return render_general_source_meta_for_url(
+        actual_page_source_dir / f"{page_stem}.dj",
+        title,
+        url,
+        site_url=site_url,
+    )
+
+
+def render_general_source_meta_for_url(
+    source_path: Path,
+    title: str,
+    url: str,
+    *,
+    site_url: str = SITE_URL,
+) -> str:
+    row = load_front_matter_general_metadata_for_path(
+        source_path,
     )
     if row is None:
-        raise MetadataError(f"Missing front matter metadata for {page_stem}")
+        raise MetadataError(f"Missing front matter metadata for {source_path}")
 
     description = row["description"]
     share_description = row["share_description"] or description
@@ -293,37 +326,63 @@ def render_ordinary_page_meta_for_url(
     site_url: str = SITE_URL,
 ) -> str:
     actual_page_source_dir = page_source_dir or root
-    try:
-        source = read_page_source(
-            page_stem,
+    return render_djot_source_meta_for_url(
+        actual_page_source_dir / f"{page_stem}.dj",
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
+def render_talks_index_meta_for_url(
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    talks_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_djot_source_meta_for_url(
+        talks_index_source_path(
             root,
-            page_source_dir=actual_page_source_dir,
-        )
+            talks_dir=talks_dir,
+        ),
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
+def render_djot_source_meta_for_url(
+    source_path: Path,
+    title: str,
+    *,
+    canonical_url: str,
+    site_url: str = SITE_URL,
+) -> str:
+    try:
+        source = read_source_path(source_path)
     except PageSourceError as err:
         raise MetadataError(str(err)) from err
 
     if source.is_draft:
         if source.front_matter:
-            return render_general_page_meta_for_url(
-                page_stem,
+            return render_general_source_meta_for_url(
+                source_path,
                 title,
                 canonical_url,
-                root,
-                page_source_dir=page_source_dir,
                 site_url=site_url,
             )
         return ""
 
     if source.front_matter:
-        return render_general_page_meta_for_url(
-            page_stem,
+        return render_general_source_meta_for_url(
+            source_path,
             title,
             canonical_url,
-            root,
-            page_source_dir=page_source_dir,
             site_url=site_url,
         )
-    raise MetadataError(f"Missing front matter metadata for {page_stem}")
+    raise MetadataError(f"Missing front matter metadata for {source_path}")
 
 
 def render_route_meta_for_url(
@@ -334,6 +393,7 @@ def render_route_meta_for_url(
     canonical_url: str,
     root: Path,
     page_source_dir: Path | None = None,
+    talks_dir: Path | None = None,
     publications_dir: Path | None = None,
     site_url: str = SITE_URL,
 ) -> str:
@@ -344,6 +404,16 @@ def render_route_meta_for_url(
             canonical_url=canonical_url,
             root=root,
             page_source_dir=page_source_dir,
+            site_url=site_url,
+        )
+    if route_kind == "talks_index_page":
+        if route_key != "talks":
+            raise MetadataError(f"unsupported talks index route key: {route_key}")
+        return render_talks_index_meta_for_url(
+            title,
+            canonical_url=canonical_url,
+            root=root,
+            talks_dir=talks_dir,
             site_url=site_url,
         )
     if route_kind == "publication_page":
@@ -430,6 +500,45 @@ def validate_general_page_metadata(
             continue
         issues.append(f"{actual_page_source_dir / f'{stem}.dj'}: missing front matter metadata")
 
+    return issues
+
+
+def validate_general_source_metadata_path(
+    path: Path,
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+    static_source_dir: Path | None = None,
+) -> list[str]:
+    issues: list[str] = []
+
+    try:
+        source = read_source_path(path)
+    except PageSourceError as err:
+        return [str(err)]
+
+    if source.front_matter:
+        try:
+            row = normalize_general_metadata_entry(
+                source.front_matter,
+                context=f"{path}: front matter",
+            )
+        except MetadataError as err:
+            return [str(err)]
+
+        image_path = row["image_path"] or default_page_image_path()
+        source_image_path = resolve_public_asset_source_path(
+            image_path,
+            root=root,
+            publications_dir=publications_dir,
+            static_source_dir=static_source_dir,
+        )
+        if source_image_path is not None and not source_image_path.exists():
+            issues.append(f"{path}: image path does not exist: {image_path}")
+        return issues
+
+    if not source.is_draft:
+        issues.append(f"{path}: missing front matter metadata")
     return issues
 
 

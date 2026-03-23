@@ -14,6 +14,7 @@ from scripts.publication_record import (
     load_publication_record,
     render_publication_body,
 )
+from scripts.talk_record import talks_index_path
 
 DRAFT_HEADING_RE = re.compile(r"^# DRAFT$", re.MULTILINE)
 TITLE_HEADING_RE = re.compile(r"^#\s+(.*\S)\s*$")
@@ -34,6 +35,14 @@ class PageSource:
 
 def page_path(page_stem: str, root: Path) -> Path:
     return root / f"{page_stem}.dj"
+
+
+def talks_index_source_path(
+    root: Path,
+    *,
+    talks_dir: Path | None = None,
+) -> Path:
+    return talks_index_path(root, talks_dir=talks_dir)
 
 
 def normalize_front_matter_value(raw_value: str) -> str:
@@ -104,6 +113,10 @@ def read_page_source(
 ) -> PageSource:
     actual_page_source_dir = page_source_dir or root
     path = page_path(page_stem, actual_page_source_dir)
+    return read_source_path(path)
+
+
+def read_source_path(path: Path) -> PageSource:
     if not path.exists():
         raise PageSourceError(f"Missing source page: {path}")
     text = path.read_text(encoding="utf-8")
@@ -113,6 +126,19 @@ def read_page_source(
         body=body,
         title=extract_title(body, path),
         is_draft=bool(DRAFT_HEADING_RE.search(text)),
+    )
+
+
+def read_talks_index_source(
+    root: Path,
+    *,
+    talks_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        talks_index_source_path(
+            root,
+            talks_dir=talks_dir,
+        )
     )
 
 

@@ -90,11 +90,23 @@ class TalkProjectionTests(unittest.TestCase):
             )
 
             body = "# Talks\n\n" + TALKS_LIST_PLACEHOLDER + "\n"
-            rendered = apply_page_projections("talks", body, root=root, talks_dir=talks_dir)
+            rendered = apply_page_projections(
+                "talks_index_page",
+                "talks",
+                body,
+                root=root,
+                talks_dir=talks_dir,
+            )
             self.assertNotIn(TALKS_LIST_PLACEHOLDER, rendered)
             self.assertIn("Brown University, February 2026", rendered)
 
             self.assertEqual(
-                apply_page_projections("about", body, root=root, talks_dir=talks_dir),
+                apply_page_projections(
+                    "ordinary_page",
+                    "about",
+                    body,
+                    root=root,
+                    talks_dir=talks_dir,
+                ),
                 body,
             )

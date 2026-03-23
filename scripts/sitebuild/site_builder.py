@@ -19,6 +19,8 @@ def _route_aliases(routes: tuple[Route, ...]) -> dict[str, str]:
     aliases: dict[str, str] = {}
     for route in routes:
         aliases[route.output_relpath] = route.public_url
+        if route.public_url.endswith("/") and route.public_url != "/":
+            aliases[route.public_url.lstrip("/")] = route.public_url
         if route.kind == "ordinary_page" and route.key == "index":
             aliases["index.html"] = route.public_url
     return aliases

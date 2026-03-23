@@ -6,8 +6,9 @@ import re
 from pathlib import Path
 
 from scripts.publication_record import EXTRA_CONTENT_NAME, publication_page_path
-from scripts.talk_record import find_talk_record_issues
+from scripts.talk_record import TALKS_INDEX_NAME, find_talk_record_issues, talks_index_path
 from scripts.page_metadata import (
+    validate_general_source_metadata_path,
     validate_general_page_metadata,
     validate_publication_record_metadata,
 )
@@ -16,6 +17,7 @@ from .site_config import SiteConfig
 from .talk_projection import TALKS_LIST_PLACEHOLDER
 
 LEGACY_PUBLICATION_LINK_RE = re.compile(r"\b(pub-\d{4}[-a-z0-9]*\.html)\b")
+LEGACY_TALKS_LINK_RE = re.compile(r"\b(talks\.html)\b")
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
     "robots.txt",
@@ -37,12 +39,34 @@ def _legacy_publication_link_issues(path: Path) -> list[str]:
     return issues
 
 
+def _legacy_talks_link_issues(path: Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    if not LEGACY_TALKS_LINK_RE.search(text):
+        return []
+    return [f"{path}: legacy talks link should use canonical collection path: talks.html -> talks/"]
+
+
+def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
+    paths = list(sorted(config.page_source_dir.glob("*.dj")))
+    talks_index = talks_index_path(config.repo_root, talks_dir=config.talks_dir)
+    if talks_index.exists():
+        paths.append(talks_index)
+    paths.extend(sorted(config.publications_dir.glob(f"*/{EXTRA_CONTENT_NAME}")))
+    paths.extend(sorted(config.talks_dir.glob(f"*/{EXTRA_CONTENT_NAME}")))
+    return paths
+
+
 def _find_legacy_publication_link_issues(config: SiteConfig) -> list[str]:
     issues: list[str] = []
-    for path in sorted(config.page_source_dir.glob("*.dj")):
+    for path in _all_authored_djot_sources(config):
         issues.extend(_legacy_publication_link_issues(path))
-    for path in sorted(config.publications_dir.glob(f"*/{EXTRA_CONTENT_NAME}")):
-        issues.extend(_legacy_publication_link_issues(path))
+    return issues
+
+
+def _find_legacy_talks_link_issues(config: SiteConfig) -> list[str]:
+    issues: list[str] = []
+    for path in _all_authored_djot_sources(config):
+        issues.extend(_legacy_talks_link_issues(path))
     return issues
 
 
@@ -82,14 +106,28 @@ def _find_talk_projection_issues(config: SiteConfig) -> list[str]:
     if not talk_dirs:
         return []
 
-    talks_page = config.page_source_dir / "talks.dj"
+    talks_page = talks_index_path(config.repo_root, talks_dir=config.talks_dir)
+    issues: list[str] = []
     if not talks_page.exists():
-        return [f"{talks_page}: talks page is required when talk bundles exist"]
+        return [f"{talks_page}: talks index page is required when talk bundles exist"]
+
+    legacy_talks_page = config.page_source_dir / "talks.dj"
+    if legacy_talks_page.exists():
+        issues.append(f"{legacy_talks_page}: talks index wrapper must move to {talks_page}")
 
     text = talks_page.read_text(encoding="utf-8")
     if TALKS_LIST_PLACEHOLDER not in text:
-        return [f"{talks_page}: talks page must contain {TALKS_LIST_PLACEHOLDER}"]
-    return []
+        issues.append(f"{talks_page}: talks index page must contain {TALKS_LIST_PLACEHOLDER}")
+
+    issues.extend(
+        validate_general_source_metadata_path(
+            talks_page,
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+    )
+    return issues
 
 
 def find_source_issues(config: SiteConfig) -> list[str]:
@@ -111,5 +149,6 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         )
         + _find_talk_projection_issues(config)
         + _find_legacy_publication_link_issues(config)
+        + _find_legacy_talks_link_issues(config)
         + _find_root_layout_drift_issues(config)
     )

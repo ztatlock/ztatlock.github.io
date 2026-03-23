@@ -87,3 +87,15 @@ class RouteModelTests(unittest.TestCase):
         )
         with self.assertRaises(RouteModelError):
             validate_routes(routes)
+
+    def test_validate_routes_accepts_talks_index_page(self) -> None:
+        routes = (
+            route(
+                kind="talks_index_page",
+                key="talks",
+                output_relpath="talks/index.html",
+                public_url="/talks/",
+                canonical_url_value="https://ztatlock.net/talks/",
+            ),
+        )
+        validate_routes(routes)

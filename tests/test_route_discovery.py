@@ -79,7 +79,7 @@ class RouteDiscoveryTests(unittest.TestCase):
         self.assertTrue(route.is_draft)
         self.assertEqual(route.output_relpath, "course-recipe.html")
 
-    def test_discovers_talks_page_route_with_talk_bundle_sources(self) -> None:
+    def test_discovers_talks_index_route_with_talk_bundle_sources(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             page_source_dir = root / "site" / "pages"
@@ -92,8 +92,8 @@ class RouteDiscoveryTests(unittest.TestCase):
             publications_dir.mkdir(parents=True)
             static_source_dir.mkdir(parents=True)
 
-            (page_source_dir / "talks.dj").write_text("# Talks\n\n__TALKS_LIST__\n", encoding="utf-8")
             (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+            (talks_dir / "index.dj").write_text("# Talks\n\n__TALKS_LIST__\n", encoding="utf-8")
 
             brown_dir = talks_dir / "2026-02-brown-eqsat"
             brown_dir.mkdir()
@@ -130,15 +130,45 @@ class RouteDiscoveryTests(unittest.TestCase):
             )
             routes = discover_routes(config)
 
-            route = find_route(routes, kind="ordinary_page", key="talks")
+            route = find_route(routes, kind="talks_index_page", key="talks")
+            self.assertEqual(route.output_relpath, "talks/index.html")
+            self.assertEqual(route.public_url, "/talks/")
             self.assertEqual(
                 [path.relative_to(root).as_posix() for path in route.source_paths],
                 [
-                    "site/pages/talks.dj",
+                    "site/talks/index.dj",
                     "site/talks/2023-05-uiuc-egg/talk.json",
                     "site/talks/2026-02-brown-eqsat/talk.json",
                 ],
             )
+
+    def test_rejects_legacy_and_collection_talk_wrappers_together(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            talks_dir = root / "site" / "talks"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            talks_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "talks.dj").write_text("# Talks\n", encoding="utf-8")
+            (talks_dir / "index.dj").write_text("# Talks\n\n__TALKS_LIST__\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                talks_dir=talks_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
 
     def test_discovers_static_file_route(self) -> None:
         route = find_route(self.routes, kind="static_file", key="style.css")

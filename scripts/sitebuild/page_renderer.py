@@ -7,7 +7,12 @@ import subprocess
 from pathlib import Path
 
 from scripts.page_metadata import MetadataError, render_route_meta_for_url
-from scripts.page_source import PageSourceError, read_page_source, read_publication_page_source
+from scripts.page_source import (
+    PageSourceError,
+    read_page_source,
+    read_publication_page_source,
+    read_talks_index_source,
+)
 
 from .talk_projection import TalkProjectionError, apply_page_projections
 
@@ -99,6 +104,13 @@ def render_page_html(
                 root,
                 page_source_dir=page_source_dir,
             )
+        elif route_kind == "talks_index_page":
+            if route_key != "talks":
+                raise PageRenderError(f"unsupported talks index route key: {route_key}")
+            source = read_talks_index_source(
+                root,
+                talks_dir=talks_dir,
+            )
         elif route_kind == "publication_page":
             source = read_publication_page_source(
                 route_key,
@@ -119,6 +131,7 @@ def render_page_html(
             root=root,
             site_url=site_url,
             page_source_dir=page_source_dir,
+            talks_dir=talks_dir,
             publications_dir=publications_dir,
         )
     except MetadataError as err:
@@ -126,6 +139,7 @@ def render_page_html(
 
     try:
         rendered_body = apply_page_projections(
+            route_kind,
             route_key,
             source.body,
             root=root,
