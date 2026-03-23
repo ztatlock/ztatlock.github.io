@@ -17,7 +17,7 @@ CHECK          := scripts/check.sh
 CHECK_ENV      := scripts/check_env.sh
 INDEX_NOW      := scripts/index-now.sh
 MKPUB          := scripts/mkpub.sh
-PUB_INVENTORY  := scripts/build_pub_inventory.py
+PUB_INVENTORY_MODULE := scripts.build_pub_inventory
 PAGE_META      := scripts/page_metadata.py
 PAGE_SOURCE    := scripts/page_source.py
 PUBLICATION_RECORD := scripts/publication_record.py
@@ -165,11 +165,11 @@ validate-site:
 
 .PHONY: inventory
 inventory:
-	@python3 $(PUB_INVENTORY) --out-dir "$(INVENTORY_OUT)"
+	@python3 -m $(PUB_INVENTORY_MODULE) --out-dir "$(INVENTORY_OUT)"
 
 .PHONY: inventory-webfiles
 inventory-webfiles:
-	@python3 $(PUB_INVENTORY) --out-dir "$(INVENTORY_WEBFILES_OUT)"
+	@python3 -m $(PUB_INVENTORY_MODULE) --out-dir "$(INVENTORY_WEBFILES_OUT)"
 
 .PHONY: mkpub
 mkpub:

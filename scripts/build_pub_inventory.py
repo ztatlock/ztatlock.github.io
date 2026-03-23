@@ -13,6 +13,7 @@ from scripts.publication_record import (
     PUBLICATION_RECORD_NAME,
     PublicationRecord,
     load_publication_record,
+    publication_page_path,
 )
 
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".webp")
@@ -257,7 +258,7 @@ def build_record(repo_root: Path, webfiles_root: Path, slug: str) -> PubRecord:
     return PubRecord(
         slug=slug,
         title=title,
-        page=f"pub-{slug}.html",
+        page=publication_page_path(slug),
         repo_dir=str(pub_dir.relative_to(repo_root)),
         site_paper_pdf_path=site_paper_pdf_path,
         site_paper_pdf_status=status_for_path(site_paper_pdf_path),

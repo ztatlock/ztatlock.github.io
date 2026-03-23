@@ -112,6 +112,10 @@ def publication_page_stem(slug: str) -> str:
     return f"pub-{slug}"
 
 
+def publication_page_path(slug: str) -> str:
+    return f"pubs/{slug}/"
+
+
 def publication_year(slug: str) -> str:
     year, _, _ = slug.partition("-")
     if len(year) != 4 or not year.isdigit():

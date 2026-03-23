@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from scripts.build_pub_inventory import build_record, discover_publication_slugs
+from scripts.publication_record import publication_page_path
 
 
 class BuildPubInventoryTests(unittest.TestCase):
@@ -75,7 +76,7 @@ class BuildPubInventoryTests(unittest.TestCase):
             record = build_record(root, webfiles_root, slug)
 
             self.assertEqual(record.title, "Demo Paper")
-            self.assertEqual(record.page, f"pub-{slug}.html")
+            self.assertEqual(record.page, publication_page_path(slug))
             self.assertEqual(record.page_paper_link, f"pubs/{slug}/{slug}.pdf")
             self.assertEqual(record.page_bib_link, f"pubs/{slug}/{slug}.bib")
             self.assertEqual(record.page_slides_link, f"pubs/{slug}/{slug}-slides.pdf")

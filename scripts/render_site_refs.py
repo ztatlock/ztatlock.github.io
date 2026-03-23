@@ -6,6 +6,7 @@ import argparse
 from pathlib import Path
 
 from scripts.sitebuild.djot_refs import load_and_render_site_refs
+from scripts.sitebuild.site_config import load_site_config
 
 
 def main() -> int:
@@ -15,11 +16,11 @@ def main() -> int:
     parser.add_argument("--root", default=".", help="repo root")
     args = parser.parse_args()
 
-    root = Path(args.root)
+    config = load_site_config(Path(args.root))
     print(
         load_and_render_site_refs(
-            people_path=root / "site" / "data" / "people.json",
-            refs_path=root / "templates" / "REFS",
+            people_path=config.people_data_path,
+            refs_path=config.manual_refs_path,
         ),
         end="",
     )
