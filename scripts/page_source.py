@@ -105,17 +105,18 @@ def read_page_source(
 ) -> PageSource:
     actual_page_source_dir = page_source_dir or root
     path = page_path(page_stem, actual_page_source_dir)
+    if path.exists():
+        text = path.read_text(encoding="utf-8")
+        front_matter, body = split_front_matter(text, path)
+        return PageSource(
+            front_matter=front_matter,
+            body=body,
+            title=extract_title(body, path),
+            is_draft=bool(DRAFT_HEADING_RE.search(text)),
+        )
+
     slug = publication_slug(page_stem)
     if slug is not None:
-        text = ""
-        front_matter: dict[str, str] = {}
-        body = ""
-        stub_is_draft = False
-        if path.exists():
-            text = path.read_text(encoding="utf-8")
-            front_matter, body = split_front_matter(text, path)
-            stub_is_draft = bool(DRAFT_HEADING_RE.search(text))
-
         try:
             record = load_optional_publication_record(
                 root,
@@ -126,17 +127,14 @@ def read_page_source(
             raise PageSourceError(str(err)) from err
         if record is not None:
             if record.draft:
-                title = record.title
-                if not title and path.exists():
-                    title = extract_title(body, path)
                 return PageSource(
-                    front_matter=front_matter,
-                    body=body,
-                    title=title,
+                    front_matter={},
+                    body="",
+                    title=record.title,
                     is_draft=True,
                 )
             return PageSource(
-                front_matter=front_matter,
+                front_matter={},
                 body=render_publication_body(
                     root,
                     record,
@@ -145,25 +143,8 @@ def read_page_source(
                 title=record.title,
                 is_draft=False,
             )
-        if stub_is_draft:
-            return PageSource(
-                front_matter=front_matter,
-                body=body,
-                title=extract_title(body, path),
-                is_draft=True,
-            )
 
-    if not path.exists():
-        raise PageSourceError(f"Missing source page: {path}")
-
-    text = path.read_text(encoding="utf-8")
-    front_matter, body = split_front_matter(text, path)
-    return PageSource(
-        front_matter=front_matter,
-        body=body,
-        title=extract_title(body, path),
-        is_draft=bool(DRAFT_HEADING_RE.search(text)),
-    )
+    raise PageSourceError(f"Missing source page: {path}")
 
 
 def main() -> int:

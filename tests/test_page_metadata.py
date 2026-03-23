@@ -36,6 +36,31 @@ class PageMetadataTests(unittest.TestCase):
                 page_source_dir=pages,
             )
             self.assertIn('content="https://example.test/img/demo.png"', html)
+            self.assertIn('content="example.test"', html)
+
+    def test_render_page_meta_treats_pub_prefix_source_page_as_ordinary(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pages.mkdir(parents=True)
+            (pages / "pub-demo.dj").write_text(
+                "---\n"
+                "description: Demo description\n"
+                "---\n"
+                "# Demo\n",
+                encoding="utf-8",
+            )
+
+            html = render_page_meta_for_url(
+                "pub-demo",
+                "Demo",
+                canonical_url="https://example.test/pub-demo.html",
+                root=root,
+                site_url="https://example.test",
+                page_source_dir=pages,
+            )
+            self.assertIn('content="https://example.test/pub-demo.html"', html)
+            self.assertIn('content="Demo description"', html)
 
     def test_validate_general_page_metadata_uses_configured_static_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

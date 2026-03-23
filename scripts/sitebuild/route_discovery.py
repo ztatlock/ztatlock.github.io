@@ -13,13 +13,12 @@ from scripts.publication_record import (
     load_publication_record,
     publication_dir,
     publication_record_path,
-    publication_slug,
 )
 
 from .route_model import Route, RouteModelError, canonical_url, validate_routes
 from .site_config import SiteConfig
 
-GENERATED_PREVIEW_OUTPUTS = frozenset({"sitemap.txt", "sitemap.xml"})
+GENERATED_BUILD_OUTPUTS = frozenset({"sitemap.txt", "sitemap.xml"})
 
 
 class RouteDiscoveryError(RouteModelError):
@@ -34,8 +33,6 @@ def _ordinary_page_routes(config: SiteConfig) -> list[Route]:
     routes: list[Route] = []
     for path in sorted(config.page_source_dir.glob("*.dj")):
         stem = path.stem
-        if publication_slug(stem) is not None:
-            continue
 
         public_url = "/" if stem == "index" else f"/{stem}.html"
         routes.append(
@@ -135,7 +132,7 @@ def _recursive_static_tree_routes(config: SiteConfig) -> list[Route]:
         if not path.is_file():
             continue
         relpath = path.relative_to(config.static_source_dir).as_posix()
-        if relpath in GENERATED_PREVIEW_OUTPUTS:
+        if relpath in GENERATED_BUILD_OUTPUTS:
             raise RouteDiscoveryError(
                 f"{path}: reserved static path conflicts with generated build artifact: {relpath}"
             )

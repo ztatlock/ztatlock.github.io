@@ -82,6 +82,36 @@ class SourceValidateTests(unittest.TestCase):
                 [f"{pages / 'about.dj'}: image path does not exist: img/missing.png"],
             )
 
+    def test_reports_missing_front_matter_for_pub_prefix_page(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+
+            page_path = pages / "pub-demo.dj"
+            page_path.write_text("# Demo\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{page_path}: missing front matter metadata"],
+            )
+
     def test_accepts_publication_local_metadata_image_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

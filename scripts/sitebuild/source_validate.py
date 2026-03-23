@@ -73,17 +73,18 @@ def _find_root_layout_drift_issues(config: SiteConfig) -> list[str]:
 
 
 def find_source_issues(config: SiteConfig) -> list[str]:
-    return validate_general_page_metadata(
-        config.repo_root,
-        page_source_dir=config.page_source_dir,
-        publications_dir=config.publications_dir,
-        static_source_dir=config.static_source_dir,
-    ) + validate_publication_record_metadata(
-        config.repo_root,
-        publications_dir=config.publications_dir,
-        static_source_dir=config.static_source_dir,
-    ) + _find_legacy_publication_link_issues(
-        config
-    ) + _find_root_layout_drift_issues(
-        config
+    return (
+        validate_general_page_metadata(
+            config.repo_root,
+            page_source_dir=config.page_source_dir,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+        + validate_publication_record_metadata(
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+        + _find_legacy_publication_link_issues(config)
+        + _find_root_layout_drift_issues(config)
     )

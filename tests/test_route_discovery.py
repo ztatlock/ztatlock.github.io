@@ -34,6 +34,32 @@ class RouteDiscoveryTests(unittest.TestCase):
             ["site/pages/about.dj"],
         )
 
+    def test_discovers_ordinary_page_route_with_pub_prefix(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "pub-demo.dj").write_text("# Demo\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+            routes = discover_routes(config)
+
+            route = find_route(routes, kind="ordinary_page", key="pub-demo")
+            self.assertEqual(route.output_relpath, "pub-demo.html")
+            self.assertEqual(route.public_url, "/pub-demo.html")
+
     def test_discovers_future_publication_route(self) -> None:
         route = find_route(self.routes, kind="publication_page", key="2024-asplos-lakeroad")
         self.assertEqual(route.output_relpath, "pubs/2024-asplos-lakeroad/index.html")

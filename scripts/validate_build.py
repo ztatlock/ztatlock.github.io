@@ -18,7 +18,7 @@ from scripts.sitebuild.site_config import SiteConfig, load_site_config
 from scripts.sitebuild.sitemap_builder import build_sitemap_entries, render_sitemap_txt, render_sitemap_xml
 from scripts.sitebuild.source_validate import find_source_issues
 
-PREVIEW_PLACEHOLDER_RE = re.compile(
+BUILD_PLACEHOLDER_RE = re.compile(
     r'YOUTUBEID|href="TODO"|content="TITLE"|content="DESCRIPTION"|CONF YEAR'
 )
 
@@ -45,7 +45,7 @@ def main() -> int:
     placeholder_issues = find_placeholder_issues(
         html_files=html_files,
         relative_to=build_root,
-        placeholder_re=PREVIEW_PLACEHOLDER_RE,
+        placeholder_re=BUILD_PLACEHOLDER_RE,
         publication_todo_prefixes=("pubs/",),
     )
     broken_link_issues = find_broken_link_issues(

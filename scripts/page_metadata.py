@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import html
 from pathlib import Path
+from urllib.parse import urlparse
 
-from scripts.page_source import PageSourceError, read_page_source
+from scripts.page_source import PageSourceError, page_path, read_page_source
 from scripts.publication_record import (
     PUBLICATION_RECORD_NAME,
     PublicationRecordError,
@@ -14,8 +15,7 @@ from scripts.publication_record import (
     publication_metadata_image_path,
     publication_slug,
 )
-
-SITE_URL = "https://ztatlock.net"
+from scripts.sitebuild.site_config import SITE_URL
 GENERAL_ALLOWED_FIELDS = {"description", "share_description", "image_path", "title"}
 
 
@@ -37,6 +37,15 @@ def absolute_url(path_or_url: str, *, site_url: str = SITE_URL) -> str:
     if path_or_url.startswith(("http://", "https://")):
         return path_or_url
     return f"{site_url}/{path_or_url.lstrip('/')}"
+
+
+def site_domain(*, site_url: str = SITE_URL) -> str:
+    parsed = urlparse(site_url)
+    if parsed.netloc:
+        return parsed.netloc
+    if parsed.path:
+        return parsed.path.strip("/").split("/", 1)[0]
+    return site_url
 
 
 def escape_content(value: str) -> str:
@@ -103,7 +112,7 @@ def render_metadata_block(
         "",
         "<!-- Twitter -->",
         '<meta name="twitter:card" content="summary_large_image">',
-        '<meta property="twitter:domain" content="ztatlock.net">',
+        f'<meta property="twitter:domain" content="{escape_content(site_domain(site_url=site_url))}">',
         f'<meta property="twitter:url" content="{escaped_url}">',
         f'<meta name="twitter:title" content="{escaped_title}">',
         f'<meta name="twitter:description" content="{escaped_share_description}">',
@@ -179,20 +188,21 @@ def load_front_matter_general_metadata(
     *,
     page_source_dir: Path | None = None,
 ) -> dict[str, str] | None:
+    actual_page_source_dir = page_source_dir or root
     try:
-        source = read_page_source(page_stem, root, page_source_dir=page_source_dir)
+        source = read_page_source(page_stem, root, page_source_dir=actual_page_source_dir)
     except PageSourceError as err:
         raise MetadataError(str(err)) from err
 
     if not source.front_matter:
         return None
-    if publication_slug(page_stem) is not None:
+    if not page_path(page_stem, actual_page_source_dir).exists() and publication_slug(page_stem) is not None:
         raise MetadataError(
-            f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
+            f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
         )
     return normalize_general_metadata_entry(
         source.front_matter,
-        context=f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter",
+        context=f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter",
     )
 
 
@@ -269,12 +279,14 @@ def render_page_meta_for_url(
     publications_dir: Path | None = None,
     site_url: str = SITE_URL,
 ) -> str:
-    slug = publication_slug(page_stem)
+    actual_page_source_dir = page_source_dir or root
+    ordinary_source_path = page_path(page_stem, actual_page_source_dir)
+    slug = publication_slug(page_stem) if not ordinary_source_path.exists() else None
     try:
         source = read_page_source(
             page_stem,
             root,
-            page_source_dir=page_source_dir,
+            page_source_dir=actual_page_source_dir,
             publications_dir=publications_dir,
         )
     except PageSourceError as err:
@@ -284,7 +296,7 @@ def render_page_meta_for_url(
         if slug is not None:
             if source.front_matter:
                 raise MetadataError(
-                    f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
+                    f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
                 )
             return ""
         if source.front_matter:
@@ -301,7 +313,7 @@ def render_page_meta_for_url(
     if slug is not None:
         if source.front_matter:
             raise MetadataError(
-                f"{(page_source_dir or root) / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
+                f"{actual_page_source_dir / f'{page_stem}.dj'}: front matter metadata for publication pages is not supported yet"
             )
         return render_publication_meta_for_url(
             page_stem,
@@ -352,8 +364,7 @@ def validate_general_page_metadata(
 ) -> list[str]:
     issues: list[str] = []
     actual_page_source_dir = page_source_dir or root
-    publication_stems = {path.stem for path in actual_page_source_dir.glob("pub-*.dj")}
-    page_stem_set = {path.stem for path in actual_page_source_dir.glob("*.dj")} - publication_stems
+    page_stem_set = {path.stem for path in actual_page_source_dir.glob("*.dj")}
 
     for stem in sorted(page_stem_set):
         try:

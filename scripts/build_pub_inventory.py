@@ -99,7 +99,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repo-root", default=".")
     parser.add_argument(
         "--webfiles-root",
-        default="/Users/ztatlock/Desktop/WEBFILES",
+        default=str(Path.home() / "Desktop" / "WEBFILES"),
     )
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--curation-file", default=None)

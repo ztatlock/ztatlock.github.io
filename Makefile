@@ -11,9 +11,9 @@ PUB_INVENTORY_MODULE := scripts.build_pub_inventory
 
 ROUTES_OUT := state/routes.json
 
-INVENTORY_PREVIEW_OUT := state/inventory
-INVENTORY_WEBFILES_OUT := /Users/ztatlock/Desktop/WEBFILES/inventory
-INVENTORY_OUT ?= $(INVENTORY_PREVIEW_OUT)
+INVENTORY_STATE_OUT := state/inventory
+INVENTORY_ARCHIVE_OUT := $(HOME)/Desktop/WEBFILES/inventory
+INVENTORY_OUT ?= $(INVENTORY_STATE_OUT)
 YCF ?=
 
 .PHONY: all
@@ -41,7 +41,7 @@ help:
 		'make test' \
 		'make env-check' \
 		'make inventory [INVENTORY_OUT=/path/to/out-dir]' \
-		'make inventory-webfiles' \
+		'make inventory-webfiles (personal archive refresh)' \
 		'make mkpub YCF=YEAR-CONF-SYS' \
 		'make index-now' \
 		'make clean'
@@ -76,7 +76,7 @@ inventory:
 
 .PHONY: inventory-webfiles
 inventory-webfiles:
-	@python3 -m $(PUB_INVENTORY_MODULE) --out-dir "$(INVENTORY_WEBFILES_OUT)"
+	@python3 -m $(PUB_INVENTORY_MODULE) --out-dir "$(INVENTORY_ARCHIVE_OUT)"
 
 .PHONY: mkpub
 mkpub:
