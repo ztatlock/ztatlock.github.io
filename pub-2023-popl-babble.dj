@@ -1,8 +1,0 @@
-# babble: Learning Better Abstractions with E-Graphs and Anti-Unification
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2023-popl-babble/`.
-
-Edit `pubs/2023-popl-babble/publication.json` for structured publication data,
-keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2023-popl-babble/extra.dj` for any rare page-specific extra content.

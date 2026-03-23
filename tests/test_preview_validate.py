@@ -43,13 +43,18 @@ class PreviewValidateTests(unittest.TestCase):
     def test_preview_validator_reports_source_metadata_issues(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
-            templates_dir = root / "templates"
+            pages_dir = root / "site" / "pages"
+            templates_dir = root / "site" / "templates"
             data_dir = root / "site" / "data"
+            static_dir = root / "site" / "static"
 
+            pages_dir.mkdir(parents=True)
             templates_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
+            static_dir.mkdir(parents=True)
+            (static_dir / "img").mkdir(parents=True)
 
-            (root / "about.dj").write_text(
+            (pages_dir / "about.dj").write_text(
                 "---\n"
                 "description: About preview page\n"
                 "image_path: img/missing.png\n"
@@ -67,7 +72,7 @@ class PreviewValidateTests(unittest.TestCase):
             (templates_dir / "FOOT").write_text("</body></html>\n", encoding="utf-8")
             (templates_dir / "REFS").write_text("", encoding="utf-8")
             (data_dir / "people.json").write_text(json.dumps({"people": {}}), encoding="utf-8")
-            (root / "style.css").write_text("body {}\n", encoding="utf-8")
+            (static_dir / "style.css").write_text("body {}\n", encoding="utf-8")
 
             config = load_site_config(root)
             build_preview_site(config)
@@ -82,65 +87,7 @@ class PreviewValidateTests(unittest.TestCase):
             self.assertIn("ERROR: found invalid preview source", stdout.getvalue())
             self.assertIn("img/missing.png", stdout.getvalue())
 
-    def test_preview_validator_reports_publication_bridge_issues(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            root = Path(tmpdir)
-            templates_dir = root / "templates"
-            data_dir = root / "site" / "data"
-            pubs_dir = root / "pubs" / "2025-test-demo"
-
-            templates_dir.mkdir(parents=True)
-            data_dir.mkdir(parents=True)
-            pubs_dir.mkdir(parents=True)
-
-            (root / "about.dj").write_text(
-                "---\n"
-                "description: About preview page\n"
-                "---\n"
-                "# About\n\n"
-                "Preview body.\n",
-                encoding="utf-8",
-            )
-            (root / "pub-2025-test-demo.dj").write_text("# Demo\n", encoding="utf-8")
-            (pubs_dir / "publication.json").write_text(
-                json.dumps(
-                    {
-                        "draft": True,
-                        "title": "Demo Paper",
-                        "authors": [{"name": "Demo Author", "ref": ""}],
-                        "venue": "DemoConf",
-                        "description": "Demo description",
-                        "links": {},
-                        "talks": [],
-                    }
-                ),
-                encoding="utf-8",
-            )
-            (templates_dir / "HEAD.1").write_text(
-                "<html><head><title>__TITLE__</title>"
-                '<link rel="canonical" href="__CANON__">',
-                encoding="utf-8",
-            )
-            (templates_dir / "HEAD.2").write_text("</head><body>", encoding="utf-8")
-            (templates_dir / "FOOT").write_text("</body></html>\n", encoding="utf-8")
-            (templates_dir / "REFS").write_text("", encoding="utf-8")
-            (data_dir / "people.json").write_text(json.dumps({"people": {}}), encoding="utf-8")
-            (root / "style.css").write_text("body {}\n", encoding="utf-8")
-
-            config = load_site_config(root)
-            build_preview_site(config)
-
-            stdout = io.StringIO()
-            with (
-                patch("sys.argv", ["validate_preview_build", "--root", str(root)]),
-                redirect_stdout(stdout),
-            ):
-                self.assertEqual(validate_preview_build.main(), 1)
-
-            self.assertIn("ERROR: found invalid publication source bridge", stdout.getvalue())
-            self.assertIn("draft status must stay in sync", stdout.getvalue())
-
-    def test_preview_bridge_issues_are_skipped_when_no_legacy_stubs_exist(self) -> None:
+    def test_preview_validator_accepts_bundle_only_publications(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             pages_dir = root / "site" / "pages"
@@ -154,6 +101,7 @@ class PreviewValidateTests(unittest.TestCase):
             templates_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
             static_dir.mkdir(parents=True)
+            (static_dir / "img").mkdir(parents=True)
 
             (pages_dir / "about.dj").write_text(
                 "---\n"
@@ -179,6 +127,18 @@ class PreviewValidateTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            (templates_dir / "HEAD.1").write_text(
+                "<html><head><title>__TITLE__</title>"
+                '<link rel="canonical" href="__CANON__">',
+                encoding="utf-8",
+            )
+            (templates_dir / "HEAD.2").write_text("</head><body>", encoding="utf-8")
+            (templates_dir / "FOOT").write_text("</body></html>\n", encoding="utf-8")
+            (templates_dir / "REFS").write_text("", encoding="utf-8")
+            (data_dir / "people.json").write_text(json.dumps({"people": {}}), encoding="utf-8")
+            (static_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+            (static_dir / "img" / "favicon.png").write_bytes(b"PNG")
+            (static_dir / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
             config = load_site_config(
                 root,
@@ -188,7 +148,12 @@ class PreviewValidateTests(unittest.TestCase):
                 data_dir=data_dir,
                 static_source_dir=static_dir,
             )
-            self.assertEqual(
-                validate_preview_build.find_preview_publication_bridge_issues(config),
-                [],
-            )
+            build_preview_site(config)
+
+            stdout = io.StringIO()
+            with (
+                patch("sys.argv", ["validate_preview_build", "--root", str(root)]),
+                redirect_stdout(stdout),
+            ):
+                self.assertEqual(validate_preview_build.main(), 0)
+            self.assertEqual(stdout.getvalue(), "")

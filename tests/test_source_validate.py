@@ -249,3 +249,44 @@ class SourceValidateTests(unittest.TestCase):
                     "pub-2024-asplos-lakeroad.html -> pubs/2024-asplos-lakeroad/"
                 ],
             )
+
+    def test_reports_root_layout_source_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+
+            (root / "about.dj").write_text("# About\n", encoding="utf-8")
+            (root / "robots.txt").write_text("User-agent: *\n", encoding="utf-8")
+            (root / "sitemap.xml").write_text("<urlset/>\n", encoding="utf-8")
+            (root / "img").mkdir()
+            (root / "templates").mkdir()
+            (root / "pubs").mkdir()
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{root / 'about.dj'}: authored Djot source must live under site/pages/",
+                    f"{root / 'sitemap.xml'}: generated sitemap belongs only under build/",
+                    f"{root / 'robots.txt'}: static assets must live under site/static/",
+                    f"{root / 'img'}: shared images must live under site/static/img/",
+                    f"{root / 'pubs'}: publication bundles must live under site/pubs/",
+                    f"{root / 'templates'}: templates must live under site/templates/",
+                ],
+            )

@@ -12,7 +12,7 @@ class PublicationRecordTests(unittest.TestCase):
     def test_draft_defaults_false_when_omitted(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
-            pub_dir = root / "pubs" / "2025-test-demo"
+            pub_dir = root / "site" / "pubs" / "2025-test-demo"
             pub_dir.mkdir(parents=True)
             (pub_dir / "publication.json").write_text(
                 json.dumps(
@@ -34,7 +34,7 @@ class PublicationRecordTests(unittest.TestCase):
     def test_rejects_non_boolean_draft_field(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
-            pub_dir = root / "pubs" / "2025-test-demo"
+            pub_dir = root / "site" / "pubs" / "2025-test-demo"
             pub_dir.mkdir(parents=True)
             (pub_dir / "publication.json").write_text(
                 json.dumps(

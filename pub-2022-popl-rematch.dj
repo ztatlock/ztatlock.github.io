@@ -1,8 +1,0 @@
-# Relational e-matching
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2022-popl-rematch/`.
-
-Edit `pubs/2022-popl-rematch/publication.json` for structured publication
-data, keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2022-popl-rematch/extra.dj` for any rare page-specific extra content.

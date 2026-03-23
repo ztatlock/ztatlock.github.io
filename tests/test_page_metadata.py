@@ -63,7 +63,7 @@ class PageMetadataTests(unittest.TestCase):
             )
             self.assertEqual(issues, [])
 
-    def test_validate_publication_metadata_uses_configured_publication_paths(self) -> None:
+    def test_validate_general_page_metadata_uses_configured_publication_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
@@ -72,7 +72,33 @@ class PageMetadataTests(unittest.TestCase):
             pubs.mkdir(parents=True)
 
             slug = "2025-test-demo"
-            (pages / f"pub-{slug}.dj").write_text("# Demo\n", encoding="utf-8")
+            pub_dir = pubs / slug
+            pub_dir.mkdir()
+
+            (pages / "talk.dj").write_text(
+                "---\n"
+                "description: Demo description\n"
+                f"image_path: pubs/{slug}/{slug}-meta.png\n"
+                "---\n"
+                "# Talk\n",
+                encoding="utf-8",
+            )
+            (pub_dir / f"{slug}-meta.png").write_bytes(b"PNG")
+
+            issues = validate_general_page_metadata(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+            )
+            self.assertEqual(issues, [])
+
+    def test_validate_publication_metadata_uses_configured_publication_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pubs = root / "site" / "pubs"
+            pubs.mkdir(parents=True)
+
+            slug = "2025-test-demo"
             pub_dir = pubs / slug
             pub_dir.mkdir()
             (pub_dir / "publication.json").write_text(
@@ -98,46 +124,6 @@ class PageMetadataTests(unittest.TestCase):
 
             issues = validate_publication_metadata(
                 root,
-                page_source_dir=pages,
                 publications_dir=pubs,
             )
             self.assertEqual(issues, [])
-
-    def test_validate_publication_metadata_rejects_stub_record_draft_mismatch(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            root = Path(tmpdir).resolve()
-            pages = root / "site" / "pages"
-            pubs = root / "site" / "pubs"
-            pages.mkdir(parents=True)
-            pubs.mkdir(parents=True)
-
-            slug = "2025-test-demo"
-            (pages / f"pub-{slug}.dj").write_text("# Demo\n", encoding="utf-8")
-            pub_dir = pubs / slug
-            pub_dir.mkdir()
-            (pub_dir / "publication.json").write_text(
-                json.dumps(
-                    {
-                        "draft": True,
-                        "title": "Demo Paper",
-                        "authors": [{"name": "Demo Author", "ref": ""}],
-                        "venue": "DemoConf",
-                        "description": "Demo description",
-                        "links": {},
-                        "talks": [],
-                    }
-                ),
-                encoding="utf-8",
-            )
-
-            issues = validate_publication_metadata(
-                root,
-                page_source_dir=pages,
-                publications_dir=pubs,
-            )
-            self.assertEqual(
-                issues,
-                [
-                    f"{pages / f'pub-{slug}.dj'}: draft status must stay in sync with {pub_dir / 'publication.json'}"
-                ],
-            )

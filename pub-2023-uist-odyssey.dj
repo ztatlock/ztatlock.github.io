@@ -1,8 +1,0 @@
-# Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2023-uist-odyssey/`.
-
-Edit `pubs/2023-uist-odyssey/publication.json` for structured publication
-data, keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2023-uist-odyssey/extra.dj` for any rare page-specific extra content.

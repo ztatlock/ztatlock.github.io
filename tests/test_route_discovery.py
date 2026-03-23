@@ -31,7 +31,7 @@ class RouteDiscoveryTests(unittest.TestCase):
         self.assertFalse(route.is_draft)
         self.assertEqual(
             [path.relative_to(ROOT).as_posix() for path in route.source_paths],
-            ["about.dj"],
+            ["site/pages/about.dj"],
         )
 
     def test_discovers_future_publication_route(self) -> None:
@@ -42,9 +42,9 @@ class RouteDiscoveryTests(unittest.TestCase):
         self.assertEqual(
             [path.relative_to(ROOT).as_posix() for path in route.source_paths],
             [
-                "pubs/2024-asplos-lakeroad/publication.json",
-                "pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.bib",
-                "pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-abstract.md",
+                "site/pubs/2024-asplos-lakeroad/publication.json",
+                "site/pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.bib",
+                "site/pubs/2024-asplos-lakeroad/2024-asplos-lakeroad-abstract.md",
             ],
         )
 

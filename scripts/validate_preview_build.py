@@ -7,7 +7,6 @@ import re
 import sys
 from pathlib import Path
 
-from scripts.page_metadata import validate_publication_bridge_metadata
 from scripts.sitebuild.artifact_validate import (
     find_broken_link_issues,
     find_placeholder_issues,
@@ -32,16 +31,6 @@ def _print_section(title: str, issues: list[str]) -> None:
         print(issue)
 
 
-def find_preview_publication_bridge_issues(config: SiteConfig) -> list[str]:
-    if not any(config.page_source_dir.glob("pub-*.dj")):
-        return []
-    return validate_publication_bridge_metadata(
-        config.repo_root,
-        page_source_dir=config.page_source_dir,
-        publications_dir=config.publications_dir,
-    )
-
-
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Validate preview source invariants and the site built under build/."
@@ -51,7 +40,6 @@ def main() -> int:
 
     config = load_site_config(Path(args.root))
     source_issues = find_source_issues(config)
-    publication_bridge_issues = find_preview_publication_bridge_issues(config)
     build_root = config.build_dir
     html_files = recursive_html_files(build_root)
     placeholder_issues = find_placeholder_issues(
@@ -78,11 +66,6 @@ def main() -> int:
             "ERROR: found invalid preview source",
             source_issues,
         )
-    if publication_bridge_issues:
-        _print_section(
-            "ERROR: found invalid publication source bridge",
-            publication_bridge_issues,
-        )
     if placeholder_issues:
         _print_section(
             "ERROR: found unresolved placeholders in preview HTML",
@@ -101,7 +84,6 @@ def main() -> int:
 
     return 1 if (
         source_issues
-        or publication_bridge_issues
         or placeholder_issues
         or broken_link_issues
         or sitemap_issues

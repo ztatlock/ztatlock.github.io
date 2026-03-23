@@ -13,7 +13,7 @@ from scripts.sitebuild.site_config import load_site_config
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Build the future-oriented preview site into build/."
+        description="Build the authoritative site into build/."
     )
     parser.add_argument("--root", default=".", help="repo root")
     args = parser.parse_args()

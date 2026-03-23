@@ -1,8 +1,0 @@
-# Dynamic Tensor Rematerialization
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2021-iclr-dtr/`.
-
-Edit `pubs/2021-iclr-dtr/publication.json` for structured publication data,
-keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2021-iclr-dtr/extra.dj` for any rare page-specific extra content.

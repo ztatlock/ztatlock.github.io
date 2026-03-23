@@ -1,8 +1,0 @@
-# Sinking Point: Dynamic Precision Tracking for Floating-point
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2019-conga-sinkingpoint/`.
-
-Edit `pubs/2019-conga-sinkingpoint/publication.json` for structured publication
-data, keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2019-conga-sinkingpoint/extra.dj` for any rare page-specific extra content.

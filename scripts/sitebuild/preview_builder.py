@@ -1,4 +1,4 @@
-"""Build a future-oriented preview site into build/."""
+"""Build the authoritative site into build/."""
 
 from __future__ import annotations
 
@@ -23,8 +23,6 @@ def _route_aliases(routes: tuple[Route, ...]) -> dict[str, str]:
         aliases[route.output_relpath] = route.public_url
         if route.kind == "ordinary_page" and route.key == "index":
             aliases["index.html"] = route.public_url
-        if route.kind == "publication_page":
-            aliases[f"pub-{route.key}.html"] = route.public_url
     return aliases
 
 def _write_text(path: Path, text: str) -> None:

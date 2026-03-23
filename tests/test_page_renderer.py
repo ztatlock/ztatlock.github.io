@@ -15,8 +15,8 @@ class PageRendererTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.config = load_site_config(ROOT)
         cls.refs_text = load_and_render_site_refs(
-            people_path=ROOT / "site" / "data" / "people.json",
-            refs_path=ROOT / "templates" / "REFS",
+            people_path=cls.config.people_data_path,
+            refs_path=cls.config.manual_refs_path,
         )
 
     def test_render_ordinary_page_uses_explicit_canonical_url(self) -> None:
@@ -28,6 +28,9 @@ class PageRendererTests(unittest.TestCase):
             root=ROOT,
             site_url=self.config.site_url,
             webfiles_url=self.config.webfiles_url,
+            page_source_dir=self.config.page_source_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
         )
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
@@ -41,6 +44,9 @@ class PageRendererTests(unittest.TestCase):
             root=ROOT,
             site_url=self.config.site_url,
             webfiles_url=self.config.webfiles_url,
+            page_source_dir=self.config.page_source_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
             aliases={
                 "img/favicon.png": "/img/favicon.png",
                 "style.css": "/style.css",
@@ -54,22 +60,6 @@ class PageRendererTests(unittest.TestCase):
             'href="/pubs/2024-asplos-lakeroad/2024-asplos-lakeroad.pdf"',
             html,
         )
-
-    def test_rewrites_publication_page_target(self) -> None:
-        html = '<a href="pub-2024-asplos-lakeroad.html">paper</a>'
-        rewritten = rewrite_local_html_targets(
-            html,
-            aliases={"pub-2024-asplos-lakeroad.html": "/pubs/2024-asplos-lakeroad/"},
-        )
-        self.assertIn('href="/pubs/2024-asplos-lakeroad/"', rewritten)
-
-    def test_rewrites_canonical_publication_target_for_legacy_build(self) -> None:
-        html = '<a href="pubs/2024-asplos-lakeroad/">paper</a>'
-        rewritten = rewrite_local_html_targets(
-            html,
-            aliases={"pubs/2024-asplos-lakeroad/": "pub-2024-asplos-lakeroad.html"},
-        )
-        self.assertIn('href="pub-2024-asplos-lakeroad.html"', rewritten)
 
     def test_rewrites_static_asset_target(self) -> None:
         html = '<link rel="stylesheet" href="style.css">'

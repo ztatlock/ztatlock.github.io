@@ -1,8 +1,0 @@
-# Better Together: Unifying Datalog and Equality Saturation
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2023-pldi-egglog/`.
-
-Edit `pubs/2023-pldi-egglog/publication.json` for structured publication
-data, keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2023-pldi-egglog/extra.dj` for any rare page-specific extra content.

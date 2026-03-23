@@ -1,9 +1,0 @@
-# Combining Precision Tuning and Rewriting
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in
-`pubs/2021-arith-herbie/`.
-
-Edit `pubs/2021-arith-herbie/publication.json` for structured publication
-data, keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2021-arith-herbie/extra.dj` for any rare page-specific extra content.

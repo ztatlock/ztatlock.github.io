@@ -1,8 +1,0 @@
-# Verified Compilation and Optimization of Floating-Point Programs in CakeML
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2022-ecoop-cakemlfp/`.
-
-Edit `pubs/2022-ecoop-cakemlfp/publication.json` for structured publication
-data, keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2022-ecoop-cakemlfp/extra.dj` for any rare page-specific extra content.

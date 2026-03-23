@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
 
+from scripts.page_source import DRAFT_HEADING_RE
 from scripts.publication_record import (
     EXTRA_CONTENT_NAME,
     PUBLICATION_RECORD_NAME,
@@ -19,8 +19,6 @@ from scripts.publication_record import (
 from .route_model import Route, RouteModelError, canonical_url, validate_routes
 from .site_config import SiteConfig
 
-DRAFT_HEADING_RE = re.compile(r"^# DRAFT$", re.MULTILINE)
-TOP_LEVEL_STATIC_FILENAMES = ("CNAME", "robots.txt", "style.css", "zip-longitude.js")
 GENERATED_PREVIEW_OUTPUTS = frozenset({"sitemap.txt", "sitemap.xml"})
 
 
@@ -128,46 +126,6 @@ def _static_route(
         canonical_url=canonical_url(config.site_url, public_url),
         is_draft=False,
     )
-
-
-def _top_level_static_routes(config: SiteConfig) -> list[Route]:
-    routes: list[Route] = []
-
-    for name in TOP_LEVEL_STATIC_FILENAMES:
-        path = config.static_source_dir / name
-        if path.exists():
-            routes.append(
-                _static_route(config, key=name, source_path=path, output_relpath=name)
-            )
-
-    for path in sorted(config.static_source_dir.glob("*.txt")):
-        if path.name == "sitemap.txt":
-            continue
-        if path.name in TOP_LEVEL_STATIC_FILENAMES:
-            continue
-        routes.append(
-            _static_route(config, key=path.name, source_path=path, output_relpath=path.name)
-        )
-
-    generated_stems = {path.stem for path in config.page_source_dir.glob("*.dj")}
-    for path in sorted(config.static_source_dir.glob("*.html")):
-        if path.stem in generated_stems:
-            continue
-        routes.append(
-            _static_route(config, key=path.name, source_path=path, output_relpath=path.name)
-        )
-
-    img_dir = config.static_source_dir / "img"
-    if img_dir.exists():
-        for path in sorted(img_dir.rglob("*")):
-            if not path.is_file():
-                continue
-            relpath = f"img/{path.relative_to(img_dir).as_posix()}"
-            routes.append(_static_route(config, key=relpath, source_path=path, output_relpath=relpath))
-
-    return routes
-
-
 def _recursive_static_tree_routes(config: SiteConfig) -> list[Route]:
     routes: list[Route] = []
     if not config.static_source_dir.exists():
@@ -193,8 +151,6 @@ def _recursive_static_tree_routes(config: SiteConfig) -> list[Route]:
 
 
 def _static_routes(config: SiteConfig) -> list[Route]:
-    if config.static_source_dir == config.repo_root:
-        return _top_level_static_routes(config)
     return _recursive_static_tree_routes(config)
 
 

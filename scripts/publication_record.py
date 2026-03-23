@@ -6,7 +6,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-SITE_PUBLICATIONS_PATH = Path("pubs")
+SITE_PUBLICATIONS_PATH = Path("site") / "pubs"
 PUBLICATION_RECORD_NAME = "publication.json"
 EXTRA_CONTENT_NAME = "extra.dj"
 IMAGE_EXTENSIONS = (".png", ".gif", ".jpg", ".jpeg", ".webp", ".svg")

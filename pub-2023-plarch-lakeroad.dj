@@ -1,8 +1,0 @@
-# Generate Compilers from Hardware Models!
-
-This file is a transition-time build anchor for the public page.
-The canonical publication record and assets live in `pubs/2023-plarch-lakeroad/`.
-
-Edit `pubs/2023-plarch-lakeroad/publication.json` for structured publication
-data, keep the abstract/BibTeX/assets in the same directory, and use
-`pubs/2023-plarch-lakeroad/extra.dj` for any rare page-specific extra content.

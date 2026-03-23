@@ -13,7 +13,7 @@ class BuildPubInventoryTests(unittest.TestCase):
     def test_discovers_publications_from_records_without_stubs(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
-            pub_dir = root / "pubs" / "2025-test-demo"
+            pub_dir = root / "site" / "pubs" / "2025-test-demo"
             pub_dir.mkdir(parents=True)
             (pub_dir / "publication.json").write_text(
                 json.dumps(
@@ -38,7 +38,7 @@ class BuildPubInventoryTests(unittest.TestCase):
             webfiles_root.mkdir()
 
             slug = "2025-test-demo"
-            pub_dir = root / "pubs" / slug
+            pub_dir = root / "site" / "pubs" / slug
             pub_dir.mkdir(parents=True)
 
             (pub_dir / "publication.json").write_text(

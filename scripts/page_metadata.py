@@ -3,24 +3,20 @@
 from __future__ import annotations
 
 import html
-import re
 from pathlib import Path
 
-from scripts.page_source import DRAFT_HEADING_RE, PageSourceError, read_page_source
+from scripts.page_source import PageSourceError, read_page_source
 from scripts.publication_record import (
     PUBLICATION_RECORD_NAME,
     PublicationRecordError,
     load_publication_record,
     load_optional_publication_record,
     publication_metadata_image_path,
-    publication_record_path,
     publication_slug,
 )
 
 SITE_URL = "https://ztatlock.net"
 GENERAL_ALLOWED_FIELDS = {"description", "share_description", "image_path", "title"}
-MIGRATED_PUBLICATION_SECTION_RE = re.compile(r"^##\s+(Abstract|Talk|BibTeX)$", re.MULTILINE)
-MIGRATED_PUBLICATION_TODO_RE = re.compile(r"\bTODO\b")
 
 
 class MetadataError(ValueError):
@@ -351,6 +347,7 @@ def validate_general_page_metadata(
     root: Path,
     *,
     page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
     static_source_dir: Path | None = None,
 ) -> list[str]:
     issues: list[str] = []
@@ -379,6 +376,7 @@ def validate_general_page_metadata(
             source_image_path = resolve_public_asset_source_path(
                 image_path,
                 root=root,
+                publications_dir=publications_dir,
                 static_source_dir=static_source_dir,
             )
             if source_image_path is not None and not source_image_path.exists():
@@ -438,65 +436,6 @@ def validate_publication_record_metadata(
     return issues
 
 
-def validate_publication_bridge_metadata(
-    root: Path,
-    *,
-    page_source_dir: Path | None = None,
-    publications_dir: Path | None = None,
-) -> list[str]:
-    issues: list[str] = []
-    actual_page_source_dir = page_source_dir or root
-    for path in sorted(actual_page_source_dir.glob("pub-*.dj")):
-        slug = path.stem.removeprefix("pub-")
-        source_text = path.read_text(encoding="utf-8")
-        stub_is_draft = bool(DRAFT_HEADING_RE.search(source_text))
-
-        try:
-            record = load_optional_publication_record(
-                root,
-                slug,
-                publications_dir=publications_dir,
-            )
-        except PublicationRecordError as err:
-            issues.append(str(err))
-            continue
-
-        if record is not None and record.draft != stub_is_draft:
-            issues.append(
-                f"{path}: draft status must stay in sync with {publication_record_path(root, slug, publications_dir=publications_dir)}"
-            )
-
-        try:
-            source = read_page_source(
-                path.stem,
-                root,
-                page_source_dir=actual_page_source_dir,
-                publications_dir=publications_dir,
-            )
-        except PageSourceError as err:
-            issues.append(str(err))
-            continue
-
-        if source.front_matter:
-            issues.append(f"{path}: front matter metadata for publication pages is not supported yet")
-        if not source.is_draft:
-            if record is None:
-                issues.append(
-                    f"{path}: missing canonical publication record {publication_record_path(root, slug, publications_dir=publications_dir)}"
-                )
-                continue
-
-            legacy_sections = sorted(set(MIGRATED_PUBLICATION_SECTION_RE.findall(source_text)))
-            for section in legacy_sections:
-                issues.append(
-                    f"{path}: migrated publication page should stay a minimal stub, found ## {section}"
-                )
-            if MIGRATED_PUBLICATION_TODO_RE.search(source_text):
-                issues.append(f"{path}: migrated publication page should not contain TODO")
-
-    return issues
-
-
 def validate_publication_metadata(
     root: Path,
     *,
@@ -508,8 +447,4 @@ def validate_publication_metadata(
         root,
         publications_dir=publications_dir,
         static_source_dir=static_source_dir,
-    ) + validate_publication_bridge_metadata(
-        root,
-        page_source_dir=page_source_dir,
-        publications_dir=publications_dir,
     )

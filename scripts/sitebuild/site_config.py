@@ -52,9 +52,9 @@ def load_site_config(
         build_dir=(build_dir or (resolved_root / "build")).resolve(),
         site_url=site_url,
         webfiles_url=webfiles_url,
-        page_source_dir=(page_source_dir or resolved_root).resolve(),
-        publications_dir=(publications_dir or (resolved_root / "pubs")).resolve(),
-        templates_dir=(templates_dir or (resolved_root / "templates")).resolve(),
+        page_source_dir=(page_source_dir or (resolved_root / "site" / "pages")).resolve(),
+        publications_dir=(publications_dir or (resolved_root / "site" / "pubs")).resolve(),
+        templates_dir=(templates_dir or (resolved_root / "site" / "templates")).resolve(),
         data_dir=(data_dir or (resolved_root / "site" / "data")).resolve(),
-        static_source_dir=(static_source_dir or resolved_root).resolve(),
+        static_source_dir=(static_source_dir or (resolved_root / "site" / "static")).resolve(),
     )
