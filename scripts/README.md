@@ -27,7 +27,8 @@ Prefer the top-level `make` targets when they exist:
   Builds the publication-artifact inventory by merging filesystem observation
   with `manifests/publication-artifact-curation.tsv`.
   It now discovers publications from `pubs/<slug>/publication.json` instead of
-  top-level stubs.
+  top-level stubs, and emits canonical publication page paths as
+  `pubs/<slug>/`.
   `make inventory` writes a repo-local preview under `state/inventory/`.
   `make inventory-webfiles` refreshes the canonical archive copy under
   `~/Desktop/WEBFILES/inventory/`.
@@ -53,7 +54,8 @@ Prefer the top-level `make` targets when they exist:
   `state/`. It currently assumes `wget`.
 - `mkpub.sh`
   Scaffolds a new publication-local record under `pubs/<slug>/` plus a
-  temporary top-level legacy stub `pub-<slug>.dj`.
+  temporary top-level legacy stub `pub-<slug>.dj` when the current configured
+  page source root is still the repo root.
 - `page_metadata.py`
   Shared metadata helpers for generated page metadata and metadata source
   validation across both public non-publication pages and publication pages.
@@ -70,6 +72,9 @@ Prefer the top-level `make` targets when they exist:
 - `scaffold_publication.py`
   Creates a new draft publication-local scaffold from templates plus the
   temporary legacy stub used by `mkpub.sh`.
+  The default is now layout-aware: root-layout configs create the stub, while
+  non-root page-source layouts default to bundle-only scaffolds unless a legacy
+  stub is requested explicitly.
 - `render_meta.py`
   Emits `<meta>` HTML for a page by rendering non-publication front matter
   plus publication metadata from a publication-local record.
@@ -78,6 +83,8 @@ Prefer the top-level `make` targets when they exist:
   Emits a full HTML page using the shared render core.
   The legacy Makefile build now calls this script so page assembly lives in
   Python instead of shell pipelines.
+  During the transition it also rewrites canonical publication links like
+  `pubs/<slug>/` back to `pub-<slug>.html` for the legacy root build only.
 - `render_people_refs.py`
   Prototype preview script that renders Djot people-reference definitions from
   `site/data/people.json`.

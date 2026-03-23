@@ -27,6 +27,10 @@ This repo is a static website generated from Djot source files. Keep changes sou
   stay minimal temporary legacy-build stubs; the preview engine now treats
   `pubs/<slug>/publication.json` as the source of truth for publication
   existence, status, body, and metadata.
+- Authored publication page links in Djot should use `pubs/<slug>/`, not
+  `pub-<slug>.html`.
+  The legacy root build rewrites those canonical links temporarily while the
+  transition remains in progress.
 - Track actionable backlog items in `ROADMAP.md`.
 - Keep broader structural plans and design notes in `TODO.md` and `docs/plans/`.
 

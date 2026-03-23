@@ -42,6 +42,9 @@ What is now true after this slice:
   separate conceptual source root
 - repo-root static handling remains sharply isolated as transitional bridge
   behavior
+- authored publication links in source Djot can now move to canonical
+  `pubs/<slug>/` paths, with any temporary reverse-translation isolated to the
+  legacy root renderer instead of the new engine
 
 If we move source files into `site/` before fixing those two things, the source
 move will still be partly architectural instead of mostly mechanical.

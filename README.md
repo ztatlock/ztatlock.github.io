@@ -100,6 +100,10 @@ Notes:
   should stay a minimal temporary stub for the legacy root build only; the
   publication-local record under `pubs/<slug>/` is the preview engine's
   source of truth for publication existence, status, body, and metadata.
+- Authored publication page links in Djot should use the canonical
+  `pubs/<slug>/` path, not `pub-<slug>.html`.
+  The legacy root build temporarily rewrites those canonical links back to its
+  old publication page filenames while the transition remains in progress.
 - The page title comes from the first non-empty level-1 heading after any
   optional front matter.
 - The current front-matter prototype intentionally supports only the flat
@@ -118,7 +122,7 @@ Use `scripts/mkpub.sh` to create a new publication scaffold:
 make mkpub YCF=YEAR-CONF-SYS
 ```
 
-This creates:
+In the current root-layout bridge, this creates:
 - `pub-YEAR-CONF-SYS.dj`
   a minimal temporary legacy-build stub
 - `pubs/YEAR-CONF-SYS/publication.json`
@@ -126,6 +130,9 @@ This creates:
 - `pubs/YEAR-CONF-SYS/YEAR-CONF-SYS.bib`
 
 The scaffolded publication record starts with `"draft": true`.
+When the page source root is no longer the repo root, the scaffold defaults to
+creating only the publication-local bundle unless a legacy stub is explicitly
+requested.
 
 Then fill in placeholders, add canonical assets under `pubs/YEAR-CONF-SYS/`,
 and when the page is ready to publish:
