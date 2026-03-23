@@ -87,11 +87,11 @@ We rigorously prove our results while
 : October 2023
 
   🗣️ \ [Anjali][Anjali Pal] is presenting
-  [Enumo](pub-2023-oopsla-enumo.html) at
+  [Enumo](pubs/2023-oopsla-enumo/) at
   [OOPSLA 2023](https://2023.splashcon.org/track/splash-2023-oopsla).
 
   🗣️ \ [Edward][Edward Misback] is presenting
-  [Odyssey](pub-2023-uist-odyssey.html) at
+  [Odyssey](pubs/2023-uist-odyssey/) at
   [UIST 2023](https://uist.acm.org/2023/).
 
   🧰 \ Released [Ian][Ian Briggs]'s
@@ -109,7 +109,7 @@ We rigorously prove our results while
 : July 2023
 
   🗣️ \ [Edward][Edward Misback] is presenting
-  [Odyssey](pub-2023-uist-odyssey.html) at
+  [Odyssey](pubs/2023-uist-odyssey/) at
   [FPTalks 2023](https://fpbench.org/talks/fptalks23.html).
 
   🎯 \ [Pavel][Pavel Panchekha] and I are co-organizing
@@ -118,18 +118,18 @@ We rigorously prove our results while
 : June 2023
 
   🗣️ \ [Yihong][Yihong Zhang] is presenting
-  [egglog](pub-2023-pldi-egglog.html) at
+  [egglog](pubs/2023-pldi-egglog/) at
   [PLDI 2023](https://pldi23.sigplan.org/details/pldi-2023-pldi/20/Better-Together-Unifying-Datalog-and-Equality-Saturation).
 
   🗣️ \ [Gus][Gus Smith] is presenting
-  [Lakeroad](pub-2023-plarch-lakeroad.html) at
+  [Lakeroad](pubs/2023-plarch-lakeroad/) at
   [PLARCH 2023](https://pldi23.sigplan.org/details/plarch-2023-papers/7/Generate-Compilers-from-Hardware-Models-).
 
   🧰 \ [Max][Max Willsey] and I are co-organizing
   [EGRAPHS 2023](https://pldi23.sigplan.org/home/egraphs-2023#program).
 
   🗣️ \ [Oliver][Oliver Flatt] is giving the first
-  [egglog](pub-2023-pldi-egglog.html) demo at
+  [egglog](pubs/2023-pldi-egglog/) demo at
   [EGRAPHS 2023](https://pldi23.sigplan.org/home/egraphs-2023#program).
 
   🗣️ \ [Yihong][Yihong Zhang] is giving a talk on
@@ -144,7 +144,7 @@ We rigorously prove our results while
 : January 2023
 
   🗣️ \ [David][David Cao] is presenting
-  [babble](pub-2023-popl-babble.html) at
+  [babble](pubs/2023-popl-babble/) at
   [POPL 2023](https://popl23.sigplan.org/details/POPL-2023-popl-research-papers/14/babble-Learning-Better-Abstractions-with-E-Graphs-and-Anti-unification).
 
   🧑‍🏫 \ [James][James Wilcox] and I are co-teaching
@@ -230,7 +230,7 @@ ACM Transactions on Graphics (TOG) 2024
 
 {#2024-asplos-lakeroad}
 *[FPGA Technology Mapping Using Sketch-Guided Program Synthesis](
-  pub-2024-asplos-lakeroad.html
+  pubs/2024-asplos-lakeroad/
 )* \
   [Gus Henry Smith][Gus Smith],
 \ [Benjamin Kushigian][Ben Kushigian],
@@ -246,7 +246,7 @@ Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2
 
 {#2024-programming-magicmarkup}
 *[Magic Markup: Maintaining Document-External Markup with an LLM](
-  pub-2024-programming-magicmarkup.html
+  pubs/2024-programming-magicmarkup/
 )* \
   [Edward Misback][],
 \ [Zachary Tatlock][],
@@ -256,7 +256,7 @@ Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2
 
 {#2023-oopsla-enumo}
 *[Equality Saturation Theory Exploration à la Carte](
-  pub-2023-oopsla-enumo.html
+  pubs/2023-oopsla-enumo/
 )* \
   [Anjali Pal][],
 \ [Brett Saiki][],
@@ -272,7 +272,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2023
 
 {#2023-uist-odyssey}
 *[Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting](
-  pub-2023-uist-odyssey.html
+  pubs/2023-uist-odyssey/
 )* \
   [Edward Misback][],
 \ [Caleb C. Chan][Caleb Chan],
@@ -285,7 +285,7 @@ ACM Symposium on User Interface Software and Technology (UIST) 2023
 
 {#2023-plarch-lakeroad}
 *[Generate Compilers from Hardware Models!](
-  pub-2023-plarch-lakeroad.html
+  pubs/2023-plarch-lakeroad/
 )* \
   [Gus Henry Smith][Gus Smith],
 \ [Ben Kushigian][],
@@ -298,7 +298,7 @@ Workshop on Programming Languages and Computer Architecture (PLARCH) 2023
 
 {#2023-pldi-egglog}
 *[Better Together: Unifying Datalog and Equality Saturation](
-  pub-2023-pldi-egglog.html
+  pubs/2023-pldi-egglog/
 )* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
@@ -313,7 +313,7 @@ Programming Language Design and Implementation (PLDI) 2023
 
 {#2023-popl-babble}
 *[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](
-  pub-2023-popl-babble.html
+  pubs/2023-popl-babble/
 )* \
   [David Cao][],
 \ [Rose Kunkel][],
@@ -326,7 +326,7 @@ Principles of Programming Languages (POPL) 2023
 
 {#2022-fmcad-smallproofs}
 *[Small Proofs from Congruence Closure](
-  pub-2022-fmcad-smallproofs.html
+  pubs/2022-fmcad-smallproofs/
 )* \
   [Oliver Flatt][],
 \ [Samuel Coward][],
@@ -338,7 +338,7 @@ Formal Methods in Computer-Aided Design (FMCAD) 2022
 
 {#2022-ecoop-cakemlfp}
 *[Verified Compilation and Optimization of Floating-Point Programs in CakeML](
-  pub-2022-ecoop-cakemlfp.html
+  pubs/2022-ecoop-cakemlfp/
 )* \
   [Heiko Becker][],
 \ Robert Rabe,
@@ -353,7 +353,7 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 
 {#2022-tog-carpentry}
 *[Co-Optimization of Design and Fabrication Plans for Carpentry](
-  pub-2022-tog-carpentry.html
+  pubs/2022-tog-carpentry/
 )* \
   [Haisen Zhao][],
 \ [Max Willsey][],
@@ -367,7 +367,7 @@ ACM Transactions on Graphics (TOG) 2022
 
 {#2022-popl-rematch}
 *[Relational e-matching](
-  pub-2022-popl-rematch.html
+  pubs/2022-popl-rematch/
 )* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
@@ -405,4 +405,3 @@ Please see my [publications page](publications.html) for more.
     https://courses.cs.washington.edu/courses/cse341/22au/)
 
 Please see my [teaching page](teaching.html) for more.
-

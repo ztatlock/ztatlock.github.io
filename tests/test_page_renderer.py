@@ -63,6 +63,14 @@ class PageRendererTests(unittest.TestCase):
         )
         self.assertIn('href="/pubs/2024-asplos-lakeroad/"', rewritten)
 
+    def test_rewrites_canonical_publication_target_for_legacy_build(self) -> None:
+        html = '<a href="pubs/2024-asplos-lakeroad/">paper</a>'
+        rewritten = rewrite_local_html_targets(
+            html,
+            aliases={"pubs/2024-asplos-lakeroad/": "pub-2024-asplos-lakeroad.html"},
+        )
+        self.assertIn('href="pub-2024-asplos-lakeroad.html"', rewritten)
+
     def test_rewrites_static_asset_target(self) -> None:
         html = '<link rel="stylesheet" href="style.css">'
         rewritten = rewrite_local_html_targets(

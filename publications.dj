@@ -58,7 +58,7 @@ ACM Transactions on Graphics (TOG) 2024
 
 {#2024-asplos-lakeroad}
 *[FPGA Technology Mapping Using Sketch-Guided Program Synthesis](
-  pub-2024-asplos-lakeroad.html
+  pubs/2024-asplos-lakeroad/
 )* \
   [Gus Henry Smith][Gus Smith],
 \ [Benjamin Kushigian][Ben Kushigian],
@@ -74,7 +74,7 @@ Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2
 
 {#2024-programming-magicmarkup}
 *[Magic Markup: Maintaining Document-External Markup with an LLM](
-  pub-2024-programming-magicmarkup.html
+  pubs/2024-programming-magicmarkup/
 )* \
   [Edward Misback][],
 \ [Zachary Tatlock][],
@@ -84,7 +84,7 @@ Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2
 
 {#2023-oopsla-enumo}
 *[Equality Saturation Theory Exploration à la Carte](
-  pub-2023-oopsla-enumo.html
+  pubs/2023-oopsla-enumo/
 )* \
   [Anjali Pal][],
 \ [Brett Saiki][],
@@ -101,7 +101,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2023
 
 {#2023-uist-odyssey}
 *[Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting](
-  pub-2023-uist-odyssey.html
+  pubs/2023-uist-odyssey/
 )* \
   [Edward Misback][],
 \ [Caleb C. Chan][Caleb Chan],
@@ -115,7 +115,7 @@ ACM Symposium on User Interface Software and Technology (UIST) 2023
 
 {#2023-pldi-egglog}
 *[Better Together: Unifying Datalog and Equality Saturation](
-  pub-2023-pldi-egglog.html
+  pubs/2023-pldi-egglog/
 )* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
@@ -130,7 +130,7 @@ Programming Language Design and Implementation (PLDI) 2023
 
 {#2023-popl-babble}
 *[babble: Learning Better Abstractions with E-Graphs and Anti-Unification](
-  pub-2023-popl-babble.html
+  pubs/2023-popl-babble/
 )* \
   [David Cao][],
 \ [Rose Kunkel][],
@@ -143,7 +143,7 @@ Principles of Programming Languages (POPL) 2023
 
 {#2022-fmcad-smallproofs}
 *[Small Proofs from Congruence Closure](
-  pub-2022-fmcad-smallproofs.html
+  pubs/2022-fmcad-smallproofs/
 )* \
   [Oliver Flatt][],
 \ [Samuel Coward][],
@@ -155,7 +155,7 @@ Formal Methods in Computer-Aided Design (FMCAD) 2022
 
 {#2022-ecoop-cakemlfp}
 *[Verified Compilation and Optimization of Floating-Point Programs in CakeML](
-  pub-2022-ecoop-cakemlfp.html
+  pubs/2022-ecoop-cakemlfp/
 )* \
   [Heiko Becker][],
 \ Robert Rabe,
@@ -170,7 +170,7 @@ European Conference on Object-Oriented Programming (ECOOP) 2022
 
 {#2022-tog-carpentry}
 *[Co-Optimization of Design and Fabrication Plans for Carpentry](
-  pub-2022-tog-carpentry.html
+  pubs/2022-tog-carpentry/
 )* \
   [Haisen Zhao][],
 \ [Max Willsey][],
@@ -184,7 +184,7 @@ ACM Transactions on Graphics (TOG) 2022
 
 {#2022-popl-rematch}
 *[Relational e-matching](
-  pub-2022-popl-rematch.html
+  pubs/2022-popl-rematch/
 )* \
   [Yihong Zhang][],
 \ [Yisu Remy Wang][Remy Wang],
@@ -195,7 +195,7 @@ Principles of Programming Languages (POPL) 2022
 
 {#2021-oopsla-ruler}
 *[Rewrite Rule Inference Using Equality Saturation](
-  pub-2021-oopsla-ruler.html
+  pubs/2021-oopsla-ruler/
 )* \
   [Chandrakana Nandi][],
 \ [Max Willsey][],
@@ -212,7 +212,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2021 \
 
 {#2021-sff-3dp}
 *[A Roadmap Towards Parallel Printing for Desktop 3D Printers](
-  pub-2021-sff-3dp.html
+  pubs/2021-sff-3dp/
 )* \
   [Molly Aubrey Carton][Molly Carton],
 \ [Chandrakana Nandi][],
@@ -228,7 +228,7 @@ Solid Freeform Fabrication Symposium (SFF) 2021
 
 {#2021-arith-herbie}
 *[Combining Precision Tuning and Rewriting](
-  pub-2021-arith-herbie.html
+  pubs/2021-arith-herbie/
 )* \
   [Brett Saiki][],
 \ [Oliver Flatt][],
@@ -240,7 +240,7 @@ IEEE International Symposium on Computer Arithmetic (ARITH) 2021
 
 {#2021-maps-glenside}
 *[Pure Tensor Program Rewriting via Access Patterns](
-  pub-2021-maps-glenside.html
+  pubs/2021-maps-glenside/
 )* \
   [Gus Henry Smith][Gus Smith],
 \ [Andrew Liu][],
@@ -255,7 +255,7 @@ Symposium on Machine Programming (MAPS) 2021
 
 {#2021-iclr-dtr}
 *[Dynamic Tensor Rematerialization](
-  pub-2021-iclr-dtr.html
+  pubs/2021-iclr-dtr/
 )* \
   [Marisa Kirisame][],
 \ [Steven Lyubomirsky][],
@@ -271,7 +271,7 @@ International Conference on Learning Representations (ICLR) 2021 \
 
 {#2021-mlsys-nimble}
 *[Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference](
-  pub-2021-mlsys-nimble.html
+  pubs/2021-mlsys-nimble/
 )* \
   [Haichen Shen][],
 \ [Jared Roesch][],
@@ -361,7 +361,7 @@ Computer-Aided Verification (CAV) 2019
 European Conference on Computer Systems (EuroSys) 2019
 
 {#2019-conga-sinkingpoint}
-*[Sinking Point: Dynamic Precision Tracking for Floating-point](pub-2019-conga-sinkingpoint.html)* \
+*[Sinking Point: Dynamic Precision Tracking for Floating-point](pubs/2019-conga-sinkingpoint/)* \
   [Bill Zorn][],
 \ [Dan Grossman][],
 \ [Zachary Tatlock][]
@@ -621,7 +621,7 @@ Network and Distributed System Security (NDSS) 2014
 
 {#2012-security-quark}
 *[Establishing Browser Security Guarantees through Formal Shim Verification](
-  pub-2012-security-quark.html
+  pubs/2012-security-quark/
 )* \
   [Dongseok Jang][],
 \ [Zachary Tatlock][],
@@ -647,7 +647,7 @@ Programming Language Design and Implementation (PLDI) 2010
 
 {#2009-pldi-pec}
 *[Proving Optimizations Correct using Parameterized Program Equivalence](
-  pub-2009-pldi-pec.html
+  pubs/2009-pldi-pec/
 )* \
   [Sudipta Kundu][],
 \ [Zachary Tatlock][],
@@ -666,7 +666,7 @@ Principles of Programming Languages (POPL) 2009
 
 {#2008-oopsla-dtar}
 *[Deep Typechecking and Refactoring](
-  pub-2008-oopsla-dtar.html
+  pubs/2008-oopsla-dtar/
 )* \
   [Zachary Tatlock][],
 \ [Chris Tucker][],
@@ -694,7 +694,7 @@ Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2008
 ACM SIGPLAN International Workshop on Functional Art, Music, Modelling and Design (FARM) 2023
 
 {#2023-plarch-lakeroad}
-*[Generate Compilers from Hardware Models!](pub-2023-plarch-lakeroad.html)* \
+*[Generate Compilers from Hardware Models!](pubs/2023-plarch-lakeroad/)* \
   [Gus Henry Smith][Gus Smith],
 \ [Ben Kushigian][],
 \ [Vishal Canumalla][],

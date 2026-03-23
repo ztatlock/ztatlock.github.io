@@ -171,3 +171,81 @@ class SourceValidateTests(unittest.TestCase):
                     f"{pub_dir / 'publication.json'}: image path does not exist: pubs/2025-test-demo/missing-meta.png"
                 ],
             )
+
+    def test_reports_legacy_publication_link_in_page_source(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            page_path = pages / "index.dj"
+            page_path.write_text(
+                "---\n"
+                "description: Demo description\n"
+                "---\n"
+                "# Home\n\nSee [paper](pub-2024-asplos-lakeroad.html).\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{page_path}: legacy publication link should use canonical publication path: "
+                    "pub-2024-asplos-lakeroad.html -> pubs/2024-asplos-lakeroad/"
+                ],
+            )
+
+    def test_reports_legacy_publication_link_in_publication_extra_content(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+
+            extra_path = pubs / "2025-test-demo" / "extra.dj"
+            extra_path.parent.mkdir()
+            extra_path.write_text(
+                "See [older paper](pub-2024-asplos-lakeroad.html).\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{extra_path}: legacy publication link should use canonical publication path: "
+                    "pub-2024-asplos-lakeroad.html -> pubs/2024-asplos-lakeroad/"
+                ],
+            )
