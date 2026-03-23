@@ -6,7 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from scripts.page_metadata import validate_publication_metadata
+from scripts.page_metadata import validate_publication_bridge_metadata
 
 
 def main() -> int:
@@ -20,7 +20,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    issues = validate_publication_metadata(Path(args.root).resolve())
+    issues = validate_publication_bridge_metadata(Path(args.root).resolve())
     if issues:
         for issue in issues:
             print(issue, file=sys.stderr)

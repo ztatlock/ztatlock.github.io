@@ -7,15 +7,17 @@ import re
 import sys
 from pathlib import Path
 
+from scripts.page_metadata import validate_publication_bridge_metadata
 from scripts.sitebuild.artifact_validate import (
     find_broken_link_issues,
     find_placeholder_issues,
     recursive_html_files,
 )
+from scripts.sitebuild.preview_validate import find_sitemap_file_issues
 from scripts.sitebuild.route_discovery import discover_routes
 from scripts.sitebuild.site_config import load_site_config
 from scripts.sitebuild.sitemap_builder import build_sitemap_entries, render_sitemap_txt, render_sitemap_xml
-from scripts.sitebuild.preview_validate import find_sitemap_file_issues
+from scripts.sitebuild.source_validate import find_source_issues
 
 PREVIEW_PLACEHOLDER_RE = re.compile(
     r'YOUTUBEID|href="TODO"|content="TITLE"|content="DESCRIPTION"|CONF YEAR'
@@ -32,12 +34,18 @@ def _print_section(title: str, issues: list[str]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Validate the preview site built under build/."
+        description="Validate preview source invariants and the site built under build/."
     )
     parser.add_argument("--root", default=".", help="repo root")
     args = parser.parse_args()
 
     config = load_site_config(Path(args.root))
+    source_issues = find_source_issues(config)
+    publication_bridge_issues = validate_publication_bridge_metadata(
+        config.repo_root,
+        page_source_dir=config.page_source_dir,
+        publications_dir=config.publications_dir,
+    )
     build_root = config.build_dir
     html_files = recursive_html_files(build_root)
     placeholder_issues = find_placeholder_issues(
@@ -59,6 +67,16 @@ def main() -> int:
         expected_xml=render_sitemap_xml(sitemap_entries),
     )
 
+    if source_issues:
+        _print_section(
+            "ERROR: found invalid preview source",
+            source_issues,
+        )
+    if publication_bridge_issues:
+        _print_section(
+            "ERROR: found invalid publication source bridge",
+            publication_bridge_issues,
+        )
     if placeholder_issues:
         _print_section(
             "ERROR: found unresolved placeholders in preview HTML",
@@ -75,7 +93,13 @@ def main() -> int:
             sitemap_issues,
         )
 
-    return 1 if placeholder_issues or broken_link_issues or sitemap_issues else 0
+    return 1 if (
+        source_issues
+        or publication_bridge_issues
+        or placeholder_issues
+        or broken_link_issues
+        or sitemap_issues
+    ) else 0
 
 
 if __name__ == "__main__":

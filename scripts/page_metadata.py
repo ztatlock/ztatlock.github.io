@@ -8,7 +8,9 @@ from pathlib import Path
 
 from scripts.page_source import DRAFT_HEADING_RE, PageSourceError, read_page_source
 from scripts.publication_record import (
+    PUBLICATION_RECORD_NAME,
     PublicationRecordError,
+    load_publication_record,
     load_optional_publication_record,
     publication_metadata_image_path,
     publication_record_path,
@@ -332,7 +334,6 @@ def resolve_public_asset_source_path(
     root: Path,
     publications_dir: Path | None = None,
     static_source_dir: Path | None = None,
-    shared_img_dir: Path | None = None,
 ) -> Path | None:
     if path_or_url.startswith(("http://", "https://")):
         return None
@@ -341,9 +342,6 @@ def resolve_public_asset_source_path(
     if normalized.startswith("pubs/"):
         actual_publications_dir = publications_dir or (root / "pubs")
         return actual_publications_dir / normalized.removeprefix("pubs/")
-    if normalized.startswith("img/"):
-        actual_shared_img_dir = shared_img_dir or (root / "img")
-        return actual_shared_img_dir / normalized.removeprefix("img/")
 
     actual_static_source_dir = static_source_dir or root
     return actual_static_source_dir / normalized
@@ -354,7 +352,6 @@ def validate_general_page_metadata(
     *,
     page_source_dir: Path | None = None,
     static_source_dir: Path | None = None,
-    shared_img_dir: Path | None = None,
 ) -> list[str]:
     issues: list[str] = []
     actual_page_source_dir = page_source_dir or root
@@ -383,7 +380,6 @@ def validate_general_page_metadata(
                 image_path,
                 root=root,
                 static_source_dir=static_source_dir,
-                shared_img_dir=shared_img_dir,
             )
             if source_image_path is not None and not source_image_path.exists():
                 issues.append(f"{actual_page_source_dir / f'{stem}.dj'}: image path does not exist: {image_path}")
@@ -396,13 +392,57 @@ def validate_general_page_metadata(
     return issues
 
 
-def validate_publication_metadata(
+def validate_publication_record_metadata(
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+    static_source_dir: Path | None = None,
+) -> list[str]:
+    issues: list[str] = []
+    actual_publications_dir = publications_dir or (root / "pubs")
+
+    for path in sorted(actual_publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}")):
+        slug = path.parent.name
+        try:
+            record = load_publication_record(
+                root,
+                slug,
+                publications_dir=actual_publications_dir,
+            )
+        except PublicationRecordError as err:
+            issues.append(str(err))
+            continue
+
+        if record.draft:
+            continue
+
+        try:
+            image_path = publication_metadata_image_path(
+                root,
+                record,
+                publications_dir=actual_publications_dir,
+            )
+        except PublicationRecordError as err:
+            issues.append(str(err))
+            continue
+
+        source_image_path = resolve_public_asset_source_path(
+            image_path,
+            root=root,
+            publications_dir=actual_publications_dir,
+            static_source_dir=static_source_dir,
+        )
+        if source_image_path is not None and not source_image_path.exists():
+            issues.append(f"{path}: image path does not exist: {image_path}")
+
+    return issues
+
+
+def validate_publication_bridge_metadata(
     root: Path,
     *,
     page_source_dir: Path | None = None,
     publications_dir: Path | None = None,
-    static_source_dir: Path | None = None,
-    shared_img_dir: Path | None = None,
 ) -> list[str]:
     issues: list[str] = []
     actual_page_source_dir = page_source_dir or root
@@ -453,21 +493,23 @@ def validate_publication_metadata(
                 )
             if MIGRATED_PUBLICATION_TODO_RE.search(source_text):
                 issues.append(f"{path}: migrated publication page should not contain TODO")
-            image_path = publication_metadata_image_path(
-                root,
-                record,
-                publications_dir=publications_dir,
-            )
-            source_image_path = resolve_public_asset_source_path(
-                image_path,
-                root=root,
-                publications_dir=publications_dir,
-                static_source_dir=static_source_dir,
-                shared_img_dir=shared_img_dir,
-            )
-            if source_image_path is not None and not source_image_path.exists():
-                issues.append(
-                    f"{publication_record_path(root, slug, publications_dir=publications_dir)}: image path does not exist: {image_path}"
-                )
 
     return issues
+
+
+def validate_publication_metadata(
+    root: Path,
+    *,
+    page_source_dir: Path | None = None,
+    publications_dir: Path | None = None,
+    static_source_dir: Path | None = None,
+) -> list[str]:
+    return validate_publication_record_metadata(
+        root,
+        publications_dir=publications_dir,
+        static_source_dir=static_source_dir,
+    ) + validate_publication_bridge_metadata(
+        root,
+        page_source_dir=page_source_dir,
+        publications_dir=publications_dir,
+    )

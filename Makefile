@@ -129,7 +129,7 @@ build-preview:
 	@python3 -m $(BUILD_PREVIEW_MODULE) --root .
 
 .PHONY: check-preview
-check-preview: validate-publication-sources build-preview
+check-preview: build-preview
 	@python3 -m $(VALIDATE_PREVIEW_MODULE) --root .
 
 .PHONY: routes-preview
@@ -143,6 +143,7 @@ test:
 		tests/test_scaffold_publication.py \
 		tests/test_route_model.py \
 		tests/test_route_discovery.py \
+		tests/test_source_validate.py \
 		tests/test_page_metadata.py \
 		tests/test_page_renderer.py \
 		tests/test_preview_builder.py \

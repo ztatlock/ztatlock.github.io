@@ -8,14 +8,15 @@ import sys
 from pathlib import Path
 
 from scripts.page_metadata import (
-    validate_general_page_metadata,
-    validate_publication_metadata,
+    validate_publication_bridge_metadata,
 )
 from scripts.sitebuild.artifact_validate import (
     find_broken_link_issues,
     find_placeholder_issues,
     top_level_html_files,
 )
+from scripts.sitebuild.site_config import load_site_config
+from scripts.sitebuild.source_validate import find_source_issues
 
 LEGACY_PLACEHOLDER_RE = re.compile(
     r'TODO|YOUTUBEID|href="TODO"|content="TITLE"|content="DESCRIPTION"|CONF YEAR'
@@ -49,6 +50,7 @@ def main() -> int:
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
+    config = load_site_config(root)
     html_files = top_level_html_files(root)
 
     placeholder_issues = find_placeholder_issues(
@@ -62,8 +64,12 @@ def main() -> int:
         relative_to=root,
     )
     legacy_metadata_issues = find_legacy_metadata_issues(root)
-    general_page_metadata_issues = validate_general_page_metadata(root)
-    publication_metadata_issues = validate_publication_metadata(root)
+    source_metadata_issues = find_source_issues(config)
+    publication_bridge_issues = validate_publication_bridge_metadata(
+        root,
+        page_source_dir=config.page_source_dir,
+        publications_dir=config.publications_dir,
+    )
 
     if placeholder_issues:
         print_section(
@@ -77,23 +83,23 @@ def main() -> int:
         )
     if legacy_metadata_issues:
         print_section("ERROR: found legacy raw page metadata files", legacy_metadata_issues)
-    if general_page_metadata_issues:
+    if source_metadata_issues:
         print_section(
             "ERROR: found invalid page metadata source",
-            general_page_metadata_issues,
+            source_metadata_issues,
         )
-    if publication_metadata_issues:
+    if publication_bridge_issues:
         print_section(
-            "ERROR: found invalid publication metadata source",
-            publication_metadata_issues,
+            "ERROR: found invalid publication source bridge",
+            publication_bridge_issues,
         )
 
     return 1 if (
         placeholder_issues
         or broken_link_issues
         or legacy_metadata_issues
-        or general_page_metadata_issues
-        or publication_metadata_issues
+        or source_metadata_issues
+        or publication_bridge_issues
     ) else 0
 
 
