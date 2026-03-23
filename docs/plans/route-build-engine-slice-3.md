@@ -62,7 +62,8 @@ bridge constraints are now narrower:
 
 - `page_source_dir` still contains both ordinary pages and `pub-*.dj` stubs
 - static discovery is still a bridge model built around `static_source_dir`
-  plus `shared_img_dir`, not the final generalized `site/static/` model
+  plus a separate image-root concept, not the final generalized
+  `site/static/` model
 - the legacy production build still points the config at the current repo-root
   layout
 
@@ -123,7 +124,6 @@ SiteConfig
   templates_dir
   data_dir
   static_source_dir
-  shared_img_dir
 ```
 
 With simple derived paths such as:
@@ -153,7 +153,6 @@ Instead they should derive them from explicit config fields such as:
 - `config.templates_dir`
 - `config.data_dir`
 - `config.static_source_dir`
-- `config.shared_img_dir`
 
 This is the most important change in the slice.
 

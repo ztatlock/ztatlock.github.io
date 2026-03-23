@@ -270,8 +270,9 @@ At the end of the slice, pause and inspect:
 - what publication-specific transitional assumptions still remain
 - whether static handling now becomes the main remaining gap
 - whether the next move should be:
-  - the actual source move into `site/`
-  - or one last focused static-source cleanup slice
+  - one last focused source-move-readiness slice
+  - or, if the audit is unexpectedly cleaner than expected, the actual source
+    move into `site/`
 
 ## Lessons Learned
 
@@ -286,6 +287,9 @@ At the end of the slice, pause and inspect:
 - Ancillary publication tooling should move to record-driven discovery early;
   otherwise those tools quietly become future cutover traps even after the
   main preview engine is clean.
+- Publication-source cleanup is not the same as full source-move readiness.
+  Static-tree behavior and authoritative new-path source validation still need
+  their own final readiness slice before real file moves.
 
 Do **not** roll directly into the file move without this checkpoint.
 

@@ -434,19 +434,27 @@ Finalize the new engine's publication source model before any real source move:
 
 ### Phase 4
 
-Move source into `site/` once the new engine's source model is fully aligned
-with the intended steady state.
+Finish source-move readiness in the new engine before moving real files:
+
+- make the new path authoritative for source validation
+- make `static_source_dir` behave like a true recursive static copy tree
+- keep only sharply isolated bridge behavior for the current repo-root layout
 
 ### Phase 5
 
-Add GitHub Pages workflow for deploying `build/`.
+Move source into `site/` once the new engine is ready enough that the move is
+mostly mechanical.
 
 ### Phase 6
+
+Add GitHub Pages workflow for deploying `build/`.
+
+### Phase 7
 
 Remove old committed generated outputs, publication stubs, and the legacy
 root-served build path.
 
-### Phase 7
+### Phase 8
 
 Clean up remaining transitional assumptions and docs.
 

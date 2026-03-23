@@ -89,17 +89,19 @@ Prefer the top-level `make` targets when they exist:
   generated people refs from `site/data/people.json` plus the tiny manual
   non-person remainder in `templates/REFS`.
 - `validate_preview_build.py`
-  Validates the preview site under `build/` for unresolved placeholders,
-  broken local links, and route-driven sitemap correctness.
-  It stays a thin preview-specific entrypoint on top of shared artifact
-  validation helpers plus preview-only sitemap checks.
+  Validates preview source invariants plus the preview site under `build/`
+  for unresolved placeholders, broken local links, and route-driven sitemap
+  correctness.
+  It stays a thin preview-specific entrypoint on top of shared source
+  validation, shared artifact validation, preview-only sitemap checks, and the
+  temporary publication-stub bridge check that remains during the transition.
 - `validate_publication_sources.py`
   Validates publication-local source invariants that must stay true while the
   legacy root build and temporary publication stubs still coexist.
 - `validate_site.py`
   Validates generated HTML for unresolved placeholders and broken local links,
-  validates non-publication front matter and publication-local metadata
-  sources.
+  validates canonical source metadata, and enforces the temporary
+  publication-stub bridge invariants needed by the legacy root build.
   It also rejects any legacy raw `.meta` sidecars.
   It stays a thin legacy-build entrypoint on top of shared artifact
   validation helpers plus metadata-source validation.

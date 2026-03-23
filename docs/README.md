@@ -86,6 +86,10 @@ meant to be read, maintained, and extended over time.
 - `plans/route-build-engine-slice-4.md`
   Publication-source-model slice for removing the new engine's dependence on
   top-level publication stubs before the real `site/` source move.
+- `plans/route-build-engine-slice-5.md`
+  Final source-move-readiness slice for making the new path authoritative for
+  source validation and for turning `static_source_dir` into a true recursive
+  copy tree before any real files move into `site/`.
 
 ## Near-Term Cleanup
 

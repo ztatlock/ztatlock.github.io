@@ -767,7 +767,18 @@ engine and the intended steady state:
 This phase should strengthen the new engine directly, not evolve the legacy
 root-served build.
 
-### Phase 4: Migrate Source Into `site/`
+### Phase 4: Complete Source-Move Readiness
+
+Before moving real files, close the last two remaining gaps:
+
+- make the new path authoritative for source-level validation
+- make `static_source_dir` behave like a true recursive copy tree for a real
+  `site/static/` layout
+
+This phase should keep the preview path simple and clean while isolating the
+temporary repo-root bridge behavior more sharply.
+
+### Phase 5: Migrate Source Into `site/`
 
 Move:
 
@@ -789,7 +800,7 @@ This source move should happen only after the preview builder is trusted
 enough that the source migration is mostly mechanical rather than
 architecturally exploratory.
 
-### Phase 5: Add GitHub Pages Workflow
+### Phase 6: Add GitHub Pages Workflow
 
 Add:
 
@@ -803,7 +814,7 @@ to:
 
 At that point, generated site output should no longer need to be committed.
 
-### Phase 6: Remove Old Root-Level Generated Site Outputs
+### Phase 7: Remove Old Root-Level Generated Site Outputs
 
 Delete the old committed generated outputs once the workflow is trusted:
 
