@@ -42,9 +42,9 @@ class PageMetadataTests(unittest.TestCase):
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
             static = root / "site" / "static"
-            shared_img = static / "img"
+            img_dir = static / "img"
             pages.mkdir(parents=True)
-            shared_img.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
 
             (pages / "about.dj").write_text(
                 "---\n"
@@ -54,13 +54,12 @@ class PageMetadataTests(unittest.TestCase):
                 "# About\n",
                 encoding="utf-8",
             )
-            (shared_img / "demo.png").write_bytes(b"PNG")
+            (img_dir / "demo.png").write_bytes(b"PNG")
 
             issues = validate_general_page_metadata(
                 root,
                 page_source_dir=pages,
                 static_source_dir=static,
-                shared_img_dir=shared_img,
             )
             self.assertEqual(issues, [])
 

@@ -69,15 +69,17 @@ class RouteDiscoveryTests(unittest.TestCase):
             page_source_dir = root / "site" / "pages"
             publications_dir = root / "site" / "pubs"
             static_source_dir = root / "site" / "static"
-            shared_img_dir = static_source_dir / "img"
+            img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
-            shared_img_dir.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
+            (static_source_dir / "nested").mkdir(parents=True)
 
             (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
             (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
-            (shared_img_dir / "logo.png").write_bytes(b"PNG")
+            (static_source_dir / "nested" / "notes.txt").write_text("demo\n", encoding="utf-8")
+            (img_dir / "logo.png").write_bytes(b"PNG")
 
             pub_dir = publications_dir / "2025-test-demo"
             pub_dir.mkdir()
@@ -113,7 +115,6 @@ class RouteDiscoveryTests(unittest.TestCase):
                 page_source_dir=page_source_dir,
                 publications_dir=publications_dir,
                 static_source_dir=static_source_dir,
-                shared_img_dir=shared_img_dir,
             )
             routes = discover_routes(config)
 
@@ -147,6 +148,9 @@ class RouteDiscoveryTests(unittest.TestCase):
             image_route = find_route(routes, kind="static_file", key="img/logo.png")
             self.assertEqual(image_route.output_relpath, "img/logo.png")
 
+            nested_route = find_route(routes, kind="static_file", key="nested/notes.txt")
+            self.assertEqual(nested_route.output_relpath, "nested/notes.txt")
+
             paper_route = find_route(
                 routes,
                 kind="static_file",
@@ -163,11 +167,11 @@ class RouteDiscoveryTests(unittest.TestCase):
             page_source_dir = root / "site" / "pages"
             publications_dir = root / "site" / "pubs"
             static_source_dir = root / "site" / "static"
-            shared_img_dir = static_source_dir / "img"
+            img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
-            shared_img_dir.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
 
             (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
             (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
@@ -194,7 +198,6 @@ class RouteDiscoveryTests(unittest.TestCase):
                 page_source_dir=page_source_dir,
                 publications_dir=publications_dir,
                 static_source_dir=static_source_dir,
-                shared_img_dir=shared_img_dir,
             )
             routes = discover_routes(config)
 
@@ -211,11 +214,11 @@ class RouteDiscoveryTests(unittest.TestCase):
             page_source_dir = root / "site" / "pages"
             publications_dir = root / "site" / "pubs"
             static_source_dir = root / "site" / "static"
-            shared_img_dir = static_source_dir / "img"
+            img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
-            shared_img_dir.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
 
             (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
             (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
@@ -241,7 +244,30 @@ class RouteDiscoveryTests(unittest.TestCase):
                 page_source_dir=page_source_dir,
                 publications_dir=publications_dir,
                 static_source_dir=static_source_dir,
-                shared_img_dir=shared_img_dir,
+            )
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
+
+    def test_rejects_reserved_generated_static_paths_in_recursive_static_tree(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+            (static_source_dir / "sitemap.txt").write_text("bad\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
             )
             with self.assertRaises(RouteDiscoveryError):
                 discover_routes(config)

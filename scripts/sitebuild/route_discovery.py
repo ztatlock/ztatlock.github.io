@@ -21,6 +21,7 @@ from .site_config import SiteConfig
 
 DRAFT_HEADING_RE = re.compile(r"^# DRAFT$", re.MULTILINE)
 TOP_LEVEL_STATIC_FILENAMES = ("CNAME", "robots.txt", "style.css", "zip-longitude.js")
+GENERATED_PREVIEW_OUTPUTS = frozenset({"sitemap.txt", "sitemap.xml"})
 
 
 class RouteDiscoveryError(RouteModelError):
@@ -156,7 +157,7 @@ def _top_level_static_routes(config: SiteConfig) -> list[Route]:
             _static_route(config, key=path.name, source_path=path, output_relpath=path.name)
         )
 
-    img_dir = config.shared_img_dir
+    img_dir = config.static_source_dir / "img"
     if img_dir.exists():
         for path in sorted(img_dir.rglob("*")):
             if not path.is_file():
@@ -165,6 +166,36 @@ def _top_level_static_routes(config: SiteConfig) -> list[Route]:
             routes.append(_static_route(config, key=relpath, source_path=path, output_relpath=relpath))
 
     return routes
+
+
+def _recursive_static_tree_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    if not config.static_source_dir.exists():
+        return routes
+
+    for path in sorted(config.static_source_dir.rglob("*")):
+        if not path.is_file():
+            continue
+        relpath = path.relative_to(config.static_source_dir).as_posix()
+        if relpath in GENERATED_PREVIEW_OUTPUTS:
+            raise RouteDiscoveryError(
+                f"{path}: reserved static path conflicts with generated preview artifact: {relpath}"
+            )
+        routes.append(
+            _static_route(
+                config,
+                key=relpath,
+                source_path=path,
+                output_relpath=relpath,
+            )
+        )
+    return routes
+
+
+def _static_routes(config: SiteConfig) -> list[Route]:
+    if config.static_source_dir == config.repo_root:
+        return _top_level_static_routes(config)
+    return _recursive_static_tree_routes(config)
 
 
 def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]) -> list[Route]:
@@ -212,7 +243,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     publication_routes = _publication_page_routes(config)
     page_routes = tuple(sorted((*ordinary_routes, *publication_routes), key=lambda route: route.output_relpath))
     static_routes = (
-        _top_level_static_routes(config)
+        _static_routes(config)
         + _publication_asset_routes(config, page_routes)
     )
     routes = tuple(sorted((*page_routes, *static_routes), key=lambda route: route.output_relpath))

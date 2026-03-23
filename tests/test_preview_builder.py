@@ -18,13 +18,14 @@ class PreviewBuilderTests(unittest.TestCase):
             templates_dir = root / "site" / "templates"
             data_dir = root / "site" / "data"
             static_source_dir = root / "site" / "static"
-            shared_img_dir = static_source_dir / "img"
+            img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
             templates_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
-            shared_img_dir.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
+            (static_source_dir / "nested").mkdir(parents=True)
 
             (page_source_dir / "about.dj").write_text(
                 "---\n"
@@ -76,7 +77,9 @@ class PreviewBuilderTests(unittest.TestCase):
             (data_dir / "people.json").write_text('{"people": {}}', encoding="utf-8")
 
             (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
-            (shared_img_dir / "logo.png").write_bytes(b"PNG")
+            (static_source_dir / "nested" / "notes.txt").write_text("demo\n", encoding="utf-8")
+            (static_source_dir / "demo.html").write_text("<html>demo</html>\n", encoding="utf-8")
+            (img_dir / "logo.png").write_bytes(b"PNG")
 
             config = load_site_config(
                 root,
@@ -85,7 +88,6 @@ class PreviewBuilderTests(unittest.TestCase):
                 templates_dir=templates_dir,
                 data_dir=data_dir,
                 static_source_dir=static_source_dir,
-                shared_img_dir=shared_img_dir,
             )
 
             routes = build_preview_site(config)
@@ -108,6 +110,8 @@ class PreviewBuilderTests(unittest.TestCase):
             )
 
             self.assertTrue((config.build_dir / "style.css").exists())
+            self.assertTrue((config.build_dir / "nested" / "notes.txt").exists())
+            self.assertTrue((config.build_dir / "demo.html").exists())
             self.assertTrue((config.build_dir / "img" / "logo.png").exists())
             self.assertTrue((config.build_dir / "pubs" / "2025-test-demo" / "2025-test-demo.pdf").exists())
 
@@ -119,13 +123,13 @@ class PreviewBuilderTests(unittest.TestCase):
             templates_dir = root / "site" / "templates"
             data_dir = root / "site" / "data"
             static_source_dir = root / "site" / "static"
-            shared_img_dir = static_source_dir / "img"
+            img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
             templates_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
-            shared_img_dir.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
 
             (page_source_dir / "about.dj").write_text(
                 "---\n"
@@ -173,7 +177,6 @@ class PreviewBuilderTests(unittest.TestCase):
                 templates_dir=templates_dir,
                 data_dir=data_dir,
                 static_source_dir=static_source_dir,
-                shared_img_dir=shared_img_dir,
             )
 
             routes = build_preview_site(config)

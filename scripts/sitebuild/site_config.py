@@ -20,7 +20,6 @@ class SiteConfig:
     templates_dir: Path
     data_dir: Path
     static_source_dir: Path
-    shared_img_dir: Path
 
     @property
     def root(self) -> Path:
@@ -44,7 +43,6 @@ def load_site_config(
     templates_dir: Path | None = None,
     data_dir: Path | None = None,
     static_source_dir: Path | None = None,
-    shared_img_dir: Path | None = None,
     site_url: str = SITE_URL,
     webfiles_url: str = WEBFILES_URL,
 ) -> SiteConfig:
@@ -59,5 +57,4 @@ def load_site_config(
         templates_dir=(templates_dir or (resolved_root / "templates")).resolve(),
         data_dir=(data_dir or (resolved_root / "site" / "data")).resolve(),
         static_source_dir=(static_source_dir or resolved_root).resolve(),
-        shared_img_dir=(shared_img_dir or (resolved_root / "img")).resolve(),
     )
