@@ -7,7 +7,7 @@ Examples:
 
 - script run-state such as last-submitted timestamps
 - local logs from helper scripts
-- repo-local preview outputs such as `state/inventory/`
+- repo-local generated snapshots such as `state/inventory/`
 
 This is distinct from:
 

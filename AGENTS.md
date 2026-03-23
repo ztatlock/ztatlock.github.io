@@ -37,7 +37,7 @@ source-first and predictable.
 - Render the authoritative route table: `make routes`
 - Run focused unit tests for route/data/build helpers: `make test`
 - Check local prerequisites and assumptions: `make env-check`
-- Build publication inventory previews: `make inventory`
+- Build publication inventory snapshots: `make inventory`
 
 ## Before Committing
 

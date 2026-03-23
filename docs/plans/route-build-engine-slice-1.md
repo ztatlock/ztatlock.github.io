@@ -257,13 +257,13 @@ Recommended first-cut modules:
 - `scripts/sitebuild/route_discovery.py`
   Discover future-oriented routes from the current source tree.
 
-- `scripts/sitebuild/preview_builder.py`
+- `scripts/sitebuild/site_builder.py`
   Render/copy the preview site into `build/`.
 
 - `scripts/render_routes.py`
   Optional diagnostic route-table output for humans/tests.
 
-- `scripts/build_preview_site.py`
+- `scripts/build_site.py`
   Thin CLI entry point for the preview builder.
 
 This is enough for slice 1.

@@ -42,7 +42,7 @@ that the new engine hardcoded the current source layout in multiple places:
 
 - [site_config.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/site_config.py)
 - [route_discovery.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/route_discovery.py)
-- [preview_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/preview_builder.py)
+- [site_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/site_builder.py)
 - [page_renderer.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/page_renderer.py)
 - [page_source.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_source.py)
 - [page_metadata.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_metadata.py)
@@ -194,7 +194,7 @@ The clean rule is:
 
 ### 4. Refs/Data Loading Should Also Use Config Paths
 
-[preview_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/preview_builder.py)
+[site_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/site_builder.py)
 had also hardcoded:
 
 - `site/data/people.json`
@@ -217,7 +217,7 @@ This step should not change behavior yet.
 Update:
 
 - [route_discovery.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/route_discovery.py)
-- [preview_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/preview_builder.py)
+- [site_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/site_builder.py)
 - [djot_refs.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/djot_refs.py)
 - [page_renderer.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/page_renderer.py)
 

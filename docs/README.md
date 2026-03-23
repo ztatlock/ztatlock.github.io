@@ -40,7 +40,7 @@ meant to be read, maintained, and extended over time.
 - `site/templates/` should hold non-executable site template assets.
 - Local generated/runtime state should go under `state/` and should usually be
   ignored by git.
-- Repo-local generated previews can live under `state/`.
+- Repo-local generated snapshots can live under `state/`.
 - Canonical generated archive-state snapshots should live outside the repo in
   `~/Desktop/WEBFILES/inventory/`.
 
@@ -75,14 +75,14 @@ meant to be read, maintained, and extended over time.
   redesign campaign.
 - `plans/route-build-engine-slice-1.md`
   Initial implementation slice for the redesign: a future-oriented
-  preview builder that writes to `build/` while still reading from the current
-  source layout.
+  route-aware builder that writes to `build/` while still reading from the
+  current source layout.
 - `plans/route-build-engine-slice-2.md`
   Consolidation slice for collapsing duplicated rendering and metadata logic
   and adding route-driven sitemap generation for `build/`, followed by shared
-  artifact-validation helpers for legacy and preview builds.
+  artifact-validation helpers for the route-aware build.
 - `plans/route-build-engine-slice-3.md`
-  Source-layout-awareness slice for making the preview engine read from
+  Source-layout-awareness slice for making the route-aware engine read from
   configured source roots before any real source-file move into `site/`.
 - `plans/route-build-engine-slice-4.md`
   Publication-source-model slice for removing the new engine's dependence on

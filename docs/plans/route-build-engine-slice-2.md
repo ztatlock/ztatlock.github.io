@@ -69,7 +69,7 @@ The current split is workable, but not clean.
 The legacy root build path in
 [Makefile](/Users/ztatlock/www/ztatlock.github.io/Makefile)
 and the preview builder in
-[preview_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/preview_builder.py)
+[site_builder.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/site_builder.py)
 both assemble pages by:
 
 - loading page title/body from [page_source.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_source.py)

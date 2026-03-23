@@ -414,9 +414,9 @@ Build the new Python route/data/build engine against the current repo, but
 target the future output layout immediately:
 
 - keep current source locations for now
-- build a real preview site into `build/`
-- use the future publication output shape in that preview build
-- validate the route model and preview build together
+- build a real route-aware site into `build/`
+- use the future publication output shape in that build
+- validate the route model and built site together
 - then collapse duplicated build logic by extracting:
   - one shared render core
     - route-aware metadata rendering
@@ -456,7 +456,7 @@ This phase:
   - `make all`
   - `make <page>.html`
   - `make check`
-- remove preview-validator dependence on the temporary publication-stub bridge
+- remove build-validator dependence on the temporary publication-stub bridge
   once top-level `pub-*.dj` stubs are gone
 - remove the remaining legacy-only reverse-rewrite bridge for canonical
   publication links in the root build path

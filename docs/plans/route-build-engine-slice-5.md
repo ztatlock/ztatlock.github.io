@@ -103,7 +103,7 @@ Today:
 
 - [validate_site.py](/Users/ztatlock/www/ztatlock.github.io/scripts/validate_site.py)
   owns source metadata validation
-- [validate_preview_build.py](/Users/ztatlock/www/ztatlock.github.io/scripts/validate_preview_build.py)
+- [validate_build.py](/Users/ztatlock/www/ztatlock.github.io/scripts/validate_build.py)
   only validates built preview HTML plus sitemaps
 
 That is not good enough for the eventual authoritative build.
@@ -301,7 +301,7 @@ Those would be signs the scope is drifting.
 - `site/static/img/...` is simpler when it is treated as ordinary static-tree
   content all the way through route discovery and metadata validation, instead
   of keeping a second path knob alive in config.
-- A small direct integration test for `validate_preview_build.py` was worth
+- A small direct integration test for `validate_build.py` was worth
   having. It proved that preview validation now reports source metadata
   problems, not just built-artifact problems.
 - Generated preview outputs like `sitemap.txt` and `sitemap.xml` need to be

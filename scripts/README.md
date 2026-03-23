@@ -23,7 +23,7 @@ Prefer the top-level `make` targets when they exist:
   output.
 - `sitebuild/page_renderer.py`
   Shared HTML page renderer used by the route-aware build.
-- `sitebuild/preview_builder.py`
+- `sitebuild/site_builder.py`
   Core builder that generates the site into `build/`.
 - `sitebuild/route_discovery.py`
   Route discovery from the configured source layout.
@@ -35,12 +35,12 @@ Prefer the top-level `make` targets when they exist:
   Shared source/build configuration.
 - `sitebuild/source_validate.py`
   Config-driven source validation for the authoritative path.
-- `build_preview_site.py`
+- `build_site.py`
   CLI entrypoint behind `make build`.
 - `build_pub_inventory.py`
   Builds the publication-artifact inventory by merging filesystem observation
   with `manifests/publication-artifact-curation.tsv`.
-  `make inventory` writes a repo-local preview under `state/inventory/`.
+  `make inventory` writes a repo-local inventory snapshot under `state/inventory/`.
   `make inventory-webfiles` refreshes the archive copy under
   `~/Desktop/WEBFILES/inventory/`.
 - `check_env.sh`
@@ -71,7 +71,7 @@ Prefer the top-level `make` targets when they exist:
   non-person remainder in `site/templates/REFS`.
 - `scaffold_publication.py`
   Creates a new draft publication-local scaffold from templates.
-- `validate_preview_build.py`
+- `validate_build.py`
   Validates authoritative source invariants plus the built site under `build/`
   for unresolved placeholders, broken local links, and route-driven sitemap
   correctness.
@@ -80,7 +80,7 @@ Prefer the top-level `make` targets when they exist:
 
 - Put new executable helpers here, not in `site/templates/`.
 - Prefer running Python helpers as modules, for example
-  `python3 -m scripts.build_preview_site`, so imports stay package-clean.
+  `python3 -m scripts.build_site`, so imports stay package-clean.
 - Keep reusable build/data logic in small Python modules under
   `scripts/sitebuild/`.
 - Keep local generated/runtime state under `state/`.

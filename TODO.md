@@ -2,16 +2,13 @@
 
 ## Near Term
 
-- Keep improving repo structure and discoverability without doing a risky
-  source/build/deploy migration yet.
 - Keep the current root-level file classes documented in
   `docs/policy/root-layout.md`.
 - Keep small self-describing docs current when support directories change.
-- Keep the current root-served production build and the route-aware preview
-  build coherent while the broader source/build/deploy migration is still in
-  progress.
-- Revisit which generated outputs are intentionally tracked in git and which
-  eventually deserve a better home than the repo root.
+- Keep the post-cutover command surface, repo layout, and docs coherent as the
+  new architecture settles.
+- Trim lingering historical naming and stale migration-era assumptions when
+  they no longer earn their keep.
 
 ## Publication Artifacts
 
@@ -27,26 +24,10 @@
 
 ## Future Campaigns
 
-- Make the authored-source vs built-output split explicit.
-- Move toward an intentional route-aware source/build/deploy pipeline instead
-  of serving the repo root directly.
-- For the real source move into `site/`, treat these as required cutover items,
-  not optional follow-up:
-  - flip the new engine's default source roots to `site/pages`, `site/pubs`,
-    `site/static`, and `site/templates`
-  - cut over or retire the legacy root-only `make all`, `make <page>.html`,
-    and `make check` path
-  - remove preview-validator dependence on publication-stub bridge checks once
-    stubs are gone
-  - remove the legacy publication-link reverse-rewrite bridge
-  - stop default scaffold generation of legacy publication stubs
-  - update contributor-facing docs to the post-move workflow
-  - if any bridge-only code survives the move, do an immediate cleanup pass
-    with no other scope
 - Introduce a small shared data model for cross-page facts such as people,
   talks, students, and selected CV records, while keeping prose near prose and
   publication-local facts near publication bundles.
-- Reduce repeated per-page build subprocess overhead so `make all` and
+- Reduce repeated per-page build subprocess overhead so `make build` and
   `make check` stay fast enough to run routinely, likely by consolidating
   title/body/meta work into fewer Python entry points and revisiting safe
   parallelism.

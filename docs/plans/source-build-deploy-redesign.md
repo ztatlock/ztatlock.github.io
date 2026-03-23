@@ -180,7 +180,7 @@ for the broader redesign.
 Today the repo has:
 
 - no `.github/workflows/` Pages workflow
-- an explicit non-production preview output directory at `build/`
+- an explicit route-aware output directory at `build/`
 - top-level generated HTML committed directly in the repo root
 - GitHub Pages-style root-serving setup through committed files like
   [CNAME](/Users/ztatlock/www/ztatlock.github.io/CNAME) and
@@ -193,13 +193,13 @@ So the current model is now split in two:
   - generate outputs into the same repo root
   - commit generated outputs
   - let Pages serve that branch/root layout directly
-- preview path:
+- new route-aware path:
   - read from the current repo-root source layout
-  - build a future-oriented preview site into `build/`
-  - validate that preview separately before any later cutover
+  - build a future-oriented site into `build/`
+  - validate that build separately before any later cutover
 
 The production path is still the main thing preventing cleaner structure.
-The preview path is the current bridge toward a better source/build split.
+The new route-aware path is the current bridge toward a better source/build split.
 
 ## Why Publication Cutover Exposed The Bigger Problem
 
@@ -720,12 +720,12 @@ Decide and document:
 
 ### Phase 2: Build The New Route-Aware Build Engine
 
-Start with a future-oriented preview slice:
+Start with a future-oriented route-aware slice:
 
 - explicit route model
 - deterministic route discovery from the current source tree
-- real preview builds into `build/`
-- route invariants and preview-build validation
+- real builds into `build/`
+- route invariants and build validation
 
 Use the intended future output layout immediately, especially for publication
 pages.
@@ -741,7 +741,7 @@ Later in this phase, implement in Python:
 - static-file copying
 - validation against the new layout
 
-At this phase, local preview builds should target `build/`, while the current
+At this phase, local builds should target `build/`, while the current
 root-level build remains the production path temporarily.
 
 The immediate next cleanup inside this phase should be:
@@ -752,7 +752,7 @@ The immediate next cleanup inside this phase should be:
 - route-driven sitemap generation for `build/`
 
 That is the first point where the new engine starts replacing duplicated legacy
-logic instead of merely previewing future routes.
+logic instead of merely exercising future routes alongside the legacy build.
 
 ### Phase 3: Finalize The New Engine's Source Model
 
@@ -775,7 +775,7 @@ Before moving real files, close the last two remaining gaps:
 - make `static_source_dir` behave like a true recursive copy tree for a real
   `site/static/` layout
 
-This phase should keep the preview path simple and clean while isolating the
+This phase should keep the new path simple and clean while isolating the
 temporary repo-root bridge behavior more sharply.
 
 ### Phase 5: Migrate Source Into `site/`
@@ -796,7 +796,7 @@ Keep repo support material at root:
 - `Makefile`
 - `README.md`
 
-This source move should happen only after the preview builder is trusted
+This source move should happen only after the route-aware builder is trusted
 enough that the source migration is mostly mechanical rather than
 architecturally exploratory.
 
@@ -810,8 +810,8 @@ This phase is not only file moves.
 It also needs the command-surface cutover that makes the new engine
 authoritative:
 
-- flip the preview/source-aware command defaults to the real `site/` layout
-- remove preview-validator dependence on temporary publication-stub bridge
+- flip the route-aware command defaults to the real `site/` layout
+- remove build-validator dependence on temporary publication-stub bridge
   checks
 - either retire or clearly demote the old root-only `make all` / `make check`
   path instead of letting it silently define the architecture after the move
@@ -827,7 +827,8 @@ More concretely, the source-move phase should include:
   longer centers the legacy root build
 - deciding the fate of the legacy one-page root target shape
   (`make <page>.html`) in the same phase, not later
-- removing gated publication-stub bridge checks from the authoritative preview
+- removing gated publication-stub bridge checks from the authoritative
+  validator
   validator once top-level stubs are removed
 - removing the temporary reverse-rewrite layer that maps canonical publication
   links back to `pub-*.html` for the legacy root build
