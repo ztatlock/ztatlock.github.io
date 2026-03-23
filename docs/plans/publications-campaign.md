@@ -73,9 +73,12 @@ Current observed facts:
   - `Workshop Papers`
 - it has `1` clearly hand-authored section:
   - `Aggregators`
-- only `21` entries currently have canonical local bundles under `site/pubs/`
-- `21` title links currently point to local `pubs/<slug>/`
-- `48` title links currently point directly to external URLs
+- `24` entries currently have canonical local bundles under `site/pubs/`
+- `24` title links currently point to local `pubs/<slug>/`
+- `45` title links currently point directly to external URLs
+- the remaining bundle-coverage gap is:
+  - `36` main-section publications
+  - `9` workshop-section publications
 
 ### Consequences Of The Audit
 
@@ -233,15 +236,17 @@ Status:
 
 Goal:
 
-- move from the pilot model toward full local bundle coverage for the current
-  publications index
+- establish canonical local bundle coverage for every publication currently
+  listed in the hand-authored publications index
 
 Likely scope:
 
-- scaffold minimal bundles for the remaining currently external-only
+- backfill minimal bundles for the remaining currently external-only
   publications
 - keep using external destinations where richer local artifacts are not yet
   available
+- add temporary source validation that keeps `site/pages/publications.dj` and
+  `site/pubs/` from drifting while the index is still hand-authored
 - avoid turning this slice into a full artifact-curation campaign
 
 Stop and reassess after this slice.
@@ -318,22 +323,27 @@ As this campaign proceeds, we want:
 
 The next publications slice should be:
 
-- minimal publication bundle model
+- bundle coverage for the remaining publications index entries
 
 Concretely, that means:
 
-1. define the smallest acceptable local bundle for currently external-only
-   publications
-2. decide how title links or primary outbound links should work for those
-   minimal bundles
-3. add the smallest listing-classification field needed for future projection
-4. implement focused validation/tests and a small pilot backfill
-5. stop and reassess before large-scale bundle coverage or route cutover
+1. backfill the remaining `45` publication bundles from the current hand-
+   authored index
+2. keep those new bundles intentionally minimal unless a real local detail page
+   already exists
+3. add temporary validation that enforces:
+   - every indexed publication slug has a bundle
+   - every non-draft bundle appears in the current index exactly once
+   - each non-draft bundle's `listing_group` matches the index section where it
+     appears
+4. stop and reassess before route cutover or index projection
 
-That is the cleanest next move because it makes full local bundle coverage a
-realistic, reviewable goal before we try to build a cleaner collection index on
-top of it.
+That is the cleanest next move because it finishes canonical local publication
+coverage while the current index is still stable and readable, and it
+establishes the temporary invariants we need before later route and projection
+slices.
 
-The detailed planning note for that first slice is:
+The detailed planning notes for the first two slices are:
 
 - [publications-slice-1-minimal-bundle-model.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-1-minimal-bundle-model.md)
+- [publications-slice-2-bundle-coverage.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-2-bundle-coverage.md)

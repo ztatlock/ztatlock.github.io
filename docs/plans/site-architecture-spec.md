@@ -335,8 +335,8 @@ That audit justified the split now live in the current repo:
 
 ### Upcoming Structured Content Campaigns
 
-The next planned content/data campaigns should grow from the current canonical
-domains in this order:
+The recent and upcoming content/data campaigns should grow from the current
+canonical domains in this order:
 
 1. talks
 2. publications
@@ -346,6 +346,8 @@ Important clarifications:
 
 - talks now use talk-local bundles under `site/talks/` rather than a single
   global `site/data/talks.json`
+- talks is currently at a good checkpoint, and publications is now the active
+  structured-content campaign
 - publication bundles are already canonical for part of the site; the
   publications campaign should finish the collection/index architecture before
   trying to invent a second publication registry

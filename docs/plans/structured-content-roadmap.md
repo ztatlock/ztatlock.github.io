@@ -91,9 +91,10 @@ Important constraint:
 - the current publications index is only partially backed by canonical local
   bundles today
 
-The real job is to project publication-list structure from existing
-`site/pubs/<slug>/publication.json` records instead of hand-maintaining the
-repeated listing shape in `site/pages/publications.dj`
+The real job is to complete canonical local bundle coverage and then project
+publication-list structure from `site/pubs/<slug>/publication.json` records
+instead of hand-maintaining the repeated listing shape in
+`site/pages/publications.dj`
 
 An important first decision for that campaign is whether publications should
 mirror the talks collection shape:
@@ -109,15 +110,15 @@ shape explicitly instead of drifting into it piecemeal.
 Another important scoping note:
 
 - the current `site/pages/publications.dj` lists 69 entries
-- only 21 of those entries currently have canonical local bundles under
+- 24 of those entries currently have canonical local bundles under
   `site/pubs/`
+- 45 indexed publications still need local bundles
 
-So the publications campaign is likely not a one-slice "flip the page over"
-project.
-It will probably need a staged approach that separates:
+So the publications campaign is explicitly a staged project.
+It now has to separate:
 
+- finishing canonical local bundle coverage
 - deciding the collection index route shape
-- deciding whether to extend canonical local bundles more broadly
 - projecting the page incrementally without pretending all entries are already
   fully canonicalized in the same way
 
@@ -206,11 +207,10 @@ The usual shape should be:
 
 The current structured-content campaign is:
 
-- talks
+- publications
 
 The next major campaigns after that should be:
 
-- publications
 - students
 
 And collaborators/funding should be revisited when they naturally fit the
