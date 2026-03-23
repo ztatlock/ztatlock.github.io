@@ -1,9 +1,9 @@
 # Source Move Cutover Plan
 
-Status: Planned
+Status: Implemented
 
-This note defines the coordinated campaign for moving authored site source into
-`site/` and making the new route-aware build authoritative.
+This note defines the coordinated campaign that moved authored site source into
+`site/` and made the route-aware build authoritative.
 
 This is the first redesign phase that is intentionally large.
 It should still land as a sequence of small, reviewable commits with explicit
@@ -16,11 +16,11 @@ The preview engine is now ready enough that the remaining work is no longer
 about route-model exploration.
 The remaining work is cutover.
 
-The important audit result is:
+The important audit result was:
 
-- a pure source move is **not** enough
-- the repo is still published from tracked root-level generated outputs
-- so the source move, command-surface cutover, and deployment cutover should be
+- a pure source move was **not** enough
+- the repo was still published from tracked root-level generated outputs
+- so the source move, command-surface cutover, and deployment cutover had to be
   treated as one coordinated campaign
 
 If we move source into `site/` without also cutting over the command surface and
@@ -33,7 +33,7 @@ That is exactly the split-brain state this plan is meant to avoid.
 
 ## Audited Current Inventory
 
-Current authored source that should move:
+Moved authored source:
 
 - `27` ordinary top-level Djot pages:
   - `404.dj`
@@ -63,10 +63,9 @@ Current authored source that should move:
   - `talks.dj`
   - `teaching.dj`
   - `why-skepticism.dj`
-- `21` publication bundles already living under `pubs/`
-- `21` top-level `pub-*.dj` temporary legacy stubs that should be deleted in
-  this campaign
-- root-level authored static/config files:
+- `21` publication bundles moved from `pubs/` to `site/pubs/`
+- `21` top-level `pub-*.dj` temporary legacy stubs deleted in this campaign
+- root-level authored static/config files moved to `site/static/`:
   - `CNAME`
   - `robots.txt`
   - `style.css`
@@ -76,19 +75,19 @@ Current authored source that should move:
   - `anagram.html`
   - `demo-naive-union-find.html`
   - `sundial.html`
-- root `img/` shared assets
-- root `templates/`
+- root `img/` shared assets moved to `site/static/img/`
+- root `templates/` moved to `site/templates/`
 
-Current source that is already in the intended area:
+Source that was already in the intended area:
 
 - `site/data/people.json`
 
-Current deployment reality:
+Current deployment reality after the cutover:
 
-- there is no `.github/workflows/pages.yml`
-- the repo is still served from tracked root outputs
-- `README.md` and `AGENTS.md` still center `make all` / `make <page>.html` /
-  `make check`
+- `.github/workflows/pages.yml` builds and deploys `build/`
+- generated top-level root outputs are gone
+- `README.md` and `AGENTS.md` now center `make build` / `make check` /
+  `make routes`
 
 ## Final Invariants For This Campaign
 

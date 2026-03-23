@@ -442,14 +442,9 @@ Finish source-move readiness in the new engine before moving real files:
 
 ### Phase 5
 
-Move source into `site/` once the new engine is ready enough that the move is
-mostly mechanical.
-This phase must also include command-surface cutover or retirement of the
-legacy root-only build/check path.
-In practice, this phase should be landed as one short coordinated campaign with
-the GitHub Pages deployment cutover, not as a long-lived half-switched state.
+Completed as the coordinated source-move cutover campaign.
 
-Phase 5 is not complete unless it also does the following:
+This phase:
 
 - flip the default source roots in the new engine from the repo root to:
   - `site/pages/`
@@ -469,8 +464,8 @@ Phase 5 is not complete unless it also does the following:
 - flip contributor-facing docs so the normal workflow describes the new
   authoritative build/check path rather than the legacy root build
 
-Immediate cleanup after Phase 5, if not folded into the phase itself, should
-delete the remaining bridge-only branches:
+This phase also folded in the bridge cleanup that had been called out as
+immediate follow-up:
 
 - repo-root static-route bridge behavior
 - publication-stub bridge validation
@@ -479,16 +474,17 @@ delete the remaining bridge-only branches:
 
 ### Phase 6
 
-Add GitHub Pages workflow for deploying `build/`.
+Completed by adding the GitHub Pages workflow for deploying `build/`.
 
 ### Phase 7
 
-Remove old committed generated outputs, publication stubs, and the legacy
-root-served build path.
+Completed by removing old committed generated outputs, publication stubs, and
+the legacy root-served build path.
 
 ### Phase 8
 
-Clean up remaining transitional assumptions and docs.
+Current follow-up phase: clean up any remaining transitional assumptions and
+historical docs that are no longer helpful.
 
 ## Explicit Non-Goals For The First Implementation
 

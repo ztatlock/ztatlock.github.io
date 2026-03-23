@@ -1,110 +1,62 @@
 # Current Root Layout
 
-This document records the current root-level layout while the repo still
-serves as both the authored source tree and the live GitHub Pages site.
-
-It is intentionally conservative: it explains the present structure and the
-rules we should follow until a later explicit source/build/deploy migration.
+This document records the current post-cutover root-level layout.
+The repo root is now a workspace and orchestration surface, not the live site.
 
 ## Goals
 
-- Make the flat root navigable and interpretable.
-- Distinguish authored files from intentionally tracked generated outputs.
-- Make it clear which new files should avoid landing at the top level.
+- Make the repo root navigable and interpretable.
+- Keep authored site source under `site/`.
+- Keep generated site output under `build/`.
+- Make it clear which files should not land at the top level anymore.
 
 ## Top-Level Directories
 
 - `build/`
-  Gitignored route-aware preview output from the new Python preview builder.
+  Gitignored generated site artifact.
 - `docs/`
   Human-authored policy, specs, and campaign notes.
-- `img/`
-  Shared site images that are not publication-specific.
 - `manifests/`
   Small versioned structured manifests.
-- `pubs/`
-  Repo-hosted publication artifacts served directly by the site.
 - `scripts/`
   Executable maintenance helpers.
 - `site/`
-  Staged next-architecture source area for structured site data and related
-  redesign prototypes.
+  Authored site source:
+  pages, publication bundles, static files, templates, and shared data.
 - `state/`
   Local generated/runtime state and repo-local previews.
-- `templates/`
-  Non-executable build and scaffolding inputs.
 - `tests/`
-  Focused unit tests for the new route/data/build modules.
+  Focused unit tests for the route/data/build modules.
 
 ## Top-Level File Classes
 
-### Authored Page Sources
-
-Top-level `*.dj` files are authored page sources.
-
-- Their page title comes from the first non-empty level-1 heading after any
-  optional front matter.
-- Public non-publication page metadata is currently sourced from YAML front
-  matter in `*.dj`.
-- Public publication page metadata is currently sourced from
-  `pubs/<slug>/publication.json`.
-- For public publication pages, the top-level `pub-<slug>.dj` file
-  should stay a minimal temporary legacy-build stub rather than a second full
-  page body. The preview engine now treats `pubs/<slug>/publication.json` as
-  the source of truth for publication existence, status, body, and metadata.
-- Draft pages may temporarily omit metadata while they remain drafts.
-- A source file whose contents include a `# DRAFT` heading is treated as a
-  draft page.
-
-### Tracked Generated Public Outputs
-
-Top-level `*.html` files generated from non-draft `*.dj` files are
-intentionally tracked in git today.
-
-This is a current-state policy, not an endorsement of the forever design:
-these generated outputs are tracked because the repo root is still the live
-site served by GitHub Pages.
-
-Tracked generated public outputs currently include:
-
-- generated `*.html` for public pages
-- `404.html`
-- `sitemap.txt`
-- `sitemap.xml`
-
-`404.html` is tracked as a public page but intentionally excluded from the
-sitemaps.
-
-### Authored Static Root Files
-
-Some top-level files are authored static assets rather than generated outputs.
+Top-level files should now be support/orchestration material only.
 
 Current examples include:
 
-- authored static HTML pages such as `anagram.html`,
-  `demo-naive-union-find.html`, and `sundial.html`
-- site configuration such as `CNAME` and `robots.txt`
-- shared frontend assets such as `style.css` and `zip-longitude.js`
-- site verification files such as `9ca38421ba63499eaa1e9c16bfe7be4c.txt`
-- repo support files such as `Makefile`, `README.md`, and `TODO.md`
+- repo support files such as `Makefile`, `README.md`, `AGENTS.md`, and
+  `TODO.md`
+- git and GitHub configuration such as `.gitignore` and `.github/workflows/`
+- no authored site pages, publication bundles, or copied site static assets
 
-## Root-Level Rules For Now
+## Root-Level Rules
 
 - New human-authored support material should normally go under `docs/`,
-  `scripts/`, `manifests/`, `state/`, or `templates/`, not at the repo root.
+  `scripts/`, `manifests/`, or `state/`, not at the repo root.
 - New generated previews, reports, and runtime state should go under `state/`,
   not at the repo root.
-- Route-aware preview output should go under `build/`, not at the repo root.
-- Draft `*.dj` pages should not have tracked `*.html` outputs.
-- Public non-draft `*.dj` pages should continue to have tracked `*.html`
-  outputs until the later build/deploy migration happens.
-- A top-level `*.html` file without a matching `*.dj` should be treated as an
-  intentional authored static page and kept rare.
+- Generated site output should go under `build/`, not at the repo root.
+- Authored site pages should go under `site/pages/`.
+- Publication bundles should go under `site/pubs/`.
+- Copied public static/config files should go under `site/static/`.
+- Shared templates and refs should go under `site/templates/`.
+- Shared structured site data should go under `site/data/`.
 
 ## Long-Term Direction
 
-This policy is meant to stabilize the current layout, not freeze it forever.
+This root layout is now the intended architecture, not a temporary bridge.
+Future structural work should preserve the same basic split:
 
-The planned next structural campaign is documented in
-`docs/plans/repo-layout.md` and should eventually make the source/build/deploy
-split explicit instead of relying on a live served repo root.
+- authored source under `site/`
+- generated site under `build/`
+- orchestration and support material at the repo root

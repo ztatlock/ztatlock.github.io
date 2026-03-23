@@ -24,7 +24,7 @@ meant to be read, maintained, and extended over time.
 - versioned structured manifests
   These belong in `manifests/`.
 - page/build template inputs
-  These belong in `templates/`.
+  These belong in `site/templates/`.
 - local generated/runtime state
   This belongs in `state/`.
 - generated state snapshots
@@ -37,7 +37,7 @@ meant to be read, maintained, and extended over time.
 - Resumable work notes should go under `docs/plans/`.
 - Executable utilities should go under `scripts/`.
 - Versioned structured manifests should go under `manifests/`.
-- `templates/` should hold non-executable site template assets.
+- `site/templates/` should hold non-executable site template assets.
 - Local generated/runtime state should go under `state/` and should usually be
   ignored by git.
 - Repo-local generated previews can live under `state/`.
@@ -49,7 +49,8 @@ meant to be read, maintained, and extended over time.
 - `policy/publication-artifacts.md`
   Publication storage and linking policy.
 - `policy/root-layout.md`
-  Current root-level file classes and tracked generated outputs.
+  Current root-level layout now that authored source lives under `site/` and
+  generated site output lives under `build/`.
 - `plans/publication-artifact-followup.md`
   Resume point for the current publication-artifact cleanup.
 - `plans/page-metadata-and-ssg.md`
@@ -97,8 +98,9 @@ meant to be read, maintained, and extended over time.
 
 ## Near-Term Cleanup
 
-- Keep `templates/HEAD.*`, `templates/FOOT`, `templates/REFS`,
-  `templates/pub-stub.dj`, and `templates/publication.json` in `templates/`.
+- Keep `site/templates/HEAD.*`, `site/templates/FOOT`,
+  `site/templates/REFS`, and `site/templates/publication.json` in
+  `site/templates/`.
 - Keep `docs/policy/root-layout.md` current as the root-level file mix changes.
 - Revisit whether any versioned generated artifacts deserve a separate home
   beyond `manifests/`.

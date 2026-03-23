@@ -22,7 +22,7 @@ publication artifacts on `ztatlock.net`.
 The git repo is canonical for small, public publication artifacts that the site
 should serve directly.
 
-These normally live under `pubs/<slug>/`.
+These normally live under `site/pubs/<slug>/`.
 
 Canonical repo artifacts:
 

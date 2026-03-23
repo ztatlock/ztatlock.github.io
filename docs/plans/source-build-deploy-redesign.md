@@ -851,7 +851,8 @@ to:
 - upload the build artifact
 - deploy it through GitHub Pages
 
-At that point, generated site output should no longer need to be committed.
+Implemented.
+Generated site output no longer needs to be committed.
 
 ### Phase 7: Remove Old Root-Level Generated Site Outputs
 
@@ -861,7 +862,8 @@ Delete the old committed generated outputs once the workflow is trusted:
 - `sitemap.txt`
 - `sitemap.xml`
 
-Those should become build artifacts, not tracked source files.
+Implemented.
+These are now build artifacts, not tracked source files.
 
 ### Phase 7: Clean Up Transitional Assumptions
 
@@ -870,6 +872,9 @@ Remove:
 - publication stubs
 - root-level publication outputs
 - root-layout policy assumptions that only existed for the live-served root
+
+This cleanup is now largely complete, with only historical planning notes left
+to revisit if they stop being useful.
 
 ## Practical Recommendation
 
