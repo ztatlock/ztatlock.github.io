@@ -70,34 +70,19 @@ The detailed planning note for this campaign is:
 
 - [talks-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/talks-campaign.md)
 
-### 2. Students
+### 2. Publications
 
 This should be the next major campaign.
 
 Why next:
 
-- student records are structured and cross-cutting
-- they overlap naturally with `people.json`
-- they are likely to feed both `students.dj` and later CV sections
-
-Likely target:
-
-- `site/data/students.json`
-
-Likely outcomes:
-
-- canonical student/advising records
-- projection into `site/pages/students.dj`
-- later projection into selected CV subsections
-
-### 3. Publications
-
-This should be the third major campaign.
-
-Why after talks and students:
-
-- the payoff is high, but the page is much larger and more varied
-- by then we should have more practical experience with the projection style
+- publication bundles are already canonical for part of the site
+- the publications index still has the clearest remaining collection-shape
+  asymmetry in the repo
+- the talks campaign already proved the bundle-plus-index-wrapper pattern on a
+  smaller domain
+- resolving the publications collection shape will strengthen the architecture
+  before we take on additional shared-data domains
 
 Important constraint:
 
@@ -135,6 +120,28 @@ It will probably need a staged approach that separates:
 - deciding whether to extend canonical local bundles more broadly
 - projecting the page incrementally without pretending all entries are already
   fully canonicalized in the same way
+
+### 3. Students
+
+This should be the third major campaign.
+
+Why after publications:
+
+- student records are structured and cross-cutting
+- they overlap naturally with `people.json`
+- they are likely to feed both `students.dj` and later CV sections
+- but they do not currently unlock an architectural seam as directly as the
+  publications collection shape does
+
+Likely target:
+
+- `site/data/students.json`
+
+Likely outcomes:
+
+- canonical student/advising records
+- projection into `site/pages/students.dj`
+- later projection into selected CV subsections
 
 ## Adjacent / Emerging Domains
 
@@ -197,14 +204,14 @@ The usual shape should be:
 
 ## Current Recommendation
 
-The next campaign should be:
+The current structured-content campaign is:
 
 - talks
 
 The next major campaigns after that should be:
 
-- students
 - publications
+- students
 
 And collaborators/funding should be revisited when they naturally fit the
 evolving structured-content model.

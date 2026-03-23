@@ -339,15 +339,16 @@ The next planned content/data campaigns should grow from the current canonical
 domains in this order:
 
 1. talks
-2. students
-3. publication-list projection from publication bundles
+2. publications
+3. students
 
 Important clarifications:
 
-- publication bundles are already canonical; the future publications campaign
-  should project from them rather than invent a second publication registry
 - talks now use talk-local bundles under `site/talks/` rather than a single
   global `site/data/talks.json`
+- publication bundles are already canonical for part of the site; the
+  publications campaign should finish the collection/index architecture before
+  trying to invent a second publication registry
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV and news should come later, after we have enough experience projecting
@@ -355,6 +356,8 @@ Important clarifications:
 
 The medium-term roadmap for those campaigns is captured in
 [structured-content-roadmap.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/structured-content-roadmap.md).
+The dedicated publications campaign note is:
+[publications-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-campaign.md).
 
 ## Build Phases
 

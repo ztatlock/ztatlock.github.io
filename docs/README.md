@@ -67,6 +67,9 @@ meant to be read, maintained, and extended over time.
 - `plans/talks-campaign.md`
   Current talks structured-content campaign note, including implemented slices
   and next-checkpoint questions.
+- `plans/publications-campaign.md`
+  Current publications structured-content campaign note, including the
+  collection-index decision point and recommended first slices.
 - `plans/talks-slice-2-collection-index.md`
   Implemented record of the talks-index-route slice that moved the talks
   wrapper to `site/talks/index.dj` and canonicalized `/talks/`.

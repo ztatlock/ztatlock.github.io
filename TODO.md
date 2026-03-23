@@ -26,7 +26,7 @@
 
 - Follow the structured-content campaign sequence in
   `docs/plans/structured-content-roadmap.md`:
-  talks first, then students, then publication-list projection, with later
+  talks first, then publications, then students, with later
   collaborators/funding/CV/news work only where structured data clearly earns
   its keep.
 - Before the publications campaign starts, decide whether the clean collection
