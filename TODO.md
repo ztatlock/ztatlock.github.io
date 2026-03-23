@@ -29,6 +29,9 @@
   talks first, then students, then publication-list projection, with later
   collaborators/funding/CV/news work only where structured data clearly earns
   its keep.
+- Before the publications campaign starts, decide whether the clean collection
+  shape should be `site/pubs/index.dj` with canonical `/pubs/`, mirroring the
+  current talks index pattern under `site/talks/index.dj`.
 - Introduce small shared data models only for cross-page facts that are
   actually reused, while keeping prose near prose and publication-local facts
   near publication bundles.

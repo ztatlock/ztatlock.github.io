@@ -77,11 +77,19 @@ Examples:
 
 - `site/pages/index.dj`
 - `site/pages/about.dj`
-- `site/pages/publications.dj`
 - `site/pages/news.dj`
 
 These pages remain prose-first and should keep YAML front matter for page-local
 metadata.
+
+The main current exception/decision point is the publications index:
+
+- the canonical publication bundles already live under `site/pubs/`
+- but the authored publications index still lives at `site/pages/publications.dj`
+
+That asymmetry is intentional for now, but the publications structured-content
+campaign should decide whether the cleaner long-term shape is to mirror talks
+with `site/pubs/index.dj` and canonical `/pubs/`.
 
 ### `site/pubs/`
 
@@ -214,6 +222,10 @@ build/
 ```
 
 This is the deployed site artifact.
+
+The publications campaign may intentionally revise this shape if the site moves
+from the current `publications.html` index page to a collection index at
+`/pubs/`.
 
 ## Route Model
 

@@ -103,10 +103,38 @@ Important constraint:
 
 - this is not a new publication database campaign
 - publication bundles are already canonical
+- the current publications index is only partially backed by canonical local
+  bundles today
 
 The real job is to project publication-list structure from existing
 `site/pubs/<slug>/publication.json` records instead of hand-maintaining the
 repeated listing shape in `site/pages/publications.dj`
+
+An important first decision for that campaign is whether publications should
+mirror the talks collection shape:
+
+- collection root under `site/pubs/`
+- authored index wrapper at `site/pubs/index.dj`
+- canonical collection URL at `/pubs/`
+
+The current repo still uses `site/pages/publications.dj` and
+`/publications.html`, so the publications campaign should decide that route
+shape explicitly instead of drifting into it piecemeal.
+
+Another important scoping note:
+
+- the current `site/pages/publications.dj` lists 69 entries
+- only 21 of those entries currently have canonical local bundles under
+  `site/pubs/`
+
+So the publications campaign is likely not a one-slice "flip the page over"
+project.
+It will probably need a staged approach that separates:
+
+- deciding the collection index route shape
+- deciding whether to extend canonical local bundles more broadly
+- projecting the page incrementally without pretending all entries are already
+  fully canonicalized in the same way
 
 ## Adjacent / Emerging Domains
 
