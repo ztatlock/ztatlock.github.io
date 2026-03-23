@@ -13,8 +13,10 @@ from scripts.publication_record import (
     PUBLICATION_RECORD_NAME,
     PublicationRecord,
     load_publication_record,
+    publication_dir,
     publication_page_path,
 )
+from scripts.sitebuild.site_config import load_site_config
 
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".webp")
 SLIDE_SRC_EXTS = (".pptx", ".key")
@@ -163,9 +165,16 @@ def gather_webfiles_candidates(webfiles_root: Path, slug: str) -> tuple[list[Pat
     return slide_candidates, talk_candidates
 
 
-def discover_publication_slugs(repo_root: Path) -> list[str]:
-    publications_dir = repo_root / "pubs"
-    return sorted(path.parent.name for path in publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}"))
+def discover_publication_slugs(
+    repo_root: Path,
+    *,
+    publications_dir: Path | None = None,
+) -> list[str]:
+    actual_publications_dir = publications_dir or load_site_config(repo_root).publications_dir
+    return sorted(
+        path.parent.name
+        for path in actual_publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}")
+    )
 
 
 def _local_publication_link(slug: str, path_name: str) -> str:
@@ -195,10 +204,25 @@ def _publication_page_links(
     return links
 
 
-def build_record(repo_root: Path, webfiles_root: Path, slug: str) -> PubRecord:
-    record = load_publication_record(repo_root, slug)
+def build_record(
+    repo_root: Path,
+    webfiles_root: Path,
+    slug: str,
+    *,
+    publications_dir: Path | None = None,
+) -> PubRecord:
+    actual_publications_dir = publications_dir or load_site_config(repo_root).publications_dir
+    record = load_publication_record(
+        repo_root,
+        slug,
+        publications_dir=actual_publications_dir,
+    )
     title = record.title
-    pub_dir = repo_root / "pubs" / slug
+    pub_dir = publication_dir(
+        repo_root,
+        slug,
+        publications_dir=actual_publications_dir,
+    )
 
     site_paper_pdf_path = first_existing([pub_dir / f"{slug}.pdf"])
     site_bib_path = first_existing([pub_dir / f"{slug}.bib"])
@@ -658,14 +682,26 @@ def main() -> None:
     repo_root = Path(args.repo_root).resolve()
     webfiles_root = Path(args.webfiles_root).resolve()
     out_dir = Path(args.out_dir).resolve()
+    config = load_site_config(repo_root)
     curation_path = (
         Path(args.curation_file).resolve()
         if args.curation_file
         else (repo_root / CURATION_FILE)
     )
 
-    slugs = discover_publication_slugs(repo_root)
-    records = [build_record(repo_root, webfiles_root, slug) for slug in slugs]
+    slugs = discover_publication_slugs(
+        repo_root,
+        publications_dir=config.publications_dir,
+    )
+    records = [
+        build_record(
+            repo_root,
+            webfiles_root,
+            slug,
+            publications_dir=config.publications_dir,
+        )
+        for slug in slugs
+    ]
     curation = load_curation(curation_path, {record.slug for record in records})
     validate_curation(curation, records, curation_path)
 

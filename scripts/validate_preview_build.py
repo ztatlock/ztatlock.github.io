@@ -15,7 +15,7 @@ from scripts.sitebuild.artifact_validate import (
 )
 from scripts.sitebuild.preview_validate import find_sitemap_file_issues
 from scripts.sitebuild.route_discovery import discover_routes
-from scripts.sitebuild.site_config import load_site_config
+from scripts.sitebuild.site_config import SiteConfig, load_site_config
 from scripts.sitebuild.sitemap_builder import build_sitemap_entries, render_sitemap_txt, render_sitemap_xml
 from scripts.sitebuild.source_validate import find_source_issues
 
@@ -32,6 +32,16 @@ def _print_section(title: str, issues: list[str]) -> None:
         print(issue)
 
 
+def find_preview_publication_bridge_issues(config: SiteConfig) -> list[str]:
+    if not any(config.page_source_dir.glob("pub-*.dj")):
+        return []
+    return validate_publication_bridge_metadata(
+        config.repo_root,
+        page_source_dir=config.page_source_dir,
+        publications_dir=config.publications_dir,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Validate preview source invariants and the site built under build/."
@@ -41,11 +51,7 @@ def main() -> int:
 
     config = load_site_config(Path(args.root))
     source_issues = find_source_issues(config)
-    publication_bridge_issues = validate_publication_bridge_metadata(
-        config.repo_root,
-        page_source_dir=config.page_source_dir,
-        publications_dir=config.publications_dir,
-    )
+    publication_bridge_issues = find_preview_publication_bridge_issues(config)
     build_root = config.build_dir
     html_files = recursive_html_files(build_root)
     placeholder_issues = find_placeholder_issues(

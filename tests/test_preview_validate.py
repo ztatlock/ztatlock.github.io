@@ -139,3 +139,56 @@ class PreviewValidateTests(unittest.TestCase):
 
             self.assertIn("ERROR: found invalid publication source bridge", stdout.getvalue())
             self.assertIn("draft status must stay in sync", stdout.getvalue())
+
+    def test_preview_bridge_issues_are_skipped_when_no_legacy_stubs_exist(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pages_dir = root / "site" / "pages"
+            pubs_dir = root / "site" / "pubs"
+            templates_dir = root / "site" / "templates"
+            data_dir = root / "site" / "data"
+            static_dir = root / "site" / "static"
+
+            pages_dir.mkdir(parents=True)
+            pubs_dir.mkdir(parents=True)
+            templates_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+            static_dir.mkdir(parents=True)
+
+            (pages_dir / "about.dj").write_text(
+                "---\n"
+                "description: About preview page\n"
+                "---\n"
+                "# About\n\n"
+                "Preview body.\n",
+                encoding="utf-8",
+            )
+            pub_dir = pubs_dir / "2025-test-demo"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "draft": True,
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "description": "Demo description",
+                        "links": {},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages_dir,
+                publications_dir=pubs_dir,
+                templates_dir=templates_dir,
+                data_dir=data_dir,
+                static_source_dir=static_dir,
+            )
+            self.assertEqual(
+                validate_preview_build.find_preview_publication_bridge_issues(config),
+                [],
+            )
