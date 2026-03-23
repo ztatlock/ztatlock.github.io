@@ -7,6 +7,9 @@ source with a small Python build engine behind `make`.
 
 - `site/pages/`
   Authored Djot pages.
+- `site/talks/<slug>/`
+  Talk-local records for invited/public talks, with room for optional future
+  talk-local prose or assets.
 - `site/pubs/<slug>/`
   Publication records and local publication assets.
 - `site/static/`
@@ -32,6 +35,8 @@ source with a small Python build engine behind `make`.
 Metadata rules:
 - Public non-publication pages source metadata from YAML front matter in
   `site/pages/*.dj`.
+- The talks index is projected from talk-local records under
+  `site/talks/<slug>/talk.json`.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -75,8 +80,8 @@ Multi-machine guardrail:
 
 Normal workflow:
 1. Edit source under `site/`.
-2. Update or add metadata in the page front matter or
-   `site/pubs/<slug>/publication.json`.
+2. Update or add metadata in the page front matter,
+   `site/talks/<slug>/talk.json`, or `site/pubs/<slug>/publication.json`.
 3. Run `make build`.
 4. Run `make check`.
 5. Commit once the authoritative checks pass.

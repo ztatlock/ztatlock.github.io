@@ -239,14 +239,17 @@ Suggested field meanings:
   - required `text`
   - optional `url`
 - `url`
-  Optional external primary link, used when the title should link externally.
+  Optional primary link target for the title.
+  In the first slice this may be either:
+  - an external URL
+  - the existing ordinary-page URL `talk-2023-05-egg-uiuc.html`
 - `extra.dj`
   Optional talk-local prose file. If present, it is a signal that the bundle
   may deserve a dedicated detail page.
 
 First-slice rendering rule:
 
-- if `url` is present, link the title externally
+- if `url` is present, link the title to that target
 - else render the title as plain text
 
 First-slice bundle rule:
@@ -345,7 +348,7 @@ The likely sequence is:
    bundles in CV or elsewhere, or whether to introduce dedicated talk-page
    routes from `extra.dj`.
 
-## First Slice Recommendation
+## First Slice
 
 The first implementation slice should stay deliberately narrow:
 
@@ -353,7 +356,8 @@ The first implementation slice should stay deliberately narrow:
 2. add a talks bundle loader/validator plus tests
 3. add a projection helper that can render the repeated talks list body
 4. switch `site/pages/talks.dj` to use that projection
-5. keep `site/pages/talk-2023-05-egg-uiuc.dj` unchanged for now
+5. keep `site/pages/talk-2023-05-egg-uiuc.dj` unchanged for now and point the
+   corresponding talk bundle at it via `url`
 
 That is the right size because it:
 
@@ -396,11 +400,13 @@ This is where we should reflect and choose the next slice deliberately.
 
 ## Current Recommendation
 
-The next planning step after this note should be:
+The first slice is now the starting checkpoint for this campaign.
 
-- keep the existing `talk-2023-05-egg-uiuc.dj` page separate in the first
-  slice
-- implement the first bundle-level talks schema and talks-page projection
-- stop and reassess before introducing any talk detail routes or CV reuse
+The next step should be:
 
-Only after that should we break the talks campaign into implementation slices.
+- stop and reassess at the first-slice checkpoint
+- keep the existing `talk-2023-05-egg-uiuc.dj` page separate until we
+  deliberately choose a talk-detail-route slice
+- avoid taking on CV reuse or publication-talk unification before that review
+
+Only after that should we plan the next talks slice.

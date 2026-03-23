@@ -22,7 +22,8 @@ The repo root is now a workspace and orchestration surface, not the live site.
   Executable maintenance helpers.
 - `site/`
   Authored site source:
-  pages, publication bundles, static files, templates, and shared data.
+  pages, talk bundles, publication bundles, static files, templates, and
+  shared data.
 - `state/`
   Local generated/runtime state and repo-local previews.
 - `tests/`
@@ -48,6 +49,7 @@ Current examples include:
 - Generated site output should go under `build/`, not at the repo root.
 - Authored site pages should go under `site/pages/`.
 - Publication bundles should go under `site/pubs/`.
+- Talk bundles should go under `site/talks/`.
 - Copied public static/config files should go under `site/static/`.
 - Shared templates and refs should go under `site/templates/`.
 - Shared structured site data should go under `site/data/`.

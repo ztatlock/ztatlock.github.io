@@ -67,6 +67,11 @@ Optional personal-maintenance helper:
 - `publication_record.py`
   Shared loader and helpers for publication-local records in
   `site/pubs/<slug>/publication.json`.
+- `talk_record.py`
+  Shared loader and helpers for talk-local records in
+  `site/talks/<slug>/talk.json`.
+- `sitebuild/talk_projection.py`
+  Talks-page projection helpers that render the bundle-driven talks list.
 
 ## Manual / Diagnostic Helpers
 

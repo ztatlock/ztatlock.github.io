@@ -51,6 +51,7 @@ repo/
   tests/
   site/
     pages/
+    talks/
     pubs/
     data/
     static/
@@ -106,6 +107,26 @@ site/pubs/2024-asplos-lakeroad/
   2024-asplos-lakeroad-meta.png
 ```
 
+### `site/talks/`
+
+Talk-local bundles for invited/public talks.
+
+Each talk directory can remain small, for example:
+
+```text
+site/talks/2026-02-brown-eqsat/
+  talk.json
+```
+
+And may later grow optional talk-local content such as:
+
+- `extra.dj`
+- local images
+- talk-local attachments
+
+The talks index page can project from those bundles without requiring every
+talk to become its own route immediately.
+
 ### `site/data/`
 
 Cross-page structured data for facts that should have a single source of
@@ -135,9 +156,9 @@ Refined rule:
   assets, such as `people.json`
 - use bundle roots like `site/pubs/` when each record may grow local assets,
   local prose, or its own detail page
-- future domains should follow the same principle; for example, the planned
-  talks campaign is likely to introduce `site/talks/<slug>/talk.json` bundles
-  rather than one global `talks.json` file
+- future domains should follow the same principle; the current talks campaign
+  now uses `site/talks/<slug>/talk.json` bundles rather than one global
+  `talks.json` file
 
 ### `site/static/`
 
@@ -295,8 +316,8 @@ Important clarifications:
 
 - publication bundles are already canonical; the future publications campaign
   should project from them rather than invent a second publication registry
-- the talks campaign is now expected to use talk-local bundles under
-  `site/talks/` rather than a single global `site/data/talks.json`
+- talks now use talk-local bundles under `site/talks/` rather than a single
+  global `site/data/talks.json`
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV and news should come later, after we have enough experience projecting
