@@ -354,6 +354,7 @@ class SourceValidateTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "description": "Demo description",
@@ -397,6 +398,7 @@ class SourceValidateTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "description": "Demo description",
@@ -422,6 +424,50 @@ class SourceValidateTests(unittest.TestCase):
                     f"{pub_dir / 'publication.json'}: image path does not exist: pubs/2025-test-demo/missing-meta.png"
                 ],
             )
+
+    def test_accepts_index_only_publication_bundle_without_local_page_assets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+
+            pub_dir = pubs / "2025-test-demo"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {
+                            "publisher": "https://example.test/paper",
+                        },
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
 
     def test_reports_legacy_publication_link_in_page_source(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

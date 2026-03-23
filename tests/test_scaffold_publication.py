@@ -24,7 +24,7 @@ class ScaffoldPublicationTests(unittest.TestCase):
             static_dir.mkdir(parents=True)
             data_dir.mkdir(parents=True)
             (templates_dir / "publication.json").write_text(
-                '{\n  "draft": true,\n  "title": "TITLE",\n  "authors": [{"name": "AUTHOR", "ref": "AUTHOR"}],\n  "venue": "CONF",\n  "description": "TODO",\n  "links": {},\n  "talks": []\n}\n',
+                '{\n  "draft": true,\n  "listing_group": "main",\n  "title": "TITLE",\n  "authors": [{"name": "AUTHOR", "ref": "AUTHOR"}],\n  "venue": "CONF",\n  "description": "TODO",\n  "links": {},\n  "talks": []\n}\n',
                 encoding="utf-8",
             )
 
@@ -45,6 +45,7 @@ class ScaffoldPublicationTests(unittest.TestCase):
                 )
             )
             self.assertTrue(record["draft"])
+            self.assertEqual(record["listing_group"], "main")
             self.assertFalse((pages_dir / "pub-2026-conf-paper.dj").exists())
 
     def test_scaffold_uses_layout_config(self) -> None:
@@ -62,7 +63,7 @@ class ScaffoldPublicationTests(unittest.TestCase):
             static_dir.mkdir(parents=True)
 
             (templates_dir / "publication.json").write_text(
-                '{\n  "draft": true,\n  "title": "TITLE",\n  "authors": [{"name": "AUTHOR", "ref": "AUTHOR"}],\n  "venue": "CONF",\n  "description": "TODO",\n  "links": {},\n  "talks": []\n}\n',
+                '{\n  "draft": true,\n  "listing_group": "main",\n  "title": "TITLE",\n  "authors": [{"name": "AUTHOR", "ref": "AUTHOR"}],\n  "venue": "CONF",\n  "description": "TODO",\n  "links": {},\n  "talks": []\n}\n',
                 encoding="utf-8",
             )
 

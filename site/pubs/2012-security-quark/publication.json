@@ -1,4 +1,5 @@
 {
+  "listing_group": "main",
   "title": "Establishing Browser Security Guarantees through Formal Shim Verification",
   "authors": [
     { "name": "Dongseok Jang", "ref": "Dongseok Jang" },

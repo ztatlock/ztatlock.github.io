@@ -1,0 +1,15 @@
+{
+  "detail_page": false,
+  "listing_group": "workshop",
+  "primary_link": "publisher",
+  "title": "Exploring Self-Embedded Knitting Programs with Twine",
+  "authors": [
+    { "name": "Amy Zhu", "ref": "Amy Zhu" },
+    { "name": "Adriana Schulz", "ref": "Adriana Schulz" },
+    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+  ],
+  "venue": "ACM SIGPLAN International Workshop on Functional Art, Music, Modelling and Design (FARM)",
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/3609023.3609805"
+  }
+}

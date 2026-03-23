@@ -1,4 +1,5 @@
 {
+  "listing_group": "main",
   "title": "babble: Learning Better Abstractions with E-Graphs and Anti-Unification",
   "authors": [
     { "name": "David Cao", "ref": "David Cao" },

@@ -1,4 +1,5 @@
 {
+  "listing_group": "main",
   "title": "Magic Markup: Maintaining Document-External Markup with an LLM",
   "authors": [
     { "name": "Edward Misback", "ref": "Edward Misback" },

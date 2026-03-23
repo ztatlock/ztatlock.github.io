@@ -1,4 +1,5 @@
 {
+  "listing_group": "main",
   "title": "Better Together: Unifying Datalog and Equality Saturation",
   "authors": [
     { "name": "Yihong Zhang", "ref": "Yihong Zhang" },

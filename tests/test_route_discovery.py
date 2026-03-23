@@ -204,6 +204,7 @@ class RouteDiscoveryTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "badges": [],
@@ -259,24 +260,57 @@ class RouteDiscoveryTests(unittest.TestCase):
                 "pubs/2025-test-demo/index.html",
             )
 
+    def test_skips_published_index_only_publication_page_route(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "about.dj").write_text("# About\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            pub_dir = publications_dir / "2025-test-demo"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {
+                            "publisher": "https://example.test/paper",
+                        },
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+            routes = discover_routes(config)
+
+            publication_page_routes = [route for route in routes if route.kind == "publication_page"]
+            self.assertEqual(publication_page_routes, [])
+
             style_route = find_route(routes, kind="static_file", key="style.css")
             self.assertEqual(style_route.output_relpath, "style.css")
-
-            image_route = find_route(routes, kind="static_file", key="img/logo.png")
-            self.assertEqual(image_route.output_relpath, "img/logo.png")
-
-            nested_route = find_route(routes, kind="static_file", key="nested/notes.txt")
-            self.assertEqual(nested_route.output_relpath, "nested/notes.txt")
-
-            paper_route = find_route(
-                routes,
-                kind="static_file",
-                key="pubs/2025-test-demo/2025-test-demo.pdf",
-            )
-            self.assertEqual(
-                paper_route.output_relpath,
-                "pubs/2025-test-demo/2025-test-demo.pdf",
-            )
+            publication_asset_routes = [
+                route for route in routes if route.kind == "static_file" and route.key.startswith("pubs/")
+            ]
+            self.assertEqual(publication_asset_routes, [])
 
     def test_discovers_draft_publication_route_from_record_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

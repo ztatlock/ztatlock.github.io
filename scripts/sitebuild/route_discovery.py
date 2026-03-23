@@ -93,16 +93,27 @@ def _talks_index_routes(config: SiteConfig) -> list[Route]:
     return routes
 
 
-def _publication_page_route(config: SiteConfig, slug: str) -> Route:
+def _publication_page_route(
+    config: SiteConfig,
+    slug: str,
+    *,
+    record=None,
+) -> Route:
     record_path = publication_record_path(config.repo_root, slug, publications_dir=config.publications_dir)
-    try:
-        record = load_publication_record(
-            config.repo_root,
-            slug,
-            publications_dir=config.publications_dir,
+    if record is None:
+        try:
+            record = load_publication_record(
+                config.repo_root,
+                slug,
+                publications_dir=config.publications_dir,
+            )
+        except PublicationRecordError as err:
+            raise RouteDiscoveryError(str(err)) from err
+
+    if not record.draft and not record.detail_page:
+        raise RouteDiscoveryError(
+            f"{record_path}: publication has no local detail page route"
         )
-    except PublicationRecordError as err:
-        raise RouteDiscoveryError(str(err)) from err
 
     pub_dir = publication_dir(
         config.repo_root,
@@ -146,8 +157,20 @@ def _publication_page_route(config: SiteConfig, slug: str) -> Route:
 
 
 def _publication_page_routes(config: SiteConfig) -> list[Route]:
-    records = sorted(config.publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}"))
-    return [_publication_page_route(config, path.parent.name) for path in records]
+    routes: list[Route] = []
+    for path in sorted(config.publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}")):
+        slug = path.parent.name
+        try:
+            record = load_publication_record(
+                config.repo_root,
+                slug,
+                publications_dir=config.publications_dir,
+            )
+        except PublicationRecordError as err:
+            raise RouteDiscoveryError(str(err)) from err
+        if record.draft or record.detail_page:
+            routes.append(_publication_page_route(config, slug, record=record))
+    return routes
 
 
 def _static_route(

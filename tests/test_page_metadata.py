@@ -130,6 +130,7 @@ class PageMetadataTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "badges": [],
@@ -146,6 +147,39 @@ class PageMetadataTests(unittest.TestCase):
             (pub_dir / f"{slug}.bib").write_text("@inproceedings{demo,\n  title={Demo}\n}\n", encoding="utf-8")
             (pub_dir / f"{slug}.pdf").write_bytes(b"%PDF-1.4\n")
             (pub_dir / f"{slug}-absimg.png").write_bytes(b"PNG")
+
+            issues = validate_publication_metadata(
+                root,
+                publications_dir=pubs,
+            )
+            self.assertEqual(issues, [])
+
+    def test_validate_publication_metadata_skips_index_only_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pubs = root / "site" / "pubs"
+            pubs.mkdir(parents=True)
+
+            slug = "2025-test-demo"
+            pub_dir = pubs / slug
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {
+                            "publisher": "https://example.test/paper",
+                        },
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             issues = validate_publication_metadata(
                 root,

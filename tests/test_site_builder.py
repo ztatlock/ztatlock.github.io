@@ -69,6 +69,7 @@ class SiteBuilderTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "badges": [],
@@ -224,3 +225,72 @@ class SiteBuilderTests(unittest.TestCase):
 
             self.assertFalse((config.build_dir / "pubs" / "2025-test-draft" / "index.html").exists())
             self.assertFalse((config.build_dir / "pubs" / "2025-test-draft" / "2025-test-draft.pdf").exists())
+
+    def test_skips_building_index_only_publication_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            page_source_dir = root / "site" / "pages"
+            publications_dir = root / "site" / "pubs"
+            templates_dir = root / "site" / "templates"
+            data_dir = root / "site" / "data"
+            static_source_dir = root / "site" / "static"
+            img_dir = static_source_dir / "img"
+
+            page_source_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            templates_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+            img_dir.mkdir(parents=True)
+
+            (page_source_dir / "about.dj").write_text(
+                "---\n"
+                "description: About page\n"
+                "---\n"
+                "# About\n\n"
+                "Site body.\n",
+                encoding="utf-8",
+            )
+
+            pub_dir = publications_dir / "2025-test-demo"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {
+                            "publisher": "https://example.test/paper",
+                        },
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            (templates_dir / "HEAD.1").write_text(
+                "<html><head><title>__TITLE__</title>"
+                '<link rel="canonical" href="__CANON__">',
+                encoding="utf-8",
+            )
+            (templates_dir / "HEAD.2").write_text("</head><body>", encoding="utf-8")
+            (templates_dir / "FOOT").write_text("</body></html>\n", encoding="utf-8")
+            (templates_dir / "REFS").write_text("", encoding="utf-8")
+            (data_dir / "people.json").write_text('{"people": {}}', encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                templates_dir=templates_dir,
+                data_dir=data_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            build_site(config)
+
+            self.assertFalse((config.build_dir / "pubs" / "2025-test-demo" / "index.html").exists())

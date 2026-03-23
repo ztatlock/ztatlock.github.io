@@ -19,6 +19,7 @@ class BuildPubInventoryTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "description": "Demo description",
@@ -45,6 +46,7 @@ class BuildPubInventoryTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "description": "Demo description",
@@ -100,6 +102,7 @@ class BuildPubInventoryTests(unittest.TestCase):
                 json.dumps(
                     {
                         "title": "Demo Paper",
+                        "listing_group": "main",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "description": "Demo description",
@@ -129,3 +132,42 @@ class BuildPubInventoryTests(unittest.TestCase):
 
             self.assertEqual(record.page, publication_page_path(slug))
             self.assertEqual(record.repo_dir, f"site/pubs/{slug}")
+
+    def test_build_record_supports_index_only_publication_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            webfiles_root = root / "WEBFILES"
+            webfiles_root.mkdir()
+
+            slug = "2025-test-demo"
+            pub_dir = root / "site" / "pubs" / slug
+            pub_dir.mkdir(parents=True)
+
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "workshop",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {
+                            "publisher": "https://example.test/paper",
+                            "project": "https://example.test/project",
+                        },
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            record = build_record(root, webfiles_root, slug)
+
+            self.assertEqual(record.page, "")
+            self.assertEqual(record.local_detail_page_status, "missing")
+            self.assertEqual(record.page_publisher_link, "https://example.test/paper")
+            self.assertEqual(record.page_project_link, "https://example.test/project")
+            self.assertEqual(record.page_paper_link, "")
+            self.assertEqual(record.required_repo_artifacts_status, "present")
+            self.assertIn("no local detail page", record.notes)

@@ -1,4 +1,5 @@
 {
+  "listing_group": "workshop",
   "title": "Generate Compilers from Hardware Models!",
   "authors": [
     { "name": "Gus Henry Smith", "ref": "Gus Smith" },

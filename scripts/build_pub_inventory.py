@@ -53,6 +53,7 @@ class PubRecord:
     slug: str
     title: str
     page: str
+    local_detail_page_status: str
     repo_dir: str
     site_paper_pdf_path: str
     site_paper_pdf_status: str
@@ -187,18 +188,20 @@ def _publication_page_links(
     slug: str,
     record: PublicationRecord,
     *,
+    include_local_detail_page: bool,
     site_paper_pdf_path: str,
     site_bib_path: str,
     site_slides_pdf_path: str,
     site_poster_pdf_path: str,
 ) -> dict[str, str]:
     links = dict(record.links)
-    links["paper"] = _local_publication_link(slug, site_paper_pdf_path)
-    links["bib"] = _local_publication_link(slug, site_bib_path)
-    if site_slides_pdf_path:
-        links["slides"] = _local_publication_link(slug, site_slides_pdf_path)
-    if site_poster_pdf_path:
-        links["poster"] = _local_publication_link(slug, site_poster_pdf_path)
+    if include_local_detail_page:
+        links["paper"] = _local_publication_link(slug, site_paper_pdf_path)
+        links["bib"] = _local_publication_link(slug, site_bib_path)
+        if site_slides_pdf_path:
+            links["slides"] = _local_publication_link(slug, site_slides_pdf_path)
+        if site_poster_pdf_path:
+            links["poster"] = _local_publication_link(slug, site_poster_pdf_path)
     if "talk" not in links and record.talks:
         links["talk"] = record.talks[0].url
     return links
@@ -236,9 +239,11 @@ def build_record(
         pub_dir / f"{slug}-slides{ext}" for ext in SLIDE_SRC_EXTS
     )
     site_poster_pdf_path = first_existing([pub_dir / f"{slug}-poster.pdf"])
+    include_local_detail_page = record.detail_page
     links = _publication_page_links(
         slug,
         record,
+        include_local_detail_page=include_local_detail_page,
         site_paper_pdf_path=site_paper_pdf_path,
         site_bib_path=site_bib_path,
         site_slides_pdf_path=site_slides_pdf_path,
@@ -249,40 +254,47 @@ def build_record(
         webfiles_root, slug
     )
 
-    required_missing = [
-        label
-        for label, path_name in [
-            ("paper_pdf", site_paper_pdf_path),
-            ("bib", site_bib_path),
-            ("abstract_md", site_abstract_md_path),
-            ("absimg", site_absimg_path),
-            ("metaimg", site_metaimg_path),
+    required_missing = (
+        [
+            label
+            for label, path_name in [
+                ("paper_pdf", site_paper_pdf_path),
+                ("bib", site_bib_path),
+                ("abstract_md", site_abstract_md_path),
+                ("absimg", site_absimg_path),
+                ("metaimg", site_metaimg_path),
+            ]
+            if not path_name
         ]
-        if not path_name
-    ]
+        if include_local_detail_page
+        else []
+    )
 
     notes: list[str] = []
+    if not include_local_detail_page:
+        notes.append("no local detail page")
     if required_missing:
         notes.append("missing required repo artifacts: " + ", ".join(required_missing))
-    if not site_slides_pdf_path:
+    if include_local_detail_page and not site_slides_pdf_path:
         notes.append("missing repo slides pdf")
-    if not site_poster_pdf_path:
+    if include_local_detail_page and not site_poster_pdf_path:
         notes.append("missing repo poster pdf")
-    if links.get("talk") and not archive_talk_candidates:
+    if include_local_detail_page and links.get("talk") and not archive_talk_candidates:
         notes.append("public talk link has no WEBFILES backup")
-    if archive_talk_candidates and not links.get("talk"):
+    if include_local_detail_page and archive_talk_candidates and not links.get("talk"):
         notes.append("WEBFILES talk backup exists but page has no talk link")
-    if links.get("slides", "").startswith("http"):
+    if include_local_detail_page and links.get("slides", "").startswith("http"):
         notes.append("slides link is external")
-    if site_repo_slides_source_path and not site_slides_pdf_path:
+    if include_local_detail_page and site_repo_slides_source_path and not site_slides_pdf_path:
         notes.append("repo slide source exists but repo slides pdf is missing")
-    if archive_slide_candidates and not site_slides_pdf_path:
+    if include_local_detail_page and archive_slide_candidates and not site_slides_pdf_path:
         notes.append("WEBFILES slide source exists but repo slides pdf is missing")
 
     return PubRecord(
         slug=slug,
         title=title,
-        page=publication_page_path(slug),
+        page=publication_page_path(slug) if include_local_detail_page else "",
+        local_detail_page_status="present" if include_local_detail_page else "missing",
         repo_dir=str(pub_dir.relative_to(repo_root)),
         site_paper_pdf_path=site_paper_pdf_path,
         site_paper_pdf_status=status_for_path(site_paper_pdf_path),
@@ -427,6 +439,8 @@ def curation_note(curation: dict[str, dict[str, str]], record: PubRecord) -> str
 
 
 def required_missing_fields(curation: dict[str, dict[str, str]], record: PubRecord) -> list[str]:
+    if record.local_detail_page_status != "present":
+        return []
     return [field for field in REQUIRED_FIELDS if effective_status(curation, record, field) == "missing"]
 
 
@@ -502,29 +516,45 @@ def write_summary(
 ) -> None:
     required_missing = [r for r in records if required_missing_fields(curation, r)]
     missing_slides_pdf = [
-        r for r in records if effective_status(curation, r, "site_slides_pdf") == "missing"
+        r
+        for r in records
+        if r.local_detail_page_status == "present"
+        and effective_status(curation, r, "site_slides_pdf") == "missing"
     ]
     missing_poster_pdf = [
-        r for r in records if effective_status(curation, r, "site_poster_pdf") == "missing"
+        r
+        for r in records
+        if r.local_detail_page_status == "present"
+        and effective_status(curation, r, "site_poster_pdf") == "missing"
     ]
-    external_slides_link = [r for r in records if r.page_slides_link_kind == "public-external"]
-    no_public_talk_link = [r for r in records if observed_status(r, "page_talk_link") == "missing"]
+    external_slides_link = [
+        r for r in records if r.local_detail_page_status == "present" and r.page_slides_link_kind == "public-external"
+    ]
+    no_public_talk_link = [
+        r
+        for r in records
+        if r.local_detail_page_status == "present"
+        and observed_status(r, "page_talk_link") == "missing"
+    ]
     talk_link_without_backup = [
         r
         for r in records
-        if r.page_talk_link_kind == "public-external"
+        if r.local_detail_page_status == "present"
+        and r.page_talk_link_kind == "public-external"
         and effective_status(curation, r, "archive_talk_backup") == "missing"
     ]
     backup_without_talk_link = [
         r
         for r in records
-        if effective_status(curation, r, "page_talk_link") == "missing"
+        if r.local_detail_page_status == "present"
+        and effective_status(curation, r, "page_talk_link") == "missing"
         and r.archive_talk_backup_status == "present"
     ]
     slide_source_without_pdf = [
         r
         for r in records
-        if effective_status(curation, r, "site_slides_pdf") == "missing"
+        if r.local_detail_page_status == "present"
+        and effective_status(curation, r, "site_slides_pdf") == "missing"
         and (
             r.site_repo_slides_source_status == "present"
             or r.archive_slides_source_status == "present"
@@ -548,6 +578,7 @@ def write_summary(
         "A page without a public talk link is informational by itself, not an error.",
         "",
         f"- Total publications: {len(records)}",
+        f"- Publications without local detail pages yet: {sum(1 for r in records if r.local_detail_page_status == 'missing')}",
         f"- Required repo artifacts still missing: {len(required_missing)}",
         f"- Expected repo slide PDFs still missing: {len(missing_slides_pdf)}",
         f"- Expected repo poster PDFs still missing: {len(missing_poster_pdf)}",

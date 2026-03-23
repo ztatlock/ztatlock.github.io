@@ -1,4 +1,5 @@
 {
+  "listing_group": "main",
   "title": "Verified Compilation and Optimization of Floating-Point Programs in CakeML",
   "authors": [
     { "name": "Heiko Becker", "ref": "Heiko Becker" },

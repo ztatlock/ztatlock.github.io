@@ -1,5 +1,6 @@
 {
   "draft": true,
+  "listing_group": "main",
   "title": "TITLE",
   "authors": [
     { "name": "AUTHOR", "ref": "AUTHOR" }

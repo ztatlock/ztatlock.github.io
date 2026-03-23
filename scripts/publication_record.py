@@ -22,6 +22,7 @@ ALLOWED_LINK_KEYS = {
     "event",
     "vscode",
 }
+ALLOWED_LISTING_GROUPS = frozenset({"main", "workshop"})
 LINK_ORDER = (
     "paper",
     "teaser",
@@ -78,6 +79,9 @@ class PublicationAssets:
 class PublicationRecord:
     slug: str
     draft: bool
+    detail_page: bool
+    listing_group: str
+    primary_link: str
     title: str
     authors: tuple[PublicationPerson, ...]
     venue: str
@@ -146,6 +150,19 @@ def _normalize_optional_boolean(
 ) -> bool:
     if raw is None:
         return False
+    if not isinstance(raw, bool):
+        raise PublicationRecordError(f"{context}: {field} must be a boolean or null")
+    return raw
+
+
+def _normalize_optional_true_boolean(
+    raw: object,
+    *,
+    context: str,
+    field: str,
+) -> bool:
+    if raw is None:
+        return True
     if not isinstance(raw, bool):
         raise PublicationRecordError(f"{context}: {field} must be a boolean or null")
     return raw
@@ -280,6 +297,9 @@ def load_publication_record(
         set(raw)
         - {
             "draft",
+            "detail_page",
+            "listing_group",
+            "primary_link",
             "title",
             "authors",
             "venue",
@@ -296,14 +316,29 @@ def load_publication_record(
 
     publication_year(slug)
 
-    return PublicationRecord(
+    record = PublicationRecord(
         slug=slug,
         draft=_normalize_optional_boolean(raw.get("draft"), context=str(path), field="draft"),
+        detail_page=_normalize_optional_true_boolean(
+            raw.get("detail_page"),
+            context=str(path),
+            field="detail_page",
+        ),
+        listing_group=_normalize_optional_string(
+            raw.get("listing_group"),
+            context=str(path),
+            field="listing_group",
+        ),
+        primary_link=_normalize_optional_string(
+            raw.get("primary_link"),
+            context=str(path),
+            field="primary_link",
+        ),
         title=_normalize_required_string(raw.get("title"), context=str(path), field="title"),
         authors=_normalize_people(raw.get("authors"), context=f"{path}.authors"),
         venue=_normalize_required_string(raw.get("venue"), context=str(path), field="venue"),
         badges=_normalize_badges(raw.get("badges"), context=f"{path}.badges"),
-        description=_normalize_required_string(
+        description=_normalize_optional_string(
             raw.get("description"), context=str(path), field="description"
         ),
         share_description=_normalize_optional_string(
@@ -319,6 +354,39 @@ def load_publication_record(
         links=_normalize_links(raw.get("links"), context=f"{path}.links"),
         talks=_normalize_talks(raw.get("talks"), context=f"{path}.talks"),
     )
+    _validate_publication_record(record, context=str(path))
+    return record
+
+
+def _validate_publication_record(record: PublicationRecord, *, context: str) -> None:
+    if record.draft:
+        return
+
+    if not record.listing_group:
+        raise PublicationRecordError(f"{context}: missing listing_group")
+    if record.listing_group not in ALLOWED_LISTING_GROUPS:
+        allowed = ", ".join(sorted(ALLOWED_LISTING_GROUPS))
+        raise PublicationRecordError(
+            f"{context}: listing_group must be one of {allowed}"
+        )
+
+    if record.detail_page:
+        if record.primary_link:
+            raise PublicationRecordError(
+                f"{context}: primary_link is only valid when detail_page is false"
+            )
+        if not record.description:
+            raise PublicationRecordError(f"{context}: missing description")
+        return
+
+    if not record.primary_link:
+        raise PublicationRecordError(
+            f"{context}: missing primary_link for publication without a local detail page"
+        )
+    if record.primary_link not in record.links:
+        raise PublicationRecordError(
+            f"{context}: primary_link must name a key present in links"
+        )
 
 
 def load_optional_publication_record(
@@ -390,6 +458,10 @@ def publication_metadata_image_path(
     *,
     publications_dir: Path | None = None,
 ) -> str:
+    if not record.detail_page:
+        raise PublicationRecordError(
+            f"{record.slug}: publication has no local detail page metadata image"
+        )
     if record.meta_image_path:
         return record.meta_image_path
 
@@ -508,6 +580,10 @@ def render_publication_body(
     *,
     publications_dir: Path | None = None,
 ) -> str:
+    if not record.detail_page:
+        raise PublicationRecordError(
+            f"{record.slug}: publication has no local detail page body"
+        )
     actual_publications_dir = publications_dir or default_publications_dir(root)
     assets = publication_assets(root, record.slug, publications_dir=actual_publications_dir)
     abstract_text = assets.abstract.read_text(encoding="utf-8").strip()
