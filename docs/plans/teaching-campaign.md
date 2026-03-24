@@ -120,6 +120,14 @@ Recommended initial groups:
 - `summer_school`
 - `teaching_assistant`
 
+Important naming note:
+
+- the current `teaching_assistant` group records courses where Zach served as
+  the teaching assistant earlier in his own career
+- it does **not** mean "people who served as TAs in courses Zach later taught"
+- future course-staffing data for instructor-led offerings should be modeled
+  separately rather than overloading this group
+
 Recommended initial record kinds:
 
 - `course`
@@ -142,6 +150,14 @@ Recommended `offering` fields:
 - `year`
 - `term`
 - optional `url`
+
+Likely later offering-level extensions, if and when they earn their keep:
+
+- ordered `co_instructors`
+- ordered `teaching_assistants`
+
+Those future staffing fields should likely live on individual offerings, not
+on whole course records, because co-teaching and TA staffing can vary by term.
 
 Recommended `summer_school` fields:
 
@@ -250,7 +266,9 @@ Implemented outcomes so far:
 
 These are real possibilities, but they should not shape the first slice:
 
-- richer teaching metadata such as co-instructor structure beyond note strings
+- richer teaching metadata such as offering-level `co_instructors`
+- later teaching-staffing data for instructor-led offerings, including
+  offering-level `teaching_assistants` tied into `site/data/people.json`
 - additional date/detail normalization beyond `year` plus academic `term`
 - course-local extra pages or assets
 - broader teaching-adjacent domains such as course recipes or mentoring notes
