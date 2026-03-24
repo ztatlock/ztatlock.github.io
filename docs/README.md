@@ -82,9 +82,9 @@ meant to be read, maintained, and extended over time.
   Implemented record of the slice that added canonical `pub_date` to all
   non-draft publication bundles before projection.
 - `plans/publications-slice-5-projection.md`
-  Planned next slice for replacing the repeated publication-entry blocks in
-  `site/pubs/index.dj` with projection from bundle data ordered by
-  `pub_date`.
+  Implemented record of the slice that replaced the repeated
+  publication-entry blocks in `site/pubs/index.dj` with projection from
+  bundle data ordered by `pub_date`.
 - `plans/talks-slice-2-collection-index.md`
   Implemented record of the talks-index-route slice that moved the talks
   wrapper to `site/talks/index.dj` and canonicalized `/talks/`.

@@ -29,9 +29,10 @@
   publications now, then students, with later
   collaborators/funding/CV/news work only where structured data clearly earns
   its keep.
-- Keep the hand-authored publications wrapper at `site/pubs/index.dj`, then
-  project the repeated publication index lists from publication bundles
-  ordered by `pub_date`, while keeping framing and aggregators hand-authored.
+- Keep publication-local facts in `site/pubs/<slug>/publication.json`, keep
+  the `site/pubs/index.dj` wrapper hand-authored, and treat later publication
+  work as artifact enrichment or downstream reuse rather than a return to
+  hand-maintained repeated index entries.
 - Introduce small shared data models only for cross-page facts that are
   actually reused, while keeping prose near prose and publication-local facts
   near publication bundles.

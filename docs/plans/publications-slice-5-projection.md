@@ -1,9 +1,9 @@
 # Publications Slice 5: Index Projection
 
-Status: Planned
+Status: Implemented
 
-This note defines the next implementation slice of the publications
-structured-content campaign.
+This note records the implementation of the projection slice of the
+publications structured-content campaign.
 
 It builds on:
 
@@ -12,7 +12,7 @@ It builds on:
 - [publications-slice-4-pub-date.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-4-pub-date.md)
 - [talks-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/talks-campaign.md)
 
-## Why This Slice Now
+## Why This Slice Was Needed
 
 The collection shape is now in place:
 
@@ -42,9 +42,9 @@ This slice should derive ordering from publication bundle truth:
 That ordering rule should already be established and backfilled by
 [publications-slice-4-pub-date.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-4-pub-date.md).
 
-## Scope
+## Landed Scope
 
-This slice should do exactly these things:
+This slice did these things:
 
 1. replace the repeated entry blocks in `site/pubs/index.dj` with generated
    placeholders
@@ -83,8 +83,12 @@ At the end of this slice:
    - each bundle appears under the section matching `listing_group`
    - the wrapper contains the required placeholders
 7. the temporary literal-entry parser/coverage contract is retired
-8. the rendered `/pubs/` page preserves the current visible ordering and
-   section split
+8. the rendered `/pubs/` page keeps the current section split but may change
+   visible ordering where bundle `pub_date` truth differs from the old
+   hand-authored order
+9. the rendered `/pubs/` page may also improve author-link coverage where the
+   publication bundles carry richer person refs than the old hand-authored
+   wrapper text
 
 ## Design Choices
 
@@ -152,7 +156,7 @@ The projected publication title should link as follows:
 This matches the current bundle model and avoids reintroducing duplicated title
 link state in the wrapper.
 
-## Implementation Order
+## What Landed
 
 ### Step 1: Add Publication Projection Rendering
 
@@ -175,17 +179,12 @@ Recommended output style:
 - match the current Djot entry shape closely enough that rendered HTML diffs
   stay minimal and reviewable
 
-Tests to add:
+Tests added:
 
 - `detail_page: true` entry links locally
 - `detail_page: false` entry links via `primary_link`
 - badges render correctly
 - author references render correctly
-
-Stop and reflect:
-
-- Are we reusing existing publication rendering helpers where it makes sense?
-- Is the projection helper still small and readable?
 
 ### Step 2: Switch The Wrapper To Placeholders
 
@@ -203,17 +202,11 @@ Keep:
 Then update the page-render path so `publications_index_page` fills those
 placeholders before Djot rendering.
 
-Tests to add:
+Tests added:
 
 - wrapper projection applies only to `publications_index_page`
 - both placeholders are filled
 - wrapper missing placeholders is rejected by source validation
-
-Stop and reflect:
-
-- Does the wrapper now read like authored framing instead of a second
-  publication database?
-- Is the visible output stable enough?
 
 ### Step 3: Retire Temporary Hand-Authored Entry Parsing
 
@@ -235,7 +228,7 @@ not on literal rendered entry text inside the wrapper.
 
 Run the normal repo checks and stop.
 
-Expected verification:
+Verification run:
 
 - `make test`
 - `make build`
@@ -249,14 +242,16 @@ Also inspect tracked output diffs for:
 - `sitemap.txt`
 - `sitemap.xml`
 
-The expectation should be:
+Observed output changes were reviewable and limited to:
 
-- minimal or no rendered-output changes beyond what is required by the wrapper
-  source move from hand-authored entries to projected equivalents
+- `pub_date`-driven reordering within sections
+- richer author linking where bundle refs were more complete
+- small formatting differences caused by replacing literal wrapper entries
+  with projection
 
 ## Tests
 
-Add focused tests for:
+Focused tests now cover:
 
 - publication list rendering from bundles
 - local vs external title-link behavior
@@ -265,27 +260,11 @@ Add focused tests for:
 - acceptance of the real repo's current main/workshop split through `pub_date`
   ordering
 
-## Follow-On Question For The Next Slice
+## Outcome
 
-If this slice lands cleanly, the next question becomes:
+The publications wrapper now reads like authored framing rather than a second
+publication database. The collection is ordered from bundle truth, and the
+temporary parser/validator contract for literal wrapper entries is gone.
 
-- what is the next highest-value downstream consumer of the now-canonical
-  publication collection projection?
-
-Likely candidates:
-
-- selected publication sections in the CV
-- later collaborator derivation
-- artifact-enrichment follow-up work
-
-## Stop And Reassess
-
-After this slice, stop and check:
-
-1. Does `pub_date`-derived ordering feel like the right replacement for the
-   old hand-authored order?
-2. Is the projected output close enough to the previous page that the slice is
-   easy to review?
-3. Did we eliminate duplicated publication entry facts without inventing a big
-   generic framework?
-4. Does the result make later CV/news reuse easier in a concrete way?
+The likely follow-on work is now local artifact enrichment or later downstream
+reuse, not more projection plumbing.

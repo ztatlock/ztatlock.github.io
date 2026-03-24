@@ -50,36 +50,33 @@ That means:
 - every publication currently listed in the hand-authored publications index
   now has a
   canonical non-draft local bundle under `site/pubs/`
-- temporary source validation now keeps the hand-authored publications index
-  and the bundle set from drifting apart while projection has not landed yet
 - the hand-authored publications wrapper now lives at `site/pubs/index.dj`
 - the canonical collection route is now `/pubs/`
 - every non-draft publication bundle now has a canonical ISO `pub_date`
   suitable for derived collection ordering
+- the repeated publication-entry sections in `site/pubs/index.dj` are now
+  projected from bundle data rather than hand-maintained in the wrapper
+- source validation now enforces the placeholder-based wrapper shape and
+  rejects lingering literal publication entry blocks
 
-The next likely slice is therefore Slice 5: publication index projection.
+The next likely work in this campaign is local artifact enrichment or later
+downstream reuse, not more collection-route or index-projection cleanup.
 
 ## Current Audit
 
 Current relevant sources:
 
 - `site/pubs/<slug>/publication.json`
-  Canonical local publication records for the subset of publications that
-  currently have bundles.
+  Canonical local publication records for the indexed publications
+  collection.
 - `site/pubs/index.dj`
-  Current hand-authored publication index wrapper.
+  Current hand-authored publication index wrapper with generated list
+  placeholders.
 - `scripts/publication_record.py`
   Canonical publication loading and page rendering helpers.
 
 Current observed facts:
 
-- `site/pages/publications.dj` is `811` lines long
-- it currently lists `69` publication entries
-- it has `2` repeated listing sections:
-  - `Conference and Journal Papers`
-  - `Workshop Papers`
-- it has `1` clearly hand-authored section:
-  - `Aggregators`
 - all `69` indexed publications now have canonical local bundles under
   `site/pubs/`
 - current bundle coverage by `listing_group` is:
@@ -88,8 +85,10 @@ Current observed facts:
 - `48` publications are currently represented as minimal index-backed bundles
   with `detail_page: false`
 - the canonical collection route is now `/pubs/`
-- the hand-authored index still mixes local `pubs/<slug>/` links and direct
-  external title links
+- the wrapper keeps hand-authored framing and `Aggregators`
+- repeated publication-entry sections are now generated from bundle truth
+- rendered ordering is now derived from `pub_date` descending with title
+  tie-break
 
 ### Consequences Of The Audit
 
@@ -101,9 +100,10 @@ These facts imply:
 - but the current non-draft publication-page model is too rich to backfill all
   missing bundles in one step
 - the minimal bundle model was the right prerequisite for full bundle coverage
-- route shape and projection remain related but separable next steps
-- the collection wrapper and route shape are now aligned with the bundle root
-- the next real step is projection, not more route cleanup
+- route shape, ordering truth, and projection are now aligned with the bundle
+  root
+- the next real work is enrichment or downstream reuse, not more collection
+  cleanup
 
 ## Desired End State
 
@@ -356,9 +356,9 @@ Stop and reassess after this slice.
 
 Status:
 
-- planned
+- implemented
 
-### Slice 5+: Local Artifact Enrichment
+### Slice 6+: Local Artifact Enrichment
 
 Goal:
 
@@ -387,22 +387,20 @@ As this campaign proceeds, we want:
 
 ## Current Recommendation
 
-The next publications slice should be:
+Stop and reassess before choosing the next publications slice.
 
-- publication index projection
+The main architectural goals of this campaign are now in place:
 
-Concretely, that means:
+1. canonical local bundle coverage
+2. canonical collection route and wrapper location
+3. bundle-local ordering truth via `pub_date`
+4. projected repeated index sections from bundle data
 
-1. keep `site/pubs/index.dj` as the hand-authored wrapper
-2. replace the repeated publication-entry blocks with projection from bundle
-   data
-3. order the projected sections by `pub_date` descending with title tie-break
-4. keep framing and `Aggregators` hand-authored
-5. stop and reassess before any artifact-enrichment work
+The next publication-specific work should likely be one of:
 
-That is the cleanest next move because the collection now has its ordering
-fact in bundle truth and the main remaining duplication is the repeated
-hand-authored entry structure inside `site/pubs/index.dj`.
+- local artifact enrichment for minimal `detail_page: false` bundles
+- targeted publication-driven reuse in later consumers once it clearly earns
+  its keep
 
 The detailed planning notes for the first five slices are:
 

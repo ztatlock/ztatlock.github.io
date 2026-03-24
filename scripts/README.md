@@ -70,8 +70,9 @@ Optional personal-maintenance helper:
 - `talk_record.py`
   Shared loader and helpers for talk-local records in
   `site/talks/<slug>/talk.json`.
-- `sitebuild/talk_projection.py`
-  Talks-page projection helpers that render the bundle-driven talks list.
+- `sitebuild/page_projection.py`
+  Shared collection-page projection helpers for the bundle-driven talks and
+  publications index pages.
 
 ## Manual / Diagnostic Helpers
 

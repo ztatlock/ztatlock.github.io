@@ -95,14 +95,14 @@ The real job is now to project publication-list structure from
 `site/pubs/<slug>/publication.json` records instead of hand-maintaining the
 repeated listing shape in `site/pubs/index.dj`
 
-The current recommended next slice is:
+The core publications collection shape is now in place:
 
-- keep `site/pubs/index.dj` as the hand-authored wrapper
-- replace the repeated publication-entry sections with projection from bundle
-  data
-- order those projected sections by `pub_date` descending with title
-  tie-break
-- keep framing and `Aggregators` hand-authored
+- canonical bundles for all indexed publications under `site/pubs/`
+- hand-authored collection wrapper at `site/pubs/index.dj`
+- canonical collection URL at `/pubs/`
+- derived index ordering from bundle `pub_date`
+- projected repeated publication-entry sections from bundle data while keeping
+  framing and `Aggregators` hand-authored
 
 That collection-shape decision is now implemented:
 
@@ -117,13 +117,18 @@ Another important scoping note:
   `site/pubs/`
 - 48 of those bundles are currently minimal `detail_page: false` records
 
-So the publications campaign is explicitly a staged project.
-It now has to separate:
+So the publications campaign has been an explicitly staged project.
+It separated:
 
 - deciding the collection index route shape
 - establishing the last missing ordering fact in bundle data
 - projecting the page incrementally without pretending all entries are already
   equally rich local publication pages
+
+The likely follow-on work is now either:
+
+- local publication artifact enrichment over time
+- or downstream reuse in later consumers like CV/news once that earns its keep
 
 ### 3. Students
 
