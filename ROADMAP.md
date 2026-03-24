@@ -62,5 +62,5 @@ notes.
 ## Known Non-TODO Follow-Ups From Review
 
 - [x] Canonicalize authored publication links to `pubs/<slug>/` paths (`site/pages/index.dj`, `site/pages/news.dj`, `site/pages/publications.dj`).
-- [ ] Decide whether the publications campaign should mirror talks with `site/pubs/index.dj` and canonical `/pubs/`, then update publication detail backlinks accordingly (`site/pages/publications.dj`, `scripts/publication_record.py`, `docs/plans/structured-content-roadmap.md`).
+- [x] Mirror the publications collection under `site/pubs/index.dj` with canonical `/pubs/`, and update publication detail backlinks accordingly (`site/pubs/index.dj`, `scripts/publication_record.py`, `docs/plans/structured-content-roadmap.md`).
 - [ ] Decide whether unresolved scaffold placeholders in draft publication records should remain acceptable until publication (`site/templates/publication.json`, `scripts/validate_build.py`, `scripts/sitebuild/artifact_validate.py`).

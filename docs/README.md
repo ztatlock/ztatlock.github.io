@@ -69,8 +69,8 @@ meant to be read, maintained, and extended over time.
   and next-checkpoint questions.
 - `plans/publications-campaign.md`
   Current publications structured-content campaign note, including the
-  implemented bundle-coverage and collection-route milestones, plus the
-  current recommended next slice.
+  implemented minimal-bundle, bundle-coverage, route-cutover, `pub_date`,
+  and projection slices, plus likely follow-on work.
 - `plans/publications-slice-2-bundle-coverage.md`
   Implemented record of the bundle-coverage slice that made every indexed
   publication a canonical local bundle before the publications route-cutover

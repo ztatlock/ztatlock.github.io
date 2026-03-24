@@ -40,7 +40,7 @@ payoff.
 
 ## Current Status
 
-Slices 1 through 3 of this campaign are now implemented.
+Slices 1 through 5 of this campaign are now implemented.
 
 That means:
 

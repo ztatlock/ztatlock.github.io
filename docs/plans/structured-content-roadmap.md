@@ -167,8 +167,8 @@ publication-derived projections.
 It should not derail the main sequence of:
 
 - talks
-- students
 - publications
+- students
 
 ### Funding / Grants
 
