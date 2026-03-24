@@ -112,6 +112,18 @@ class RouteModelTests(unittest.TestCase):
         )
         validate_routes(routes)
 
+    def test_validate_routes_accepts_teaching_index_page(self) -> None:
+        routes = (
+            route(
+                kind="teaching_index_page",
+                key="teaching",
+                output_relpath="teaching/index.html",
+                public_url="/teaching/",
+                canonical_url_value="https://ztatlock.net/teaching/",
+            ),
+        )
+        validate_routes(routes)
+
     def test_validate_routes_accepts_publications_index_page(self) -> None:
         routes = (
             route(

@@ -24,7 +24,11 @@ from scripts.student_record import (
     load_student_sections,
     students_index_path,
 )
-from scripts.teaching_record import TEACHING_DATA_NAME, find_teaching_record_issues
+from scripts.teaching_record import (
+    TEACHING_DATA_NAME,
+    find_teaching_record_issues,
+    teaching_index_path,
+)
 from scripts.talk_record import TALKS_INDEX_NAME, find_talk_record_issues, talks_index_path
 from scripts.page_metadata import (
     validate_general_source_metadata_path,
@@ -33,16 +37,24 @@ from scripts.page_metadata import (
 )
 
 from .site_config import SiteConfig
-from .page_projection import STUDENT_SECTION_PLACEHOLDERS, TALKS_LIST_PLACEHOLDER
+from .page_projection import (
+    STUDENT_SECTION_PLACEHOLDERS,
+    TALKS_LIST_PLACEHOLDER,
+    TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER,
+    TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+    TEACHING_UW_COURSES_LIST_PLACEHOLDER,
+)
 
 LEGACY_PUBLICATION_LINK_RE = re.compile(r"\b(pub-\d{4}[-a-z0-9]*\.html)\b")
 LEGACY_PUBLICATIONS_INDEX_LINK_RE = re.compile(r"\b(publications\.html)\b")
 LEGACY_STUDENTS_LINK_RE = re.compile(r"\b(students\.html)\b")
+LEGACY_TEACHING_LINK_RE = re.compile(r"\b(teaching\.html)\b")
 LEGACY_TALKS_LINK_RE = re.compile(r"\b(talks\.html)\b")
 LITERAL_STUDENT_ENTRY_RE = re.compile(
     r"^- \[[^\]]+\](?:\[[^\]]*\]|\([^)]+\)),\s",
     re.MULTILINE,
 )
+LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
     "robots.txt",
@@ -90,6 +102,13 @@ def _legacy_students_link_issues(path: Path) -> list[str]:
     return [f"{path}: legacy students link should use canonical collection path: students.html -> students/"]
 
 
+def _legacy_teaching_link_issues(path: Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    if not LEGACY_TEACHING_LINK_RE.search(text):
+        return []
+    return [f"{path}: legacy teaching link should use canonical collection path: teaching.html -> teaching/"]
+
+
 def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     paths = list(sorted(config.page_source_dir.glob("*.dj")))
     talks_index = talks_index_path(config.repo_root, talks_dir=config.talks_dir)
@@ -98,6 +117,9 @@ def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     students_index = students_index_path(config.repo_root, students_dir=config.students_dir)
     if students_index.exists():
         paths.append(students_index)
+    teaching_index = teaching_index_path(config.repo_root, teaching_dir=config.teaching_dir)
+    if teaching_index.exists():
+        paths.append(teaching_index)
     publications_index = publications_index_path(
         config.repo_root,
         publications_dir=config.publications_dir,
@@ -134,6 +156,13 @@ def _find_legacy_students_link_issues(config: SiteConfig) -> list[str]:
     issues: list[str] = []
     for path in _all_authored_djot_sources(config):
         issues.extend(_legacy_students_link_issues(path))
+    return issues
+
+
+def _find_legacy_teaching_link_issues(config: SiteConfig) -> list[str]:
+    issues: list[str] = []
+    for path in _all_authored_djot_sources(config):
+        issues.extend(_legacy_teaching_link_issues(path))
     return issues
 
 
@@ -326,12 +355,54 @@ def _find_student_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_teaching_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = teaching_index_path(config.repo_root, teaching_dir=config.teaching_dir)
+    legacy_index_path = config.page_source_dir / "teaching.dj"
+    teaching_path = config.data_dir / TEACHING_DATA_NAME
+
+    issues: list[str] = []
+    if legacy_index_path.exists():
+        issues.append(f"{legacy_index_path}: teaching index wrapper must move to {index_path}")
+
+    if not teaching_path.exists() and not index_path.exists():
+        return issues
+
+    if not index_path.exists():
+        issues.append(
+            f"{index_path}: teaching index page is required when canonical teaching records exist"
+        )
+        return issues
+
+    issues.extend(
+        validate_general_source_metadata_path(
+            index_path,
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+    )
+
+    text = index_path.read_text(encoding="utf-8")
+    for placeholder in (
+        TEACHING_UW_COURSES_LIST_PLACEHOLDER,
+        TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER,
+        TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+    ):
+        if placeholder not in text:
+            issues.append(f"{index_path}: teaching index page must contain {placeholder}")
+    if LITERAL_TEACHING_ENTRY_RE.search(text):
+        issues.append(
+            f"{index_path}: teaching index page must not contain literal teaching course entry blocks"
+        )
+    return issues
+
+
 def _find_teaching_data_issues(config: SiteConfig) -> list[str]:
     teaching_path = config.data_dir / TEACHING_DATA_NAME
     has_teaching_consumers = any(
         (config.page_source_dir / name).exists()
         for name in TEACHING_DATA_CONSUMER_PAGE_NAMES
-    )
+    ) or teaching_index_path(config.repo_root, teaching_dir=config.teaching_dir).exists()
     if not teaching_path.exists() and not has_teaching_consumers:
         return []
     return find_teaching_record_issues(
@@ -354,6 +425,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             static_source_dir=config.static_source_dir,
         )
         + _find_teaching_data_issues(config)
+        + _find_teaching_projection_issues(config)
         + _find_student_data_issues(config)
         + _find_student_projection_issues(config)
         + find_talk_record_issues(
@@ -365,6 +437,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_legacy_publication_link_issues(config)
         + _find_legacy_publications_index_link_issues(config)
         + _find_legacy_students_link_issues(config)
+        + _find_legacy_teaching_link_issues(config)
         + _find_legacy_talks_link_issues(config)
         + _find_root_layout_drift_issues(config)
     )

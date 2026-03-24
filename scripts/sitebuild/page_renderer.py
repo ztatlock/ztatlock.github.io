@@ -13,6 +13,7 @@ from scripts.page_source import (
     read_publications_index_source,
     read_publication_page_source,
     read_students_index_source,
+    read_teaching_index_source,
     read_talks_index_source,
 )
 
@@ -122,6 +123,10 @@ def render_page_html(
                 root,
                 students_dir=students_dir,
             )
+        elif route_kind == "teaching_index_page":
+            if route_key != "teaching":
+                raise PageRenderError(f"unsupported teaching index route key: {route_key}")
+            source = read_teaching_index_source(root)
         elif route_kind == "publications_index_page":
             if route_key != "publications":
                 raise PageRenderError(f"unsupported publications index route key: {route_key}")

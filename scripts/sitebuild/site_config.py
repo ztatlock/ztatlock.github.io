@@ -17,6 +17,7 @@ class SiteConfig:
     webfiles_url: str
     page_source_dir: Path
     students_dir: Path
+    teaching_dir: Path
     talks_dir: Path
     publications_dir: Path
     templates_dir: Path
@@ -42,6 +43,7 @@ def load_site_config(
     build_dir: Path | None = None,
     page_source_dir: Path | None = None,
     students_dir: Path | None = None,
+    teaching_dir: Path | None = None,
     talks_dir: Path | None = None,
     publications_dir: Path | None = None,
     templates_dir: Path | None = None,
@@ -58,6 +60,7 @@ def load_site_config(
         webfiles_url=webfiles_url,
         page_source_dir=(page_source_dir or (resolved_root / "site" / "pages")).resolve(),
         students_dir=(students_dir or (resolved_root / "site" / "students")).resolve(),
+        teaching_dir=(teaching_dir or (resolved_root / "site" / "teaching")).resolve(),
         talks_dir=(talks_dir or (resolved_root / "site" / "talks")).resolve(),
         publications_dir=(publications_dir or (resolved_root / "site" / "pubs")).resolve(),
         templates_dir=(templates_dir or (resolved_root / "site" / "templates")).resolve(),

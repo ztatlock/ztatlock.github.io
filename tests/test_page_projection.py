@@ -13,7 +13,13 @@ from scripts.sitebuild.page_projection import (
     STUDENTS_POSTDOC_LIST_PLACEHOLDER,
     STUDENTS_VISITING_LIST_PLACEHOLDER,
     TALKS_LIST_PLACEHOLDER,
+    TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER,
+    TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+    TEACHING_UW_COURSES_LIST_PLACEHOLDER,
     apply_page_projections,
+    render_teaching_special_topics_list_djot,
+    render_teaching_summer_school_list_djot,
+    render_teaching_uw_courses_list_djot,
     render_students_section_list_djot,
     render_talks_list_djot,
 )
@@ -32,6 +38,19 @@ def _student_section(
 
 
 class PageProjectionTests(unittest.TestCase):
+    def test_renders_teaching_sections_from_canonical_data(self) -> None:
+        rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
+        self.assertIn("*UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_uw)
+        self.assertIn("[2025 Autumn](https://courses.cs.washington.edu/courses/cse507/25au/)", rendered_uw)
+
+        rendered_topics = render_teaching_special_topics_list_djot(Path(__file__).resolve().parents[1])
+        self.assertIn("[UW CSE 599W: Systems Verification, \\ 2016 Spring]", rendered_topics)
+        self.assertIn("Co-taught with [Xi Wang][] and [Bryan Parno][]", rendered_topics)
+
+        rendered_summer = render_teaching_summer_school_list_djot(Path(__file__).resolve().parents[1])
+        self.assertIn("- Analysis and Optimizations with Equality Saturation", rendered_summer)
+        self.assertIn("[Marktoberdorf Summer School 2024](https://sites.google.com/view/marktoberdorf2024/home)", rendered_summer)
+
     def test_renders_talks_list_from_bundles(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -198,6 +217,37 @@ class PageProjectionTests(unittest.TestCase):
                 ),
                 body,
             )
+
+    def test_applies_projection_only_to_teaching_index_page(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Teaching\n\n"
+            "__TEACHING_UW_COURSES_LIST__\n\n"
+            "__TEACHING_SPECIAL_TOPICS_LIST__\n\n"
+            "__TEACHING_SUMMER_SCHOOL_LIST__\n"
+        )
+        rendered = apply_page_projections(
+            "teaching_index_page",
+            "teaching",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(TEACHING_UW_COURSES_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER, rendered)
+        self.assertIn("Marktoberdorf Summer School 2024", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
 
     def test_renders_students_section_from_canonical_data(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

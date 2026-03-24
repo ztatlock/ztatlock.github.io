@@ -11,6 +11,7 @@ from scripts.page_source import (
     page_path,
     publications_index_source_path,
     students_index_source_path,
+    teaching_index_source_path,
     read_page_source,
     read_source_path,
     talks_index_source_path,
@@ -374,6 +375,21 @@ def render_students_index_meta_for_url(
     )
 
 
+def render_teaching_index_meta_for_url(
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_djot_source_meta_for_url(
+        teaching_index_source_path(root),
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
 def render_publications_index_meta_for_url(
     title: str,
     *,
@@ -465,6 +481,15 @@ def render_route_meta_for_url(
             canonical_url=canonical_url,
             root=root,
             students_dir=students_dir,
+            site_url=site_url,
+        )
+    if route_kind == "teaching_index_page":
+        if route_key != "teaching":
+            raise MetadataError(f"unsupported teaching index route key: {route_key}")
+        return render_teaching_index_meta_for_url(
+            title,
+            canonical_url=canonical_url,
+            root=root,
             site_url=site_url,
         )
     if route_kind == "publications_index_page":

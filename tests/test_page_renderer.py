@@ -102,6 +102,26 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn("Visiting Students and Interns", html)
         self.assertIn("Zhiyuan (Kevin) Yan", html)
 
+    def test_render_teaching_index_page_uses_explicit_canonical_url(self) -> None:
+        canonical = "https://example.com/teaching/"
+        html = render_page_html(
+            "teaching_index_page",
+            "teaching",
+            canonical_url=canonical,
+            refs_text=self.refs_text,
+            root=ROOT,
+            site_url=self.config.site_url,
+            webfiles_url=self.config.webfiles_url,
+            data_dir=self.config.data_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
+        )
+        self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
+        self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+        self.assertNotIn("__TEACHING_UW_COURSES_LIST__", html)
+        self.assertIn("Marktoberdorf Summer School 2024", html)
+        self.assertIn("Mathematician", html)
+
     def test_render_publications_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/pubs/"
         html = render_page_html(

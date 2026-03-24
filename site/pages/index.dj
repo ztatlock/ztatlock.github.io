@@ -18,7 +18,7 @@ In research,
   in the [UW PLSE][PLSE] research group.
 In education,
   I work toward this goal
-  by [teaching courses](teaching.html)
+  by [teaching courses](teaching/)
   on programming languages and related topics.
 
 My expertise is rooted in formal verification,
@@ -39,7 +39,7 @@ We rigorously prove our results while
 - [Notes](notes.html)
 - [Publications](pubs/)
 - [Research](research.html)
-- [Teaching](teaching.html)
+- [Teaching](teaching/)
 - [Talks](talks/)
 - [Service](service.html)
 - [CV](cv.html)
@@ -404,4 +404,4 @@ Please see my [publications page](pubs/) for more.
 - [2022 Autumn, UW CSE 341: Programming Languages](
     https://courses.cs.washington.edu/courses/cse341/22au/)
 
-Please see my [teaching page](teaching.html) for more.
+Please see my [teaching page](teaching/) for more.

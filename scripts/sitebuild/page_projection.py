@@ -16,6 +16,12 @@ from scripts.student_record import (
     StudentRecordError,
     load_student_sections,
 )
+from scripts.teaching_record import (
+    TeachingOffering,
+    TeachingRecord,
+    TeachingRecordError,
+    load_teaching_groups,
+)
 from scripts.talk_record import TalkRecordError, load_talk_records, render_talk_date
 from .people_registry import PeopleRegistryError, load_people_registry
 
@@ -34,6 +40,14 @@ STUDENT_SECTION_PLACEHOLDERS = {
     "graduated_bachelors_students": STUDENTS_BACHELORS_LIST_PLACEHOLDER,
     "visiting_students": STUDENTS_VISITING_LIST_PLACEHOLDER,
 }
+TEACHING_UW_COURSES_LIST_PLACEHOLDER = "__TEACHING_UW_COURSES_LIST__"
+TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER = "__TEACHING_SPECIAL_TOPICS_LIST__"
+TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER = "__TEACHING_SUMMER_SCHOOL_LIST__"
+TEACHING_GROUP_PLACEHOLDERS = {
+    "uw_courses": TEACHING_UW_COURSES_LIST_PLACEHOLDER,
+    "special_topics": TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER,
+    "summer_school": TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+}
 
 
 class PageProjectionError(ValueError):
@@ -50,6 +64,13 @@ def _render_title(title: str, url: str | None) -> str:
     if not url:
         return title
     return f"[{title}]({url})"
+
+
+def _render_teaching_offering(offering: TeachingOffering) -> str:
+    label = f"{offering.year} {offering.term}"
+    if not offering.url:
+        return label
+    return f"[{label}]({offering.url})"
 
 
 def _render_person_ref(*, display_name: str, ref_name: str) -> str:
@@ -123,6 +144,89 @@ def render_students_section_list_djot(
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
+def _teaching_group_records_by_key(root: Path, *, data_dir: Path | None = None) -> dict[str, tuple[TeachingRecord, ...]]:
+    teaching_path = (data_dir / "teaching.json") if data_dir is not None else None
+    try:
+        groups = load_teaching_groups(root, teaching_path=teaching_path)
+    except TeachingRecordError as err:
+        raise PageProjectionError(str(err)) from err
+    return {group.key: group.records for group in groups}
+
+
+def _render_uw_course_record(record: TeachingRecord) -> str:
+    lines = [f"*{record.code}: {record.title}* \\"]
+    if record.audience_label:
+        lines.append(record.audience_label)
+    if record.description_djot:
+        lines.append(f"  {record.description_djot}")
+    lines.append("")
+    lines.append("{.columns .columns-8rem}")
+    lines.extend(f"- {_render_teaching_offering(offering)}" for offering in record.offerings)
+    return "\n".join(lines)
+
+
+def render_teaching_uw_courses_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    records = _teaching_group_records_by_key(root, data_dir=data_dir)["uw_courses"]
+    chunks = [_render_uw_course_record(record) for record in records]
+    if not chunks:
+        return ""
+    return ("\n\n{.course-vspace}\n".join(chunks)) + "\n"
+
+
+def _render_special_topics_record(record: TeachingRecord) -> str:
+    first_offering = record.offerings[0]
+    title = f"{record.code}: {record.title}, \\ {first_offering.year} {first_offering.term}"
+    lines = [f"* {_render_title(title, first_offering.url)}"]
+    if record.details:
+        lines.append("")
+        lines.extend(f"  - {detail}" for detail in record.details)
+    return "\n".join(lines)
+
+
+def render_teaching_special_topics_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    records = _teaching_group_records_by_key(root, data_dir=data_dir)["special_topics"]
+    chunks = [_render_special_topics_record(record) for record in records]
+    return "\n\n".join(chunks) + ("\n" if chunks else "")
+
+
+def _render_supplemental_links_djot(record) -> str:
+    if not record.links:
+        return ""
+    return ",\n    \\ ".join(
+        f"[{link.label}]({link.url})"
+        for link in record.links
+    )
+
+
+def _render_summer_school_record(record: TeachingRecord) -> str:
+    lines = [f"- {record.title}", ""]
+    for event in record.events:
+        event_line = f"  * [{event.label}]({event.url})"
+        supplemental = _render_supplemental_links_djot(event)
+        if supplemental:
+            event_line += f":\n    \\ {supplemental}"
+        lines.append(event_line)
+    return "\n".join(lines)
+
+
+def render_teaching_summer_school_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    records = _teaching_group_records_by_key(root, data_dir=data_dir)["summer_school"]
+    chunks = [_render_summer_school_record(record) for record in records]
+    return "\n\n".join(chunks) + ("\n" if chunks else "")
+
+
 def render_talks_list_djot(
     root: Path,
     *,
@@ -165,6 +269,26 @@ def apply_page_projections(
                 data_dir=data_dir,
             ).rstrip()
             rendered = rendered.replace(placeholder, section_body)
+        return rendered
+
+    if route_kind == "teaching_index_page" and route_key == "teaching":
+        rendered = body
+        replacements = {
+            TEACHING_UW_COURSES_LIST_PLACEHOLDER: render_teaching_uw_courses_list_djot(
+                root,
+                data_dir=data_dir,
+            ).rstrip(),
+            TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER: render_teaching_special_topics_list_djot(
+                root,
+                data_dir=data_dir,
+            ).rstrip(),
+            TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER: render_teaching_summer_school_list_djot(
+                root,
+                data_dir=data_dir,
+            ).rstrip(),
+        }
+        for placeholder, replacement in replacements.items():
+            rendered = rendered.replace(placeholder, replacement)
         return rendered
 
     if route_kind == "publications_index_page" and route_key == "publications":

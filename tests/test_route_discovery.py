@@ -160,6 +160,15 @@ class RouteDiscoveryTests(unittest.TestCase):
             ["site/students/index.dj", "site/data/students.json"],
         )
 
+    def test_discovers_teaching_index_route(self) -> None:
+        route = find_route(self.routes, kind="teaching_index_page", key="teaching")
+        self.assertEqual(route.output_relpath, "teaching/index.html")
+        self.assertEqual(route.public_url, "/teaching/")
+        self.assertEqual(
+            [path.relative_to(ROOT).as_posix() for path in route.source_paths],
+            ["site/teaching/index.dj", "site/data/teaching.json"],
+        )
+
     def test_rejects_legacy_and_collection_talk_wrappers_together(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
@@ -236,6 +245,34 @@ class RouteDiscoveryTests(unittest.TestCase):
                 root,
                 page_source_dir=page_source_dir,
                 students_dir=students_dir,
+                data_dir=data_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
+
+    def test_rejects_legacy_and_collection_teaching_wrappers_together(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            teaching_dir = root / "site" / "teaching"
+            data_dir = root / "site" / "data"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            teaching_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "teaching.dj").write_text("# Teaching\n", encoding="utf-8")
+            (teaching_dir / "index.dj").write_text("# Teaching\n", encoding="utf-8")
+            (data_dir / "teaching.json").write_text('{"groups":[]}\n', encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
                 data_dir=data_dir,
                 static_source_dir=static_source_dir,
             )

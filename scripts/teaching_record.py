@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 TEACHING_DATA_NAME = "teaching.json"
+TEACHING_INDEX_NAME = "index.dj"
 TEACHING_ROOT_KEY = "groups"
 GROUP_ALLOWED_FIELDS = {"key", "records"}
 RECORD_ALLOWED_FIELDS = {
@@ -88,6 +89,11 @@ class TeachingGroup:
 
 def teaching_data_path(root: Path, *, teaching_path: Path | None = None) -> Path:
     return (teaching_path or (root / "site" / "data" / TEACHING_DATA_NAME)).resolve()
+
+
+def teaching_index_path(root: Path, *, teaching_dir: Path | None = None) -> Path:
+    actual_teaching_dir = teaching_dir or (root / "site" / "teaching")
+    return (actual_teaching_dir / TEACHING_INDEX_NAME).resolve()
 
 
 def _load_json_object_pairs(pairs: list[tuple[str, object]]) -> dict[str, object]:

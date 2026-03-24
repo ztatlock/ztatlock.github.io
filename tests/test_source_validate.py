@@ -14,6 +14,7 @@ class SourceValidateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
+            teaching = root / "site" / "teaching"
             students = root / "site" / "students"
             talks = root / "site" / "talks"
             pubs = root / "site" / "pubs"
@@ -21,6 +22,7 @@ class SourceValidateTests(unittest.TestCase):
             data = root / "site" / "data"
             static = root / "site" / "static"
             pages.mkdir(parents=True)
+            teaching.mkdir(parents=True)
             students.mkdir(parents=True)
             talks.mkdir(parents=True)
             pubs.mkdir(parents=True)
@@ -29,11 +31,14 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "teaching.dj").write_text(
+            (teaching / "index.dj").write_text(
                 "---\n"
                 "description: Teaching\n"
                 "---\n\n"
-                "# Teaching\n",
+                "# Teaching\n\n"
+                "__TEACHING_UW_COURSES_LIST__\n\n"
+                "__TEACHING_SPECIAL_TOPICS_LIST__\n\n"
+                "__TEACHING_SUMMER_SCHOOL_LIST__\n",
                 encoding="utf-8",
             )
 
@@ -50,6 +55,111 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [f"missing teaching registry: {data / 'teaching.json'}"],
+            )
+
+    def test_reports_missing_teaching_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (teaching / "index.dj").write_text(
+                "---\n"
+                "description: Teaching\n"
+                "---\n\n"
+                "# Teaching\n\n"
+                "__TEACHING_UW_COURSES_LIST__\n\n"
+                "__TEACHING_SPECIAL_TOPICS_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "teaching.json").write_text(
+                json.dumps(
+                    {
+                        "groups": [
+                            {
+                                "key": "uw_courses",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-507",
+                                        "kind": "course",
+                                        "code": "UW CSE 507",
+                                        "title": "Course",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2025, "term": "Autumn"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "special_topics",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-599z",
+                                        "kind": "course",
+                                        "code": "UW CSE 599Z",
+                                        "title": "Topics",
+                                        "details": ["Notes"],
+                                        "offerings": [{"year": 2017, "term": "Spring"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "summer_school",
+                                "records": [
+                                    {
+                                        "key": "marktoberdorf",
+                                        "kind": "summer_school",
+                                        "title": "EqSat",
+                                        "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "teaching_assistant",
+                                "records": [
+                                    {
+                                        "key": "ucsd-cse-130",
+                                        "kind": "course",
+                                        "code": "UCSD CSE 130",
+                                        "title": "PL",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2012, "term": "Winter"}],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{teaching / 'index.dj'}: teaching index page must contain __TEACHING_SUMMER_SCHOOL_LIST__"],
             )
 
     def test_reports_missing_students_registry_when_students_pages_exist(self) -> None:
@@ -429,6 +539,121 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [f"{pages / 'index.dj'}: legacy students link should use canonical collection path: students.html -> students/"],
+            )
+
+    def test_reports_legacy_teaching_link(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home\n"
+                "---\n"
+                "# Home\n\n"
+                "[Teaching](teaching.html)\n",
+                encoding="utf-8",
+            )
+            (teaching / "index.dj").write_text(
+                "---\n"
+                "description: Teaching\n"
+                "---\n\n"
+                "# Teaching\n\n"
+                "__TEACHING_UW_COURSES_LIST__\n\n"
+                "__TEACHING_SPECIAL_TOPICS_LIST__\n\n"
+                "__TEACHING_SUMMER_SCHOOL_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "teaching.json").write_text(
+                json.dumps(
+                    {
+                        "groups": [
+                            {
+                                "key": "uw_courses",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-507",
+                                        "kind": "course",
+                                        "code": "UW CSE 507",
+                                        "title": "Course",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2025, "term": "Autumn"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "special_topics",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-599z",
+                                        "kind": "course",
+                                        "code": "UW CSE 599Z",
+                                        "title": "Topics",
+                                        "details": ["Notes"],
+                                        "offerings": [{"year": 2017, "term": "Spring"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "summer_school",
+                                "records": [
+                                    {
+                                        "key": "marktoberdorf",
+                                        "kind": "summer_school",
+                                        "title": "EqSat",
+                                        "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "teaching_assistant",
+                                "records": [
+                                    {
+                                        "key": "ucsd-cse-130",
+                                        "kind": "course",
+                                        "code": "UCSD CSE 130",
+                                        "title": "PL",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2012, "term": "Winter"}],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{pages / 'index.dj'}: legacy teaching link should use canonical collection path: teaching.html -> teaching/"],
             )
 
     def test_reports_missing_publications_main_projection_placeholder(self) -> None:

@@ -16,6 +16,7 @@ from scripts.publication_record import (
     render_publication_body,
 )
 from scripts.student_record import students_index_path
+from scripts.teaching_record import teaching_index_path
 from scripts.talk_record import talks_index_path
 
 DRAFT_HEADING_RE = re.compile(r"^# DRAFT$", re.MULTILINE)
@@ -61,6 +62,14 @@ def publications_index_source_path(
     publications_dir: Path | None = None,
 ) -> Path:
     return publications_index_path(root, publications_dir=publications_dir)
+
+
+def teaching_index_source_path(
+    root: Path,
+    *,
+    teaching_dir: Path | None = None,
+) -> Path:
+    return teaching_index_path(root, teaching_dir=teaching_dir)
 
 
 def normalize_front_matter_value(raw_value: str) -> str:
@@ -182,6 +191,19 @@ def read_publications_index_source(
         publications_index_source_path(
             root,
             publications_dir=publications_dir,
+        )
+    )
+
+
+def read_teaching_index_source(
+    root: Path,
+    *,
+    teaching_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        teaching_index_source_path(
+            root,
+            teaching_dir=teaching_dir,
         )
     )
 
