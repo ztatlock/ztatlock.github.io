@@ -97,9 +97,11 @@ repeated listing shape in `site/pubs/index.dj`
 
 The current recommended next slice is:
 
-- keep `site/pubs/index.dj` as the authored wrapper
-- project the repeated publication-entry sections from bundle data
-- keep framing and `Aggregators` hand-authored
+- add canonical `pub_date` to publication bundles
+- backfill exact ISO dates across the current publications set
+- use that date truth to simplify the later projection slice
+- then project the repeated publication-entry sections from bundle data while
+  keeping framing and `Aggregators` hand-authored
 
 That collection-shape decision is now implemented:
 
@@ -118,6 +120,7 @@ So the publications campaign is explicitly a staged project.
 It now has to separate:
 
 - deciding the collection index route shape
+- establishing the last missing ordering fact in bundle data
 - projecting the page incrementally without pretending all entries are already
   equally rich local publication pages
 

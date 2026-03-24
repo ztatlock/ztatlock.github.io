@@ -78,6 +78,13 @@ meant to be read, maintained, and extended over time.
 - `plans/publications-slice-3-route-cutover.md`
   Implemented record of the publications route-cutover slice that moved the
   wrapper to `site/pubs/index.dj` and canonicalized `/pubs/`.
+- `plans/publications-slice-4-pub-date.md`
+  Planned next slice for adding canonical publication dates to bundles before
+  projection.
+- `plans/publications-slice-5-projection.md`
+  Planned follow-on slice for replacing the repeated publication-entry blocks
+  in `site/pubs/index.dj` with projection from bundle data once `pub_date`
+  backfill is in place.
 - `plans/talks-slice-2-collection-index.md`
   Implemented record of the talks-index-route slice that moved the talks
   wrapper to `site/talks/index.dj` and canonicalized `/talks/`.

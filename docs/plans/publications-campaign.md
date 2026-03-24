@@ -294,7 +294,38 @@ Status:
 
 - implemented
 
-### Slice 4: Publication Index Projection
+### Slice 4: Publication Dates
+
+Goal:
+
+- establish canonical publication dates as bundle truth before index
+  projection
+
+Likely scope:
+
+- add required `pub_date` for non-draft publication bundles
+- use full ISO `YYYY-MM-DD` strings
+- backfill `pub_date` across the current non-draft publication set
+- validate and parse the new field
+- verify that later index ordering can derive from `pub_date` descending with
+  title tie-break
+
+Why here:
+
+- the route shape is now stable
+- bundle coverage is complete
+- a sober audit found that current publication ordering is not derivable from
+  slug sort alone
+- `pub_date` is a better source of truth than a temporary collection order
+  manifest
+
+Stop and reassess after this slice.
+
+Status:
+
+- planned
+
+### Slice 5: Publication Index Projection
 
 Goal:
 
@@ -307,8 +338,23 @@ Likely scope:
   - `__PUBLICATIONS_MAIN_LIST__`
   - `__PUBLICATIONS_WORKSHOP_LIST__`
 - keep hand-authored framing and aggregator links in Djot
+- retire the temporary runtime dependence on literal hand-authored publication
+  entries inside the wrapper
+
+Why here:
+
+- route shape is now stable
+- bundle coverage is complete
+- publication dates should be available as bundle truth
+- the remaining duplication is the repeated entry body in `site/pubs/index.dj`
+- the later ordering rule can now derive from `pub_date` instead of a
+  collection-specific order manifest
 
 Stop and reassess after this slice.
+
+Status:
+
+- planned
 
 ### Slice 5+: Local Artifact Enrichment
 
@@ -341,20 +387,25 @@ As this campaign proceeds, we want:
 
 The next publications slice should be:
 
-- publication index projection
+- publication dates
 
 Concretely, that means:
 
-1. keep `site/pubs/index.dj` as the authored wrapper
-2. introduce generated list blocks for the repeated publication-entry sections
-3. keep framing and `Aggregators` hand-authored
-4. stop and reassess before any artifact-enrichment work
+1. add required `pub_date` for non-draft publication bundles
+2. backfill exact ISO dates across the current publications set
+3. validate the field and expose it in the publication model
+4. verify that index ordering can derive from `pub_date` descending with title
+   tie-break
+5. stop and reassess before projection
 
-That is the cleanest next move because the collection shape is now stable and
-the remaining repeated structure lives in the hand-authored index body.
+That is the cleanest next move because it replaces the last missing ordering
+fact with bundle truth before we remove the remaining hand-authored repeated
+entry structure.
 
-The detailed planning notes for the first three implemented slices are:
+The detailed planning notes for the first five slices are:
 
 - [publications-slice-1-minimal-bundle-model.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-1-minimal-bundle-model.md)
 - [publications-slice-2-bundle-coverage.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-2-bundle-coverage.md)
 - [publications-slice-3-route-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-3-route-cutover.md)
+- [publications-slice-4-pub-date.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-4-pub-date.md)
+- [publications-slice-5-projection.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-5-projection.md)

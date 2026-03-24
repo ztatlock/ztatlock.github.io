@@ -30,8 +30,9 @@
   collaborators/funding/CV/news work only where structured data clearly earns
   its keep.
 - Keep the hand-authored publications wrapper at `site/pubs/index.dj`, then
-  project the repeated publication index lists from publication bundles while
-  keeping framing and aggregators hand-authored.
+  add canonical `pub_date` to publication bundles, then project the repeated
+  publication index lists from publication bundles while keeping framing and
+  aggregators hand-authored.
 - Introduce small shared data models only for cross-page facts that are
   actually reused, while keeping prose near prose and publication-local facts
   near publication bundles.
