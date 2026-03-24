@@ -1,10 +1,10 @@
 # Students Slice 2: Index Wrapper And Projection
 
-This note defines the recommended next students slice after the canonical
-advising-record model landed in `site/data/students.json`.
+This note records the slice that moved the public students page to a
+projection-backed wrapper after the canonical advising-record model landed in
+`site/data/students.json`.
 
-It is a planning note only.
-No code changes should happen until this route/wrapper shape feels right.
+Status: implemented
 
 It builds on:
 
@@ -162,7 +162,7 @@ For the students page:
 
 The CV projection should remain a later slice with its own condensed renderer.
 
-## Recommended Slice Scope
+## Implemented Slice Scope
 
 1. Add an explicit `students_index_page` route kind.
 2. Add support for reading/rendering a wrapper at `site/students/index.dj`.

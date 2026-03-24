@@ -144,13 +144,16 @@ Why after publications:
 
 Current target:
 
-- keep `site/data/students.json` canonical and use it to drive later student
-  projections
+- keep `site/data/students.json` canonical and use it to drive the public
+  students wrapper plus later CV projection
+
+Implemented outcomes so far:
+
+- canonical student/advising records
+- projection into `site/students/index.dj` at canonical `/students/`
 
 Likely next outcomes:
 
-- canonical student/advising records
-- projection into `site/pages/students.dj`
 - later projection into selected CV subsections
 
 ## Adjacent / Emerging Domains
@@ -222,6 +225,11 @@ Publication follow-on work should continue separately as:
 
 - local artifact enrichment for thinner `detail_page: false` bundles
 - later downstream reuse where publication bundle truth clearly earns it
+
+The next likely slice within the students campaign is:
+
+- projection of the duplicated advising sections in `site/pages/cv.dj` from
+  `site/data/students.json`
 
 And collaborators/funding should be revisited when they naturally fit the
 evolving structured-content model.

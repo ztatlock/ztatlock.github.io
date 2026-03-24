@@ -51,6 +51,7 @@ repo/
   tests/
   site/
     pages/
+    students/
     talks/
     pubs/
     data/
@@ -134,6 +135,18 @@ And may later grow optional talk-local content such as:
 The talks index projects from those bundles without requiring every talk to
 become its own route immediately.
 
+### `site/students/`
+
+Projection-backed public wrapper for the students landing page.
+
+This root currently owns:
+
+- `site/students/index.dj`
+
+Unlike `site/talks/` or `site/pubs/`, this is not a record-bundle root.
+The canonical advising truth still lives in shared data under
+`site/data/students.json`.
+
 ### `site/data/`
 
 Cross-page structured data for facts that should have a single source of
@@ -201,6 +214,8 @@ The build output should mirror the final public site:
 build/
   index.html
   about.html
+  students/
+    index.html
   talks/
     index.html
   pubs/
@@ -261,6 +276,18 @@ The route model should be computed in one place and consumed by:
 This is intentionally talks-specific for now.
 If later campaigns clearly want the same pattern, we can generalize it
 deliberately instead of pretending that abstraction already exists.
+
+### Students Index Page Route
+
+- source: `site/students/index.dj`
+- output: `build/students/index.html`
+- public URL: `/students/`
+- canonical URL: `https://ztatlock.net/students/`
+- draft status: `# DRAFT` in the Djot source
+
+This route is intentionally students-specific for now.
+Its public-wrapper shape matches talks/publications, but its truth still comes
+from the shared-data layer rather than a collection-local bundle root.
 
 ### Publications Index Page Route
 
@@ -349,11 +376,11 @@ Important clarifications:
 
 - talks now use talk-local bundles under `site/talks/` rather than a single
   global `site/data/talks.json`
-- talks is currently at a good checkpoint, and publications is now the active
-  structured-content campaign
-- publication bundles are already canonical for part of the site; the
-  publications campaign should finish the collection/index architecture before
-  trying to invent a second publication registry
+- talks and publications are both at good collection-architecture checkpoints
+- the students campaign is now the active structured-content campaign
+- publication bundles are now canonical for all indexed publications, and
+  publication follow-on work is primarily artifact enrichment or downstream
+  reuse rather than collection-shape cleanup
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV and news should come later, after we have enough experience projecting

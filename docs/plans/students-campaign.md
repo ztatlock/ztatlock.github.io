@@ -39,17 +39,17 @@ multiple important pages.
 
 Current relevant sources:
 
-- `site/pages/students.dj`
-  The richer canonical-looking students/advising page.
+- `site/students/index.dj`
+  The current public students/advising wrapper at `/students/`.
 - `site/pages/cv.dj`
   A second hand-maintained representation of much of the same student data.
 - `site/data/people.json`
   The current shared people registry that student records will likely need to
   integrate with.
 
-Current observed facts:
+Current observed facts from the pre-projection audit:
 
-- `site/pages/students.dj` is `339` lines and has `69` top-level advising
+- the former `site/pages/students.dj` wrapper was `339` lines and had `69` top-level advising
   entries across 6 sections
 - `site/pages/cv.dj` is `1014` lines and repeats most of the same student
   sections in compressed form
@@ -108,7 +108,7 @@ This is cleaner than treating people-registry integration as optional forever.
 
 ## Current Status
 
-Slice 1 is now implemented:
+Slices 1 and 2 are now implemented:
 
 - canonical advising records live in `site/data/students.json`
 - `person_key` is required and resolves through `site/data/people.json`
@@ -116,18 +116,22 @@ Slice 1 is now implemented:
   preserved in ordered typed detail lists
 - source validation now treats the canonical students data file as required
   when the students/CV source pages are present
+- the public wrapper now lives at `site/students/index.dj`
+- the canonical students landing page is now `/students/`
+- repeated students-page section bodies are projected from
+  `site/data/students.json` while the quote, intro, FACET note, and section
+  headings remain hand-authored
 
 The next students work should build on that canonical record model rather than
 reopening the schema without a strong reason.
 
-The next important design decision is not the schema.
-It is the public wrapper/route shape for the students page:
+The next important design work is no longer the public-wrapper decision.
+It is CV reuse:
 
-- keep `site/pages/students.dj` as an ordinary page, or
-- move to a projection-backed wrapper at `site/students/index.dj`
-  with canonical `/students/`
-
-The current recommendation is the second option.
+- define the condensed CV projection policy explicitly
+- decide whether the Ian Briggs omission is intentional or drift
+- project the duplicated advising sections in `site/pages/cv.dj` from
+  `site/data/students.json`
 
 ## Desired End State
 
@@ -307,19 +311,15 @@ Key invariant after this slice:
 
 ### Slice 2: Students Index Wrapper And Projection
 
-Goal:
+Implemented.
 
-- move the public wrapper to `site/students/index.dj`
-- make `/students/` canonical
-- project the repeated students-page section bodies from
+What landed:
+
+- public wrapper moved to `site/students/index.dj`
+- canonical public URL became `/students/`
+- repeated students-page section bodies now project from
   `site/data/students.json`
-
-Keep hand-authored:
-
-- the page intro
-- the Habermann quote
-- the FACET note
-- section framing text, if any
+- the quote, intro, FACET note, and section headings remain hand-authored
 
 Key invariant after this slice:
 
@@ -338,8 +338,8 @@ smuggling them through manual edits.
 
 Key invariant after this slice:
 
-- the main duplicated advising facts in `students.dj` and `cv.dj` now come from
-  one canonical source
+- the main duplicated advising facts in `/students/` and `site/pages/cv.dj`
+  now come from one canonical source
 
 ### Later Follow-On Work
 
@@ -357,12 +357,8 @@ Possible later work:
 
 ## Current Recommendation
 
-The next major structured-content campaign should be:
+The next students slice should be:
 
-- students
-
-The first students slice should be:
-
-- schema and canonical data first
-- no page projection yet
-- strong tests and explicit invariants before consumer cutover
+- CV projection from `site/data/students.json`
+- explicit condensed-renderer policy for CV sections
+- deliberate resolution of the Ian Briggs mismatch

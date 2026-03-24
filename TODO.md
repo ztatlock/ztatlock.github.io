@@ -32,6 +32,9 @@
 - Keep the new `site/data/students.json` model small and canonical, and defer
   richer student follow-ons such as advising dates and student-to-publication
   linkage until a later slice clearly needs them.
+- Keep the public students wrapper at `site/students/index.dj` with canonical
+  `/students/`, and make the next students slice about CV reuse rather than
+  reopening the route/wrapper decision.
 - Keep publication-local facts in `site/pubs/<slug>/publication.json`, keep
   the `site/pubs/index.dj` wrapper hand-authored, and treat later publication
   work as artifact enrichment or downstream reuse rather than a return to

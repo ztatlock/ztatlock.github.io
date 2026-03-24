@@ -73,15 +73,15 @@ meant to be read, maintained, and extended over time.
   and projection slices, plus likely follow-on work.
 - `plans/students-campaign.md`
   Current students structured-content campaign note, with the implemented
-  canonical advising-record slice and the planned projection follow-ons for
-  `students.dj` and the duplicated students sections in `cv.dj`.
+  canonical advising-record and students-index projection slices, plus the
+  planned CV-projection follow-on.
 - `plans/students-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical advising records
   in `site/data/students.json`, including the advising-record schema,
   people-registry integration, and source-validation contract.
 - `plans/students-slice-2-index-projection.md`
-  Detailed next-slice plan for moving the public students wrapper to
-  `site/students/index.dj`, canonicalizing `/students/`, and projecting the
+  Implemented record of the slice that moved the public students wrapper to
+  `site/students/index.dj`, canonicalized `/students/`, and projected the
   repeated section bodies from `site/data/students.json`.
 - `plans/publications-slice-2-bundle-coverage.md`
   Implemented record of the bundle-coverage slice that made every indexed
