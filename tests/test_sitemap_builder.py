@@ -54,6 +54,14 @@ class SitemapBuilderTests(unittest.TestCase):
                 canonical_url="https://ztatlock.net/talks/",
             ),
             route(
+                kind="students_index_page",
+                key="students",
+                source_paths=(Path("site/students/index.dj"), Path("site/data/students.json")),
+                output_relpath="students/index.html",
+                public_url="/students/",
+                canonical_url="https://ztatlock.net/students/",
+            ),
+            route(
                 kind="publication_page",
                 key="demo",
                 source_paths=(Path("pub-demo.dj"), Path("pubs/demo/publication.json")),
@@ -97,7 +105,7 @@ class SitemapBuilderTests(unittest.TestCase):
         )
 
         included = [item.key for item in routes if route_is_sitemap_entry(item)]
-        self.assertEqual(included, ["about", "talks", "demo", "demo-html", "paper"])
+        self.assertEqual(included, ["about", "talks", "students", "demo", "demo-html", "paper"])
 
     def test_build_entries_uses_lookup_and_fallback_today(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

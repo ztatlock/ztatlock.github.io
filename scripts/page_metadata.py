@@ -10,6 +10,7 @@ from scripts.page_source import (
     PageSourceError,
     page_path,
     publications_index_source_path,
+    students_index_source_path,
     read_page_source,
     read_source_path,
     talks_index_source_path,
@@ -354,6 +355,25 @@ def render_talks_index_meta_for_url(
     )
 
 
+def render_students_index_meta_for_url(
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    students_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_djot_source_meta_for_url(
+        students_index_source_path(
+            root,
+            students_dir=students_dir,
+        ),
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
 def render_publications_index_meta_for_url(
     title: str,
     *,
@@ -413,6 +433,7 @@ def render_route_meta_for_url(
     canonical_url: str,
     root: Path,
     page_source_dir: Path | None = None,
+    students_dir: Path | None = None,
     talks_dir: Path | None = None,
     publications_dir: Path | None = None,
     site_url: str = SITE_URL,
@@ -434,6 +455,16 @@ def render_route_meta_for_url(
             canonical_url=canonical_url,
             root=root,
             talks_dir=talks_dir,
+            site_url=site_url,
+        )
+    if route_kind == "students_index_page":
+        if route_key != "students":
+            raise MetadataError(f"unsupported students index route key: {route_key}")
+        return render_students_index_meta_for_url(
+            title,
+            canonical_url=canonical_url,
+            root=root,
+            students_dir=students_dir,
             site_url=site_url,
         )
     if route_kind == "publications_index_page":

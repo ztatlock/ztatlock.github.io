@@ -9,6 +9,7 @@ from typing import Literal
 RouteKind = Literal[
     "ordinary_page",
     "talks_index_page",
+    "students_index_page",
     "publications_index_page",
     "publication_page",
     "static_file",

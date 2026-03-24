@@ -15,6 +15,7 @@ from scripts.publication_record import (
     publication_dir,
     publication_record_path,
 )
+from scripts.student_record import STUDENTS_DATA_NAME, students_index_path
 from scripts.talk_record import TALK_RECORD_NAME, discover_talk_slugs, talk_record_path
 from scripts.talk_record import TALKS_INDEX_NAME, talks_index_path
 
@@ -91,6 +92,41 @@ def _talks_index_routes(config: SiteConfig) -> list[Route]:
     talks_route = _talk_collection_index_route(config)
     if talks_route is not None:
         routes.append(talks_route)
+    return routes
+
+
+def _student_collection_index_route(config: SiteConfig) -> Route | None:
+    index_path = students_index_path(config.repo_root, students_dir=config.students_dir)
+    if not index_path.exists():
+        return None
+
+    legacy_students_page = config.page_source_dir / "students.dj"
+    if legacy_students_page.exists():
+        raise RouteDiscoveryError(
+            f"{legacy_students_page}: students index wrapper must live at {index_path}"
+        )
+
+    source_paths = [index_path]
+    students_data = config.data_dir / STUDENTS_DATA_NAME
+    if students_data.exists():
+        source_paths.append(students_data)
+
+    return Route(
+        kind="students_index_page",
+        key="students",
+        source_paths=tuple(source_paths),
+        output_relpath="students/index.html",
+        public_url="/students/",
+        canonical_url=canonical_url(config.site_url, "/students/"),
+        is_draft=_is_draft_page(index_path),
+    )
+
+
+def _students_index_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    students_route = _student_collection_index_route(config)
+    if students_route is not None:
+        routes.append(students_route)
     return routes
 
 
@@ -295,6 +331,7 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
 def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     ordinary_routes = _ordinary_page_routes(config)
     talks_index_routes = _talks_index_routes(config)
+    students_index_routes = _students_index_routes(config)
     publications_index_routes = _publications_index_routes(config)
     publication_routes = _publication_page_routes(config)
     page_routes = tuple(
@@ -302,6 +339,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
             (
                 *ordinary_routes,
                 *talks_index_routes,
+                *students_index_routes,
                 *publications_index_routes,
                 *publication_routes,
             ),

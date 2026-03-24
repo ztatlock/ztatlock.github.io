@@ -12,6 +12,7 @@ from scripts.page_source import (
     read_page_source,
     read_publications_index_source,
     read_publication_page_source,
+    read_students_index_source,
     read_talks_index_source,
 )
 
@@ -89,8 +90,10 @@ def render_page_html(
     webfiles_url: str,
     aliases: dict[str, str] | None = None,
     page_source_dir: Path | None = None,
+    students_dir: Path | None = None,
     talks_dir: Path | None = None,
     publications_dir: Path | None = None,
+    data_dir: Path | None = None,
     templates_dir: Path | None = None,
 ) -> str:
     actual_templates_dir = templates_dir or (root / "templates")
@@ -111,6 +114,13 @@ def render_page_html(
             source = read_talks_index_source(
                 root,
                 talks_dir=talks_dir,
+            )
+        elif route_kind == "students_index_page":
+            if route_key != "students":
+                raise PageRenderError(f"unsupported students index route key: {route_key}")
+            source = read_students_index_source(
+                root,
+                students_dir=students_dir,
             )
         elif route_kind == "publications_index_page":
             if route_key != "publications":
@@ -139,6 +149,7 @@ def render_page_html(
             root=root,
             site_url=site_url,
             page_source_dir=page_source_dir,
+            students_dir=students_dir,
             talks_dir=talks_dir,
             publications_dir=publications_dir,
         )
@@ -151,6 +162,7 @@ def render_page_html(
             route_key,
             source.body,
             root=root,
+            data_dir=data_dir,
             talks_dir=talks_dir,
             publications_dir=publications_dir,
         )

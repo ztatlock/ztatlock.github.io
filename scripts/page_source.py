@@ -15,6 +15,7 @@ from scripts.publication_record import (
     load_publication_record,
     render_publication_body,
 )
+from scripts.student_record import students_index_path
 from scripts.talk_record import talks_index_path
 
 DRAFT_HEADING_RE = re.compile(r"^# DRAFT$", re.MULTILINE)
@@ -44,6 +45,14 @@ def talks_index_source_path(
     talks_dir: Path | None = None,
 ) -> Path:
     return talks_index_path(root, talks_dir=talks_dir)
+
+
+def students_index_source_path(
+    root: Path,
+    *,
+    students_dir: Path | None = None,
+) -> Path:
+    return students_index_path(root, students_dir=students_dir)
 
 
 def publications_index_source_path(
@@ -147,6 +156,19 @@ def read_talks_index_source(
         talks_index_source_path(
             root,
             talks_dir=talks_dir,
+        )
+    )
+
+
+def read_students_index_source(
+    root: Path,
+    *,
+    students_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        students_index_source_path(
+            root,
+            students_dir=students_dir,
         )
     )
 

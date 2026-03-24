@@ -15,6 +15,7 @@ from scripts.sitebuild.people_registry import (
 )
 
 STUDENTS_DATA_NAME = "students.json"
+STUDENTS_INDEX_NAME = "index.dj"
 STUDENTS_ROOT_KEY = "sections"
 SECTION_ALLOWED_FIELDS = {"key", "title", "cv_title", "records"}
 RECORD_ALLOWED_FIELDS = {"key", "person_key", "name", "label", "details"}
@@ -67,6 +68,14 @@ class StudentSection:
 
 def students_data_path(root: Path, *, students_path: Path | None = None) -> Path:
     return (students_path or (root / "site" / "data" / STUDENTS_DATA_NAME)).resolve()
+
+
+def default_students_dir(root: Path) -> Path:
+    return (root / "site" / "students").resolve()
+
+
+def students_index_path(root: Path, *, students_dir: Path | None = None) -> Path:
+    return (students_dir or default_students_dir(root)) / STUDENTS_INDEX_NAME
 
 
 def _load_json_object_pairs(pairs: list[tuple[str, object]]) -> dict[str, object]:

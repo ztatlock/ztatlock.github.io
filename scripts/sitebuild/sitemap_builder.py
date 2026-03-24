@@ -20,7 +20,7 @@ class SitemapEntry:
 
 
 def route_is_sitemap_entry(route: Route) -> bool:
-    if route.kind in {"ordinary_page", "talks_index_page", "publications_index_page", "publication_page"}:
+    if route.kind in {"ordinary_page", "talks_index_page", "students_index_page", "publications_index_page", "publication_page"}:
         return not route.is_draft
     if route.kind != "static_file":
         return False

@@ -151,6 +151,15 @@ class RouteDiscoveryTests(unittest.TestCase):
             ["site/pubs/index.dj"],
         )
 
+    def test_discovers_students_index_route(self) -> None:
+        route = find_route(self.routes, kind="students_index_page", key="students")
+        self.assertEqual(route.output_relpath, "students/index.html")
+        self.assertEqual(route.public_url, "/students/")
+        self.assertEqual(
+            [path.relative_to(ROOT).as_posix() for path in route.source_paths],
+            ["site/students/index.dj", "site/data/students.json"],
+        )
+
     def test_rejects_legacy_and_collection_talk_wrappers_together(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
@@ -198,6 +207,36 @@ class RouteDiscoveryTests(unittest.TestCase):
                 root,
                 page_source_dir=page_source_dir,
                 publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
+
+    def test_rejects_legacy_and_collection_students_wrappers_together(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            students_dir = root / "site" / "students"
+            data_dir = root / "site" / "data"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            students_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "students.dj").write_text("# Students\n", encoding="utf-8")
+            (students_dir / "index.dj").write_text("# Students\n", encoding="utf-8")
+            (data_dir / "students.json").write_text('{"sections":[]}\n', encoding="utf-8")
+            (data_dir / "people.json").write_text('{"people":{}}\n', encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                students_dir=students_dir,
+                data_dir=data_dir,
                 static_source_dir=static_source_dir,
             )
 
