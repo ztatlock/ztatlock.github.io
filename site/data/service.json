@@ -1,0 +1,1015 @@
+{
+  "records": [
+    {
+      "key": "2029-pacmpl-advisory-board",
+      "series_key": "pacmpl-advisory-board",
+      "year": 2029,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PACMPL Advisory Board",
+      "role": "Member"
+    },
+    {
+      "key": "2029-pldi-steering-committee",
+      "series_key": "pldi-steering-committee",
+      "year": 2029,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PLDI Steering Committee"
+    },
+    {
+      "key": "2028-pacmpl-advisory-board",
+      "series_key": "pacmpl-advisory-board",
+      "year": 2028,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PACMPL Advisory Board",
+      "role": "Member"
+    },
+    {
+      "key": "2028-pldi-steering-committee",
+      "series_key": "pldi-steering-committee",
+      "year": 2028,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PLDI Steering Committee"
+    },
+    {
+      "key": "2027-pacmpl-advisory-board",
+      "series_key": "pacmpl-advisory-board",
+      "year": 2027,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PACMPL Advisory Board",
+      "role": "Member"
+    },
+    {
+      "key": "2027-pldi-steering-committee",
+      "series_key": "pldi-steering-committee",
+      "year": 2027,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PLDI Steering Committee"
+    },
+    {
+      "key": "2027-uw-cse-faculty-graduate-admissions",
+      "series_key": "uw-cse-faculty-graduate-admissions",
+      "year": 2027,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Faculty Graduate Admissions",
+      "role": "Co-chair"
+    },
+    {
+      "key": "2026-dagstuhl-seminar-26022-egraphs",
+      "year": 2026,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "Dagstuhl Seminar 26022: EGRAPHS",
+      "url": "https://www.dagstuhl.de/26022",
+      "details": [
+        "[Seminar Details](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26022)",
+        "[Dagstuhl News](https://www.dagstuhl.de/en/institute/news/2026/dagstuhl-egraphs-2026)"
+      ]
+    },
+    {
+      "key": "2026-egraphs-community-advisory-board",
+      "series_key": "egraphs-community-advisory-board",
+      "year": 2026,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "EGRAPHS Community Advisory Board"
+    },
+    {
+      "key": "2026-icfp-program-committee",
+      "year": 2026,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ICFP",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2026-pacmpl-advisory-board",
+      "series_key": "pacmpl-advisory-board",
+      "year": 2026,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PACMPL Advisory Board",
+      "role": "Member"
+    },
+    {
+      "key": "2026-pldi-steering-committee",
+      "series_key": "pldi-steering-committee",
+      "year": 2026,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PLDI Steering Committee"
+    },
+    {
+      "key": "2026-uw-cse-faculty-graduate-admissions",
+      "series_key": "uw-cse-faculty-graduate-admissions",
+      "year": 2026,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Faculty Graduate Admissions",
+      "role": "Co-chair"
+    },
+    {
+      "key": "2025-egraphs-community-advisory-board",
+      "series_key": "egraphs-community-advisory-board",
+      "year": 2025,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "EGRAPHS Community Advisory Board"
+    },
+    {
+      "key": "2025-fptalks-co-organizer",
+      "series_key": "fptalks",
+      "year": 2025,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "FPTalks",
+      "role": "Co-Organizer",
+      "url": "https://fpbench.org/talks/fptalks25.html"
+    },
+    {
+      "key": "2025-pldi-program-committee-chair",
+      "year": 2025,
+      "view_groups": [
+        "reviewing",
+        "organizing"
+      ],
+      "title": "PLDI",
+      "role": "Program Committee Chair",
+      "url": "https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee",
+      "details": [
+        "[Review Committee](https://pldi25.sigplan.org/committee/pldi-2025-papers-pldi-review-committee)",
+        "[SIGPLAN Announcement](https://www.sigplan.org/announce/2024-09-21-pldi-2025/)"
+      ]
+    },
+    {
+      "key": "2025-uw-cse-faculty-graduate-admissions",
+      "series_key": "uw-cse-faculty-graduate-admissions",
+      "year": 2025,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Faculty Graduate Admissions",
+      "role": "Co-chair"
+    },
+    {
+      "key": "2024-egraphs-community-advisory-board",
+      "series_key": "egraphs-community-advisory-board",
+      "year": 2024,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "EGRAPHS Community Advisory Board"
+    },
+    {
+      "key": "2024-fptalks-co-organizer",
+      "series_key": "fptalks",
+      "year": 2024,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "FPTalks",
+      "role": "Co-Organizer",
+      "url": "https://fpbench.org/talks/fptalks24.html"
+    },
+    {
+      "key": "2024-pldi-workshops-co-chair",
+      "series_key": "pldi-workshops",
+      "year": 2024,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PLDI Workshops",
+      "role": "Co-chair",
+      "url": "https://pldi24.sigplan.org/committee/pldi-2024-organizing-committee"
+    },
+    {
+      "key": "2024-uw-cse-faculty-recruiting",
+      "series_key": "uw-cse-faculty-recruiting",
+      "year": 2024,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Faculty Recruiting",
+      "role": "Co-chair"
+    },
+    {
+      "key": "2023-arith-program-committee",
+      "year": 2023,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ARITH",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2023-asplos-external-review-committee",
+      "year": 2023,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ASPLOS",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2023-egraphs-community-advisory-board",
+      "series_key": "egraphs-community-advisory-board",
+      "year": 2023,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "EGRAPHS Community Advisory Board"
+    },
+    {
+      "key": "2023-egraphs-workshop-co-organizer",
+      "series_key": "egraphs-workshop",
+      "year": 2023,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "EGRAPHS Workshop",
+      "role": "Co-Organizer",
+      "url": "https://pldi23.sigplan.org/home/egraphs-2023"
+    },
+    {
+      "key": "2023-fptalks-co-organizer",
+      "series_key": "fptalks",
+      "year": 2023,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "FPTalks",
+      "role": "Co-Organizer",
+      "url": "https://fpbench.org/talks/fptalks23.html"
+    },
+    {
+      "key": "2023-nsf-grant-review-panel",
+      "year": 2023,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "NSF",
+      "role": "Grant Review Panel"
+    },
+    {
+      "key": "2023-pldi-program-committee",
+      "year": 2023,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "PLDI",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2023-pldi-workshops-co-chair",
+      "series_key": "pldi-workshops",
+      "year": 2023,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PLDI Workshops",
+      "role": "Co-chair",
+      "url": "https://pldi23.sigplan.org/committee/pldi-2023-organizing-committee"
+    },
+    {
+      "key": "2023-pnw-plse-co-organizer",
+      "series_key": "pnw-plse",
+      "year": 2023,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PNW PLSE",
+      "role": "Co-Organizer",
+      "url": "http://pnwplse.org/"
+    },
+    {
+      "key": "2023-uw-cse-faculty-recruiting",
+      "series_key": "uw-cse-faculty-recruiting",
+      "year": 2023,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Faculty Recruiting",
+      "role": "Co-chair"
+    },
+    {
+      "key": "2022-arith-program-committee",
+      "year": 2022,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ARITH",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2022-egraphs-community-advisory-board",
+      "series_key": "egraphs-community-advisory-board",
+      "year": 2022,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "EGRAPHS Community Advisory Board"
+    },
+    {
+      "key": "2022-egraphs-workshop-co-organizer",
+      "series_key": "egraphs-workshop",
+      "year": 2022,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "EGRAPHS Workshop",
+      "role": "Co-Organizer",
+      "url": "https://pldi22.sigplan.org/home/egraphs-2022"
+    },
+    {
+      "key": "2022-fptalks-co-organizer",
+      "series_key": "fptalks",
+      "year": 2022,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "FPTalks",
+      "role": "Co-Organizer",
+      "url": "https://fpbench.org/talks/fptalks22.html"
+    },
+    {
+      "key": "2022-iscsa-tutorial-generalizing-the-isa-to-the-ila-co-organizer",
+      "year": 2022,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "ISCSA Tutorial: Generalizing the ISA to the ILA",
+      "role": "Co-Organizer",
+      "url": "https://princetonuniversity.github.io/isca22-ila-tutorial/"
+    },
+    {
+      "key": "2022-pldi-tutorial-build-your-optimizer-with-egg-co-organizer",
+      "year": 2022,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PLDI Tutorial: Build Your Optimizer with egg",
+      "role": "Co-Organizer",
+      "url": "https://pldi22.sigplan.org/details/pldi-2022-tutorials/6/Build-your-own-optimizer-with-egg-"
+    },
+    {
+      "key": "2022-uw-cse-faculty-recruiting",
+      "series_key": "uw-cse-faculty-recruiting",
+      "year": 2022,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Faculty Recruiting",
+      "role": "Co-chair"
+    },
+    {
+      "key": "2021-asplos-program-committee",
+      "year": 2021,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ASPLOS",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2021-fptalks-co-organizer",
+      "series_key": "fptalks",
+      "year": 2021,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "FPTalks",
+      "role": "Co-Organizer",
+      "url": "https://fpbench.org/talks/fptalks21.html"
+    },
+    {
+      "key": "2021-pldi-program-committee",
+      "year": 2021,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "PLDI",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2021-uw-cse-distinguished-lecture-and-colloquia",
+      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
+      "year": 2021,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Distinguished Lecture and Colloquia",
+      "role": "Organizer"
+    },
+    {
+      "key": "2021-uw-cse-undergraduate-admissions-committee",
+      "series_key": "uw-cse-undergraduate-admissions-committee",
+      "year": 2021,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Undergraduate Admissions Committee"
+    },
+    {
+      "key": "2020-asplos-program-committee",
+      "year": 2020,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ASPLOS",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2020-fptalks-co-organizer",
+      "series_key": "fptalks",
+      "year": 2020,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "FPTalks",
+      "role": "Co-Organizer",
+      "url": "https://fpbench.org/talks/fptalks20.html"
+    },
+    {
+      "key": "2020-oopsla-external-review-committee",
+      "year": 2020,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "OOPSLA",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2020-pldi-external-program-committee",
+      "year": 2020,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "PLDI",
+      "role": "External Program Committee"
+    },
+    {
+      "key": "2020-scf-external-reviewer",
+      "year": 2020,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "SCF",
+      "role": "External Reviewer"
+    },
+    {
+      "key": "2020-src-jump-ada-student-hackathon-organizer",
+      "series_key": "src-jump-ada-student-hackathon",
+      "year": 2020,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "SRC JUMP: Applications Driving Architectures (ADA)",
+      "role": "Student Hackathon Organizer",
+      "url": "https://adacenter.org/"
+    },
+    {
+      "key": "2020-uw-cse-distinguished-lecture-and-colloquia",
+      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
+      "year": 2020,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Distinguished Lecture and Colloquia",
+      "role": "Organizer"
+    },
+    {
+      "key": "2020-uw-cse-diversity-committee",
+      "series_key": "uw-cse-diversity-committee",
+      "year": 2020,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Diversity Committee"
+    },
+    {
+      "key": "2020-uw-cse-undergraduate-admissions-committee",
+      "series_key": "uw-cse-undergraduate-admissions-committee",
+      "year": 2020,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Undergraduate Admissions Committee"
+    },
+    {
+      "key": "2019-cpp-program-committee",
+      "year": 2019,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "CPP",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2019-icfp-external-review-committee",
+      "year": 2019,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ICFP",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2019-pldi-program-committee",
+      "year": 2019,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "PLDI",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2019-src-jump-ada-student-hackathon-organizer",
+      "series_key": "src-jump-ada-student-hackathon",
+      "year": 2019,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "SRC JUMP: Applications Driving Architectures (ADA)",
+      "role": "Student Hackathon Organizer",
+      "url": "https://adacenter.org/"
+    },
+    {
+      "key": "2019-uw-cse-distinguished-lecture-and-colloquia",
+      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
+      "year": 2019,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Distinguished Lecture and Colloquia",
+      "role": "Organizer"
+    },
+    {
+      "key": "2019-uw-cse-diversity-committee",
+      "series_key": "uw-cse-diversity-committee",
+      "year": 2019,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Diversity Committee"
+    },
+    {
+      "key": "2019-uw-cse-grad-culture",
+      "series_key": "uw-cse-grad-culture",
+      "year": 2019,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Grad Culture",
+      "role": "Chair"
+    },
+    {
+      "key": "2019-uw-cse-graduate-admissions-committee",
+      "series_key": "uw-cse-graduate-admissions-committee",
+      "year": 2019,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Graduate Admissions Committee"
+    },
+    {
+      "key": "2019-verification-in-practice-co-organizer",
+      "year": 2019,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "University of Washington Verification in Practice (ViP)",
+      "role": "Co-Organizer",
+      "url": "https://vip.cs.washington.edu/"
+    },
+    {
+      "key": "2018-itp-program-committee",
+      "year": 2018,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ITP",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2018-pldi-plmw-panelist",
+      "year": 2018,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "PLDI Programming Languages Mentoring Workshop (PLMW)",
+      "role": "Panelist"
+    },
+    {
+      "key": "2018-pnw-plse-organizer",
+      "series_key": "pnw-plse",
+      "year": 2018,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "PNW PLSE",
+      "role": "Organizer",
+      "url": "http://pnwplse.org/"
+    },
+    {
+      "key": "2018-popl-program-committee",
+      "year": 2018,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "POPL",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2018-popl-plmw-panelist",
+      "year": 2018,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "POPL Programming Languages Mentoring Workshop (PLMW)",
+      "role": "Panelist"
+    },
+    {
+      "key": "2018-toplas-referee",
+      "year": 2018,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "TOPLAS",
+      "role": "Referee"
+    },
+    {
+      "key": "2018-uw-cse-bsms-admissions-committee",
+      "series_key": "uw-cse-bsms-admissions-committee",
+      "year": 2018,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE BSMS Admissions Committee"
+    },
+    {
+      "key": "2018-uw-cse-distinguished-lecture-and-colloquia",
+      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
+      "year": 2018,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Distinguished Lecture and Colloquia",
+      "role": "Organizer"
+    },
+    {
+      "key": "2018-uw-cse-grad-culture",
+      "series_key": "uw-cse-grad-culture",
+      "year": 2018,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Grad Culture",
+      "role": "Chair"
+    },
+    {
+      "key": "2018-uw-cse-graduate-admissions-committee",
+      "series_key": "uw-cse-graduate-admissions-committee",
+      "year": 2018,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Graduate Admissions Committee"
+    },
+    {
+      "key": "2018-uw-cse-undergraduate-admissions-committee",
+      "series_key": "uw-cse-undergraduate-admissions-committee",
+      "year": 2018,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Undergraduate Admissions Committee"
+    },
+    {
+      "key": "2017-asplos-external-reviewer",
+      "year": 2017,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ASPLOS",
+      "role": "External Reviewer"
+    },
+    {
+      "key": "2017-onward-program-committee",
+      "year": 2017,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "Onward!",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2017-popl-external-reviewer",
+      "year": 2017,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "POPL",
+      "role": "External Reviewer"
+    },
+    {
+      "key": "2017-splash-doctoral-symposium-program-committee",
+      "year": 2017,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "SPLASH Doctoral Symposium",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2017-uw-cse-bsms-admissions-committee",
+      "series_key": "uw-cse-bsms-admissions-committee",
+      "year": 2017,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE BSMS Admissions Committee"
+    },
+    {
+      "key": "2017-uw-cse-grad-culture",
+      "series_key": "uw-cse-grad-culture",
+      "year": 2017,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Grad Culture",
+      "role": "Chair"
+    },
+    {
+      "key": "2017-uw-cse-undergraduate-admissions-committee",
+      "series_key": "uw-cse-undergraduate-admissions-committee",
+      "year": 2017,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Undergraduate Admissions Committee"
+    },
+    {
+      "key": "2017-uw-nsf-stars-mentor",
+      "year": 2017,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "UW NSF STARS",
+      "role": "Mentor"
+    },
+    {
+      "key": "2016-asplos-external-review-committee",
+      "year": 2016,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "ASPLOS",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2016-cpp-program-committee",
+      "year": 2016,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "CPP",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2016-pldi-program-committee",
+      "year": 2016,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "PLDI",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2016-pldi-artifact-evaluation-committee-co-chair",
+      "year": 2016,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "PLDI Artifact Evaluation Committee",
+      "role": "Co-Chair"
+    },
+    {
+      "key": "2016-popl-external-review-committee",
+      "year": 2016,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "POPL",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2016-popl-src-organizer",
+      "year": 2016,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "POPL Student Research Competition (SRC)",
+      "role": "Organizer"
+    },
+    {
+      "key": "2016-uw-cse-bsms-admissions-committee",
+      "series_key": "uw-cse-bsms-admissions-committee",
+      "year": 2016,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE BSMS Admissions Committee"
+    },
+    {
+      "key": "2016-uw-cse-grad-culture",
+      "series_key": "uw-cse-grad-culture",
+      "year": 2016,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Grad Culture",
+      "role": "Chair"
+    },
+    {
+      "key": "2016-uw-cse-visit-days-organizing-committee",
+      "series_key": "uw-cse-visit-days-organizing-committee",
+      "year": 2016,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Visit Days Organizing Committee"
+    },
+    {
+      "key": "2015-coqpl-program-committee",
+      "year": 2015,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "CoqPL",
+      "role": "Program Committee"
+    },
+    {
+      "key": "2015-coqpl-workshop-co-organizer",
+      "year": 2015,
+      "view_groups": [
+        "organizing"
+      ],
+      "title": "CoqPL Workshop",
+      "role": "Co-Organizer",
+      "url": "https://coqpl.cs.washington.edu/"
+    },
+    {
+      "key": "2015-pldi-src-committee",
+      "year": 2015,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "PLDI Student Research Competition (SRC)",
+      "role": "Committee"
+    },
+    {
+      "key": "2015-popl-external-review-committee",
+      "year": 2015,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "POPL",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2015-splash-plmw-co-chair",
+      "year": 2015,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "SPLASH Programming Languages Mentoring Workshop (PLMW)",
+      "role": "Co-Chair"
+    },
+    {
+      "key": "2015-uw-cse-grad-culture",
+      "series_key": "uw-cse-grad-culture",
+      "year": 2015,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Grad Culture",
+      "role": "Chair"
+    },
+    {
+      "key": "2015-uw-cse-visit-days-organizing-committee",
+      "series_key": "uw-cse-visit-days-organizing-committee",
+      "year": 2015,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Visit Days Organizing Committee"
+    },
+    {
+      "key": "2014-oopsla-external-review-committee",
+      "year": 2014,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "OOPSLA",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2014-pldi-external-review-committee",
+      "year": 2014,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "PLDI",
+      "role": "External Review Committee"
+    },
+    {
+      "key": "2014-splash-inspirations-co-organizer-and-speaker",
+      "year": 2014,
+      "view_groups": [
+        "mentoring"
+      ],
+      "title": "SPLASH Inspirations",
+      "role": "Co-Organizer and Speaker"
+    },
+    {
+      "key": "2014-uw-cse-grad-culture",
+      "series_key": "uw-cse-grad-culture",
+      "year": 2014,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Grad Culture",
+      "role": "Chair"
+    },
+    {
+      "key": "2013-uw-cse-grad-culture",
+      "series_key": "uw-cse-grad-culture",
+      "year": 2013,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW CSE Grad Culture",
+      "role": "Chair"
+    },
+    {
+      "key": "2011-ucsd-gradcom",
+      "series_key": "ucsd-gradcom",
+      "year": 2011,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UCSD GradCom",
+      "role": "Student Representative"
+    },
+    {
+      "key": "2010-ucsd-gradcom",
+      "series_key": "ucsd-gradcom",
+      "year": 2010,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UCSD GradCom",
+      "role": "Student Representative"
+    },
+    {
+      "key": "2009-cc-external-reviewer",
+      "year": 2009,
+      "view_groups": [
+        "reviewing"
+      ],
+      "title": "CC",
+      "role": "External Reviewer"
+    },
+    {
+      "key": "2009-ucsd-gradcom",
+      "series_key": "ucsd-gradcom",
+      "year": 2009,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UCSD GradCom",
+      "role": "Student Representative"
+    }
+  ]
+}

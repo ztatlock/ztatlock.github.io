@@ -17,6 +17,10 @@ from scripts.publication_record import (
     load_publication_record,
     publication_page_path,
 )
+from scripts.service_record import (
+    SERVICE_DATA_NAME,
+    find_service_record_issues,
+)
 from scripts.student_record import (
     STUDENTS_DATA_NAME,
     StudentRecordError,
@@ -61,6 +65,7 @@ ROOT_STATIC_SOURCE_NAMES = (
     "style.css",
     "zip-longitude.js",
 )
+SERVICE_DATA_CONSUMER_PAGE_NAMES = ("service.dj",)
 STUDENT_DATA_CONSUMER_PAGE_NAMES = ("cv.dj",)
 TEACHING_DATA_CONSUMER_PAGE_NAMES = ("teaching.dj",)
 
@@ -411,6 +416,20 @@ def _find_teaching_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_service_data_issues(config: SiteConfig) -> list[str]:
+    service_path = config.data_dir / SERVICE_DATA_NAME
+    has_service_consumers = any(
+        (config.page_source_dir / name).exists()
+        for name in SERVICE_DATA_CONSUMER_PAGE_NAMES
+    )
+    if not service_path.exists() and not has_service_consumers:
+        return []
+    return find_service_record_issues(
+        config.repo_root,
+        service_path=service_path,
+    )
+
+
 def find_source_issues(config: SiteConfig) -> list[str]:
     return (
         validate_general_page_metadata(
@@ -424,6 +443,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             publications_dir=config.publications_dir,
             static_source_dir=config.static_source_dir,
         )
+        + _find_service_data_issues(config)
         + _find_teaching_data_issues(config)
         + _find_teaching_projection_issues(config)
         + _find_student_data_issues(config)
