@@ -1,0 +1,354 @@
+{
+  "groups": [
+    {
+      "key": "uw_courses",
+      "records": [
+        {
+          "key": "uw-cse-507",
+          "kind": "course",
+          "code": "UW CSE 507",
+          "title": "Computer-Aided Reasoning for Software",
+          "institution": "University of Washington",
+          "audience_label": "Graduate course",
+          "description_djot": "introducing automated reasoning techniques for the design, analysis, and construction of software",
+          "offerings": [
+            {
+              "year": 2025,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse507/25au/"
+            },
+            {
+              "year": 2023,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse507/23au/"
+            }
+          ]
+        },
+        {
+          "key": "uw-cse-505",
+          "kind": "course",
+          "code": "UW CSE 505",
+          "title": "Concepts of Programming Languages",
+          "institution": "University of Washington",
+          "audience_label": "Graduate course",
+          "description_djot": "using proof assistants to explore transition systems, inductive invariants, type systems, Hoare logic, metatheory",
+          "offerings": [
+            {
+              "year": 2025,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/cse505/25sp/"
+            },
+            {
+              "year": 2023,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse505/23wi/"
+            },
+            {
+              "year": 2021,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/cse505/21sp/"
+            },
+            {
+              "year": 2020,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/cse505/20sp/"
+            },
+            {
+              "year": 2019,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/csep505/19sp/"
+            },
+            {
+              "year": 2018,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse505/18au/"
+            },
+            {
+              "year": 2017,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse505/17au/"
+            },
+            {
+              "year": 2016,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse505/16au/"
+            },
+            {
+              "year": 2015,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse505/15au/"
+            },
+            {
+              "year": 2015,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse505/15wi/"
+            },
+            {
+              "year": 2013,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse505/13au/"
+            }
+          ]
+        },
+        {
+          "key": "uw-cse-341",
+          "kind": "course",
+          "code": "UW CSE 341",
+          "title": "Programming Languages",
+          "institution": "University of Washington",
+          "audience_label": "Undergraduate course",
+          "description_djot": "exploring informal operational semantics, functional programming vs. OOP, static vs. dynamic typing",
+          "offerings": [
+            {
+              "year": 2024,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse341/24au/"
+            },
+            {
+              "year": 2022,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse341/22au/"
+            },
+            {
+              "year": 2021,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse341/21wi/"
+            },
+            {
+              "year": 2020,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse341/20wi/"
+            },
+            {
+              "year": 2019,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse341/19wi/"
+            },
+            {
+              "year": 2018,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse341/18wi/"
+            },
+            {
+              "year": 2015,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/cse341/15sp/"
+            },
+            {
+              "year": 2014,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/cse341/14sp/"
+            }
+          ]
+        },
+        {
+          "key": "uw-cse-331",
+          "kind": "course",
+          "code": "UW CSE 331",
+          "title": "Software Design and Implementation",
+          "institution": "University of Washington",
+          "audience_label": "Undergraduate course",
+          "description_djot": "exploring specification, invariants, testing, debugging, modular design",
+          "offerings": [
+            {
+              "year": 2024,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse331/24wi/"
+            },
+            {
+              "year": 2018,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/cse331/18sp/"
+            },
+            {
+              "year": 2017,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse331/17wi/"
+            },
+            {
+              "year": 2016,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse331/16wi/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "special_topics",
+      "records": [
+        {
+          "key": "uw-cse-599z-accurate-computing",
+          "kind": "course",
+          "code": "UW CSE 599Z",
+          "title": "Accurate Computing",
+          "institution": "University of Washington",
+          "offerings": [
+            {
+              "year": 2017,
+              "term": "Spring",
+              "url": "https://homes.cs.washington.edu/~ztatlock/599z-17sp/"
+            }
+          ],
+          "details": [
+            "Numerical computing and computational fabrication"
+          ]
+        },
+        {
+          "key": "uw-cse-599w-systems-verification",
+          "kind": "course",
+          "code": "UW CSE 599W",
+          "title": "Systems Verification",
+          "institution": "University of Washington",
+          "offerings": [
+            {
+              "year": 2016,
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/cse599w/16sp/"
+            }
+          ],
+          "details": [
+            "Formally verifying systems implementations",
+            "Co-taught with [Xi Wang][] and [Bryan Parno][]"
+          ]
+        },
+        {
+          "key": "uw-cse-506-advanced-topics-in-programming-languages",
+          "kind": "course",
+          "code": "UW CSE 506",
+          "title": "Advanced Topics in Programming Languages",
+          "institution": "University of Washington",
+          "offerings": [
+            {
+              "year": 2014,
+              "term": "Winter",
+              "url": "https://courses.cs.washington.edu/courses/cse506/14wi/"
+            }
+          ],
+          "details": [
+            "Proof assistants, dependent types, and systems verificiation"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "summer_school",
+      "records": [
+        {
+          "key": "deepspec-verifying-distributed-systems-implementations-in-coq",
+          "kind": "summer_school",
+          "title": "Verifying Distributed Systems Implementations in Coq",
+          "events": [
+            {
+              "label": "DeepSpec Summer School 2018",
+              "url": "https://deepspec.org/event/dsss18/index.html",
+              "links": [
+                {
+                  "label": "materials",
+                  "url": "https://github.com/DeepSpec/dsss18/tree/master/verdi"
+                },
+                {
+                  "label": "videos",
+                  "url": "https://www.youtube.com/playlist?list=PLfUFpssdHws8SFWawW1hDlimBM_H2eXNk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "marktoberdorf-analysis-and-optimizations-with-equality-saturation",
+          "kind": "summer_school",
+          "title": "Analysis and Optimizations with Equality Saturation",
+          "events": [
+            {
+              "label": "Marktoberdorf Summer School 2024",
+              "url": "https://sites.google.com/view/marktoberdorf2024/home"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "teaching_assistant",
+      "records": [
+        {
+          "key": "ucsd-cse-231",
+          "kind": "course",
+          "code": "UCSD CSE 231",
+          "title": "Advanced Compiler Design",
+          "institution": "University of California San Diego",
+          "audience_label": "Graduate course",
+          "description_djot": "exploring program analyses and compiler optimizations",
+          "offerings": [
+            {
+              "year": 2012,
+              "term": "Autumn"
+            },
+            {
+              "year": 2011,
+              "term": "Autumn"
+            },
+            {
+              "year": 2011,
+              "term": "Spring"
+            }
+          ]
+        },
+        {
+          "key": "ucsd-cse-130",
+          "kind": "course",
+          "code": "UCSD CSE 130",
+          "title": "Programming Languages",
+          "institution": "University of California San Diego",
+          "audience_label": "Undergraduate course",
+          "description_djot": "exploring functional programming, static vs. dynamic typing, and logic programming",
+          "offerings": [
+            {
+              "year": 2012,
+              "term": "Winter"
+            }
+          ]
+        },
+        {
+          "key": "purdue-cs-180",
+          "kind": "course",
+          "code": "Purdue CS 180",
+          "title": "Introduction to Java Programming",
+          "institution": "Purdue University",
+          "audience_label": "Undergraduate course",
+          "description_djot": "introducing students to Java programming: variables, conditionals, loops, recursion, testing, modular design, and basic systems programming",
+          "offerings": [
+            {
+              "year": 2007,
+              "term": "Spring"
+            },
+            {
+              "year": 2006,
+              "term": "Autumn"
+            },
+            {
+              "year": 2006,
+              "term": "Spring"
+            },
+            {
+              "year": 2005,
+              "term": "Autumn"
+            },
+            {
+              "year": 2005,
+              "term": "Spring"
+            },
+            {
+              "year": 2004,
+              "term": "Autumn"
+            },
+            {
+              "year": 2004,
+              "term": "Spring"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

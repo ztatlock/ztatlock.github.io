@@ -24,6 +24,7 @@ from scripts.student_record import (
     load_student_sections,
     students_index_path,
 )
+from scripts.teaching_record import TEACHING_DATA_NAME, find_teaching_record_issues
 from scripts.talk_record import TALKS_INDEX_NAME, find_talk_record_issues, talks_index_path
 from scripts.page_metadata import (
     validate_general_source_metadata_path,
@@ -49,6 +50,7 @@ ROOT_STATIC_SOURCE_NAMES = (
     "zip-longitude.js",
 )
 STUDENT_DATA_CONSUMER_PAGE_NAMES = ("cv.dj",)
+TEACHING_DATA_CONSUMER_PAGE_NAMES = ("teaching.dj",)
 
 
 def _legacy_publication_link_issues(path: Path) -> list[str]:
@@ -324,6 +326,20 @@ def _find_student_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_teaching_data_issues(config: SiteConfig) -> list[str]:
+    teaching_path = config.data_dir / TEACHING_DATA_NAME
+    has_teaching_consumers = any(
+        (config.page_source_dir / name).exists()
+        for name in TEACHING_DATA_CONSUMER_PAGE_NAMES
+    )
+    if not teaching_path.exists() and not has_teaching_consumers:
+        return []
+    return find_teaching_record_issues(
+        config.repo_root,
+        teaching_path=teaching_path,
+    )
+
+
 def find_source_issues(config: SiteConfig) -> list[str]:
     return (
         validate_general_page_metadata(
@@ -337,6 +353,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             publications_dir=config.publications_dir,
             static_source_dir=config.static_source_dir,
         )
+        + _find_teaching_data_issues(config)
         + _find_student_data_issues(config)
         + _find_student_projection_issues(config)
         + find_talk_record_issues(
