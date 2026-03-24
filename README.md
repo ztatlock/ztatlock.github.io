@@ -14,6 +14,8 @@ source with a small Python build engine behind `make`.
   Authored talks collection index wrapper rendered at `/talks/`.
 - `site/students/index.dj`
   Authored students landing-page wrapper rendered at `/students/`.
+- `site/teaching/index.dj`
+  Authored teaching landing-page wrapper rendered at `/teaching/`.
 - `site/data/teaching.json`
   Canonical teaching/course records for the teaching page plus later homepage
   and CV reuse.
@@ -46,8 +48,9 @@ Metadata rules:
   `site/talks/<slug>/talk.json` into `site/talks/index.dj`.
 - The students landing page is projected from canonical advising records in
   `site/data/students.json` into `site/students/index.dj`.
-- Teaching page, homepage, and CV teaching facts should converge on canonical
-  course records in `site/data/teaching.json`.
+- The teaching landing page is projected from canonical course records in
+  `site/data/teaching.json` into `site/teaching/index.dj`, and later homepage
+  and CV teaching facts should reuse the same records.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -109,6 +112,8 @@ Notes:
 - Authored talks index links in Djot should use `talks/`, not `talks.html`.
 - Authored students index links in Djot should use `students/`, not
   `students.html`.
+- Authored teaching index links in Djot should use `teaching/`, not
+  `teaching.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.
   Keep `site/templates/REFS` only for non-person references such as `PGAS`

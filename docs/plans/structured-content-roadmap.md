@@ -158,7 +158,7 @@ Likely next outcomes:
 
 ### 4. Teaching
 
-This should be the next major campaign.
+This is the current shared-data campaign at a good public-page checkpoint.
 
 Why next:
 
@@ -172,16 +172,20 @@ Why next:
 Current target:
 
 - keep canonical teaching records in `site/data/teaching.json`
-- likely move the public teaching wrapper to `site/teaching/index.dj` with
-  canonical `/teaching/`
+- keep the public teaching wrapper at `site/teaching/index.dj` with canonical
+  `/teaching/`
 - later project compressed views into the CV and homepage
 
 Implemented outcomes so far:
 
 - canonical teaching records now live in `site/data/teaching.json`
-- source validation and focused tests now enforce the slice-1 teaching model
+- source validation and focused tests now enforce the teaching data model
+- the public teaching wrapper now lives at `site/teaching/index.dj`
+- the canonical public teaching URL is now `/teaching/`
+- the repeated public teaching blocks now project from canonical teaching data
 - the canonical teaching record now includes the previously missing
-  Marktoberdorf Summer School 2024 entry
+  Marktoberdorf Summer School 2024 entry, which now also appears on the public
+  teaching page
 
 Important design choice:
 

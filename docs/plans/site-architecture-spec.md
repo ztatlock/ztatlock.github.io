@@ -52,6 +52,7 @@ repo/
   site/
     pages/
     students/
+    teaching/
     talks/
     pubs/
     data/
@@ -147,6 +148,18 @@ Unlike `site/talks/` or `site/pubs/`, this is not a record-bundle root.
 The canonical advising truth still lives in shared data under
 `site/data/students.json`.
 
+### `site/teaching/`
+
+Projection-backed public wrapper for the teaching landing page.
+
+This root currently owns:
+
+- `site/teaching/index.dj`
+
+Like `site/students/`, this is not a record-bundle root.
+The canonical teaching truth still lives in shared data under
+`site/data/teaching.json`.
+
 ### `site/data/`
 
 Cross-page structured data for facts that should have a single source of
@@ -216,6 +229,8 @@ build/
   index.html
   about.html
   students/
+    index.html
+  teaching/
     index.html
   talks/
     index.html
@@ -302,6 +317,18 @@ This is intentionally publications-specific for now.
 It follows the same broad collection-wrapper pattern as talks, but the route
 model should only be generalized further when another domain clearly earns it.
 
+### Teaching Index Page Route
+
+- source: `site/teaching/index.dj`
+- output: `build/teaching/index.html`
+- public URL: `/teaching/`
+- canonical URL: `https://ztatlock.net/teaching/`
+- draft status: `# DRAFT` in the Djot source
+
+This route is intentionally teaching-specific for now.
+Its public-wrapper shape matches students/talks/publications, but its truth
+comes from shared teaching data under `site/data/teaching.json`.
+
 ### Publication Page Route
 
 - source: `site/pubs/<slug>/publication.json` and canonical local files
@@ -383,8 +410,8 @@ Important clarifications:
 - publication bundles are now canonical for all indexed publications, and
   publication follow-on work is primarily artifact enrichment or downstream
   reuse rather than collection-shape cleanup
-- the next major shared-data campaign should be teaching, using the same
-  shared-data-plus-thin-wrapper pattern proven by students
+- the teaching campaign is now at a good public-page checkpoint with canonical
+  teaching records projected into `site/teaching/index.dj` at `/teaching/`
 - service is likely the next strongest follow-on after teaching because it is
   also repeated across a public page, the homepage, and the CV
 - collaborators may become a small adjacent campaign, but they should not

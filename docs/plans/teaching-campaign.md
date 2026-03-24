@@ -8,9 +8,9 @@ Establish a small canonical teaching data source that removes repeated
 course/offering facts across the public teaching page, the homepage, and the
 CV while keeping framing and page-local prose hand-authored.
 
-## Why Teaching Next
+## Why Teaching Was The Right Next Campaign
 
-Teaching is now the strongest next major shared-data domain because:
+Teaching was the strongest next major shared-data domain because:
 
 - the facts are already duplicated across three consumers:
   - `site/pages/teaching.dj`
@@ -20,11 +20,12 @@ Teaching is now the strongest next major shared-data domain because:
 - the domain is more cross-page than collaborators or funding today
 - it fits the same shared-data-first pattern that worked well for students
 
-## Current Surface Audit
+## Historical Pre-Slice-2 Surface Audit
 
 ### Public Teaching Page
 
-`site/pages/teaching.dj` currently contains:
+The pre-projection public teaching page at `site/pages/teaching.dj`
+contained:
 
 - 4 recurring UW instructor course families
 - 25 linked UW instructor offerings across those courses
@@ -33,7 +34,7 @@ Teaching is now the strongest next major shared-data domain because:
 - 1 hand-authored teaching-award note
 - 1 hand-authored Related section
 
-Important current characteristics:
+Important pre-slice-2 characteristics:
 
 - the page is mostly structured repeated content
 - each recurring course has a stable code, title, audience label, description,
@@ -77,8 +78,8 @@ Important current characteristics:
 
 The current teaching page is not the only place with teaching-related facts.
 
-At least one teaching item currently appears elsewhere but not on
-`site/pages/teaching.dj`:
+At least one teaching item appeared elsewhere but not on
+the old `site/pages/teaching.dj` page:
 
 - Marktoberdorf Summer School, August 2024
 
@@ -98,8 +99,8 @@ pattern:
 Recommended target shape:
 
 - canonical data: `site/data/teaching.json`
-- likely future public wrapper: `site/teaching/index.dj`
-- likely canonical public route: `/teaching/`
+- public wrapper: `site/teaching/index.dj`
+- canonical public route: `/teaching/`
 
 This is intentionally not a bundle-root campaign.
 Teaching records do not currently need per-record local prose, assets, or
@@ -242,7 +243,7 @@ Implemented outcomes so far:
 - focused teaching-model tests cover duplicate keys, required groups, course
   invariants, and summer-school invariants
 - the canonical record now includes Marktoberdorf Summer School 2024 even
-  though the current public teaching page still does not
+  though the old pre-projection public teaching page did not
 
 ### Slice 2. Public Teaching Wrapper / Route Cutover
 
@@ -251,9 +252,19 @@ Implemented outcomes so far:
 - project the repeated teaching blocks from `site/data/teaching.json`
 - keep the award note and Related section hand-authored
 
-Planned in:
+Implemented in:
 
 - [teaching-slice-2-index-projection.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-slice-2-index-projection.md)
+
+Implemented outcomes so far:
+
+- the public teaching wrapper now lives at `site/teaching/index.dj`
+- the canonical public teaching URL is now `/teaching/`
+- the repeated UW course, special-topics, and summer-school blocks now project
+  from `site/data/teaching.json`
+- authored internal links now use `teaching/` instead of `teaching.html`
+- the public teaching page now includes the canonical Marktoberdorf Summer
+  School 2024 entry
 
 ### Slice 3. Homepage Recent Teaching Projection
 

@@ -1,10 +1,10 @@
 # Teaching Slice 2: Public Wrapper And Projection
 
-This note plans the slice that should turn the public teaching page into a
+This note records the slice that turned the public teaching page into a
 projection-backed wrapper after the canonical teaching-record model landed in
 `site/data/teaching.json`.
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -20,13 +20,13 @@ Remove the biggest remaining duplication seam in the teaching campaign:
 - but the public teaching page is still a fully hand-maintained second copy of
   much of the same structured content
 
-This slice should make the public teaching page a thin wrapper around
+This slice makes the public teaching page a thin wrapper around
 canonical teaching records while deliberately leaving homepage and CV reuse for
 later slices.
 
 ## Recommendation
 
-The cleaner next step is:
+The cleaner step was:
 
 - keep the canonical truth in `site/data/teaching.json`
 - move the public wrapper to `site/teaching/index.dj`
@@ -142,10 +142,10 @@ Important scope boundary:
 
 This slice should not be treated as a no-op refactor.
 
-Expected public-facing changes include:
+The implemented public-facing changes include:
 
 - the canonical public route becomes `/teaching/`
-- authored internal links should change from `teaching.html` to `teaching/`
+- authored internal links now use `teaching/` instead of `teaching.html`
 - the public teaching page should now include the canonical
   `Marktoberdorf Summer School 2024` entry that is already present in
   `site/data/teaching.json`
@@ -154,7 +154,7 @@ Those are intended output changes, not regressions.
 
 ## Validation Contract
 
-The source-validation contract after this slice should enforce:
+The source-validation contract after this slice enforces:
 
 - wrapper at `site/teaching/index.dj`
 - no legacy `site/pages/teaching.dj`

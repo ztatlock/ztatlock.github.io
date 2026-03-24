@@ -77,16 +77,16 @@ meant to be read, maintained, and extended over time.
   planned CV-projection follow-on.
 - `plans/teaching-campaign.md`
   Current teaching structured-content campaign note, including the initial
-  audit, the shared-data-first design recommendation, the implemented
-  canonical-model slice, and the planned public-wrapper, homepage, and CV
-  slices.
+  audit, the shared-data-first design recommendation, and the implemented
+  canonical-model and public-wrapper slices, plus the planned homepage and CV
+  follow-ons.
 - `plans/teaching-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical teaching records
   in `site/data/teaching.json` before any public wrapper or projection
   cutovers.
 - `plans/teaching-slice-2-index-projection.md`
-  Planned record of the slice that should move the public teaching wrapper to
-  `site/teaching/index.dj`, canonicalize `/teaching/`, and project the
+  Implemented record of the slice that moved the public teaching wrapper to
+  `site/teaching/index.dj`, canonicalized `/teaching/`, and projected the
   repeated teaching blocks from `site/data/teaching.json`.
 - `plans/students-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical advising records
