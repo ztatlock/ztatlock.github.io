@@ -84,6 +84,10 @@ meant to be read, maintained, and extended over time.
   Implemented record of the slice that established canonical teaching records
   in `site/data/teaching.json` before any public wrapper or projection
   cutovers.
+- `plans/teaching-slice-2-index-projection.md`
+  Planned record of the slice that should move the public teaching wrapper to
+  `site/teaching/index.dj`, canonicalize `/teaching/`, and project the
+  repeated teaching blocks from `site/data/teaching.json`.
 - `plans/students-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical advising records
   in `site/data/students.json`, including the advising-record schema,

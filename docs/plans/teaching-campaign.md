@@ -251,6 +251,10 @@ Implemented outcomes so far:
 - project the repeated teaching blocks from `site/data/teaching.json`
 - keep the award note and Related section hand-authored
 
+Planned in:
+
+- [teaching-slice-2-index-projection.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-slice-2-index-projection.md)
+
 ### Slice 3. Homepage Recent Teaching Projection
 
 - derive the recent-teaching bullets on `site/pages/index.dj`
