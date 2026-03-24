@@ -142,11 +142,12 @@ Why after publications:
 - but they do not currently unlock an architectural seam as directly as the
   publications collection shape does
 
-Likely target:
+Current target:
 
-- `site/data/students.json`
+- keep `site/data/students.json` canonical and use it to drive later student
+  projections
 
-Likely outcomes:
+Likely next outcomes:
 
 - canonical student/advising records
 - projection into `site/pages/students.dj`

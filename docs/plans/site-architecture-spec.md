@@ -144,10 +144,10 @@ This directory should stay small and disciplined.
 Current canonical records:
 
 - `site/data/people.json`
+- `site/data/students.json`
 
 Likely next campaign domains:
 
-- `site/data/students.json`
 - selected projection-oriented records for CV, funding, or similar repeated
   factual domains if they clearly earn their keep
 

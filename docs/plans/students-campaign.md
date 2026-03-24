@@ -1,7 +1,7 @@
 # Students Campaign
 
-This note captures the next major structured-content campaign after talks and
-publications.
+This note captures the current major structured-content campaign after talks
+and publications.
 
 It builds on:
 
@@ -105,6 +105,20 @@ That means this campaign can likely afford a stronger first-slice invariant:
   variants like `Zhiyuan (Kevin) Yan` remain possible
 
 This is cleaner than treating people-registry integration as optional forever.
+
+## Current Status
+
+Slice 1 is now implemented:
+
+- canonical advising records live in `site/data/students.json`
+- `person_key` is required and resolves through `site/data/people.json`
+- thesis links, co-advisors, alumni outcomes, and free-form notes are
+  preserved in ordered typed detail lists
+- source validation now treats the canonical students data file as required
+  when the students/CV source pages are present
+
+The next students work should build on that canonical record model rather than
+reopening the schema without a strong reason.
 
 ## Desired End State
 
@@ -241,6 +255,16 @@ This campaign should not initially include:
 - faculty/service/funding modeling
 - per-student detail pages
 
+Important future follow-ons that should stay explicit but out of the current
+slice sequence:
+
+- optional advising-date fields if later ordering/timeline views clearly earn
+  them
+- optional student-to-publication linkage for papers coauthored with a given
+  student
+- continued enrichment of thesis URLs and alumni outcomes as canonical records
+  evolve
+
 ## Recommended Slice Order
 
 ### Slice 1: Canonical Advising Record Model
@@ -257,6 +281,13 @@ Why first:
 - it establishes one canonical truth before we start projecting multiple pages
 - it forces the milestone-vs-person model question to be answered explicitly
 - it keeps the first slice reviewable and testable
+
+Implemented in:
+
+- `site/data/students.json`
+- `scripts/student_record.py`
+- `tests/test_student_record.py`
+- `scripts/sitebuild/source_validate.py`
 
 Key invariant after this slice:
 

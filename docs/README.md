@@ -72,13 +72,13 @@ meant to be read, maintained, and extended over time.
   implemented minimal-bundle, bundle-coverage, route-cutover, `pub_date`,
   and projection slices, plus likely follow-on work.
 - `plans/students-campaign.md`
-  Current planning note for the next major structured-content campaign,
-  focused on canonical advising records that can drive both `students.dj`
-  and the duplicated students sections in `cv.dj`.
+  Current students structured-content campaign note, with the implemented
+  canonical advising-record slice and the planned projection follow-ons for
+  `students.dj` and the duplicated students sections in `cv.dj`.
 - `plans/students-slice-1-canonical-model.md`
-  Detailed first-slice plan for `site/data/students.json`, including the
-  proposed advising-record schema, people-registry integration, and invariants
-  to establish before any students-page projection work.
+  Implemented record of the slice that established canonical advising records
+  in `site/data/students.json`, including the advising-record schema,
+  people-registry integration, and source-validation contract.
 - `plans/publications-slice-2-bundle-coverage.md`
   Implemented record of the bundle-coverage slice that made every indexed
   publication a canonical local bundle before the publications route-cutover

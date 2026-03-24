@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-23.
+Last updated: 2026-03-24.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -23,7 +23,9 @@ notes.
 
 - [x] Establish the canonical publication-bundle pattern under `site/pubs/` for publication pages that have local records today.
 - [ ] Decide which talks actually need talk-local detail pages instead of index-only bundles (`site/talks/`, `site/pages/talk-2023-05-egg-uiuc.dj`).
-- [ ] Implement the slice-1 canonical advising-record model for `site/data/students.json`, including required `person_key`, ordered section/record structure, and typed detail items (`docs/plans/students-slice-1-canonical-model.md`, `site/pages/students.dj`, `site/pages/cv.dj`).
+- [x] Implement the slice-1 canonical advising-record model for `site/data/students.json`, including required `person_key`, ordered section/record structure, and typed detail items (`docs/plans/students-slice-1-canonical-model.md`, `site/data/students.json`, `scripts/student_record.py`).
+- [ ] Plan the next students slice to project canonical advising records into `site/pages/students.dj` while preserving hand-authored framing (`docs/plans/students-campaign.md`, `site/pages/students.dj`, `site/data/students.json`).
+- [ ] Decide whether the current omission of Ian Briggs from the CV visiting-students section is intentional or drift to remove during the students campaign (`site/pages/students.dj`, `site/pages/cv.dj`, `docs/plans/students-campaign.md`).
 
 ## Open TODOs In Source Files
 

@@ -1,9 +1,10 @@
 # Students Slice 1: Canonical Advising Record Model
 
-This note defines the exact intended scope of the first students slice.
+This note defines and records the exact scope of the first students slice.
 
-It is a planning note only.
-No code or source-data conversion should happen until this shape looks right.
+This slice is now implemented.
+It remains useful as the durable statement of the canonical advising-record
+model that later students slices should build on.
 
 It builds on:
 
@@ -23,9 +24,9 @@ This slice should answer three questions cleanly:
 3. What is the smallest schema that can later drive both `students.dj` and the
    students section of `cv.dj`?
 
-## Recommended Data Shape
+## Implemented Data Shape
 
-The first canonical file should likely look like:
+The canonical file now looks like this in shape:
 
 ```json
 {
@@ -189,7 +190,7 @@ The `djot` field should hold the exact inline/renderable text fragment for
 that detail line.
 That keeps the model simple while preserving the current authored wording.
 
-## Recommended First-Slice Invariants
+## Implemented First-Slice Invariants
 
 The first slice should enforce:
 
@@ -210,7 +211,7 @@ The first slice should enforce:
     both `students.dj` and the CV students section unless a later review
     establishes a justified exception
 
-## What This Slice Should Not Do
+## What This Slice Did Not Do
 
 This slice should not:
 
@@ -221,9 +222,9 @@ This slice should not:
 - invent per-student detail pages
 - over-normalize placements, companies, or degree programs
 
-## Tests To Add
+## Tests Added
 
-The first slice should include focused tests for:
+The implemented slice includes focused tests for:
 
 - loading a valid `students.json`
 - duplicate section keys

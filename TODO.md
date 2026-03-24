@@ -29,6 +29,9 @@
   students next, with publication artifact enrichment as follow-on work and
   later collaborators/funding/CV/news work only where structured data clearly
   earns its keep.
+- Keep the new `site/data/students.json` model small and canonical, and defer
+  richer student follow-ons such as advising dates and student-to-publication
+  linkage until a later slice clearly needs them.
 - Keep publication-local facts in `site/pubs/<slug>/publication.json`, keep
   the `site/pubs/index.dj` wrapper hand-authored, and treat later publication
   work as artifact enrichment or downstream reuse rather than a return to
