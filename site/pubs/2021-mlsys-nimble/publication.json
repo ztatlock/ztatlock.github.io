@@ -1,5 +1,6 @@
 {
   "listing_group": "main",
+  "pub_date": "2021-03-15",
   "title": "Nimble: Efficiently Compiling Dynamic Neural Networks for Model Inference",
   "authors": [
     { "name": "Haichen Shen", "ref": "Haichen Shen" },

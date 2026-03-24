@@ -1,5 +1,6 @@
 {
   "listing_group": "main",
+  "pub_date": "2008-10-19",
   "title": "Deep Typechecking and Refactoring",
   "authors": [
     { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },

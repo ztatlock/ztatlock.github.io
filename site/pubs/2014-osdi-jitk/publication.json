@@ -1,6 +1,7 @@
 {
   "detail_page": false,
   "listing_group": "main",
+  "pub_date": "2014-10-06",
   "primary_link": "publisher",
   "title": "Jitk: A Trustworthy In-Kernel Interpreter Infrastructure",
   "authors": [

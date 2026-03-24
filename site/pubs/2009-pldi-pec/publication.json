@@ -1,5 +1,6 @@
 {
   "listing_group": "main",
+  "pub_date": "2009-06-15",
   "title": "Proving Optimizations Correct using Parameterized Program Equivalence",
   "authors": [
     { "name": "Sudipta Kundu", "ref": "Sudipta Kundu" },

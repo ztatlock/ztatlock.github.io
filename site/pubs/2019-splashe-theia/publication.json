@@ -1,6 +1,7 @@
 {
   "detail_page": false,
   "listing_group": "workshop",
+  "pub_date": "2019-10-25",
   "primary_link": "publisher",
   "title": "Theia: Automatically Generating Correct Program State Visualizations",
   "authors": [

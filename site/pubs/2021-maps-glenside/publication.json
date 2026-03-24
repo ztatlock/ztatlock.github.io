@@ -1,5 +1,6 @@
 {
   "listing_group": "main",
+  "pub_date": "2021-06-20",
   "title": "Pure Tensor Program Rewriting via Access Patterns",
   "authors": [
     { "name": "Gus Henry Smith", "ref": "Gus Smith" },

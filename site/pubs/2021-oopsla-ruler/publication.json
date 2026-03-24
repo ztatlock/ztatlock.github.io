@@ -1,5 +1,6 @@
 {
   "listing_group": "main",
+  "pub_date": "2021-10-15",
   "title": "Rewrite Rule Inference Using Equality Saturation",
   "authors": [
     { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },

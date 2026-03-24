@@ -1,6 +1,7 @@
 {
   "detail_page": false,
   "listing_group": "main",
+  "pub_date": "2014-02-22",
   "primary_link": "publisher",
   "title": "SafeDispatch: Securing C++ Virtual Calls from Memory Corruption Attacks",
   "authors": [

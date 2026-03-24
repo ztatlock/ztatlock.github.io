@@ -98,6 +98,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "detail_page": False,
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
@@ -166,6 +167,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "detail_page": False,
                         "listing_group": "workshop",
+                        "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
@@ -242,6 +244,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "detail_page": False,
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Main Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
@@ -259,6 +262,7 @@ class SourceValidateTests(unittest.TestCase):
                 json.dumps(
                     {
                         "listing_group": "workshop",
+                        "pub_date": "2025-01-01",
                         "title": "Workshop Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "Demo Workshop",
@@ -563,6 +567,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "detail_page": False,
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
@@ -639,6 +644,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "detail_page": False,
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
@@ -810,6 +816,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "title": "Demo Paper",
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "description": "Demo description",
@@ -875,6 +882,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "title": "Demo Paper",
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "description": "Demo description",
@@ -943,6 +951,7 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "detail_page": False,
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],

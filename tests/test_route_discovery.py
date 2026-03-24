@@ -239,6 +239,7 @@ class RouteDiscoveryTests(unittest.TestCase):
                     {
                         "title": "Demo Paper",
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
                         "badges": [],
@@ -315,6 +316,7 @@ class RouteDiscoveryTests(unittest.TestCase):
                     {
                         "detail_page": False,
                         "listing_group": "main",
+                        "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],

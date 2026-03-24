@@ -1,6 +1,7 @@
 {
   "detail_page": false,
   "listing_group": "workshop",
+  "pub_date": "2015-01-18",
   "primary_link": "event",
   "title": "Peek: A Formally Verified Peephole Optimization Framework for x86",
   "authors": [

@@ -1,6 +1,7 @@
 {
   "detail_page": false,
   "listing_group": "workshop",
+  "pub_date": "2017-01-21",
   "primary_link": "event",
   "title": "Verification of Implementations of Distributed Systems Under Churn",
   "authors": [

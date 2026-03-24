@@ -1,6 +1,7 @@
 {
   "detail_page": false,
   "listing_group": "main",
+  "pub_date": "2018-01-01",
   "primary_link": "publisher",
   "title": "Automatic Formal Verification for EPICS",
   "authors": [

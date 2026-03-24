@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -82,6 +83,7 @@ class PublicationRecord:
     detail_page: bool
     listing_group: str
     primary_link: str
+    pub_date: date | None
     title: str
     authors: tuple[PublicationPerson, ...]
     venue: str
@@ -166,6 +168,27 @@ def _normalize_optional_true_boolean(
     if not isinstance(raw, bool):
         raise PublicationRecordError(f"{context}: {field} must be a boolean or null")
     return raw
+
+
+def _normalize_optional_date(
+    raw: object,
+    *,
+    context: str,
+    field: str,
+) -> date | None:
+    if raw is None:
+        return None
+    if not isinstance(raw, str):
+        raise PublicationRecordError(f"{context}: {field} must be a string or null")
+    value = raw.strip()
+    if not value:
+        raise PublicationRecordError(f"{context}: {field} must be a non-empty ISO date")
+    try:
+        return date.fromisoformat(value)
+    except ValueError as err:
+        raise PublicationRecordError(
+            f"{context}: {field} must be a valid ISO date (YYYY-MM-DD)"
+        ) from err
 
 
 def _normalize_required_string(
@@ -300,6 +323,7 @@ def load_publication_record(
             "detail_page",
             "listing_group",
             "primary_link",
+            "pub_date",
             "title",
             "authors",
             "venue",
@@ -333,6 +357,11 @@ def load_publication_record(
             raw.get("primary_link"),
             context=str(path),
             field="primary_link",
+        ),
+        pub_date=_normalize_optional_date(
+            raw.get("pub_date"),
+            context=str(path),
+            field="pub_date",
         ),
         title=_normalize_required_string(raw.get("title"), context=str(path), field="title"),
         authors=_normalize_people(raw.get("authors"), context=f"{path}.authors"),
@@ -369,6 +398,8 @@ def _validate_publication_record(record: PublicationRecord, *, context: str) -> 
         raise PublicationRecordError(
             f"{context}: listing_group must be one of {allowed}"
         )
+    if record.pub_date is None:
+        raise PublicationRecordError(f"{context}: missing pub_date")
 
     if record.detail_page:
         if record.primary_link:

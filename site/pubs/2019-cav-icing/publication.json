@@ -1,6 +1,7 @@
 {
   "detail_page": false,
   "listing_group": "main",
+  "pub_date": "2019-07-12",
   "primary_link": "publisher",
   "title": "Icing: Supporting Fast-Math Style Optimizations in a Verified Compiler",
   "authors": [
