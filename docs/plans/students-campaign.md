@@ -126,7 +126,7 @@ The next students work should build on that canonical record model rather than
 reopening the schema without a strong reason.
 
 The next important design work is no longer the public-wrapper decision.
-It is CV reuse:
+One likely follow-on is CV reuse:
 
 - define the condensed CV projection policy explicitly
 - decide whether the Ian Briggs omission is intentional or drift

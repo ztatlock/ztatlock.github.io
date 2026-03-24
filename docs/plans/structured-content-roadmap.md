@@ -226,7 +226,7 @@ Publication follow-on work should continue separately as:
 - local artifact enrichment for thinner `detail_page: false` bundles
 - later downstream reuse where publication bundle truth clearly earns it
 
-The next likely slice within the students campaign is:
+One likely follow-on within the students campaign is:
 
 - projection of the duplicated advising sections in `site/pages/cv.dj` from
   `site/data/students.json`
