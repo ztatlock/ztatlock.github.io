@@ -1,6 +1,6 @@
 # Teaching Slice 1: Canonical Model
 
-Status: planned
+Status: implemented
 
 ## Goal
 
@@ -80,13 +80,13 @@ Additional required fields by `kind`:
 ### `course`
 
 - `code`
-- `institution`
-- `audience_label`
-- `description_djot`
 - ordered `offerings`
 
 Optional fields:
 
+- `institution`
+- `audience_label`
+- `description_djot`
 - ordered `details`
 
 Each `offering` should have:
@@ -124,6 +124,25 @@ After slice 1:
 - offering/event order within a record should be canonical
 - current public/cv/homepage pages should remain unchanged
 - no projection or route decisions should be forced yet
+
+## Implemented Result
+
+This slice landed as:
+
+- `site/data/teaching.json`
+- `scripts/teaching_record.py`
+- `tests/test_teaching_record.py`
+- `scripts/sitebuild/source_validate.py`
+- `tests/test_source_validate.py`
+
+It established:
+
+- canonical ordered teaching groups under `site/data/teaching.json`
+- structured `course` and `summer_school` record validation
+- a source-validation contract requiring the teaching registry when the
+  authored teaching page exists
+- backfilled canonical records that already include the previously missing
+  Marktoberdorf Summer School 2024 entry
 
 ## Design Notes
 

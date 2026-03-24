@@ -176,6 +176,13 @@ Current target:
   canonical `/teaching/`
 - later project compressed views into the CV and homepage
 
+Implemented outcomes so far:
+
+- canonical teaching records now live in `site/data/teaching.json`
+- source validation and focused tests now enforce the slice-1 teaching model
+- the canonical teaching record now includes the previously missing
+  Marktoberdorf Summer School 2024 entry
+
 Important design choice:
 
 - do not over-normalize pedagogy or course nuance into rigid enums too early

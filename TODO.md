@@ -36,8 +36,8 @@
   `/students/`, and treat CV reuse as one likely follow-on rather than
   reopening the route/wrapper decision prematurely.
 - Keep the planned teaching campaign shared-data-first:
-  canonical records in `site/data/teaching.json`, a thin public teaching
-  wrapper, and later homepage/CV renderers over the same records.
+  canonical records in `site/data/teaching.json`, a thin future public
+  teaching wrapper, and later homepage/CV renderers over the same records.
 - Keep publication-local facts in `site/pubs/<slug>/publication.json`, keep
   the `site/pubs/index.dj` wrapper hand-authored, and treat later publication
   work as artifact enrichment or downstream reuse rather than a return to

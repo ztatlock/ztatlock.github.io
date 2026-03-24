@@ -14,6 +14,9 @@ source with a small Python build engine behind `make`.
   Authored talks collection index wrapper rendered at `/talks/`.
 - `site/students/index.dj`
   Authored students landing-page wrapper rendered at `/students/`.
+- `site/data/teaching.json`
+  Canonical teaching/course records for the teaching page plus later homepage
+  and CV reuse.
 - `site/pubs/<slug>/`
   Publication records and local publication assets.
 - `site/static/`
@@ -43,6 +46,8 @@ Metadata rules:
   `site/talks/<slug>/talk.json` into `site/talks/index.dj`.
 - The students landing page is projected from canonical advising records in
   `site/data/students.json` into `site/students/index.dj`.
+- Teaching page, homepage, and CV teaching facts should converge on canonical
+  course records in `site/data/teaching.json`.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -87,8 +92,9 @@ Multi-machine guardrail:
 Normal workflow:
 1. Edit source under `site/`.
 2. Update or add metadata in page front matter, shared data like
-   `site/data/students.json`, talk records under `site/talks/<slug>/talk.json`,
-   or publication records under `site/pubs/<slug>/publication.json`.
+   `site/data/students.json` or `site/data/teaching.json`, talk records under
+   `site/talks/<slug>/talk.json`, or publication records under
+   `site/pubs/<slug>/publication.json`.
 3. Run `make build`.
 4. Run `make check`.
 5. Commit once the authoritative checks pass.
@@ -132,7 +138,9 @@ Publication storage/linking policy is documented in
 
 GitHub Pages deploys the generated `build/` artifact through
 [.github/workflows/pages.yml](.github/workflows/pages.yml).
-The custom domain (`CNAME`) is copied from `site/static/`.
+The repo Pages settings control the active custom domain.
+`site/static/CNAME` is still copied into the generated artifact from
+`site/static/`.
 
 ## Roadmap
 

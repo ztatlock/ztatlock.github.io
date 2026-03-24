@@ -158,10 +158,10 @@ Current canonical records:
 
 - `site/data/people.json`
 - `site/data/students.json`
+- `site/data/teaching.json`
 
-Likely next campaign domains:
+Likely future campaign domains:
 
-- teaching records under `site/data/teaching.json`
 - later service, collaborators, funding, or similar repeated factual domains if
   they clearly earn their keep
 

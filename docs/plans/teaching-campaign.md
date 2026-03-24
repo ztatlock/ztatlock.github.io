@@ -1,6 +1,6 @@
 # Teaching Campaign
 
-Status: planned next major structured-content campaign
+Status: active major structured-content campaign
 
 ## Goal
 
@@ -131,9 +131,9 @@ Recommended `course` fields:
 - `kind`
 - `code`
 - `title`
-- `institution`
-- `audience_label`
-- `description_djot`
+- optional `institution`
+- optional `audience_label`
+- optional `description_djot`
 - ordered `offerings`
 - optional ordered `details`
 
@@ -161,6 +161,17 @@ Recommended `details` and `links` items:
 - small Djot strings or `{label, url}` pairs
 - enough to preserve current notes like "Co-taught with [Xi Wang][] and
   [Bryan Parno][]" without inventing a larger ontology yet
+
+The implemented slice-1 model is slightly more permissive than this initial
+draft:
+
+- `course` records still require `code`, `title`, and ordered `offerings`
+- `institution`, `audience_label`, and `description_djot` are optional
+- every `course` record must include at least one of `description_djot` or
+  ordered `details`
+
+That keeps the model honest for special-topics and teaching-assistant records
+without forcing empty filler fields.
 
 ## Ordering Recommendation
 
@@ -199,6 +210,23 @@ otherwise:
 - add loader/validator tests
 - backfill canonical records for the current teaching/CV/homepage content
 - stop before any page projection
+
+Implemented in:
+
+- `site/data/teaching.json`
+- `scripts/teaching_record.py`
+- `tests/test_teaching_record.py`
+- `scripts/sitebuild/source_validate.py`
+
+Implemented outcomes so far:
+
+- canonical teaching records now live in `site/data/teaching.json`
+- source validation now requires the teaching registry when the teaching page
+  exists
+- focused teaching-model tests cover duplicate keys, required groups, course
+  invariants, and summer-school invariants
+- the canonical record now includes Marktoberdorf Summer School 2024 even
+  though the current public teaching page still does not
 
 ### Slice 2. Public Teaching Wrapper / Route Cutover
 
