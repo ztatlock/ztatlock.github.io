@@ -71,6 +71,10 @@ meant to be read, maintained, and extended over time.
   Current publications structured-content campaign note, including the
   implemented minimal-bundle, bundle-coverage, route-cutover, `pub_date`,
   and projection slices, plus likely follow-on work.
+- `plans/students-campaign.md`
+  Current planning note for the next major structured-content campaign,
+  focused on canonical advising records that can drive both `students.dj`
+  and the duplicated students sections in `cv.dj`.
 - `plans/publications-slice-2-bundle-coverage.md`
   Implemented record of the bundle-coverage slice that made every indexed
   publication a canonical local bundle before the publications route-cutover
