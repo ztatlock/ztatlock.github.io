@@ -96,6 +96,9 @@ class PageRendererTests(unittest.TestCase):
         )
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+        self.assertNotIn("__PUBLICATIONS_MAIN_LIST__", html)
+        self.assertNotIn("__PUBLICATIONS_WORKSHOP_LIST__", html)
+        self.assertIn("Target-Aware Implementation of Real Expressions", html)
 
     def test_rewrites_static_asset_target(self) -> None:
         html = '<link rel="stylesheet" href="style.css">'

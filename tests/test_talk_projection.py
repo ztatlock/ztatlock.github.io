@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.sitebuild.talk_projection import (
+from scripts.sitebuild.page_projection import (
     TALKS_LIST_PLACEHOLDER,
     apply_page_projections,
     render_talks_list_djot,
@@ -107,6 +107,75 @@ class TalkProjectionTests(unittest.TestCase):
                     body,
                     root=root,
                     talks_dir=talks_dir,
+                ),
+                body,
+            )
+
+    def test_applies_publications_projection_only_to_publications_index(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pubs_dir = root / "site" / "pubs"
+            main_dir = pubs_dir / "2025-test-main"
+            main_dir.mkdir(parents=True)
+            (main_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2025-01-01",
+                        "primary_link": "publisher",
+                        "title": "Main Paper",
+                        "authors": [{"name": "Demo Author", "ref": "Demo Author"}],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/main"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            workshop_dir = pubs_dir / "2025-test-workshop"
+            workshop_dir.mkdir(parents=True)
+            (workshop_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "workshop",
+                        "pub_date": "2025-01-02",
+                        "primary_link": "publisher",
+                        "title": "Workshop Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "Demo Workshop",
+                        "links": {"publisher": "https://example.test/workshop"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            body = (
+                "# Publications\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n"
+            )
+            rendered = apply_page_projections(
+                "publications_index_page",
+                "publications",
+                body,
+                root=root,
+                publications_dir=pubs_dir,
+            )
+            self.assertNotIn("__PUBLICATIONS_MAIN_LIST__", rendered)
+            self.assertNotIn("__PUBLICATIONS_WORKSHOP_LIST__", rendered)
+            self.assertIn("https://example.test/main", rendered)
+            self.assertIn("https://example.test/workshop", rendered)
+
+            self.assertEqual(
+                apply_page_projections(
+                    "ordinary_page",
+                    "about",
+                    body,
+                    root=root,
+                    publications_dir=pubs_dir,
                 ),
                 body,
             )

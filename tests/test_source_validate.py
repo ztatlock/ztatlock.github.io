@@ -10,57 +10,7 @@ from scripts.sitebuild.source_validate import find_source_issues
 
 
 class SourceValidateTests(unittest.TestCase):
-    def test_reports_publications_index_entry_missing_bundle(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            root = Path(tmpdir).resolve()
-            pages = root / "site" / "pages"
-            pubs = root / "site" / "pubs"
-            templates = root / "site" / "templates"
-            data = root / "site" / "data"
-            static = root / "site" / "static"
-            pages.mkdir(parents=True)
-            pubs.mkdir(parents=True)
-            templates.mkdir(parents=True)
-            data.mkdir(parents=True)
-            (static / "img").mkdir(parents=True)
-            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
-
-            (pubs / "index.dj").write_text(
-                "---\n"
-                "description: Publications\n"
-                "---\n\n"
-                "# Publications\n\n"
-                "## Conference and Journal Papers\n\n"
-                "{.pubs}\n"
-                ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](https://example.test/paper)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
-                ":::\n\n"
-                "## Workshop Papers\n\n"
-                "{.pubs}\n"
-                ":::\n\n"
-                "## Aggregators\n\n"
-                "- [DBLP](https://dblp.org/)\n",
-                encoding="utf-8",
-            )
-
-            config = load_site_config(
-                root,
-                page_source_dir=pages,
-                publications_dir=pubs,
-                templates_dir=templates,
-                data_dir=data,
-                static_source_dir=static,
-            )
-            self.assertEqual(
-                find_source_issues(config),
-                [f"{pubs / 'index.dj'}: indexed publication missing canonical bundle: 2025-test-demo"],
-            )
-
-    def test_reports_non_draft_publication_bundle_missing_from_index(self) -> None:
+    def test_reports_missing_publications_main_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
@@ -86,96 +36,9 @@ class SourceValidateTests(unittest.TestCase):
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n\n"
                 "- [DBLP](https://dblp.org/)\n",
-                encoding="utf-8",
-            )
-
-            pub_dir = pubs / "2025-test-demo"
-            pub_dir.mkdir()
-            (pub_dir / "publication.json").write_text(
-                json.dumps(
-                    {
-                        "detail_page": False,
-                        "listing_group": "main",
-                        "pub_date": "2025-01-01",
-                        "primary_link": "publisher",
-                        "title": "Demo Paper",
-                        "authors": [{"name": "Demo Author", "ref": ""}],
-                        "venue": "DemoConf",
-                        "links": {"publisher": "https://example.test/paper"},
-                        "talks": [],
-                    }
-                ),
-                encoding="utf-8",
-            )
-
-            config = load_site_config(
-                root,
-                page_source_dir=pages,
-                publications_dir=pubs,
-                templates_dir=templates,
-                data_dir=data,
-                static_source_dir=static,
-            )
-            self.assertEqual(
-                find_source_issues(config),
-                [f"{pubs / 'index.dj'}: non-draft publication bundle missing from publications index: 2025-test-demo"],
-            )
-
-    def test_reports_publications_listing_group_mismatch(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            root = Path(tmpdir).resolve()
-            pages = root / "site" / "pages"
-            pubs = root / "site" / "pubs"
-            templates = root / "site" / "templates"
-            data = root / "site" / "data"
-            static = root / "site" / "static"
-            pages.mkdir(parents=True)
-            pubs.mkdir(parents=True)
-            templates.mkdir(parents=True)
-            data.mkdir(parents=True)
-            (static / "img").mkdir(parents=True)
-            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
-
-            (pubs / "index.dj").write_text(
-                "---\n"
-                "description: Publications\n"
-                "---\n\n"
-                "# Publications\n\n"
-                "## Conference and Journal Papers\n\n"
-                "{.pubs}\n"
-                ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](https://example.test/paper)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
-                ":::\n\n"
-                "## Workshop Papers\n\n"
-                "{.pubs}\n"
-                ":::\n\n"
-                "## Aggregators\n\n"
-                "- [DBLP](https://dblp.org/)\n",
-                encoding="utf-8",
-            )
-
-            pub_dir = pubs / "2025-test-demo"
-            pub_dir.mkdir()
-            (pub_dir / "publication.json").write_text(
-                json.dumps(
-                    {
-                        "detail_page": False,
-                        "listing_group": "workshop",
-                        "pub_date": "2025-01-01",
-                        "primary_link": "publisher",
-                        "title": "Demo Paper",
-                        "authors": [{"name": "Demo Author", "ref": ""}],
-                        "venue": "DemoConf",
-                        "links": {"publisher": "https://example.test/paper"},
-                        "talks": [],
-                    }
-                ),
                 encoding="utf-8",
             )
 
@@ -190,12 +53,11 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [
-                    f"{pubs / 'index.dj'}: listing_group mismatch for 2025-test-demo: "
-                    "index=main, bundle=workshop"
+                    f"{pubs / 'index.dj'}: publications index page must contain __PUBLICATIONS_MAIN_LIST__"
                 ],
             )
 
-    def test_accepts_fully_covered_publications_index_with_mixed_bundle_modes(self) -> None:
+    def test_reports_missing_publications_workshop_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
@@ -218,20 +80,111 @@ class SourceValidateTests(unittest.TestCase):
                 "## Conference and Journal Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-main}\n"
-                "*[Main Paper](https://example.test/main)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
-                ":::\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-workshop}\n"
-                "*[Workshop Paper](pubs/2025-test-workshop/)* \\\n"
+                "## Aggregators\n\n"
+                "- [DBLP](https://dblp.org/)\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pubs / 'index.dj'}: publications index page must contain __PUBLICATIONS_WORKSHOP_LIST__"
+                ],
+            )
+
+    def test_reports_literal_publication_entry_blocks_after_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                "{#2025-test-demo}\n"
+                "*[Demo Paper](https://example.test/paper)* \\\n"
                 "  Demo Author\n"
                 "\\\n"
-                "Demo Workshop 2025\n\n"
+                "DemoConf 2025\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
+                "## Aggregators\n\n"
+                "- [DBLP](https://dblp.org/)\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pubs / 'index.dj'}: publications index page must not contain literal publication entry blocks"
+                ],
+            )
+
+    def test_accepts_publications_index_projection_wrapper_with_mixed_bundle_modes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n\n"
                 "- [DBLP](https://dblp.org/)\n",
                 encoding="utf-8",
@@ -549,14 +502,11 @@ class SourceValidateTests(unittest.TestCase):
                 "## Conference and Journal Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](https://example.test/paper)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n",
                 encoding="utf-8",
             )
@@ -626,14 +576,11 @@ class SourceValidateTests(unittest.TestCase):
                 "## Conference and Journal Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](https://example.test/paper)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n",
                 encoding="utf-8",
             )
@@ -797,14 +744,11 @@ class SourceValidateTests(unittest.TestCase):
                 "## Conference and Journal Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](pubs/2025-test-demo/)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n",
                 encoding="utf-8",
             )
@@ -863,14 +807,11 @@ class SourceValidateTests(unittest.TestCase):
                 "## Conference and Journal Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](pubs/2025-test-demo/)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n",
                 encoding="utf-8",
             )
@@ -932,14 +873,11 @@ class SourceValidateTests(unittest.TestCase):
                 "## Conference and Journal Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](https://example.test/paper)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n",
                 encoding="utf-8",
             )

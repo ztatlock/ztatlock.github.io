@@ -15,7 +15,7 @@ from scripts.page_source import (
     read_talks_index_source,
 )
 
-from .talk_projection import TalkProjectionError, apply_page_projections
+from .page_projection import PageProjectionError, apply_page_projections
 
 HTML_TARGET_RE = re.compile(r'((?:href|src)=["\'])([^"\']+)(["\'])')
 IGNORED_TARGET_PREFIXES = (
@@ -152,8 +152,9 @@ def render_page_html(
             source.body,
             root=root,
             talks_dir=talks_dir,
+            publications_dir=publications_dir,
         )
-    except TalkProjectionError as err:
+    except PageProjectionError as err:
         raise PageRenderError(str(err)) from err
 
     djot_input = rendered_body.rstrip() + "\n\n" + refs_text

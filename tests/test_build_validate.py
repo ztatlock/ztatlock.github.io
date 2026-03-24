@@ -190,15 +190,11 @@ class BuildValidateTests(unittest.TestCase):
                 "## Conference and Journal Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
-                "{#2025-test-demo}\n"
-                "*[Demo Paper](https://example.test/paper)* \\\n"
-                "  Demo Author\n"
-                "\\\n"
-                "DemoConf 2025\n\n"
-                ":::\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
                 "## Workshop Papers\n\n"
                 "{.pubs}\n"
                 ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
                 "## Aggregators\n\n"
                 "- [DBLP](https://dblp.org/)\n",
                 encoding="utf-8",

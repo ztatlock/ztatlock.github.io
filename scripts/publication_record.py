@@ -112,6 +112,12 @@ def publication_page_path(slug: str) -> str:
     return f"pubs/{slug}/"
 
 
+def publication_index_title_url(record: PublicationRecord) -> str:
+    if record.detail_page:
+        return publication_page_path(record.slug)
+    return record.links[record.primary_link]
+
+
 def publication_year(slug: str) -> str:
     year, _, _ = slug.partition("-")
     if len(year) != 4 or not year.isdigit():
@@ -532,6 +538,19 @@ def _render_venue_line(record: PublicationRecord) -> str:
     if not record.badges:
         return line
     return line + " \\\n" + " \\\n".join(record.badges)
+
+
+def render_publication_index_entry(record: PublicationRecord) -> str:
+    title_url = publication_index_title_url(record)
+    return "\n".join(
+        [
+            f"{{#{record.slug}}}",
+            f"*[{record.title}]({title_url})* \\",
+            _render_authors(record.authors),
+            "\\",
+            _render_venue_line(record),
+        ]
+    )
 
 
 def _render_photo_block(image_path: str, target_path: str, alt_text: str) -> str:
