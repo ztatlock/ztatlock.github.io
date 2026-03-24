@@ -213,13 +213,14 @@ The usual shape should be:
 
 ## Current Recommendation
 
-The current structured-content campaign is:
-
-- publications
-
-The next major campaigns after that should be:
+The next major structured-content campaign should be:
 
 - students
+
+Publication follow-on work should continue separately as:
+
+- local artifact enrichment for thinner `detail_page: false` bundles
+- later downstream reuse where publication bundle truth clearly earns it
 
 And collaborators/funding should be revisited when they naturally fit the
 evolving structured-content model.

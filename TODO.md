@@ -26,9 +26,9 @@
 
 - Follow the structured-content campaign sequence in
   `docs/plans/structured-content-roadmap.md`:
-  publications now, then students, with later
-  collaborators/funding/CV/news work only where structured data clearly earns
-  its keep.
+  students next, with publication artifact enrichment as follow-on work and
+  later collaborators/funding/CV/news work only where structured data clearly
+  earns its keep.
 - Keep publication-local facts in `site/pubs/<slug>/publication.json`, keep
   the `site/pubs/index.dj` wrapper hand-authored, and treat later publication
   work as artifact enrichment or downstream reuse rather than a return to

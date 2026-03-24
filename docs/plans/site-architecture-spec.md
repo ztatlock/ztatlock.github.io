@@ -201,10 +201,10 @@ The build output should mirror the final public site:
 build/
   index.html
   about.html
-  publications.html
   talks/
     index.html
   pubs/
+    index.html
     2024-asplos-lakeroad/
       index.html
       2024-asplos-lakeroad.pdf
@@ -217,10 +217,6 @@ build/
 ```
 
 This is the deployed site artifact.
-
-The publications campaign may intentionally revise this shape if the site moves
-from the current `publications.html` index page to a collection index at
-`/pubs/`.
 
 ## Route Model
 
@@ -265,6 +261,18 @@ The route model should be computed in one place and consumed by:
 This is intentionally talks-specific for now.
 If later campaigns clearly want the same pattern, we can generalize it
 deliberately instead of pretending that abstraction already exists.
+
+### Publications Index Page Route
+
+- source: `site/pubs/index.dj`
+- output: `build/pubs/index.html`
+- public URL: `/pubs/`
+- canonical URL: `https://ztatlock.net/pubs/`
+- draft status: `# DRAFT` in the Djot source
+
+This is intentionally publications-specific for now.
+It follows the same broad collection-wrapper pattern as talks, but the route
+model should only be generalized further when another domain clearly earns it.
 
 ### Publication Page Route
 
