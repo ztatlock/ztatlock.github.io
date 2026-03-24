@@ -24,7 +24,7 @@ notes.
 - [x] Establish the canonical publication-bundle pattern under `site/pubs/` for publication pages that have local records today.
 - [ ] Decide which talks actually need talk-local detail pages instead of index-only bundles (`site/talks/`, `site/pages/talk-2023-05-egg-uiuc.dj`).
 - [x] Implement the slice-1 canonical advising-record model for `site/data/students.json`, including required `person_key`, ordered section/record structure, and typed detail items (`docs/plans/students-slice-1-canonical-model.md`, `site/data/students.json`, `scripts/student_record.py`).
-- [ ] Plan the next students slice to project canonical advising records into `site/pages/students.dj` while preserving hand-authored framing (`docs/plans/students-campaign.md`, `site/pages/students.dj`, `site/data/students.json`).
+- [ ] Implement the students index-wrapper/projection slice: move the public wrapper to `site/students/index.dj`, canonicalize `/students/`, and project the repeated section bodies from `site/data/students.json` while preserving authored framing (`docs/plans/students-slice-2-index-projection.md`, `site/data/students.json`, `site/pages/students.dj`).
 - [ ] Decide whether the current omission of Ian Briggs from the CV visiting-students section is intentional or drift to remove during the students campaign (`site/pages/students.dj`, `site/pages/cv.dj`, `docs/plans/students-campaign.md`).
 
 ## Open TODOs In Source Files

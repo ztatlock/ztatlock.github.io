@@ -79,6 +79,10 @@ meant to be read, maintained, and extended over time.
   Implemented record of the slice that established canonical advising records
   in `site/data/students.json`, including the advising-record schema,
   people-registry integration, and source-validation contract.
+- `plans/students-slice-2-index-projection.md`
+  Detailed next-slice plan for moving the public students wrapper to
+  `site/students/index.dj`, canonicalizing `/students/`, and projecting the
+  repeated section bodies from `site/data/students.json`.
 - `plans/publications-slice-2-bundle-coverage.md`
   Implemented record of the bundle-coverage slice that made every indexed
   publication a canonical local bundle before the publications route-cutover

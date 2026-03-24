@@ -120,13 +120,24 @@ Slice 1 is now implemented:
 The next students work should build on that canonical record model rather than
 reopening the schema without a strong reason.
 
+The next important design decision is not the schema.
+It is the public wrapper/route shape for the students page:
+
+- keep `site/pages/students.dj` as an ordinary page, or
+- move to a projection-backed wrapper at `site/students/index.dj`
+  with canonical `/students/`
+
+The current recommendation is the second option.
+
 ## Desired End State
 
 The intended long-term shape is:
 
 - one canonical shared-data file for advising records, likely
   `site/data/students.json`
-- `site/pages/students.dj` becomes a wrapper around projected section blocks
+- `site/students/index.dj` becomes the public wrapper around projected section
+  blocks
+- canonical students route becomes `/students/`
 - the duplicated students sections in `site/pages/cv.dj` project from the same
   canonical records with a more condensed renderer
 - page-specific framing remains hand-authored
@@ -244,7 +255,7 @@ This campaign should include:
 
 - canonical advising records for the current students page sections
 - explicit integration policy with `site/data/people.json`
-- projection into `site/pages/students.dj`
+- projection into the public students wrapper, likely `site/students/index.dj`
 - later projection into the duplicated students sections in `site/pages/cv.dj`
 
 This campaign should not initially include:
@@ -294,11 +305,13 @@ Key invariant after this slice:
 - every advising entry currently maintained on the students page can be
   represented canonically in `site/data/students.json`
 
-### Slice 2: Students Page Projection
+### Slice 2: Students Index Wrapper And Projection
 
 Goal:
 
-- make `site/pages/students.dj` a wrapper around projected section blocks from
+- move the public wrapper to `site/students/index.dj`
+- make `/students/` canonical
+- project the repeated students-page section bodies from
   `site/data/students.json`
 
 Keep hand-authored:
@@ -310,8 +323,8 @@ Keep hand-authored:
 
 Key invariant after this slice:
 
-- the richer students page is no longer a second source of truth for advising
-  facts
+- the richer public students page is no longer a second source of truth for
+  advising facts and has a clean canonical route/wrapper shape
 
 ### Slice 3: CV Students Projection
 
