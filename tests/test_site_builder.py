@@ -14,6 +14,7 @@ class SiteBuilderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             page_source_dir = root / "site" / "pages"
+            teaching_dir = root / "custom" / "teaching"
             talks_dir = root / "site" / "talks"
             publications_dir = root / "site" / "pubs"
             templates_dir = root / "site" / "templates"
@@ -22,6 +23,7 @@ class SiteBuilderTests(unittest.TestCase):
             img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
+            teaching_dir.mkdir(parents=True)
             talks_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
             templates_dir.mkdir(parents=True)
@@ -43,6 +45,16 @@ class SiteBuilderTests(unittest.TestCase):
                 "---\n"
                 "# Talks\n\n"
                 "__TALKS_LIST__\n",
+                encoding="utf-8",
+            )
+            (teaching_dir / "index.dj").write_text(
+                "---\n"
+                "description: Teaching page\n"
+                "---\n"
+                "# Teaching\n\n"
+                "__TEACHING_UW_COURSES_LIST__\n\n"
+                "__TEACHING_SPECIAL_TOPICS_LIST__\n\n"
+                "__TEACHING_SUMMER_SCHOOL_LIST__\n",
                 encoding="utf-8",
             )
 
@@ -104,6 +116,70 @@ class SiteBuilderTests(unittest.TestCase):
             (templates_dir / "REFS").write_text("", encoding="utf-8")
 
             (data_dir / "people.json").write_text('{"people": {}}', encoding="utf-8")
+            (data_dir / "teaching.json").write_text(
+                json.dumps(
+                    {
+                        "groups": [
+                            {
+                                "key": "uw_courses",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-507",
+                                        "kind": "course",
+                                        "code": "UW CSE 507",
+                                        "title": "Computer-Aided Reasoning for Software",
+                                        "description_djot": "Doctoral course.",
+                                        "offerings": [{"year": 2025, "term": "Spring", "url": "https://example.com/507"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "special_topics",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-599x",
+                                        "kind": "course",
+                                        "code": "UW CSE 599X",
+                                        "title": "Topics in Program Synthesis",
+                                        "details": ["Co-taught special-topics seminar."],
+                                        "offerings": [{"year": 2024, "term": "Autumn", "url": "https://example.com/599x"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "summer_school",
+                                "records": [
+                                    {
+                                        "key": "marktoberdorf-2024",
+                                        "kind": "summer_school",
+                                        "title": "Marktoberdorf Summer School 2024",
+                                        "events": [
+                                            {
+                                                "label": "Marktoberdorf Summer School, August 2024",
+                                                "url": "https://example.com/marktoberdorf",
+                                            }
+                                        ],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "teaching_assistant",
+                                "records": [
+                                    {
+                                        "key": "ucsd-cse-231",
+                                        "kind": "course",
+                                        "code": "UCSD CSE 231",
+                                        "title": "Graduate Programming Languages",
+                                        "details": ["Teaching assistant."],
+                                        "offerings": [{"year": 2009, "term": "Spring"}],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
             (static_source_dir / "nested" / "notes.txt").write_text("demo\n", encoding="utf-8")
@@ -113,6 +189,7 @@ class SiteBuilderTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=page_source_dir,
+                teaching_dir=teaching_dir,
                 talks_dir=talks_dir,
                 publications_dir=publications_dir,
                 templates_dir=templates_dir,
@@ -131,6 +208,13 @@ class SiteBuilderTests(unittest.TestCase):
             self.assertIn("Everything is a compiler, try Equality Saturation!", talks_html)
             self.assertIn("Brown University, PL and Graphics groups, February 2026", talks_html)
             self.assertIn('href="https://events.brown.edu/demo"', talks_html)
+
+            teaching_html = (config.build_dir / "teaching" / "index.html").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn('href="https://ztatlock.net/teaching/"', teaching_html)
+            self.assertIn("UW CSE 507: Computer-Aided Reasoning for Software", teaching_html)
+            self.assertIn("Marktoberdorf Summer School 2024", teaching_html)
 
             publication_html = (
                 config.build_dir / "pubs" / "2025-test-demo" / "index.html"

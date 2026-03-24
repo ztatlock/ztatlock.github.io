@@ -92,6 +92,7 @@ def render_page_html(
     aliases: dict[str, str] | None = None,
     page_source_dir: Path | None = None,
     students_dir: Path | None = None,
+    teaching_dir: Path | None = None,
     talks_dir: Path | None = None,
     publications_dir: Path | None = None,
     data_dir: Path | None = None,
@@ -126,7 +127,10 @@ def render_page_html(
         elif route_kind == "teaching_index_page":
             if route_key != "teaching":
                 raise PageRenderError(f"unsupported teaching index route key: {route_key}")
-            source = read_teaching_index_source(root)
+            source = read_teaching_index_source(
+                root,
+                teaching_dir=teaching_dir,
+            )
         elif route_kind == "publications_index_page":
             if route_key != "publications":
                 raise PageRenderError(f"unsupported publications index route key: {route_key}")
@@ -155,6 +159,7 @@ def render_page_html(
             site_url=site_url,
             page_source_dir=page_source_dir,
             students_dir=students_dir,
+            teaching_dir=teaching_dir,
             talks_dir=talks_dir,
             publications_dir=publications_dir,
         )
