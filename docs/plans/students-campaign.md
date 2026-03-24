@@ -68,7 +68,8 @@ Current observed facts:
 - the CV is intentionally more compressed:
   - plain thesis text instead of linked titles
   - fewer co-advisor details
-  - at least one entry present on the students page but omitted from the CV
+  - one current entry present on the students page but omitted from the CV
+    (`Ian Briggs`)
 
 ### Important Structural Observation
 
@@ -84,24 +85,26 @@ the lab evolved, for example:
 So the canonical model should likely represent advising records or milestones,
 not unique people records.
 
-People identity still matters, but it should probably be represented through an
-optional link to the people registry rather than by forcing a one-record-per-
+People identity still matters, but it should be carried by a required
+`person_key` into the people registry rather than by forcing a one-record-per-
 person model.
 
 ### Important Registry Observation
 
-Many names on the current students page are not yet in `site/data/people.json`.
+People-registry coverage is stronger than it first appears.
 
-That means this campaign must make an explicit decision about people-registry
-integration:
+The current students-page names are already almost completely resolvable
+through `site/data/people.json` by canonical name or alias, and the remaining
+display mismatch is a display-name variant rather than a missing identity.
 
-- require every student record to have a people-registry entry, or
-- allow student records to start with plain names and optional `person_ref`,
-  tightening registry coverage over time
+That means this campaign can likely afford a stronger first-slice invariant:
 
-My current recommendation is the second option for the first slices.
-That keeps the students campaign moving without turning the first slice into a
-large people-registry cleanup pass.
+- every canonical student/advising record should carry a required `person_key`
+  pointing at `site/data/people.json`
+- record-local `name` should stay as the rendered display name so page-specific
+  variants like `Zhiyuan (Kevin) Yan` remain possible
+
+This is cleaner than treating people-registry integration as optional forever.
 
 ## Desired End State
 
@@ -138,23 +141,62 @@ needs rather than an imagined advising CRM.
 
 The likely unit of truth is one advising record, not one person.
 
-At a high level, each record will likely need:
+The first schema should also preserve the current section ordering directly
+rather than trying to infer it from many individual fields.
+
+At a high level, the likely top-level shape is:
+
+- ordered `sections`
+- each section has:
+  - stable `key`
+  - canonical students-page `title`
+  - optional `cv_title` when the CV uses a different heading
+  - ordered `records`
+
+Each record will likely need:
 
 - stable `key`
-- display `name`
-- optional `person_ref`
-- section/group, matching the current top-level page sections
+- required `person_key`
+- rendered display `name`
 - display `label`
-  for values like `PhD Student`, `PhD 2025`, or `BS, Summer 2022`
-- optional co-advisors
-- optional thesis metadata
-- optional ordered detail notes for placement or follow-on outcomes
-- optional view controls where the richer students page and condensed CV need
-  to differ
+  for values like `PhD Student`, `PhD 2025`, or `BS, Summer 2022 @ Amazon`
+- ordered typed `details`
 
 The first schema should avoid over-modeling.
-For example, it may be better to keep a small display-oriented `label` than to
-invent a complicated ontology for every status/program variation immediately.
+For example, it is probably better to keep a small display-oriented `label`
+than to invent a complicated ontology for every status/program variation
+immediately.
+
+The first schema should also avoid premature date normalization.
+
+Why:
+
+- current students do not expose start dates on the page
+- graduated sections already have a stable manually curated order
+- ties within the same year are common
+- file order gives explicit control without forcing date backfill or tie-break
+  policy before it has earned its keep
+
+So the first slice should treat file order as canonical ordering.
+If a later slice clearly benefits from derived ordering by start date or
+graduation date, we can add those facts deliberately then.
+
+The ordered `details` list is likely cleaner than many special-case fields
+because order matters and different records mix:
+
+- thesis entries
+- co-advisor lines
+- placement/outcome lines
+- free-form notes
+
+So the first detail kinds should likely be:
+
+- `thesis`
+- `coadvisor`
+- `outcome`
+- `note`
+
+with a small kind-specific payload for each.
 
 ### Likely Page-Specific Projection Policy
 
@@ -172,6 +214,15 @@ The likely clean policy is:
 That means the campaign should not pretend one renderer fits every consumer.
 It should aim for one canonical data source with small, explicit per-view
 renderers.
+
+The current evidence suggests those differences are mostly about rendering
+richness, not about fundamentally different record sets.
+So the default assumption should be:
+
+- the same canonical advising records feed both pages
+- the CV renderer is more compressed
+- true inclusion mismatches should be treated as exceptional and justified
+  explicitly, not assumed as a normal part of the model
 
 ## Boundary Of The Campaign
 
@@ -251,7 +302,12 @@ Key invariant after this slice:
 Possible later work:
 
 - improve people-registry coverage for student names
+- add richer temporal facts such as start dates or graduation dates if later
+  ordering, timeline, or alumni-history views clearly earn them
+- enrich alumni outcomes over time with more structured placement/history data
 - decide whether collaborators can partly derive from publications plus people
+- decide whether selected publication relationships by student should become a
+  later derived view
 - reuse canonical student records in selected highlights or other pages if that
   clearly earns its keep
 

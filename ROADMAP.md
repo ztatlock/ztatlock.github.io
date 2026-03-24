@@ -23,7 +23,7 @@ notes.
 
 - [x] Establish the canonical publication-bundle pattern under `site/pubs/` for publication pages that have local records today.
 - [ ] Decide which talks actually need talk-local detail pages instead of index-only bundles (`site/talks/`, `site/pages/talk-2023-05-egg-uiuc.dj`).
-- [ ] Define the canonical advising-record schema and projection policy for `site/data/students.json`, `site/pages/students.dj`, and the duplicated students sections in `site/pages/cv.dj`.
+- [ ] Implement the slice-1 canonical advising-record model for `site/data/students.json`, including required `person_key`, ordered section/record structure, and typed detail items (`docs/plans/students-slice-1-canonical-model.md`, `site/pages/students.dj`, `site/pages/cv.dj`).
 
 ## Open TODOs In Source Files
 

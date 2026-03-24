@@ -75,6 +75,10 @@ meant to be read, maintained, and extended over time.
   Current planning note for the next major structured-content campaign,
   focused on canonical advising records that can drive both `students.dj`
   and the duplicated students sections in `cv.dj`.
+- `plans/students-slice-1-canonical-model.md`
+  Detailed first-slice plan for `site/data/students.json`, including the
+  proposed advising-record schema, people-registry integration, and invariants
+  to establish before any students-page projection work.
 - `plans/publications-slice-2-bundle-coverage.md`
   Implemented record of the bundle-coverage slice that made every indexed
   publication a canonical local bundle before the publications route-cutover
