@@ -17,6 +17,7 @@ from scripts.publication_record import (
     load_publication_record,
     publication_page_path,
 )
+from scripts.student_record import STUDENTS_DATA_NAME, find_student_record_issues
 from scripts.talk_record import TALKS_INDEX_NAME, find_talk_record_issues, talks_index_path
 from scripts.page_metadata import (
     validate_general_source_metadata_path,
@@ -36,6 +37,7 @@ ROOT_STATIC_SOURCE_NAMES = (
     "style.css",
     "zip-longitude.js",
 )
+STUDENT_CONSUMER_PAGE_NAMES = ("students.dj", "cv.dj")
 
 
 def _legacy_publication_link_issues(path: Path) -> list[str]:
@@ -224,6 +226,21 @@ def _find_publications_index_projection_issues(config: SiteConfig) -> list[str]:
     return issues
 
 
+def _find_student_data_issues(config: SiteConfig) -> list[str]:
+    students_path = config.data_dir / STUDENTS_DATA_NAME
+    has_student_consumers = any(
+        (config.page_source_dir / name).exists()
+        for name in STUDENT_CONSUMER_PAGE_NAMES
+    )
+    if not students_path.exists() and not has_student_consumers:
+        return []
+    return find_student_record_issues(
+        config.repo_root,
+        students_path=students_path,
+        people_path=config.people_data_path,
+    )
+
+
 def find_source_issues(config: SiteConfig) -> list[str]:
     return (
         validate_general_page_metadata(
@@ -237,6 +254,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             publications_dir=config.publications_dir,
             static_source_dir=config.static_source_dir,
         )
+        + _find_student_data_issues(config)
         + find_talk_record_issues(
             config.repo_root,
             talks_dir=config.talks_dir,
