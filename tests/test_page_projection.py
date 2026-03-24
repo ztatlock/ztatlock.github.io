@@ -12,7 +12,7 @@ from scripts.sitebuild.page_projection import (
 )
 
 
-class TalkProjectionTests(unittest.TestCase):
+class PageProjectionTests(unittest.TestCase):
     def test_renders_talks_list_from_bundles(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
