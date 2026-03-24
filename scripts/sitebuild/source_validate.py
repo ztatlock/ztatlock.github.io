@@ -48,7 +48,7 @@ ROOT_STATIC_SOURCE_NAMES = (
     "style.css",
     "zip-longitude.js",
 )
-STUDENT_CONSUMER_PAGE_NAMES = ("students.dj", "cv.dj")
+STUDENT_DATA_CONSUMER_PAGE_NAMES = ("cv.dj",)
 
 
 def _legacy_publication_link_issues(path: Path) -> list[str]:
@@ -313,7 +313,7 @@ def _find_student_data_issues(config: SiteConfig) -> list[str]:
     students_index = students_index_path(config.repo_root, students_dir=config.students_dir)
     has_student_consumers = any(
         (config.page_source_dir / name).exists()
-        for name in STUDENT_CONSUMER_PAGE_NAMES
+        for name in STUDENT_DATA_CONSUMER_PAGE_NAMES
     ) or students_index.exists()
     if not students_path.exists() and not has_student_consumers:
         return []

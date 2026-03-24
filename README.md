@@ -86,8 +86,9 @@ Multi-machine guardrail:
 
 Normal workflow:
 1. Edit source under `site/`.
-2. Update or add metadata in the page front matter,
-   `site/talks/<slug>/talk.json`, or `site/pubs/<slug>/publication.json`.
+2. Update or add metadata in page front matter, shared data like
+   `site/data/students.json`, talk records under `site/talks/<slug>/talk.json`,
+   or publication records under `site/pubs/<slug>/publication.json`.
 3. Run `make build`.
 4. Run `make check`.
 5. Commit once the authoritative checks pass.

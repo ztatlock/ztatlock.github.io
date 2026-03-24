@@ -217,7 +217,7 @@ The usual shape should be:
 
 ## Current Recommendation
 
-The next major structured-content campaign should be:
+The active major structured-content campaign is:
 
 - students
 

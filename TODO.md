@@ -26,7 +26,7 @@
 
 - Follow the structured-content campaign sequence in
   `docs/plans/structured-content-roadmap.md`:
-  students next, with publication artifact enrichment as follow-on work and
+  students now, with publication artifact enrichment as follow-on work and
   later collaborators/funding/CV/news work only where structured data clearly
   earns its keep.
 - Keep the new `site/data/students.json` model small and canonical, and defer
