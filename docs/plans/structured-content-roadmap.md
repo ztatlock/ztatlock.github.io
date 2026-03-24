@@ -97,11 +97,12 @@ repeated listing shape in `site/pubs/index.dj`
 
 The current recommended next slice is:
 
-- add canonical `pub_date` to publication bundles
-- backfill exact ISO dates across the current publications set
-- use that date truth to simplify the later projection slice
-- then project the repeated publication-entry sections from bundle data while
-  keeping framing and `Aggregators` hand-authored
+- keep `site/pubs/index.dj` as the hand-authored wrapper
+- replace the repeated publication-entry sections with projection from bundle
+  data
+- order those projected sections by `pub_date` descending with title
+  tie-break
+- keep framing and `Aggregators` hand-authored
 
 That collection-shape decision is now implemented:
 

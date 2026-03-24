@@ -54,8 +54,10 @@ That means:
   and the bundle set from drifting apart while projection has not landed yet
 - the hand-authored publications wrapper now lives at `site/pubs/index.dj`
 - the canonical collection route is now `/pubs/`
+- every non-draft publication bundle now has a canonical ISO `pub_date`
+  suitable for derived collection ordering
 
-The next likely slice is therefore Slice 4: publication index projection.
+The next likely slice is therefore Slice 5: publication index projection.
 
 ## Current Audit
 
@@ -323,7 +325,7 @@ Stop and reassess after this slice.
 
 Status:
 
-- planned
+- implemented
 
 ### Slice 5: Publication Index Projection
 
@@ -387,20 +389,20 @@ As this campaign proceeds, we want:
 
 The next publications slice should be:
 
-- publication dates
+- publication index projection
 
 Concretely, that means:
 
-1. add required `pub_date` for non-draft publication bundles
-2. backfill exact ISO dates across the current publications set
-3. validate the field and expose it in the publication model
-4. verify that index ordering can derive from `pub_date` descending with title
-   tie-break
-5. stop and reassess before projection
+1. keep `site/pubs/index.dj` as the hand-authored wrapper
+2. replace the repeated publication-entry blocks with projection from bundle
+   data
+3. order the projected sections by `pub_date` descending with title tie-break
+4. keep framing and `Aggregators` hand-authored
+5. stop and reassess before any artifact-enrichment work
 
-That is the cleanest next move because it replaces the last missing ordering
-fact with bundle truth before we remove the remaining hand-authored repeated
-entry structure.
+That is the cleanest next move because the collection now has its ordering
+fact in bundle truth and the main remaining duplication is the repeated
+hand-authored entry structure inside `site/pubs/index.dj`.
 
 The detailed planning notes for the first five slices are:
 

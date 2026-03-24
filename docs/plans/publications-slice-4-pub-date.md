@@ -1,16 +1,16 @@
 # Publications Slice 4: Publication Dates
 
-Status: Planned
+Status: Implemented
 
-This note defines the next implementation slice of the publications
-structured-content campaign.
+This note records the implementation of the publication-date slice of the
+publications structured-content campaign.
 
 It builds on:
 
 - [publications-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-campaign.md)
 - [publications-slice-3-route-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publications-slice-3-route-cutover.md)
 
-## Why This Slice Now
+## Why This Slice Was Needed
 
 The publications collection is now in a good structural state:
 
@@ -35,9 +35,9 @@ the publications collection so later projected index ordering can be derived
 from bundle truth instead of a temporary order manifest or hand-maintained
 wrapper text.
 
-## Scope
+## Landed Scope
 
-This slice should do exactly these things:
+This slice did these things:
 
 1. extend `publication.json` with a required `pub_date` field for published
    bundles
@@ -115,13 +115,13 @@ That is enough to make ordering deterministic without adding another field.
 If two publications truly share the same date, title order is a stable and
 reviewable tie-break.
 
-## Implementation Order
+## What Landed
 
 ### Step 1: Extend The Publication Schema
 
 Add `pub_date` to the publication model and validation rules.
 
-Recommended shape in `publication.json`:
+Landed shape in `publication.json`:
 
 ```json
 {
@@ -129,30 +129,25 @@ Recommended shape in `publication.json`:
 }
 ```
 
-Recommended validation:
+Landed validation:
 
 - drafts may omit it
 - non-draft publications must provide it
 - the string must match `YYYY-MM-DD`
 - it must be parseable as a real calendar date
 
-Tests to add:
+Tests added:
 
 - accept valid ISO date
 - reject missing `pub_date` on published bundle
 - reject malformed date
 - reject impossible date
 
-Stop and reflect:
-
-- Does this feel like a real publication fact rather than presentation state?
-- Is the validation simple and clear?
-
 ### Step 2: Backfill The Dates
 
-Backfill `pub_date` for all current non-draft publication bundles.
+`pub_date` was backfilled for all current non-draft publication bundles.
 
-Expected data source:
+Primary sources used:
 
 - publisher pages
 - venue pages
@@ -161,55 +156,51 @@ Expected data source:
 This slice will likely require careful web research because exact publication
 dates are not stable knowledge and need verification.
 
-Recommended discipline:
+Backfill rule:
 
-- backfill one coherent year range or section at a time
-- keep notes only if a date is genuinely ambiguous
-- prefer the best canonical publication date used for site ordering, not an
-  exhaustive historical provenance model
+- prefer the publisher-labeled `Published` assertion when available
+- otherwise use `published-online`
+- otherwise `published`
+- otherwise `published-print`
+- when DOI metadata was missing or insufficient, use official venue or
+  publisher pages for an exact date
 
-Checkpoint:
+Result:
 
 - every non-draft bundle has `pub_date`
 - validation stays green
 
 ### Step 3: Verify Derived Ordering
 
-Before planning the projection slice, compare the current hand-authored index
-ordering against the derived rule:
+The current hand-authored index ordering was then compared against the derived
+rule:
 
 1. `pub_date` descending
 2. `title` ascending
 
-The goal is not perfect mathematical elegance.
-The goal is to confirm the resulting order is close enough to what the site
-should show that projection can adopt it confidently.
-
-Checkpoint questions:
-
-- Does the derived order look right in practice?
-- Are there any genuinely surprising cases that suggest the chosen date source
-  is wrong?
-- Is title tie-break good enough?
+The result was good enough to proceed: the derived order is plausible for both
+the `main` and `workshop` groups without introducing a temporary collection
+order manifest.
 
 ### Step 4: Final Verification
 
 Run the normal repo checks and stop.
 
-Expected verification:
+Verification run:
 
 - `make test`
 - `make inventory`
 - `make check`
 - `git diff --check`
 
-Also verify there are still no unexpected tracked output diffs in:
+Also verified:
 
 - `*.html`
 - `sitemap.txt`
 - `sitemap.xml`
 
-This slice should be schema/data only, not a route/output change.
+This slice remained schema/data only and did not change tracked generated
+outputs.
 
 ## Tests
 
@@ -223,7 +214,7 @@ Add focused tests for:
 
 ## Follow-On Question For The Next Slice
 
-If this slice lands cleanly, the next slice becomes simpler:
+Because this slice landed cleanly, the next slice is now simpler:
 
 - replace repeated publication-entry blocks with projection from bundle data
 - sort the projected lists by `pub_date` descending, then title
@@ -233,12 +224,9 @@ That later slice should keep:
 - `site/pubs/index.dj` as wrapper
 - framing and `Aggregators` hand-authored
 
-## Stop And Reassess
+## Outcome
 
-After this slice, stop and check:
-
-1. Does `pub_date` feel like the right source of truth for publication
-   ordering?
-2. Were exact dates easy enough to verify reliably?
-3. Does the derived order look good enough to remove the remaining hand-written
-   list body in the next slice?
+`pub_date` now feels like the right source of truth for publication ordering.
+Exact dates were tractable to verify with DOI metadata plus a smaller manual
+fallback set from official venue/publisher pages. The campaign can now move on
+to projection without inventing a second ordering source.
