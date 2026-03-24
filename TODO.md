@@ -50,6 +50,9 @@
   `make check` stay fast enough to run routinely, likely by consolidating
   title/body/meta work into fewer Python entry points and revisiting safe
   parallelism.
+- Keep the projection layer simple for now, but eventually load shared
+  students/teaching-style data once per projected page render and introduce a
+  tiny projection registry if another projection-backed domain lands.
 - Keep the redesign implementation disciplined:
   pure Python modules with narrow responsibilities, explicit
   schemas/invariants, small unit tests for route/data resolution, and thin

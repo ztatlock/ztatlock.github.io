@@ -216,6 +216,17 @@ Why:
   than teaching
 - it looks like another shared-data-first campaign rather than a bundle-root
   campaign
+- it already shows cross-page drift, which raises the payoff of a canonical
+  model
+
+Current recommendation:
+
+- use `site/data/service.json`
+- model service as flat per-year terms with multi-group view membership
+- later move the public wrapper to `site/service/index.dj` with canonical
+  `/service/`
+- defer homepage and CV cleanup as later cross-cutting consumer work rather
+  than part of the near-term service campaign
 
 ### Collaborators
 
