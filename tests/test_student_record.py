@@ -37,7 +37,7 @@ class StudentRecordTests(unittest.TestCase):
             "graduated_bachelors_students",
             "visiting_students",
         ])
-        self.assertEqual(sections[-1].cv_title, "Visiting Summer Students")
+        self.assertEqual(sections[-1].title, "Visiting Students and Interns")
         self.assertEqual(sections[0].records[0].person_key, "haobin-ni")
         self.assertEqual(sections[2].records[0].details[0].kind, "thesis")
         self.assertEqual(sections[-1].records[0].person_key, "ian-briggs")

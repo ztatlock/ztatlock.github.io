@@ -98,9 +98,13 @@ def render_students_section_list_djot(
     data_dir: Path | None = None,
 ) -> str:
     students_path = (data_dir / STUDENTS_DATA_NAME) if data_dir is not None else None
+    people_path = (data_dir / "people.json") if data_dir is not None else None
     try:
-        sections = load_student_sections(root, students_path=students_path)
-        people_path = (data_dir / "people.json") if data_dir is not None else None
+        sections = load_student_sections(
+            root,
+            students_path=students_path,
+            people_path=people_path,
+        )
         registry = load_people_registry(people_path or (root / "site" / "data" / "people.json"))
     except StudentRecordError as err:
         raise PageProjectionError(str(err)) from err

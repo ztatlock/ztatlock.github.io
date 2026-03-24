@@ -179,7 +179,6 @@ At a high level, the likely top-level shape is:
 - each section has:
   - stable `key`
   - canonical students-page `title`
-  - optional `cv_title` when the CV uses a different heading
   - ordered `records`
 
 Each record will likely need:

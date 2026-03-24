@@ -51,8 +51,7 @@ The canonical file now looks like this in shape:
     },
     {
       "key": "visiting_students",
-      "title": "Visiting Summer Students, Internships Mentored in Industry",
-      "cv_title": "Visiting Summer Students",
+      "title": "Visiting Students and Interns",
       "records": [
         {
           "key": "ian-briggs-summer-2022",
@@ -81,8 +80,6 @@ Why sections are top-level and ordered:
 - the current students page is already organized around six stable sections
 - the CV mirrors almost the same grouping
 - order is canonical and should not be inferred indirectly
-- the one known section-title divergence (`Visiting Summer Students...` vs
-  `Visiting Summer Students`) belongs naturally in section metadata
 
 Why records are nested inside sections:
 
@@ -137,11 +134,6 @@ Required fields:
   Canonical students-page section title.
 - `records`
   Ordered array of advising record objects.
-
-Optional fields:
-
-- `cv_title`
-  Only needed when the CV heading intentionally differs.
 
 ### Advising Record Object
 

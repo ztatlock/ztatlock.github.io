@@ -38,6 +38,10 @@ LEGACY_PUBLICATION_LINK_RE = re.compile(r"\b(pub-\d{4}[-a-z0-9]*\.html)\b")
 LEGACY_PUBLICATIONS_INDEX_LINK_RE = re.compile(r"\b(publications\.html)\b")
 LEGACY_STUDENTS_LINK_RE = re.compile(r"\b(students\.html)\b")
 LEGACY_TALKS_LINK_RE = re.compile(r"\b(talks\.html)\b")
+LITERAL_STUDENT_ENTRY_RE = re.compile(
+    r"^- \[[^\]]+\](?:\[[^\]]*\]|\([^)]+\)),\s",
+    re.MULTILINE,
+)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
     "robots.txt",
@@ -281,6 +285,10 @@ def _find_student_projection_issues(config: SiteConfig) -> list[str]:
     for placeholder in STUDENT_SECTION_PLACEHOLDERS.values():
         if placeholder not in text:
             issues.append(f"{index_path}: students index page must contain {placeholder}")
+    if LITERAL_STUDENT_ENTRY_RE.search(text):
+        issues.append(
+            f"{index_path}: students index page must not contain literal student entry blocks"
+        )
 
     if students_path.exists():
         try:

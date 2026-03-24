@@ -17,7 +17,7 @@ from scripts.sitebuild.people_registry import (
 STUDENTS_DATA_NAME = "students.json"
 STUDENTS_INDEX_NAME = "index.dj"
 STUDENTS_ROOT_KEY = "sections"
-SECTION_ALLOWED_FIELDS = {"key", "title", "cv_title", "records"}
+SECTION_ALLOWED_FIELDS = {"key", "title", "records"}
 RECORD_ALLOWED_FIELDS = {"key", "person_key", "name", "label", "details"}
 DETAIL_ALLOWED_FIELDS = {"kind", "title", "url", "person_keys", "djot"}
 DETAIL_KIND_THESIS = "thesis"
@@ -62,7 +62,6 @@ class StudentRecord:
 class StudentSection:
     key: str
     title: str
-    cv_title: str | None
     records: tuple[StudentRecord, ...]
 
 
@@ -286,11 +285,6 @@ def _normalize_section(
 
     key = _require_section_key(rows.get("key"), context=context, field="key")
     title = _require_nonempty_string(rows.get("title"), context=context, field="title")
-    cv_title_raw = rows.get("cv_title")
-    cv_title = None
-    if cv_title_raw is not None:
-        cv_title = _require_nonempty_string(cv_title_raw, context=context, field="cv_title")
-
     records_raw = rows.get("records")
     if not isinstance(records_raw, list) or not records_raw:
         raise StudentRecordError(f"{context}: records must be a non-empty array")
@@ -306,7 +300,6 @@ def _normalize_section(
     return StudentSection(
         key=key,
         title=title,
-        cv_title=cv_title,
         records=records,
     )
 

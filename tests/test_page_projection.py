@@ -422,3 +422,55 @@ class PageProjectionTests(unittest.TestCase):
                 ),
                 body,
             )
+
+    def test_renders_students_section_from_explicit_data_dir_people_registry(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            default_data_dir = root / "site" / "data"
+            explicit_data_dir = root / "alt-data"
+            default_data_dir.mkdir(parents=True)
+            explicit_data_dir.mkdir(parents=True)
+
+            (default_data_dir / "people.json").write_text(
+                json.dumps({"people": {}}),
+                encoding="utf-8",
+            )
+            (explicit_data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "demo-student": {
+                                "name": "Demo Student",
+                                "url": "https://example.test/demo",
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (explicit_data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            _student_section(
+                                "current_students",
+                                "Current Students",
+                                {
+                                    "key": "demo-student-current",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "PhD Student",
+                                },
+                            )
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            rendered = render_students_section_list_djot(
+                root,
+                "current_students",
+                data_dir=explicit_data_dir,
+            )
+            self.assertIn("- [Demo Student][], PhD Student", rendered)

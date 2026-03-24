@@ -177,6 +177,109 @@ class SourceValidateTests(unittest.TestCase):
                 [f"{students / 'index.dj'}: students index page must contain __STUDENTS_VISITING_LIST__"],
             )
 
+    def test_reports_literal_student_entry_blocks_after_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (students / "index.dj").write_text(
+                "---\n"
+                "description: Students\n"
+                "---\n\n"
+                "# Students\n\n"
+                "__STUDENTS_CURRENT_LIST__\n\n"
+                "- [Demo Student][], PhD Student\n\n"
+                "__STUDENTS_POSTDOC_LIST__\n\n"
+                "__STUDENTS_PHD_LIST__\n\n"
+                "__STUDENTS_MASTERS_LIST__\n\n"
+                "__STUDENTS_BACHELORS_LIST__\n\n"
+                "__STUDENTS_VISITING_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "demo-student": {
+                                "name": "Demo Student",
+                                "url": "https://example.test/demo",
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            {
+                                "key": "current_students",
+                                "title": "Current Students",
+                                "records": [{"key": "demo-student-current", "person_key": "demo-student", "name": "Demo Student", "label": "PhD Student"}],
+                            },
+                            {
+                                "key": "completed_postdoctoral_mentoring",
+                                "title": "Completed Postdoctoral Mentoring",
+                                "records": [{"key": "demo-student-postdoc", "person_key": "demo-student", "name": "Demo Student", "label": "Postdoc 2025"}],
+                            },
+                            {
+                                "key": "graduated_doctoral_students",
+                                "title": "Graduated Doctoral Students",
+                                "records": [{"key": "demo-student-phd", "person_key": "demo-student", "name": "Demo Student", "label": "PhD 2024"}],
+                            },
+                            {
+                                "key": "graduated_masters_students",
+                                "title": "Graduated Masters Students",
+                                "records": [{"key": "demo-student-ms", "person_key": "demo-student", "name": "Demo Student", "label": "MS 2023"}],
+                            },
+                            {
+                                "key": "graduated_bachelors_students",
+                                "title": "Graduated Bachelors Students",
+                                "records": [{"key": "demo-student-bs", "person_key": "demo-student", "name": "Demo Student", "label": "BS 2022"}],
+                            },
+                            {
+                                "key": "visiting_students",
+                                "title": "Visiting Students and Interns",
+                                "records": [{"key": "demo-student-visiting", "person_key": "demo-student", "name": "Demo Student", "label": "Intern 2021"}],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{students / 'index.dj'}: students index page must not contain literal student entry blocks"
+                ],
+            )
+
     def test_reports_legacy_students_link(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

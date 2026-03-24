@@ -861,7 +861,7 @@
     },
     {
       "key": "visiting_students",
-      "title": "Visiting Summer Students, Internships Mentored in Industry",
+      "title": "Visiting Students and Interns",
       "records": [
         {
           "key": "ian-briggs-phd-summer-2022-amazon",
@@ -935,8 +935,7 @@
             }
           ]
         }
-      ],
-      "cv_title": "Visiting Summer Students"
+      ]
     }
   ]
 }
