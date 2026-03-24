@@ -1,7 +1,7 @@
 # Students Campaign
 
-This note captures the current major structured-content campaign after talks
-and publications.
+This note captures the students structured-content campaign that followed talks
+and publications and is now at a good public-page checkpoint.
 
 It builds on:
 
@@ -22,7 +22,7 @@ page-specific framing and emphasis hand-authored.
 
 ## Why Students Next
 
-Students is now the strongest next major campaign because:
+Students was the strongest next major campaign at the time because:
 
 - it is the clearest remaining cross-page duplication domain in the repo
 - it naturally builds on `site/data/people.json`

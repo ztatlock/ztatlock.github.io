@@ -75,6 +75,14 @@ meant to be read, maintained, and extended over time.
   Current students structured-content campaign note, with the implemented
   canonical advising-record and students-index projection slices, plus the
   planned CV-projection follow-on.
+- `plans/teaching-campaign.md`
+  Current teaching structured-content campaign note, including the initial
+  audit, the shared-data-first design recommendation, and the planned
+  canonical-model, public-wrapper, homepage, and CV slices.
+- `plans/teaching-slice-1-canonical-model.md`
+  Planned record of the slice that should establish canonical teaching records
+  in `site/data/teaching.json` before any public wrapper or projection
+  cutovers.
 - `plans/students-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical advising records
   in `site/data/students.json`, including the advising-record schema,

@@ -26,15 +26,18 @@
 
 - Follow the structured-content campaign sequence in
   `docs/plans/structured-content-roadmap.md`:
-  students now, with publication artifact enrichment as follow-on work and
-  later collaborators/funding/CV/news work only where structured data clearly
-  earns its keep.
+  teaching now, with publication artifact enrichment and students CV reuse as
+  follow-on work and later service/collaborators/funding/CV/news work only
+  where structured data clearly earns its keep.
 - Keep the new `site/data/students.json` model small and canonical, and defer
   richer student follow-ons such as advising dates and student-to-publication
   linkage until a later slice clearly needs them.
 - Keep the public students wrapper at `site/students/index.dj` with canonical
   `/students/`, and treat CV reuse as one likely follow-on rather than
   reopening the route/wrapper decision prematurely.
+- Keep the planned teaching campaign shared-data-first:
+  canonical records in `site/data/teaching.json`, a thin public teaching
+  wrapper, and later homepage/CV renderers over the same records.
 - Keep publication-local facts in `site/pubs/<slug>/publication.json`, keep
   the `site/pubs/index.dj` wrapper hand-authored, and treat later publication
   work as artifact enrichment or downstream reuse rather than a return to

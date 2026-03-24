@@ -161,8 +161,9 @@ Current canonical records:
 
 Likely next campaign domains:
 
-- selected projection-oriented records for CV, funding, or similar repeated
-  factual domains if they clearly earn their keep
+- teaching records under `site/data/teaching.json`
+- later service, collaborators, funding, or similar repeated factual domains if
+  they clearly earn their keep
 
 The rule is:
 
@@ -371,16 +372,21 @@ canonical domains in this order:
 1. talks
 2. publications
 3. students
+4. teaching
 
 Important clarifications:
 
 - talks now use talk-local bundles under `site/talks/` rather than a single
   global `site/data/talks.json`
 - talks and publications are both at good collection-architecture checkpoints
-- the students campaign is now the active structured-content campaign
+- the students campaign is now at a good public-page checkpoint
 - publication bundles are now canonical for all indexed publications, and
   publication follow-on work is primarily artifact enrichment or downstream
   reuse rather than collection-shape cleanup
+- the next major shared-data campaign should be teaching, using the same
+  shared-data-plus-thin-wrapper pattern proven by students
+- service is likely the next strongest follow-on after teaching because it is
+  also repeated across a public page, the homepage, and the CV
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV and news should come later, after we have enough experience projecting

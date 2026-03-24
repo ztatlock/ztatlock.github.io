@@ -156,9 +156,55 @@ Likely next outcomes:
 
 - later projection into selected CV subsections
 
+### 4. Teaching
+
+This should be the next major campaign.
+
+Why next:
+
+- teaching facts are already duplicated across the public teaching page, the
+  CV, and the homepage
+- the domain is more regular than service and has clearer cross-page payoff
+  than collaborators or funding right now
+- it naturally fits the same shared-data-first pattern that worked for
+  students
+
+Current target:
+
+- keep canonical teaching records in `site/data/teaching.json`
+- likely move the public teaching wrapper to `site/teaching/index.dj` with
+  canonical `/teaching/`
+- later project compressed views into the CV and homepage
+
+Important design choice:
+
+- do not over-normalize pedagogy or course nuance into rigid enums too early
+- keep repeated factual fields structured
+- keep descriptive course prose as small Djot strings where that stays clearer
+
+Likely slice order:
+
+1. canonical teaching record model in `site/data/teaching.json`
+2. public teaching wrapper/index projection
+3. homepage recent-teaching projection
+4. CV teaching projection
+
 ## Adjacent / Emerging Domains
 
 These are real candidates, but they are not the main initial sequence.
+
+### Service
+
+Service is likely the strongest follow-on after teaching.
+
+Why:
+
+- it is already duplicated across the public service page, the homepage, and
+  the CV
+- the domain is list-shaped and fairly regular even though entries vary more
+  than teaching
+- it looks like another shared-data-first campaign rather than a bundle-root
+  campaign
 
 ### Collaborators
 
@@ -173,6 +219,7 @@ It should not derail the main sequence of:
 - talks
 - publications
 - students
+- teaching
 
 ### Funding / Grants
 
@@ -219,17 +266,17 @@ The usual shape should be:
 
 The active major structured-content campaign is:
 
-- students
+- teaching
 
 Publication follow-on work should continue separately as:
 
 - local artifact enrichment for thinner `detail_page: false` bundles
 - later downstream reuse where publication bundle truth clearly earns it
 
-One likely follow-on within the students campaign is:
+Students follow-on work should continue separately as:
 
 - projection of the duplicated advising sections in `site/pages/cv.dj` from
   `site/data/students.json`
 
-And collaborators/funding should be revisited when they naturally fit the
-evolving structured-content model.
+And service/collaborators/funding should be revisited when they naturally fit
+the evolving structured-content model.
