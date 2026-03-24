@@ -1,8 +1,8 @@
 # Service Slice 1: Canonical Term Model
 
-This note plans the first slice of the service campaign.
+This note records the first slice of the service campaign.
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -63,6 +63,17 @@ Important field semantics:
 - `details` should stay small and rare in slice 1
 - homepage-specific curation metadata should stay out of slice 1 unless the
   backfill proves it is unavoidable
+
+## What Landed
+
+This slice established:
+
+- canonical service terms in `site/data/service.json`
+- strict loading/validation in `scripts/service_record.py`
+- source-validation integration so the public service page now requires the
+  canonical registry to exist
+- a backfill that already reconciles the known public/CV drift items in
+  canonical data even before any rendering cutover
 
 ## Data Backfill Scope
 

@@ -82,13 +82,13 @@ meant to be read, maintained, and extended over time.
   follow-ons.
 - `plans/service-campaign.md`
   Current service structured-content campaign note, including the initial
-  audit, the flat per-year-term design recommendation, and the planned
-  canonical-model plus public-wrapper slices, with homepage/CV cleanup
-  deferred as later cross-cutting consumer work.
+  audit, the flat per-year-term design recommendation, the implemented
+  canonical-model slice, and the planned public-wrapper slice, with
+  homepage/CV cleanup deferred as later cross-cutting consumer work.
 - `plans/service-slice-1-canonical-model.md`
-  Planned record of the slice that should establish canonical service terms in
+  Implemented record of the slice that established canonical service terms in
   `site/data/service.json` before any service-page, homepage, or CV
-  projection.
+  projection cutovers.
 - `plans/teaching-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical teaching records
   in `site/data/teaching.json` before any public wrapper or projection

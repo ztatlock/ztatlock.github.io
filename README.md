@@ -16,6 +16,9 @@ source with a small Python build engine behind `make`.
   Authored students landing-page wrapper rendered at `/students/`.
 - `site/teaching/index.dj`
   Authored teaching landing-page wrapper rendered at `/teaching/`.
+- `site/data/service.json`
+  Canonical service-term records for the service page plus later homepage and
+  CV reuse.
 - `site/data/teaching.json`
   Canonical teaching/course records for the teaching page plus later homepage
   and CV reuse.
@@ -51,6 +54,9 @@ Metadata rules:
 - The teaching landing page is projected from canonical course records in
   `site/data/teaching.json` into `site/teaching/index.dj`, and later homepage
   and CV teaching facts should reuse the same records.
+- The public service page still lives in `site/pages/service.dj`, but its
+  repeated service facts are now canonicalized in `site/data/service.json`
+  ahead of a later wrapper/projection cutover.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -95,9 +101,9 @@ Multi-machine guardrail:
 Normal workflow:
 1. Edit source under `site/`.
 2. Update or add metadata in page front matter, shared data like
-   `site/data/students.json` or `site/data/teaching.json`, talk records under
-   `site/talks/<slug>/talk.json`, or publication records under
-   `site/pubs/<slug>/publication.json`.
+   `site/data/students.json`, `site/data/teaching.json`, or
+   `site/data/service.json`, talk records under `site/talks/<slug>/talk.json`,
+   or publication records under `site/pubs/<slug>/publication.json`.
 3. Run `make build`.
 4. Run `make check`.
 5. Commit once the authoritative checks pass.

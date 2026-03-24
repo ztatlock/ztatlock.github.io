@@ -1,6 +1,6 @@
 # Service Campaign
 
-Status: proposed next major structured-content campaign
+Status: active major structured-content campaign
 
 ## Goal
 
@@ -23,7 +23,7 @@ Service is now the strongest next major shared-data domain because:
 - it fits the same shared-data-first pattern that worked for students and
   teaching
 
-## Current Surface Audit
+## Historical Pre-Slice-2 Surface Audit
 
 ### Public Service Page
 
@@ -182,6 +182,8 @@ otherwise:
 ## Recommended Slice Order
 
 ### Slice 1. Canonical Service Term Model
+
+Implemented.
 
 - add `site/data/service.json`
 - add loader/validator tests

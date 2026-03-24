@@ -26,9 +26,10 @@
 
 - Follow the structured-content campaign sequence in
   `docs/plans/structured-content-roadmap.md`:
-  service likely next, with teaching homepage/CV reuse, publication artifact
-  enrichment, students CV reuse, and later collaborators/funding/CV/news work
-  only where structured data clearly earns its keep.
+  service public-wrapper work next, with teaching homepage/CV reuse,
+  publication artifact enrichment, students CV reuse, and later
+  collaborators/funding/CV/news work only where structured data clearly earns
+  its keep.
 - Keep the new `site/data/students.json` model small and canonical, and defer
   richer student follow-ons such as advising dates and student-to-publication
   linkage until a later slice clearly needs them.
