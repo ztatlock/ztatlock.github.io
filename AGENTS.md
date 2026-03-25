@@ -3,6 +3,19 @@
 This repo is a static website generated from Djot source files. Keep changes
 source-first and predictable.
 
+For the broader working rhythm and design philosophy, read
+`docs/policy/working-style.md`.
+The short version:
+
+- keep designs simple, explicit, and narrow
+- work campaign-by-campaign and slice-by-slice
+- follow the rhythm: review, plan, reflect, implement, verify, sober review,
+  align docs, stop and reassess
+- prefer small canonical sources of truth plus thin wrappers over duplicated
+  hand-maintained facts
+- do not introduce clever abstractions unless they have clearly earned their
+  keep
+
 ## Ground Rules
 
 - This repo is edited from multiple machines. At the start of a session, run

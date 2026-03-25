@@ -56,6 +56,10 @@ meant to be read, maintained, and extended over time.
 - `policy/root-layout.md`
   Current root-level layout now that authored source lives under `site/` and
   generated site output lives under `build/`.
+- `policy/working-style.md`
+  Working philosophy for the structured-content redesign, including the
+  vision -> campaign -> slice hierarchy and the standard
+  review/plan/reflect/implement/verify/reassess rhythm.
 - `plans/source-build-deploy-redesign.md`
   Big-picture redesign narrative from flat-root site to the current
   source/build split.
