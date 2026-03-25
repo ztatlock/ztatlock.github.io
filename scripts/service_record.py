@@ -14,6 +14,7 @@ SERVICE_ALLOWED_FIELDS = {
     "key",
     "series_key",
     "year",
+    "ongoing",
     "view_groups",
     "title",
     "role",
@@ -36,6 +37,7 @@ class ServiceRecord:
     view_groups: tuple[str, ...]
     title: str
     series_key: str | None = None
+    ongoing: bool = False
     role: str | None = None
     url: str | None = None
     details: tuple[str, ...] = ()
@@ -143,6 +145,9 @@ def _normalize_record(raw: object, *, context: str) -> ServiceRecord:
     if rows.get("series_key") is not None:
         series_key = _require_key(rows.get("series_key"), context=context, field="series_key")
     year = _require_year(rows.get("year"), context=context, field="year")
+    ongoing = rows.get("ongoing", False)
+    if not isinstance(ongoing, bool):
+        raise ServiceRecordError(f"{context}: ongoing must be a boolean")
     view_groups = _normalize_view_groups(rows.get("view_groups"), context=f"{context}.view_groups")
     title = _require_nonempty_string(rows.get("title"), context=context, field="title")
     role = _optional_nonempty_string(rows.get("role"), context=context, field="role")
@@ -152,6 +157,7 @@ def _normalize_record(raw: object, *, context: str) -> ServiceRecord:
         key=key,
         series_key=series_key,
         year=year,
+        ongoing=ongoing,
         view_groups=view_groups,
         title=title,
         role=role,
@@ -196,10 +202,31 @@ def load_service_records(
     )
 
     seen_keys: set[str] = set()
+    records_by_series: dict[str, list[ServiceRecord]] = {}
     for record in records:
         if record.key in seen_keys:
             raise ServiceRecordError(f"{path}: duplicate record key {record.key!r}")
         seen_keys.add(record.key)
+        if record.series_key:
+            records_by_series.setdefault(record.series_key, []).append(record)
+        elif record.ongoing:
+            raise ServiceRecordError(
+                f"{path}: ongoing records must include series_key ({record.key!r})"
+            )
+
+    for series_key, series_records in records_by_series.items():
+        ongoing_records = [record for record in series_records if record.ongoing]
+        if len(ongoing_records) > 1:
+            raise ServiceRecordError(
+                f"{path}: series {series_key!r} has multiple ongoing records"
+            )
+        if ongoing_records:
+            latest_year = max(record.year for record in series_records)
+            ongoing_record = ongoing_records[0]
+            if ongoing_record.year != latest_year:
+                raise ServiceRecordError(
+                    f"{path}: ongoing record for series {series_key!r} must use latest year {latest_year}"
+                )
 
     return records
 

@@ -25,7 +25,7 @@ class ServiceRecordTests(unittest.TestCase):
         records = load_service_records(ROOT)
         by_key = {record.key: record for record in records}
 
-        self.assertEqual(len(records), 105)
+        self.assertEqual(len(records), 117)
         self.assertEqual(
             by_key["2025-pldi-program-committee-chair"].view_groups,
             ("reviewing", "organizing"),
@@ -43,6 +43,8 @@ class ServiceRecordTests(unittest.TestCase):
             by_key["2026-dagstuhl-seminar-26022-egraphs"].details[0],
             "[Seminar Details](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26022)",
         )
+        self.assertTrue(by_key["2026-egraphs-community-advisory-board"].ongoing)
+        self.assertTrue(by_key["2026-uw-faculty-skit"].ongoing)
 
     def test_duplicate_record_key_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -122,6 +124,52 @@ class ServiceRecordTests(unittest.TestCase):
             )
 
             with self.assertRaisesRegex(ServiceRecordError, "details must be a non-empty array"):
+                load_service_records(root)
+
+    def test_ongoing_record_requires_series_key(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_service(
+                root / "site" / "data" / "service.json",
+                [
+                    {
+                        "key": "2025-demo-role",
+                        "year": 2025,
+                        "ongoing": True,
+                        "view_groups": ["reviewing"],
+                        "title": "Demo",
+                    }
+                ],
+            )
+
+            with self.assertRaisesRegex(ServiceRecordError, "ongoing records must include series_key"):
+                load_service_records(root)
+
+    def test_ongoing_record_must_use_latest_year_in_series(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_service(
+                root / "site" / "data" / "service.json",
+                [
+                    {
+                        "key": "2025-demo-role",
+                        "series_key": "demo-role",
+                        "year": 2025,
+                        "ongoing": True,
+                        "view_groups": ["organizing"],
+                        "title": "Demo",
+                    },
+                    {
+                        "key": "2026-demo-role",
+                        "series_key": "demo-role",
+                        "year": 2026,
+                        "view_groups": ["organizing"],
+                        "title": "Demo",
+                    },
+                ],
+            )
+
+            with self.assertRaisesRegex(ServiceRecordError, "must use latest year 2026"):
                 load_service_records(root)
 
     def test_find_service_record_issues_reports_missing_file(self) -> None:

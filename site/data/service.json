@@ -84,6 +84,7 @@
       "key": "2026-egraphs-community-advisory-board",
       "series_key": "egraphs-community-advisory-board",
       "year": 2026,
+      "ongoing": true,
       "view_groups": [
         "organizing"
       ],
@@ -126,6 +127,20 @@
       ],
       "title": "UW CSE Faculty Graduate Admissions",
       "role": "Co-chair"
+    },
+    {
+      "key": "2026-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2026,
+      "ongoing": true,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
     },
     {
       "key": "2025-egraphs-community-advisory-board",
@@ -173,6 +188,19 @@
       "role": "Co-chair"
     },
     {
+      "key": "2025-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2025,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
+    },
+    {
       "key": "2024-egraphs-community-advisory-board",
       "series_key": "egraphs-community-advisory-board",
       "year": 2024,
@@ -212,6 +240,19 @@
       ],
       "title": "UW CSE Faculty Recruiting",
       "role": "Co-chair"
+    },
+    {
+      "key": "2024-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2024,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
     },
     {
       "key": "2023-arith-program-committee",
@@ -313,6 +354,19 @@
       "role": "Co-chair"
     },
     {
+      "key": "2023-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2023,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
+    },
+    {
       "key": "2022-arith-program-committee",
       "year": 2022,
       "view_groups": [
@@ -383,6 +437,19 @@
       "role": "Co-chair"
     },
     {
+      "key": "2022-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2022,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
+    },
+    {
       "key": "2021-asplos-program-committee",
       "year": 2021,
       "view_groups": [
@@ -429,6 +496,19 @@
         "department"
       ],
       "title": "UW CSE Undergraduate Admissions Committee"
+    },
+    {
+      "key": "2021-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2021,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
     },
     {
       "key": "2020-asplos-program-committee",
@@ -517,6 +597,19 @@
       "title": "UW CSE Undergraduate Admissions Committee"
     },
     {
+      "key": "2020-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2020,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
+    },
+    {
       "key": "2019-cpp-program-committee",
       "year": 2019,
       "view_groups": [
@@ -601,6 +694,19 @@
       "title": "University of Washington Verification in Practice (ViP)",
       "role": "Co-Organizer",
       "url": "https://vip.cs.washington.edu/"
+    },
+    {
+      "key": "2019-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2019,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
     },
     {
       "key": "2018-itp-program-committee",
@@ -706,6 +812,19 @@
       "title": "UW CSE Undergraduate Admissions Committee"
     },
     {
+      "key": "2018-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2018,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
+    },
+    {
       "key": "2017-asplos-external-reviewer",
       "year": 2017,
       "view_groups": [
@@ -777,6 +896,19 @@
       ],
       "title": "UW NSF STARS",
       "role": "Mentor"
+    },
+    {
+      "key": "2017-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2017,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
     },
     {
       "key": "2016-asplos-external-review-committee",
@@ -861,6 +993,19 @@
       "title": "UW CSE Visit Days Organizing Committee"
     },
     {
+      "key": "2016-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2016,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
+    },
+    {
       "key": "2015-coqpl-program-committee",
       "year": 2015,
       "view_groups": [
@@ -924,6 +1069,19 @@
         "department"
       ],
       "title": "UW CSE Visit Days Organizing Committee"
+    },
+    {
+      "key": "2015-uw-faculty-skit",
+      "series_key": "uw-faculty-skit",
+      "year": 2015,
+      "view_groups": [
+        "department"
+      ],
+      "title": "UW Faculty Skit",
+      "role": "Writer, Producer, and Director",
+      "details": [
+        "with [Hank Levy][] and [Adriana Schulz][]"
+      ]
     },
     {
       "key": "2014-oopsla-external-review-committee",

@@ -17,6 +17,7 @@ from scripts.publication_record import (
     load_publication_record,
     publication_page_path,
 )
+from scripts.service_index import find_public_service_drift_issues
 from scripts.service_record import (
     SERVICE_DATA_NAME,
     find_service_record_issues,
@@ -430,6 +431,17 @@ def _find_service_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_service_drift_issues(config: SiteConfig) -> list[str]:
+    service_path = config.data_dir / SERVICE_DATA_NAME
+    if not service_path.exists():
+        return []
+    return find_public_service_drift_issues(
+        config.repo_root,
+        service_path=service_path,
+        page_source_dir=config.page_source_dir,
+    )
+
+
 def find_source_issues(config: SiteConfig) -> list[str]:
     return (
         validate_general_page_metadata(
@@ -444,6 +456,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             static_source_dir=config.static_source_dir,
         )
         + _find_service_data_issues(config)
+        + _find_service_drift_issues(config)
         + _find_teaching_data_issues(config)
         + _find_teaching_projection_issues(config)
         + _find_student_data_issues(config)

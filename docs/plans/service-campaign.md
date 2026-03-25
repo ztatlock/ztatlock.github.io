@@ -132,6 +132,9 @@ Recommended record fields:
   shared key for records that represent a longer appointment or recurring role
 - `year`
   four-digit integer
+- optional `ongoing`
+  marks the latest currently open-ended term within a series so later renderers
+  can collapse it to `Present`
 - ordered `view_groups`
   current public/CV grouping buckets, drawn from:
   - `reviewing`
@@ -155,8 +158,8 @@ Important design notes:
 - longer year ranges should be exploded into one record per year
 - future renderers may collapse contiguous records with the same `series_key`
   back into ranges like `2026 - 2029`
-- ongoing appointments may later need a small explicit `ongoing` marker if a
-  renderer wants to show `Present`
+- ongoing appointments can use a small explicit `ongoing` marker on the latest
+  known term if a renderer wants to show `Present`
 - homepage-selection metadata should be deferred until a later cross-cutting
   consumer phase unless slice-1 backfill proves it is unavoidable sooner
 

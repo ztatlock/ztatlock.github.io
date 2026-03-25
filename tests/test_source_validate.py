@@ -54,6 +54,74 @@ class SourceValidateTests(unittest.TestCase):
                 [f"missing service registry: {data / 'service.json'}"],
             )
 
+    def test_reports_service_page_drift_against_canonical_registry(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "service.dj").write_text(
+                "---\n"
+                "description: Service\n"
+                "---\n\n"
+                "# Service\n\n"
+                "## Reviewing\n\n"
+                "- 2025 OtherConf Program Committee\n\n"
+                "## Organizing\n\n"
+                "## Mentoring\n\n"
+                "## Department\n",
+                encoding="utf-8",
+            )
+            (data / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2025-demo-reviewing",
+                                "year": 2025,
+                                "view_groups": ["reviewing"],
+                                "title": "DemoConf",
+                                "role": "Program Committee",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'service.dj'}: service section reviewing missing canonical entries: 2025 DemoConf Program Committee",
+                    f"{pages / 'service.dj'}: service section reviewing has non-canonical entries: 2025 OtherConf Program Committee",
+                ],
+            )
+
     def test_reports_missing_teaching_registry_when_teaching_page_exists(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

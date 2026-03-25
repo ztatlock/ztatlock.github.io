@@ -51,6 +51,7 @@ Slice 1 should start with:
 - `key`
 - optional `series_key`
 - `year`
+- optional `ongoing`
 - ordered `view_groups`
 - `title`
 - optional `role`
@@ -60,6 +61,7 @@ Slice 1 should start with:
 Important field semantics:
 
 - `view_groups` capture current public/CV grouping buckets only
+- `ongoing` belongs only on the latest currently open-ended term in a series
 - `details` should stay small and rare in slice 1
 - homepage-specific curation metadata should stay out of slice 1 unless the
   backfill proves it is unavoidable
