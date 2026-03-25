@@ -1,6 +1,6 @@
 # Collaborators Slice 2: About-Page Alphabet Stats Projection
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -123,7 +123,7 @@ This is intentionally simple and matches the existing joke well enough.
 - no changes to the about-page prose outside the two factual gap values
 - no homepage/CV curated-block cleanup
 
-## Expected Invariant After This Slice
+## Landed Invariant
 
 - the about-page collaborator alphabet joke can no longer drift from the
   current `/collaborators/` display set
@@ -131,16 +131,11 @@ This is intentionally simple and matches the existing joke well enough.
 - only the first-name and last-name gap values become projected
 - no new collaborator-specific data file is introduced
 
-## Expected Visible Changes
+## Rendered Review
 
-The intended visible result is no change.
-
-If the slice is implemented correctly:
-
-- `about.html` should be byte-identical before and after
-
-If some visible difference does appear, it should be treated as a bug unless
-we deliberately decide on a presentation change.
+- `about.html` is byte-identical before and after this slice
+- no visible presentation changes landed
+- the slice removes a drift seam without changing the authored joke
 
 ## Verification Targets
 

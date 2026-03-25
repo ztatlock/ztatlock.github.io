@@ -159,11 +159,11 @@ I have been very fortunate to work on projects
   with many amazing [collaborators](collaborators/).
 If your first name starts with:
 
->    `F, Q, U`
+>    `__COLLABORATORS_FIRST_INITIAL_GAPS__`
 
 or your last name starts with:
 
->    `I, U, V, X, Y`
+>    `__COLLABORATORS_LAST_INITIAL_GAPS__`
 
 let's write a paper together!
 
@@ -203,6 +203,5 @@ put together the conference trailers for POPL 2022:
 <iframe src="https://www.youtube.com/embed/707tBQ07I-A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ```
 :::
-
 
 

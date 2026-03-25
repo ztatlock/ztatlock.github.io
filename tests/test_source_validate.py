@@ -711,6 +711,95 @@ class SourceValidateTests(unittest.TestCase):
                 [f"{collaborators / 'index.dj'}: collaborators index page must not contain literal collaborator entry blocks"],
             )
 
+    def test_reports_missing_about_collaborator_alphabet_placeholders(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "about.dj").write_text(
+                "---\n"
+                "description: About page\n"
+                "---\n\n"
+                "# About\n\n"
+                "## Collaborator Alphabet Soup: Gotta Catch 'Em All\n\n"
+                "If your first name starts with:\n\n"
+                ">    `todo`\n\n"
+                "or your last name starts with:\n\n"
+                ">    `todo`\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'about.dj'}: collaborator alphabet section must contain __COLLABORATORS_FIRST_INITIAL_GAPS__",
+                    f"{pages / 'about.dj'}: collaborator alphabet section must contain __COLLABORATORS_LAST_INITIAL_GAPS__",
+                ],
+            )
+
+    def test_reports_literal_hand_authored_about_collaborator_gap_list(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "about.dj").write_text(
+                "---\n"
+                "description: About page\n"
+                "---\n\n"
+                "# About\n\n"
+                "## Collaborator Alphabet Soup: Gotta Catch 'Em All\n\n"
+                "If your first name starts with:\n\n"
+                ">    `__COLLABORATORS_FIRST_INITIAL_GAPS__`\n\n"
+                "or your last name starts with:\n\n"
+                ">    `__COLLABORATORS_LAST_INITIAL_GAPS__`\n\n"
+                "Bonus stale line:\n\n"
+                ">    `F, Q, U`\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'about.dj'}: collaborator alphabet section must not contain literal hand-authored gap lists"
+                ],
+            )
+
     def test_reports_missing_cv_students_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

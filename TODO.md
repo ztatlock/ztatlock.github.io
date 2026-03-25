@@ -28,8 +28,8 @@
   `docs/plans/structured-content-roadmap.md`:
   the major canonical/shared-data and CV consumer campaigns are now through
   funding,
-  collaborators is now through its first public-wrapper/coauthor projection
-  checkpoint,
+  collaborators is now through its public-wrapper plus about-page
+  alphabet-projection checkpoints,
   the main remaining cross-domain seams are the curated homepage/CV blocks,
   publication artifact enrichment remains separate,
   news remains later,

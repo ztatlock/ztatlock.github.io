@@ -292,13 +292,14 @@ above.
 
 ### Collaborators
 
-The collaborators campaign is now underway through its first public-wrapper /
-coauthor-projection slice.
+The collaborators campaign is now underway through its second slice.
 
 The current checkpoint is narrow on purpose:
 
 - a thin public wrapper at `site/collaborators/index.dj`
 - a first derived coauthor list from publication bundles plus `people.json`
+- the about-page alphabet joke now projects from that same collaborator display
+  set
 - collaborator-specific relationship data only later, once non-coauthor facts
   become real and worth modeling
 

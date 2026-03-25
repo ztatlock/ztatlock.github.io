@@ -7,6 +7,8 @@ from pathlib import Path
 
 from scripts.collaborators_index import (
     load_collaborator_entries,
+    render_missing_collaborator_first_initials,
+    render_missing_collaborator_last_initials,
     render_public_collaborators_list_djot,
 )
 
@@ -165,6 +167,70 @@ class CollaboratorsIndexTests(unittest.TestCase):
                 "* [Adam Geller][]\n"
                 "* Robert Rabe\n",
             )
+
+    def test_renders_missing_initials_from_collaborator_display_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            pubs_dir = root / "site" / "pubs"
+            data_dir.mkdir(parents=True)
+
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "zachary-tatlock": {
+                                "name": "Zachary Tatlock",
+                                "url": "https://ztatlock.net/",
+                            },
+                            "adam-geller": {
+                                "name": "Adam Geller",
+                                "url": "https://example.test/adam",
+                                "aliases": ["Adam T. Geller"],
+                            },
+                            "remy-wang": {
+                                "name": "Yisu Remy Wang",
+                                "url": "https://example.test/remy",
+                                "aliases": ["Remy Wang"],
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            _write_publication(
+                pubs_dir,
+                "2025-demo-one",
+                title="First Paper",
+                pub_date="2025-01-01",
+                authors=[
+                    {"name": "Zachary Tatlock", "ref": "Zachary Tatlock"},
+                    {"name": "Adam T. Geller", "ref": "Adam Geller"},
+                    {"name": "Yisu Remy Wang", "ref": "Remy Wang"},
+                    {"name": "Robert Rabe", "ref": ""},
+                ],
+            )
+
+            first_missing = render_missing_collaborator_first_initials(
+                root,
+                publications_dir=pubs_dir,
+                people_path=data_dir / "people.json",
+            ).split(", ")
+            last_missing = render_missing_collaborator_last_initials(
+                root,
+                publications_dir=pubs_dir,
+                people_path=data_dir / "people.json",
+            ).split(", ")
+
+            self.assertNotIn("A", first_missing)
+            self.assertNotIn("R", first_missing)
+            self.assertIn("Y", first_missing)
+            self.assertIn("Q", first_missing)
+
+            self.assertNotIn("G", last_missing)
+            self.assertNotIn("R", last_missing)
+            self.assertNotIn("W", last_missing)
+            self.assertIn("Q", last_missing)
 
 
 if __name__ == "__main__":

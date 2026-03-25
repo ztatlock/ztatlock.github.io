@@ -1,6 +1,6 @@
 # Collaborators Campaign
 
-Status: slice 1 implemented
+Status: slice 2 implemented
 
 It builds on:
 
@@ -44,7 +44,7 @@ Current explicit collaborator-related surfaces:
 - `site/collaborators/index.dj`
   a thin wrapper over a projected alphabetical coauthor list
 - `site/pages/about.dj`
-  a hand-authored collaborator alphabet-coverage note
+  a hand-authored collaborator alphabet-coverage note with projected gap values
 - `site/pubs/<slug>/publication.json`
   canonical publication-author lists
 - `site/data/people.json`

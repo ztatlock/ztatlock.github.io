@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import string
+import unicodedata
 
 from scripts.publication_index import PublicationIndexError, load_publication_index_records
 from scripts.sitebuild.people_registry import (
@@ -15,6 +17,8 @@ from scripts.sitebuild.people_registry import (
 
 COLLABORATORS_INDEX_NAME = "index.dj"
 COLLABORATORS_LIST_PLACEHOLDER = "__COLLABORATORS_LIST__"
+COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER = "__COLLABORATORS_FIRST_INITIAL_GAPS__"
+COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER = "__COLLABORATORS_LAST_INITIAL_GAPS__"
 SELF_PERSON_KEY = "zachary-tatlock"
 SELF_NAME = "Zachary Tatlock"
 
@@ -94,6 +98,63 @@ def load_collaborator_entries(
             key=lambda entry: (entry.display_name.casefold(), entry.display_name),
         )
     )
+
+
+def _normalized_ascii_initial(token: str) -> str | None:
+    for char in unicodedata.normalize("NFKD", token):
+        if not char.isalpha():
+            continue
+        upper = char.upper()
+        if upper in string.ascii_uppercase:
+            return upper
+    return None
+
+
+def _missing_collaborator_initials(
+    entries: tuple[CollaboratorEntry, ...],
+    *,
+    pick_token,
+) -> tuple[str, ...]:
+    present: set[str] = set()
+    for entry in entries:
+        tokens = entry.display_name.split()
+        if not tokens:
+            continue
+        token = pick_token(tokens)
+        initial = _normalized_ascii_initial(token)
+        if initial is not None:
+            present.add(initial)
+    return tuple(letter for letter in string.ascii_uppercase if letter not in present)
+
+
+def render_missing_collaborator_first_initials(
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+    people_path: Path | None = None,
+) -> str:
+    entries = load_collaborator_entries(
+        root,
+        publications_dir=publications_dir,
+        people_path=people_path,
+    )
+    missing = _missing_collaborator_initials(entries, pick_token=lambda tokens: tokens[0])
+    return ", ".join(missing)
+
+
+def render_missing_collaborator_last_initials(
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+    people_path: Path | None = None,
+) -> str:
+    entries = load_collaborator_entries(
+        root,
+        publications_dir=publications_dir,
+        people_path=people_path,
+    )
+    missing = _missing_collaborator_initials(entries, pick_token=lambda tokens: tokens[-1])
+    return ", ".join(missing)
 
 
 def _render_collaborator_entry_djot(entry: CollaboratorEntry) -> str:

@@ -6,9 +6,13 @@ from pathlib import Path
 import re
 
 from scripts.collaborators_index import (
+    COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER,
+    COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER,
     COLLABORATORS_LIST_PLACEHOLDER,
     CollaboratorsIndexError,
     render_public_collaborators_list_djot,
+    render_missing_collaborator_first_initials,
+    render_missing_collaborator_last_initials,
 )
 from scripts.funding_index import (
     FUNDING_LIST_PLACEHOLDER,
@@ -584,6 +588,35 @@ def apply_page_projections(
     talks_dir: Path | None = None,
     publications_dir: Path | None = None,
 ) -> str:
+    if (
+        route_kind == "ordinary_page"
+        and route_key == "about"
+        and (
+            COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER in body
+            or COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER in body
+        )
+    ):
+        people_path = (data_dir / "people.json") if data_dir is not None else None
+        rendered = body
+        try:
+            replacements = {
+                COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER: render_missing_collaborator_first_initials(
+                    root,
+                    publications_dir=publications_dir,
+                    people_path=people_path,
+                ),
+                COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER: render_missing_collaborator_last_initials(
+                    root,
+                    publications_dir=publications_dir,
+                    people_path=people_path,
+                ),
+            }
+        except CollaboratorsIndexError as err:
+            raise PageProjectionError(str(err)) from err
+        for placeholder, replacement in replacements.items():
+            rendered = rendered.replace(placeholder, replacement)
+        return rendered
+
     if route_kind == "collaborators_index_page" and route_key == "collaborators":
         people_path = (data_dir / "people.json") if data_dir is not None else None
         try:

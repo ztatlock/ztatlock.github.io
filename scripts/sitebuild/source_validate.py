@@ -6,6 +6,8 @@ import re
 from pathlib import Path
 
 from scripts.collaborators_index import (
+    COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER,
+    COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER,
     COLLABORATORS_LIST_PLACEHOLDER,
     collaborators_index_path,
 )
@@ -104,6 +106,7 @@ LITERAL_CV_TALKS_ENTRY_RE = re.compile(r"^[*-] ", re.MULTILINE)
 LITERAL_CV_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_COLLABORATOR_ENTRY_RE = re.compile(r"^\* ", re.MULTILINE)
+LITERAL_COLLABORATOR_GAP_RE = re.compile(r"^>\s+`[A-Z](?:, [A-Z])*`$", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -372,6 +375,36 @@ def _extract_markdown_section_body(text: str, heading: str, *, level: int) -> st
     if match is None:
         return None
     return match.group("body")
+
+
+def _find_about_collaborator_projection_issues(config: SiteConfig) -> list[str]:
+    about_path = config.page_source_dir / "about.dj"
+    if not about_path.exists():
+        return []
+
+    text = about_path.read_text(encoding="utf-8")
+    section = _extract_markdown_section_body(
+        text,
+        "Collaborator Alphabet Soup: Gotta Catch 'Em All",
+        level=2,
+    )
+    if section is None:
+        return []
+
+    issues: list[str] = []
+    for placeholder in (
+        COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER,
+        COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER,
+    ):
+        if placeholder not in section:
+            issues.append(
+                f"{about_path}: collaborator alphabet section must contain {placeholder}"
+            )
+    if LITERAL_COLLABORATOR_GAP_RE.search(section):
+        issues.append(
+            f"{about_path}: collaborator alphabet section must not contain literal hand-authored gap lists"
+        )
+    return issues
 
 
 def _find_collaborators_projection_issues(config: SiteConfig) -> list[str]:
@@ -936,6 +969,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             static_source_dir=config.static_source_dir,
         )
         + _find_cv_projection_issues(config)
+        + _find_about_collaborator_projection_issues(config)
         + _find_collaborators_projection_issues(config)
         + _find_cv_students_projection_issues(config)
         + _find_cv_publications_projection_issues(config)
