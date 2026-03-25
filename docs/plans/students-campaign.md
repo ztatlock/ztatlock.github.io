@@ -108,7 +108,7 @@ This is cleaner than treating people-registry integration as optional forever.
 
 ## Current Status
 
-Slices 1 and 2 are now implemented:
+Slices 1 through 3 are now implemented:
 
 - canonical advising records live in `site/data/students.json`
 - `person_key` is required and resolves through `site/data/people.json`
@@ -121,23 +121,22 @@ Slices 1 and 2 are now implemented:
 - repeated students-page section bodies are projected from
   `site/data/students.json` while the quote, intro, FACET note, and section
   headings remain hand-authored
-- the CV wrapper now already lives at `site/cv/index.dj` with canonical
-  `/cv/`, but its students sections are still hand-maintained
+- the CV wrapper now lives at `site/cv/index.dj` with canonical `/cv/`
+- the duplicated CV students sections now project from
+  `site/data/students.json` through a more compressed CV-specific renderer
+- the CV visiting section now uses `Visiting Students and Interns`
+- Ian Briggs is now included consistently with the canonical students data
 
 The next students work should build on that canonical record model rather than
 reopening the schema without a strong reason.
 
-The next important design work is no longer the public-wrapper decision.
-One likely follow-on is CV reuse:
+The next important students work is no longer public-page or CV-section
+duplication removal. Any later student follow-on should come from a clearer
+need, such as:
 
-- keep the CV wrapper at `site/cv/index.dj` with canonical `/cv/`
-- define the condensed CV projection policy explicitly
-- decide whether the Ian Briggs omission is intentional or drift
-- decide whether the CV visiting-section heading should stay
-  `Visiting Summer Students` or align more closely with the broader public
-  `Visiting Students and Interns`
-- project the duplicated advising sections in the CV wrapper from
-  `site/data/students.json`
+- richer alumni/date modeling that earns its complexity
+- student-to-publication linkage
+- later homepage or highlights reuse if it clearly pays off
 
 ## Desired End State
 

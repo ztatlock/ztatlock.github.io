@@ -97,8 +97,11 @@ class PageRendererTests(unittest.TestCase):
         )
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+        self.assertNotIn("__CV_STUDENTS_CURRENT_LIST__", html)
         self.assertIn("Curriculum Vitae", html)
         self.assertIn("Selected Recent Highlights", html)
+        self.assertIn("Visiting Students and Interns", html)
+        self.assertIn("Ian Briggs", html)
 
     def test_render_service_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/service/"

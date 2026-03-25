@@ -50,6 +50,7 @@ from scripts.page_metadata import (
 
 from .site_config import SiteConfig
 from .page_projection import (
+    CV_STUDENT_SECTION_PLACEHOLDERS,
     STUDENT_SECTION_PLACEHOLDERS,
     TALKS_LIST_PLACEHOLDER,
     TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER,
@@ -73,6 +74,7 @@ LITERAL_STUDENT_ENTRY_RE = re.compile(
     r"^- \[[^\]]+\](?:\[[^\]]*\]|\([^)]+\)),\s",
     re.MULTILINE,
 )
+LITERAL_CV_STUDENT_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -303,6 +305,39 @@ def _find_cv_projection_issues(config: SiteConfig) -> list[str]:
             static_source_dir=config.static_source_dir,
         )
     )
+    return issues
+
+
+def _extract_markdown_section_body(text: str, heading: str, *, level: int) -> str | None:
+    pattern = re.compile(
+        rf"^{re.escape('#' * level)} {re.escape(heading)}\s*$\n(?P<body>.*?)(?=^{'#' * level} |\Z)",
+        re.MULTILINE | re.DOTALL,
+    )
+    match = pattern.search(text)
+    if match is None:
+        return None
+    return match.group("body")
+
+
+def _find_cv_students_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    students_path = config.data_dir / STUDENTS_DATA_NAME
+    if not index_path.exists() or not students_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    students_section = _extract_markdown_section_body(text, "Students", level=2)
+    if students_section is None:
+        return [f"{index_path}: CV wrapper must contain a ## Students section"]
+
+    issues: list[str] = []
+    for placeholder in CV_STUDENT_SECTION_PLACEHOLDERS.values():
+        if placeholder not in students_section:
+            issues.append(f"{index_path}: CV students section must contain {placeholder}")
+    if LITERAL_CV_STUDENT_ENTRY_RE.search(students_section):
+        issues.append(
+            f"{index_path}: CV students section must not contain literal student entry blocks"
+        )
     return issues
 
 
@@ -563,6 +598,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             static_source_dir=config.static_source_dir,
         )
         + _find_cv_projection_issues(config)
+        + _find_cv_students_projection_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)
         + _find_teaching_data_issues(config)

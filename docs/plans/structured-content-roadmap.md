@@ -224,8 +224,7 @@ Implemented outcomes so far:
 
 ### 6. CV Consumer Wrapper
 
-The next major structured-content campaign should be the CV as a cross-domain
-consumer wrapper.
+The CV is now at its first real cross-domain consumer checkpoint.
 
 Why next:
 
@@ -236,13 +235,29 @@ Why next:
 - the largest remaining duplicated factual maintenance now sits in the CV over
   already-canonical domains such as students, teaching, and service
 
-Current recommendation:
+Current shape:
 
 - keep the CV wrapper at `site/cv/index.dj` with canonical `/cv/`
-- keep the full CV body hand-authored while the first consumer slices land
-- project students into the CV as the first true downstream-consumer slice
+- keep the full CV body hand-authored while consumer slices land
+- route/wrapper cutover implemented
+- students projected into the CV as the first true downstream-consumer slice
 - stop and reassess before touching teaching, service, talks, publications,
   or highlights
+
+Implemented outcomes so far:
+
+- the CV wrapper now lives at `site/cv/index.dj`
+- the canonical public CV URL is now `/cv/`
+- the duplicated students sections now project from `site/data/students.json`
+- the CV now has an explicit compressed students renderer rather than
+  reusing the public students-page view
+
+Current recommendation:
+
+- choose the next CV consumer slice deliberately rather than broadening
+  automatically
+- likely candidates are teaching or service
+- keep later homepage/CV consumer cleanup cross-cutting and explicit
 
 ## Adjacent / Emerging Domains
 

@@ -73,8 +73,8 @@ meant to be read, maintained, and extended over time.
   and projection slices, plus likely follow-on work.
 - `plans/students-campaign.md`
   Current students structured-content campaign note, with the implemented
-  canonical advising-record and students-index projection slices, plus the
-  planned CV-projection follow-on.
+  canonical advising-record, students-index projection, and CV-projection
+  slices, plus later student follow-on ideas.
 - `plans/teaching-campaign.md`
   Current teaching structured-content campaign note, including the initial
   audit, the shared-data-first design recommendation, and the implemented
@@ -87,14 +87,15 @@ meant to be read, maintained, and extended over time.
   deferred as later cross-cutting consumer work.
 - `plans/cv-campaign.md`
   Current CV structured-content campaign note, framing the CV as a
-  cross-domain consumer wrapper with the route-cutover slice implemented and
-  the students-CV projection slice next.
+  cross-domain consumer wrapper with the route-cutover and students-CV
+  projection slices implemented, and the next consumer slice left as an
+  explicit reassessment point.
 - `plans/cv-slice-1-route-cutover.md`
   Implemented record of the slice that moved the CV wrapper to
   `site/cv/index.dj` and canonicalized `/cv/` before any section projection.
 - `plans/cv-slice-2-students-projection.md`
-  Planned record of the first downstream CV consumer slice, replacing only the
-  duplicated students sections with a compressed projection from
+  Implemented record of the first downstream CV consumer slice, replacing only
+  the duplicated students sections with a compressed projection from
   `site/data/students.json`.
 - `plans/service-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical service terms in

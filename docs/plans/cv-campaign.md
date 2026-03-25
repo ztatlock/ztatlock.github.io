@@ -1,6 +1,7 @@
 # CV Campaign
 
-Status: route/wrapper cutover implemented; students CV projection next
+Status: route/wrapper cutover and students CV projection implemented; next
+consumer slice should be chosen deliberately
 
 ## Goal
 
@@ -72,12 +73,14 @@ Other important cross-domain consumers already present near the top of the CV:
 - `Selected Publications`
   overlaps publications
 
-Current wrapper state:
+Current wrapper/consumer state:
 
 - the CV wrapper now lives in `site/cv/index.dj`
 - the canonical public URL is now `/cv/`
 - lingering authored `cv.html` links have been rewritten to `cv/`
-- no section projection has happened yet
+- the duplicated students sections now project from `site/data/students.json`
+- the visiting-section wording is now `Visiting Students and Interns`
+- the CV now includes Ian Briggs consistently with the canonical students data
 
 That means the wrapper shape is now settled and the next real CV work is
 consumer-side section projection.
@@ -182,13 +185,13 @@ Invariant after slice 1:
 
 ### Slice 2. Students CV Projection
 
-Next.
+Implemented.
 
 - replace only the duplicated students sections in the CV
 - define the explicit compressed CV renderer policy for student records
 - make the visiting-section heading and Ian Briggs policy explicit together
 - keep the CV section headings and surrounding framing hand-authored
-- resolve whether Ian Briggs should remain omitted or be restored
+- verify the old/new rendered CV HTML diff is isolated to the students section
 
 Invariant after slice 2:
 
@@ -202,7 +205,7 @@ Invariant after slice 2:
 
 ### Checkpoint After Slice 2
 
-Stop and reassess.
+Now current.
 
 At that point:
 

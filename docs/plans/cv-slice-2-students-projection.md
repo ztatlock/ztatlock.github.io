@@ -1,5 +1,7 @@
 # CV Slice 2: Students Projection
 
+Implemented.
+
 ## Goal
 
 Replace only the duplicated students sections in the CV with projection from

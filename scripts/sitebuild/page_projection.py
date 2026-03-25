@@ -50,6 +50,20 @@ STUDENT_SECTION_PLACEHOLDERS = {
     "graduated_bachelors_students": STUDENTS_BACHELORS_LIST_PLACEHOLDER,
     "visiting_students": STUDENTS_VISITING_LIST_PLACEHOLDER,
 }
+CV_STUDENTS_CURRENT_LIST_PLACEHOLDER = "__CV_STUDENTS_CURRENT_LIST__"
+CV_STUDENTS_POSTDOC_LIST_PLACEHOLDER = "__CV_STUDENTS_POSTDOC_LIST__"
+CV_STUDENTS_PHD_LIST_PLACEHOLDER = "__CV_STUDENTS_PHD_LIST__"
+CV_STUDENTS_MASTERS_LIST_PLACEHOLDER = "__CV_STUDENTS_MASTERS_LIST__"
+CV_STUDENTS_BACHELORS_LIST_PLACEHOLDER = "__CV_STUDENTS_BACHELORS_LIST__"
+CV_STUDENTS_VISITING_LIST_PLACEHOLDER = "__CV_STUDENTS_VISITING_LIST__"
+CV_STUDENT_SECTION_PLACEHOLDERS = {
+    "current_students": CV_STUDENTS_CURRENT_LIST_PLACEHOLDER,
+    "completed_postdoctoral_mentoring": CV_STUDENTS_POSTDOC_LIST_PLACEHOLDER,
+    "graduated_doctoral_students": CV_STUDENTS_PHD_LIST_PLACEHOLDER,
+    "graduated_masters_students": CV_STUDENTS_MASTERS_LIST_PLACEHOLDER,
+    "graduated_bachelors_students": CV_STUDENTS_BACHELORS_LIST_PLACEHOLDER,
+    "visiting_students": CV_STUDENTS_VISITING_LIST_PLACEHOLDER,
+}
 TEACHING_UW_COURSES_LIST_PLACEHOLDER = "__TEACHING_UW_COURSES_LIST__"
 TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER = "__TEACHING_SPECIAL_TOPICS_LIST__"
 TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER = "__TEACHING_SUMMER_SCHOOL_LIST__"
@@ -152,6 +166,49 @@ def render_students_section_list_djot(
         for record in section.records
     ]
     return "\n\n".join(chunks) + ("\n" if chunks else "")
+
+
+def _render_cv_student_record(record: StudentRecord) -> str:
+    lines = [f"- {record.name}, {record.label}"]
+
+    rendered_details: list[str] = []
+    for detail in record.details:
+        if detail.kind == "thesis":
+            rendered_details.append(f"  * Thesis: {detail.title}")
+            continue
+        if detail.kind == "coadvisor":
+            continue
+        rendered_details.append(f"  * {detail.djot}")
+    if rendered_details:
+        lines.append("")
+        lines.extend(rendered_details)
+    return "\n".join(lines)
+
+
+def render_cv_students_section_list_djot(
+    root: Path,
+    section_key: str,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    students_path = (data_dir / STUDENTS_DATA_NAME) if data_dir is not None else None
+    people_path = (data_dir / "people.json") if data_dir is not None else None
+    try:
+        sections = load_student_sections(
+            root,
+            students_path=students_path,
+            people_path=people_path,
+        )
+    except StudentRecordError as err:
+        raise PageProjectionError(str(err)) from err
+
+    try:
+        section = next(section for section in sections if section.key == section_key)
+    except StopIteration as err:
+        raise PageProjectionError(f"missing student section for projection: {section_key}") from err
+
+    chunks = [_render_cv_student_record(record) for record in section.records]
+    return "\n".join(chunks) + ("\n" if chunks else "")
 
 
 def _teaching_group_records_by_key(root: Path, *, data_dir: Path | None = None) -> dict[str, tuple[TeachingRecord, ...]]:
@@ -289,6 +346,19 @@ def apply_page_projections(
         rendered = body
         for section_key, placeholder in STUDENT_SECTION_PLACEHOLDERS.items():
             section_body = render_students_section_list_djot(
+                root,
+                section_key,
+                data_dir=data_dir,
+            ).rstrip()
+            rendered = rendered.replace(placeholder, section_body)
+        return rendered
+
+    if route_kind == "cv_index_page" and route_key == "cv":
+        rendered = body
+        for section_key, placeholder in CV_STUDENT_SECTION_PLACEHOLDERS.items():
+            if placeholder not in rendered:
+                continue
+            section_body = render_cv_students_section_list_djot(
                 root,
                 section_key,
                 data_dir=data_dir,

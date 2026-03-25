@@ -7,6 +7,12 @@ from pathlib import Path
 
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
+    CV_STUDENTS_BACHELORS_LIST_PLACEHOLDER,
+    CV_STUDENTS_CURRENT_LIST_PLACEHOLDER,
+    CV_STUDENTS_MASTERS_LIST_PLACEHOLDER,
+    CV_STUDENTS_PHD_LIST_PLACEHOLDER,
+    CV_STUDENTS_POSTDOC_LIST_PLACEHOLDER,
+    CV_STUDENTS_VISITING_LIST_PLACEHOLDER,
     SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     SERVICE_MENTORING_LIST_PLACEHOLDER,
     SERVICE_ORGANIZING_LIST_PLACEHOLDER,
@@ -22,6 +28,7 @@ from scripts.sitebuild.page_projection import (
     TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     TEACHING_UW_COURSES_LIST_PLACEHOLDER,
     apply_page_projections,
+    render_cv_students_section_list_djot,
     render_teaching_special_topics_list_djot,
     render_teaching_summer_school_list_djot,
     render_teaching_uw_courses_list_djot,
@@ -576,3 +583,176 @@ class PageProjectionTests(unittest.TestCase):
                 data_dir=explicit_data_dir,
             )
             self.assertIn("- [Demo Student][], PhD Student", rendered)
+
+    def test_renders_cv_students_section_with_compressed_policy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            data_dir.mkdir(parents=True)
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "demo-student": {"name": "Demo Student", "url": "https://example.test/demo"},
+                            "coadvisor": {"name": "Co Advisor", "url": "https://example.test/coadvisor"},
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            _student_section(
+                                "current_students",
+                                "Current Students",
+                                {
+                                    "key": "demo-student-phd-2025",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "PhD 2025",
+                                    "details": [
+                                        {
+                                            "kind": "thesis",
+                                            "title": "Composable Program Synthesis",
+                                            "url": "https://example.test/thesis",
+                                        },
+                                        {"kind": "coadvisor", "person_keys": ["coadvisor"]},
+                                        {"kind": "outcome", "djot": "Industry Researcher"},
+                                    ],
+                                },
+                            )
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            rendered = render_cv_students_section_list_djot(
+                root,
+                "current_students",
+                data_dir=data_dir,
+            )
+            self.assertIn("- Demo Student, PhD 2025", rendered)
+            self.assertIn("Thesis: Composable Program Synthesis", rendered)
+            self.assertIn("Industry Researcher", rendered)
+            self.assertNotIn("[Demo Student]", rendered)
+            self.assertNotIn("co-advised with", rendered)
+
+    def test_applies_projection_only_to_cv_students_section(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            data_dir.mkdir(parents=True)
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "ian-briggs": {"name": "Ian Briggs", "url": "https://example.test/ian"},
+                            "demo-student": {"name": "Demo Student", "url": "https://example.test/demo"},
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            _student_section(
+                                "current_students",
+                                "Current Students",
+                                {
+                                    "key": "demo-student-current",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "PhD Student",
+                                },
+                            ),
+                            _student_section(
+                                "completed_postdoctoral_mentoring",
+                                "Completed Postdoctoral Mentoring",
+                                {
+                                    "key": "demo-student-postdoc",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "Postdoc 2025",
+                                },
+                            ),
+                            _student_section(
+                                "graduated_doctoral_students",
+                                "Graduated Doctoral Students",
+                                {
+                                    "key": "demo-student-phd",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "PhD 2024",
+                                },
+                            ),
+                            _student_section(
+                                "graduated_masters_students",
+                                "Graduated Masters Students",
+                                {
+                                    "key": "demo-student-ms",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "MS 2023",
+                                },
+                            ),
+                            _student_section(
+                                "graduated_bachelors_students",
+                                "Graduated Bachelors Students",
+                                {
+                                    "key": "demo-student-bs",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "BS 2022",
+                                },
+                            ),
+                            _student_section(
+                                "visiting_students",
+                                "Visiting Students and Interns",
+                                {
+                                    "key": "ian-briggs-visiting",
+                                    "person_key": "ian-briggs",
+                                    "name": "Ian Briggs",
+                                    "label": "PhD, Summer 2022 @ Amazon",
+                                },
+                            ),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            body = (
+                "# Curriculum Vitae\n\n"
+                f"{CV_STUDENTS_CURRENT_LIST_PLACEHOLDER}\n\n"
+                f"{CV_STUDENTS_POSTDOC_LIST_PLACEHOLDER}\n\n"
+                f"{CV_STUDENTS_PHD_LIST_PLACEHOLDER}\n\n"
+                f"{CV_STUDENTS_MASTERS_LIST_PLACEHOLDER}\n\n"
+                f"{CV_STUDENTS_BACHELORS_LIST_PLACEHOLDER}\n\n"
+                f"{CV_STUDENTS_VISITING_LIST_PLACEHOLDER}\n"
+            )
+            rendered = apply_page_projections(
+                "cv_index_page",
+                "cv",
+                body,
+                root=root,
+                data_dir=data_dir,
+            )
+            self.assertNotIn(CV_STUDENTS_CURRENT_LIST_PLACEHOLDER, rendered)
+            self.assertNotIn(CV_STUDENTS_VISITING_LIST_PLACEHOLDER, rendered)
+            self.assertIn("Ian Briggs, PhD, Summer 2022 @ Amazon", rendered)
+
+            self.assertEqual(
+                apply_page_projections(
+                    "ordinary_page",
+                    "about",
+                    body,
+                    root=root,
+                    data_dir=data_dir,
+                ),
+                body,
+            )
