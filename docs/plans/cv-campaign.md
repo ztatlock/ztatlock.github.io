@@ -186,6 +186,7 @@ Next.
 
 - replace only the duplicated students sections in the CV
 - define the explicit compressed CV renderer policy for student records
+- make the visiting-section heading and Ian Briggs policy explicit together
 - keep the CV section headings and surrounding framing hand-authored
 - resolve whether Ian Briggs should remain omitted or be restored
 
@@ -196,6 +197,8 @@ Invariant after slice 2:
 - the repo has a real downstream consumer renderer over an existing canonical
   domain
 - the CV consumer pattern is proven on one domain before broader rollout
+- any remaining CV/public divergence in the students section is explicit and
+  reviewable
 
 ### Checkpoint After Slice 2
 

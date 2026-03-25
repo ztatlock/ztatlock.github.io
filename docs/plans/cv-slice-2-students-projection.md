@@ -23,7 +23,7 @@ Students is the best first CV consumer slice because:
    the wrapper.
 3. Replace only the repeated students subsection bodies with placeholders.
 4. Add an explicit compressed CV renderer over `site/data/students.json`.
-5. Decide whether the current omission of Ian Briggs is intentional or drift.
+5. Decide the visiting-section heading and Ian Briggs policy together.
 6. Add source validation for the placeholder-based CV students section.
 
 Likely placeholders:
@@ -42,13 +42,34 @@ This slice should **not** blindly reuse the public students-page renderer.
 The CV renderer should be intentionally different where the current CV style
 demands it, for example:
 
-- more compressed lines
-- fewer links
-- fewer detail bullets
+- plain `Name, Label` lines by default
+- thesis details rendered as plain text rather than thesis-title links
+- outcome lines retained as plain bullets
+- fewer person links than the public students page unless a stronger policy is
+  justified
+- co-advisor details omitted unless the current CV clearly demonstrates they
+  belong
 - clearer omission rules where the CV intentionally differs
 
 Those differences should live in the CV renderer, not in special-case
 canonical data.
+
+## Important Visiting-Section Constraint
+
+This slice has one coupled policy question that should be decided explicitly:
+
+- the public students page now uses `Visiting Students and Interns`
+- the CV still says `Visiting Summer Students`
+- `Ian Briggs` exists canonically in `site/data/students.json` but is omitted
+  from the current CV
+
+So this slice should not treat:
+
+- heading wording
+- Ian inclusion/omission
+
+as separate arbitrary choices. The rendered heading and inclusion rule should
+be consistent with one another.
 
 ## Out Of Scope
 
@@ -65,6 +86,8 @@ canonical data.
 - the public students page and CV now share one canonical advising source
 - CV-specific rendering differences are explicit in one small consumer
   renderer
+- any intentional omission or heading divergence is documented policy rather
+  than silent drift
 - no duplicated literal students records remain in the CV wrapper
 
 ## Verification Targets
@@ -72,6 +95,7 @@ canonical data.
 - focused renderer/projection tests for the compressed CV students view
 - validation that required CV students placeholders are present
 - validation that literal duplicated CV students records are rejected
+- explicit test coverage for the visiting-section/Ian policy
 - compare old and new rendered CV HTML with attention to the `## Students`
   section specifically:
   - only the intended students subsection bodies should change

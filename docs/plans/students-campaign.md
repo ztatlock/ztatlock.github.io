@@ -115,12 +115,14 @@ Slices 1 and 2 are now implemented:
 - thesis links, co-advisors, alumni outcomes, and free-form notes are
   preserved in ordered typed detail lists
 - source validation now treats the canonical students data file as required
-  when the students/CV source pages are present
+  when the public students wrapper exists
 - the public wrapper now lives at `site/students/index.dj`
 - the canonical students landing page is now `/students/`
 - repeated students-page section bodies are projected from
   `site/data/students.json` while the quote, intro, FACET note, and section
   headings remain hand-authored
+- the CV wrapper now already lives at `site/cv/index.dj` with canonical
+  `/cv/`, but its students sections are still hand-maintained
 
 The next students work should build on that canonical record model rather than
 reopening the schema without a strong reason.
@@ -128,9 +130,12 @@ reopening the schema without a strong reason.
 The next important design work is no longer the public-wrapper decision.
 One likely follow-on is CV reuse:
 
-- move the CV wrapper to `site/cv/index.dj` with canonical `/cv/`
+- keep the CV wrapper at `site/cv/index.dj` with canonical `/cv/`
 - define the condensed CV projection policy explicitly
 - decide whether the Ian Briggs omission is intentional or drift
+- decide whether the CV visiting-section heading should stay
+  `Visiting Summer Students` or align more closely with the broader public
+  `Visiting Students and Interns`
 - project the duplicated advising sections in the CV wrapper from
   `site/data/students.json`
 
@@ -236,7 +241,7 @@ The likely clean policy is:
 - `students.dj`
   richer projection with links, co-advisors, thesis URLs, and full outcome
   notes
-- `cv.dj`
+- `cv`
   condensed projection with fewer details and explicit omission rules where the
   current CV intentionally differs
 
@@ -252,6 +257,26 @@ So the default assumption should be:
 - the CV renderer is more compressed
 - true inclusion mismatches should be treated as exceptional and justified
   explicitly, not assumed as a normal part of the model
+
+The current CV suggests a few concrete compression rules to start from:
+
+- render plain `Name, Label` lines by default rather than the richer public
+  linked-name style
+- render thesis details as plain text rather than thesis-title links
+- render alumni outcomes as plain bullets
+- omit co-advisor detail lines unless the current CV clearly demonstrates that
+  they belong in the compressed view
+
+One current wrinkle needs to stay explicit in the slice plan:
+
+- the CV subsection heading is still `Visiting Summer Students`
+- the canonical students section is now `Visiting Students and Interns`
+- `Ian Briggs` exists canonically in `site/data/students.json` but is omitted
+  from the current CV
+
+So the CV slice should treat the visiting-section heading and the Ian Briggs
+decision as one coupled policy question rather than pretending they are
+independent.
 
 ## Boundary Of The Campaign
 
@@ -340,6 +365,8 @@ Key invariant after this slice:
 
 - the main duplicated advising facts in `/students/` and `site/cv/index.dj`
   now come from one canonical source
+- any remaining intentional divergence in the CV students section is explicit
+  renderer policy, not silent drift
 
 ### Later Follow-On Work
 
