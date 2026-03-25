@@ -128,7 +128,14 @@ It separated:
 The likely follow-on work is now either:
 
 - local publication artifact enrichment over time
-- or downstream reuse in later consumers like CV/news once that earns its keep
+- or narrower downstream reuse where bundle truth clearly earns it
+
+Implemented downstream reuse so far:
+
+- the duplicated indexed-publication subsections in the CV now project from
+  canonical publication bundle truth
+- the authored `Book Chapters` subsection in the CV remains outside the
+  publication bundle boundary for now
 
 ### 3. Students
 
@@ -234,16 +241,17 @@ Why next:
   only been exercised by their own primary public wrappers
 - the CV is the clearest downstream consumer with intentionally different
   presentation conventions
-- the largest remaining duplicated factual maintenance now sits in the CV over
-  already-canonical domains such as students, teaching, and service
+- the largest remaining duplicated factual maintenance had been sitting in the
+  CV over already-canonical domains such as students, teaching, service, and
+  indexed publications
 
 Current shape:
 
 - keep the CV wrapper at `site/cv/index.dj` with canonical `/cv/`
 - keep the full CV body hand-authored while consumer slices land
 - route/wrapper cutover implemented
-- students, teaching, and service now projected into the CV through explicit
-  CV-specific renderers
+- students, teaching, service, and indexed publications now projected into
+  the CV through explicit CV-specific renderers
 - the remaining likely work is more curated and less obviously list-shaped
 
 Implemented outcomes so far:
@@ -254,19 +262,23 @@ Implemented outcomes so far:
 - the duplicated teaching section now projects from `site/data/teaching.json`
 - the duplicated service subsection bodies now project from
   `site/data/service.json`
+- the duplicated indexed-publication subsection bodies now project from
+  canonical publication bundles under `site/pubs/`
 - the CV now has an explicit compressed students renderer rather than
   reusing the public students-page view
 - the CV now has an explicit compressed teaching renderer rather than
   reusing the public teaching-page view
 - the CV now has an explicit compressed service renderer rather than
   reusing the public service-page view
+- the CV now has an explicit compressed indexed-publications renderer rather
+  than reusing the public publications-page view
 
 Current recommendation:
 
 - choose the next CV consumer slice deliberately rather than broadening
   automatically
 - stop and reassess before picking homepage cleanup or more curated CV
-  consumers
+  consumers, or a separate publication-boundary slice for `Book Chapters`
 - keep later homepage/CV consumer cleanup cross-cutting and explicit
 
 ## Adjacent / Emerging Domains
@@ -333,13 +345,16 @@ The repo is now at a good checkpoint after the public-page cores for:
 The next major structured-content campaign should be:
 
 - CV as a cross-domain consumer wrapper, now at the first real consumer
-  checkpoint with route cutover plus students, teaching, and service
-  projection implemented, and with the next slice to be chosen deliberately
+  checkpoint with route cutover plus students, teaching, service, and indexed
+  publications projection implemented, and with the next slice to be chosen
+  deliberately
 
 Publication follow-on work should continue separately as:
 
 - local artifact enrichment for thinner `detail_page: false` bundles
-- later downstream reuse where publication bundle truth clearly earns it
+- narrower downstream reuse where publication bundle truth clearly earns it
+- no automatic broadening of the publication bundle boundary just to absorb
+  the authored CV `Book Chapters` entry
 
 Students follow-on work should continue separately as:
 

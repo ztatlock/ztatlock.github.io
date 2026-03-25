@@ -1,6 +1,6 @@
 # CV Slice 5: Publications Projection
 
-Planned.
+Implemented.
 
 ## Goal
 
@@ -135,6 +135,24 @@ already points in the right direction.
   CV subsections
 - the `Book Chapters` subsection remains authored by explicit policy rather
   than by accident
+
+## Observed Rendered Changes
+
+The rendered diff for this slice was limited to the `## Publications`
+section.
+
+Explicit visible changes included:
+
+- the canonical workshop paper `Exploring Self-Embedded Knitting Programs with
+  Twine` is now present in the CV
+- ordering now follows canonical publication-bundle `pub_date` descending with
+  title tie-break, matching the public publications collection rather than the
+  old hand-authored CV order
+- venue text now matches canonical bundle truth where that differs from the
+  old CV wording, for example `Magic Markup` now renders as `<Programming>`
+- the old stray trailing line-break artifact on the PLATEAU 2020 workshop
+  entry is gone
+- `Book Chapters` remains authored and unchanged
 
 ## Verification Targets
 

@@ -1,7 +1,8 @@
 # CV Campaign
 
-Status: route/wrapper cutover plus students, teaching, and service CV
-projection implemented; stop and reassess before broader CV consumers
+Status: route/wrapper cutover plus students, teaching, service, and indexed
+publications CV projection implemented; stop and reassess before broader CV
+consumers
 
 ## Goal
 
@@ -50,7 +51,7 @@ Current relevant source:
 
 Important current facts:
 
-- the current CV source is `586` lines
+- the current CV source is `314` lines
 - it contains `29` major section/subsection headings
 - it is not one homogeneous repeated-data page
 - but it does contain several large duplicated factual domains
@@ -78,6 +79,8 @@ Current wrapper/consumer state:
 - the duplicated teaching section now projects from `site/data/teaching.json`
 - the duplicated service subsection bodies now project from
   `site/data/service.json`
+- the duplicated indexed-publication subsection bodies now project from
+  canonical publication bundles under `site/pubs/`
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
 - the next step should be chosen deliberately rather than broadened
@@ -176,8 +179,9 @@ Likely hand-authored for now:
 
 Likely later projection candidates:
 
+- maybe a separate `Book Chapters` / bibliography-boundary decision later
 - maybe selected `Invited Talks`
-- maybe selected recent publications or highlights
+- maybe selected highlights
 
 ## Recommended Slice Order
 
@@ -280,6 +284,30 @@ Invariant after slice 4:
   reviewable
 - the faculty-skit prose note remains authored in the wrapper for now
 
+### Slice 5. Publications CV Projection
+
+Implemented.
+
+- replace only the duplicated `Conference and Journal Papers` and `Workshop
+  Papers` bodies in the CV
+- preserve the `## Publications` heading, the existing subsection headings,
+  and the authored `Book Chapters` subsection
+- define an explicit compressed CV renderer policy for indexed publication
+  bundles
+- reuse canonical publication-bundle discovery and `pub_date` ordering
+- keep the rendered diff focused on the publications section and explain
+  canonical corrections and ordering changes
+
+Invariant after slice 5:
+
+- the fourth major duplicated factual domain in the CV now derives from
+  canonical domain truth
+- the CV and public publications page now share one canonical indexed
+  publication source while still allowing different presentation policy
+- the CV publication renderer now makes its low-link bibliography policy
+  explicit and reviewable
+- the `Book Chapters` subsection remains authored by explicit policy for now
+
 ## Current Recommendation
 
 Stop and reassess before choosing another CV consumer slice.
@@ -289,13 +317,16 @@ Why stop here:
 - the largest duplicated shared-data domains in the CV are now canonicalized
   from the consumer side
 - the remaining likely work is more curated and less obviously list-shaped
-- homepage cleanup now competes with narrower curated CV consumers like talks,
-  publications, or highlights
+- homepage cleanup now competes with narrower curated CV consumers like talks
+  or highlights, and with the separate publication-boundary question around
+  `Book Chapters`
 - the next step should be selected from current repo needs rather than from
   campaign inertia
 
 Likely candidates from here:
 
 1. homepage recent-service or recent-teaching cleanup
-2. curated CV consumers such as selected talks or publications
+2. curated CV consumers such as selected talks or highlights
 3. no immediate CV broadening if the current checkpoint already earns its keep
+4. a separate `Book Chapters` / bibliography-boundary slice only if that
+   complexity clearly earns its keep

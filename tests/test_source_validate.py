@@ -9,6 +9,34 @@ from scripts.sitebuild.site_config import load_site_config
 from scripts.sitebuild.source_validate import find_source_issues
 
 
+def _write_publication_bundle(
+    publications_dir: Path,
+    *,
+    slug: str,
+    listing_group: str,
+    title: str,
+    pub_date: str,
+) -> None:
+    pub_dir = publications_dir / slug
+    pub_dir.mkdir()
+    (pub_dir / "publication.json").write_text(
+        json.dumps(
+            {
+                "detail_page": False,
+                "listing_group": listing_group,
+                "pub_date": pub_date,
+                "primary_link": "publisher",
+                "title": title,
+                "authors": [{"name": "Demo Author", "ref": ""}],
+                "venue": "Demo Venue",
+                "links": {"publisher": f"https://example.test/{slug}"},
+                "talks": [],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+
 class SourceValidateTests(unittest.TestCase):
     def test_reports_legacy_cv_wrapper_move(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -621,6 +649,298 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [f"{cv_dir / 'index.dj'}: CV teaching section must not contain literal teaching entry blocks"],
+            )
+
+    def test_accepts_cv_publications_projection_wrapper_with_authored_book_chapter(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Publications\n\n"
+                "### _Conference and Journal Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__CV_PUBLICATIONS_MAIN_LIST__\n\n"
+                ":::\n\n"
+                "### _Workshop Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__CV_PUBLICATIONS_WORKSHOP_LIST__\n\n"
+                ":::\n\n"
+                "### _Book Chapters_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "*Chapter 8: Parameterized Program Equivalence Checking* \\\n"
+                "High-Level Verification: Methods and Tools for Verification of System-Level Designs \\\n"
+                "Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011\n\n"
+                ":::\n",
+                encoding="utf-8",
+            )
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications page\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                ":::\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
+                ":::\n",
+                encoding="utf-8",
+            )
+            _write_publication_bundle(
+                pubs,
+                slug="2025-test-main",
+                listing_group="main",
+                title="Main Paper",
+                pub_date="2025-01-01",
+            )
+            _write_publication_bundle(
+                pubs,
+                slug="2024-test-workshop",
+                listing_group="workshop",
+                title="Workshop Paper",
+                pub_date="2024-01-01",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                service_dir=service,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
+    def test_reports_missing_cv_publications_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Publications\n\n"
+                "### _Conference and Journal Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__CV_PUBLICATIONS_MAIN_LIST__\n\n"
+                ":::\n\n"
+                "### _Workshop Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                ":::\n",
+                encoding="utf-8",
+            )
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications page\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                ":::\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
+                ":::\n",
+                encoding="utf-8",
+            )
+            _write_publication_bundle(
+                pubs,
+                slug="2025-test-main",
+                listing_group="main",
+                title="Main Paper",
+                pub_date="2025-01-01",
+            )
+            _write_publication_bundle(
+                pubs,
+                slug="2024-test-workshop",
+                listing_group="workshop",
+                title="Workshop Paper",
+                pub_date="2024-01-01",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                service_dir=service,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{cv_dir / 'index.dj'}: CV publications section must contain __CV_PUBLICATIONS_WORKSHOP_LIST__"
+                ],
+            )
+
+    def test_reports_literal_cv_publication_entry_blocks_after_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Publications\n\n"
+                "### _Conference and Journal Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__CV_PUBLICATIONS_MAIN_LIST__\n\n"
+                "*Main Paper* \\\n"
+                "Demo Author \\\n"
+                "Demo Venue 2025\n\n"
+                ":::\n\n"
+                "### _Workshop Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__CV_PUBLICATIONS_WORKSHOP_LIST__\n\n"
+                ":::\n",
+                encoding="utf-8",
+            )
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications page\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "## Conference and Journal Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                ":::\n\n"
+                "## Workshop Papers\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n\n"
+                ":::\n",
+                encoding="utf-8",
+            )
+            _write_publication_bundle(
+                pubs,
+                slug="2025-test-main",
+                listing_group="main",
+                title="Main Paper",
+                pub_date="2025-01-01",
+            )
+            _write_publication_bundle(
+                pubs,
+                slug="2024-test-workshop",
+                listing_group="workshop",
+                title="Workshop Paper",
+                pub_date="2024-01-01",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                service_dir=service,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{cv_dir / 'index.dj'}: CV conference/journal publications subsection must not contain literal publication entry blocks"
+                ],
             )
 
     def test_reports_missing_service_registry_when_cv_uses_service_projection(self) -> None:

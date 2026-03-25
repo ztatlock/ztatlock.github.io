@@ -7,6 +7,8 @@ from pathlib import Path
 
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
+    CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
+    CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
     CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
     CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
@@ -35,6 +37,7 @@ from scripts.sitebuild.page_projection import (
     TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     TEACHING_UW_COURSES_LIST_PLACEHOLDER,
     apply_page_projections,
+    render_cv_publications_list_djot,
     render_cv_service_section_list_djot,
     render_cv_teaching_assistant_list_djot,
     render_cv_teaching_instructor_list_djot,
@@ -61,6 +64,92 @@ def _student_section(
 
 
 class PageProjectionTests(unittest.TestCase):
+    def test_renders_cv_publication_sections_with_compressed_low_link_policy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pubs_dir = root / "site" / "pubs"
+            newer_main = pubs_dir / "2025-demo-main"
+            newer_main.mkdir(parents=True)
+            (newer_main / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2025-05-01",
+                        "primary_link": "publisher",
+                        "title": "Main Paper",
+                        "authors": [
+                            {"name": "Demo Author", "ref": "Demo Author"},
+                            {"name": "Collaborator", "ref": ""},
+                        ],
+                        "venue": "DemoConf",
+                        "badges": ["★ Distinguished Paper"],
+                        "links": {"publisher": "https://example.test/main"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            older_main = pubs_dir / "2024-demo-main"
+            older_main.mkdir()
+            (older_main / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2024-03-01",
+                        "primary_link": "publisher",
+                        "title": "Older Main Paper",
+                        "authors": [{"name": "Solo Author", "ref": "Solo Author"}],
+                        "venue": "OlderConf",
+                        "links": {"publisher": "https://example.test/older-main"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            workshop = pubs_dir / "2025-demo-workshop"
+            workshop.mkdir()
+            (workshop / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "workshop",
+                        "pub_date": "2025-02-01",
+                        "primary_link": "publisher",
+                        "title": "Workshop Paper",
+                        "authors": [{"name": "Workshop Author", "ref": "Workshop Author"}],
+                        "venue": "Demo Workshop",
+                        "links": {"publisher": "https://example.test/workshop"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            rendered_main = render_cv_publications_list_djot(root, "main", publications_dir=pubs_dir)
+            self.assertEqual(
+                rendered_main,
+                "*Main Paper* \\\n"
+                "Demo Author, Collaborator \\\n"
+                "DemoConf 2025 \\\n"
+                "★ Distinguished Paper\n\n"
+                "*Older Main Paper* \\\n"
+                "Solo Author \\\n"
+                "OlderConf 2024\n",
+            )
+            self.assertNotIn("https://example.test/main", rendered_main)
+            self.assertNotIn("[Demo Author]", rendered_main)
+
+            rendered_workshop = render_cv_publications_list_djot(root, "workshop", publications_dir=pubs_dir)
+            self.assertEqual(
+                rendered_workshop,
+                "*Workshop Paper* \\\n"
+                "Workshop Author \\\n"
+                "Demo Workshop 2025\n",
+            )
+            self.assertNotIn("https://example.test/workshop", rendered_workshop)
+
     def test_renders_public_service_sections_from_canonical_data(self) -> None:
         root = Path(__file__).resolve().parents[1]
         organizing = render_public_service_section_list_djot(root, "organizing")
@@ -325,6 +414,92 @@ class PageProjectionTests(unittest.TestCase):
             ),
             body,
         )
+
+    def test_applies_projection_only_to_cv_publications_section(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pubs_dir = root / "site" / "pubs"
+            main_dir = pubs_dir / "2025-test-main"
+            main_dir.mkdir(parents=True)
+            (main_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2025-01-01",
+                        "primary_link": "publisher",
+                        "title": "Main Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/main"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            workshop_dir = pubs_dir / "2024-test-workshop"
+            workshop_dir.mkdir()
+            (workshop_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "workshop",
+                        "pub_date": "2024-01-01",
+                        "primary_link": "publisher",
+                        "title": "Workshop Paper",
+                        "authors": [{"name": "Workshop Author", "ref": ""}],
+                        "venue": "WorkshopConf",
+                        "links": {"publisher": "https://example.test/workshop"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            body = (
+                "# Curriculum Vitae\n\n"
+                "## Publications\n\n"
+                "### _Conference and Journal Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                f"{CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER}\n\n"
+                ":::\n\n"
+                "### _Workshop Papers_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                f"{CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER}\n\n"
+                ":::\n\n"
+                "### _Book Chapters_\n\n"
+                "{.pubs}\n"
+                ":::\n\n"
+                "*Chapter 8: Parameterized Program Equivalence Checking* \\\n"
+                "High-Level Verification: Methods and Tools for Verification of System-Level Designs \\\n"
+                "Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011\n\n"
+                ":::\n"
+            )
+            rendered = apply_page_projections(
+                "cv_index_page",
+                "cv",
+                body,
+                root=root,
+                publications_dir=pubs_dir,
+            )
+            self.assertNotIn(CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER, rendered)
+            self.assertNotIn(CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER, rendered)
+            self.assertIn("*Main Paper* \\", rendered)
+            self.assertIn("*Workshop Paper* \\", rendered)
+            self.assertIn("*Chapter 8: Parameterized Program Equivalence Checking* \\", rendered)
+
+            self.assertEqual(
+                apply_page_projections(
+                    "ordinary_page",
+                    "about",
+                    body,
+                    root=root,
+                    publications_dir=pubs_dir,
+                ),
+                body,
+            )
 
     def test_applies_projection_only_to_service_index_page(self) -> None:
         root = Path(__file__).resolve().parents[1]

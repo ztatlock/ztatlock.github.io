@@ -40,7 +40,8 @@ payoff.
 
 ## Current Status
 
-Slices 1 through 5 of this campaign are now implemented.
+Slices 1 through 5 of this campaign are implemented, and one downstream CV
+consumer slice now reuses the canonical indexed publication bundles.
 
 That means:
 
@@ -58,9 +59,15 @@ That means:
   projected from bundle data rather than hand-maintained in the wrapper
 - source validation now enforces the placeholder-based wrapper shape and
   rejects lingering literal publication entry blocks
+- the duplicated indexed-publication subsections in `site/cv/index.dj` now
+  project from publication bundles rather than from a second hand-maintained
+  publication list
+- the `Book Chapters` subsection in the CV remains hand-authored by explicit
+  policy
 
-The next likely work in this campaign is local artifact enrichment or later
-downstream reuse, not more collection-route or index-projection cleanup.
+The next likely work in this campaign is local artifact enrichment or
+selective later downstream reuse, not more collection-route or index-projection
+cleanup.
 
 ## Current Audit
 
@@ -89,6 +96,8 @@ Current observed facts:
 - repeated publication-entry sections are now generated from bundle truth
 - rendered ordering is now derived from `pub_date` descending with title
   tie-break
+- the same indexed publication bundle truth now feeds both `/pubs/` and the
+  projected indexed-publication subsections in `/cv/`
 
 ### Consequences Of The Audit
 
@@ -102,8 +111,8 @@ These facts imply:
 - the minimal bundle model was the right prerequisite for full bundle coverage
 - route shape, ordering truth, and projection are now aligned with the bundle
   root
-- the next real work is enrichment or downstream reuse, not more collection
-  cleanup
+- the next real work is enrichment or narrower downstream reuse, not more
+  collection cleanup
 
 ## Desired End State
 
@@ -142,6 +151,8 @@ This campaign should not initially include:
 - funding/grants modeling
 - any attempt to unify publication-local `"talks"` arrays with invited/public
   talks bundles
+- forcing the `Book Chapters` CV entry into the publication bundle model
+  before that boundary decision clearly earns its keep
 
 ## First Architectural Decision
 

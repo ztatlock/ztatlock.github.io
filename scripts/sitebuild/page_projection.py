@@ -9,8 +9,10 @@ from scripts.publication_index import (
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
     PublicationIndexError,
+    load_publication_index_records,
     render_publications_list_djot,
 )
+from scripts.publication_record import PublicationRecord, publication_year
 from scripts.service_index import (
     SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     SERVICE_MENTORING_LIST_PLACEHOLDER,
@@ -84,6 +86,12 @@ CV_SERVICE_SECTION_PLACEHOLDERS = {
     "organizing": CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
     "mentoring": CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
     "department": CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+}
+CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER = "__CV_PUBLICATIONS_MAIN_LIST__"
+CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER = "__CV_PUBLICATIONS_WORKSHOP_LIST__"
+CV_PUBLICATIONS_SECTION_PLACEHOLDERS = {
+    "main": CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
+    "workshop": CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
 }
 TEACHING_UW_COURSES_LIST_PLACEHOLDER = "__TEACHING_UW_COURSES_LIST__"
 TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER = "__TEACHING_SPECIAL_TOPICS_LIST__"
@@ -258,6 +266,34 @@ def _service_records(root: Path, *, data_dir: Path | None = None) -> tuple[Servi
         return load_service_records(root, service_path=service_path)
     except ServiceRecordError as err:
         raise PageProjectionError(str(err)) from err
+
+
+def _render_cv_publication_entry(record: PublicationRecord) -> str:
+    parts = [
+        f"*{record.title}*",
+        ", ".join(author.name for author in record.authors),
+        f"{record.venue} {publication_year(record.slug)}",
+        *record.badges,
+    ]
+    return " \\\n".join(parts)
+
+
+def render_cv_publications_list_djot(
+    root: Path,
+    listing_group: str,
+    *,
+    publications_dir: Path | None = None,
+) -> str:
+    try:
+        records = load_publication_index_records(root, publications_dir=publications_dir)
+    except PublicationIndexError as err:
+        raise PageProjectionError(str(err)) from err
+    chunks = [
+        _render_cv_publication_entry(record)
+        for record in records
+        if record.listing_group == listing_group
+    ]
+    return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
 def _render_cv_service_lead_text(group_key: str, record: ServiceRecord, *, year_label: str) -> str:
@@ -558,6 +594,20 @@ def apply_page_projections(
                 for section_key, placeholder in CV_SERVICE_SECTION_PLACEHOLDERS.items()
             }
             for placeholder, replacement in service_replacements.items():
+                rendered = rendered.replace(placeholder, replacement)
+        if any(
+            placeholder in rendered
+            for placeholder in CV_PUBLICATIONS_SECTION_PLACEHOLDERS.values()
+        ):
+            publication_replacements = {
+                placeholder: render_cv_publications_list_djot(
+                    root,
+                    listing_group,
+                    publications_dir=publications_dir,
+                ).rstrip()
+                for listing_group, placeholder in CV_PUBLICATIONS_SECTION_PLACEHOLDERS.items()
+            }
+            for placeholder, replacement in publication_replacements.items():
                 rendered = rendered.replace(placeholder, replacement)
         return rendered
 

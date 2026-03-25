@@ -50,6 +50,8 @@ from scripts.page_metadata import (
 
 from .site_config import SiteConfig
 from .page_projection import (
+    CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
+    CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
     CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
     CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
@@ -82,6 +84,7 @@ LITERAL_STUDENT_ENTRY_RE = re.compile(
     re.MULTILINE,
 )
 LITERAL_CV_STUDENT_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
+LITERAL_CV_PUBLICATION_ENTRY_RE = re.compile(r"^\*.+\* \\\s*$", re.MULTILINE)
 LITERAL_CV_SERVICE_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 LITERAL_CV_TEACHING_ENTRY_RE = re.compile(r"^[ ]{0,4}[*-] ", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
@@ -350,6 +353,73 @@ def _find_cv_students_projection_issues(config: SiteConfig) -> list[str]:
     return issues
 
 
+def _has_non_draft_publication_records(config: SiteConfig) -> bool:
+    for path in sorted(config.publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}")):
+        try:
+            record = load_publication_record(
+                config.repo_root,
+                path.parent.name,
+                publications_dir=config.publications_dir,
+            )
+        except PublicationRecordError:
+            continue
+        if not record.draft:
+            return True
+    return False
+
+
+def _find_cv_publications_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    if not index_path.exists() or not _has_non_draft_publication_records(config):
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    publications_section = _extract_markdown_section_body(text, "Publications", level=2)
+    if publications_section is None:
+        return [f"{index_path}: CV wrapper must contain a ## Publications section"]
+
+    issues: list[str] = []
+    main_subsection = _extract_markdown_section_body(
+        publications_section,
+        "_Conference and Journal Papers_",
+        level=3,
+    )
+    if main_subsection is None:
+        issues.append(
+            f"{index_path}: CV publications section must contain a ### Conference and Journal Papers subsection"
+        )
+    else:
+        if CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER not in main_subsection:
+            issues.append(
+                f"{index_path}: CV publications section must contain {CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER}"
+            )
+        if LITERAL_CV_PUBLICATION_ENTRY_RE.search(main_subsection):
+            issues.append(
+                f"{index_path}: CV conference/journal publications subsection must not contain literal publication entry blocks"
+            )
+
+    workshop_subsection = _extract_markdown_section_body(
+        publications_section,
+        "_Workshop Papers_",
+        level=3,
+    )
+    if workshop_subsection is None:
+        issues.append(
+            f"{index_path}: CV publications section must contain a ### Workshop Papers subsection"
+        )
+    else:
+        if CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER not in workshop_subsection:
+            issues.append(
+                f"{index_path}: CV publications section must contain {CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER}"
+            )
+        if LITERAL_CV_PUBLICATION_ENTRY_RE.search(workshop_subsection):
+            issues.append(
+                f"{index_path}: CV workshop publications subsection must not contain literal publication entry blocks"
+            )
+
+    return issues
+
+
 def _cv_uses_service_projection(config: SiteConfig) -> bool:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     if not index_path.exists():
@@ -440,18 +510,7 @@ def _find_publications_index_projection_issues(config: SiteConfig) -> list[str]:
         publications_dir=config.publications_dir,
     )
     legacy_index_path = config.page_source_dir / "publications.dj"
-    has_non_draft_records = False
-    for path in sorted(config.publications_dir.glob(f"*/{PUBLICATION_RECORD_NAME}")):
-        try:
-            record = load_publication_record(
-                config.repo_root,
-                path.parent.name,
-                publications_dir=config.publications_dir,
-            )
-        except PublicationRecordError:
-            continue
-        if not record.draft:
-            has_non_draft_records = True
+    has_non_draft_records = _has_non_draft_publication_records(config)
 
     issues: list[str] = []
     if legacy_index_path.exists():
@@ -693,6 +752,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         )
         + _find_cv_projection_issues(config)
         + _find_cv_students_projection_issues(config)
+        + _find_cv_publications_projection_issues(config)
         + _find_cv_service_projection_issues(config)
         + _find_cv_teaching_projection_issues(config)
         + _find_service_data_issues(config)
