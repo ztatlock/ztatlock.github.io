@@ -128,9 +128,10 @@ reopening the schema without a strong reason.
 The next important design work is no longer the public-wrapper decision.
 One likely follow-on is CV reuse:
 
+- move the CV wrapper to `site/cv/index.dj` with canonical `/cv/`
 - define the condensed CV projection policy explicitly
 - decide whether the Ian Briggs omission is intentional or drift
-- project the duplicated advising sections in `site/pages/cv.dj` from
+- project the duplicated advising sections in the CV wrapper from
   `site/data/students.json`
 
 ## Desired End State
@@ -142,7 +143,7 @@ The intended long-term shape is:
 - `site/students/index.dj` becomes the public wrapper around projected section
   blocks
 - canonical students route becomes `/students/`
-- the duplicated students sections in `site/pages/cv.dj` project from the same
+- the duplicated students sections in the CV wrapper project from the same
   canonical records with a more condensed renderer
 - page-specific framing remains hand-authored
 - projection differences between the students page and the CV remain explicit

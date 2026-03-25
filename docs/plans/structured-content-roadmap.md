@@ -222,6 +222,30 @@ Implemented outcomes so far:
 - repeated public service blocks now project from canonical service data
 - homepage and CV cleanup remain deferred as later cross-cutting consumer work
 
+### 6. CV Consumer Wrapper
+
+The next major structured-content campaign should be the CV as a cross-domain
+consumer wrapper.
+
+Why next:
+
+- the repo now has several canonical domain models whose interfaces have mostly
+  only been exercised by their own primary public wrappers
+- the CV is the clearest downstream consumer with intentionally different
+  presentation conventions
+- the largest remaining duplicated factual maintenance now sits in the CV over
+  already-canonical domains such as students, teaching, and service
+
+Current recommendation:
+
+- move the CV wrapper from `site/pages/cv.dj` to `site/cv/index.dj`
+- canonicalize the public route as `/cv/`
+- keep the full CV body hand-authored for that route-cutover slice
+- then project students into the CV as the first true downstream-consumer
+  slice
+- stop and reassess before touching teaching, service, talks, publications,
+  or highlights
+
 ## Adjacent / Emerging Domains
 
 These are real candidates, but they are not the main implemented sequence
@@ -245,18 +269,13 @@ mature.
 It is a good example of a cross-page factual domain that may eventually deserve
 its own canonical records.
 
-### CV And News
+### News
 
-These should come later.
+News should still come later.
 
-Both pages mix structured facts with a lot of narrative/editorial framing, so
-they should benefit from earlier campaigns before we try to project major parts
-of them.
-
-The likely long-term model is:
-
-- keep prose-heavy sections hand-authored
-- project selected structured subsections from canonical records
+It mixes structured facts with a lot of narrative/editorial framing, so it
+should benefit from the earlier domain campaigns and from the later CV
+consumer work before we try to project major parts of it.
 
 ## Slice Style
 
@@ -288,6 +307,11 @@ The repo is now at a good checkpoint after the public-page cores for:
 - teaching
 - service
 
+The next major structured-content campaign should be:
+
+- CV as a cross-domain consumer wrapper, beginning with route cutover and
+  then students CV projection
+
 Publication follow-on work should continue separately as:
 
 - local artifact enrichment for thinner `detail_page: false` bundles
@@ -295,14 +319,18 @@ Publication follow-on work should continue separately as:
 
 Students follow-on work should continue separately as:
 
-- projection of the duplicated advising sections in `site/pages/cv.dj` from
-  `site/data/students.json`
+- projection of the duplicated advising sections in the CV consumer wrapper
+  from `site/data/students.json`
 
 Teaching and service follow-on work should continue separately as:
 
 - later homepage/CV consumer cleanup once that cross-cutting work clearly
   earns its keep
 
-The next major structured-content decision should be choosing the next domain
-campaign, likely among collaborators, funding/grants, or similar later shared
-data domains, rather than reopening the public-page cores above prematurely.
+Later domain campaigns should still likely include:
+
+- collaborators
+- funding / grants
+
+but only after the repo has exercised the existing canonical domains through
+the CV consumer pattern.

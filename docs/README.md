@@ -85,6 +85,17 @@ meant to be read, maintained, and extended over time.
   audit, the flat per-year-term design recommendation, and the implemented
   canonical-model and public-wrapper slices, with homepage/CV cleanup
   deferred as later cross-cutting consumer work.
+- `plans/cv-campaign.md`
+  Current CV structured-content campaign note, framing the CV as a
+  cross-domain consumer wrapper with planned route-cutover and students-CV
+  projection slices.
+- `plans/cv-slice-1-route-cutover.md`
+  Planned record of the slice that will move the CV wrapper to
+  `site/cv/index.dj` and canonicalize `/cv/` before any section projection.
+- `plans/cv-slice-2-students-projection.md`
+  Planned record of the first downstream CV consumer slice, replacing only the
+  duplicated students sections with a compressed projection from
+  `site/data/students.json`.
 - `plans/service-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical service terms in
   `site/data/service.json` before any service-page, homepage, or CV
