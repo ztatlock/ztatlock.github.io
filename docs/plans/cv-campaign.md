@@ -1,8 +1,8 @@
 # CV Campaign
 
 Status: route/wrapper cutover plus students, teaching, service, indexed
-publications, and full invited-talks CV projection implemented; funding
-projection reviewed and latched as the next narrow CV consumer slice
+publications, full invited-talks, and funding CV projection implemented;
+stop and reassess before broader curated CV consumers
 
 ## Goal
 
@@ -24,15 +24,17 @@ The repo has now landed a series of domain-level canonical sources of truth:
 - `site/data/students.json`
 - `site/data/teaching.json`
 - `site/data/service.json`
+- `site/data/funding.json`
 
-But those interfaces have mostly only been exercised by their own primary
-public wrappers:
+Before the CV consumer slices, those interfaces had mostly only been
+exercised by their own primary public wrappers:
 
 - `site/talks/index.dj`
 - `site/pubs/index.dj`
 - `site/students/index.dj`
 - `site/teaching/index.dj`
 - `site/service/index.dj`
+- `site/funding/index.dj`
 
 The next important architectural pressure test is to use those interfaces from
 the other side:
@@ -51,10 +53,11 @@ Current relevant source:
 
 Important current facts:
 
-- the current CV source is `241` lines
-- it contains `29` major section/subsection headings
+- the current CV source is `213` lines
+- it contains `30` major section/subsection headings
 - it is not one homogeneous repeated-data page
-- but it does contain several large duplicated factual domains
+- but it still contains curated repeated sections and authored cross-domain
+  highlights
 
 Most important remaining duplicated factual domains:
 
@@ -83,13 +86,15 @@ Current wrapper/consumer state:
   canonical publication bundles under `site/pubs/`
 - the duplicated full `Invited Talks` section now projects from canonical talk
   bundles under `site/talks/`
+- the duplicated funding list now projects from `site/data/funding.json`
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
 - the next step should be chosen deliberately rather than broadened
   automatically
 
-That means the wrapper shape is now settled and the next real CV work is
-consumer-side section projection.
+That means the wrapper shape is now settled and the remaining CV work is more
+curated consumer-side cleanup rather than another obviously large repeated
+domain cutover.
 
 ## Design Recommendation
 
@@ -180,7 +185,6 @@ Likely hand-authored for now:
 
 Likely later projection candidates:
 
-- funding, now that the public funding wrapper is canonical
 - maybe a separate `Book Chapters` / bibliography-boundary decision later
 - maybe selected recent talks/highlights
 
@@ -330,6 +334,26 @@ Invariant after slice 6:
 - the top-of-CV `Selected Recent Highlights -> Invited Talks` block remains
   authored by explicit policy for now
 
+### Slice 7. Funding CV Projection
+
+Implemented.
+
+- replace only the duplicated funding list body in the CV
+- preserve the `## Funding` heading hand-authored
+- define an explicit CV funding renderer over canonical funding data
+- keep the rendered diff focused on the funding section and explain any
+  visible policy changes
+
+Invariant after slice 7:
+
+- the sixth major duplicated factual domain in the CV now derives from
+  canonical shared data
+- the CV and public funding page now share one canonical funding source while
+  still allowing separate consumer renderers
+- no literal duplicated funding-entry block remains in the CV
+- the rendered Funding section stayed byte-identical in HTML after the
+  projection cutover
+
 ## Current Recommendation
 
 Stop and reassess before choosing another CV consumer slice.
@@ -337,7 +361,7 @@ Stop and reassess before choosing another CV consumer slice.
 Why stop here:
 
 - the largest duplicated shared-data domains in the CV are now canonicalized
-  from the consumer side, including the full invited/public talks list
+  from the consumer side, including talks and funding
 - the remaining likely work is now more curated and less obviously list-shaped
 - homepage cleanup now competes with narrower curated CV consumers like the
   top-of-CV highlights, and with the separate publication-boundary question
@@ -347,9 +371,8 @@ Why stop here:
 
 Likely candidates from here:
 
-1. funding projection, now that funding has a canonical shared-data source and
-   a public wrapper
-2. homepage recent-service or recent-teaching cleanup
-3. curated CV consumers such as selected highlights
+1. homepage recent-service or recent-teaching cleanup
+2. curated CV consumers such as selected highlights
+3. no immediate CV broadening if the current checkpoint already earns its keep
 4. a separate `Book Chapters` / bibliography-boundary slice only if that
    complexity clearly earns its keep

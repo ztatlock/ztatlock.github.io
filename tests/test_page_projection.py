@@ -8,6 +8,7 @@ from pathlib import Path
 from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
+    CV_FUNDING_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
     CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
@@ -40,6 +41,7 @@ from scripts.sitebuild.page_projection import (
     TEACHING_UW_COURSES_LIST_PLACEHOLDER,
     apply_page_projections,
     render_cv_publications_list_djot,
+    render_cv_funding_list_djot,
     render_cv_service_section_list_djot,
     render_cv_talks_list_djot,
     render_cv_teaching_assistant_list_djot,
@@ -67,6 +69,41 @@ def _student_section(
 
 
 class PageProjectionTests(unittest.TestCase):
+    def test_renders_cv_funding_list_with_en_dash_policy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            data_dir.mkdir(parents=True)
+            (data_dir / "funding.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2020-demo-grant",
+                                "title": "Demo Grant",
+                                "role": "PI",
+                                "sponsor": "NSF",
+                                "award_id": "CCF-1234567",
+                                "amount_usd": 100000,
+                                "start_year": 2020,
+                                "end_year": 2023,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            rendered = render_cv_funding_list_djot(
+                root,
+                funding_path=data_dir / "funding.json",
+            )
+            self.assertEqual(
+                rendered,
+                "- Demo Grant \\\n"
+                "  PI; NSF CCF-1234567; $100,000; 2020 – 2023\n",
+            )
+
     def test_renders_cv_publication_sections_with_compressed_low_link_policy(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -641,6 +678,31 @@ class PageProjectionTests(unittest.TestCase):
         self.assertNotIn(FUNDING_LIST_PLACEHOLDER, rendered)
         self.assertIn("ComPort: Rigorous Testing Methods to Safeguard Software Porting", rendered)
         self.assertIn("NSF CCF-2017927", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
+
+    def test_applies_projection_only_to_cv_funding_section(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = "# Curriculum Vitae\n\n## Funding\n\n__CV_FUNDING_LIST__\n"
+        rendered = apply_page_projections(
+            "cv_index_page",
+            "cv",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(CV_FUNDING_LIST_PLACEHOLDER, rendered)
+        self.assertIn("ComPort: Rigorous Testing Methods to Safeguard Software Porting", rendered)
+        self.assertIn("2021 – 2024", rendered)
 
         self.assertEqual(
             apply_page_projections(

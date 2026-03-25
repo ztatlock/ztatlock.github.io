@@ -1,8 +1,7 @@
 # Funding Campaign
 
-Status: public-page core implemented; CV funding projection reviewed and
-latched as the next follow-on slice; later grant-output associations remain
-deferred
+Status: canonical data, public wrapper, and CV funding projection implemented;
+later grant-output associations remain deferred
 
 It builds on:
 
@@ -41,7 +40,7 @@ Current explicit funding surfaces:
 - `site/funding/index.dj`
   thin public funding wrapper at the canonical `/funding/` route
 - `site/cv/index.dj`
-  still contains the authored `## Funding` section
+  contains the authored `## Funding` heading plus the projected funding list
 
 Current funding-entry shape:
 
@@ -64,8 +63,8 @@ Important current constraint:
 
 - there is still no structured association between grants and projects or
   publications
-- the public funding page is now canonical, but the CV funding section remains
-  hand-authored by explicit policy
+- the public funding page and the CV now share canonical funding data, while
+  keeping separate consumer renderers
 
 ## Design Recommendation
 
@@ -74,7 +73,8 @@ service:
 
 - canonical shared data under `site/data/funding.json`
 - a thin public wrapper at `site/funding/index.dj`
-- later downstream CV/homepage consumers only if they clearly earn their keep
+- a narrow CV consumer where the duplicated funding list clearly earns its keep
+- later homepage consumers only if they clearly earn their keep
 
 Funding should not start as:
 
@@ -179,7 +179,7 @@ What landed:
 
 ### Slice 3. CV Funding Projection
 
-Planned.
+Implemented.
 
 - replace only the duplicated funding list body in `site/cv/index.dj`
 - preserve the `## Funding` heading hand-authored
@@ -193,6 +193,17 @@ Invariant after slice 3:
 - the public funding page and the CV now share one canonical funding source
   while still allowing separate consumer renderers
 - no grant-output associations are modeled yet
+
+What landed:
+
+- the duplicated funding list body in `site/cv/index.dj`
+  now uses `__CV_FUNDING_LIST__`
+- an explicit CV funding renderer in `scripts/sitebuild/page_projection.py`
+- source validation requiring the CV funding placeholder and rejecting
+  literal copied funding-entry blocks
+- focused projection and source-validation tests
+- a rendered HTML diff review showing the built CV Funding section remained
+  byte-identical after projection
 
 ## Deferred Work
 
@@ -210,11 +221,13 @@ funding architecture.
 
 ## Recommendation
 
-Start funding with the smallest real architecture:
+Funding has now landed the smallest real architecture that clearly earned its
+keep:
 
 1. canonical data
 2. public wrapper
-3. stop and reassess
+3. CV consumer
+4. stop and reassess
 
 If later grant-output mapping clearly earns its complexity, it should land as a
 separate follow-on campaign slice rather than being smuggled into the first

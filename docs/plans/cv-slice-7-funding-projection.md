@@ -1,6 +1,6 @@
 # CV Slice 7: Funding Projection
 
-Status: reviewed and ready to implement
+Status: implemented
 
 It builds on:
 
@@ -115,6 +115,24 @@ Nothing outside the `Funding` section should change.
 - `make test`
 - `make build`
 - `make check`
+
+## Implemented Result
+
+This slice landed as:
+
+- `__CV_FUNDING_LIST__` in `site/cv/index.dj`
+- an explicit CV funding renderer in `scripts/sitebuild/page_projection.py`
+- source validation requiring the CV funding placeholder and rejecting
+  literal copied funding-entry blocks
+- focused projection and validation tests
+
+Rendered diff review result:
+
+- the old/new built CV HTML was byte-identical
+- nothing outside the `Funding` section changed
+- the `Funding` section itself also remained byte-identical because the
+  generated CV renderer intentionally preserved the existing entry shape and
+  en-dash year-range policy
 
 ## Stop Point
 

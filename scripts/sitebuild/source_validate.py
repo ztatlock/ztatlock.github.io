@@ -56,6 +56,7 @@ from scripts.page_metadata import (
 
 from .site_config import SiteConfig
 from .page_projection import (
+    CV_FUNDING_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
     CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
@@ -95,6 +96,7 @@ LITERAL_CV_PUBLICATION_ENTRY_RE = re.compile(r"^\*.+\* \\\s*$", re.MULTILINE)
 LITERAL_CV_SERVICE_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 LITERAL_CV_TEACHING_ENTRY_RE = re.compile(r"^[ ]{0,4}[*-] ", re.MULTILINE)
 LITERAL_CV_TALKS_ENTRY_RE = re.compile(r"^[*-] ", re.MULTILINE)
+LITERAL_CV_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
@@ -556,6 +558,27 @@ def _find_funding_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_cv_funding_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    funding_path = config.data_dir / FUNDING_DATA_NAME
+    if not index_path.exists() or not funding_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    funding_section = _extract_markdown_section_body(text, "Funding", level=2)
+    if funding_section is None:
+        return [f"{index_path}: CV wrapper must contain a ## Funding section"]
+
+    issues: list[str] = []
+    if CV_FUNDING_LIST_PLACEHOLDER not in funding_section:
+        issues.append(f"{index_path}: CV funding section must contain {CV_FUNDING_LIST_PLACEHOLDER}")
+    if LITERAL_CV_FUNDING_ENTRY_RE.search(funding_section):
+        issues.append(
+            f"{index_path}: CV funding section must not contain literal funding entry blocks"
+        )
+    return issues
+
+
 def _find_funding_projection_issues(config: SiteConfig) -> list[str]:
     index_path = funding_index_path(config.repo_root, funding_dir=config.funding_dir)
     legacy_index_path = config.page_source_dir / "funding.dj"
@@ -844,6 +867,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_cv_teaching_projection_issues(config)
         + _find_cv_talks_projection_issues(config)
         + _find_funding_data_issues(config)
+        + _find_cv_funding_projection_issues(config)
         + _find_funding_projection_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)

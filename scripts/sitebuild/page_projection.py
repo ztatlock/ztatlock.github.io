@@ -10,7 +10,7 @@ from scripts.funding_index import (
     FundingIndexError,
     render_public_funding_list_djot,
 )
-from scripts.funding_record import FUNDING_DATA_NAME
+from scripts.funding_record import FUNDING_DATA_NAME, FundingRecordError, load_funding_records
 from scripts.publication_index import (
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
@@ -100,6 +100,7 @@ CV_PUBLICATIONS_SECTION_PLACEHOLDERS = {
     "workshop": CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
 }
 CV_TALKS_LIST_PLACEHOLDER = "__CV_TALKS_LIST__"
+CV_FUNDING_LIST_PLACEHOLDER = "__CV_FUNDING_LIST__"
 TEACHING_UW_COURSES_LIST_PLACEHOLDER = "__TEACHING_UW_COURSES_LIST__"
 TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER = "__TEACHING_SPECIAL_TOPICS_LIST__"
 TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER = "__TEACHING_SUMMER_SCHOOL_LIST__"
@@ -532,6 +533,42 @@ def render_cv_talks_list_djot(
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
+def _render_cv_funding_sponsor_label(sponsor: str, award_id: str | None) -> str:
+    if not award_id:
+        return sponsor
+    return f"{sponsor} {award_id}"
+
+
+def _render_cv_funding_year_range(start_year: int, end_year: int) -> str:
+    if start_year == end_year:
+        return str(start_year)
+    return f"{start_year} – {end_year}"
+
+
+def _render_cv_funding_entry_djot(record) -> str:
+    amount_label = f"${record.amount_usd:,}"
+    sponsor_label = _render_cv_funding_sponsor_label(record.sponsor, record.award_id)
+    return (
+        f"- {record.title} \\\n"
+        f"  {record.role}; {sponsor_label}; {amount_label}; "
+        f"{_render_cv_funding_year_range(record.start_year, record.end_year)}"
+    )
+
+
+def render_cv_funding_list_djot(
+    root: Path,
+    *,
+    funding_path: Path | None = None,
+) -> str:
+    try:
+        records = load_funding_records(root, funding_path=funding_path)
+    except FundingRecordError as err:
+        raise PageProjectionError(str(err)) from err
+
+    rendered = "\n\n".join(_render_cv_funding_entry_djot(record) for record in records)
+    return rendered + ("\n" if rendered else "")
+
+
 def apply_page_projections(
     route_kind: str,
     route_key: str,
@@ -652,6 +689,15 @@ def apply_page_projections(
                 render_cv_talks_list_djot(
                     root,
                     talks_dir=talks_dir,
+                ).rstrip(),
+            )
+        if CV_FUNDING_LIST_PLACEHOLDER in rendered:
+            funding_path = (data_dir / FUNDING_DATA_NAME) if data_dir is not None else None
+            rendered = rendered.replace(
+                CV_FUNDING_LIST_PLACEHOLDER,
+                render_cv_funding_list_djot(
+                    root,
+                    funding_path=funding_path,
                 ).rstrip(),
             )
         return rendered

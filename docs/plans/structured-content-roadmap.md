@@ -302,19 +302,20 @@ It should not derail the main sequence above.
 
 ### Funding / Grants
 
-This campaign is now at a good public-page checkpoint.
+This campaign is now at a good public-plus-CV checkpoint.
 
 It is a good fit for the established students/teaching/service pattern:
 
 - canonical shared data under `site/data/`
 - a thin public wrapper at `site/funding/index.dj`
-- next likely follow-on: a narrow CV funding consumer slice
+- a narrow CV funding consumer over the same canonical records
 - later homepage consumers only if they clearly earn their keep
 
 The first funding slices should stay narrow:
 
 - establish canonical funding records first
 - land a public funding page second
+- land the duplicated CV funding list as a narrow consumer third
 - explicitly defer grant-to-paper and grant-to-project association enrichment
   until the base architecture is stable
 
@@ -355,6 +356,7 @@ The repo is now at a good checkpoint after the public-page cores for:
 - students
 - teaching
 - service
+- funding
 
 The repo is also now at a good checkpoint after the CV consumer work for:
 
@@ -363,16 +365,19 @@ The repo is also now at a good checkpoint after the CV consumer work for:
 - service
 - indexed publications
 - full invited talks
+- funding
 
 The funding campaign is now at a good checkpoint:
 
 - canonical funding records live in `site/data/funding.json`
 - the public funding wrapper lives at `site/funding/index.dj`
 - the canonical public route is `/funding/`
+- the CV funding list now projects from the same canonical records
 
 Funding follow-on work should continue separately as:
 
-- next likely follow-on: CV funding projection as a narrow downstream consumer
+- later homepage funding/highlights consumers only if they clearly earn their
+  keep
 - later CV/public funding refinements only if they clearly earn their keep
 - later grant-to-paper and grant-to-project association enrichment only if the
   cross-domain mapping clearly earns its complexity
