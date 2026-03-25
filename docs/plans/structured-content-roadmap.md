@@ -300,6 +300,8 @@ The current checkpoint is narrow on purpose:
 - a first derived coauthor list from publication bundles plus `people.json`
 - the about-page alphabet joke now projects from that same collaborator display
   set
+- the people registry now treats `name` as the default site-facing label and
+  aliases as resolution-only alternate spellings
 - collaborator-specific relationship data only later, once non-coauthor facts
   become real and worth modeling
 

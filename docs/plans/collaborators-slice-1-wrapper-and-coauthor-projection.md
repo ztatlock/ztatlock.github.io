@@ -81,17 +81,17 @@ The slice-1 collaborators renderer should be explicit and simple.
 ### Display Policy
 
 - when a collaborator resolves through `people.json`:
-  - choose the shortest human-facing label among `name` and `aliases`
+  - use the default site-facing `people.json` `name`
 - when a collaborator does not resolve through `people.json`:
   - use the raw publication-author string as plain text
 
-This makes the familiar short-form collaborator naming policy explicit for
-this page, rather than silently inheriting publication-author spellings or
-imposing a global alias-order meaning on `people.json`.
+This makes the default-label policy explicit for this page, rather than
+silently inheriting publication-author spellings or imposing a global
+alias-order meaning on `people.json`.
 
 That lets one record resolve both `James Wilcox` and `James R. Wilcox`, or
-both `Mike Ernst` and `Michael D. Ernst`, without forcing the collaborator
-page to display the longer publication spelling.
+both `Remy Wang` and `Yisu Remy Wang`, while keeping one obvious default
+label for downstream consumers.
 
 ### Link Policy
 
@@ -148,8 +148,8 @@ Visible changes on the collaborators page are acceptable if they are explainable
 Observed examples:
 
 - newer coauthors missing from the current page now appear
-- publication-style names like `Yisu Remy Wang` may display as familiar forms
-  like `Remy Wang`
+- collaborator labels now follow the normalized default `people.json` `name`
+  rather than ad hoc shortest-label selection
 - `Zachary Tatlock` no longer appears in the list
 - unresolved names like `Robert Rabe` may remain as plain text
 
@@ -160,7 +160,7 @@ should change.
 
 - focused collaborator-derivation tests for:
   - dedup by resolved person key
-  - familiar display labels chosen from `name` plus aliases
+  - default display labels taken from `people.json` `name`
   - plain-text fallback for unresolved names
   - alphabetical ordering by displayed label
 - route discovery and page-rendering tests for the new collaborators wrapper

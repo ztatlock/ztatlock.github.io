@@ -95,9 +95,9 @@ class PageProjectionTests(unittest.TestCase):
                                 "aliases": ["Adam T. Geller"],
                             },
                             "remy-wang": {
-                                "name": "Yisu Remy Wang",
+                                "name": "Remy Wang",
                                 "url": "https://example.test/remy",
-                                "aliases": ["Remy Wang"],
+                                "aliases": ["Yisu Remy Wang"],
                             },
                         }
                     }

@@ -84,16 +84,18 @@ It is a derived public view with its own explicit display policy.
 
 For this campaign, `people.json` aliases should remain simple:
 
-- aliases are alternate human-facing spellings for resolution
-- aliases may include familiar short forms or publication-style variants
+- `name` is the default site-facing canonical label
+- aliases are alternate spellings for resolution only
+- aliases may include fuller publication-style variants, familiar variants, or
+  other spellings that should resolve to the same person
 - alias order should not carry hidden display semantics for the whole repo
 
 That keeps the registry small and leaves display policy where it belongs:
 with each consumer.
 
-For collaborators specifically, slice 1 can still render familiar labels by
-choosing the shortest human-facing label among `name` and `aliases`, while
-still resolving publication spellings such as `James R. Wilcox`.
+For collaborators specifically, the default display label should now simply be
+`person.name`, while publication spellings such as `James R. Wilcox` still
+resolve through aliases.
 
 ## Design Recommendation
 
@@ -112,7 +114,7 @@ Current checkpoint:
 - slice 1 is landed
 - the public route is now `/collaborators/`
 - the list is projected from publication coauthors plus `people.json`
-- display uses the shortest human-facing label among `name` and `aliases`
+- display now uses the normalized default `people.json` `name`
 - unresolved names such as `Robert Rabe` remain as plain text
 
 Later, if non-coauthor collaborator facts clearly matter, add a small

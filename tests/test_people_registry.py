@@ -19,11 +19,15 @@ class PeopleRegistryTests(unittest.TestCase):
         self.assertEqual(registry.resolve_alias("Gus Henry Smith"), "gus-smith")
         self.assertEqual(registry.resolve_alias("Gus Smith"), "gus-smith")
         self.assertEqual(registry.resolve_alias("Steve Tanimoto"), "steven-tanimoto")
+        self.assertEqual(registry.resolve_alias("Steven L. Tanimoto"), "steven-tanimoto")
         self.assertEqual(registry.resolve_alias("Remy Wang"), "remy-wang")
+        self.assertEqual(registry.resolve_alias("Yisu Remy Wang"), "remy-wang")
         self.assertEqual(
             registry.person("gilbert-bernstein").name,
-            "Gilbert Louis Bernstein",
+            "Gilbert Bernstein",
         )
+        self.assertEqual(registry.person("steven-tanimoto").name, "Steve Tanimoto")
+        self.assertEqual(registry.person("michael-ernst").name, "Mike Ernst")
 
     def test_duplicate_alias_is_rejected(self) -> None:
         payload = {

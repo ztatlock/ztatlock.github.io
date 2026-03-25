@@ -1,6 +1,6 @@
 # People Registry Semantics
 
-Status: planned
+Status: initial semantics cleanup implemented
 
 It builds on:
 
@@ -35,24 +35,24 @@ The people registry is already central:
 
 That means ambiguous semantics here will spread architecture debt outward.
 
-## Current Repo State
+## Audit That Motivated This Note
 
-Current documented intent is already close to a clean design:
+The documented intent was already close to a clean design:
 
 - `people.json` is a small shared registry
 - aliases are intended primarily for resolution
 - consumer-specific display policy is supposed to stay with the consumer
 
-Current implementation facts:
+Pre-cleanup implementation facts:
 
 - schema today is just `name`, `url`, and optional `aliases`
 - names and aliases share one unique resolution namespace
 - generated Djot refs include both `name` and all aliases
 - some consumers use `registry.person(...).name` directly as a visible label
-- collaborators currently uses a heuristic over `name` plus `aliases` to find
-  a familiar-looking label
+- collaborators used a heuristic over `name` plus `aliases` to find a
+  familiar-looking label
 
-Current data audit:
+Pre-cleanup data audit:
 
 - the registry currently has `155` people records
 - only `14` records currently use aliases
@@ -71,7 +71,7 @@ Representative examples:
 - `Steven L. Tanimoto` + alias `Steve Tanimoto`
 - `Yisu Remy Wang` + alias `Remy Wang`
 
-So the registry is still small, but the norms are not yet coherent.
+So the registry was still small, but the norms were not yet coherent.
 
 ## Main Seam
 
@@ -81,11 +81,12 @@ There is a real unresolved difference between:
 - formal / publication-style spelling
 - alternate spellings used only for resolution
 
-Today those concepts are partially collapsed into `name` plus `aliases`.
+Before the cleanup, those concepts were partially collapsed into `name` plus
+`aliases`.
 
-That is why collaborators needed the current "shortest human-facing label"
-heuristic: the data is not yet strong enough to support a simple default-label
-rule.
+That is why collaborators had needed the old "shortest human-facing label"
+heuristic: the data was not yet strong enough to support a simple
+default-label rule.
 
 ## Important Consumer Facts
 
@@ -118,6 +119,19 @@ policy rather than a hidden meaning baked into alias order.
 Students already uses `registry.person(...).name` in a few visible places.
 Future teaching staffing and later collaborator relationships will likely do
 the same unless we settle a clearer default-name policy first.
+
+## Landed Initial Cleanup
+
+The initial cleanup from this note has now landed:
+
+- `name` is the default site-facing canonical label
+- aliases are resolution-only alternate spellings
+- the small alias-bearing set has been normalized toward that rule
+- collaborators now uses `person.name` rather than a shortest-label heuristic
+- no schema field was added
+
+This means later consumers can now build on a clearer default people-label
+rule, while publications still keep their own local author spellings.
 
 ## Design Options
 
@@ -194,8 +208,15 @@ It also matches the architecture more honestly:
 - the people registry becomes a clean identity/default-label layer rather than
   a vague blend of formal and familiar names
 
-Only consider an extra field later if the cleanup pass reveals cases that
-still cannot be expressed cleanly.
+This initial cleanup is now the landed direction:
+
+- `name` is the default site-facing canonical label
+- aliases are resolution-only alternate spellings
+- the small current alias-bearing set has been normalized toward that rule
+- collaborators now uses `person.name` instead of a shortest-label heuristic
+
+Only consider an extra field later if further real cases reveal that the
+small schema still cannot express something cleanly.
 
 ## What This Note Does Not Recommend Yet
 
@@ -205,6 +226,16 @@ still cannot be expressed cleanly.
 - no attempt to encode every possible naming nuance in the schema
 
 Those should remain separate decisions.
+
+## Rendered Review
+
+Rendered review after the initial cleanup:
+
+- `collaborators/index.html` is byte-identical before and after
+- `about.html` is byte-identical before and after
+- `index.html` is byte-identical before and after
+- `students/index.html` changes only in co-advisor labels, which now use the
+  default site-facing names `Steve Tanimoto` and `Mike Ernst`
 
 ## Suggested Slice Order
 

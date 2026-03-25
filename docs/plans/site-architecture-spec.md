@@ -397,14 +397,16 @@ Suggested fields:
 
 Current alias norm:
 
-- aliases are alternate human-facing spellings for resolution
-- aliases may include familiar short forms or publication-style variants
-- consumer-specific display policy should stay with the consumer rather than
-  becoming implicit in the people registry
+- `name` is the default site-facing canonical label
+- aliases are alternate spellings for resolution only
+- aliases may include fuller publication-style variants, familiar variants, or
+  other alternate spellings that need to resolve cleanly
+- consumer-specific formatting policy should stay with the consumer rather
+  than becoming implicit in alias order or registry shape
 
 This keeps the registry minimal while still supporting derived consumers such
-as collaborators that may want `James Wilcox`-style familiar labels without
-changing publication-local spellings.
+as collaborators, students, and future teaching staffing without changing
+publication-local spellings.
 
 This registry should eventually feed:
 

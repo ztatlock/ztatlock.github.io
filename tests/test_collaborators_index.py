@@ -42,7 +42,7 @@ def _write_publication(
 
 
 class CollaboratorsIndexTests(unittest.TestCase):
-    def test_load_collaborator_entries_prefers_shortest_label_and_excludes_self(self) -> None:
+    def test_load_collaborator_entries_uses_default_name_and_excludes_self(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             data_dir = root / "site" / "data"
@@ -63,14 +63,14 @@ class CollaboratorsIndexTests(unittest.TestCase):
                                 "aliases": ["James R. Wilcox"],
                             },
                             "michael-ernst": {
-                                "name": "Michael Ernst",
+                                "name": "Mike Ernst",
                                 "url": "https://example.test/michael",
-                                "aliases": ["Mike Ernst", "Michael D. Ernst"],
+                                "aliases": ["Michael Ernst", "Michael D. Ernst"],
                             },
                             "remy-wang": {
-                                "name": "Yisu Remy Wang",
+                                "name": "Remy Wang",
                                 "url": "https://example.test/remy",
-                                "aliases": ["Remy Wang"],
+                                "aliases": ["Yisu Remy Wang"],
                             },
                         }
                     }
@@ -189,9 +189,9 @@ class CollaboratorsIndexTests(unittest.TestCase):
                                 "aliases": ["Adam T. Geller"],
                             },
                             "remy-wang": {
-                                "name": "Yisu Remy Wang",
+                                "name": "Remy Wang",
                                 "url": "https://example.test/remy",
-                                "aliases": ["Remy Wang"],
+                                "aliases": ["Yisu Remy Wang"],
                             },
                         }
                     }

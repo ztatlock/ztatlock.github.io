@@ -10,7 +10,6 @@ import unicodedata
 from scripts.publication_index import PublicationIndexError, load_publication_index_records
 from scripts.sitebuild.people_registry import (
     PeopleRegistryError,
-    PersonRecord,
     load_people_registry,
 )
 
@@ -36,18 +35,6 @@ class CollaboratorEntry:
 def collaborators_index_path(root: Path, *, collaborators_dir: Path | None = None) -> Path:
     actual_collaborators_dir = collaborators_dir or (root / "site" / "collaborators")
     return (actual_collaborators_dir / COLLABORATORS_INDEX_NAME).resolve()
-
-
-def _preferred_label(person: PersonRecord) -> str:
-    labels = (person.name, *person.aliases)
-    return min(
-        labels,
-        key=lambda label: (
-            len(label),
-            0 if label == person.name else 1,
-            label.casefold(),
-        ),
-    )
 
 
 def load_collaborator_entries(
@@ -84,7 +71,7 @@ def load_collaborator_entries(
 
             person = registry.person(person_key)
             resolved_entries[person_key] = CollaboratorEntry(
-                display_name=_preferred_label(person),
+                display_name=person.name,
                 is_linked=True,
             )
 
