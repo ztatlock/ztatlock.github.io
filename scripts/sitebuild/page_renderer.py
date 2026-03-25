@@ -10,6 +10,7 @@ from scripts.page_metadata import MetadataError, render_route_meta_for_url
 from scripts.page_source import (
     PageSourceError,
     read_cv_index_source,
+    read_funding_index_source,
     read_page_source,
     read_publications_index_source,
     read_publication_page_source,
@@ -94,6 +95,7 @@ def render_page_html(
     aliases: dict[str, str] | None = None,
     page_source_dir: Path | None = None,
     cv_dir: Path | None = None,
+    funding_dir: Path | None = None,
     service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
@@ -142,6 +144,13 @@ def render_page_html(
                 root,
                 service_dir=service_dir,
             )
+        elif route_kind == "funding_index_page":
+            if route_key != "funding":
+                raise PageRenderError(f"unsupported funding index route key: {route_key}")
+            source = read_funding_index_source(
+                root,
+                funding_dir=funding_dir,
+            )
         elif route_kind == "teaching_index_page":
             if route_key != "teaching":
                 raise PageRenderError(f"unsupported teaching index route key: {route_key}")
@@ -177,6 +186,7 @@ def render_page_html(
             site_url=site_url,
             page_source_dir=page_source_dir,
             cv_dir=cv_dir,
+            funding_dir=funding_dir,
             service_dir=service_dir,
             students_dir=students_dir,
             teaching_dir=teaching_dir,

@@ -6,9 +6,11 @@ import re
 from pathlib import Path
 
 from scripts.cv_index import cv_index_path
+from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
 from scripts.funding_record import (
     FUNDING_DATA_NAME,
     find_funding_record_issues,
+    funding_index_path,
 )
 from scripts.publication_index import (
     publications_index_path,
@@ -93,6 +95,7 @@ LITERAL_CV_PUBLICATION_ENTRY_RE = re.compile(r"^\*.+\* \\\s*$", re.MULTILINE)
 LITERAL_CV_SERVICE_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 LITERAL_CV_TEACHING_ENTRY_RE = re.compile(r"^[ ]{0,4}[*-] ", re.MULTILINE)
 LITERAL_CV_TALKS_ENTRY_RE = re.compile(r"^[*-] ", re.MULTILINE)
+LITERAL_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -553,6 +556,41 @@ def _find_funding_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_funding_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = funding_index_path(config.repo_root, funding_dir=config.funding_dir)
+    legacy_index_path = config.page_source_dir / "funding.dj"
+    funding_path = config.data_dir / FUNDING_DATA_NAME
+
+    issues: list[str] = []
+    if legacy_index_path.exists():
+        issues.append(f"{legacy_index_path}: funding index wrapper must move to {index_path}")
+
+    if not funding_path.exists() and not index_path.exists():
+        return issues
+
+    if not index_path.exists():
+        issues.append(
+            f"{index_path}: funding index page is required when canonical funding records exist"
+        )
+        return issues
+
+    issues.extend(
+        validate_general_source_metadata_path(
+            index_path,
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+    )
+
+    text = index_path.read_text(encoding="utf-8")
+    if FUNDING_LIST_PLACEHOLDER not in text:
+        issues.append(f"{index_path}: funding index page must contain {FUNDING_LIST_PLACEHOLDER}")
+    if LITERAL_FUNDING_ENTRY_RE.search(text):
+        issues.append(f"{index_path}: funding index page must not contain literal funding entry blocks")
+    return issues
+
+
 def _find_publications_index_projection_issues(config: SiteConfig) -> list[str]:
     index_path = publications_index_path(
         config.repo_root,
@@ -806,6 +844,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_cv_teaching_projection_issues(config)
         + _find_cv_talks_projection_issues(config)
         + _find_funding_data_issues(config)
+        + _find_funding_projection_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)
         + _find_teaching_data_issues(config)

@@ -207,6 +207,87 @@ class SourceValidateTests(unittest.TestCase):
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
             cv_dir = root / "site" / "cv"
+            funding = root / "site" / "funding"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            funding.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Funding\n\n"
+                "- Demo Grant \\\n"
+                "  PI; NSF; $100,000; 2020 - 2023\n",
+                encoding="utf-8",
+            )
+            (funding / "index.dj").write_text(
+                "---\n"
+                "description: Funding page\n"
+                "---\n\n"
+                "# Funding\n\n"
+                "__FUNDING_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "funding.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2020-demo-grant",
+                                "title": "Demo Grant",
+                                "role": "PI",
+                                "sponsor": "NSF",
+                                "amount_usd": 100000,
+                                "start_year": 2020,
+                                "end_year": 2023,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                funding_dir=funding,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
+    def test_reports_missing_funding_index_when_canonical_funding_records_exist(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
             templates = root / "site" / "templates"
             data = root / "site" / "data"
             static = root / "site" / "static"
@@ -270,7 +351,94 @@ class SourceValidateTests(unittest.TestCase):
                 data_dir=data,
                 static_source_dir=static,
             )
-            self.assertEqual(find_source_issues(config), [])
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{root / 'site' / 'funding' / 'index.dj'}: funding index page is required when canonical funding records exist"],
+            )
+
+    def test_reports_missing_funding_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            funding = root / "site" / "funding"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            funding.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Funding\n\n"
+                "- Demo Grant \\\n"
+                "  PI; NSF; $100,000; 2020 - 2023\n",
+                encoding="utf-8",
+            )
+            (funding / "index.dj").write_text(
+                "---\n"
+                "description: Funding page\n"
+                "---\n\n"
+                "# Funding\n\n"
+                "Research grants.\n",
+                encoding="utf-8",
+            )
+            (data / "funding.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2020-demo-grant",
+                                "title": "Demo Grant",
+                                "role": "PI",
+                                "sponsor": "NSF",
+                                "amount_usd": 100000,
+                                "start_year": 2020,
+                                "end_year": 2023,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                funding_dir=funding,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{funding / 'index.dj'}: funding index page must contain __FUNDING_LIST__"],
+            )
 
     def test_reports_missing_cv_students_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

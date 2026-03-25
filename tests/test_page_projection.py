@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
     CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
@@ -623,9 +624,34 @@ class PageProjectionTests(unittest.TestCase):
                 body,
                 root=root,
                 data_dir=root / "site" / "data",
-                ),
+            ),
+            body,
+        )
+
+    def test_applies_projection_only_to_funding_index_page(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = "# Funding\n\n__FUNDING_LIST__\n"
+        rendered = apply_page_projections(
+            "funding_index_page",
+            "funding",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(FUNDING_LIST_PLACEHOLDER, rendered)
+        self.assertIn("ComPort: Rigorous Testing Methods to Safeguard Software Porting", rendered)
+        self.assertIn("NSF CCF-2017927", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
                 body,
-            )
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
 
     def test_applies_projection_only_to_cv_service_section(self) -> None:
         root = Path(__file__).resolve().parents[1]

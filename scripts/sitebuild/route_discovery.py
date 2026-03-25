@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from scripts.cv_index import cv_index_path
+from scripts.funding_record import FUNDING_DATA_NAME, funding_index_path
 from scripts.page_source import DRAFT_HEADING_RE
 from scripts.publication_index import publications_index_path
 from scripts.publication_record import (
@@ -195,6 +196,41 @@ def _service_index_routes(config: SiteConfig) -> list[Route]:
     service_route = _service_collection_index_route(config)
     if service_route is not None:
         routes.append(service_route)
+    return routes
+
+
+def _funding_collection_index_route(config: SiteConfig) -> Route | None:
+    index_path = funding_index_path(config.repo_root, funding_dir=config.funding_dir)
+    if not index_path.exists():
+        return None
+
+    legacy_funding_page = config.page_source_dir / "funding.dj"
+    if legacy_funding_page.exists():
+        raise RouteDiscoveryError(
+            f"{legacy_funding_page}: funding index wrapper must live at {index_path}"
+        )
+
+    source_paths = [index_path]
+    funding_data = config.data_dir / FUNDING_DATA_NAME
+    if funding_data.exists():
+        source_paths.append(funding_data)
+
+    return Route(
+        kind="funding_index_page",
+        key="funding",
+        source_paths=tuple(source_paths),
+        output_relpath="funding/index.html",
+        public_url="/funding/",
+        canonical_url=canonical_url(config.site_url, "/funding/"),
+        is_draft=_is_draft_page(index_path),
+    )
+
+
+def _funding_index_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    funding_route = _funding_collection_index_route(config)
+    if funding_route is not None:
+        routes.append(funding_route)
     return routes
 
 
@@ -436,6 +472,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     cv_index_routes = _cv_index_routes(config)
     talks_index_routes = _talks_index_routes(config)
     service_index_routes = _service_index_routes(config)
+    funding_index_routes = _funding_index_routes(config)
     students_index_routes = _students_index_routes(config)
     teaching_index_routes = _teaching_index_routes(config)
     publications_index_routes = _publications_index_routes(config)
@@ -447,6 +484,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
                 *cv_index_routes,
                 *talks_index_routes,
                 *service_index_routes,
+                *funding_index_routes,
                 *students_index_routes,
                 *teaching_index_routes,
                 *publications_index_routes,

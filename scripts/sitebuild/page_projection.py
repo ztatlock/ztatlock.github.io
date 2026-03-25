@@ -5,6 +5,12 @@ from __future__ import annotations
 from pathlib import Path
 import re
 
+from scripts.funding_index import (
+    FUNDING_LIST_PLACEHOLDER,
+    FundingIndexError,
+    render_public_funding_list_djot,
+)
+from scripts.funding_record import FUNDING_DATA_NAME
 from scripts.publication_index import (
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
@@ -554,6 +560,17 @@ def apply_page_projections(
         except ServiceIndexError as err:
             raise PageProjectionError(str(err)) from err
         return rendered
+
+    if route_kind == "funding_index_page" and route_key == "funding":
+        funding_path = (data_dir / FUNDING_DATA_NAME) if data_dir is not None else None
+        try:
+            rendered = render_public_funding_list_djot(
+                root,
+                funding_path=funding_path,
+            ).rstrip()
+        except FundingIndexError as err:
+            raise PageProjectionError(str(err)) from err
+        return body.replace(FUNDING_LIST_PLACEHOLDER, rendered)
 
     if route_kind == "students_index_page" and route_key == "students":
         rendered = body

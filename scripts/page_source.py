@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from scripts.cv_index import cv_index_path
+from scripts.funding_record import funding_index_path
 from scripts.publication_index import publications_index_path
 from scripts.publication_record import (
     PublicationRecord,
@@ -72,6 +73,14 @@ def service_index_source_path(
     service_dir: Path | None = None,
 ) -> Path:
     return service_index_path(root, service_dir=service_dir)
+
+
+def funding_index_source_path(
+    root: Path,
+    *,
+    funding_dir: Path | None = None,
+) -> Path:
+    return funding_index_path(root, funding_dir=funding_dir)
 
 
 def publications_index_source_path(
@@ -222,6 +231,19 @@ def read_service_index_source(
         service_index_source_path(
             root,
             service_dir=service_dir,
+        )
+    )
+
+
+def read_funding_index_source(
+    root: Path,
+    *,
+    funding_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        funding_index_source_path(
+            root,
+            funding_dir=funding_dir,
         )
     )
 

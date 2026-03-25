@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 
 from scripts.page_source import (
     cv_index_source_path,
+    funding_index_source_path,
     PageSourceError,
     page_path,
     publications_index_source_path,
@@ -415,6 +416,25 @@ def render_service_index_meta_for_url(
     )
 
 
+def render_funding_index_meta_for_url(
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    funding_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_djot_source_meta_for_url(
+        funding_index_source_path(
+            root,
+            funding_dir=funding_dir,
+        ),
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
 def render_teaching_index_meta_for_url(
     title: str,
     *,
@@ -494,6 +514,7 @@ def render_route_meta_for_url(
     root: Path,
     page_source_dir: Path | None = None,
     cv_dir: Path | None = None,
+    funding_dir: Path | None = None,
     service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
@@ -538,6 +559,16 @@ def render_route_meta_for_url(
             canonical_url=canonical_url,
             root=root,
             service_dir=service_dir,
+            site_url=site_url,
+        )
+    if route_kind == "funding_index_page":
+        if route_key != "funding":
+            raise MetadataError(f"unsupported funding index route key: {route_key}")
+        return render_funding_index_meta_for_url(
+            title,
+            canonical_url=canonical_url,
+            root=root,
+            funding_dir=funding_dir,
             site_url=site_url,
         )
     if route_kind == "students_index_page":

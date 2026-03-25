@@ -302,7 +302,7 @@ It should not derail the main sequence above.
 
 ### Funding / Grants
 
-This campaign is now underway at the canonical-model checkpoint.
+This campaign is now at a good public-page checkpoint.
 
 It is a good fit for the established students/teaching/service pattern:
 
@@ -363,10 +363,17 @@ The repo is also now at a good checkpoint after the CV consumer work for:
 - indexed publications
 - full invited talks
 
-The current major structured-content campaign should be:
+The funding campaign is now at a good checkpoint:
 
-- funding / grants, now at the canonical-model checkpoint with the public
-  funding wrapper still to land before any broader downstream reuse
+- canonical funding records live in `site/data/funding.json`
+- the public funding wrapper lives at `site/funding/index.dj`
+- the canonical public route is `/funding/`
+
+Funding follow-on work should continue separately as:
+
+- later CV funding projection only if that downstream cleanup clearly earns it
+- later grant-to-paper and grant-to-project association enrichment only if the
+  cross-domain mapping clearly earns its complexity
 
 Publication follow-on work should continue separately as:
 

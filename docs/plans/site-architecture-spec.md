@@ -440,6 +440,8 @@ Important clarifications:
   teaching records projected into `site/teaching/index.dj` at `/teaching/`
 - the service campaign is now at a good public-page checkpoint with canonical
   service records projected into `site/service/index.dj` at `/service/`
+- the funding campaign is now at a good public-page checkpoint with canonical
+  funding records projected into `site/funding/index.dj` at `/funding/`
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV is now a proven cross-domain consumer pattern, with the wrapper at

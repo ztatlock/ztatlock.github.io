@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 FUNDING_DATA_NAME = "funding.json"
+FUNDING_INDEX_NAME = "index.dj"
 FUNDING_ROOT_KEY = "records"
 FUNDING_ALLOWED_FIELDS = {
     "key",
@@ -41,6 +42,11 @@ class FundingRecord:
 
 def funding_data_path(root: Path, *, funding_path: Path | None = None) -> Path:
     return (funding_path or (root / "site" / "data" / FUNDING_DATA_NAME)).resolve()
+
+
+def funding_index_path(root: Path, *, funding_dir: Path | None = None) -> Path:
+    actual_funding_dir = funding_dir or (root / "site" / "funding")
+    return (actual_funding_dir / FUNDING_INDEX_NAME).resolve()
 
 
 def _load_json_object_pairs(pairs: list[tuple[str, object]]) -> dict[str, object]:

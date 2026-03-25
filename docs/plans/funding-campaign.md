@@ -1,7 +1,7 @@
 # Funding Campaign
 
-Status: slice 1 canonical model implemented; public funding wrapper still
-planned
+Status: public-page core implemented; later CV or grant-output associations
+remain deferred
 
 It builds on:
 
@@ -33,17 +33,21 @@ This is a better next move than inventing another curated CV slice by inertia.
 
 ## Current Audit
 
-Current explicit funding surface:
+Current explicit funding surfaces:
 
+- `site/data/funding.json`
+  canonical funding records for the current grant list
+- `site/funding/index.dj`
+  thin public funding wrapper at the canonical `/funding/` route
 - `site/cv/index.dj`
-  currently contains `10` funding entries under `## Funding`
+  still contains the authored `## Funding` section
 
-Current funding-entry shape in the CV:
+Current funding-entry shape:
 
 - title
 - role
 - sponsor
-- optional award identifier embedded in sponsor text
+- optional award identifier
 - dollar amount
 - year range
 
@@ -57,10 +61,10 @@ Current related surfaces:
 
 Important current constraint:
 
-- there is no public funding page yet
-- there is no canonical funding data file yet
-- there is no current structured association between grants and projects or
+- there is still no structured association between grants and projects or
   publications
+- the public funding page is now canonical, but the CV funding section remains
+  hand-authored by explicit policy
 
 ## Design Recommendation
 
@@ -151,7 +155,7 @@ What landed:
 
 ### Slice 2. Public Funding Wrapper / Route Cutover
 
-Planned.
+Implemented.
 
 - add `site/funding/index.dj`
 - canonicalize `/funding/`
@@ -164,6 +168,13 @@ Invariant after slice 2:
 - the canonical public route is `/funding/`
 - no second funding fact source exists in the wrapper
 - CV funding remains hand-authored for now
+
+What landed:
+
+- the public funding wrapper at `site/funding/index.dj`
+- canonical `/funding/` route support in the explicit route-aware build
+- public funding-list projection from `site/data/funding.json`
+- source validation for the placeholder-backed funding wrapper
 
 ## Deferred Work
 

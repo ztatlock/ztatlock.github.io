@@ -169,6 +169,15 @@ class RouteDiscoveryTests(unittest.TestCase):
             ["site/service/index.dj", "site/data/service.json"],
         )
 
+    def test_discovers_funding_index_route(self) -> None:
+        route = find_route(self.routes, kind="funding_index_page", key="funding")
+        self.assertEqual(route.output_relpath, "funding/index.html")
+        self.assertEqual(route.public_url, "/funding/")
+        self.assertEqual(
+            [path.relative_to(ROOT).as_posix() for path in route.source_paths],
+            ["site/funding/index.dj", "site/data/funding.json"],
+        )
+
     def test_discovers_students_index_route(self) -> None:
         route = find_route(self.routes, kind="students_index_page", key="students")
         self.assertEqual(route.output_relpath, "students/index.html")
@@ -261,6 +270,34 @@ class RouteDiscoveryTests(unittest.TestCase):
                 root,
                 page_source_dir=page_source_dir,
                 service_dir=service_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
+
+    def test_rejects_legacy_and_collection_funding_wrappers_together(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            funding_dir = root / "site" / "funding"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            funding_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "funding.dj").write_text("# Funding\n", encoding="utf-8")
+            (funding_dir / "index.dj").write_text("# Funding\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                funding_dir=funding_dir,
                 publications_dir=publications_dir,
                 static_source_dir=static_source_dir,
             )
