@@ -87,11 +87,11 @@ meant to be read, maintained, and extended over time.
   deferred as later cross-cutting consumer work.
 - `plans/cv-campaign.md`
   Current CV structured-content campaign note, framing the CV as a
-  cross-domain consumer wrapper with planned route-cutover and students-CV
-  projection slices.
+  cross-domain consumer wrapper with the route-cutover slice implemented and
+  the students-CV projection slice next.
 - `plans/cv-slice-1-route-cutover.md`
-  Planned record of the slice that will move the CV wrapper to
-  `site/cv/index.dj` and canonicalize `/cv/` before any section projection.
+  Implemented record of the slice that moved the CV wrapper to
+  `site/cv/index.dj` and canonicalized `/cv/` before any section projection.
 - `plans/cv-slice-2-students-projection.md`
   Planned record of the first downstream CV consumer slice, replacing only the
   duplicated students sections with a compressed projection from

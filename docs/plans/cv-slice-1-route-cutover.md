@@ -1,5 +1,7 @@
 # CV Slice 1: Route Cutover
 
+Implemented.
+
 ## Goal
 
 Move the CV from an ordinary page at `site/pages/cv.dj` to a first-class

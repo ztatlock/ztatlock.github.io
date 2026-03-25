@@ -238,11 +238,9 @@ Why next:
 
 Current recommendation:
 
-- move the CV wrapper from `site/pages/cv.dj` to `site/cv/index.dj`
-- canonicalize the public route as `/cv/`
-- keep the full CV body hand-authored for that route-cutover slice
-- then project students into the CV as the first true downstream-consumer
-  slice
+- keep the CV wrapper at `site/cv/index.dj` with canonical `/cv/`
+- keep the full CV body hand-authored while the first consumer slices land
+- project students into the CV as the first true downstream-consumer slice
 - stop and reassess before touching teaching, service, talks, publications,
   or highlights
 
@@ -309,8 +307,8 @@ The repo is now at a good checkpoint after the public-page cores for:
 
 The next major structured-content campaign should be:
 
-- CV as a cross-domain consumer wrapper, beginning with route cutover and
-  then students CV projection
+- CV as a cross-domain consumer wrapper, with route cutover implemented and
+  students CV projection next
 
 Publication follow-on work should continue separately as:
 

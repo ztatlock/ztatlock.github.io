@@ -14,7 +14,7 @@ Teaching was the strongest next major shared-data domain because:
 
 - the facts are already duplicated across three consumers:
   - `site/pages/teaching.dj`
-  - `site/pages/cv.dj`
+  - `site/cv/index.dj`
   - `site/pages/index.dj`
 - the data shape is regular enough to model cleanly
 - the domain is more cross-page than collaborators or funding today
@@ -47,7 +47,7 @@ Important pre-slice-2 characteristics:
 
 ### CV Teaching Section
 
-`site/pages/cv.dj` currently duplicates:
+`site/cv/index.dj` currently duplicates:
 
 - the 4 recurring UW instructor course families
 - the 3 special-topics instructor course records
@@ -273,7 +273,7 @@ Implemented outcomes so far:
 
 ### Slice 4. CV Teaching Projection
 
-- project the duplicated Teaching section in `site/pages/cv.dj`
+- project the duplicated Teaching section in `site/cv/index.dj`
 - preserve the intentionally more compressed CV view
 - treat the public page and CV as separate renderers over the same records
 

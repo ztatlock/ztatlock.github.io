@@ -18,6 +18,8 @@ source with a small Python build engine behind `make`.
   Authored teaching landing-page wrapper rendered at `/teaching/`.
 - `site/service/index.dj`
   Authored service landing-page wrapper rendered at `/service/`.
+- `site/cv/index.dj`
+  Authored CV consumer wrapper rendered at `/cv/`.
 - `site/data/service.json`
   Canonical service-term records for the service page plus later homepage and
   CV reuse.
@@ -124,6 +126,7 @@ Notes:
   `teaching.html`.
 - Authored service index links in Djot should use `service/`, not
   `service.html`.
+- Authored CV links in Djot should use `cv/`, not `cv.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.
   Keep `site/templates/REFS` only for non-person references such as `PGAS`

@@ -1,6 +1,6 @@
 # CV Campaign
 
-Status: planned cross-domain consumer campaign
+Status: route/wrapper cutover implemented; students CV projection next
 
 ## Goal
 
@@ -45,7 +45,7 @@ The CV is the clearest place to do that.
 
 Current relevant source:
 
-- `site/pages/cv.dj`
+- `site/cv/index.dj`
 
 Important current facts:
 
@@ -72,14 +72,15 @@ Other important cross-domain consumers already present near the top of the CV:
 - `Selected Publications`
   overlaps publications
 
-Important current asymmetry:
+Current wrapper state:
 
-- the CV still lives in `site/pages/cv.dj`
-- the public URL is still `/cv.html`
-- internal authored links still point at `cv.html`
+- the CV wrapper now lives in `site/cv/index.dj`
+- the canonical public URL is now `/cv/`
+- lingering authored `cv.html` links have been rewritten to `cv/`
+- no section projection has happened yet
 
-That route shape is now out of step with the repo's newer projection-backed
-consumer wrappers.
+That means the wrapper shape is now settled and the next real CV work is
+consumer-side section projection.
 
 ## Design Recommendation
 
@@ -164,6 +165,8 @@ Likely later projection candidates:
 
 ### Slice 1. CV Wrapper / Route Cutover
 
+Implemented.
+
 - add explicit `cv_index_page` route support
 - move `site/pages/cv.dj` to `site/cv/index.dj`
 - canonicalize the public URL as `/cv/`
@@ -178,6 +181,8 @@ Invariant after slice 1:
 - all later CV consumer slices target the final wrapper location
 
 ### Slice 2. Students CV Projection
+
+Next.
 
 - replace only the duplicated students sections in the CV
 - define the explicit compressed CV renderer policy for student records

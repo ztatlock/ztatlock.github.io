@@ -14,7 +14,7 @@ Service is now the strongest next major shared-data domain because:
 
 - the facts are already duplicated across three consumers:
   - `site/pages/service.dj`
-  - `site/pages/cv.dj`
+  - `site/cv/index.dj`
   - `site/pages/index.dj`
 - the domain is still fairly flat and regular even though it is more varied
   than teaching
@@ -51,7 +51,7 @@ Important characteristics:
 
 ### CV Service Section
 
-`site/pages/cv.dj` currently duplicates the same broad service surface, but not
+`site/cv/index.dj` currently duplicates the same broad service surface, but not
 perfectly:
 
 - 32 reviewing entries

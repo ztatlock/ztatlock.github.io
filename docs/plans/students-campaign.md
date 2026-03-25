@@ -26,8 +26,8 @@ Students was the strongest next major campaign at the time because:
 
 - it is the clearest remaining cross-page duplication domain in the repo
 - it naturally builds on `site/data/people.json`
-- it should reduce repeated factual maintenance in both `students.dj` and
-  `cv.dj`
+- it should reduce repeated factual maintenance in both the public students
+  page and the CV
 - unlike publications, it is fundamentally a shared-data domain rather than a
   collection-root route problem
 
@@ -41,7 +41,7 @@ Current relevant sources:
 
 - `site/students/index.dj`
   The current public students/advising wrapper at `/students/`.
-- `site/pages/cv.dj`
+- `site/cv/index.dj`
   A second hand-maintained representation of much of the same student data.
 - `site/data/people.json`
   The current shared people registry that student records will likely need to
@@ -51,7 +51,7 @@ Current observed facts from the pre-projection audit:
 
 - the former `site/pages/students.dj` wrapper was `339` lines and had `69` top-level advising
   entries across 6 sections
-- `site/pages/cv.dj` is `1014` lines and repeats most of the same student
+- `site/cv/index.dj` is `1014` lines and repeats most of the same student
   sections in compressed form
 - the sections align closely:
   - current students
@@ -260,7 +260,7 @@ This campaign should include:
 - canonical advising records for the current students page sections
 - explicit integration policy with `site/data/people.json`
 - projection into the public students wrapper, likely `site/students/index.dj`
-- later projection into the duplicated students sections in `site/pages/cv.dj`
+- later projection into the duplicated students sections in `site/cv/index.dj`
 
 This campaign should not initially include:
 
@@ -330,7 +330,7 @@ Key invariant after this slice:
 
 Goal:
 
-- replace the duplicated students sections in `site/pages/cv.dj` with a
+- replace the duplicated students sections in `site/cv/index.dj` with a
   condensed projection from the same canonical records
 
 This slice should make omission and condensation rules explicit rather than
@@ -338,7 +338,7 @@ smuggling them through manual edits.
 
 Key invariant after this slice:
 
-- the main duplicated advising facts in `/students/` and `site/pages/cv.dj`
+- the main duplicated advising facts in `/students/` and `site/cv/index.dj`
   now come from one canonical source
 
 ### Later Follow-On Work
