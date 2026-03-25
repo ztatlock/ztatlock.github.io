@@ -161,6 +161,14 @@ Likely later offering-level extensions, if and when they earn their keep:
 Those future staffing fields should likely live on individual offerings, not
 on whole course records, because co-teaching and TA staffing can vary by term.
 
+This later staffing slice is also a likely dependency for richer
+collaborators work:
+
+- it would provide a second real canonical source for non-coauthor
+  collaborator relationships
+- it should therefore land before a collaborator-specific relationship model
+  tries to represent teaching collaborators
+
 Recommended `summer_school` fields:
 
 - `key`

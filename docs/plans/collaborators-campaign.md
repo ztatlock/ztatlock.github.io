@@ -194,6 +194,16 @@ Goal:
 - add a collaborator-specific shared-data layer only for relationships that are
   not already canonical in publications plus `people.json`
 
+Recommended precondition:
+
+- do not start this slice until there is at least one real non-publication
+  canonical source to integrate, with teaching staffing as the clearest
+  current candidate
+- in particular, the later teaching staffing slice should land first so
+  teaching collaborators such as co-instructors and TAs are canonical in
+  `site/data/teaching.json` rather than being prematurely copied into a
+  collaborator registry
+
 Likely target:
 
 - `site/data/collaborators.json`
@@ -210,6 +220,8 @@ Invariant after slice 3:
 - collaborator-specific relationship facts have one canonical home keyed by
   `people.json`
 - publication coauthorship still remains canonical in publication bundles
+- teaching collaboration facts, once modeled, remain canonical in
+  `site/data/teaching.json`
 - the repo does not duplicate coauthor facts into a collaborator registry just
   for symmetry
 

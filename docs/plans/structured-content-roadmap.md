@@ -303,6 +303,12 @@ The current checkpoint is narrow on purpose:
 - collaborator-specific relationship data only later, once non-coauthor facts
   become real and worth modeling
 
+Current dependency note:
+
+- the collaborator relationship-model slice should probably wait until the
+  later teaching staffing slice lands, so teaching collaborators come from a
+  real canonical source instead of forcing a speculative collaborator registry
+
 It should still avoid turning collaborators into a bigger relationship system
 too early.
 
