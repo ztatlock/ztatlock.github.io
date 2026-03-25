@@ -308,7 +308,8 @@ It is a good fit for the established students/teaching/service pattern:
 
 - canonical shared data under `site/data/`
 - a thin public wrapper at `site/funding/index.dj`
-- later CV or homepage consumers only if they clearly earn their keep
+- next likely follow-on: a narrow CV funding consumer slice
+- later homepage consumers only if they clearly earn their keep
 
 The first funding slices should stay narrow:
 
@@ -371,7 +372,8 @@ The funding campaign is now at a good checkpoint:
 
 Funding follow-on work should continue separately as:
 
-- later CV funding projection only if that downstream cleanup clearly earns it
+- next likely follow-on: CV funding projection as a narrow downstream consumer
+- later CV/public funding refinements only if they clearly earn their keep
 - later grant-to-paper and grant-to-project association enrichment only if the
   cross-domain mapping clearly earns its complexity
 

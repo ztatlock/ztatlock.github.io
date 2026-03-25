@@ -1,7 +1,8 @@
 # Funding Campaign
 
-Status: public-page core implemented; later CV or grant-output associations
-remain deferred
+Status: public-page core implemented; CV funding projection reviewed and
+latched as the next follow-on slice; later grant-output associations remain
+deferred
 
 It builds on:
 
@@ -176,12 +177,28 @@ What landed:
 - public funding-list projection from `site/data/funding.json`
 - source validation for the placeholder-backed funding wrapper
 
+### Slice 3. CV Funding Projection
+
+Planned.
+
+- replace only the duplicated funding list body in `site/cv/index.dj`
+- preserve the `## Funding` heading hand-authored
+- define an explicit CV-specific funding renderer over canonical funding data
+- keep the rendered diff focused on the funding section and explain any
+  visible policy changes
+
+Invariant after slice 3:
+
+- the CV funding list derives from canonical funding records
+- the public funding page and the CV now share one canonical funding source
+  while still allowing separate consumer renderers
+- no grant-output associations are modeled yet
+
 ## Deferred Work
 
 The following should remain explicitly out of the first funding campaign
 checkpoint:
 
-- CV funding projection
 - homepage funding/highlights consumers
 - grant-to-publication associations
 - grant-to-project associations

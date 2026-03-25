@@ -1,8 +1,8 @@
 # CV Campaign
 
 Status: route/wrapper cutover plus students, teaching, service, indexed
-publications, and full invited-talks CV projection implemented; stop and
-reassess before broader curated CV consumers
+publications, and full invited-talks CV projection implemented; funding
+projection reviewed and latched as the next narrow CV consumer slice
 
 ## Goal
 
@@ -177,10 +177,10 @@ Likely hand-authored for now:
 - `Experience`
 - `Education`
 - `Awards`
-- `Funding`
 
 Likely later projection candidates:
 
+- funding, now that the public funding wrapper is canonical
 - maybe a separate `Book Chapters` / bibliography-boundary decision later
 - maybe selected recent talks/highlights
 
@@ -347,8 +347,9 @@ Why stop here:
 
 Likely candidates from here:
 
-1. homepage recent-service or recent-teaching cleanup
-2. curated CV consumers such as selected highlights
-3. no immediate CV broadening if the current checkpoint already earns its keep
+1. funding projection, now that funding has a canonical shared-data source and
+   a public wrapper
+2. homepage recent-service or recent-teaching cleanup
+3. curated CV consumers such as selected highlights
 4. a separate `Book Chapters` / bibliography-boundary slice only if that
    complexity clearly earns its keep
