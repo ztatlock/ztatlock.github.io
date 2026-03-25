@@ -10,6 +10,115 @@ from scripts.sitebuild.source_validate import find_source_issues
 
 
 class SourceValidateTests(unittest.TestCase):
+    def test_reports_legacy_cv_wrapper_move(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "cv.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{pages / 'cv.dj'}: CV wrapper must move to {root / 'site' / 'cv' / 'index.dj'}"],
+            )
+
+    def test_reports_legacy_cv_link(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "notes.dj").write_text(
+                "---\n"
+                "description: Notes page\n"
+                "---\n\n"
+                "# Notes\n\n"
+                "- [Curriculum Vitae](cv.html)\n",
+                encoding="utf-8",
+            )
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{pages / 'notes.dj'}: legacy CV link should use canonical collection path: cv.html -> cv/"],
+            )
+
     def test_reports_missing_service_registry_when_service_index_exists(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
@@ -285,6 +394,7 @@ class SourceValidateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
             students = root / "site" / "students"
             talks = root / "site" / "talks"
             pubs = root / "site" / "pubs"
@@ -292,6 +402,7 @@ class SourceValidateTests(unittest.TestCase):
             data = root / "site" / "data"
             static = root / "site" / "static"
             pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
             students.mkdir(parents=True)
             talks.mkdir(parents=True)
             pubs.mkdir(parents=True)
@@ -313,7 +424,7 @@ class SourceValidateTests(unittest.TestCase):
                 "__STUDENTS_VISITING_LIST__\n",
                 encoding="utf-8",
             )
-            (pages / "cv.dj").write_text(
+            (cv_dir / "index.dj").write_text(
                 "---\n"
                 "description: CV\n"
                 "---\n\n"
@@ -337,6 +448,7 @@ class SourceValidateTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=pages,
+                cv_dir=cv_dir,
                 students_dir=students,
                 talks_dir=talks,
                 publications_dir=pubs,

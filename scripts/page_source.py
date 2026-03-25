@@ -8,6 +8,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from scripts.cv_index import cv_index_path
 from scripts.publication_index import publications_index_path
 from scripts.publication_record import (
     PublicationRecord,
@@ -47,6 +48,14 @@ def talks_index_source_path(
     talks_dir: Path | None = None,
 ) -> Path:
     return talks_index_path(root, talks_dir=talks_dir)
+
+
+def cv_index_source_path(
+    root: Path,
+    *,
+    cv_dir: Path | None = None,
+) -> Path:
+    return cv_index_path(root, cv_dir=cv_dir)
 
 
 def students_index_source_path(
@@ -174,6 +183,19 @@ def read_talks_index_source(
         talks_index_source_path(
             root,
             talks_dir=talks_dir,
+        )
+    )
+
+
+def read_cv_index_source(
+    root: Path,
+    *,
+    cv_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        cv_index_source_path(
+            root,
+            cv_dir=cv_dir,
         )
     )
 

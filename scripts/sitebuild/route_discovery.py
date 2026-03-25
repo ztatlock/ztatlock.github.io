@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from scripts.cv_index import cv_index_path
 from scripts.page_source import DRAFT_HEADING_RE
 from scripts.publication_index import publications_index_path
 from scripts.publication_record import (
@@ -52,6 +53,36 @@ def _ordinary_page_routes(config: SiteConfig) -> list[Route]:
                 is_draft=_is_draft_page(path),
             )
         )
+    return routes
+
+
+def _cv_collection_index_route(config: SiteConfig) -> Route | None:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    if not index_path.exists():
+        return None
+
+    legacy_cv_page = config.page_source_dir / "cv.dj"
+    if legacy_cv_page.exists():
+        raise RouteDiscoveryError(
+            f"{legacy_cv_page}: CV wrapper must live at {index_path}"
+        )
+
+    return Route(
+        kind="cv_index_page",
+        key="cv",
+        source_paths=(index_path,),
+        output_relpath="cv/index.html",
+        public_url="/cv/",
+        canonical_url=canonical_url(config.site_url, "/cv/"),
+        is_draft=_is_draft_page(index_path),
+    )
+
+
+def _cv_index_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    cv_route = _cv_collection_index_route(config)
+    if cv_route is not None:
+        routes.append(cv_route)
     return routes
 
 
@@ -402,6 +433,7 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
 
 def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     ordinary_routes = _ordinary_page_routes(config)
+    cv_index_routes = _cv_index_routes(config)
     talks_index_routes = _talks_index_routes(config)
     service_index_routes = _service_index_routes(config)
     students_index_routes = _students_index_routes(config)
@@ -412,6 +444,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
         sorted(
             (
                 *ordinary_routes,
+                *cv_index_routes,
                 *talks_index_routes,
                 *service_index_routes,
                 *students_index_routes,

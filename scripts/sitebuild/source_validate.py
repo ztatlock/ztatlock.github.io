@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from scripts.cv_index import cv_index_path
 from scripts.publication_index import (
     publications_index_path,
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
@@ -62,6 +63,7 @@ LEGACY_STUDENTS_LINK_RE = re.compile(r"\b(students\.html)\b")
 LEGACY_TEACHING_LINK_RE = re.compile(r"\b(teaching\.html)\b")
 LEGACY_TALKS_LINK_RE = re.compile(r"\b(talks\.html)\b")
 LEGACY_SERVICE_LINK_RE = re.compile(r"\b(service\.html)\b")
+LEGACY_CV_LINK_RE = re.compile(r"\b(cv\.html)\b")
 LITERAL_SERVICE_ENTRY_RE = re.compile(
     r"^- (?:\[\d{4}(?: - (?:\d{4}|Present))? [^\]]+\]\([^)]+\)|\d{4}(?: - (?:\d{4}|Present))?(?: :)? .+)$",
     re.MULTILINE,
@@ -78,7 +80,6 @@ ROOT_STATIC_SOURCE_NAMES = (
     "style.css",
     "zip-longitude.js",
 )
-STUDENT_DATA_CONSUMER_PAGE_NAMES = ("cv.dj",)
 
 
 def _legacy_publication_link_issues(path: Path) -> list[str]:
@@ -99,6 +100,13 @@ def _legacy_talks_link_issues(path: Path) -> list[str]:
     if not LEGACY_TALKS_LINK_RE.search(text):
         return []
     return [f"{path}: legacy talks link should use canonical collection path: talks.html -> talks/"]
+
+
+def _legacy_cv_link_issues(path: Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    if not LEGACY_CV_LINK_RE.search(text):
+        return []
+    return [f"{path}: legacy CV link should use canonical collection path: cv.html -> cv/"]
 
 
 def _legacy_service_link_issues(path: Path) -> list[str]:
@@ -134,6 +142,9 @@ def _legacy_teaching_link_issues(path: Path) -> list[str]:
 
 def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     paths = list(sorted(config.page_source_dir.glob("*.dj")))
+    cv_index = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    if cv_index.exists():
+        paths.append(cv_index)
     talks_index = talks_index_path(config.repo_root, talks_dir=config.talks_dir)
     if talks_index.exists():
         paths.append(talks_index)
@@ -168,6 +179,13 @@ def _find_legacy_talks_link_issues(config: SiteConfig) -> list[str]:
     issues: list[str] = []
     for path in _all_authored_djot_sources(config):
         issues.extend(_legacy_talks_link_issues(path))
+    return issues
+
+
+def _find_legacy_cv_link_issues(config: SiteConfig) -> list[str]:
+    issues: list[str] = []
+    for path in _all_authored_djot_sources(config):
+        issues.extend(_legacy_cv_link_issues(path))
     return issues
 
 
@@ -251,6 +269,35 @@ def _find_talk_projection_issues(config: SiteConfig) -> list[str]:
     issues.extend(
         validate_general_source_metadata_path(
             talks_page,
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+    )
+    return issues
+
+
+def _find_cv_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    legacy_index_path = config.page_source_dir / "cv.dj"
+
+    issues: list[str] = []
+    if legacy_index_path.exists():
+        issues.append(f"{legacy_index_path}: CV wrapper must move to {index_path}")
+        return issues
+
+    if not legacy_index_path.exists() and not index_path.exists():
+        return issues
+
+    if not index_path.exists():
+        issues.append(
+            f"{index_path}: CV wrapper is required when the CV page exists"
+        )
+        return issues
+
+    issues.extend(
+        validate_general_source_metadata_path(
+            index_path,
             config.repo_root,
             publications_dir=config.publications_dir,
             static_source_dir=config.static_source_dir,
@@ -375,10 +422,7 @@ def _find_student_projection_issues(config: SiteConfig) -> list[str]:
 def _find_student_data_issues(config: SiteConfig) -> list[str]:
     students_path = config.data_dir / STUDENTS_DATA_NAME
     students_index = students_index_path(config.repo_root, students_dir=config.students_dir)
-    has_student_consumers = any(
-        (config.page_source_dir / name).exists()
-        for name in STUDENT_DATA_CONSUMER_PAGE_NAMES
-    ) or students_index.exists()
+    has_student_consumers = students_index.exists()
     if not students_path.exists() and not has_student_consumers:
         return []
     return find_student_record_issues(
@@ -518,6 +562,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             publications_dir=config.publications_dir,
             static_source_dir=config.static_source_dir,
         )
+        + _find_cv_projection_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)
         + _find_teaching_data_issues(config)
@@ -532,6 +577,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_publications_index_projection_issues(config)
         + _find_legacy_publication_link_issues(config)
         + _find_legacy_publications_index_link_issues(config)
+        + _find_legacy_cv_link_issues(config)
         + _find_legacy_students_link_issues(config)
         + _find_legacy_service_link_issues(config)
         + _find_legacy_teaching_link_issues(config)

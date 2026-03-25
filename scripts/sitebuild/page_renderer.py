@@ -9,6 +9,7 @@ from pathlib import Path
 from scripts.page_metadata import MetadataError, render_route_meta_for_url
 from scripts.page_source import (
     PageSourceError,
+    read_cv_index_source,
     read_page_source,
     read_publications_index_source,
     read_publication_page_source,
@@ -92,6 +93,7 @@ def render_page_html(
     webfiles_url: str,
     aliases: dict[str, str] | None = None,
     page_source_dir: Path | None = None,
+    cv_dir: Path | None = None,
     service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
@@ -111,6 +113,13 @@ def render_page_html(
                 route_key,
                 root,
                 page_source_dir=page_source_dir,
+            )
+        elif route_kind == "cv_index_page":
+            if route_key != "cv":
+                raise PageRenderError(f"unsupported CV index route key: {route_key}")
+            source = read_cv_index_source(
+                root,
+                cv_dir=cv_dir,
             )
         elif route_kind == "talks_index_page":
             if route_key != "talks":
@@ -167,6 +176,7 @@ def render_page_html(
             root=root,
             site_url=site_url,
             page_source_dir=page_source_dir,
+            cv_dir=cv_dir,
             service_dir=service_dir,
             students_dir=students_dir,
             teaching_dir=teaching_dir,

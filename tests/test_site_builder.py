@@ -14,6 +14,7 @@ class SiteBuilderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             page_source_dir = root / "site" / "pages"
+            cv_dir = root / "custom" / "cv"
             service_dir = root / "custom" / "service"
             teaching_dir = root / "custom" / "teaching"
             talks_dir = root / "site" / "talks"
@@ -24,6 +25,7 @@ class SiteBuilderTests(unittest.TestCase):
             img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
             service_dir.mkdir(parents=True)
             teaching_dir.mkdir(parents=True)
             talks_dir.mkdir(parents=True)
@@ -39,6 +41,14 @@ class SiteBuilderTests(unittest.TestCase):
                 "---\n"
                 "# About\n\n"
                 "Site body.\n",
+                encoding="utf-8",
+            )
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n"
+                "# Curriculum Vitae\n\n"
+                "Academic history.\n",
                 encoding="utf-8",
             )
             (talks_dir / "index.dj").write_text(
@@ -228,6 +238,7 @@ class SiteBuilderTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=page_source_dir,
+                cv_dir=cv_dir,
                 service_dir=service_dir,
                 teaching_dir=teaching_dir,
                 talks_dir=talks_dir,
@@ -243,6 +254,10 @@ class SiteBuilderTests(unittest.TestCase):
             about_html = (config.build_dir / "about.html").read_text(encoding="utf-8")
             self.assertIn('href="https://ztatlock.net/about.html"', about_html)
             self.assertIn("Site body.", about_html)
+
+            cv_html = (config.build_dir / "cv" / "index.html").read_text(encoding="utf-8")
+            self.assertIn('href="https://ztatlock.net/cv/"', cv_html)
+            self.assertIn("Academic history.", cv_html)
 
             talks_html = (config.build_dir / "talks" / "index.html").read_text(encoding="utf-8")
             self.assertIn("Everything is a compiler, try Equality Saturation!", talks_html)

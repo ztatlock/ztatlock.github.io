@@ -7,6 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from scripts.page_source import (
+    cv_index_source_path,
     PageSourceError,
     page_path,
     publications_index_source_path,
@@ -357,6 +358,25 @@ def render_talks_index_meta_for_url(
     )
 
 
+def render_cv_index_meta_for_url(
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    cv_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_djot_source_meta_for_url(
+        cv_index_source_path(
+            root,
+            cv_dir=cv_dir,
+        ),
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
 def render_students_index_meta_for_url(
     title: str,
     *,
@@ -473,6 +493,7 @@ def render_route_meta_for_url(
     canonical_url: str,
     root: Path,
     page_source_dir: Path | None = None,
+    cv_dir: Path | None = None,
     service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
@@ -487,6 +508,16 @@ def render_route_meta_for_url(
             canonical_url=canonical_url,
             root=root,
             page_source_dir=page_source_dir,
+            site_url=site_url,
+        )
+    if route_kind == "cv_index_page":
+        if route_key != "cv":
+            raise MetadataError(f"unsupported CV index route key: {route_key}")
+        return render_cv_index_meta_for_url(
+            title,
+            canonical_url=canonical_url,
+            root=root,
+            cv_dir=cv_dir,
             site_url=site_url,
         )
     if route_kind == "talks_index_page":

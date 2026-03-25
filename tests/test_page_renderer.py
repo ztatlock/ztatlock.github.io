@@ -81,6 +81,25 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
 
+    def test_render_cv_index_page_uses_explicit_canonical_url(self) -> None:
+        canonical = "https://example.com/cv/"
+        html = render_page_html(
+            "cv_index_page",
+            "cv",
+            canonical_url=canonical,
+            refs_text=self.refs_text,
+            root=ROOT,
+            site_url=self.config.site_url,
+            webfiles_url=self.config.webfiles_url,
+            cv_dir=self.config.cv_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
+        )
+        self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
+        self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+        self.assertIn("Curriculum Vitae", html)
+        self.assertIn("Selected Recent Highlights", html)
+
     def test_render_service_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/service/"
         html = render_page_html(
