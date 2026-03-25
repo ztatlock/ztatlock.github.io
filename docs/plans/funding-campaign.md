@@ -1,6 +1,7 @@
 # Funding Campaign
 
-Status: planning
+Status: slice 1 canonical model implemented; public funding wrapper still
+planned
 
 It builds on:
 
@@ -126,7 +127,7 @@ otherwise:
 
 ### Slice 1. Canonical Funding Model
 
-Planned.
+Implemented.
 
 - add `site/data/funding.json`
 - add loader and validator tests
@@ -139,6 +140,14 @@ Invariant after slice 1:
 - every intended current funding fact is represented exactly once
 - no public page or CV rendering has switched yet
 - no grant-output associations are modeled yet
+
+What landed:
+
+- canonical funding records in `site/data/funding.json`
+- strict loading and validation in `scripts/funding_record.py`
+- source-validation integration so the existing CV funding section now
+  requires the canonical funding registry to exist
+- focused loader and source-validation tests
 
 ### Slice 2. Public Funding Wrapper / Route Cutover
 

@@ -302,8 +302,7 @@ It should not derail the main sequence above.
 
 ### Funding / Grants
 
-This is now the strongest likely next new shared-data domain after the current
-CV consumer checkpoint.
+This campaign is now underway at the canonical-model checkpoint.
 
 It is a good fit for the established students/teaching/service pattern:
 
@@ -364,11 +363,10 @@ The repo is also now at a good checkpoint after the CV consumer work for:
 - indexed publications
 - full invited talks
 
-The next major structured-content campaign should likely be:
+The current major structured-content campaign should be:
 
-- funding / grants as a new shared-data domain, starting with a canonical
-  funding model and a public funding wrapper while deferring richer
-  grant-output associations
+- funding / grants, now at the canonical-model checkpoint with the public
+  funding wrapper still to land before any broader downstream reuse
 
 Publication follow-on work should continue separately as:
 

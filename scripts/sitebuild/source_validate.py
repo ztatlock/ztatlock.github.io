@@ -6,6 +6,10 @@ import re
 from pathlib import Path
 
 from scripts.cv_index import cv_index_path
+from scripts.funding_record import (
+    FUNDING_DATA_NAME,
+    find_funding_record_issues,
+)
 from scripts.publication_index import (
     publications_index_path,
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
@@ -477,6 +481,14 @@ def _cv_uses_teaching_projection(config: SiteConfig) -> bool:
     )
 
 
+def _cv_has_funding_section(config: SiteConfig) -> bool:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    if not index_path.exists():
+        return False
+    text = index_path.read_text(encoding="utf-8")
+    return _extract_markdown_section_body(text, "Funding", level=2) is not None
+
+
 def _find_cv_service_projection_issues(config: SiteConfig) -> list[str]:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     service_path = config.data_dir / SERVICE_DATA_NAME
@@ -528,6 +540,17 @@ def _find_cv_teaching_projection_issues(config: SiteConfig) -> list[str]:
             f"{index_path}: CV teaching section must not contain literal teaching entry blocks"
         )
     return issues
+
+
+def _find_funding_data_issues(config: SiteConfig) -> list[str]:
+    funding_path = config.data_dir / FUNDING_DATA_NAME
+    has_funding_consumers = _cv_has_funding_section(config)
+    if not funding_path.exists() and not has_funding_consumers:
+        return []
+    return find_funding_record_issues(
+        config.repo_root,
+        funding_path=funding_path,
+    )
 
 
 def _find_publications_index_projection_issues(config: SiteConfig) -> list[str]:
@@ -782,6 +805,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_cv_service_projection_issues(config)
         + _find_cv_teaching_projection_issues(config)
         + _find_cv_talks_projection_issues(config)
+        + _find_funding_data_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)
         + _find_teaching_data_issues(config)

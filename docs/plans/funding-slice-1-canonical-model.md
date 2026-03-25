@@ -1,6 +1,6 @@
 # Funding Slice 1: Canonical Model
 
-Status: planning
+Status: implemented
 
 It builds on:
 
@@ -108,6 +108,25 @@ After slice 1:
 - record order in `site/data/funding.json` is canonical
 - current public pages and the CV remain unchanged
 - no grant-output associations are modeled yet
+
+## Implemented Result
+
+This slice landed as:
+
+- `site/data/funding.json`
+- `scripts/funding_record.py`
+- `tests/test_funding_record.py`
+- `scripts/sitebuild/source_validate.py`
+- `tests/test_source_validate.py`
+
+It established:
+
+- canonical ordered funding records under `site/data/funding.json`
+- explicit separation of `sponsor` and optional `award_id`
+- strict validation for key uniqueness, positive USD amounts, and valid year
+  ranges
+- a source-validation contract requiring the funding registry when the CV
+  contains the authored `## Funding` section
 
 ## Design Notes
 

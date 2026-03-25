@@ -1,0 +1,99 @@
+{
+  "records": [
+    {
+      "key": "2021-comport-software-porting",
+      "title": "ComPort: Rigorous Testing Methods to Safeguard Software Porting",
+      "role": "Co-PI",
+      "sponsor": "DOE",
+      "amount_usd": 405000,
+      "start_year": 2021,
+      "end_year": 2024
+    },
+    {
+      "key": "2021-v-spells-polymorph",
+      "title": "V-SPELLS: POLYMORPH: Promotion to Optimal Languages Yielding Modular Operator-driven Replacements and Programmatic Hooks",
+      "role": "Co-PI",
+      "sponsor": "DARPA",
+      "amount_usd": 746365,
+      "start_year": 2021,
+      "end_year": 2024
+    },
+    {
+      "key": "2020-fmitf-retargetable-cam",
+      "title": "FMitF: Retargetable, Verifiable, Optimizable Computer-Aided Manufacturing",
+      "role": "Co-PI",
+      "sponsor": "NSF",
+      "award_id": "CCF-2017927",
+      "amount_usd": 749913,
+      "start_year": 2020,
+      "end_year": 2023
+    },
+    {
+      "key": "2019-rtml-neural-networks",
+      "title": "RTML: Automatic Synthesis of HW/SW Systems for General Neural-Networks",
+      "role": "Co-PI",
+      "sponsor": "DARPA",
+      "amount_usd": 2803490,
+      "start_year": 2019,
+      "end_year": 2022
+    },
+    {
+      "key": "2019-knit-pattern-understanding",
+      "title": "Knit Pattern Understanding for Garment Modeling, Modification, and Fabrication",
+      "role": "Co-PI",
+      "sponsor": "NSF",
+      "award_id": "CHS-1907337",
+      "amount_usd": 500000,
+      "start_year": 2019,
+      "end_year": 2021
+    },
+    {
+      "key": "2019-fmitf-accessibility",
+      "title": "FMitF: Formal Verification of Accessibility",
+      "role": "Co-PI",
+      "sponsor": "NSF",
+      "award_id": "CCF-1836813",
+      "amount_usd": 738125,
+      "start_year": 2019,
+      "end_year": 2022
+    },
+    {
+      "key": "2018-pl-foundations-3d-printing",
+      "title": "Programming Languages Foundations for 3D Printing",
+      "role": "PI",
+      "sponsor": "NSF",
+      "award_id": "SHF-1813166",
+      "amount_usd": 500000,
+      "start_year": 2018,
+      "end_year": 2021
+    },
+    {
+      "key": "2018-ada-jump-center",
+      "title": "Applications Driving Architectures (ADA) SRC JUMP Center",
+      "role": "Co-PI",
+      "sponsor": "Joint SRC & DARPA",
+      "amount_usd": 580000,
+      "start_year": 2018,
+      "end_year": 2022
+    },
+    {
+      "key": "2018-career-distributed-systems",
+      "title": "CAREER: Verifying Distributed Systems Implementations",
+      "role": "PI",
+      "sponsor": "NSF",
+      "award_id": "CCF-1749570",
+      "amount_usd": 550000,
+      "start_year": 2018,
+      "end_year": 2023
+    },
+    {
+      "key": "2015-brass-big-data-visualization",
+      "title": "BRASS: A Picture is Worth a Billion Bits: Adaptive Visualization of Big Data",
+      "role": "Co-PI",
+      "sponsor": "DARPA",
+      "amount_usd": 7500000,
+      "start_year": 2015,
+      "end_year": 2019
+    }
+  ]
+}
