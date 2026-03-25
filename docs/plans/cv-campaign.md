@@ -1,7 +1,7 @@
 # CV Campaign
 
-Status: route/wrapper cutover and students CV projection implemented;
-teaching CV projection is the next planned consumer slice
+Status: route/wrapper cutover plus students and teaching CV projection
+implemented; service is the likely next consumer slice
 
 ## Goal
 
@@ -50,15 +50,13 @@ Current relevant source:
 
 Important current facts:
 
-- the current CV source is `771` lines
+- the current CV source is `659` lines
 - it contains `29` major section/subsection headings
 - it is not one homogeneous repeated-data page
 - but it does contain several large duplicated factual domains
 
-Most important remaining duplicated factual domains:
+Most important remaining duplicated factual domain:
 
-- `Teaching`
-  duplicates the public teaching page in a more compressed form
 - `Service`
   duplicates the public service page in a more compressed form
 
@@ -77,9 +75,10 @@ Current wrapper/consumer state:
 - the canonical public URL is now `/cv/`
 - lingering authored `cv.html` links have been rewritten to `cv/`
 - the duplicated students sections now project from `site/data/students.json`
+- the duplicated teaching section now projects from `site/data/teaching.json`
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
-- the next planned CV consumer slice is teaching
+- the likely next planned CV consumer slice is service
 
 That means the wrapper shape is now settled and the next real CV work is
 consumer-side section projection.
@@ -136,7 +135,7 @@ Examples:
   richer, more linked, more advisory detail
 - CV students section:
   more compressed and more selective
-- future CV teaching section:
+- CV teaching section:
   may reasonably differ from the public teaching wrapper if the rendered CV
   becomes clearer while preserving the same substance
 
@@ -174,7 +173,6 @@ Likely hand-authored for now:
 
 Likely later projection candidates:
 
-- `Teaching`
 - `Service`
 - maybe selected `Invited Talks`
 - maybe selected recent publications or highlights
@@ -220,7 +218,7 @@ Invariant after slice 2:
 
 ### Checkpoint After Slice 2
 
-Now current.
+This checkpoint led to the next-slice choice.
 
 At that point:
 
@@ -237,22 +235,40 @@ be:
 - selected talks/publications/highlights
 - or something else entirely
 
+### Slice 3. Teaching CV Projection
+
+Implemented.
+
+- replace only the duplicated teaching section bodies in the CV
+- preserve the `## Teaching` heading, the existing subsection headings, and
+  the teaching-award note
+- define an explicit compressed CV renderer policy for teaching records
+- keep the rendered diff focused on the teaching section and explain any
+  visible policy changes
+
+Invariant after slice 3:
+
+- the second major duplicated factual domain in the CV now derives from
+  canonical shared data
+- the CV now proves that a downstream consumer may expose more of a canonical
+  domain than the public wrapper does, via the `Teaching Assistant`
+  subsection
+- the CV teaching renderer now makes its low-link, compressed policy explicit
+  and reviewable
+
 ## Current Recommendation
 
-The next CV consumer slice should be teaching.
+The next likely CV consumer slice is service.
 
-Why teaching next:
+Why service next:
 
-- it remains one of the largest duplicated factual domains in the CV
-- it exercises a second shared-data-first canonical domain after students
-- it tests an important downstream-consumer property:
-  the CV legitimately includes the `Teaching Assistant` subsection even though
-  the public teaching wrapper does not
-- it is less policy-heavy than service, which would require more immediate
-  choices about collapsing yearly terms into CV-friendly ranges
+- it is now the clearest remaining duplicated factual domain in the CV
+- it would extend the same downstream-consumer pattern to another shared data
+  source that already has a public wrapper
+- it still needs explicit CV-specific policy for ranges, ongoing appointments,
+  and section-level compression
 
 The intended sequence from here is:
 
-1. teaching CV projection
-2. service CV projection
-3. reassess talks, publications, highlights, or other curated consumers later
+1. service CV projection
+2. reassess talks, publications, highlights, or other curated consumers later

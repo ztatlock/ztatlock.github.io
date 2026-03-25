@@ -416,130 +416,18 @@ Sudipta Kundu, Sorin Lerner, and Rajesh K. Gupta; Springer 2011
 
 ### _Instructor_
 
-- *UW CSE 507: Computer-Aided Reasoning for Software* \
-  Graduate course
-  introducing automated reasoning techniques
-  for the design, analysis, and construction
-  of software
-
-  {.columns .columns-8rem}
-  * 2025 Autumn
-  * 2023 Autumn
-
-- *UW CSE 505: Concepts of Programming Languages* \
-  Graduate course
-  using proof assistants to explore
-  transition systems,
-  inductive invariants,
-  type systems,
-  Hoare logic,
-  metatheory
-
-  {.columns .columns-8rem}
-  *  2025 Spring
-  *  2023 Winter
-  *  2021 Spring
-  *  2020 Spring
-  *  2019 Spring
-  *  2018 Autumn
-  *  2017 Autumn
-  *  2016 Autumn
-  *  2015 Autumn
-  *  2015 Winter
-  *  2013 Autumn
-
-- *UW CSE 341: Programming Languages* \
-  Undergraduate course exploring
-  informal operational semantics,
-  functional programming vs. OOP,
-  static vs. dynamic typing
-
-  {.columns .columns-8rem}
-  *  2024 Autumn
-  *  2022 Autumn
-  *  2021 Winter
-  *  2020 Winter
-  *  2019 Winter
-  *  2018 Winter
-  *  2015 Spring
-  *  2014 Spring
-
-- *UW CSE 331: Software Design and Implementation* \
-  Undergraduate course exploring
-  specification,
-  invariants,
-  testing,
-  debugging,
-  modular design
-
-  {.columns .columns-8rem}
-  *  2024 Winter
-  *  2018 Spring
-  *  2017 Winter
-  *  2016 Winter
-
-- *Special Topics Graduate Courses*
-
-  * UW CSE 599Z: Accurate Computing, \ 2017\ Spring
-
-    - Numerical computing and computational fabrication
-
-  * UW CSE 599W: Systems Verification, \ 2016\ Spring
-
-    - Formally verifying systems implementations
-    - Co-taught with Xi Wang and Bryan Parno
-
-  * UW CSE 506: Advanced Topics in Programming Languages, \ 2014\ Winter
-
-    - Proof assistants, dependent types, and systems verificiation
+__CV_TEACHING_INSTRUCTOR_LIST__
 
 ★ \ I was honored to be nominated for
     the UW Distinguished Teaching Award in 2015.
 
 ### _Summer School Courses_
 
-- *DeepSpec Summer School 2018* \
-  Verifying Distributed Systems Implementations in Coq
+__CV_TEACHING_SUMMER_SCHOOL_LIST__
 
 ### _Teaching Assistant_
 
-- *UCSD CSE 231: Advanced Compiler Design* \
-  Graduate course exploring
-  program analyses and
-  compiler optimizations
-
-  {.columns .columns-8rem}
-  *  2012 Autumn
-  *  2011 Autumn
-  *  2011 Spring
-
-- *UCSD CSE 130: Programming Languages* \
-  Undergraduate course exploring
-  functional programming,
-  static vs. dynamic typing, and
-  logic programming
-
-  {.columns .columns-8rem}
-  *  2012 Winter
-
-- *Purdue CS 180: Introduction to Java Programming* \
-  Undergraduate course introducing students to Java programming:
-  variables,
-  conditionals,
-  loops,
-  recursion,
-  testing,
-  modular design, and
-  basic systems programming
-
-  {.columns .columns-8rem}
-  *  2007 Spring
-  *  2006 Autumn
-  *  2006 Spring
-  *  2005 Autumn
-  *  2005 Spring
-  *  2004 Autumn
-  *  2004 Spring
+__CV_TEACHING_TA_LIST__
 
 ## Awards
 

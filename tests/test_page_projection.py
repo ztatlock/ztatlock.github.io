@@ -7,6 +7,9 @@ from pathlib import Path
 
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
+    CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
+    CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+    CV_TEACHING_TA_LIST_PLACEHOLDER,
     CV_STUDENTS_BACHELORS_LIST_PLACEHOLDER,
     CV_STUDENTS_CURRENT_LIST_PLACEHOLDER,
     CV_STUDENTS_MASTERS_LIST_PLACEHOLDER,
@@ -28,6 +31,9 @@ from scripts.sitebuild.page_projection import (
     TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     TEACHING_UW_COURSES_LIST_PLACEHOLDER,
     apply_page_projections,
+    render_cv_teaching_assistant_list_djot,
+    render_cv_teaching_instructor_list_djot,
+    render_cv_teaching_summer_school_list_djot,
     render_cv_students_section_list_djot,
     render_teaching_special_topics_list_djot,
     render_teaching_summer_school_list_djot,
@@ -73,6 +79,27 @@ class PageProjectionTests(unittest.TestCase):
         rendered_summer = render_teaching_summer_school_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("- Analysis and Optimizations with Equality Saturation", rendered_summer)
         self.assertIn("[Marktoberdorf Summer School 2024](https://sites.google.com/view/marktoberdorf2024/home)", rendered_summer)
+
+    def test_renders_cv_teaching_sections_with_compressed_low_link_policy(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+
+        rendered_instructor = render_cv_teaching_instructor_list_djot(root)
+        self.assertIn("- *UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_instructor)
+        self.assertIn("- *Special Topics Graduate Courses*", rendered_instructor)
+        self.assertIn("Co-taught with Xi Wang and Bryan Parno", rendered_instructor)
+        self.assertNotIn("[Xi Wang][]", rendered_instructor)
+        self.assertNotIn("https://courses.cs.washington.edu/courses/cse507/25au/", rendered_instructor)
+
+        rendered_summer = render_cv_teaching_summer_school_list_djot(root)
+        self.assertIn("- *DeepSpec Summer School 2018* \\", rendered_summer)
+        self.assertIn("Verifying Distributed Systems Implementations in Coq", rendered_summer)
+        self.assertIn("- *Marktoberdorf Summer School 2024* \\", rendered_summer)
+        self.assertIn("Analysis and Optimizations with Equality Saturation", rendered_summer)
+        self.assertNotIn("https://deepspec.org/event/dsss18/index.html", rendered_summer)
+
+        rendered_ta = render_cv_teaching_assistant_list_djot(root)
+        self.assertIn("- *UCSD CSE 231: Advanced Compiler Design* \\", rendered_ta)
+        self.assertIn("Graduate course exploring program analyses and compiler optimizations", rendered_ta)
 
     def test_renders_talks_list_from_bundles(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -756,3 +783,35 @@ class PageProjectionTests(unittest.TestCase):
                 ),
                 body,
             )
+
+    def test_applies_projection_only_to_cv_teaching_section(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Curriculum Vitae\n\n"
+            f"{CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER}\n\n"
+            f"{CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER}\n\n"
+            f"{CV_TEACHING_TA_LIST_PLACEHOLDER}\n"
+        )
+        rendered = apply_page_projections(
+            "cv_index_page",
+            "cv",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(CV_TEACHING_TA_LIST_PLACEHOLDER, rendered)
+        self.assertIn("Marktoberdorf Summer School 2024", rendered)
+        self.assertIn("UCSD CSE 231: Advanced Compiler Design", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 
 from scripts.publication_index import (
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
@@ -64,6 +65,9 @@ CV_STUDENT_SECTION_PLACEHOLDERS = {
     "graduated_bachelors_students": CV_STUDENTS_BACHELORS_LIST_PLACEHOLDER,
     "visiting_students": CV_STUDENTS_VISITING_LIST_PLACEHOLDER,
 }
+CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER = "__CV_TEACHING_INSTRUCTOR_LIST__"
+CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER = "__CV_TEACHING_SUMMER_SCHOOL_LIST__"
+CV_TEACHING_TA_LIST_PLACEHOLDER = "__CV_TEACHING_TA_LIST__"
 TEACHING_UW_COURSES_LIST_PLACEHOLDER = "__TEACHING_UW_COURSES_LIST__"
 TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER = "__TEACHING_SPECIAL_TOPICS_LIST__"
 TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER = "__TEACHING_SUMMER_SCHOOL_LIST__"
@@ -76,6 +80,9 @@ TEACHING_GROUP_PLACEHOLDERS = {
 
 class PageProjectionError(ValueError):
     pass
+
+
+INLINE_LINK_RE = re.compile(r"\[([^\]]+)\](?:\([^)]+\)|\[[^\]]*\])")
 
 
 def _render_segment_text(text: str, url: str | None) -> str:
@@ -95,6 +102,14 @@ def _render_teaching_offering(offering: TeachingOffering) -> str:
     if not offering.url:
         return label
     return f"[{label}]({offering.url})"
+
+
+def _flatten_cv_djot_text(text: str) -> str:
+    return INLINE_LINK_RE.sub(r"\1", text).replace("\\ ", " ")
+
+
+def _render_cv_teaching_offering(offering: TeachingOffering) -> str:
+    return f"{offering.year} {offering.term}"
 
 
 def _render_person_ref(*, display_name: str, ref_name: str) -> str:
@@ -220,6 +235,48 @@ def _teaching_group_records_by_key(root: Path, *, data_dir: Path | None = None) 
     return {group.key: group.records for group in groups}
 
 
+def _render_cv_course_record(record: TeachingRecord) -> str:
+    lines = [f"- *{record.code}: {record.title}* \\"]
+    description_parts: list[str] = []
+    if record.audience_label:
+        description_parts.append(_flatten_cv_djot_text(record.audience_label))
+    if record.description_djot:
+        description_parts.append(_flatten_cv_djot_text(record.description_djot))
+    if description_parts:
+        lines.append(f"  {' '.join(description_parts)}")
+    lines.append("")
+    lines.append("  {.columns .columns-8rem}")
+    lines.extend(f"  *  {_render_cv_teaching_offering(offering)}" for offering in record.offerings)
+    return "\n".join(lines)
+
+
+def _render_cv_special_topics_record(record: TeachingRecord) -> str:
+    first_offering = record.offerings[0]
+    lines = [f"  * {record.code}: {record.title}, {first_offering.year} {first_offering.term}"]
+    if record.details:
+        lines.append("")
+        lines.extend(f"    - {_flatten_cv_djot_text(detail)}" for detail in record.details)
+    return "\n".join(lines)
+
+
+def render_cv_teaching_instructor_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    groups = _teaching_group_records_by_key(root, data_dir=data_dir)
+    chunks = [_render_cv_course_record(record) for record in groups["uw_courses"]]
+    special_topics = groups["special_topics"]
+    if special_topics:
+        special_topics_lines = ["- *Special Topics Graduate Courses*", ""]
+        special_topics_lines.extend(
+            _render_cv_special_topics_record(record)
+            for record in special_topics
+        )
+        chunks.append("\n".join(special_topics_lines))
+    return "\n\n".join(chunks) + ("\n" if chunks else "")
+
+
 def _render_uw_course_record(record: TeachingRecord) -> str:
     lines = [f"*{record.code}: {record.title}* \\"]
     if record.audience_label:
@@ -264,6 +321,13 @@ def render_teaching_special_topics_list_djot(
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
+def _render_cv_summer_school_record(record: TeachingRecord) -> str:
+    chunks: list[str] = []
+    for event in record.events:
+        chunks.append(f"- *{event.label}* \\\n  {record.title}")
+    return "\n\n".join(chunks)
+
+
 def _render_supplemental_links_djot(record) -> str:
     if not record.links:
         return ""
@@ -291,6 +355,26 @@ def render_teaching_summer_school_list_djot(
 ) -> str:
     records = _teaching_group_records_by_key(root, data_dir=data_dir)["summer_school"]
     chunks = [_render_summer_school_record(record) for record in records]
+    return "\n\n".join(chunks) + ("\n" if chunks else "")
+
+
+def render_cv_teaching_summer_school_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    records = _teaching_group_records_by_key(root, data_dir=data_dir)["summer_school"]
+    chunks = [_render_cv_summer_school_record(record) for record in records]
+    return "\n\n".join(chunks) + ("\n" if chunks else "")
+
+
+def render_cv_teaching_assistant_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    records = _teaching_group_records_by_key(root, data_dir=data_dir)["teaching_assistant"]
+    chunks = [_render_cv_course_record(record) for record in records]
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
@@ -364,6 +448,30 @@ def apply_page_projections(
                 data_dir=data_dir,
             ).rstrip()
             rendered = rendered.replace(placeholder, section_body)
+        if any(
+            placeholder in rendered
+            for placeholder in (
+                CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
+                CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+                CV_TEACHING_TA_LIST_PLACEHOLDER,
+            )
+        ):
+            teaching_replacements = {
+                CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER: render_cv_teaching_instructor_list_djot(
+                    root,
+                    data_dir=data_dir,
+                ).rstrip(),
+                CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER: render_cv_teaching_summer_school_list_djot(
+                    root,
+                    data_dir=data_dir,
+                ).rstrip(),
+                CV_TEACHING_TA_LIST_PLACEHOLDER: render_cv_teaching_assistant_list_djot(
+                    root,
+                    data_dir=data_dir,
+                ).rstrip(),
+            }
+            for placeholder, replacement in teaching_replacements.items():
+                rendered = rendered.replace(placeholder, replacement)
         return rendered
 
     if route_kind == "teaching_index_page" and route_key == "teaching":

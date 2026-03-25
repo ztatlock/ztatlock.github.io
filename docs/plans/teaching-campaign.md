@@ -1,7 +1,7 @@
 # Teaching Campaign
 
-Status: public-page core implemented; teaching CV projection is the next
-planned teaching follow-on; homepage cleanup remains later
+Status: public-page core and CV teaching projection implemented; homepage
+cleanup remains later
 
 ## Goal
 
@@ -48,14 +48,14 @@ Important pre-slice-2 characteristics:
 
 ### CV Teaching Section
 
-`site/cv/index.dj` currently duplicates:
+Before the CV teaching projection slice, `site/cv/index.dj` duplicated:
 
 - the 4 recurring UW instructor course families
 - the 3 special-topics instructor course records
 - the 1 summer-school course record
 - 3 teaching-assistant course families not shown on the public teaching page
 
-Important current characteristics:
+Important pre-CV-projection characteristics:
 
 - this view is intentionally more compressed than the public teaching page
 - it omits most offering links
@@ -272,16 +272,29 @@ Implemented outcomes so far:
 - the public teaching page now includes the canonical Marktoberdorf Summer
   School 2024 entry
 
-### Slice 3. Homepage Recent Teaching Projection
-
-- derive the recent-teaching bullets on `site/pages/index.dj`
-- update authored links to use canonical `/teaching/`
-
-### Slice 4. CV Teaching Projection
+### Slice 3. CV Teaching Projection
 
 - project the duplicated Teaching section in `site/cv/index.dj`
 - preserve the intentionally more compressed CV view
 - treat the public page and CV as separate renderers over the same records
+
+Implemented in:
+
+- [cv-slice-3-teaching-projection.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-slice-3-teaching-projection.md)
+
+Implemented outcomes so far:
+
+- the duplicated teaching section bodies in `site/cv/index.dj` now project
+  from `site/data/teaching.json`
+- the CV preserves its `Teaching` section/subsection headings and the
+  teaching-award note while using a distinct low-link renderer
+- the CV teaching section now includes both DeepSpec Summer School 2018 and
+  Marktoberdorf Summer School 2024 from the canonical teaching record
+
+### Slice 4. Homepage Recent Teaching Projection
+
+- derive the recent-teaching bullets on `site/pages/index.dj`
+- update authored links to use canonical `/teaching/`
 
 ## Deferred Questions
 

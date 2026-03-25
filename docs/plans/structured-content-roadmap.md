@@ -197,8 +197,8 @@ Likely slice order:
 
 1. canonical teaching record model in `site/data/teaching.json`
 2. public teaching wrapper/index projection
-3. homepage recent-teaching projection
-4. CV teaching projection
+3. CV teaching projection
+4. homepage recent-teaching projection
 
 ### 5. Service
 
@@ -240,24 +240,26 @@ Current shape:
 - keep the CV wrapper at `site/cv/index.dj` with canonical `/cv/`
 - keep the full CV body hand-authored while consumer slices land
 - route/wrapper cutover implemented
-- students projected into the CV as the first true downstream-consumer slice
-- stop and reassess before touching teaching, service, talks, publications,
-  or highlights
+- students and teaching now projected into the CV through explicit
+  CV-specific renderers
+- service remains the clearest next duplicated domain to assess
 
 Implemented outcomes so far:
 
 - the CV wrapper now lives at `site/cv/index.dj`
 - the canonical public CV URL is now `/cv/`
 - the duplicated students sections now project from `site/data/students.json`
+- the duplicated teaching section now projects from `site/data/teaching.json`
 - the CV now has an explicit compressed students renderer rather than
   reusing the public students-page view
+- the CV now has an explicit compressed teaching renderer rather than
+  reusing the public teaching-page view
 
 Current recommendation:
 
 - choose the next CV consumer slice deliberately rather than broadening
   automatically
-- teaching CV projection next
-- service CV projection likely after that
+- service CV projection likely next
 - keep later homepage/CV consumer cleanup cross-cutting and explicit
 
 ## Adjacent / Emerging Domains
@@ -324,8 +326,8 @@ The repo is now at a good checkpoint after the public-page cores for:
 The next major structured-content campaign should be:
 
 - CV as a cross-domain consumer wrapper, now at the first real consumer
-  checkpoint with route cutover and students projection implemented, and
-  teaching CV projection next
+  checkpoint with route cutover plus students and teaching projection
+  implemented, with service the likely next slice
 
 Publication follow-on work should continue separately as:
 
@@ -339,7 +341,6 @@ Students follow-on work should continue separately as:
 
 Teaching and service follow-on work should continue separately as:
 
-- teaching CV projection next
 - service CV projection likely after that
 - later homepage consumer cleanup once that cross-cutting work clearly earns
   its keep

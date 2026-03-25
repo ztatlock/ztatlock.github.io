@@ -50,6 +50,9 @@ from scripts.page_metadata import (
 
 from .site_config import SiteConfig
 from .page_projection import (
+    CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
+    CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+    CV_TEACHING_TA_LIST_PLACEHOLDER,
     CV_STUDENT_SECTION_PLACEHOLDERS,
     STUDENT_SECTION_PLACEHOLDERS,
     TALKS_LIST_PLACEHOLDER,
@@ -75,6 +78,7 @@ LITERAL_STUDENT_ENTRY_RE = re.compile(
     re.MULTILINE,
 )
 LITERAL_CV_STUDENT_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
+LITERAL_CV_TEACHING_ENTRY_RE = re.compile(r"^[ ]{0,4}[*-] ", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -341,6 +345,47 @@ def _find_cv_students_projection_issues(config: SiteConfig) -> list[str]:
     return issues
 
 
+def _cv_uses_teaching_projection(config: SiteConfig) -> bool:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    if not index_path.exists():
+        return False
+    text = index_path.read_text(encoding="utf-8")
+    return any(
+        placeholder in text
+        for placeholder in (
+            CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
+            CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+            CV_TEACHING_TA_LIST_PLACEHOLDER,
+        )
+    )
+
+
+def _find_cv_teaching_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    teaching_path = config.data_dir / TEACHING_DATA_NAME
+    if not index_path.exists() or not teaching_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    teaching_section = _extract_markdown_section_body(text, "Teaching", level=2)
+    if teaching_section is None:
+        return [f"{index_path}: CV wrapper must contain a ## Teaching section"]
+
+    issues: list[str] = []
+    for placeholder in (
+        CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
+        CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
+        CV_TEACHING_TA_LIST_PLACEHOLDER,
+    ):
+        if placeholder not in teaching_section:
+            issues.append(f"{index_path}: CV teaching section must contain {placeholder}")
+    if LITERAL_CV_TEACHING_ENTRY_RE.search(teaching_section):
+        issues.append(
+            f"{index_path}: CV teaching section must not contain literal teaching entry blocks"
+        )
+    return issues
+
+
 def _find_publications_index_projection_issues(config: SiteConfig) -> list[str]:
     index_path = publications_index_path(
         config.repo_root,
@@ -514,7 +559,7 @@ def _find_teaching_data_issues(config: SiteConfig) -> list[str]:
     has_teaching_consumers = teaching_index_path(
         config.repo_root,
         teaching_dir=config.teaching_dir,
-    ).exists()
+    ).exists() or _cv_uses_teaching_projection(config)
     if not teaching_path.exists() and not has_teaching_consumers:
         return []
     return find_teaching_record_issues(
@@ -599,6 +644,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         )
         + _find_cv_projection_issues(config)
         + _find_cv_students_projection_issues(config)
+        + _find_cv_teaching_projection_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)
         + _find_teaching_data_issues(config)

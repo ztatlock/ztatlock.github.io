@@ -1,6 +1,6 @@
 # CV Slice 3: Teaching Projection
 
-Planned.
+Implemented.
 
 ## Goal
 
