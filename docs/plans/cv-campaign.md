@@ -1,8 +1,8 @@
 # CV Campaign
 
-Status: route/wrapper cutover plus students, teaching, service, and indexed
-publications CV projection implemented; stop and reassess before broader CV
-consumers
+Status: route/wrapper cutover plus students, teaching, service, indexed
+publications, and full invited-talks CV projection implemented; stop and
+reassess before broader curated CV consumers
 
 ## Goal
 
@@ -51,7 +51,7 @@ Current relevant source:
 
 Important current facts:
 
-- the current CV source is `314` lines
+- the current CV source is `241` lines
 - it contains `29` major section/subsection headings
 - it is not one homogeneous repeated-data page
 - but it does contain several large duplicated factual domains
@@ -81,6 +81,8 @@ Current wrapper/consumer state:
   `site/data/service.json`
 - the duplicated indexed-publication subsection bodies now project from
   canonical publication bundles under `site/pubs/`
+- the duplicated full `Invited Talks` section now projects from canonical talk
+  bundles under `site/talks/`
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
 - the next step should be chosen deliberately rather than broadened
@@ -180,8 +182,7 @@ Likely hand-authored for now:
 Likely later projection candidates:
 
 - maybe a separate `Book Chapters` / bibliography-boundary decision later
-- maybe selected `Invited Talks`
-- maybe selected highlights
+- maybe selected recent talks/highlights
 
 ## Recommended Slice Order
 
@@ -308,6 +309,27 @@ Invariant after slice 5:
   explicit and reviewable
 - the `Book Chapters` subsection remains authored by explicit policy for now
 
+### Slice 6. Talks CV Projection
+
+Implemented.
+
+- replace only the duplicated full `## Invited Talks` body in the CV
+- preserve the `## Invited Talks` heading hand-authored
+- define an explicit CV talks renderer over canonical talk bundles
+- keep the rendered diff focused on the invited-talks section and explain
+  canonical corrections and ordering/link changes
+
+Invariant after slice 6:
+
+- the fifth major duplicated factual domain in the CV now derives from
+  canonical domain truth
+- the CV and public talks page now share one canonical invited/public talks
+  source while still allowing separate consumer renderers
+- the CV talks section now uses canonical talk title/link/host truth and
+  canonical reverse-chronological ordering rather than a hand-maintained copy
+- the top-of-CV `Selected Recent Highlights -> Invited Talks` block remains
+  authored by explicit policy for now
+
 ## Current Recommendation
 
 Stop and reassess before choosing another CV consumer slice.
@@ -315,18 +337,18 @@ Stop and reassess before choosing another CV consumer slice.
 Why stop here:
 
 - the largest duplicated shared-data domains in the CV are now canonicalized
-  from the consumer side
-- the remaining likely work is more curated and less obviously list-shaped
-- homepage cleanup now competes with narrower curated CV consumers like talks
-  or highlights, and with the separate publication-boundary question around
-  `Book Chapters`
+  from the consumer side, including the full invited/public talks list
+- the remaining likely work is now more curated and less obviously list-shaped
+- homepage cleanup now competes with narrower curated CV consumers like the
+  top-of-CV highlights, and with the separate publication-boundary question
+  around `Book Chapters`
 - the next step should be selected from current repo needs rather than from
   campaign inertia
 
 Likely candidates from here:
 
 1. homepage recent-service or recent-teaching cleanup
-2. curated CV consumers such as selected talks or highlights
+2. curated CV consumers such as selected highlights
 3. no immediate CV broadening if the current checkpoint already earns its keep
 4. a separate `Book Chapters` / bibliography-boundary slice only if that
    complexity clearly earns its keep

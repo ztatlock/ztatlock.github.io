@@ -13,6 +13,7 @@ from scripts.sitebuild.page_projection import (
     CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
     CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
     CV_SERVICE_REVIEWING_LIST_PLACEHOLDER,
+    CV_TALKS_LIST_PLACEHOLDER,
     CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
     CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     CV_TEACHING_TA_LIST_PLACEHOLDER,
@@ -39,6 +40,7 @@ from scripts.sitebuild.page_projection import (
     apply_page_projections,
     render_cv_publications_list_djot,
     render_cv_service_section_list_djot,
+    render_cv_talks_list_djot,
     render_cv_teaching_assistant_list_djot,
     render_cv_teaching_instructor_list_djot,
     render_cv_teaching_summer_school_list_djot,
@@ -276,6 +278,55 @@ class PageProjectionTests(unittest.TestCase):
             )
             self.assertLess(rendered.find("February 2026"), rendered.find("May 2023"))
 
+    def test_renders_cv_talks_list_from_canonical_bundles(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            talks_dir = root / "site" / "talks"
+            first = talks_dir / "2026-02-brown-eqsat"
+            first.mkdir(parents=True)
+            (first / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Everything is a compiler, try Equality Saturation!",
+                        "when": {"year": 2026, "month": 2},
+                        "at": [
+                            {"text": "Brown University"},
+                            {"text": "PL and Graphics groups"},
+                        ],
+                        "url": "https://events.brown.edu/demo",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            second = talks_dir / "2023-05-uiuc-egg"
+            second.mkdir()
+            (second / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Relational Equality Saturation in egg",
+                        "when": {"year": 2023, "month": 5},
+                        "at": [
+                            {"text": "University of Illinois at Urbana-Champaign"},
+                            {
+                                "text": "Compilers Seminar",
+                                "url": "https://compilerseminar.web.illinois.edu/",
+                            },
+                        ],
+                        "url": "talk-2023-05-egg-uiuc.html",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            rendered = render_cv_talks_list_djot(root, talks_dir=talks_dir)
+            self.assertEqual(
+                rendered,
+                "- [Everything is a compiler, try Equality Saturation!](https://events.brown.edu/demo) \\\n"
+                "  Brown University, PL and Graphics groups, February 2026\n\n"
+                "- [Relational Equality Saturation in egg](talk-2023-05-egg-uiuc.html) \\\n"
+                "  University of Illinois at Urbana-Champaign, [Compilers Seminar](https://compilerseminar.web.illinois.edu/), May 2023\n",
+            )
+
     def test_applies_projection_only_to_talks_page(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -302,6 +353,45 @@ class PageProjectionTests(unittest.TestCase):
                 talks_dir=talks_dir,
             )
             self.assertNotIn(TALKS_LIST_PLACEHOLDER, rendered)
+            self.assertIn("Brown University, February 2026", rendered)
+
+            self.assertEqual(
+                apply_page_projections(
+                    "ordinary_page",
+                    "about",
+                    body,
+                    root=root,
+                    talks_dir=talks_dir,
+                ),
+                body,
+            )
+
+    def test_applies_projection_only_to_cv_talks_section(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            talks_dir = root / "site" / "talks"
+            talk_dir = talks_dir / "2026-02-brown-eqsat"
+            talk_dir.mkdir(parents=True)
+            (talk_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Everything is a compiler, try Equality Saturation!",
+                        "when": {"year": 2026, "month": 2},
+                        "at": [{"text": "Brown University"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            body = "# Curriculum Vitae\n\n## Invited Talks\n\n" + CV_TALKS_LIST_PLACEHOLDER + "\n"
+            rendered = apply_page_projections(
+                "cv_index_page",
+                "cv",
+                body,
+                root=root,
+                talks_dir=talks_dir,
+            )
+            self.assertNotIn(CV_TALKS_LIST_PLACEHOLDER, rendered)
             self.assertIn("Brown University, February 2026", rendered)
 
             self.assertEqual(

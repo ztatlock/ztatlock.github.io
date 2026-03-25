@@ -264,6 +264,8 @@ Implemented outcomes so far:
   `site/data/service.json`
 - the duplicated indexed-publication subsection bodies now project from
   canonical publication bundles under `site/pubs/`
+- the duplicated full `Invited Talks` section now projects from canonical talk
+  bundles under `site/talks/`
 - the CV now has an explicit compressed students renderer rather than
   reusing the public students-page view
 - the CV now has an explicit compressed teaching renderer rather than
@@ -272,12 +274,14 @@ Implemented outcomes so far:
   reusing the public service-page view
 - the CV now has an explicit compressed indexed-publications renderer rather
   than reusing the public publications-page view
+- the CV now has an explicit invited-talks renderer rather than reusing the
+  public talks-page projection verbatim
 
 Current recommendation:
 
 - choose the next CV consumer slice deliberately rather than broadening
   automatically
-- stop and reassess before picking homepage cleanup or more curated CV
+- stop and reassess before picking homepage cleanup, more curated top-of-CV
   consumers, or a separate publication-boundary slice for `Book Chapters`
 - keep later homepage/CV consumer cleanup cross-cutting and explicit
 
@@ -345,9 +349,9 @@ The repo is now at a good checkpoint after the public-page cores for:
 The next major structured-content campaign should be:
 
 - CV as a cross-domain consumer wrapper, now at the first real consumer
-  checkpoint with route cutover plus students, teaching, service, and indexed
-  publications projection implemented, and with the next slice to be chosen
-  deliberately
+  checkpoint with route cutover plus students, teaching, service, indexed
+  publications, and full invited-talks projection implemented, and with the
+  next slice to be chosen deliberately
 
 Publication follow-on work should continue separately as:
 

@@ -42,7 +42,7 @@ from scripts.teaching_record import (
     TeachingRecordError,
     load_teaching_groups,
 )
-from scripts.talk_record import TalkRecordError, load_talk_records, render_talk_date
+from scripts.talk_record import TalkRecord, TalkRecordError, load_talk_records, render_talk_date
 from .people_registry import PeopleRegistryError, load_people_registry
 
 TALKS_LIST_PLACEHOLDER = "__TALKS_LIST__"
@@ -93,6 +93,7 @@ CV_PUBLICATIONS_SECTION_PLACEHOLDERS = {
     "main": CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     "workshop": CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
 }
+CV_TALKS_LIST_PLACEHOLDER = "__CV_TALKS_LIST__"
 TEACHING_UW_COURSES_LIST_PLACEHOLDER = "__TEACHING_UW_COURSES_LIST__"
 TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER = "__TEACHING_SPECIAL_TOPICS_LIST__"
 TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER = "__TEACHING_SUMMER_SCHOOL_LIST__"
@@ -487,22 +488,41 @@ def render_cv_teaching_assistant_list_djot(
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
+def _talk_records(
+    root: Path,
+    *,
+    talks_dir: Path | None = None,
+) -> tuple[TalkRecord, ...]:
+    try:
+        return load_talk_records(root, talks_dir=talks_dir)
+    except TalkRecordError as err:
+        raise PageProjectionError(str(err)) from err
+
+
+def _render_talk_entry_djot(record: TalkRecord) -> str:
+    title = _render_title(record.title, record.url)
+    at_text = ", ".join(_render_segment_text(segment.text, segment.url) for segment in record.at)
+    date_text = render_talk_date(record.when)
+    return f"- {title} \\\n  {at_text}, {date_text}"
+
+
 def render_talks_list_djot(
     root: Path,
     *,
     talks_dir: Path | None = None,
 ) -> str:
-    try:
-        records = load_talk_records(root, talks_dir=talks_dir)
-    except TalkRecordError as err:
-        raise PageProjectionError(str(err)) from err
+    records = _talk_records(root, talks_dir=talks_dir)
+    chunks = [_render_talk_entry_djot(record) for record in records]
+    return "\n\n".join(chunks) + ("\n" if chunks else "")
 
-    chunks: list[str] = []
-    for record in records:
-        title = _render_title(record.title, record.url)
-        at_text = ", ".join(_render_segment_text(segment.text, segment.url) for segment in record.at)
-        date_text = render_talk_date(record.when)
-        chunks.append(f"- {title} \\\n  {at_text}, {date_text}")
+
+def render_cv_talks_list_djot(
+    root: Path,
+    *,
+    talks_dir: Path | None = None,
+) -> str:
+    records = _talk_records(root, talks_dir=talks_dir)
+    chunks = [_render_talk_entry_djot(record) for record in records]
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
@@ -609,6 +629,14 @@ def apply_page_projections(
             }
             for placeholder, replacement in publication_replacements.items():
                 rendered = rendered.replace(placeholder, replacement)
+        if CV_TALKS_LIST_PLACEHOLDER in rendered:
+            rendered = rendered.replace(
+                CV_TALKS_LIST_PLACEHOLDER,
+                render_cv_talks_list_djot(
+                    root,
+                    talks_dir=talks_dir,
+                ).rstrip(),
+            )
         return rendered
 
     if route_kind == "teaching_index_page" and route_key == "teaching":

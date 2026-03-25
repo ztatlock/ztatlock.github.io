@@ -56,6 +56,7 @@ from .page_projection import (
     CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
     CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
     CV_SERVICE_REVIEWING_LIST_PLACEHOLDER,
+    CV_TALKS_LIST_PLACEHOLDER,
     CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
     CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     CV_TEACHING_TA_LIST_PLACEHOLDER,
@@ -87,6 +88,7 @@ LITERAL_CV_STUDENT_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 LITERAL_CV_PUBLICATION_ENTRY_RE = re.compile(r"^\*.+\* \\\s*$", re.MULTILINE)
 LITERAL_CV_SERVICE_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 LITERAL_CV_TEACHING_ENTRY_RE = re.compile(r"^[ ]{0,4}[*-] ", re.MULTILINE)
+LITERAL_CV_TALKS_ENTRY_RE = re.compile(r"^[*-] ", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -368,6 +370,10 @@ def _has_non_draft_publication_records(config: SiteConfig) -> bool:
     return False
 
 
+def _has_talk_records(config: SiteConfig) -> bool:
+    return any(config.talks_dir.glob("*/talk.json"))
+
+
 def _find_cv_publications_projection_issues(config: SiteConfig) -> list[str]:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     if not index_path.exists() or not _has_non_draft_publication_records(config):
@@ -417,6 +423,26 @@ def _find_cv_publications_projection_issues(config: SiteConfig) -> list[str]:
                 f"{index_path}: CV workshop publications subsection must not contain literal publication entry blocks"
             )
 
+    return issues
+
+
+def _find_cv_talks_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    if not index_path.exists() or not _has_talk_records(config):
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    talks_section = _extract_markdown_section_body(text, "Invited Talks", level=2)
+    if talks_section is None:
+        return [f"{index_path}: CV wrapper must contain a ## Invited Talks section"]
+
+    issues: list[str] = []
+    if CV_TALKS_LIST_PLACEHOLDER not in talks_section:
+        issues.append(f"{index_path}: CV invited talks section must contain {CV_TALKS_LIST_PLACEHOLDER}")
+    if LITERAL_CV_TALKS_ENTRY_RE.search(talks_section):
+        issues.append(
+            f"{index_path}: CV invited talks section must not contain literal talk entry blocks"
+        )
     return issues
 
 
@@ -755,6 +781,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_cv_publications_projection_issues(config)
         + _find_cv_service_projection_issues(config)
         + _find_cv_teaching_projection_issues(config)
+        + _find_cv_talks_projection_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)
         + _find_teaching_data_issues(config)

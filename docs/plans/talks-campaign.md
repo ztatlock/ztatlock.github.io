@@ -1,5 +1,8 @@
 # Talks Campaign
 
+Status: public talks wrapper and full CV invited-talks projection implemented;
+curated highlights and detail-page follow-on work remain deferred
+
 This note captures the talks structured-content campaign, the implemented
 opening slices, and the current next-checkpoint questions.
 
@@ -40,8 +43,9 @@ Current relevant sources:
   Main talks collection index wrapper, projected from 25 talk bundles.
 - `site/pages/talk-2023-05-egg-uiuc.dj`
   One dedicated talk detail page.
-- `site/pages/cv.dj`
-  Reuses invited-talk information in hand-authored form.
+- `site/cv/index.dj`
+  Now reuses the full invited-talks section from canonical talk bundles while
+  leaving the top-of-CV highlights block authored.
 - `site/pubs/*/publication.json`
   Some publication bundles already include publication-local `"talks"` arrays.
 
@@ -303,12 +307,16 @@ That keeps the domain clean:
 - shared list facts in talk bundles
 - talk-specific prose/media in the same bundle when needed
 
-### `site/pages/cv.dj`
+### `site/cv/index.dj`
 
-The talks campaign should not try to rewrite the CV immediately.
+The talks campaign should not try to rewrite the whole CV immediately.
 
-But it should leave a clean path for later reuse of selected talk records in
-CV sections once the talks projection pattern is proven.
+That path is now partly exercised:
+
+- the full CV `Invited Talks` section now projects from canonical talk bundles
+
+The remaining curated top-of-CV highlights block should still be treated as a
+separate later decision.
 
 ## Invariants
 
@@ -409,19 +417,21 @@ This is where we should reflect and choose the next slice deliberately.
 
 ## Current Recommendation
 
-Slices 1 and 2 were the right opening steps for this campaign:
+Slices 1 through 3 were the right implemented steps for this campaign:
 
 - slice 1 established talk bundles and projection from canonical talk records
 - slice 2 introduced the collection index pattern via `site/talks/index.dj`
   and `/talks/`
+- slice 3 proved that the same canonical invited/public talks bundles can feed
+  the full CV `Invited Talks` section as a downstream consumer
 
-The right move now is to stop and reassess before planning slice 3.
+The right move now is to stop and reassess before planning any broader follow-on.
 
 Questions for the next checkpoint:
 
-- does `site/talks/index.dj` feel like the right long-term pattern for
-  collection indexes?
-- does the new route kind feel small and honest enough to reuse later for
-  `site/pubs/index.dj`?
-- should the next talks slice be a talk detail-page slice from `extra.dj`, or
-  should we first reuse the collection-index pattern elsewhere?
+- should the next talks-related work be a talk detail-page slice from
+  `extra.dj`?
+- should the top-of-CV highlights talks subset remain authored, be trimmed, or
+  become a later tiny curated consumer slice?
+- should talks otherwise remain stable while homepage cleanup and other
+  cross-domain work proceed first?

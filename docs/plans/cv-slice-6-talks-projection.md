@@ -1,5 +1,7 @@
 # CV Slice 6: Talks Projection
 
+Implemented.
+
 ## Goal
 
 Replace only the duplicated `## Invited Talks` body in the CV with projection

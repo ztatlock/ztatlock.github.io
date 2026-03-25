@@ -2417,6 +2417,140 @@ class SourceValidateTests(unittest.TestCase):
                 [f"{talks / 'index.dj'}: talks index page is required when talk bundles exist"],
             )
 
+    def test_reports_missing_cv_talks_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Invited Talks\n\n"
+                "Manual talk list.\n",
+                encoding="utf-8",
+            )
+            (talks / "index.dj").write_text(
+                "---\n"
+                "description: Talks\n"
+                "---\n\n"
+                "# Talks\n\n"
+                "__TALKS_LIST__\n",
+                encoding="utf-8",
+            )
+            talk_dir = talks / "2026-02-brown-eqsat"
+            talk_dir.mkdir()
+            (talk_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Demo",
+                        "when": {"year": 2026, "month": 2},
+                        "at": [{"text": "Brown University"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{cv_dir / 'index.dj'}: CV invited talks section must contain __CV_TALKS_LIST__"],
+            )
+
+    def test_reports_literal_cv_talk_entry_blocks_after_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Invited Talks\n\n"
+                "__CV_TALKS_LIST__\n\n"
+                "* Demo Talk \\\n"
+                "  Demo Host, February 2026\n",
+                encoding="utf-8",
+            )
+            (talks / "index.dj").write_text(
+                "---\n"
+                "description: Talks\n"
+                "---\n\n"
+                "# Talks\n\n"
+                "__TALKS_LIST__\n",
+                encoding="utf-8",
+            )
+            talk_dir = talks / "2026-02-brown-eqsat"
+            talk_dir.mkdir()
+            (talk_dir / "talk.json").write_text(
+                json.dumps(
+                    {
+                        "title": "Demo",
+                        "when": {"year": 2026, "month": 2},
+                        "at": [{"text": "Brown University"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{cv_dir / 'index.dj'}: CV invited talks section must not contain literal talk entry blocks"],
+            )
+
     def test_reports_legacy_talks_link(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
