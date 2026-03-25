@@ -80,21 +80,18 @@ It is a derived public view with its own explicit display policy.
 
 ## People Registry Alias Norm
 
-The collaborators campaign needs one small `people.json` convention to be
-explicit rather than accidental:
+For this campaign, `people.json` aliases should remain simple:
 
-- aliases are ordered
-- if a consumer explicitly opts into familiar-name rendering, the first alias
-  is the preferred familiar display label
-- later aliases are additional resolution spellings rather than extra display
-  labels
+- aliases are alternate human-facing spellings for resolution
+- aliases may include familiar short forms or publication-style variants
+- alias order should not carry hidden display semantics for the whole repo
 
-This keeps collaborator-style consumers free to display `James Wilcox` while
+That keeps the registry small and leaves display policy where it belongs:
+with each consumer.
+
+For collaborators specifically, slice 1 can still render familiar labels by
+choosing the shortest human-facing label among `name` and `aliases`, while
 still resolving publication spellings such as `James R. Wilcox`.
-
-It does not mean every consumer should render the first alias.
-Publication pages should continue to respect publication-local author spellings
-unless a later policy change says otherwise.
 
 ## Design Recommendation
 
@@ -117,6 +114,8 @@ That means:
 - `people.json` remains canonical for person identity, aliases, and URLs
 - collaborator-specific relationship facts only get their own data file once
   they are real facts, not just anticipated future possibilities
+- familiar-name display remains an explicit collaborator-consumer policy rather
+  than a hidden people-registry rule
 
 ## Important Boundary
 

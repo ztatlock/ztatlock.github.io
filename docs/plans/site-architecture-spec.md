@@ -397,13 +397,13 @@ Suggested fields:
 
 Current alias norm:
 
-- aliases are ordered
-- the first alias may act as a preferred familiar display label for consumers
-  that explicitly opt into that policy
-- later aliases are additional resolution spellings
+- aliases are alternate human-facing spellings for resolution
+- aliases may include familiar short forms or publication-style variants
+- consumer-specific display policy should stay with the consumer rather than
+  becoming implicit in the people registry
 
 This keeps the registry minimal while still supporting derived consumers such
-as collaborators that want `James Wilcox`-style familiar labels without
+as collaborators that may want `James Wilcox`-style familiar labels without
 changing publication-local spellings.
 
 This registry should eventually feed:

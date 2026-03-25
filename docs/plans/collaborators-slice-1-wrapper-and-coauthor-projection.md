@@ -81,21 +81,17 @@ The slice-1 collaborators renderer should be explicit and simple.
 ### Display Policy
 
 - when a collaborator resolves through `people.json`:
-  - use the first alias as the displayed collaborator label if aliases are
-    present
-  - otherwise use the canonical `name`
+  - choose the shortest human-facing label among `name` and `aliases`
 - when a collaborator does not resolve through `people.json`:
   - use the raw publication-author string as plain text
 
 This makes the familiar short-form collaborator naming policy explicit for
-this page, rather than silently inheriting publication-author spellings.
-It also makes alias order meaningful for this consumer:
+this page, rather than silently inheriting publication-author spellings or
+imposing a global alias-order meaning on `people.json`.
 
-- the first alias is the preferred familiar display label
-- later aliases are extra resolution spellings only
-
-That lets one record resolve both `James Wilcox` and `James R. Wilcox`
-without forcing the collaborator page to display the publication spelling.
+That lets one record resolve both `James Wilcox` and `James R. Wilcox`, or
+both `Mike Ernst` and `Michael D. Ernst`, without forcing the collaborator
+page to display the longer publication spelling.
 
 ### Link Policy
 
@@ -164,7 +160,7 @@ should change.
 
 - focused collaborator-derivation tests for:
   - dedup by resolved person key
-  - alias-based familiar display labels
+  - familiar display labels chosen from `name` plus aliases
   - plain-text fallback for unresolved names
   - alphabetical ordering by displayed label
 - route discovery and page-rendering tests for the new collaborators wrapper
