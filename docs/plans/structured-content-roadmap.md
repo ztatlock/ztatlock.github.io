@@ -379,8 +379,9 @@ Funding follow-on work should continue separately as:
 - later homepage funding/highlights consumers only if they clearly earn their
   keep
 - later CV/public funding refinements only if they clearly earn their keep
-- later grant-to-paper and grant-to-project association enrichment only if the
-  cross-domain mapping clearly earns its complexity
+- important later strategic work: grant-to-paper and grant-to-project
+  association enrichment once the cross-domain mapping and consumer surfaces
+  are explicit enough to earn their complexity
 
 Publication follow-on work should continue separately as:
 
@@ -399,9 +400,18 @@ Teaching and service follow-on work should continue separately as:
 - later homepage consumer cleanup once that cross-cutting work clearly earns
   its keep
 
-Later domain campaigns should still likely include:
+The main remaining cross-domain maintenance seams are now:
+
+- the authored homepage current/recent blocks
+- the authored top-of-CV `Selected Recent Highlights` block
+- the publication-boundary question around the authored CV `Book Chapters`
+  subsection
+
+Later adjacent domain campaigns that still look plausible include:
 
 - collaborators
+- eventually news, once we are ready for a more prose-heavy structured
+  consumer or decide it should stay mostly prose-first
 
 but only after the repo has exercised funding and the current homepage/CV seams
 enough to make the next adjacent domain choice obvious.

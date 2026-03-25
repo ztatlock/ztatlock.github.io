@@ -426,13 +426,14 @@ canonical domains in this order:
 3. students
 4. teaching
 5. service
+6. funding
 
 Important clarifications:
 
 - talks now use talk-local bundles under `site/talks/` rather than a single
   global `site/data/talks.json`
 - talks and publications are both at good collection-architecture checkpoints
-- the students campaign is now at a good public-page checkpoint
+- the students campaign is now at a good public-plus-CV checkpoint
 - publication bundles are now canonical for all indexed publications, and
   publication follow-on work is primarily artifact enrichment or downstream
   reuse rather than collection-shape cleanup
@@ -440,13 +441,16 @@ Important clarifications:
   teaching records projected into `site/teaching/index.dj` at `/teaching/`
 - the service campaign is now at a good public-page checkpoint with canonical
   service records projected into `site/service/index.dj` at `/service/`
-- the funding campaign is now at a good public-page checkpoint with canonical
-  funding records projected into `site/funding/index.dj` at `/funding/`
+- the funding campaign is now at a good public-plus-CV checkpoint with
+  canonical funding records projected into `site/funding/index.dj` at
+  `/funding/` and into the CV funding list
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV is now a proven cross-domain consumer pattern, with the wrapper at
   `site/cv/index.dj` and multiple projected subsections backed by existing
   canonical domains
+- the main remaining cross-domain seams are the authored homepage recent/current
+  blocks and the authored top-of-CV highlights block
 - news should still come later, after we have enough experience with
   structured consumers in more prose-heavy pages
 

@@ -1,7 +1,7 @@
 # Students Campaign
 
 This note captures the students structured-content campaign that followed talks
-and publications and is now at a good public-page checkpoint.
+and publications and is now at a good public-plus-CV checkpoint.
 
 It builds on:
 
@@ -383,8 +383,16 @@ Possible later work:
 
 ## Current Recommendation
 
-The next students slice should be:
+The main architectural goals of this campaign are now in place:
 
-- CV projection from `site/data/students.json`
-- explicit condensed-renderer policy for CV sections
-- deliberate resolution of the Ian Briggs mismatch
+- canonical advising records in `site/data/students.json`
+- the public students wrapper at `site/students/index.dj`
+- CV students projection from the same canonical records
+
+Later students work should remain narrow and only land when clearly earned,
+for example:
+
+- richer alumni/history data if later ordering or placement views need it
+- homepage current-students reuse, or a deliberate trim decision, if that
+  consumer continues to matter
+- collaborator/highlights derivation only if it stays explicit and reviewable

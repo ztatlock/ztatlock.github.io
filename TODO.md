@@ -26,13 +26,14 @@
 
 - Follow the structured-content campaign sequence in
   `docs/plans/structured-content-roadmap.md`:
-  the CV consumer-wrapper campaign, now at the first real consumer checkpoint
-  with route cutover and students CV projection implemented and
-  teaching CV projection next,
-  later service/homepage consumer cleanup,
-  publication artifact enrichment, and later
-  collaborators/funding/news work only where structured data clearly earns
-  its keep.
+  the major canonical/shared-data and CV consumer campaigns are now through
+  funding,
+  the main remaining cross-domain seams are the curated homepage/CV blocks,
+  publication artifact enrichment remains separate,
+  collaborators is the clearest adjacent new domain,
+  news remains later,
+  and longer-term funding enrichment around grant-output associations is
+  strategically important but intentionally deferred.
 - Keep the new `site/data/students.json` model small and canonical, and defer
   richer student follow-ons such as advising dates and student-to-publication
   linkage until a later slice clearly needs them.
@@ -56,7 +57,13 @@
   parallelism.
 - Keep the projection layer simple for now, but eventually load shared
   students/teaching-style data once per projected page render and introduce a
-  tiny projection registry if another projection-backed domain lands.
+  tiny projection/validation helper split only if it clearly earns its keep
+  after the current funding-backed checkpoint.
+- Treat later funding-output association work as an important separate
+  campaign:
+  plan it deliberately across funding, research, and publication surfaces
+  instead of smuggling grant-to-paper/project links into the current flat
+  funding model.
 - Keep the redesign implementation disciplined:
   pure Python modules with narrow responsibilities, explicit
   schemas/invariants, small unit tests for route/data resolution, and thin

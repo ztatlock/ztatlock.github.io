@@ -1,7 +1,7 @@
 # Funding Campaign
 
 Status: canonical data, public wrapper, and CV funding projection implemented;
-later grant-output associations remain deferred
+later grant-output enrichment remains important but deferred
 
 It builds on:
 
@@ -218,6 +218,11 @@ checkpoint:
 
 Those may become worthwhile later, but they should not complicate the base
 funding architecture.
+
+That deferred enrichment is strategically important, especially eventual
+grant-to-paper and grant-to-project mapping across funding, research, and
+publication views, but it should remain a deliberate later campaign rather
+than a same-day follow-on from the flat funding model.
 
 ## Recommendation
 
