@@ -1,6 +1,7 @@
 # Teaching Campaign
 
-Status: public-page core implemented; not the active major campaign; later homepage/CV cleanup deferred
+Status: public-page core implemented; teaching CV projection is the next
+planned teaching follow-on; homepage cleanup remains later
 
 ## Goal
 
@@ -218,6 +219,11 @@ otherwise:
 - the teaching-award note
 - the Related section on the public teaching page
 - any future editorial commentary about pedagogy or course design
+
+The current hand-authored CV teaching formatting is also not sacred.
+A later CV teaching renderer may improve the visible format if it preserves
+or improves the underlying teaching facts and the rendered diff is reviewed
+carefully.
 
 ## Recommended Slice Order
 

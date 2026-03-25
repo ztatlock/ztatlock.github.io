@@ -27,8 +27,9 @@
 - Follow the structured-content campaign sequence in
   `docs/plans/structured-content-roadmap.md`:
   the CV consumer-wrapper campaign, now at the first real consumer checkpoint
-  with route cutover and students CV projection implemented,
-  later teaching/service/homepage consumer cleanup,
+  with route cutover and students CV projection implemented and
+  teaching CV projection next,
+  later service/homepage consumer cleanup,
   publication artifact enrichment, and later
   collaborators/funding/news work only where structured data clearly earns
   its keep.

@@ -256,7 +256,8 @@ Current recommendation:
 
 - choose the next CV consumer slice deliberately rather than broadening
   automatically
-- likely candidates are teaching or service
+- teaching CV projection next
+- service CV projection likely after that
 - keep later homepage/CV consumer cleanup cross-cutting and explicit
 
 ## Adjacent / Emerging Domains
@@ -322,8 +323,9 @@ The repo is now at a good checkpoint after the public-page cores for:
 
 The next major structured-content campaign should be:
 
-- CV as a cross-domain consumer wrapper, with route cutover implemented and
-  students CV projection next
+- CV as a cross-domain consumer wrapper, now at the first real consumer
+  checkpoint with route cutover and students projection implemented, and
+  teaching CV projection next
 
 Publication follow-on work should continue separately as:
 
@@ -332,13 +334,15 @@ Publication follow-on work should continue separately as:
 
 Students follow-on work should continue separately as:
 
-- projection of the duplicated advising sections in the CV consumer wrapper
-  from `site/data/students.json`
+- later student-model enrichment only if a new consumer need clearly requires
+  it
 
 Teaching and service follow-on work should continue separately as:
 
-- later homepage/CV consumer cleanup once that cross-cutting work clearly
-  earns its keep
+- teaching CV projection next
+- service CV projection likely after that
+- later homepage consumer cleanup once that cross-cutting work clearly earns
+  its keep
 
 Later domain campaigns should still likely include:
 

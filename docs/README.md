@@ -78,8 +78,8 @@ meant to be read, maintained, and extended over time.
 - `plans/teaching-campaign.md`
   Current teaching structured-content campaign note, including the initial
   audit, the shared-data-first design recommendation, and the implemented
-  canonical-model and public-wrapper slices, plus the planned homepage and CV
-  follow-ons.
+  canonical-model and public-wrapper slices, plus the planned CV follow-on
+  and later homepage cleanup.
 - `plans/service-campaign.md`
   Current service structured-content campaign note, including the initial
   audit, the flat per-year-term design recommendation, and the implemented
@@ -88,8 +88,8 @@ meant to be read, maintained, and extended over time.
 - `plans/cv-campaign.md`
   Current CV structured-content campaign note, framing the CV as a
   cross-domain consumer wrapper with the route-cutover and students-CV
-  projection slices implemented, and the next consumer slice left as an
-  explicit reassessment point.
+  projection slices implemented, and teaching-CV projection now selected as
+  the next consumer slice.
 - `plans/cv-slice-1-route-cutover.md`
   Implemented record of the slice that moved the CV wrapper to
   `site/cv/index.dj` and canonicalized `/cv/` before any section projection.
@@ -97,6 +97,10 @@ meant to be read, maintained, and extended over time.
   Implemented record of the first downstream CV consumer slice, replacing only
   the duplicated students sections with a compressed projection from
   `site/data/students.json`.
+- `plans/cv-slice-3-teaching-projection.md`
+  Planned record of the next downstream CV consumer slice, replacing only the
+  duplicated teaching section bodies with a compressed projection from
+  `site/data/teaching.json`.
 - `plans/service-slice-1-canonical-model.md`
   Implemented record of the slice that established canonical service terms in
   `site/data/service.json` before any service-page, homepage, or CV

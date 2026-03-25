@@ -1,7 +1,7 @@
 # CV Campaign
 
-Status: route/wrapper cutover and students CV projection implemented; next
-consumer slice should be chosen deliberately
+Status: route/wrapper cutover and students CV projection implemented;
+teaching CV projection is the next planned consumer slice
 
 ## Goal
 
@@ -50,15 +50,13 @@ Current relevant source:
 
 Important current facts:
 
-- the current CV source is `1014` lines
+- the current CV source is `771` lines
 - it contains `29` major section/subsection headings
 - it is not one homogeneous repeated-data page
 - but it does contain several large duplicated factual domains
 
-Most important duplicated factual domains:
+Most important remaining duplicated factual domains:
 
-- `Students`
-  duplicates the public students page in a more compressed form
 - `Teaching`
   duplicates the public teaching page in a more compressed form
 - `Service`
@@ -81,6 +79,7 @@ Current wrapper/consumer state:
 - the duplicated students sections now project from `site/data/students.json`
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
+- the next planned CV consumer slice is teaching
 
 That means the wrapper shape is now settled and the next real CV work is
 consumer-side section projection.
@@ -137,10 +136,27 @@ Examples:
   richer, more linked, more advisory detail
 - CV students section:
   more compressed and more selective
+- future CV teaching section:
+  may reasonably differ from the public teaching wrapper if the rendered CV
+  becomes clearer while preserving the same substance
 
 That is healthy.
 It means the canonical data model is serving multiple real consumers rather
 than baking one view into the data.
+
+## Format Flexibility
+
+The current hand-authored CV layout is useful, but it is not sacred.
+
+Future CV consumer slices may improve section formatting where that helps the
+canonical model or the rendered document, provided that:
+
+- the same underlying information is preserved or improved
+- any visible format changes are explicit policy, not accidental fallout
+- the old/new rendered HTML diff is reviewed carefully
+
+This keeps the CV honest as a real downstream consumer instead of forcing new
+renderers to imitate old hand-authored Djot line-for-line.
 
 ## What Should Stay Hand-Authored
 
@@ -158,7 +174,6 @@ Likely hand-authored for now:
 
 Likely later projection candidates:
 
-- `Students`
 - `Teaching`
 - `Service`
 - maybe selected `Invited Talks`
@@ -221,3 +236,23 @@ be:
 - service
 - selected talks/publications/highlights
 - or something else entirely
+
+## Current Recommendation
+
+The next CV consumer slice should be teaching.
+
+Why teaching next:
+
+- it remains one of the largest duplicated factual domains in the CV
+- it exercises a second shared-data-first canonical domain after students
+- it tests an important downstream-consumer property:
+  the CV legitimately includes the `Teaching Assistant` subsection even though
+  the public teaching wrapper does not
+- it is less policy-heavy than service, which would require more immediate
+  choices about collapsing yearly terms into CV-friendly ranges
+
+The intended sequence from here is:
+
+1. teaching CV projection
+2. service CV projection
+3. reassess talks, publications, highlights, or other curated consumers later
