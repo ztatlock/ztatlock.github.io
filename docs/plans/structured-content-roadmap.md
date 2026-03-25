@@ -220,7 +220,9 @@ Implemented outcomes so far:
 - the public service wrapper now lives at `site/service/index.dj`
 - the canonical public service URL is now `/service/`
 - repeated public service blocks now project from canonical service data
-- homepage and CV cleanup remain deferred as later cross-cutting consumer work
+- the duplicated service subsection bodies in the CV now project from
+  canonical service data
+- homepage cleanup remains deferred as later cross-cutting consumer work
 
 ### 6. CV Consumer Wrapper
 
@@ -240,9 +242,9 @@ Current shape:
 - keep the CV wrapper at `site/cv/index.dj` with canonical `/cv/`
 - keep the full CV body hand-authored while consumer slices land
 - route/wrapper cutover implemented
-- students and teaching now projected into the CV through explicit
+- students, teaching, and service now projected into the CV through explicit
   CV-specific renderers
-- service remains the clearest next duplicated domain to assess
+- the remaining likely work is more curated and less obviously list-shaped
 
 Implemented outcomes so far:
 
@@ -250,16 +252,21 @@ Implemented outcomes so far:
 - the canonical public CV URL is now `/cv/`
 - the duplicated students sections now project from `site/data/students.json`
 - the duplicated teaching section now projects from `site/data/teaching.json`
+- the duplicated service subsection bodies now project from
+  `site/data/service.json`
 - the CV now has an explicit compressed students renderer rather than
   reusing the public students-page view
 - the CV now has an explicit compressed teaching renderer rather than
   reusing the public teaching-page view
+- the CV now has an explicit compressed service renderer rather than
+  reusing the public service-page view
 
 Current recommendation:
 
 - choose the next CV consumer slice deliberately rather than broadening
   automatically
-- service CV projection likely next
+- stop and reassess before picking homepage cleanup or more curated CV
+  consumers
 - keep later homepage/CV consumer cleanup cross-cutting and explicit
 
 ## Adjacent / Emerging Domains
@@ -326,8 +333,8 @@ The repo is now at a good checkpoint after the public-page cores for:
 The next major structured-content campaign should be:
 
 - CV as a cross-domain consumer wrapper, now at the first real consumer
-  checkpoint with route cutover plus students and teaching projection
-  implemented, with service the likely next slice
+  checkpoint with route cutover plus students, teaching, and service
+  projection implemented, and with the next slice to be chosen deliberately
 
 Publication follow-on work should continue separately as:
 
@@ -341,7 +348,6 @@ Students follow-on work should continue separately as:
 
 Teaching and service follow-on work should continue separately as:
 
-- service CV projection likely after that
 - later homepage consumer cleanup once that cross-cutting work clearly earns
   its keep
 

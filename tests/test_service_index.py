@@ -73,6 +73,35 @@ class ServiceIndexTests(unittest.TestCase):
                 "- [2024 - Present Demo Summit](https://example.test/demo) Co-Organizer\n",
             )
 
+    def test_render_public_service_details_as_nested_list(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_service(
+                root / "site" / "data" / "service.json",
+                [
+                    {
+                        "key": "2025-demo-chair",
+                        "year": 2025,
+                        "view_groups": ["reviewing"],
+                        "title": "DemoConf",
+                        "role": "Program Chair",
+                        "url": "https://example.test/democonf",
+                        "details": [
+                            "[Committee](https://example.test/committee)",
+                            "[Announcement](https://example.test/announcement)",
+                        ],
+                    }
+                ],
+            )
+
+            rendered = render_public_service_section_list_djot(root, "reviewing")
+            self.assertEqual(
+                rendered,
+                "- [2025 DemoConf](https://example.test/democonf) Program Chair\n\n"
+                "  * [Committee](https://example.test/committee)\n"
+                "  * [Announcement](https://example.test/announcement)\n",
+            )
+
     def test_department_render_treats_skit_as_ordinary_service_entry(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

@@ -50,6 +50,10 @@ from scripts.page_metadata import (
 
 from .site_config import SiteConfig
 from .page_projection import (
+    CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+    CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
+    CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+    CV_SERVICE_REVIEWING_LIST_PLACEHOLDER,
     CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
     CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     CV_TEACHING_TA_LIST_PLACEHOLDER,
@@ -78,6 +82,7 @@ LITERAL_STUDENT_ENTRY_RE = re.compile(
     re.MULTILINE,
 )
 LITERAL_CV_STUDENT_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
+LITERAL_CV_SERVICE_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 LITERAL_CV_TEACHING_ENTRY_RE = re.compile(r"^[ ]{0,4}[*-] ", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
@@ -345,6 +350,22 @@ def _find_cv_students_projection_issues(config: SiteConfig) -> list[str]:
     return issues
 
 
+def _cv_uses_service_projection(config: SiteConfig) -> bool:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    if not index_path.exists():
+        return False
+    text = index_path.read_text(encoding="utf-8")
+    return any(
+        placeholder in text
+        for placeholder in (
+            CV_SERVICE_REVIEWING_LIST_PLACEHOLDER,
+            CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+            CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
+            CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+        )
+    )
+
+
 def _cv_uses_teaching_projection(config: SiteConfig) -> bool:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     if not index_path.exists():
@@ -358,6 +379,33 @@ def _cv_uses_teaching_projection(config: SiteConfig) -> bool:
             CV_TEACHING_TA_LIST_PLACEHOLDER,
         )
     )
+
+
+def _find_cv_service_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
+    service_path = config.data_dir / SERVICE_DATA_NAME
+    if not index_path.exists() or not service_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    service_section = _extract_markdown_section_body(text, "Service", level=2)
+    if service_section is None:
+        return [f"{index_path}: CV wrapper must contain a ## Service section"]
+
+    issues: list[str] = []
+    for placeholder in (
+        CV_SERVICE_REVIEWING_LIST_PLACEHOLDER,
+        CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+        CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
+        CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+    ):
+        if placeholder not in service_section:
+            issues.append(f"{index_path}: CV service section must contain {placeholder}")
+    if LITERAL_CV_SERVICE_ENTRY_RE.search(service_section):
+        issues.append(
+            f"{index_path}: CV service section must not contain literal service entry blocks"
+        )
+    return issues
 
 
 def _find_cv_teaching_projection_issues(config: SiteConfig) -> list[str]:
@@ -620,6 +668,7 @@ def _find_service_data_issues(config: SiteConfig) -> list[str]:
     has_service_consumers = (
         (config.page_source_dir / "service.dj").exists()
         or service_index_path(config.repo_root, service_dir=config.service_dir).exists()
+        or _cv_uses_service_projection(config)
     )
     if not service_path.exists() and not has_service_consumers:
         return []
@@ -644,6 +693,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         )
         + _find_cv_projection_issues(config)
         + _find_cv_students_projection_issues(config)
+        + _find_cv_service_projection_issues(config)
         + _find_cv_teaching_projection_issues(config)
         + _find_service_data_issues(config)
         + _find_service_projection_issues(config)

@@ -24,7 +24,7 @@ class ServiceIndexError(ValueError):
     pass
 
 
-def _collapse_year_label(records: tuple[ServiceRecord, ...]) -> str:
+def collapse_service_year_label(records: tuple[ServiceRecord, ...]) -> str:
     years = sorted(record.year for record in records)
     first_year = years[0]
     last_year = years[-1]
@@ -53,17 +53,17 @@ def _render_public_service_entry_djot(
     lead = _render_service_lead_text(
         group_key,
         head,
-        year_label=_collapse_year_label(records),
+        year_label=collapse_service_year_label(records),
     )
     role_suffix = f" {head.role}" if head.role else ""
     line = f"- {lead}{role_suffix}"
     if not head.details:
         return line
     detail_lines = "\n".join(f"  * {detail}" for detail in head.details)
-    return f"{line}\n{detail_lines}"
+    return f"{line}\n\n{detail_lines}"
 
 
-def _group_public_service_records(
+def group_service_records_for_view(
     records: tuple[ServiceRecord, ...],
     *,
     group_key: str,
@@ -122,7 +122,7 @@ def render_public_service_section_list_djot(
     except ServiceRecordError as err:
         raise ServiceIndexError(str(err)) from err
 
-    groups = _group_public_service_records(records, group_key=group_key)
+    groups = group_service_records_for_view(records, group_key=group_key)
     chunks = [_render_public_service_entry_djot(group_key, group) for group in groups]
     rendered = "\n".join(chunks)
     return rendered + ("\n" if rendered else "")

@@ -1,7 +1,7 @@
 # CV Campaign
 
-Status: route/wrapper cutover plus students and teaching CV projection
-implemented; service is the likely next consumer slice
+Status: route/wrapper cutover plus students, teaching, and service CV
+projection implemented; stop and reassess before broader CV consumers
 
 ## Goal
 
@@ -50,15 +50,15 @@ Current relevant source:
 
 Important current facts:
 
-- the current CV source is `659` lines
+- the current CV source is `586` lines
 - it contains `29` major section/subsection headings
 - it is not one homogeneous repeated-data page
 - but it does contain several large duplicated factual domains
 
-Most important remaining duplicated factual domain:
+Most important remaining duplicated factual domains:
 
-- `Service`
-  duplicates the public service page in a more compressed form
+- no comparably large duplicated factual block remains in the CV over the
+  current canonical shared-data domains
 
 Other important cross-domain consumers already present near the top of the CV:
 
@@ -76,9 +76,12 @@ Current wrapper/consumer state:
 - lingering authored `cv.html` links have been rewritten to `cv/`
 - the duplicated students sections now project from `site/data/students.json`
 - the duplicated teaching section now projects from `site/data/teaching.json`
+- the duplicated service subsection bodies now project from
+  `site/data/service.json`
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
-- the likely next planned CV consumer slice is service
+- the next step should be chosen deliberately rather than broadened
+  automatically
 
 That means the wrapper shape is now settled and the next real CV work is
 consumer-side section projection.
@@ -173,7 +176,6 @@ Likely hand-authored for now:
 
 Likely later projection candidates:
 
-- `Service`
 - maybe selected `Invited Talks`
 - maybe selected recent publications or highlights
 
@@ -256,19 +258,44 @@ Invariant after slice 3:
 - the CV teaching renderer now makes its low-link, compressed policy explicit
   and reviewable
 
+### Slice 4. Service CV Projection
+
+Implemented.
+
+- replace only the duplicated service subsection bodies in the CV
+- preserve the `## Service` heading, the existing subsection headings, and the
+  faculty-skit prose note
+- define an explicit compressed CV renderer policy for service records
+- reuse canonical range-collapsing and `Present` semantics
+- keep the rendered diff focused on the service section and explain visible
+  policy changes and canonical corrections
+
+Invariant after slice 4:
+
+- the third major duplicated factual domain in the CV now derives from
+  canonical shared data
+- the CV and public service page now share canonical range/ongoing service
+  semantics while still allowing different presentation policy
+- the CV service renderer now makes its link/detail policy explicit and
+  reviewable
+- the faculty-skit prose note remains authored in the wrapper for now
+
 ## Current Recommendation
 
-The next likely CV consumer slice is service.
+Stop and reassess before choosing another CV consumer slice.
 
-Why service next:
+Why stop here:
 
-- it is now the clearest remaining duplicated factual domain in the CV
-- it would extend the same downstream-consumer pattern to another shared data
-  source that already has a public wrapper
-- it still needs explicit CV-specific policy for ranges, ongoing appointments,
-  and section-level compression
+- the largest duplicated shared-data domains in the CV are now canonicalized
+  from the consumer side
+- the remaining likely work is more curated and less obviously list-shaped
+- homepage cleanup now competes with narrower curated CV consumers like talks,
+  publications, or highlights
+- the next step should be selected from current repo needs rather than from
+  campaign inertia
 
-The intended sequence from here is:
+Likely candidates from here:
 
-1. service CV projection
-2. reassess talks, publications, highlights, or other curated consumers later
+1. homepage recent-service or recent-teaching cleanup
+2. curated CV consumers such as selected talks or publications
+3. no immediate CV broadening if the current checkpoint already earns its keep

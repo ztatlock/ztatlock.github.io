@@ -7,6 +7,10 @@ from pathlib import Path
 
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
+    CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+    CV_SERVICE_MENTORING_LIST_PLACEHOLDER,
+    CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+    CV_SERVICE_REVIEWING_LIST_PLACEHOLDER,
     CV_TEACHING_INSTRUCTOR_LIST_PLACEHOLDER,
     CV_TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     CV_TEACHING_TA_LIST_PLACEHOLDER,
@@ -31,6 +35,7 @@ from scripts.sitebuild.page_projection import (
     TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
     TEACHING_UW_COURSES_LIST_PLACEHOLDER,
     apply_page_projections,
+    render_cv_service_section_list_djot,
     render_cv_teaching_assistant_list_djot,
     render_cv_teaching_instructor_list_djot,
     render_cv_teaching_summer_school_list_djot,
@@ -66,6 +71,28 @@ class PageProjectionTests(unittest.TestCase):
         self.assertIn("UW CSE Faculty Graduate Admissions Co-chair", department)
         self.assertIn("UW Faculty Skit Writer, Producer, and Director", department)
         self.assertIn("[Hank Levy][]", department)
+
+    def test_renders_cv_service_sections_with_explicit_cv_policy(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+
+        reviewing = render_cv_service_section_list_djot(root, "reviewing")
+        self.assertIn("- 2026 ICFP Program Committee", reviewing)
+        self.assertIn(
+            "- [2025 PLDI Program Committee Chair](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee)",
+            reviewing,
+        )
+        self.assertIn("[Review Committee](https://pldi25.sigplan.org/committee/pldi-2025-papers-pldi-review-committee)", reviewing)
+
+        organizing = render_cv_service_section_list_djot(root, "organizing")
+        self.assertIn("2022 - Present EGRAPHS Community Advisory Board", organizing)
+        self.assertIn("[2025 FPTalks Co-Organizer](https://fpbench.org/talks/fptalks25.html)", organizing)
+
+        mentoring = render_cv_service_section_list_djot(root, "mentoring")
+        self.assertIn("2018 PLDI Programming Languages Mentoring Workshop (PLMW) Panelist", mentoring)
+
+        department = render_cv_service_section_list_djot(root, "department")
+        self.assertIn("2025 - 2027 : UW CSE Faculty Graduate Admissions Co-chair", department)
+        self.assertNotIn("UW Faculty Skit", department)
 
     def test_renders_teaching_sections_from_canonical_data(self) -> None:
         rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
@@ -323,6 +350,40 @@ class PageProjectionTests(unittest.TestCase):
         self.assertIn("[Hank Levy][]", rendered)
         self.assertIn("Program Committee Chair", rendered)
         self.assertIn("2025 PLDI", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+                ),
+                body,
+            )
+
+    def test_applies_projection_only_to_cv_service_section(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Curriculum Vitae\n\n"
+            f"{CV_SERVICE_REVIEWING_LIST_PLACEHOLDER}\n\n"
+            f"{CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER}\n\n"
+            f"{CV_SERVICE_MENTORING_LIST_PLACEHOLDER}\n\n"
+            f"{CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER}\n"
+        )
+        rendered = apply_page_projections(
+            "cv_index_page",
+            "cv",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(CV_SERVICE_REVIEWING_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(CV_SERVICE_MENTORING_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER, rendered)
+        self.assertIn("2022 - Present EGRAPHS Community Advisory Board", rendered)
+        self.assertIn("UW CSE Faculty Graduate Admissions Co-chair", rendered)
 
         self.assertEqual(
             apply_page_projections(

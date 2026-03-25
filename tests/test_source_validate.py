@@ -623,6 +623,240 @@ class SourceValidateTests(unittest.TestCase):
                 [f"{cv_dir / 'index.dj'}: CV teaching section must not contain literal teaching entry blocks"],
             )
 
+    def test_reports_missing_service_registry_when_cv_uses_service_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Service\n\n"
+                "### _Reviewing_\n\n"
+                "__CV_SERVICE_REVIEWING_LIST__\n\n"
+                "### _Organizing_\n\n"
+                "__CV_SERVICE_ORGANIZING_LIST__\n\n"
+                "### _Mentoring_\n\n"
+                "__CV_SERVICE_MENTORING_LIST__\n\n"
+                "### _Department_\n\n"
+                "__CV_SERVICE_DEPARTMENT_LIST__\n\n"
+                "Faculty skit note.\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"missing service registry: {data / 'service.json'}"],
+            )
+
+    def test_reports_missing_cv_service_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Service\n\n"
+                "### _Reviewing_\n\n"
+                "__CV_SERVICE_REVIEWING_LIST__\n\n"
+                "### _Organizing_\n\n"
+                "__CV_SERVICE_ORGANIZING_LIST__\n\n"
+                "### _Mentoring_\n\n"
+                "__CV_SERVICE_MENTORING_LIST__\n\n"
+                "### _Department_\n\n"
+                "Faculty skit note.\n",
+                encoding="utf-8",
+            )
+            (service / "index.dj").write_text(
+                "---\n"
+                "description: Service page\n"
+                "---\n\n"
+                "# Service\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2025-pldi-program-committee-chair",
+                                "year": 2025,
+                                "view_groups": ["reviewing", "organizing"],
+                                "title": "PLDI",
+                                "role": "Program Committee Chair",
+                                "url": "https://example.test/pldi",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{cv_dir / 'index.dj'}: CV service section must contain __CV_SERVICE_DEPARTMENT_LIST__"],
+            )
+
+    def test_reports_literal_cv_service_entry_blocks_after_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            cv_dir = root / "site" / "cv"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+
+            pages.mkdir(parents=True)
+            cv_dir.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (cv_dir / "index.dj").write_text(
+                "---\n"
+                "description: CV page\n"
+                "---\n\n"
+                "# Curriculum Vitae\n\n"
+                "## Service\n\n"
+                "### _Reviewing_\n\n"
+                "__CV_SERVICE_REVIEWING_LIST__\n\n"
+                "- 2026 ICFP Program Committee\n\n"
+                "### _Organizing_\n\n"
+                "__CV_SERVICE_ORGANIZING_LIST__\n\n"
+                "### _Mentoring_\n\n"
+                "__CV_SERVICE_MENTORING_LIST__\n\n"
+                "### _Department_\n\n"
+                "__CV_SERVICE_DEPARTMENT_LIST__\n\n"
+                "Faculty skit note.\n",
+                encoding="utf-8",
+            )
+            (service / "index.dj").write_text(
+                "---\n"
+                "description: Service page\n"
+                "---\n\n"
+                "# Service\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2025-pldi-program-committee-chair",
+                                "year": 2025,
+                                "view_groups": ["reviewing", "organizing"],
+                                "title": "PLDI",
+                                "role": "Program Committee Chair",
+                                "url": "https://example.test/pldi",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                cv_dir=cv_dir,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{cv_dir / 'index.dj'}: CV service section must not contain literal service entry blocks"],
+            )
+
     def test_reports_missing_service_registry_when_service_index_exists(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

@@ -1,6 +1,7 @@
 # Service Campaign
 
-Status: public-page core implemented; later homepage/CV cleanup deferred
+Status: public-page core and CV service projection implemented; later homepage
+cleanup remains deferred
 
 ## Goal
 
@@ -51,15 +52,15 @@ Important characteristics:
 
 ### CV Service Section
 
-`site/cv/index.dj` currently duplicates the same broad service surface, but not
-perfectly:
+Before the CV service projection slice, `site/cv/index.dj` duplicated the same
+broad service surface, but not perfectly:
 
 - 32 reviewing entries
 - 22 organizing entries
 - 8 mentoring entries
 - 12 department entries
 
-Important characteristics:
+Important pre-CV-projection characteristics:
 
 - the CV is slightly richer for some entries, especially links and supporting
   references
@@ -67,7 +68,7 @@ Important characteristics:
 - the public page currently contains at least one service fact missing from the
   CV
 
-Known current drift:
+Known pre-CV-projection drift:
 
 - public page only: `2024 FPTalks Co-Organizer`
 - CV only: `2022 - Present EGRAPHS Community Advisory Board`
@@ -234,13 +235,32 @@ At that point:
 - later homepage/CV reuse can be evaluated together with the other domains that
   are also approaching consumer-projection readiness
 
+### Slice 3. CV Service Projection
+
+- project the duplicated service subsection bodies in `site/cv/index.dj`
+- preserve the intentionally more compressed CV view
+- reuse canonical service range/ongoing semantics
+- keep the faculty-skit prose note hand-authored in the CV
+
+Implemented in:
+
+- [cv-slice-4-service-projection.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-slice-4-service-projection.md)
+
+Implemented outcomes so far:
+
+- the duplicated service subsection bodies in `site/cv/index.dj` now project
+  from `site/data/service.json`
+- the CV reuses canonical service range collapse and `Present` semantics
+- the CV service section now includes the canonical `2024 FPTalks
+  Co-Organizer` entry that was previously missing from the literal CV block
+- the faculty-skit prose note remains hand-authored in the CV wrapper
+
 ## Deferred Follow-On Work
 
 These should likely be treated as later cross-cutting consumer work rather
 than part of the near-term service campaign:
 
 - homepage recent-service projection from canonical service terms
-- CV service projection from canonical service terms
 - broader homepage/CV cleanup across multiple canonical domains once enough of
   the underlying sources of truth are in place
 
