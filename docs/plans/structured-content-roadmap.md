@@ -313,6 +313,9 @@ The current checkpoint is narrow on purpose:
   set
 - the people registry now treats `name` as the default site-facing label and
   aliases as resolution-only alternate spellings
+- a follow-on people-linkability slice now lets `people.json` represent
+  linkable and linkless people honestly without forcing every canonical person
+  to generate a Djot ref
 - collaborator-specific relationship data only later, once non-coauthor facts
   become real and worth modeling
 
@@ -405,6 +408,8 @@ The repo is also now at a good checkpoint after:
 - the about-page collaborator alphabet projection slice
 - the people-registry semantics cleanup that made `people.json` name/alias
   policy explicit before more consumers build on it
+- the teaching-staffing slice-1 people-linkability guardrail that made public
+  link semantics explicit before teaching staffing data import begins
 
 Funding follow-on work should continue separately as:
 

@@ -1,6 +1,6 @@
 # Teaching Staffing Campaign
 
-Status: drafted for review
+Status: slice 1 implemented
 
 It builds on:
 
@@ -159,6 +159,18 @@ Invariant after slice 1:
 - authored Djot prose is protected against silently depending on linkless
   people refs
 - the current `name` / `aliases` semantics remain unchanged
+
+Current checkpoint:
+
+- slice 1 is now landed
+- `people.json` can represent linkable and linkless people honestly
+- generated Djot refs are emitted only for people with a derived
+  `primary_url`
+- authored Djot and current structured Djot fragments are validated so they
+  cannot silently depend on linkless generated people refs
+- current structured consumers such as collaborators and students now render
+  plain text for linkless people instead of assuming every registry-backed
+  person is linkable
 
 ### Slice 2. Teaching Staffing Schema Foundation
 

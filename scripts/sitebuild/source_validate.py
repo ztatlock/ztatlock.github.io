@@ -61,6 +61,7 @@ from scripts.page_metadata import (
 )
 
 from .site_config import SiteConfig
+from .people_registry import PeopleRegistryError, load_people_registry
 from .page_projection import (
     CV_FUNDING_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
@@ -108,6 +109,7 @@ LITERAL_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_COLLABORATOR_ENTRY_RE = re.compile(r"^\* ", re.MULTILINE)
 LITERAL_COLLABORATOR_GAP_RE = re.compile(r"^>\s+`[A-Z](?:, [A-Z])*`$", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
+PEOPLE_REF_RE = re.compile(r"(?<!!)\[([^\[\]]+)\]\[([^\[\]]*)\]")
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
     "robots.txt",
@@ -219,6 +221,50 @@ def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     paths.extend(sorted(config.publications_dir.glob(f"*/{EXTRA_CONTENT_NAME}")))
     paths.extend(sorted(config.talks_dir.glob(f"*/{EXTRA_CONTENT_NAME}")))
     return paths
+
+
+def _all_people_ref_sources(config: SiteConfig) -> list[Path]:
+    paths = _all_authored_djot_sources(config)
+    for data_name in (STUDENTS_DATA_NAME, TEACHING_DATA_NAME, SERVICE_DATA_NAME):
+        path = config.data_dir / data_name
+        if path.exists():
+            paths.append(path)
+    return paths
+
+
+def _find_linkless_people_ref_issues(config: SiteConfig) -> list[str]:
+    people_path = config.people_data_path
+    if not people_path.exists():
+        return []
+
+    try:
+        registry = load_people_registry(people_path)
+    except PeopleRegistryError as err:
+        return [str(err)]
+
+    issues: list[str] = []
+    for path in _all_people_ref_sources(config):
+        text = path.read_text(encoding="utf-8")
+        seen_labels: set[str] = set()
+        for match in PEOPLE_REF_RE.finditer(text):
+            display_label, explicit_label = match.groups()
+            if display_label.startswith("^"):
+                continue
+            label = display_label if explicit_label == "" else explicit_label.strip()
+            if not label or label.startswith("^"):
+                continue
+            person_key = registry.alias_to_key.get(label)
+            if person_key is None:
+                continue
+            person = registry.person(person_key)
+            if person.primary_url is not None or label in seen_labels:
+                continue
+            seen_labels.add(label)
+            issues.append(
+                f"{path}: generated people refs must not target linkless person label {label!r}; "
+                "use plain text or add a public link in site/data/people.json"
+            )
+    return issues
 
 
 def _find_legacy_publication_link_issues(config: SiteConfig) -> list[str]:
@@ -999,5 +1045,6 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_legacy_service_link_issues(config)
         + _find_legacy_teaching_link_issues(config)
         + _find_legacy_talks_link_issues(config)
+        + _find_linkless_people_ref_issues(config)
         + _find_root_layout_drift_issues(config)
     )

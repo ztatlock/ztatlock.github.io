@@ -116,6 +116,31 @@ class DjotRefsTests(unittest.TestCase):
             "[Unexpected Label]: https://example.com/unexpected\n",
         )
 
+    def test_composed_refs_still_rejects_manual_label_for_linkless_person(self) -> None:
+        people_payload = {
+            "people": {
+                "alpha-person": {
+                    "name": "Alpha Person",
+                }
+            }
+        }
+        refs_raw = "[Alpha Person]: https://example.com/alpha\n"
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            people_path = tmp / "people.json"
+            refs_path = tmp / "REFS"
+            people_path.write_text(json.dumps(people_payload), encoding="utf-8")
+            refs_path.write_text(refs_raw, encoding="utf-8")
+            with self.assertRaisesRegex(
+                DjotRefsError,
+                "templates/REFS still contains person refs owned by people.json",
+            ):
+                load_and_render_site_refs(
+                    people_path=people_path,
+                    refs_path=refs_path,
+                )
+
 
 if __name__ == "__main__":
     unittest.main()

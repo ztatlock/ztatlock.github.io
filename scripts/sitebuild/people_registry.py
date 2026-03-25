@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 PEOPLE_ROOT_KEY = "people"
-PERSON_ALLOWED_FIELDS = {"name", "url", "aliases"}
+PERSON_ALLOWED_FIELDS = {"name", "url", "linkedin", "github", "aliases"}
 PERSON_KEY_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
@@ -20,8 +20,14 @@ class PeopleRegistryError(ValueError):
 class PersonRecord:
     key: str
     name: str
-    url: str
+    url: str | None
+    linkedin: str | None
+    github: str | None
     aliases: tuple[str, ...]
+
+    @property
+    def primary_url(self) -> str | None:
+        return self.url or self.linkedin or self.github
 
 
 @dataclass(frozen=True)
@@ -46,6 +52,12 @@ def _require_string(raw: object, *, context: str, field: str) -> str:
     if not isinstance(raw, str) or not raw.strip():
         raise PeopleRegistryError(f"{context}: missing {field}")
     return raw.strip()
+
+
+def _optional_string(raw: object, *, context: str, field: str) -> str | None:
+    if raw is None:
+        return None
+    return _require_string(raw, context=context, field=field)
 
 
 def _optional_string_list(raw: object, *, context: str, field: str) -> tuple[str, ...]:
@@ -78,12 +90,16 @@ def _normalize_person(key: str, raw: object, *, context: str) -> PersonRecord:
         raise PeopleRegistryError(f"{context}: unknown fields: {', '.join(unknown_fields)}")
 
     # Contract: `name` is the default site-facing canonical label, while
-    # `aliases` are resolution-only alternate spellings. Publication-local
+    # `aliases` are resolution-only alternate spellings. Public-link fields
+    # are optional because some real people are canonical for identity and
+    # normalization even when no public link is available. Publication-local
     # records still own publication-style author strings, so the people
     # registry should stay a small identity/default-label layer rather than a
     # second publication-name source of truth.
     name = _require_string(raw.get("name"), context=context, field="name")
-    url = _require_string(raw.get("url"), context=context, field="url")
+    url = _optional_string(raw.get("url"), context=context, field="url")
+    linkedin = _optional_string(raw.get("linkedin"), context=context, field="linkedin")
+    github = _optional_string(raw.get("github"), context=context, field="github")
     aliases = _optional_string_list(raw.get("aliases"), context=context, field="aliases")
     if name in aliases:
         raise PeopleRegistryError(
@@ -94,6 +110,8 @@ def _normalize_person(key: str, raw: object, *, context: str) -> PersonRecord:
         key=key,
         name=name,
         url=url,
+        linkedin=linkedin,
+        github=github,
         aliases=aliases,
     )
 

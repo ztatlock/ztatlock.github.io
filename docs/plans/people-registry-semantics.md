@@ -1,6 +1,6 @@
 # People Registry Semantics
 
-Status: initial semantics cleanup implemented
+Status: initial semantics cleanup and linkability follow-on implemented
 
 It builds on:
 
@@ -14,14 +14,15 @@ It builds on:
 Make the semantics of `site/data/people.json` explicit and coherent before
 more consumers depend on it as central shared data.
 
-This note is about the meaning of:
+This note is now about the meaning of:
 
 - `name`
 - `aliases`
 - `url`
+- optional public-link fallbacks
 
-It is not yet about collaborator relationship modeling, optional-URL support,
-or a broader people/profile system.
+It is still not about collaborator relationship modeling or a broader
+people/profile system.
 
 ## Why This Matters Now
 
@@ -221,11 +222,29 @@ small schema still cannot express something cleanly.
 ## What This Note Does Not Recommend Yet
 
 - no collaborator relationship model yet
-- no optional-URL support yet
 - no full people-profile campaign
 - no attempt to encode every possible naming nuance in the schema
 
 Those should remain separate decisions.
+
+## Landed Linkability Follow-On
+
+A later narrow follow-on slice has now landed on top of the initial
+`name`/`aliases` cleanup.
+
+Additional landed semantics:
+
+- `url`, `linkedin`, and `github` are optional public-link fields
+- `url` remains preferred when present
+- a derived `primary_url` uses `url`, then `linkedin`, then `github`
+- a person may exist canonically in `people.json` even when no public link is
+  available
+- generated Djot refs are emitted only for people with a `primary_url`
+- authored Djot and current structured Djot fragments are validated so they do
+  not silently depend on linkless generated people refs
+
+This keeps the registry small while making linkability honest enough for the
+later teaching-staffing campaign.
 
 ## Rendered Review
 

@@ -139,10 +139,15 @@ In particular, slice 1 should avoid:
 - creating `site/data/collaborators.json` before collaborator-specific facts
   exist
 - treating all `people.json` entries as collaborators
-- forcing optional-URL support into `people.json` just to handle one current
-  unresolved case
+- bundling linkability-policy changes into the first collaborators cutover
 - mixing coauthor derivation with advising, teaching, community, or grant
   relationships in one first cut
+
+That boundary is now preserved in repo history:
+
+- collaborators slice 1 stayed narrow
+- the later people-linkability work landed separately as part of the
+  teaching-staffing campaign instead of being smuggled into collaborators
 
 ## What Should Stay Hand-Authored
 

@@ -72,7 +72,7 @@ def load_collaborator_entries(
             person = registry.person(person_key)
             resolved_entries[person_key] = CollaboratorEntry(
                 display_name=person.name,
-                is_linked=True,
+                is_linked=person.primary_url is not None,
             )
 
     entries = [

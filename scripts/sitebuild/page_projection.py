@@ -154,7 +154,9 @@ def _render_cv_teaching_offering(offering: TeachingOffering) -> str:
     return f"{offering.year} {offering.term}"
 
 
-def _render_person_ref(*, display_name: str, ref_name: str) -> str:
+def _render_person_ref(*, display_name: str, ref_name: str, is_linked: bool) -> str:
+    if not is_linked:
+        return display_name
     if display_name == ref_name:
         return f"[{display_name}][]"
     return f"[{display_name}][{ref_name}]"
@@ -170,7 +172,9 @@ def _join_people_refs(people_refs: tuple[str, ...]) -> str:
 
 def _render_student_record(record: StudentRecord, *, registry) -> str:
     person = registry.person(record.person_key)
-    lines = [f"- {_render_person_ref(display_name=record.name, ref_name=person.name)}, {record.label}"]
+    lines = [
+        f"- {_render_person_ref(display_name=record.name, ref_name=person.name, is_linked=person.primary_url is not None)}, {record.label}"
+    ]
 
     if record.details:
         lines.append("")
@@ -183,6 +187,7 @@ def _render_student_record(record: StudentRecord, *, registry) -> str:
                 _render_person_ref(
                     display_name=registry.person(person_key).name,
                     ref_name=registry.person(person_key).name,
+                    is_linked=registry.person(person_key).primary_url is not None,
                 )
                 for person_key in detail.person_keys
             )

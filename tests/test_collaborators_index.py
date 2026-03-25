@@ -168,6 +168,49 @@ class CollaboratorsIndexTests(unittest.TestCase):
                 "* Robert Rabe\n",
             )
 
+    def test_resolved_linkless_collaborator_renders_as_plain_text(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            pubs_dir = root / "site" / "pubs"
+            data_dir.mkdir(parents=True)
+
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "zachary-tatlock": {
+                                "name": "Zachary Tatlock",
+                                "url": "https://ztatlock.net/",
+                            },
+                            "alpha-person": {
+                                "name": "Alpha Person",
+                                "aliases": ["A. Person"],
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            _write_publication(
+                pubs_dir,
+                "2025-demo-one",
+                title="First Paper",
+                pub_date="2025-01-01",
+                authors=[
+                    {"name": "Zachary Tatlock", "ref": "Zachary Tatlock"},
+                    {"name": "A. Person", "ref": "Alpha Person"},
+                ],
+            )
+
+            rendered = render_public_collaborators_list_djot(
+                root,
+                publications_dir=pubs_dir,
+                people_path=data_dir / "people.json",
+            )
+
+            self.assertEqual(rendered, "* Alpha Person\n")
+
     def test_renders_missing_initials_from_collaborator_display_labels(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

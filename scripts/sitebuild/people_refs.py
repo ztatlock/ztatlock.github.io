@@ -10,8 +10,11 @@ from .people_registry import PeopleRegistry, load_people_registry
 def iter_people_refs(registry: PeopleRegistry) -> tuple[tuple[str, str], ...]:
     entries: list[tuple[str, str]] = []
     for person in registry.people.values():
+        primary_url = person.primary_url
+        if primary_url is None:
+            continue
         for label in (person.name, *person.aliases):
-            entries.append((label, person.url))
+            entries.append((label, primary_url))
     return tuple(sorted(entries, key=lambda entry: entry[0]))
 
 

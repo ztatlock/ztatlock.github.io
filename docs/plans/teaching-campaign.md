@@ -158,6 +158,12 @@ Likely later offering-level extensions, if and when they earn their keep:
 - ordered `co_instructors`
 - ordered `teaching_assistants`
 
+Current dependency note:
+
+- before those staffing fields are added, the people-registry linkability
+  slice should land so `site/data/people.json` can represent linkable and
+  linkless people honestly without breaking generated-ref assumptions
+
 Those future staffing fields should likely live on individual offerings, not
 on whole course records, because co-teaching and TA staffing can vary by term.
 

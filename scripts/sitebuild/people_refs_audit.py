@@ -32,7 +32,10 @@ def audit_people_refs(
         if person_key is None:
             continue
         template_url = template_refs.label_to_url[label]
-        generated_url = registry.person(person_key).url
+        generated_url = registry.person(person_key).primary_url
+        if generated_url is None:
+            mismatched_urls[label] = (template_url, "<no generated people ref>")
+            continue
         if template_url == generated_url:
             overlapping_people_refs.append(label)
         else:

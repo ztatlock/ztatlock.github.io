@@ -1,6 +1,6 @@
 # Teaching Staffing Slice 1: People Linkability And Ref Guardrail
 
-Status: drafted for review
+Status: implemented
 
 It builds on:
 
@@ -62,13 +62,13 @@ Out of scope:
 
 ### People Registry
 
-Current allowed person fields:
+Pre-slice allowed person fields:
 
 - `name`
 - `url`
 - `aliases`
 
-Current semantics:
+Pre-slice semantics:
 
 - `name` is the default site-facing canonical label
 - `aliases` are resolution-only alternate spellings
@@ -76,7 +76,7 @@ Current semantics:
 
 ### Generated Refs
 
-Current generated Djot-ref behavior:
+Pre-slice generated Djot-ref behavior:
 
 - emit refs for `name` plus every alias
 - point every generated ref at `person.url`
@@ -93,7 +93,7 @@ This slice should separate those concepts.
 
 Keep the people registry small, but let public links be more honest.
 
-Recommended person fields after this slice:
+Landed person fields after this slice:
 
 - required `name`
 - optional `aliases`
@@ -111,8 +111,7 @@ Recommended semantics:
 
 ## Recommended Derived Link Rule
 
-Add a small helper such as `primary_url(person)` with this exact selection
-order:
+This slice landed a small helper with this exact selection order:
 
 1. `url`
 2. `linkedin`
@@ -128,7 +127,7 @@ This slice should not add:
 
 ## Generated Ref Contract
 
-After this slice:
+Landed generated-ref contract:
 
 - a person with a `primary_url` should generate Djot refs for `name` and all
   aliases
@@ -142,17 +141,23 @@ synonym for person existence.
 This slice should explicitly protect authored source against silent drift once
 linkless people are allowed.
 
-Recommended guardrail:
+Landed guardrail:
 
 - authored Djot that relies on generated people refs should only be able to
   reference linkable people
 - linkless people should remain available to structured renderers, which can
   choose linked or plain-text output explicitly
 
-Implementation shape is flexible, but the invariant should be clear:
+Implemented scope:
 
-- adding a linkless person must not create a hidden missing-ref problem in
-  authored prose
+- authored `.dj` sources are validated against linkless generated people refs
+- current structured Djot-bearing data sources are also validated:
+  - `site/data/service.json`
+  - `site/data/teaching.json`
+  - `site/data/students.json`
+
+That keeps the guardrail aligned with the repo's actual current people-ref
+surfaces rather than only with page wrappers.
 
 ## Likely Code Surfaces
 
@@ -220,6 +225,30 @@ After this slice:
   people refs
 - no teaching staffing facts are canonical yet
 - no public page rendering changes yet
+
+## Implemented Result
+
+This slice landed in:
+
+- `scripts/sitebuild/people_registry.py`
+- `scripts/sitebuild/people_refs.py`
+- `scripts/sitebuild/people_refs_audit.py`
+- `scripts/sitebuild/source_validate.py`
+- `scripts/collaborators_index.py`
+- `scripts/sitebuild/page_projection.py`
+- focused tests under `tests/`
+
+It established:
+
+- optional `url`, `linkedin`, and `github` public-link fields in the people
+  registry
+- a derived `primary_url` rule with explicit `url` -> `linkedin` -> `github`
+  precedence
+- generated people refs only for linkable people
+- source-validation errors for authored or structured Djot that tries to use a
+  linkless generated people ref
+- safe plain-text fallback in current structured consumers where a person key
+  may later refer to a linkless person
 
 ## Stop Point
 

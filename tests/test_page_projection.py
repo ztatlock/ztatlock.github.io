@@ -1190,6 +1190,55 @@ class PageProjectionTests(unittest.TestCase):
             )
             self.assertIn("- [Demo Student][], PhD Student", rendered)
 
+    def test_renders_linkless_students_and_coadvisors_as_plain_text(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            data_dir.mkdir(parents=True)
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "demo-student": {"name": "Demo Student"},
+                            "coadvisor": {"name": "Co Advisor"},
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            _student_section(
+                                "current_students",
+                                "Current Students",
+                                {
+                                    "key": "demo-student-current",
+                                    "person_key": "demo-student",
+                                    "name": "Demo Student",
+                                    "label": "PhD Student",
+                                    "details": [
+                                        {"kind": "coadvisor", "person_keys": ["coadvisor"]},
+                                    ],
+                                },
+                            )
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            rendered = render_students_section_list_djot(
+                root,
+                "current_students",
+                data_dir=data_dir,
+            )
+            self.assertIn("- Demo Student, PhD Student", rendered)
+            self.assertIn("co-advised with Co Advisor", rendered)
+            self.assertNotIn("[Demo Student][]", rendered)
+            self.assertNotIn("[Co Advisor][]", rendered)
+
     def test_renders_cv_students_section_with_compressed_policy(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

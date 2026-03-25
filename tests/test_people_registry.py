@@ -49,6 +49,64 @@ class PeopleRegistryTests(unittest.TestCase):
             for alias in expected_aliases:
                 self.assertEqual(registry.resolve_alias(alias), key)
 
+    def test_accepts_optional_public_link_fields_and_primary_url_fallback(self) -> None:
+        payload = {
+            "people": {
+                "alpha-person": {
+                    "name": "Alpha Person",
+                    "linkedin": "https://linkedin.example/alpha",
+                },
+                "beta-person": {
+                    "name": "Beta Person",
+                    "github": "https://github.com/beta",
+                },
+                "gamma-person": {
+                    "name": "Gamma Person",
+                    "url": "https://example.com/gamma",
+                    "linkedin": "https://linkedin.example/gamma",
+                    "github": "https://github.com/gamma",
+                },
+                "delta-person": {
+                    "name": "Delta Person",
+                },
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "people.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            registry = load_people_registry(path)
+
+        self.assertEqual(
+            registry.person("alpha-person").primary_url,
+            "https://linkedin.example/alpha",
+        )
+        self.assertEqual(
+            registry.person("beta-person").primary_url,
+            "https://github.com/beta",
+        )
+        self.assertEqual(
+            registry.person("gamma-person").primary_url,
+            "https://example.com/gamma",
+        )
+        self.assertIsNone(registry.person("delta-person").primary_url)
+
+    def test_unknown_link_field_is_rejected(self) -> None:
+        payload = {
+            "people": {
+                "alpha-person": {
+                    "name": "Alpha Person",
+                    "mastodon": "https://example.social/@alpha",
+                }
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "people.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaisesRegex(PeopleRegistryError, "unknown fields: mastodon"):
+                load_people_registry(path)
+
     def test_duplicate_alias_is_rejected(self) -> None:
         payload = {
             "people": {

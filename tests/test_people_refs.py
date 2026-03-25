@@ -60,6 +60,38 @@ class PeopleRefsTests(unittest.TestCase):
                 "[Alpha Person]: https://example.com/alpha\n",
             )
 
+    def test_skips_linkless_people_and_uses_public_link_fallbacks(self) -> None:
+        payload = {
+            "people": {
+                "alpha-person": {
+                    "name": "Alpha Person",
+                    "linkedin": "https://linkedin.example/alpha",
+                    "aliases": ["A Person"],
+                },
+                "beta-person": {
+                    "name": "Beta Person",
+                    "github": "https://github.com/beta",
+                },
+                "gamma-person": {
+                    "name": "Gamma Person",
+                },
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "people.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            registry = load_people_registry(path)
+
+            self.assertEqual(
+                iter_people_refs(registry),
+                (
+                    ("A Person", "https://linkedin.example/alpha"),
+                    ("Alpha Person", "https://linkedin.example/alpha"),
+                    ("Beta Person", "https://github.com/beta"),
+                ),
+            )
+
     def test_seed_registry_renders_expected_labels(self) -> None:
         root = Path(__file__).resolve().parent.parent
         people_path = root / "site" / "data" / "people.json"

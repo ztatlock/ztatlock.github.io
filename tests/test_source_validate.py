@@ -281,6 +281,203 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(find_source_issues(config), [])
 
+    def test_reports_linkless_person_ref_in_authored_page(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "about.dj").write_text(
+                "---\n"
+                "description: About page\n"
+                "---\n\n"
+                "# About\n\n"
+                "With [Alpha Person][].\n",
+                encoding="utf-8",
+            )
+            (data / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "alpha-person": {
+                                "name": "Alpha Person",
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'about.dj'}: generated people refs must not target linkless person label 'Alpha Person'; use plain text or add a public link in site/data/people.json"
+                ],
+            )
+
+    def test_reports_linkless_person_ref_in_structured_djot_data(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "about.dj").write_text(
+                "---\n"
+                "description: About page\n"
+                "---\n\n"
+                "# About\n\n"
+                "Body.\n",
+                encoding="utf-8",
+            )
+            (data / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "alpha-person": {
+                                "name": "Alpha Person",
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data / "teaching.json").write_text(
+                json.dumps(
+                    {
+                        "groups": [
+                            {
+                                "key": "uw_courses",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-999",
+                                        "kind": "course",
+                                        "code": "UW CSE 999",
+                                        "title": "Demo Course",
+                                        "description_djot": "Demo description",
+                                        "offerings": [{"year": 2025, "term": "Autumn"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "special_topics",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-599-demo",
+                                        "kind": "course",
+                                        "code": "UW CSE 599",
+                                        "title": "Demo Topics",
+                                        "details": ["Co-taught with [Alpha Person][]"],
+                                        "offerings": [{"year": 2025, "term": "Spring"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "summer_school",
+                                "records": [
+                                    {
+                                        "key": "demo-summer-school",
+                                        "kind": "summer_school",
+                                        "title": "Demo Summer School",
+                                        "events": [{"label": "Demo 2025", "url": "https://example.test/demo"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "teaching_assistant",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-123",
+                                        "kind": "course",
+                                        "code": "UW CSE 123",
+                                        "title": "TA Course",
+                                        "details": ["TA"],
+                                        "offerings": [{"year": 2024, "term": "Winter"}],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (teaching / "index.dj").write_text(
+                "---\n"
+                "description: Teaching page\n"
+                "---\n\n"
+                "# Teaching\n\n"
+                "__TEACHING_UW_COURSES_LIST__\n\n"
+                "__TEACHING_SPECIAL_TOPICS_LIST__\n\n"
+                "__TEACHING_SUMMER_SCHOOL_LIST__\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{data / 'teaching.json'}: generated people refs must not target linkless person label 'Alpha Person'; use plain text or add a public link in site/data/people.json"
+                ],
+            )
+
     def test_reports_missing_cv_funding_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

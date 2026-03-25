@@ -479,12 +479,19 @@ Suggested fields:
 - stable key
 - name
 - aliases
-- URL
+- optional URL
+- optional LinkedIn
+- optional GitHub
 
 Current alias norm:
 
 - `name` is the default site-facing canonical label
 - aliases are alternate spellings for resolution only
+- a person may exist canonically even when no public link is available
+- when a public link exists, `url` is preferred and `linkedin` / `github` are
+  explicit fallbacks
+- generated people refs are emitted only for people with a derived
+  primary public link
 - aliases may include fuller publication-style variants, familiar variants, or
   other alternate spellings that need to resolve cleanly
 - consumer-specific formatting policy should stay with the consumer rather

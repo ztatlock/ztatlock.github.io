@@ -86,6 +86,32 @@ class PeopleRefsAuditTests(unittest.TestCase):
             ("https://example.com/template", "https://example.com/generated"),
         )
 
+    def test_audit_treats_manual_ref_for_linkless_person_as_mismatch(self) -> None:
+        people_payload = {
+            "people": {
+                "alpha-person": {
+                    "name": "Alpha Person",
+                }
+            }
+        }
+        refs_raw = "[Alpha Person]: https://example.com/template\n"
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            people_path = tmp / "people.json"
+            refs_path = tmp / "REFS"
+            people_path.write_text(json.dumps(people_payload), encoding="utf-8")
+            refs_path.write_text(refs_raw, encoding="utf-8")
+            audit = audit_people_refs(
+                people_path=people_path,
+                refs_path=refs_path,
+            )
+
+        self.assertEqual(
+            audit.mismatched_urls["Alpha Person"],
+            ("https://example.com/template", "<no generated people ref>"),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
