@@ -1,6 +1,6 @@
 # Teaching Campaign
 
-Status: active major structured-content campaign
+Status: public-page core implemented; later homepage/CV cleanup deferred
 
 ## Goal
 

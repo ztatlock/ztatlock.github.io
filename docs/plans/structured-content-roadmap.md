@@ -158,7 +158,7 @@ Likely next outcomes:
 
 ### 4. Teaching
 
-This is the current shared-data campaign at a good public-page checkpoint.
+Teaching is now at a good public-page checkpoint.
 
 Why next:
 
@@ -200,34 +200,32 @@ Likely slice order:
 3. homepage recent-teaching projection
 4. CV teaching projection
 
-## Adjacent / Emerging Domains
+### 5. Service
 
-These are real candidates, but they are not the main initial sequence.
+Service followed teaching as the next major shared-data campaign and is now at
+a good public-page checkpoint.
 
-### Service
+Why it was next:
 
-Service is likely the strongest follow-on after teaching.
-
-Why:
-
-- it is already duplicated across the public service page, the homepage, and
-  the CV
+- it is duplicated across the public service page, the homepage, and the CV
 - the domain is list-shaped and fairly regular even though entries vary more
   than teaching
-- it looks like another shared-data-first campaign rather than a bundle-root
-  campaign
-- it already shows cross-page drift, which raises the payoff of a canonical
-  model
+- it fits the same shared-data-first pattern as students and teaching
+- it already showed cross-page drift, so canonicalization improved correctness
+  as well as maintenance
 
-Current recommendation:
+Implemented outcomes so far:
 
-- use `site/data/service.json`
-- model service as flat per-year terms with multi-group view membership
-- the canonical-model and public-wrapper slices are now implemented
-- the public service wrapper now lives at `site/service/index.dj` with
-  canonical `/service/`
-- defer homepage and CV cleanup as later cross-cutting consumer work rather
-  than part of the near-term service campaign
+- canonical service terms now live in `site/data/service.json`
+- the public service wrapper now lives at `site/service/index.dj`
+- the canonical public service URL is now `/service/`
+- repeated public service blocks now project from canonical service data
+- homepage and CV cleanup remain deferred as later cross-cutting consumer work
+
+## Adjacent / Emerging Domains
+
+These are real candidates, but they are not the main implemented sequence
+above.
 
 ### Collaborators
 
@@ -237,12 +235,7 @@ publication history.
 It may become a small side campaign or fall out naturally from people plus
 publication-derived projections.
 
-It should not derail the main sequence of:
-
-- talks
-- publications
-- students
-- teaching
+It should not derail the main sequence above.
 
 ### Funding / Grants
 
@@ -287,9 +280,13 @@ The usual shape should be:
 
 ## Current Recommendation
 
-The active major structured-content campaign is:
+The repo is now at a good checkpoint after the public-page cores for:
 
+- talks
+- publications
+- students
 - teaching
+- service
 
 Publication follow-on work should continue separately as:
 
@@ -301,5 +298,11 @@ Students follow-on work should continue separately as:
 - projection of the duplicated advising sections in `site/pages/cv.dj` from
   `site/data/students.json`
 
-And service/collaborators/funding should be revisited when they naturally fit
-the evolving structured-content model.
+Teaching and service follow-on work should continue separately as:
+
+- later homepage/CV consumer cleanup once that cross-cutting work clearly
+  earns its keep
+
+The next major structured-content decision should be choosing the next domain
+campaign, likely among collaborators, funding/grants, or similar later shared
+data domains, rather than reopening the public-page cores above prematurely.

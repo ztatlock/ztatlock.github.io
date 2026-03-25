@@ -79,7 +79,6 @@ ROOT_STATIC_SOURCE_NAMES = (
     "zip-longitude.js",
 )
 STUDENT_DATA_CONSUMER_PAGE_NAMES = ("cv.dj",)
-TEACHING_DATA_CONSUMER_PAGE_NAMES = ("teaching.dj",)
 
 
 def _legacy_publication_link_issues(path: Path) -> list[str]:
@@ -433,10 +432,10 @@ def _find_teaching_projection_issues(config: SiteConfig) -> list[str]:
 
 def _find_teaching_data_issues(config: SiteConfig) -> list[str]:
     teaching_path = config.data_dir / TEACHING_DATA_NAME
-    has_teaching_consumers = any(
-        (config.page_source_dir / name).exists()
-        for name in TEACHING_DATA_CONSUMER_PAGE_NAMES
-    ) or teaching_index_path(config.repo_root, teaching_dir=config.teaching_dir).exists()
+    has_teaching_consumers = teaching_index_path(
+        config.repo_root,
+        teaching_dir=config.teaching_dir,
+    ).exists()
     if not teaching_path.exists() and not has_teaching_consumers:
         return []
     return find_teaching_record_issues(
