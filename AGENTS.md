@@ -26,8 +26,13 @@ The short version:
 - After each coherent commit, `git push` so other machines and future sessions
   do not drift.
 - Edit authored site source under `site/`, not at the repo root.
-- For public non-publication pages, edit YAML front matter in
+- For ordinary prose-first public pages, edit YAML front matter in
   `site/pages/*.dj`.
+- For projection-backed public wrappers and consumer pages, edit the authored
+  Djot/YAML in wrapper sources such as `site/students/index.dj`,
+  `site/teaching/index.dj`, `site/service/index.dj`,
+  `site/collaborators/index.dj`, `site/funding/index.dj`, and
+  `site/cv/index.dj`.
 - For public publication pages, edit
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.

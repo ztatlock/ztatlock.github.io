@@ -6,7 +6,7 @@ source with a small Python build engine behind `make`.
 ## Repo Layout
 
 - `site/pages/`
-  Authored Djot pages.
+  Authored prose-first Djot pages.
 - `site/talks/<slug>/`
   Talk-local records for invited/public talks, with room for optional future
   talk-local prose or assets.
@@ -18,14 +18,24 @@ source with a small Python build engine behind `make`.
   Authored teaching landing-page wrapper rendered at `/teaching/`.
 - `site/service/index.dj`
   Authored service landing-page wrapper rendered at `/service/`.
+- `site/collaborators/index.dj`
+  Authored collaborators landing-page wrapper rendered at `/collaborators/`.
+- `site/funding/index.dj`
+  Authored funding landing-page wrapper rendered at `/funding/`.
 - `site/cv/index.dj`
   Authored CV consumer wrapper rendered at `/cv/`.
+- `site/data/people.json`
+  Canonical people-link registry and default site-facing people labels.
+- `site/data/students.json`
+  Canonical student/advising records for the students page plus CV reuse.
 - `site/data/service.json`
   Canonical service-term records for the service page plus later homepage and
   CV reuse.
 - `site/data/teaching.json`
   Canonical teaching/course records for the teaching page plus later homepage
   and CV reuse.
+- `site/data/funding.json`
+  Canonical funding records for the funding page plus CV reuse.
 - `site/pubs/<slug>/`
   Publication records and local publication assets.
 - `site/static/`
@@ -33,8 +43,6 @@ source with a small Python build engine behind `make`.
   static HTML pages.
 - `site/templates/`
   Shared page wrappers and the tiny non-person `REFS` remainder.
-- `site/data/people.json`
-  Canonical people-link registry.
 - `build/`
   Generated site artifact.
 - `scripts/`
@@ -49,10 +57,14 @@ source with a small Python build engine behind `make`.
   Local generated/runtime state.
 
 Metadata rules:
-- Public non-publication pages source metadata from YAML front matter in
+- Ordinary prose-first public pages source metadata from YAML front matter in
   `site/pages/*.dj`.
+- Projection-backed public wrappers and consumer pages source page-local
+  metadata from their own `index.dj` front matter.
 - The talks index is projected from talk-local records under
   `site/talks/<slug>/talk.json` into `site/talks/index.dj`.
+- The collaborators page is projected from publication coauthors plus
+  `site/data/people.json` into `site/collaborators/index.dj`.
 - The students landing page is projected from canonical advising records in
   `site/data/students.json` into `site/students/index.dj`.
 - The teaching landing page is projected from canonical course records in
@@ -61,6 +73,8 @@ Metadata rules:
 - The public service page is projected from canonical service-term records in
   `site/data/service.json` into `site/service/index.dj`, and later homepage
   and CV service facts should reuse the same records.
+- The public funding page and the CV funding list are projected from canonical
+  grant records in `site/data/funding.json`.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -106,7 +120,8 @@ Normal workflow:
 1. Edit source under `site/`.
 2. Update or add metadata in page front matter, shared data like
    `site/data/students.json`, `site/data/teaching.json`, or
-   `site/data/service.json`, talk records under `site/talks/<slug>/talk.json`,
+   `site/data/service.json`, `site/data/funding.json`, or
+   `site/data/people.json`, talk records under `site/talks/<slug>/talk.json`,
    or publication records under `site/pubs/<slug>/publication.json`.
 3. Run `make build`.
 4. Run `make check`.
@@ -126,6 +141,10 @@ Notes:
   `teaching.html`.
 - Authored service index links in Djot should use `service/`, not
   `service.html`.
+- Authored collaborators index links in Djot should use `collaborators/`, not
+  `collaborators.html`.
+- Authored funding page links in Djot should use `funding/`, not
+  `funding.html`.
 - Authored CV links in Djot should use `cv/`, not `cv.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.

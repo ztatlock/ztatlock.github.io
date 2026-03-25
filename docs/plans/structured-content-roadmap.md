@@ -27,12 +27,23 @@ then project those records back into prose-first pages where that pays off.
 
 ## Existing Single Sources Of Truth
 
-The current architecture already has two strong canonical domains:
+The current architecture now has several strong canonical domains:
 
 - `site/data/people.json`
-  Canonical people names, aliases, and URLs.
+  Canonical people names, aliases, and URLs, with `name` as the default
+  site-facing label.
+- `site/talks/<slug>/talk.json`
+  Canonical talk-local records and any future talk-local assets.
 - `site/pubs/<slug>/publication.json`
   Canonical publication-local records and assets.
+- `site/data/students.json`
+  Canonical student/advising records reused by the students page and CV.
+- `site/data/teaching.json`
+  Canonical teaching records reused by the teaching page and CV.
+- `site/data/service.json`
+  Canonical service records reused by the service page and CV.
+- `site/data/funding.json`
+  Canonical funding records reused by the funding page and CV.
 
 Future campaigns should build on those instead of inventing parallel
 registries.
@@ -388,6 +399,13 @@ The funding campaign is now at a good checkpoint:
 - the canonical public route is `/funding/`
 - the CV funding list now projects from the same canonical records
 
+The repo is also now at a good checkpoint after:
+
+- the collaborators wrapper/coauthor projection slice
+- the about-page collaborator alphabet projection slice
+- the people-registry semantics cleanup that made `people.json` name/alias
+  policy explicit before more consumers build on it
+
 Funding follow-on work should continue separately as:
 
 - later homepage funding/highlights consumers only if they clearly earn their
@@ -423,12 +441,21 @@ The main remaining cross-domain maintenance seams are now:
 
 The main adjacent campaign now underway is:
 
-- collaborators, through its first wrapper/coauthor checkpoint
+- collaborators, through the public-wrapper, about-page alphabet, and
+  people-registry-semantics checkpoints
+
+The clearest blocked adjacent slice is:
+
+- the collaborator relationship-model slice, which should likely wait until
+  the later teaching staffing slice provides a second real canonical source
+  for non-coauthor collaborator facts
 
 After that, later adjacent campaigns that still look plausible include:
 
 - eventually news, once we are ready for a more prose-heavy structured
   consumer or decide it should stay mostly prose-first
+- later funding enrichment, once grant-to-paper and grant-to-project mapping
+  clearly earns its cross-domain complexity
 
 The main caution remains the same:
 

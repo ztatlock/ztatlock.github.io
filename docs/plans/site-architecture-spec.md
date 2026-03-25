@@ -51,6 +51,9 @@ repo/
   tests/
   site/
     pages/
+    collaborators/
+    cv/
+    funding/
     students/
     teaching/
     talks/
@@ -83,6 +86,10 @@ Examples:
 
 These pages remain prose-first and should keep YAML front matter for page-local
 metadata.
+
+Projection-backed public wrappers and consumer pages now live under their own
+roots such as `site/students/`, `site/teaching/`, `site/service/`,
+`site/collaborators/`, `site/funding/`, and `site/cv/`.
 
 ### `site/pubs/`
 
@@ -172,6 +179,46 @@ Like `site/students/` and `site/teaching/`, this is not a record-bundle root.
 The canonical service truth still lives in shared data under
 `site/data/service.json`.
 
+### `site/collaborators/`
+
+Projection-backed public wrapper for the collaborators landing page.
+
+This root currently owns:
+
+- `site/collaborators/index.dj`
+
+Like `site/students/`, `site/teaching/`, and `site/service/`, this is not a
+record-bundle root.
+The current collaborators view derives from canonical publication authors plus
+`site/data/people.json`, and there is not yet a collaborator-specific shared
+data file.
+
+### `site/funding/`
+
+Projection-backed public wrapper for the funding landing page.
+
+This root currently owns:
+
+- `site/funding/index.dj`
+
+Like `site/students/`, `site/teaching/`, and `site/service/`, this is not a
+record-bundle root.
+The canonical funding truth still lives in shared data under
+`site/data/funding.json`.
+
+### `site/cv/`
+
+Cross-domain consumer wrapper for the public CV.
+
+This root currently owns:
+
+- `site/cv/index.dj`
+
+Unlike `site/pages/`, this is an explicit downstream consumer wrapper rather
+than an ordinary prose-first page.
+It intentionally consumes multiple existing canonical domains without becoming
+its own canonical data source.
+
 ### `site/data/`
 
 Cross-page structured data for facts that should have a single source of
@@ -182,14 +229,16 @@ This directory should stay small and disciplined.
 Current canonical records:
 
 - `site/data/people.json`
+- `site/data/funding.json`
 - `site/data/service.json`
 - `site/data/students.json`
 - `site/data/teaching.json`
 
-Likely future campaign domains:
+Current notable non-route gap:
 
-- later collaborators, funding, or similar repeated factual domains if they
-  clearly earn their keep
+- collaborators does not yet have collaborator-specific shared data; later
+  relationship facts should only get their own registry once they are real and
+  canonical nowhere else
 
 The rule is:
 
@@ -318,6 +367,19 @@ This route is intentionally students-specific for now.
 Its public-wrapper shape matches talks/publications, but its truth still comes
 from the shared-data layer rather than a collection-local bundle root.
 
+### Collaborators Index Page Route
+
+- source: `site/collaborators/index.dj`
+- output: `build/collaborators/index.html`
+- public URL: `/collaborators/`
+- canonical URL: `https://ztatlock.net/collaborators/`
+- draft status: `# DRAFT` in the Djot source
+
+This route is intentionally collaborators-specific for now.
+Its public-wrapper shape matches other wrapper pages, but its current truth is
+derived from publication bundles plus `site/data/people.json` rather than a
+collaborator-specific registry.
+
 ### Service Index Page Route
 
 - source: `site/service/index.dj`
@@ -329,6 +391,18 @@ from the shared-data layer rather than a collection-local bundle root.
 This route is intentionally service-specific for now.
 Its public-wrapper shape matches students/teaching/talks/publications, but its
 truth comes from shared service data under `site/data/service.json`.
+
+### Funding Index Page Route
+
+- source: `site/funding/index.dj`
+- output: `build/funding/index.html`
+- public URL: `/funding/`
+- canonical URL: `https://ztatlock.net/funding/`
+- draft status: `# DRAFT` in the Djot source
+
+This route is intentionally funding-specific for now.
+Its public-wrapper shape matches students/teaching/service/collaborators, but
+its truth comes from shared funding data under `site/data/funding.json`.
 
 ### Publications Index Page Route
 
@@ -353,6 +427,18 @@ model should only be generalized further when another domain clearly earns it.
 This route is intentionally teaching-specific for now.
 Its public-wrapper shape matches students/talks/publications, but its truth
 comes from shared teaching data under `site/data/teaching.json`.
+
+### CV Index Page Route
+
+- source: `site/cv/index.dj`
+- output: `build/cv/index.html`
+- public URL: `/cv/`
+- canonical URL: `https://ztatlock.net/cv/`
+- draft status: `# DRAFT` in the Djot source
+
+This route is intentionally CV-specific for now.
+It is a downstream cross-domain consumer wrapper over existing canonical
+domains rather than a new canonical data root of its own.
 
 ### Publication Page Route
 
