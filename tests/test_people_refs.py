@@ -97,6 +97,8 @@ class PeopleRefsTests(unittest.TestCase):
         people_path = root / "site" / "data" / "people.json"
         rendered = load_and_render_people_refs(people_path)
 
+        self.assertIn("[Adam Anderson]: https://github.com/AdamEAnderson/\n", rendered)
+        self.assertIn("[Aditya Akhileshwaran]: https://www.linkedin.com/in/adiakhil\n", rendered)
         self.assertIn("[Gus Henry Smith]: https://justg.us/\n", rendered)
         self.assertIn("[Gus Smith]: https://justg.us/\n", rendered)
         self.assertIn("[Steven L. Tanimoto]: https://www.cs.washington.edu/people/faculty/tanimoto\n", rendered)

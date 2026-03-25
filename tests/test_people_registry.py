@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from urllib.parse import urlparse
 
 from scripts.sitebuild.people_registry import PeopleRegistryError, load_people_registry
 
@@ -90,6 +91,62 @@ class PeopleRegistryTests(unittest.TestCase):
             "https://example.com/gamma",
         )
         self.assertIsNone(registry.person("delta-person").primary_url)
+
+    def test_seed_registry_preserves_primary_url_for_social_only_profiles(self) -> None:
+        registry = load_people_registry(PEOPLE_PATH)
+
+        cases = (
+            (
+                "aditya-akhileshwaran",
+                None,
+                "https://www.linkedin.com/in/adiakhil",
+                None,
+                "https://www.linkedin.com/in/adiakhil",
+            ),
+            (
+                "andrew-liu",
+                None,
+                None,
+                "https://github.com/hypercubestart/",
+                "https://github.com/hypercubestart/",
+            ),
+            (
+                "bill-zorn",
+                None,
+                "https://www.linkedin.com/in/bill-zorn-265872141",
+                None,
+                "https://www.linkedin.com/in/bill-zorn-265872141",
+            ),
+            (
+                "justin-adsuara",
+                None,
+                None,
+                "https://github.com/justinads",
+                "https://github.com/justinads",
+            ),
+        )
+
+        for key, expected_url, expected_linkedin, expected_github, expected_primary in cases:
+            person = registry.person(key)
+            self.assertEqual(person.url, expected_url)
+            self.assertEqual(person.linkedin, expected_linkedin)
+            self.assertEqual(person.github, expected_github)
+            self.assertEqual(person.primary_url, expected_primary)
+
+    def test_seed_registry_has_no_social_hosts_left_in_url_field(self) -> None:
+        raw = json.loads(PEOPLE_PATH.read_text(encoding="utf-8"))
+        people = raw["people"]
+
+        for key, person in people.items():
+            url = person.get("url")
+            if url is None:
+                continue
+            host = urlparse(url).netloc.lower()
+            self.assertNotIn(
+                host,
+                {"linkedin.com", "www.linkedin.com", "github.com", "www.github.com"},
+                msg=f"{key} still stores a social-profile URL in url",
+            )
 
     def test_unknown_link_field_is_rejected(self) -> None:
         payload = {

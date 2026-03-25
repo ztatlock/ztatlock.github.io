@@ -1,6 +1,6 @@
 # People Registry Semantics
 
-Status: initial semantics cleanup and linkability follow-on implemented
+Status: initial semantics cleanup, linkability follow-on, and seeded social-link normalization implemented
 
 It builds on:
 
@@ -133,6 +133,17 @@ The initial cleanup from this note has now landed:
 
 This means later consumers can now build on a clearer default people-label
 rule, while publications still keep their own local author spellings.
+
+The later linkability follow-on and seeded social-link normalization have now
+also landed:
+
+- `url`, `linkedin`, and `github` are optional public-link fields
+- a derived `primary_url` uses `url`, then `linkedin`, then `github`
+- generated Djot refs are emitted only for people with a `primary_url`
+- authored Djot and current structured Djot fragments may not silently depend
+  on linkless generated people refs
+- seeded LinkedIn-only and GitHub-only records now use the typed social-link
+  fields consistently instead of storing those fallback links in `url`
 
 ## Design Options
 

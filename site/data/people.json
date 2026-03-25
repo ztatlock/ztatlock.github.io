@@ -6,7 +6,7 @@
     },
     "adam-anderson": {
       "name": "Adam Anderson",
-      "url": "https://github.com/AdamEAnderson/"
+      "github": "https://github.com/AdamEAnderson/"
     },
     "adam-chlipala": {
       "name": "Adam Chlipala",
@@ -19,7 +19,7 @@
     },
     "aditya-akhileshwaran": {
       "name": "Aditya Akhileshwaran",
-      "url": "https://www.linkedin.com/in/adiakhil"
+      "linkedin": "https://www.linkedin.com/in/adiakhil"
     },
     "adriana-schulz": {
       "name": "Adriana Schulz",
@@ -31,7 +31,7 @@
     },
     "alex-fischman": {
       "name": "Alex Fischman",
-      "url": "https://www.linkedin.com/in/alex-fischman-775259265/"
+      "linkedin": "https://www.linkedin.com/in/alex-fischman-775259265/"
     },
     "alex-sanchez-stern": {
       "name": "Alex Sanchez-Stern",
@@ -55,7 +55,7 @@
     },
     "andrew-liu": {
       "name": "Andrew Liu",
-      "url": "https://github.com/hypercubestart/"
+      "github": "https://github.com/hypercubestart/"
     },
     "ang-li": {
       "name": "Ang Li",
@@ -92,7 +92,7 @@
     },
     "bill-zorn": {
       "name": "Bill Zorn",
-      "url": "https://www.linkedin.com/in/bill-zorn-265872141"
+      "linkedin": "https://www.linkedin.com/in/bill-zorn-265872141"
     },
     "bo-yuan-huang": {
       "name": "Bo-Yuan Huang",
@@ -108,7 +108,7 @@
     },
     "caleb-chan": {
       "name": "Caleb Chan",
-      "url": "https://www.linkedin.com/in/caleb-chan-0777aa216/",
+      "linkedin": "https://www.linkedin.com/in/caleb-chan-0777aa216/",
       "aliases": ["Caleb C. Chan"]
     },
     "calvin-loncaric": {
@@ -121,7 +121,7 @@
     },
     "chen-qiu": {
       "name": "Chen Qiu",
-      "url": "https://www.linkedin.com/in/jasonqiu951/"
+      "linkedin": "https://www.linkedin.com/in/jasonqiu951/"
     },
     "chenming-wu": {
       "name": "Chenming Wu",
@@ -133,7 +133,7 @@
     },
     "chris-tucker": {
       "name": "Chris Tucker",
-      "url": "https://www.linkedin.com/in/ctucker/"
+      "linkedin": "https://www.linkedin.com/in/ctucker/"
     },
     "cindy-rubio-gonzalez": {
       "name": "Cindy Rubio-González",
@@ -169,7 +169,7 @@
     },
     "david-shuffelton": {
       "name": "David Shuffelton",
-      "url": "https://www.linkedin.com/in/david-shuffelton-3209412/"
+      "linkedin": "https://www.linkedin.com/in/david-shuffelton-3209412/"
     },
     "david-thien": {
       "name": "David Thien",
@@ -189,7 +189,7 @@
     },
     "eli-rosenthal": {
       "name": "Eli Rosenthal",
-      "url": "https://www.linkedin.com/in/eli-rosenthal-79230264/"
+      "linkedin": "https://www.linkedin.com/in/eli-rosenthal-79230264/"
     },
     "ellis-michael": {
       "name": "Ellis Michael",
@@ -222,7 +222,7 @@
     },
     "grace-oh": {
       "name": "Grace Oh",
-      "url": "https://www.linkedin.com/in/ggraceoh/"
+      "linkedin": "https://www.linkedin.com/in/ggraceoh/"
     },
     "gu-yeon-wei": {
       "name": "Gu-Yeon Wei",
@@ -267,7 +267,7 @@
     },
     "jackson-brough": {
       "name": "Jackson Brough",
-      "url": "https://www.linkedin.com/in/jacksonbrough/"
+      "linkedin": "https://www.linkedin.com/in/jacksonbrough/"
     },
     "james-wilcox": {
       "name": "James Wilcox",
@@ -318,11 +318,11 @@
     },
     "juliet-oh": {
       "name": "Juliet Oh",
-      "url": "https://www.linkedin.com/in/juliet-oh-37bb59132/"
+      "linkedin": "https://www.linkedin.com/in/juliet-oh-37bb59132/"
     },
     "justin-adsuara": {
       "name": "Justin Adsuara",
-      "url": "https://github.com/justinads"
+      "github": "https://github.com/justinads"
     },
     "justin-solomon": {
       "name": "Justin Solomon",
@@ -330,7 +330,7 @@
     },
     "keith-simmons": {
       "name": "Keith Simmons",
-      "url": "https://www.linkedin.com/in/keith-simmons-66221ab3/"
+      "linkedin": "https://www.linkedin.com/in/keith-simmons-66221ab3/"
     },
     "kirsten-graham": {
       "name": "Kirsten Graham",
@@ -386,7 +386,7 @@
     },
     "miranda-edwards": {
       "name": "Miranda Edwards",
-      "url": "https://www.linkedin.com/in/miranda-edwards/"
+      "linkedin": "https://www.linkedin.com/in/miranda-edwards/"
     },
     "michael-ernst": {
       "name": "Mike Ernst",
@@ -411,7 +411,7 @@
     },
     "molly-carton": {
       "name": "Molly Carton",
-      "url": "https://www.linkedin.com/in/macarton/",
+      "linkedin": "https://www.linkedin.com/in/macarton/",
       "aliases": ["Molly Aubrey Carton"]
     },
     "mu-li": {
@@ -432,7 +432,7 @@
     },
     "noah-huck": {
       "name": "Noah Huck",
-      "url": "https://www.linkedin.com/in/noahhuck/"
+      "linkedin": "https://www.linkedin.com/in/noahhuck/"
     },
     "oliver-flatt": {
       "name": "Oliver Flatt",
@@ -440,7 +440,7 @@
     },
     "paul-curry": {
       "name": "Paul Curry",
-      "url": "https://www.linkedin.com/in/paulmichaelcurry/"
+      "linkedin": "https://www.linkedin.com/in/paulmichaelcurry/"
     },
     "pavel-panchekha": {
       "name": "Pavel Panchekha",
@@ -457,7 +457,7 @@
     },
     "ramana-kumar": {
       "name": "Ramana Kumar",
-      "url": "https://github.com/xrchz/"
+      "github": "https://github.com/xrchz/"
     },
     "ranjit-jhala": {
       "name": "Ranjit Jhala",
@@ -474,7 +474,7 @@
     },
     "rose-kunkel": {
       "name": "Rose Kunkel",
-      "url": "https://github.com/rosekunkel"
+      "github": "https://github.com/rosekunkel"
     },
     "ross-tate": {
       "name": "Ross Tate",
@@ -494,7 +494,7 @@
     },
     "scott-davidson": {
       "name": "Scott Davidson",
-      "url": "https://www.linkedin.com/in/scottdavidson92"
+      "linkedin": "https://www.linkedin.com/in/scottdavidson92"
     },
     "seth-pendergrass": {
       "name": "Seth Pendergrass",
@@ -514,7 +514,7 @@
     },
     "sorawee-porncharoenwase": {
       "name": "Sorawee Porncharoenwase",
-      "url": "https://github.com/sorawee"
+      "github": "https://github.com/sorawee"
     },
     "sorin-lerner": {
       "name": "Sorin Lerner",
@@ -530,7 +530,7 @@
     },
     "steve-anton": {
       "name": "Steve Anton",
-      "url": "https://github.com/steveanton"
+      "github": "https://github.com/steveanton"
     },
     "steven-lyubomirsky": {
       "name": "Steven Lyubomirsky",
@@ -580,7 +580,7 @@
     },
     "varun-pradeep": {
       "name": "Varun Pradeep",
-      "url": "https://www.linkedin.com/in/varun-pradeep-6aaabb1a0"
+      "linkedin": "https://www.linkedin.com/in/varun-pradeep-6aaabb1a0"
     },
     "vin-sharma": {
       "name": "Vin Sharma",
@@ -632,7 +632,7 @@
     },
     "zhiyuan-yan": {
       "name": "Zhiyuan Yan",
-      "url": "https://www.linkedin.com/in/zhiyuan-yan-234649254"
+      "linkedin": "https://www.linkedin.com/in/zhiyuan-yan-234649254"
     }
   }
 }

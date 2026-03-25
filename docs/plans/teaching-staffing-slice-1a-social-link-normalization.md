@@ -1,6 +1,6 @@
 # Teaching Staffing Slice 1A: Social-Link Normalization
 
-Status: planned
+Status: implemented
 
 It builds on:
 
