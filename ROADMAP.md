@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-24.
+Last updated: 2026-03-25.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -43,6 +43,10 @@ notes.
 - [ ] Decide whether the top-of-CV `Selected Recent Highlights` block should remain authored, be trimmed, or gain later tiny curated consumer slices rather than broadening it by inertia (`site/cv/index.dj`, `docs/plans/cv-campaign.md`, `docs/plans/cv-slice-6-talks-projection.md`).
 - [ ] Plan and implement the homepage recent-teaching projection so the repeated recent-teaching bullets on `site/pages/index.dj` derive from `site/data/teaching.json` with explicit ordering and link policy (`docs/plans/teaching-campaign.md`, `docs/plans/structured-content-roadmap.md`, `site/data/teaching.json`, `site/pages/index.dj`).
 - [ ] Plan and implement the homepage recent-service / leadership projection so the curated recent service block on `site/pages/index.dj` derives from `site/data/service.json` with explicit curation and ordering policy (`docs/plans/service-campaign.md`, `docs/plans/structured-content-roadmap.md`, `site/data/service.json`, `site/pages/index.dj`).
+- [ ] Plan and implement the homepage recent-publications projection so the repeated recent-publications block on `site/pages/index.dj` derives from canonical publication bundles under `site/pubs/` with explicit selection, ordering, and low-link policy (`docs/plans/publications-campaign.md`, `docs/plans/structured-content-roadmap.md`, `site/pubs/`, `site/pages/index.dj`).
+- [ ] Plan and implement the funding slice-1 canonical model in `site/data/funding.json`, capturing the current funding facts from the CV in a small shared-data record model while explicitly deferring grant-to-paper/project associations (`docs/plans/funding-campaign.md`, `docs/plans/funding-slice-1-canonical-model.md`, `site/data/funding.json`).
+- [ ] Plan and implement the public funding wrapper/projection slice so a public funding page lands at `site/funding/index.dj` with canonical `/funding/`, projecting repeated funding records from `site/data/funding.json` while keeping page framing hand-authored (`docs/plans/funding-campaign.md`, `site/data/funding.json`, `site/funding/index.dj`).
+- [ ] Later enrich canonical funding records with explicit related publication and project associations only if that cross-domain mapping clearly earns its complexity, so the site can eventually reflect grant outputs across funding, research, and publication views (`docs/plans/funding-campaign.md`, `site/data/funding.json`, `site/pages/research.dj`, `site/pubs/`).
 - [ ] Decide whether the authored `Book Chapters` CV subsection should remain prose-first or move into a separate publication/bibliography boundary slice rather than broadening the current indexed-publication bundle model by inertia (`docs/plans/cv-slice-5-publications-projection.md`, `site/cv/index.dj`, `site/pubs/`).
 - [ ] Later projection-layer cleanup: load shared student/teaching-style data once per projected page render and introduce a tiny projection registry if another projection-backed domain lands (`scripts/sitebuild/page_projection.py`).
 - [ ] Review whether the current centralized explicit route-kind plumbing still earns its keep or whether a small route/renderer registry helper would simplify future wrapper cutovers without obscuring the build (`scripts/sitebuild/route_model.py`, `scripts/sitebuild/route_discovery.py`, `scripts/sitebuild/page_renderer.py`, `scripts/page_metadata.py`).

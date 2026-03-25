@@ -442,8 +442,11 @@ Important clarifications:
   service records projected into `site/service/index.dj` at `/service/`
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
-- CV and news should come later, after we have enough experience projecting
-  structured subsections from canonical records
+- CV is now a proven cross-domain consumer pattern, with the wrapper at
+  `site/cv/index.dj` and multiple projected subsections backed by existing
+  canonical domains
+- news should still come later, after we have enough experience with
+  structured consumers in more prose-heavy pages
 
 The medium-term roadmap for those campaigns is captured in
 [structured-content-roadmap.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/structured-content-roadmap.md).

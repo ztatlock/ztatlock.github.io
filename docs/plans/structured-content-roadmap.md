@@ -302,11 +302,21 @@ It should not derail the main sequence above.
 
 ### Funding / Grants
 
-This is a likely future domain once the structured-content pattern is more
-mature.
+This is now the strongest likely next new shared-data domain after the current
+CV consumer checkpoint.
 
-It is a good example of a cross-page factual domain that may eventually deserve
-its own canonical records.
+It is a good fit for the established students/teaching/service pattern:
+
+- canonical shared data under `site/data/`
+- a thin public wrapper at `site/funding/index.dj`
+- later CV or homepage consumers only if they clearly earn their keep
+
+The first funding slices should stay narrow:
+
+- establish canonical funding records first
+- land a public funding page second
+- explicitly defer grant-to-paper and grant-to-project association enrichment
+  until the base architecture is stable
 
 ### News
 
@@ -346,12 +356,19 @@ The repo is now at a good checkpoint after the public-page cores for:
 - teaching
 - service
 
-The next major structured-content campaign should be:
+The repo is also now at a good checkpoint after the CV consumer work for:
 
-- CV as a cross-domain consumer wrapper, now at the first real consumer
-  checkpoint with route cutover plus students, teaching, service, indexed
-  publications, and full invited-talks projection implemented, and with the
-  next slice to be chosen deliberately
+- students
+- teaching
+- service
+- indexed publications
+- full invited talks
+
+The next major structured-content campaign should likely be:
+
+- funding / grants as a new shared-data domain, starting with a canonical
+  funding model and a public funding wrapper while deferring richer
+  grant-output associations
 
 Publication follow-on work should continue separately as:
 
@@ -373,7 +390,6 @@ Teaching and service follow-on work should continue separately as:
 Later domain campaigns should still likely include:
 
 - collaborators
-- funding / grants
 
-but only after the repo has exercised the existing canonical domains through
-the CV consumer pattern.
+but only after the repo has exercised funding and the current homepage/CV seams
+enough to make the next adjacent domain choice obvious.
