@@ -33,7 +33,11 @@ class ServiceIndexTests(unittest.TestCase):
             "- 2025 - 2027 : UW CSE Faculty Graduate Admissions Co-chair",
             department,
         )
-        self.assertIn("annual faculty skit since 2015", department)
+        self.assertIn(
+            "- 2015 - Present : UW Faculty Skit Writer, Producer, and Director",
+            department,
+        )
+        self.assertIn("  * with [Hank Levy][] and [Adriana Schulz][]", department)
 
     def test_render_public_service_section_from_temp_records(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -69,7 +73,7 @@ class ServiceIndexTests(unittest.TestCase):
                 "- [2024 - Present Demo Summit](https://example.test/demo) Co-Organizer\n",
             )
 
-    def test_department_render_includes_generated_skit_note(self) -> None:
+    def test_department_render_treats_skit_as_ordinary_service_entry(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             _write_service(
@@ -89,8 +93,10 @@ class ServiceIndexTests(unittest.TestCase):
             )
 
             rendered = render_public_service_section_list_djot(root, "department")
-            self.assertNotIn("- 2025", rendered)
-            self.assertIn("annual faculty skit since 2025", rendered)
+            self.assertIn(
+                "- 2025 - Present : UW Faculty Skit Writer, Producer, and Director",
+                rendered,
+            )
             self.assertIn("[Hank Levy][]", rendered)
 
 

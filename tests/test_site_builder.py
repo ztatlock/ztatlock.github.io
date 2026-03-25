@@ -255,7 +255,8 @@ class SiteBuilderTests(unittest.TestCase):
             self.assertIn('href="https://ztatlock.net/service/"', service_html)
             self.assertIn("Program Committee Chair", service_html)
             self.assertIn("2025 PLDI", service_html)
-            self.assertIn("annual faculty skit since 2025", service_html)
+            self.assertIn("UW Faculty Skit Writer, Producer, and Director", service_html)
+            self.assertIn("Hank Levy", service_html)
 
             teaching_html = (config.build_dir / "teaching" / "index.html").read_text(
                 encoding="utf-8"

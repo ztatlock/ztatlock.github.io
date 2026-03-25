@@ -18,7 +18,6 @@ SERVICE_SECTION_PLACEHOLDERS = {
     "mentoring": SERVICE_MENTORING_LIST_PLACEHOLDER,
     "department": SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
 }
-SKIT_SERIES_KEY = "uw-faculty-skit"
 
 
 class ServiceIndexError(ValueError):
@@ -57,7 +56,11 @@ def _render_public_service_entry_djot(
         year_label=_collapse_year_label(records),
     )
     role_suffix = f" {head.role}" if head.role else ""
-    return f"- {lead}{role_suffix}"
+    line = f"- {lead}{role_suffix}"
+    if not head.details:
+        return line
+    detail_lines = "\n".join(f"  * {detail}" for detail in head.details)
+    return f"{line}\n{detail_lines}"
 
 
 def _group_public_service_records(
@@ -68,7 +71,7 @@ def _group_public_service_records(
     group_records = [
         record
         for record in records
-        if group_key in record.view_groups and record.series_key != SKIT_SERIES_KEY
+        if group_key in record.view_groups
     ]
     by_signature: dict[tuple[object, ...], list[ServiceRecord]] = defaultdict(list)
     for record in group_records:
@@ -108,42 +111,6 @@ def _group_public_service_records(
         )
     )
 
-
-def _render_skit_note_djot(records: tuple[ServiceRecord, ...]) -> str:
-    skit_records = tuple(
-        sorted(
-            (
-                record
-                for record in records
-                if record.series_key == SKIT_SERIES_KEY
-            ),
-            key=lambda record: record.year,
-        )
-    )
-    if not skit_records:
-        return ""
-
-    first_year = skit_records[0].year
-    last_record = skit_records[-1]
-    if last_record.ongoing:
-        years_text = f"since {first_year}"
-    elif first_year == last_record.year:
-        years_text = f"in {first_year}"
-    else:
-        years_text = f"from {first_year} to {last_record.year}"
-
-    suffix = ""
-    if last_record.details:
-        suffix = f"\n  {last_record.details[0].rstrip('.')}."
-
-    return (
-        "I have also helped\n"
-        "  write, produce, and direct\n"
-        f"  UW's annual faculty skit {years_text}"
-        f"{suffix}"
-    )
-
-
 def render_public_service_section_list_djot(
     root: Path,
     group_key: str,
@@ -158,10 +125,4 @@ def render_public_service_section_list_djot(
     groups = _group_public_service_records(records, group_key=group_key)
     chunks = [_render_public_service_entry_djot(group_key, group) for group in groups]
     rendered = "\n".join(chunks)
-    if group_key == "department":
-        skit_note = _render_skit_note_djot(records)
-        if rendered and skit_note:
-            return rendered + "\n\n" + skit_note + "\n"
-        if skit_note:
-            return skit_note + "\n"
     return rendered + ("\n" if rendered else "")

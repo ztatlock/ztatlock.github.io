@@ -51,7 +51,8 @@ class PageProjectionTests(unittest.TestCase):
 
         department = render_public_service_section_list_djot(root, "department")
         self.assertIn("UW CSE Faculty Graduate Admissions Co-chair", department)
-        self.assertIn("annual faculty skit since 2015", department)
+        self.assertIn("UW Faculty Skit Writer, Producer, and Director", department)
+        self.assertIn("[Hank Levy][]", department)
 
     def test_renders_teaching_sections_from_canonical_data(self) -> None:
         rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
@@ -284,7 +285,8 @@ class PageProjectionTests(unittest.TestCase):
         self.assertNotIn(SERVICE_ORGANIZING_LIST_PLACEHOLDER, rendered)
         self.assertNotIn(SERVICE_MENTORING_LIST_PLACEHOLDER, rendered)
         self.assertNotIn(SERVICE_DEPARTMENT_LIST_PLACEHOLDER, rendered)
-        self.assertIn("annual faculty skit since 2015", rendered)
+        self.assertIn("UW Faculty Skit Writer, Producer, and Director", rendered)
+        self.assertIn("[Hank Levy][]", rendered)
         self.assertIn("Program Committee Chair", rendered)
         self.assertIn("2025 PLDI", rendered)
 

@@ -98,7 +98,8 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
         self.assertNotIn("__SERVICE_REVIEWING_LIST__", html)
-        self.assertIn("annual faculty skit since 2015", html)
+        self.assertIn("UW Faculty Skit Writer, Producer, and Director", html)
+        self.assertIn("Hank Levy", html)
         self.assertIn("Program Committee Chair", html)
         self.assertIn("2025 PLDI", html)
 
