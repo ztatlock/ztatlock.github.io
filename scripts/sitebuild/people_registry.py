@@ -77,6 +77,11 @@ def _normalize_person(key: str, raw: object, *, context: str) -> PersonRecord:
     if unknown_fields:
         raise PeopleRegistryError(f"{context}: unknown fields: {', '.join(unknown_fields)}")
 
+    # Contract: `name` is the default site-facing canonical label, while
+    # `aliases` are resolution-only alternate spellings. Publication-local
+    # records still own publication-style author strings, so the people
+    # registry should stay a small identity/default-label layer rather than a
+    # second publication-name source of truth.
     name = _require_string(raw.get("name"), context=context, field="name")
     url = _require_string(raw.get("url"), context=context, field="url")
     aliases = _optional_string_list(raw.get("aliases"), context=context, field="aliases")

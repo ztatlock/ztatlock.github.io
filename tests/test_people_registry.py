@@ -29,6 +29,26 @@ class PeopleRegistryTests(unittest.TestCase):
         self.assertEqual(registry.person("steven-tanimoto").name, "Steve Tanimoto")
         self.assertEqual(registry.person("michael-ernst").name, "Mike Ernst")
 
+    def test_seed_registry_uses_name_as_default_label_and_aliases_for_resolution(self) -> None:
+        registry = load_people_registry(PEOPLE_PATH)
+
+        cases = (
+            ("gus-smith", "Gus Smith", ("Gus Henry Smith",)),
+            ("gilbert-bernstein", "Gilbert Bernstein", ("Gilbert Louis Bernstein",)),
+            ("remy-wang", "Remy Wang", ("Yisu Remy Wang",)),
+            ("steven-tanimoto", "Steve Tanimoto", ("Steven L. Tanimoto",)),
+            ("michael-ernst", "Mike Ernst", ("Michael Ernst", "Michael D. Ernst")),
+        )
+
+        for key, expected_name, expected_aliases in cases:
+            person = registry.person(key)
+            self.assertEqual(person.name, expected_name)
+            self.assertEqual(person.aliases, expected_aliases)
+
+            self.assertEqual(registry.resolve_alias(expected_name), key)
+            for alias in expected_aliases:
+                self.assertEqual(registry.resolve_alias(alias), key)
+
     def test_duplicate_alias_is_rejected(self) -> None:
         payload = {
             "people": {
