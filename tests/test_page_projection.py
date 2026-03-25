@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.collaborators_index import COLLABORATORS_LIST_PLACEHOLDER
 from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
@@ -69,6 +70,80 @@ def _student_section(
 
 
 class PageProjectionTests(unittest.TestCase):
+    def test_applies_projection_only_to_collaborators_index_page(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            pubs_dir = root / "site" / "pubs"
+            data_dir.mkdir(parents=True)
+
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "zachary-tatlock": {
+                                "name": "Zachary Tatlock",
+                                "url": "https://ztatlock.net/",
+                            },
+                            "adam-geller": {
+                                "name": "Adam Geller",
+                                "url": "https://example.test/adam",
+                                "aliases": ["Adam T. Geller"],
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pub_dir = pubs_dir / "2025-demo-paper"
+            pub_dir.mkdir(parents=True)
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2025-01-01",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [
+                            {"name": "Zachary Tatlock", "ref": "Zachary Tatlock"},
+                            {"name": "Adam T. Geller", "ref": "Adam Geller"},
+                            {"name": "Robert Rabe", "ref": ""},
+                        ],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/paper"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            body = "# Collaborators\n\n__COLLABORATORS_LIST__\n"
+            rendered = apply_page_projections(
+                "collaborators_index_page",
+                "collaborators",
+                body,
+                root=root,
+                data_dir=data_dir,
+                publications_dir=pubs_dir,
+            )
+            self.assertNotIn(COLLABORATORS_LIST_PLACEHOLDER, rendered)
+            self.assertIn("* [Adam Geller][]", rendered)
+            self.assertIn("* Robert Rabe", rendered)
+            self.assertNotIn("Zachary Tatlock", rendered)
+
+            self.assertEqual(
+                apply_page_projections(
+                    "ordinary_page",
+                    "about",
+                    body,
+                    root=root,
+                    data_dir=data_dir,
+                    publications_dir=pubs_dir,
+                ),
+                body,
+            )
+
     def test_renders_cv_funding_list_with_en_dash_policy(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

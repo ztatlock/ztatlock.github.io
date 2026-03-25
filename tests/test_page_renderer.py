@@ -125,6 +125,27 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn("Program Committee Chair", html)
         self.assertIn("2025 PLDI", html)
 
+    def test_render_collaborators_index_page_uses_explicit_canonical_url(self) -> None:
+        canonical = "https://example.com/collaborators/"
+        html = render_page_html(
+            "collaborators_index_page",
+            "collaborators",
+            canonical_url=canonical,
+            refs_text=self.refs_text,
+            root=ROOT,
+            site_url=self.config.site_url,
+            webfiles_url=self.config.webfiles_url,
+            collaborators_dir=self.config.collaborators_dir,
+            data_dir=self.config.data_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
+        )
+        self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
+        self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+        self.assertNotIn("__COLLABORATORS_LIST__", html)
+        self.assertIn("James Wilcox", html)
+        self.assertIn("Robert Rabe", html)
+
     def test_render_funding_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/funding/"
         html = render_page_html(

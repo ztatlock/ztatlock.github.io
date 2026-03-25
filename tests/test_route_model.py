@@ -100,6 +100,18 @@ class RouteModelTests(unittest.TestCase):
         )
         validate_routes(routes)
 
+    def test_validate_routes_accepts_collaborators_index_page(self) -> None:
+        routes = (
+            route(
+                kind="collaborators_index_page",
+                key="collaborators",
+                output_relpath="collaborators/index.html",
+                public_url="/collaborators/",
+                canonical_url_value="https://ztatlock.net/collaborators/",
+            ),
+        )
+        validate_routes(routes)
+
     def test_validate_routes_accepts_service_index_page(self) -> None:
         routes = (
             route(

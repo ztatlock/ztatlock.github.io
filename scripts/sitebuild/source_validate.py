@@ -5,6 +5,10 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from scripts.collaborators_index import (
+    COLLABORATORS_LIST_PLACEHOLDER,
+    collaborators_index_path,
+)
 from scripts.cv_index import cv_index_path
 from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
 from scripts.funding_record import (
@@ -81,6 +85,7 @@ LEGACY_STUDENTS_LINK_RE = re.compile(r"\b(students\.html)\b")
 LEGACY_TEACHING_LINK_RE = re.compile(r"\b(teaching\.html)\b")
 LEGACY_TALKS_LINK_RE = re.compile(r"\b(talks\.html)\b")
 LEGACY_SERVICE_LINK_RE = re.compile(r"\b(service\.html)\b")
+LEGACY_COLLABORATORS_LINK_RE = re.compile(r"\b(collaborators\.html)\b")
 LEGACY_CV_LINK_RE = re.compile(r"\b(cv\.html)\b")
 LITERAL_SERVICE_ENTRY_RE = re.compile(
     r"^- (?:\[\d{4}(?: - (?:\d{4}|Present))? [^\]]+\]\([^)]+\)|\d{4}(?: - (?:\d{4}|Present))?(?: :)? .+)$",
@@ -98,6 +103,7 @@ LITERAL_CV_TEACHING_ENTRY_RE = re.compile(r"^[ ]{0,4}[*-] ", re.MULTILINE)
 LITERAL_CV_TALKS_ENTRY_RE = re.compile(r"^[*-] ", re.MULTILINE)
 LITERAL_CV_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
+LITERAL_COLLABORATOR_ENTRY_RE = re.compile(r"^\* ", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -141,6 +147,16 @@ def _legacy_service_link_issues(path: Path) -> list[str]:
     return [f"{path}: legacy service link should use canonical collection path: service.html -> service/"]
 
 
+def _legacy_collaborators_link_issues(path: Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    if not LEGACY_COLLABORATORS_LINK_RE.search(text):
+        return []
+    return [
+        f"{path}: legacy collaborators link should use canonical collection path: "
+        "collaborators.html -> collaborators/"
+    ]
+
+
 def _legacy_publications_index_link_issues(path: Path) -> list[str]:
     text = path.read_text(encoding="utf-8")
     if not LEGACY_PUBLICATIONS_INDEX_LINK_RE.search(text):
@@ -167,6 +183,12 @@ def _legacy_teaching_link_issues(path: Path) -> list[str]:
 
 def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     paths = list(sorted(config.page_source_dir.glob("*.dj")))
+    collaborators_index = collaborators_index_path(
+        config.repo_root,
+        collaborators_dir=config.collaborators_dir,
+    )
+    if collaborators_index.exists():
+        paths.append(collaborators_index)
     cv_index = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     if cv_index.exists():
         paths.append(cv_index)
@@ -176,6 +198,9 @@ def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     service_index = service_index_path(config.repo_root, service_dir=config.service_dir)
     if service_index.exists():
         paths.append(service_index)
+    funding_index = funding_index_path(config.repo_root, funding_dir=config.funding_dir)
+    if funding_index.exists():
+        paths.append(funding_index)
     students_index = students_index_path(config.repo_root, students_dir=config.students_dir)
     if students_index.exists():
         paths.append(students_index)
@@ -218,6 +243,13 @@ def _find_legacy_service_link_issues(config: SiteConfig) -> list[str]:
     issues: list[str] = []
     for path in _all_authored_djot_sources(config):
         issues.extend(_legacy_service_link_issues(path))
+    return issues
+
+
+def _find_legacy_collaborators_link_issues(config: SiteConfig) -> list[str]:
+    issues: list[str] = []
+    for path in _all_authored_djot_sources(config):
+        issues.extend(_legacy_collaborators_link_issues(path))
     return issues
 
 
@@ -340,6 +372,49 @@ def _extract_markdown_section_body(text: str, heading: str, *, level: int) -> st
     if match is None:
         return None
     return match.group("body")
+
+
+def _find_collaborators_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = collaborators_index_path(
+        config.repo_root,
+        collaborators_dir=config.collaborators_dir,
+    )
+    legacy_index_path = config.page_source_dir / "collaborators.dj"
+
+    issues: list[str] = []
+    if legacy_index_path.exists():
+        issues.append(
+            f"{legacy_index_path}: collaborators index wrapper must move to {index_path}"
+        )
+
+    if not legacy_index_path.exists() and not index_path.exists():
+        return issues
+
+    if not index_path.exists():
+        issues.append(
+            f"{index_path}: collaborators index page is required when the collaborators page exists"
+        )
+        return issues
+
+    issues.extend(
+        validate_general_source_metadata_path(
+            index_path,
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+    )
+
+    text = index_path.read_text(encoding="utf-8")
+    if COLLABORATORS_LIST_PLACEHOLDER not in text:
+        issues.append(
+            f"{index_path}: collaborators index page must contain {COLLABORATORS_LIST_PLACEHOLDER}"
+        )
+    if LITERAL_COLLABORATOR_ENTRY_RE.search(text):
+        issues.append(
+            f"{index_path}: collaborators index page must not contain literal collaborator entry blocks"
+        )
+    return issues
 
 
 def _find_cv_students_projection_issues(config: SiteConfig) -> list[str]:
@@ -861,6 +936,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             static_source_dir=config.static_source_dir,
         )
         + _find_cv_projection_issues(config)
+        + _find_collaborators_projection_issues(config)
         + _find_cv_students_projection_issues(config)
         + _find_cv_publications_projection_issues(config)
         + _find_cv_service_projection_issues(config)
@@ -884,6 +960,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_legacy_publication_link_issues(config)
         + _find_legacy_publications_index_link_issues(config)
         + _find_legacy_cv_link_issues(config)
+        + _find_legacy_collaborators_link_issues(config)
         + _find_legacy_students_link_issues(config)
         + _find_legacy_service_link_issues(config)
         + _find_legacy_teaching_link_issues(config)

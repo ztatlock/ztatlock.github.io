@@ -455,8 +455,9 @@ Important clarifications:
 - the funding campaign is now at a good public-plus-CV checkpoint with
   canonical funding records projected into `site/funding/index.dj` at
   `/funding/` and into the CV funding list
-- collaborators may become a small adjacent campaign, but they should not
-  derail the main sequence above
+- collaborators are now at a first public-wrapper/coauthor-projection
+  checkpoint, and they should still stay narrow until collaborator-specific
+  relationship facts clearly earn their own data layer
 - CV is now a proven cross-domain consumer pattern, with the wrapper at
   `site/cv/index.dj` and multiple projected subsections backed by existing
   canonical domains

@@ -604,6 +604,113 @@ class SourceValidateTests(unittest.TestCase):
                 [f"{funding / 'index.dj'}: funding index page must contain __FUNDING_LIST__"],
             )
 
+    def test_reports_missing_collaborators_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            collaborators = root / "site" / "collaborators"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            collaborators.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (collaborators / "index.dj").write_text(
+                "---\n"
+                "description: Collaborators page\n"
+                "---\n\n"
+                "# Collaborators\n\n"
+                "Coauthors.\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                collaborators_dir=collaborators,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{collaborators / 'index.dj'}: collaborators index page must contain __COLLABORATORS_LIST__"],
+            )
+
+    def test_reports_literal_collaborator_entry_blocks_after_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            collaborators = root / "site" / "collaborators"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            collaborators.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (collaborators / "index.dj").write_text(
+                "---\n"
+                "description: Collaborators page\n"
+                "---\n\n"
+                "# Collaborators\n\n"
+                "__COLLABORATORS_LIST__\n\n"
+                "* [James Wilcox][]\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                collaborators_dir=collaborators,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{collaborators / 'index.dj'}: collaborators index page must not contain literal collaborator entry blocks"],
+            )
+
     def test_reports_missing_cv_students_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
@@ -2285,6 +2392,50 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [f"{pages / 'index.dj'}: legacy students link should use canonical collection path: students.html -> students/"],
+            )
+
+    def test_reports_legacy_collaborators_link(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home\n"
+                "---\n"
+                "# Home\n\n"
+                "[Collaborators](collaborators.html)\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'index.dj'}: legacy collaborators link should use canonical collection path: "
+                    "collaborators.html -> collaborators/"
+                ],
             )
 
     def test_reports_legacy_service_link(self) -> None:

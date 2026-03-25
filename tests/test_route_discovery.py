@@ -151,6 +151,15 @@ class RouteDiscoveryTests(unittest.TestCase):
             ["site/cv/index.dj"],
         )
 
+    def test_discovers_collaborators_index_route(self) -> None:
+        route = find_route(self.routes, kind="collaborators_index_page", key="collaborators")
+        self.assertEqual(route.output_relpath, "collaborators/index.html")
+        self.assertEqual(route.public_url, "/collaborators/")
+        source_paths = [path.relative_to(ROOT).as_posix() for path in route.source_paths]
+        self.assertIn("site/collaborators/index.dj", source_paths)
+        self.assertIn("site/data/people.json", source_paths)
+        self.assertIn("site/pubs/2008-oopsla-dtar/publication.json", source_paths)
+
     def test_discovers_publications_index_route(self) -> None:
         route = find_route(self.routes, kind="publications_index_page", key="publications")
         self.assertEqual(route.output_relpath, "pubs/index.html")
@@ -271,6 +280,62 @@ class RouteDiscoveryTests(unittest.TestCase):
                 page_source_dir=page_source_dir,
                 service_dir=service_dir,
                 publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
+
+    def test_rejects_legacy_and_collection_collaborators_wrappers_together(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            collaborators_dir = root / "site" / "collaborators"
+            publications_dir = root / "site" / "pubs"
+            data_dir = root / "site" / "data"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            collaborators_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            data_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "collaborators.dj").write_text("# Collaborators\n", encoding="utf-8")
+            (collaborators_dir / "index.dj").write_text(
+                "# Collaborators\n\n__COLLABORATORS_LIST__\n",
+                encoding="utf-8",
+            )
+            (data_dir / "people.json").write_text(
+                '{"people":{"zachary-tatlock":{"name":"Zachary Tatlock","url":"https://ztatlock.net/"}}}\n',
+                encoding="utf-8",
+            )
+            pub_dir = publications_dir / "2025-demo-paper"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2025-01-01",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Zachary Tatlock", "ref": "Zachary Tatlock"}],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/paper"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                collaborators_dir=collaborators_dir,
+                publications_dir=publications_dir,
+                data_dir=data_dir,
                 static_source_dir=static_source_dir,
             )
 

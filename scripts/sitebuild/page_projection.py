@@ -5,6 +5,11 @@ from __future__ import annotations
 from pathlib import Path
 import re
 
+from scripts.collaborators_index import (
+    COLLABORATORS_LIST_PLACEHOLDER,
+    CollaboratorsIndexError,
+    render_public_collaborators_list_djot,
+)
 from scripts.funding_index import (
     FUNDING_LIST_PLACEHOLDER,
     FundingIndexError,
@@ -579,6 +584,18 @@ def apply_page_projections(
     talks_dir: Path | None = None,
     publications_dir: Path | None = None,
 ) -> str:
+    if route_kind == "collaborators_index_page" and route_key == "collaborators":
+        people_path = (data_dir / "people.json") if data_dir is not None else None
+        try:
+            rendered = render_public_collaborators_list_djot(
+                root,
+                publications_dir=publications_dir,
+                people_path=people_path,
+            ).rstrip()
+        except CollaboratorsIndexError as err:
+            raise PageProjectionError(str(err)) from err
+        return body.replace(COLLABORATORS_LIST_PLACEHOLDER, rendered)
+
     if route_kind == "talks_index_page" and route_key == "talks" and TALKS_LIST_PLACEHOLDER in body:
         rendered = render_talks_list_djot(root, talks_dir=talks_dir).rstrip()
         return body.replace(TALKS_LIST_PLACEHOLDER, rendered)

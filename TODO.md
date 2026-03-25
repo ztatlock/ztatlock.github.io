@@ -28,9 +28,10 @@
   `docs/plans/structured-content-roadmap.md`:
   the major canonical/shared-data and CV consumer campaigns are now through
   funding,
+  collaborators is now through its first public-wrapper/coauthor projection
+  checkpoint,
   the main remaining cross-domain seams are the curated homepage/CV blocks,
   publication artifact enrichment remains separate,
-  collaborators is the clearest adjacent new domain,
   news remains later,
   and longer-term funding enrichment around grant-output associations is
   strategically important but intentionally deferred.

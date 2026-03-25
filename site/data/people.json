@@ -14,7 +14,8 @@
     },
     "adam-geller": {
       "name": "Adam Geller",
-      "url": "https://www.cs.ubc.ca/~atgeller/"
+      "url": "https://www.cs.ubc.ca/~atgeller/",
+      "aliases": ["Adam T. Geller"]
     },
     "aditya-akhileshwaran": {
       "name": "Aditya Akhileshwaran",
@@ -270,7 +271,8 @@
     },
     "james-wilcox": {
       "name": "James Wilcox",
-      "url": "https://jamesrwilcox.com/"
+      "url": "https://jamesrwilcox.com/",
+      "aliases": ["James R. Wilcox"]
     },
     "jared-roesch": {
       "name": "Jared Roesch",
@@ -299,7 +301,8 @@
     },
     "jon-jacky": {
       "name": "Jon Jacky",
-      "url": "http://staff.washington.edu/jon/"
+      "url": "http://staff.washington.edu/jon/",
+      "aliases": ["Jonathan Jacky"]
     },
     "jonas-regehr": {
       "name": "Jonas Regehr",
@@ -388,7 +391,7 @@
     "michael-ernst": {
       "name": "Michael Ernst",
       "url": "https://homes.cs.washington.edu/~mernst/",
-      "aliases": ["Mike Ernst"]
+      "aliases": ["Mike Ernst", "Michael D. Ernst"]
     },
     "michael-stepp": {
       "name": "Michael Stepp",
@@ -445,7 +448,8 @@
     },
     "philip-guo": {
       "name": "Philip Guo",
-      "url": "https://pg.ucsd.edu/"
+      "url": "https://pg.ucsd.edu/",
+      "aliases": ["Philip J. Guo"]
     },
     "philip-zucker": {
       "name": "Philip Zucker",
@@ -567,7 +571,8 @@
     },
     "tom-anderson": {
       "name": "Tom Anderson",
-      "url": "https://www.cs.washington.edu/people/faculty/tom/"
+      "url": "https://www.cs.washington.edu/people/faculty/tom/",
+      "aliases": ["Thomas E. Anderson"]
     },
     "valentin-robert": {
       "name": "Valentin Robert",

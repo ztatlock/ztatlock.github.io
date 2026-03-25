@@ -46,6 +46,14 @@ class SitemapBuilderTests(unittest.TestCase):
                 canonical_url="https://ztatlock.net/about.html",
             ),
             route(
+                kind="collaborators_index_page",
+                key="collaborators",
+                source_paths=(Path("site/collaborators/index.dj"), Path("site/data/people.json")),
+                output_relpath="collaborators/index.html",
+                public_url="/collaborators/",
+                canonical_url="https://ztatlock.net/collaborators/",
+            ),
+            route(
                 kind="cv_index_page",
                 key="cv",
                 source_paths=(Path("site/cv/index.dj"),),
@@ -131,7 +139,7 @@ class SitemapBuilderTests(unittest.TestCase):
         included = [item.key for item in routes if route_is_sitemap_entry(item)]
         self.assertEqual(
             included,
-            ["about", "cv", "talks", "students", "service", "teaching", "demo", "demo-html", "paper"],
+            ["about", "collaborators", "cv", "talks", "students", "service", "teaching", "demo", "demo-html", "paper"],
         )
 
     def test_build_entries_uses_lookup_and_fallback_today(self) -> None:

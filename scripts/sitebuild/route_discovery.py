@@ -4,10 +4,15 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from scripts.collaborators_index import collaborators_index_path
 from scripts.cv_index import cv_index_path
 from scripts.funding_record import FUNDING_DATA_NAME, funding_index_path
 from scripts.page_source import DRAFT_HEADING_RE
-from scripts.publication_index import publications_index_path
+from scripts.publication_index import (
+    PublicationIndexError,
+    load_publication_index_records,
+    publications_index_path,
+)
 from scripts.publication_record import (
     EXTRA_CONTENT_NAME,
     PUBLICATION_RECORD_NAME,
@@ -77,6 +82,58 @@ def _cv_collection_index_route(config: SiteConfig) -> Route | None:
         canonical_url=canonical_url(config.site_url, "/cv/"),
         is_draft=_is_draft_page(index_path),
     )
+
+
+def _collaborators_collection_index_route(config: SiteConfig) -> Route | None:
+    index_path = collaborators_index_path(
+        config.repo_root,
+        collaborators_dir=config.collaborators_dir,
+    )
+    if not index_path.exists():
+        return None
+
+    legacy_collaborators_page = config.page_source_dir / "collaborators.dj"
+    if legacy_collaborators_page.exists():
+        raise RouteDiscoveryError(
+            f"{legacy_collaborators_page}: collaborators index wrapper must live at {index_path}"
+        )
+
+    source_paths: list[Path] = [index_path]
+    if config.people_data_path.exists():
+        source_paths.append(config.people_data_path)
+    try:
+        publication_records = load_publication_index_records(
+            config.repo_root,
+            publications_dir=config.publications_dir,
+        )
+    except PublicationIndexError as err:
+        raise RouteDiscoveryError(str(err)) from err
+    source_paths.extend(
+        publication_record_path(
+            config.repo_root,
+            record.slug,
+            publications_dir=config.publications_dir,
+        )
+        for record in publication_records
+    )
+
+    return Route(
+        kind="collaborators_index_page",
+        key="collaborators",
+        source_paths=tuple(source_paths),
+        output_relpath="collaborators/index.html",
+        public_url="/collaborators/",
+        canonical_url=canonical_url(config.site_url, "/collaborators/"),
+        is_draft=_is_draft_page(index_path),
+    )
+
+
+def _collaborators_index_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    collaborators_route = _collaborators_collection_index_route(config)
+    if collaborators_route is not None:
+        routes.append(collaborators_route)
+    return routes
 
 
 def _cv_index_routes(config: SiteConfig) -> list[Route]:
@@ -469,6 +526,7 @@ def _publication_asset_routes(config: SiteConfig, page_routes: tuple[Route, ...]
 
 def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     ordinary_routes = _ordinary_page_routes(config)
+    collaborators_index_routes = _collaborators_index_routes(config)
     cv_index_routes = _cv_index_routes(config)
     talks_index_routes = _talks_index_routes(config)
     service_index_routes = _service_index_routes(config)
@@ -481,6 +539,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
         sorted(
             (
                 *ordinary_routes,
+                *collaborators_index_routes,
                 *cv_index_routes,
                 *talks_index_routes,
                 *service_index_routes,

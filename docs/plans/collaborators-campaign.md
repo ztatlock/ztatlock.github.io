@@ -1,6 +1,6 @@
 # Collaborators Campaign
 
-Status: planned
+Status: slice 1 implemented
 
 It builds on:
 
@@ -25,8 +25,8 @@ for later collaborator-specific enrichment when it clearly earns its keep.
 
 Collaborators is now a strong adjacent campaign because:
 
-- there is already a dedicated public page at
-  `site/pages/collaborators.dj`
+- there is now a dedicated public page at
+  `site/collaborators/index.dj`
 - the current page is mostly list-shaped and lightly framed
 - much of its current substance is already derivable from canonical
   publication bundles plus `site/data/people.json`
@@ -41,8 +41,8 @@ the authored homepage/CV highlights blocks.
 
 Current explicit collaborator-related surfaces:
 
-- `site/pages/collaborators.dj`
-  a hand-authored alphabetical list of collaborator names
+- `site/collaborators/index.dj`
+  a thin wrapper over a projected alphabetical coauthor list
 - `site/pages/about.dj`
   a hand-authored collaborator alphabet-coverage note
 - `site/pubs/<slug>/publication.json`
@@ -52,13 +52,15 @@ Current explicit collaborator-related surfaces:
 
 Important current facts:
 
-- the current collaborators page is really a coauthor page today, even though
+- the collaborators page is really a coauthor page today, even though
   the title says `Collaborators`
-- the hand-authored page lists `118` names
+- before slice 1, the hand-authored page listed `118` names
 - canonical publication bundles currently expose `133` unique author strings
 - only a small number of publication-author strings are still unresolved
   through `people.json`, and most of those appear to be alias cleanup rather
   than deeper modeling gaps
+- the current projected page renders `131` collaborator names after excluding
+  `Zachary Tatlock` and adding missing canonical coauthors
 
 Important current constraints:
 
@@ -104,6 +106,14 @@ For slice 1:
 - move the wrapper to `site/collaborators/index.dj`
 - canonicalize `/collaborators/`
 - do not create `site/data/collaborators.json` yet
+
+Current checkpoint:
+
+- slice 1 is landed
+- the public route is now `/collaborators/`
+- the list is projected from publication coauthors plus `people.json`
+- display uses the shortest human-facing label among `name` and `aliases`
+- unresolved names such as `Robert Rabe` remain as plain text
 
 Later, if non-coauthor collaborator facts clearly matter, add a small
 collaborator-specific shared-data layer keyed by `people.json` person keys.

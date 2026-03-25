@@ -292,10 +292,10 @@ above.
 
 ### Collaborators
 
-This now looks like the clearest adjacent new campaign because it is closely
-tied to people and publication history.
+The collaborators campaign is now underway through its first public-wrapper /
+coauthor-projection slice.
 
-It should begin narrowly:
+The current checkpoint is narrow on purpose:
 
 - a thin public wrapper at `site/collaborators/index.dj`
 - a first derived coauthor list from publication bundles plus `people.json`
@@ -412,9 +412,9 @@ The main remaining cross-domain maintenance seams are now:
 - the publication-boundary question around the authored CV `Book Chapters`
   subsection
 
-The clearest adjacent new campaign now looks like:
+The main adjacent campaign now underway is:
 
-- collaborators
+- collaborators, through its first wrapper/coauthor checkpoint
 
 After that, later adjacent campaigns that still look plausible include:
 

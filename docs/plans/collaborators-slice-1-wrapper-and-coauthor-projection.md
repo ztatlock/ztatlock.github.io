@@ -1,6 +1,6 @@
 # Collaborators Slice 1: Wrapper / Coauthor Projection
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -124,7 +124,7 @@ including the page owner as his own collaborator.
 - no optional-URL schema change for `people.json`
 - no attempt to solve every future collaborator relationship in this slice
 
-## Expected Invariant After This Slice
+## Landed Invariant
 
 - the public collaborators page is a thin wrapper at
   `site/collaborators/index.dj`
@@ -137,7 +137,7 @@ including the page owner as his own collaborator.
   - about-page collaborator-stat projection, or
   - a later collaborator-specific relationship model
 
-## Expected Visible Changes
+## Observed Visible Changes
 
 Visible changes on the collaborators page are acceptable if they are explainable as:
 
@@ -145,15 +145,15 @@ Visible changes on the collaborators page are acceptable if they are explainable
 - explicit familiar-name display policy from `people.json` aliases
 - plain-text fallback for unresolved names
 
-Likely examples:
+Observed examples:
 
-- newer coauthors missing from the current page may appear
+- newer coauthors missing from the current page now appear
 - publication-style names like `Yisu Remy Wang` may display as familiar forms
   like `Remy Wang`
-- `Zachary Tatlock` will disappear from the list
+- `Zachary Tatlock` no longer appears in the list
 - unresolved names like `Robert Rabe` may remain as plain text
 
-Nothing outside the collaborators route and the rewritten about-page link
+Nothing outside the collaborators route and the rewritten about/notes links
 should change.
 
 ## Verification Targets
@@ -170,6 +170,8 @@ should change.
 - rendered review of:
   - old/new collaborators page body
   - the about-page link rewrite from `collaborators.html` to
+    `collaborators/`
+  - the notes-page link rewrite from `collaborators.html` to
     `collaborators/`
 - `make build`
 - `make test`
