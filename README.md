@@ -16,6 +16,8 @@ source with a small Python build engine behind `make`.
   Authored students landing-page wrapper rendered at `/students/`.
 - `site/teaching/index.dj`
   Authored teaching landing-page wrapper rendered at `/teaching/`.
+- `site/service/index.dj`
+  Authored service landing-page wrapper rendered at `/service/`.
 - `site/data/service.json`
   Canonical service-term records for the service page plus later homepage and
   CV reuse.
@@ -54,9 +56,9 @@ Metadata rules:
 - The teaching landing page is projected from canonical course records in
   `site/data/teaching.json` into `site/teaching/index.dj`, and later homepage
   and CV teaching facts should reuse the same records.
-- The public service page still lives in `site/pages/service.dj`, but its
-  repeated service facts are now canonicalized in `site/data/service.json`
-  ahead of a later wrapper/projection cutover.
+- The public service page is projected from canonical service-term records in
+  `site/data/service.json` into `site/service/index.dj`, and later homepage
+  and CV service facts should reuse the same records.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -120,6 +122,8 @@ Notes:
   `students.html`.
 - Authored teaching index links in Djot should use `teaching/`, not
   `teaching.html`.
+- Authored service index links in Djot should use `service/`, not
+  `service.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.
   Keep `site/templates/REFS` only for non-person references such as `PGAS`

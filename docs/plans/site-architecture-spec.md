@@ -160,6 +160,18 @@ Like `site/students/`, this is not a record-bundle root.
 The canonical teaching truth still lives in shared data under
 `site/data/teaching.json`.
 
+### `site/service/`
+
+Projection-backed public wrapper for the service landing page.
+
+This root currently owns:
+
+- `site/service/index.dj`
+
+Like `site/students/` and `site/teaching/`, this is not a record-bundle root.
+The canonical service truth still lives in shared data under
+`site/data/service.json`.
+
 ### `site/data/`
 
 Cross-page structured data for facts that should have a single source of
@@ -170,13 +182,14 @@ This directory should stay small and disciplined.
 Current canonical records:
 
 - `site/data/people.json`
+- `site/data/service.json`
 - `site/data/students.json`
 - `site/data/teaching.json`
 
 Likely future campaign domains:
 
-- later service, collaborators, funding, or similar repeated factual domains if
-  they clearly earn their keep
+- later collaborators, funding, or similar repeated factual domains if they
+  clearly earn their keep
 
 The rule is:
 
@@ -305,6 +318,18 @@ This route is intentionally students-specific for now.
 Its public-wrapper shape matches talks/publications, but its truth still comes
 from the shared-data layer rather than a collection-local bundle root.
 
+### Service Index Page Route
+
+- source: `site/service/index.dj`
+- output: `build/service/index.html`
+- public URL: `/service/`
+- canonical URL: `https://ztatlock.net/service/`
+- draft status: `# DRAFT` in the Djot source
+
+This route is intentionally service-specific for now.
+Its public-wrapper shape matches students/teaching/talks/publications, but its
+truth comes from shared service data under `site/data/service.json`.
+
 ### Publications Index Page Route
 
 - source: `site/pubs/index.dj`
@@ -400,6 +425,7 @@ canonical domains in this order:
 2. publications
 3. students
 4. teaching
+5. service
 
 Important clarifications:
 
@@ -412,8 +438,8 @@ Important clarifications:
   reuse rather than collection-shape cleanup
 - the teaching campaign is now at a good public-page checkpoint with canonical
   teaching records projected into `site/teaching/index.dj` at `/teaching/`
-- service is likely the next strongest follow-on after teaching because it is
-  also repeated across a public page, the homepage, and the CV
+- the service campaign is now at a good public-page checkpoint with canonical
+  service records projected into `site/service/index.dj` at `/service/`
 - collaborators may become a small adjacent campaign, but they should not
   derail the main sequence above
 - CV and news should come later, after we have enough experience projecting

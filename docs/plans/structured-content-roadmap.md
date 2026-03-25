@@ -223,9 +223,9 @@ Current recommendation:
 
 - use `site/data/service.json`
 - model service as flat per-year terms with multi-group view membership
-- slice 1 canonical service-model work is now implemented
-- later move the public wrapper to `site/service/index.dj` with canonical
-  `/service/`
+- the canonical-model and public-wrapper slices are now implemented
+- the public service wrapper now lives at `site/service/index.dj` with
+  canonical `/service/`
 - defer homepage and CV cleanup as later cross-cutting consumer work rather
   than part of the near-term service campaign
 

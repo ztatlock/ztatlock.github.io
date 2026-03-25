@@ -1,6 +1,6 @@
 # Service Campaign
 
-Status: active major structured-content campaign
+Status: public-page core implemented; later homepage/CV cleanup deferred
 
 ## Goal
 
@@ -22,6 +22,12 @@ Service is now the strongest next major shared-data domain because:
   correctness as well as maintenance
 - it fits the same shared-data-first pattern that worked for students and
   teaching
+
+That public-page core is now implemented:
+
+- canonical service terms live in `site/data/service.json`
+- the public service wrapper lives at `site/service/index.dj`
+- the canonical public route is `/service/`
 
 ## Historical Pre-Slice-2 Surface Audit
 
@@ -100,15 +106,15 @@ Service should follow the students/teaching pattern more than the
 talks/publications pattern:
 
 - canonical truth in shared data under `site/data/`
-- a thin public service wrapper later
+- a thin public service wrapper at `site/service/index.dj`
 - later cross-cutting renderers for the homepage and CV once more domains are
   canonicalized
 
 Recommended target shape:
 
 - canonical data: `site/data/service.json`
-- likely future public wrapper: `site/service/index.dj`
-- likely canonical public route: `/service/`
+- public wrapper: `site/service/index.dj`
+- canonical public route: `/service/`
 
 This is intentionally not a bundle-root campaign.
 Service records do not currently need per-record local prose, assets, or
@@ -202,6 +208,8 @@ Invariant after slice 1:
 - no public rendering has switched yet
 
 ### Slice 2. Public Service Wrapper / Route Cutover
+
+Implemented.
 
 - move the public wrapper to `site/service/index.dj`
 - canonicalize `/service/`
