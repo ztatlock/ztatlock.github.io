@@ -36,6 +36,7 @@ notes.
 - [ ] Plan and implement the students CV-projection slice so the duplicated advising sections in `site/cv/index.dj` render from `site/data/students.json` with an intentionally more compressed CV-specific view (`docs/plans/cv-campaign.md`, `docs/plans/cv-slice-2-students-projection.md`, `site/data/students.json`, `site/cv/index.dj`).
 - [ ] Decide whether the current omission of Ian Briggs from the CV visiting-students section is intentional or drift to remove during the students CV slice (`site/students/index.dj`, `site/cv/index.dj`, `docs/plans/cv-campaign.md`, `docs/plans/cv-slice-2-students-projection.md`).
 - [ ] Later projection-layer cleanup: load shared student/teaching-style data once per projected page render and introduce a tiny projection registry if another projection-backed domain lands (`scripts/sitebuild/page_projection.py`).
+- [ ] Review whether the current centralized explicit route-kind plumbing still earns its keep or whether a small route/renderer registry helper would simplify future wrapper cutovers without obscuring the build (`scripts/sitebuild/route_model.py`, `scripts/sitebuild/route_discovery.py`, `scripts/sitebuild/page_renderer.py`, `scripts/page_metadata.py`).
 
 ## Open TODOs In Source Files
 

@@ -1,6 +1,6 @@
 # Teaching Campaign
 
-Status: public-page core implemented; later homepage/CV cleanup deferred
+Status: public-page core implemented; not the active major campaign; later homepage/CV cleanup deferred
 
 ## Goal
 
