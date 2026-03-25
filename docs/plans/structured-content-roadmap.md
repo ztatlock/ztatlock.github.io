@@ -292,13 +292,18 @@ above.
 
 ### Collaborators
 
-This may be one of the easiest domains because it is closely tied to people and
-publication history.
+This now looks like the clearest adjacent new campaign because it is closely
+tied to people and publication history.
 
-It may become a small side campaign or fall out naturally from people plus
-publication-derived projections.
+It should begin narrowly:
 
-It should not derail the main sequence above.
+- a thin public wrapper at `site/collaborators/index.dj`
+- a first derived coauthor list from publication bundles plus `people.json`
+- collaborator-specific relationship data only later, once non-coauthor facts
+  become real and worth modeling
+
+It should still avoid turning collaborators into a bigger relationship system
+too early.
 
 ### Funding / Grants
 
@@ -407,11 +412,16 @@ The main remaining cross-domain maintenance seams are now:
 - the publication-boundary question around the authored CV `Book Chapters`
   subsection
 
-Later adjacent domain campaigns that still look plausible include:
+The clearest adjacent new campaign now looks like:
 
 - collaborators
+
+After that, later adjacent campaigns that still look plausible include:
+
 - eventually news, once we are ready for a more prose-heavy structured
   consumer or decide it should stay mostly prose-first
 
-but only after the repo has exercised funding and the current homepage/CV seams
-enough to make the next adjacent domain choice obvious.
+The main caution remains the same:
+
+- do not let adjacent campaigns obscure the still-open homepage/CV curated
+  seams or the later projection-layer cleanup question

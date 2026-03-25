@@ -395,6 +395,17 @@ Suggested fields:
 - aliases
 - URL
 
+Current alias norm:
+
+- aliases are ordered
+- the first alias may act as a preferred familiar display label for consumers
+  that explicitly opt into that policy
+- later aliases are additional resolution spellings
+
+This keeps the registry minimal while still supporting derived consumers such
+as collaborators that want `James Wilcox`-style familiar labels without
+changing publication-local spellings.
+
 This registry should eventually feed:
 
 - collaborator/coauthor links
