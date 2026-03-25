@@ -81,6 +81,27 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
 
+    def test_render_service_index_page_uses_explicit_canonical_url(self) -> None:
+        canonical = "https://example.com/service/"
+        html = render_page_html(
+            "service_index_page",
+            "service",
+            canonical_url=canonical,
+            refs_text=self.refs_text,
+            root=ROOT,
+            site_url=self.config.site_url,
+            webfiles_url=self.config.webfiles_url,
+            data_dir=self.config.data_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
+        )
+        self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
+        self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+        self.assertNotIn("__SERVICE_REVIEWING_LIST__", html)
+        self.assertIn("annual faculty skit since 2015", html)
+        self.assertIn("Program Committee Chair", html)
+        self.assertIn("2025 PLDI", html)
+
     def test_render_students_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/students/"
         html = render_page_html(

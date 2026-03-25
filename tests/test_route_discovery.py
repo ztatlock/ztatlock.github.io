@@ -151,6 +151,15 @@ class RouteDiscoveryTests(unittest.TestCase):
             ["site/pubs/index.dj"],
         )
 
+    def test_discovers_service_index_route(self) -> None:
+        route = find_route(self.routes, kind="service_index_page", key="service")
+        self.assertEqual(route.output_relpath, "service/index.html")
+        self.assertEqual(route.public_url, "/service/")
+        self.assertEqual(
+            [path.relative_to(ROOT).as_posix() for path in route.source_paths],
+            ["site/service/index.dj", "site/data/service.json"],
+        )
+
     def test_discovers_students_index_route(self) -> None:
         route = find_route(self.routes, kind="students_index_page", key="students")
         self.assertEqual(route.output_relpath, "students/index.html")
@@ -215,6 +224,34 @@ class RouteDiscoveryTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=page_source_dir,
+                publications_dir=publications_dir,
+                static_source_dir=static_source_dir,
+            )
+
+            with self.assertRaises(RouteDiscoveryError):
+                discover_routes(config)
+
+    def test_rejects_legacy_and_collection_service_wrappers_together(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            page_source_dir = root / "site" / "pages"
+            service_dir = root / "site" / "service"
+            publications_dir = root / "site" / "pubs"
+            static_source_dir = root / "site" / "static"
+
+            page_source_dir.mkdir(parents=True)
+            service_dir.mkdir(parents=True)
+            publications_dir.mkdir(parents=True)
+            static_source_dir.mkdir(parents=True)
+
+            (page_source_dir / "service.dj").write_text("# Service\n", encoding="utf-8")
+            (service_dir / "index.dj").write_text("# Service\n", encoding="utf-8")
+            (static_source_dir / "style.css").write_text("body {}\n", encoding="utf-8")
+
+            config = load_site_config(
+                root,
+                page_source_dir=page_source_dir,
+                service_dir=service_dir,
                 publications_dir=publications_dir,
                 static_source_dir=static_source_dir,
             )

@@ -10,10 +10,11 @@ from scripts.sitebuild.source_validate import find_source_issues
 
 
 class SourceValidateTests(unittest.TestCase):
-    def test_reports_missing_service_registry_when_service_page_exists(self) -> None:
+    def test_reports_missing_service_registry_when_service_index_exists(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
+            service = root / "site" / "service"
             teaching = root / "site" / "teaching"
             students = root / "site" / "students"
             talks = root / "site" / "talks"
@@ -31,17 +32,23 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "service.dj").write_text(
+            service.mkdir(parents=True)
+            (service / "index.dj").write_text(
                 "---\n"
                 "description: Service\n"
                 "---\n\n"
-                "# Service\n",
+                "# Service\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
                 encoding="utf-8",
             )
 
             config = load_site_config(
                 root,
                 page_source_dir=pages,
+                service_dir=service,
                 students_dir=students,
                 talks_dir=talks,
                 publications_dir=pubs,
@@ -54,10 +61,11 @@ class SourceValidateTests(unittest.TestCase):
                 [f"missing service registry: {data / 'service.json'}"],
             )
 
-    def test_reports_service_page_drift_against_canonical_registry(self) -> None:
+    def test_reports_missing_service_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pages = root / "site" / "pages"
+            service = root / "site" / "service"
             teaching = root / "site" / "teaching"
             students = root / "site" / "students"
             talks = root / "site" / "talks"
@@ -75,16 +83,15 @@ class SourceValidateTests(unittest.TestCase):
             (static / "img").mkdir(parents=True)
             (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
 
-            (pages / "service.dj").write_text(
+            service.mkdir(parents=True)
+            (service / "index.dj").write_text(
                 "---\n"
                 "description: Service\n"
                 "---\n\n"
                 "# Service\n\n"
-                "## Reviewing\n\n"
-                "- 2025 OtherConf Program Committee\n\n"
-                "## Organizing\n\n"
-                "## Mentoring\n\n"
-                "## Department\n",
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "__SERVICE_MENTORING_LIST__\n",
                 encoding="utf-8",
             )
             (data / "service.json").write_text(
@@ -107,6 +114,7 @@ class SourceValidateTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=pages,
+                service_dir=service,
                 students_dir=students,
                 talks_dir=talks,
                 publications_dir=pubs,
@@ -117,8 +125,7 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [
-                    f"{pages / 'service.dj'}: service section reviewing missing canonical entries: 2025 DemoConf Program Committee",
-                    f"{pages / 'service.dj'}: service section reviewing has non-canonical entries: 2025 OtherConf Program Committee",
+                    f"{service / 'index.dj'}: service index page must contain __SERVICE_DEPARTMENT_LIST__",
                 ],
             )
 
@@ -651,6 +658,81 @@ class SourceValidateTests(unittest.TestCase):
             self.assertEqual(
                 find_source_issues(config),
                 [f"{pages / 'index.dj'}: legacy students link should use canonical collection path: students.html -> students/"],
+            )
+
+    def test_reports_legacy_service_link(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            static.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home\n"
+                "---\n"
+                "# Home\n\n"
+                "[Service](service.html)\n",
+                encoding="utf-8",
+            )
+            (service / "index.dj").write_text(
+                "---\n"
+                "description: Service\n"
+                "---\n\n"
+                "# Service\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2025-demo-reviewing",
+                                "year": 2025,
+                                "view_groups": ["reviewing"],
+                                "title": "DemoConf",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                service_dir=service,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"{pages / 'index.dj'}: legacy service link should use canonical collection path: service.html -> service/"],
             )
 
     def test_reports_legacy_teaching_link(self) -> None:

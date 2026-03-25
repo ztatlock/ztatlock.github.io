@@ -5,7 +5,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
+    SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+    SERVICE_MENTORING_LIST_PLACEHOLDER,
+    SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+    SERVICE_REVIEWING_LIST_PLACEHOLDER,
     STUDENTS_BACHELORS_LIST_PLACEHOLDER,
     STUDENTS_CURRENT_LIST_PLACEHOLDER,
     STUDENTS_MASTERS_LIST_PLACEHOLDER,
@@ -38,6 +43,16 @@ def _student_section(
 
 
 class PageProjectionTests(unittest.TestCase):
+    def test_renders_public_service_sections_from_canonical_data(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        organizing = render_public_service_section_list_djot(root, "organizing")
+        self.assertIn("[2026 Dagstuhl Seminar 26022: EGRAPHS]", organizing)
+        self.assertIn("2022 - Present EGRAPHS Community Advisory Board", organizing)
+
+        department = render_public_service_section_list_djot(root, "department")
+        self.assertIn("UW CSE Faculty Graduate Admissions Co-chair", department)
+        self.assertIn("annual faculty skit since 2015", department)
+
     def test_renders_teaching_sections_from_canonical_data(self) -> None:
         rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("*UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_uw)
@@ -237,6 +252,41 @@ class PageProjectionTests(unittest.TestCase):
         self.assertNotIn(TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER, rendered)
         self.assertNotIn(TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER, rendered)
         self.assertIn("Marktoberdorf Summer School 2024", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
+
+    def test_applies_projection_only_to_service_index_page(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Service\n\n"
+            "__SERVICE_REVIEWING_LIST__\n\n"
+            "__SERVICE_ORGANIZING_LIST__\n\n"
+            "__SERVICE_MENTORING_LIST__\n\n"
+            "__SERVICE_DEPARTMENT_LIST__\n"
+        )
+        rendered = apply_page_projections(
+            "service_index_page",
+            "service",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(SERVICE_REVIEWING_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(SERVICE_ORGANIZING_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(SERVICE_MENTORING_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(SERVICE_DEPARTMENT_LIST_PLACEHOLDER, rendered)
+        self.assertIn("annual faculty skit since 2015", rendered)
+        self.assertIn("Program Committee Chair", rendered)
+        self.assertIn("2025 PLDI", rendered)
 
         self.assertEqual(
             apply_page_projections(

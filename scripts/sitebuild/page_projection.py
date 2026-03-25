@@ -10,6 +10,16 @@ from scripts.publication_index import (
     PublicationIndexError,
     render_publications_list_djot,
 )
+from scripts.service_index import (
+    SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+    SERVICE_MENTORING_LIST_PLACEHOLDER,
+    SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+    SERVICE_REVIEWING_LIST_PLACEHOLDER,
+    SERVICE_SECTION_PLACEHOLDERS,
+    ServiceIndexError,
+    render_public_service_section_list_djot,
+)
+from scripts.service_record import SERVICE_DATA_NAME
 from scripts.student_record import (
     STUDENTS_DATA_NAME,
     StudentRecord,
@@ -259,6 +269,21 @@ def apply_page_projections(
     if route_kind == "talks_index_page" and route_key == "talks" and TALKS_LIST_PLACEHOLDER in body:
         rendered = render_talks_list_djot(root, talks_dir=talks_dir).rstrip()
         return body.replace(TALKS_LIST_PLACEHOLDER, rendered)
+
+    if route_kind == "service_index_page" and route_key == "service":
+        rendered = body
+        service_path = (data_dir / SERVICE_DATA_NAME) if data_dir is not None else None
+        try:
+            for section_key, placeholder in SERVICE_SECTION_PLACEHOLDERS.items():
+                section_body = render_public_service_section_list_djot(
+                    root,
+                    section_key,
+                    service_path=service_path,
+                ).rstrip()
+                rendered = rendered.replace(placeholder, section_body)
+        except ServiceIndexError as err:
+            raise PageProjectionError(str(err)) from err
+        return rendered
 
     if route_kind == "students_index_page" and route_key == "students":
         rendered = body

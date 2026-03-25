@@ -14,6 +14,7 @@ class SiteBuilderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             page_source_dir = root / "site" / "pages"
+            service_dir = root / "custom" / "service"
             teaching_dir = root / "custom" / "teaching"
             talks_dir = root / "site" / "talks"
             publications_dir = root / "site" / "pubs"
@@ -23,6 +24,7 @@ class SiteBuilderTests(unittest.TestCase):
             img_dir = static_source_dir / "img"
 
             page_source_dir.mkdir(parents=True)
+            service_dir.mkdir(parents=True)
             teaching_dir.mkdir(parents=True)
             talks_dir.mkdir(parents=True)
             publications_dir.mkdir(parents=True)
@@ -45,6 +47,17 @@ class SiteBuilderTests(unittest.TestCase):
                 "---\n"
                 "# Talks\n\n"
                 "__TALKS_LIST__\n",
+                encoding="utf-8",
+            )
+            (service_dir / "index.dj").write_text(
+                "---\n"
+                "description: Service page\n"
+                "---\n"
+                "# Service\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
                 encoding="utf-8",
             )
             (teaching_dir / "index.dj").write_text(
@@ -116,6 +129,32 @@ class SiteBuilderTests(unittest.TestCase):
             (templates_dir / "REFS").write_text("", encoding="utf-8")
 
             (data_dir / "people.json").write_text('{"people": {}}', encoding="utf-8")
+            (data_dir / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2025-pldi-pc-chair",
+                                "year": 2025,
+                                "view_groups": ["reviewing", "organizing"],
+                                "title": "PLDI",
+                                "role": "Program Committee Chair",
+                            },
+                            {
+                                "key": "2025-uw-faculty-skit",
+                                "series_key": "uw-faculty-skit",
+                                "year": 2025,
+                                "ongoing": True,
+                                "view_groups": ["department"],
+                                "title": "UW Faculty Skit",
+                                "role": "Writer, Producer, and Director",
+                                "details": ["with [Hank Levy][] and [Adriana Schulz][]"],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
             (data_dir / "teaching.json").write_text(
                 json.dumps(
                     {
@@ -189,6 +228,7 @@ class SiteBuilderTests(unittest.TestCase):
             config = load_site_config(
                 root,
                 page_source_dir=page_source_dir,
+                service_dir=service_dir,
                 teaching_dir=teaching_dir,
                 talks_dir=talks_dir,
                 publications_dir=publications_dir,
@@ -208,6 +248,14 @@ class SiteBuilderTests(unittest.TestCase):
             self.assertIn("Everything is a compiler, try Equality Saturation!", talks_html)
             self.assertIn("Brown University, PL and Graphics groups, February 2026", talks_html)
             self.assertIn('href="https://events.brown.edu/demo"', talks_html)
+
+            service_html = (config.build_dir / "service" / "index.html").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn('href="https://ztatlock.net/service/"', service_html)
+            self.assertIn("Program Committee Chair", service_html)
+            self.assertIn("2025 PLDI", service_html)
+            self.assertIn("annual faculty skit since 2025", service_html)
 
             teaching_html = (config.build_dir / "teaching" / "index.html").read_text(
                 encoding="utf-8"

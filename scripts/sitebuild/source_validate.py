@@ -17,10 +17,16 @@ from scripts.publication_record import (
     load_publication_record,
     publication_page_path,
 )
-from scripts.service_index import find_public_service_drift_issues
+from scripts.service_index import (
+    SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+    SERVICE_MENTORING_LIST_PLACEHOLDER,
+    SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+    SERVICE_REVIEWING_LIST_PLACEHOLDER,
+)
 from scripts.service_record import (
     SERVICE_DATA_NAME,
     find_service_record_issues,
+    service_index_path,
 )
 from scripts.student_record import (
     STUDENTS_DATA_NAME,
@@ -55,6 +61,12 @@ LEGACY_PUBLICATIONS_INDEX_LINK_RE = re.compile(r"\b(publications\.html)\b")
 LEGACY_STUDENTS_LINK_RE = re.compile(r"\b(students\.html)\b")
 LEGACY_TEACHING_LINK_RE = re.compile(r"\b(teaching\.html)\b")
 LEGACY_TALKS_LINK_RE = re.compile(r"\b(talks\.html)\b")
+LEGACY_SERVICE_LINK_RE = re.compile(r"\b(service\.html)\b")
+LITERAL_SERVICE_ENTRY_RE = re.compile(
+    r"^- (?:\[\d{4}(?: - (?:\d{4}|Present))? [^\]]+\]\([^)]+\)|\d{4}(?: - (?:\d{4}|Present))?(?: :)? .+)$",
+    re.MULTILINE,
+)
+LITERAL_SERVICE_SKIT_NOTE_RE = re.compile(r"annual faculty skit since \d{4}", re.IGNORECASE)
 LITERAL_STUDENT_ENTRY_RE = re.compile(
     r"^- \[[^\]]+\](?:\[[^\]]*\]|\([^)]+\)),\s",
     re.MULTILINE,
@@ -66,7 +78,6 @@ ROOT_STATIC_SOURCE_NAMES = (
     "style.css",
     "zip-longitude.js",
 )
-SERVICE_DATA_CONSUMER_PAGE_NAMES = ("service.dj",)
 STUDENT_DATA_CONSUMER_PAGE_NAMES = ("cv.dj",)
 TEACHING_DATA_CONSUMER_PAGE_NAMES = ("teaching.dj",)
 
@@ -89,6 +100,13 @@ def _legacy_talks_link_issues(path: Path) -> list[str]:
     if not LEGACY_TALKS_LINK_RE.search(text):
         return []
     return [f"{path}: legacy talks link should use canonical collection path: talks.html -> talks/"]
+
+
+def _legacy_service_link_issues(path: Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    if not LEGACY_SERVICE_LINK_RE.search(text):
+        return []
+    return [f"{path}: legacy service link should use canonical collection path: service.html -> service/"]
 
 
 def _legacy_publications_index_link_issues(path: Path) -> list[str]:
@@ -120,6 +138,9 @@ def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     talks_index = talks_index_path(config.repo_root, talks_dir=config.talks_dir)
     if talks_index.exists():
         paths.append(talks_index)
+    service_index = service_index_path(config.repo_root, service_dir=config.service_dir)
+    if service_index.exists():
+        paths.append(service_index)
     students_index = students_index_path(config.repo_root, students_dir=config.students_dir)
     if students_index.exists():
         paths.append(students_index)
@@ -148,6 +169,13 @@ def _find_legacy_talks_link_issues(config: SiteConfig) -> list[str]:
     issues: list[str] = []
     for path in _all_authored_djot_sources(config):
         issues.extend(_legacy_talks_link_issues(path))
+    return issues
+
+
+def _find_legacy_service_link_issues(config: SiteConfig) -> list[str]:
+    issues: list[str] = []
+    for path in _all_authored_djot_sources(config):
+        issues.extend(_legacy_service_link_issues(path))
     return issues
 
 
@@ -417,28 +445,64 @@ def _find_teaching_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_service_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = service_index_path(config.repo_root, service_dir=config.service_dir)
+    legacy_index_path = config.page_source_dir / "service.dj"
+    service_path = config.data_dir / SERVICE_DATA_NAME
+
+    issues: list[str] = []
+    if legacy_index_path.exists():
+        issues.append(f"{legacy_index_path}: service index wrapper must move to {index_path}")
+
+    if not service_path.exists() and not index_path.exists():
+        return issues
+
+    if not index_path.exists():
+        issues.append(
+            f"{index_path}: service index page is required when canonical service records exist"
+        )
+        return issues
+
+    issues.extend(
+        validate_general_source_metadata_path(
+            index_path,
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+    )
+
+    text = index_path.read_text(encoding="utf-8")
+    for placeholder in (
+        SERVICE_REVIEWING_LIST_PLACEHOLDER,
+        SERVICE_ORGANIZING_LIST_PLACEHOLDER,
+        SERVICE_MENTORING_LIST_PLACEHOLDER,
+        SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
+    ):
+        if placeholder not in text:
+            issues.append(f"{index_path}: service index page must contain {placeholder}")
+    if LITERAL_SERVICE_ENTRY_RE.search(text):
+        issues.append(
+            f"{index_path}: service index page must not contain literal service entry blocks"
+        )
+    if LITERAL_SERVICE_SKIT_NOTE_RE.search(text):
+        issues.append(
+            f"{index_path}: service index page must not contain hand-authored faculty skit note"
+        )
+    return issues
+
+
 def _find_service_data_issues(config: SiteConfig) -> list[str]:
     service_path = config.data_dir / SERVICE_DATA_NAME
-    has_service_consumers = any(
-        (config.page_source_dir / name).exists()
-        for name in SERVICE_DATA_CONSUMER_PAGE_NAMES
+    has_service_consumers = (
+        (config.page_source_dir / "service.dj").exists()
+        or service_index_path(config.repo_root, service_dir=config.service_dir).exists()
     )
     if not service_path.exists() and not has_service_consumers:
         return []
     return find_service_record_issues(
         config.repo_root,
         service_path=service_path,
-    )
-
-
-def _find_service_drift_issues(config: SiteConfig) -> list[str]:
-    service_path = config.data_dir / SERVICE_DATA_NAME
-    if not service_path.exists():
-        return []
-    return find_public_service_drift_issues(
-        config.repo_root,
-        service_path=service_path,
-        page_source_dir=config.page_source_dir,
     )
 
 
@@ -456,7 +520,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
             static_source_dir=config.static_source_dir,
         )
         + _find_service_data_issues(config)
-        + _find_service_drift_issues(config)
+        + _find_service_projection_issues(config)
         + _find_teaching_data_issues(config)
         + _find_teaching_projection_issues(config)
         + _find_student_data_issues(config)
@@ -470,6 +534,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_legacy_publication_link_issues(config)
         + _find_legacy_publications_index_link_issues(config)
         + _find_legacy_students_link_issues(config)
+        + _find_legacy_service_link_issues(config)
         + _find_legacy_teaching_link_issues(config)
         + _find_legacy_talks_link_issues(config)
         + _find_root_layout_drift_issues(config)

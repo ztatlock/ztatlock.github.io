@@ -10,6 +10,7 @@ from scripts.page_source import (
     PageSourceError,
     page_path,
     publications_index_source_path,
+    service_index_source_path,
     students_index_source_path,
     teaching_index_source_path,
     read_page_source,
@@ -375,6 +376,25 @@ def render_students_index_meta_for_url(
     )
 
 
+def render_service_index_meta_for_url(
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    service_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_djot_source_meta_for_url(
+        service_index_source_path(
+            root,
+            service_dir=service_dir,
+        ),
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
 def render_teaching_index_meta_for_url(
     title: str,
     *,
@@ -453,6 +473,7 @@ def render_route_meta_for_url(
     canonical_url: str,
     root: Path,
     page_source_dir: Path | None = None,
+    service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
     talks_dir: Path | None = None,
@@ -476,6 +497,16 @@ def render_route_meta_for_url(
             canonical_url=canonical_url,
             root=root,
             talks_dir=talks_dir,
+            site_url=site_url,
+        )
+    if route_kind == "service_index_page":
+        if route_key != "service":
+            raise MetadataError(f"unsupported service index route key: {route_key}")
+        return render_service_index_meta_for_url(
+            title,
+            canonical_url=canonical_url,
+            root=root,
+            service_dir=service_dir,
             site_url=site_url,
         )
     if route_kind == "students_index_page":

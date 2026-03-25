@@ -12,6 +12,7 @@ from scripts.page_source import (
     read_page_source,
     read_publications_index_source,
     read_publication_page_source,
+    read_service_index_source,
     read_students_index_source,
     read_teaching_index_source,
     read_talks_index_source,
@@ -91,6 +92,7 @@ def render_page_html(
     webfiles_url: str,
     aliases: dict[str, str] | None = None,
     page_source_dir: Path | None = None,
+    service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
     talks_dir: Path | None = None,
@@ -123,6 +125,13 @@ def render_page_html(
             source = read_students_index_source(
                 root,
                 students_dir=students_dir,
+            )
+        elif route_kind == "service_index_page":
+            if route_key != "service":
+                raise PageRenderError(f"unsupported service index route key: {route_key}")
+            source = read_service_index_source(
+                root,
+                service_dir=service_dir,
             )
         elif route_kind == "teaching_index_page":
             if route_key != "teaching":
@@ -158,6 +167,7 @@ def render_page_html(
             root=root,
             site_url=site_url,
             page_source_dir=page_source_dir,
+            service_dir=service_dir,
             students_dir=students_dir,
             teaching_dir=teaching_dir,
             talks_dir=talks_dir,

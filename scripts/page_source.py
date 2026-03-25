@@ -15,6 +15,7 @@ from scripts.publication_record import (
     load_publication_record,
     render_publication_body,
 )
+from scripts.service_record import service_index_path
 from scripts.student_record import students_index_path
 from scripts.teaching_record import teaching_index_path
 from scripts.talk_record import talks_index_path
@@ -54,6 +55,14 @@ def students_index_source_path(
     students_dir: Path | None = None,
 ) -> Path:
     return students_index_path(root, students_dir=students_dir)
+
+
+def service_index_source_path(
+    root: Path,
+    *,
+    service_dir: Path | None = None,
+) -> Path:
+    return service_index_path(root, service_dir=service_dir)
 
 
 def publications_index_source_path(
@@ -178,6 +187,19 @@ def read_students_index_source(
         students_index_source_path(
             root,
             students_dir=students_dir,
+        )
+    )
+
+
+def read_service_index_source(
+    root: Path,
+    *,
+    service_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        service_index_source_path(
+            root,
+            service_dir=service_dir,
         )
     )
 

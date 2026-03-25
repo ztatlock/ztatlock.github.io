@@ -23,6 +23,7 @@ def route_is_sitemap_entry(route: Route) -> bool:
     if route.kind in {
         "ordinary_page",
         "talks_index_page",
+        "service_index_page",
         "students_index_page",
         "teaching_index_page",
         "publications_index_page",
