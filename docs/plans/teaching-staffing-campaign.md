@@ -1,6 +1,6 @@
 # Teaching Staffing Campaign
 
-Status: slice 1 implemented
+Status: slice 1 implemented; slice 1A planned
 
 It builds on:
 
@@ -171,6 +171,29 @@ Current checkpoint:
 - current structured consumers such as collaborators and students now render
   plain text for linkless people instead of assuming every registry-backed
   person is linkable
+
+### Slice 1A. Seeded Social-Link Normalization
+
+Goal:
+
+- normalize the seeded `people.json` records so the newly landed linkability
+  contract is used consistently before larger staffing imports expand the
+  registry
+
+Invariant after slice 1A:
+
+- `url` remains for preferred homepage-style links
+- LinkedIn-only links live in `linkedin`
+- GitHub-only links live in `github`
+- the current `primary_url` behavior stays unchanged, so the rendered site
+  should not change
+
+This slice should stay deliberately small:
+
+- no new people
+- no new links
+- no staffing fields
+- no public rendering changes
 
 ### Slice 2. Teaching Staffing Schema Foundation
 

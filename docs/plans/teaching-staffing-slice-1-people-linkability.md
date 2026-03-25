@@ -218,6 +218,9 @@ After this slice:
 
 - `site/data/people.json` is an identity/default-label registry, not a
   guarantee that every person has a public link
+- a narrow follow-on normalization slice is still appropriate before teaching
+  staffing schema work continues, so obvious LinkedIn/GitHub fallback links in
+  seeded data use the new typed fields consistently
 - `name` and `aliases` semantics stay the same as the recent people-registry
   cleanup
 - generated people refs exist only for linkable people
