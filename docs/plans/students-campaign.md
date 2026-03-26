@@ -136,7 +136,7 @@ need, such as:
 
 - richer alumni/date modeling that earns its complexity
 - student-to-publication linkage
-- later homepage or highlights reuse if it clearly pays off
+- later highlights or other cross-domain reuse if it clearly pays off
 
 ## Desired End State
 
@@ -393,6 +393,6 @@ Later students work should remain narrow and only land when clearly earned,
 for example:
 
 - richer alumni/history data if later ordering or placement views need it
-- homepage current-students reuse, or a deliberate trim decision, if that
-  consumer continues to matter
+- later homepage/current-student presentation refinement, or a deliberate trim
+  decision, if that consumer continues to matter
 - collaborator/highlights derivation only if it stays explicit and reviewable

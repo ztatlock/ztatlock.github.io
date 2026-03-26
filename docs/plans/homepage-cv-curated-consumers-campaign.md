@@ -1,6 +1,6 @@
 # Homepage / CV Curated Consumers Campaign
 
-Status: planned; slice 1 next
+Status: slice 1 implemented; slice 2 next
 
 It builds on:
 
@@ -39,7 +39,7 @@ Relevant current blocks:
 - `## News`
   now a derived consumer of [site/data/news.json](/Users/ztatlock/www/ztatlock.github.io/site/data/news.json)
 - `## Current Students`
-  8 entries
+  now a derived consumer of [site/data/students.json](/Users/ztatlock/www/ztatlock.github.io/site/data/students.json)
 - `## Recent Service / Leadership`
   6 entries
 - `## Recent Publications`
@@ -52,8 +52,8 @@ Current overlap assessment:
 - `## News`
   already solved; no longer part of this campaign
 - `## Current Students`
-  a near-exact duplicate of the `current_students` section in
-  [site/data/students.json](/Users/ztatlock/www/ztatlock.github.io/site/data/students.json)
+  now solved as a tiny derived consumer of the canonical `current_students`
+  section in [site/data/students.json](/Users/ztatlock/www/ztatlock.github.io/site/data/students.json)
 - `## Recent Teaching`
   a flattened recent-offerings consumer over
   [site/data/teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json)
@@ -159,8 +159,7 @@ This campaign should not:
 
 ### Slice 1. Homepage Current Students
 
-Turn the homepage `## Current Students` block into a tiny derived consumer of
-[site/data/students.json](/Users/ztatlock/www/ztatlock.github.io/site/data/students.json).
+Implemented.
 
 Invariant:
 
@@ -168,6 +167,15 @@ Invariant:
   section
 - homepage keeps its heading and trailing "students page" line authored
 - selection and order are inherited from canonical students data
+
+Implemented outcomes so far:
+
+- the literal homepage current-students list is gone from
+  [site/pages/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/index.dj)
+- the section now projects from canonical students data with no intended
+  visible HTML change
+- the homepage current-students body can no longer drift from
+  [site/data/students.json](/Users/ztatlock/www/ztatlock.github.io/site/data/students.json)
 
 ### Slice 2. Homepage Recent Teaching
 
@@ -206,7 +214,6 @@ The right next move is not "project everything."
 
 The right next move is:
 
-1. plan and review a small homepage `Current Students` slice
-2. likely follow with homepage `Recent Teaching`
-3. keep service/publications/highlights authored until a stronger editorial
+1. likely follow with homepage `Recent Teaching`
+2. keep service/publications/highlights authored until a stronger editorial
    policy exists

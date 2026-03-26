@@ -465,18 +465,18 @@ Teaching and service follow-on work should continue separately as:
 
 The main remaining cross-domain maintenance seams are now:
 
-- the authored homepage current/recent blocks
+- the remaining authored homepage recent blocks
 - the authored top-of-CV `Selected Recent Highlights` block
 - the publication-boundary question around the authored CV `Book Chapters`
   subsection
 
 Near-term priorities that currently look strongest are:
 
-1. later exploration of the authored homepage/CV curated blocks once we are
-   ready to decide whether they should stay authored, be trimmed, or become
-   small structured consumers
-2. later homepage recent-teaching cleanup now that the public `/teaching/`
+1. later homepage recent-teaching cleanup now that the public `/teaching/`
    page actually reflects the canonical staffing-aware offering facts
+2. later exploration of the remaining authored homepage/CV curated blocks once
+   we are ready to decide whether they should stay authored, be trimmed, or
+   become small structured consumers
 3. a later teaching-page styling/polish campaign now that the richer
    projections are materially more consistent but also visually rougher
 4. later collaborator enrichment only if a concrete per-person consumer

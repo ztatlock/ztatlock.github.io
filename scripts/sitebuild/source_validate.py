@@ -71,6 +71,7 @@ from .site_config import SiteConfig
 from .people_registry import PeopleRegistryError, load_people_registry
 from .page_projection import (
     CV_FUNDING_LIST_PLACEHOLDER,
+    HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
     CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
@@ -821,6 +822,29 @@ def _find_homepage_news_projection_issues(config: SiteConfig) -> list[str]:
     return issues
 
 
+def _find_homepage_current_students_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = config.page_source_dir / "index.dj"
+    students_path = config.data_dir / STUDENTS_DATA_NAME
+    if not index_path.exists() or not students_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    students_section = _extract_markdown_section_body(text, "Current Students", level=2)
+    if students_section is None:
+        return []
+
+    issues: list[str] = []
+    if HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER not in students_section:
+        issues.append(
+            f"{index_path}: homepage current students section must contain {HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER}"
+        )
+    if LITERAL_STUDENT_ENTRY_RE.search(students_section):
+        issues.append(
+            f"{index_path}: homepage current students section must not contain literal student entry blocks"
+        )
+    return issues
+
+
 def _find_cv_funding_projection_issues(config: SiteConfig) -> list[str]:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     funding_path = config.data_dir / FUNDING_DATA_NAME
@@ -1134,6 +1158,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_news_data_issues(config)
         + _find_news_projection_issues(config)
         + _find_homepage_news_projection_issues(config)
+        + _find_homepage_current_students_projection_issues(config)
         + _find_funding_data_issues(config)
         + _find_cv_funding_projection_issues(config)
         + _find_funding_projection_issues(config)

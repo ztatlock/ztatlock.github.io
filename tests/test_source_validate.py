@@ -38,6 +38,83 @@ def _write_publication_bundle(
 
 
 class SourceValidateTests(unittest.TestCase):
+    @staticmethod
+    def _minimal_student_sections() -> list[dict[str, object]]:
+        return [
+            {
+                "key": "current_students",
+                "title": "Current Students",
+                "records": [
+                    {
+                        "key": "demo-student-current",
+                        "person_key": "demo-student",
+                        "name": "Demo Student",
+                        "label": "PhD Student",
+                    }
+                ],
+            },
+            {
+                "key": "completed_postdoctoral_mentoring",
+                "title": "Completed Postdoctoral Mentoring",
+                "records": [
+                    {
+                        "key": "demo-student-postdoc",
+                        "person_key": "demo-student",
+                        "name": "Demo Student",
+                        "label": "Postdoc 2025",
+                    }
+                ],
+            },
+            {
+                "key": "graduated_doctoral_students",
+                "title": "Graduated Doctoral Students",
+                "records": [
+                    {
+                        "key": "demo-student-phd",
+                        "person_key": "demo-student",
+                        "name": "Demo Student",
+                        "label": "PhD 2025",
+                    }
+                ],
+            },
+            {
+                "key": "graduated_masters_students",
+                "title": "Graduated Masters Students",
+                "records": [
+                    {
+                        "key": "demo-student-ms",
+                        "person_key": "demo-student",
+                        "name": "Demo Student",
+                        "label": "MS 2024",
+                    }
+                ],
+            },
+            {
+                "key": "graduated_bachelors_students",
+                "title": "Graduated Bachelors Students",
+                "records": [
+                    {
+                        "key": "demo-student-bs",
+                        "person_key": "demo-student",
+                        "name": "Demo Student",
+                        "label": "BS 2023",
+                    }
+                ],
+            },
+            {
+                "key": "visiting_students",
+                "title": "Visiting Students and Interns",
+                "records": [
+                    {
+                        "key": "demo-student-visiting",
+                        "person_key": "demo-student",
+                        "name": "Demo Student",
+                        "label": "Intern 2022",
+                    }
+                ],
+            },
+        ]
+
     def test_reports_legacy_cv_wrapper_move(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
@@ -579,6 +656,180 @@ class SourceValidateTests(unittest.TestCase):
                 root,
                 page_source_dir=pages,
                 news_dir=news,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
+    def test_reports_missing_homepage_current_students_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Current Students\n\n"
+                "{.columns .columns-16rem}\n"
+                "- [Demo Student][], PhD Student\n\n"
+                "Please see my [students page](students/) for more.\n",
+                encoding="utf-8",
+            )
+            (students / "index.dj").write_text(
+                "---\n"
+                "description: Students page\n"
+                "---\n\n"
+                "# Students\n\n"
+                "__STUDENTS_CURRENT_LIST__\n\n"
+                "__STUDENTS_POSTDOC_LIST__\n\n"
+                "__STUDENTS_PHD_LIST__\n\n"
+                "__STUDENTS_MASTERS_LIST__\n\n"
+                "__STUDENTS_BACHELORS_LIST__\n\n"
+                "__STUDENTS_VISITING_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "demo-student": {
+                                "name": "Demo Student",
+                                "url": "https://example.test/demo",
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": self._minimal_student_sections()
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'index.dj'}: homepage current students section must contain __HOMEPAGE_CURRENT_STUDENTS_LIST__",
+                    f"{pages / 'index.dj'}: homepage current students section must not contain literal student entry blocks",
+                ],
+            )
+
+    def test_accepts_homepage_current_students_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Current Students\n\n"
+                "{.columns .columns-16rem}\n"
+                "__HOMEPAGE_CURRENT_STUDENTS_LIST__\n\n"
+                "Please see my [students page](students/) for more.\n",
+                encoding="utf-8",
+            )
+            (students / "index.dj").write_text(
+                "---\n"
+                "description: Students page\n"
+                "---\n\n"
+                "# Students\n\n"
+                "__STUDENTS_CURRENT_LIST__\n\n"
+                "__STUDENTS_POSTDOC_LIST__\n\n"
+                "__STUDENTS_PHD_LIST__\n\n"
+                "__STUDENTS_MASTERS_LIST__\n\n"
+                "__STUDENTS_BACHELORS_LIST__\n\n"
+                "__STUDENTS_VISITING_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "demo-student": {
+                                "name": "Demo Student",
+                                "url": "https://example.test/demo",
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": self._minimal_student_sections()
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
                 talks_dir=talks,
                 publications_dir=pubs,
                 students_dir=students,

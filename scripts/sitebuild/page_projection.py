@@ -71,6 +71,7 @@ from scripts.talk_record import TalkRecord, TalkRecordError, load_talk_records, 
 from .people_registry import PeopleRegistryError, load_people_registry
 
 TALKS_LIST_PLACEHOLDER = "__TALKS_LIST__"
+HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER = "__HOMEPAGE_CURRENT_STUDENTS_LIST__"
 STUDENTS_CURRENT_LIST_PLACEHOLDER = "__STUDENTS_CURRENT_LIST__"
 STUDENTS_POSTDOC_LIST_PLACEHOLDER = "__STUDENTS_POSTDOC_LIST__"
 STUDENTS_PHD_LIST_PLACEHOLDER = "__STUDENTS_PHD_LIST__"
@@ -272,6 +273,14 @@ def _render_student_record(record: StudentRecord, *, registry) -> str:
     return "\n".join(lines)
 
 
+def _render_homepage_current_student_record(record: StudentRecord, *, registry) -> str:
+    person = registry.person(record.person_key)
+    return (
+        f"- {_render_person_ref(display_name=record.name, ref_name=person.name, is_linked=person.primary_url is not None)}, "
+        f"{record.label}"
+    )
+
+
 def render_students_section_list_djot(
     root: Path,
     section_key: str,
@@ -302,6 +311,39 @@ def render_students_section_list_djot(
         for record in section.records
     ]
     return "\n\n".join(chunks) + ("\n" if chunks else "")
+
+
+def render_homepage_current_students_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    students_path = (data_dir / STUDENTS_DATA_NAME) if data_dir is not None else None
+    people_path = (data_dir / "people.json") if data_dir is not None else None
+    try:
+        sections = load_student_sections(
+            root,
+            students_path=students_path,
+            people_path=people_path,
+        )
+        registry = load_people_registry(people_path or (root / "site" / "data" / "people.json"))
+    except StudentRecordError as err:
+        raise PageProjectionError(str(err)) from err
+    except PeopleRegistryError as err:
+        raise PageProjectionError(str(err)) from err
+
+    try:
+        section = next(section for section in sections if section.key == "current_students")
+    except StopIteration as err:
+        raise PageProjectionError(
+            "missing student section for projection: current_students"
+        ) from err
+
+    chunks = [
+        _render_homepage_current_student_record(record, registry=registry)
+        for record in section.records
+    ]
+    return "\n".join(chunks) + ("\n" if chunks else "")
 
 
 def _render_cv_student_record(record: StudentRecord) -> str:
@@ -703,20 +745,26 @@ def apply_page_projections(
             rendered = rendered.replace(placeholder, replacement)
         return rendered
 
-    if (
-        route_kind == "ordinary_page"
-        and route_key == "index"
-        and HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER in body
-    ):
-        news_path = (data_dir / NEWS_DATA_NAME) if data_dir is not None else None
-        try:
-            rendered = render_homepage_news_month_groups_djot(
+    if route_kind == "ordinary_page" and route_key == "index":
+        rendered = body
+        if HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER in rendered:
+            news_path = (data_dir / NEWS_DATA_NAME) if data_dir is not None else None
+            try:
+                news_groups = render_homepage_news_month_groups_djot(
+                    root,
+                    news_path=news_path,
+                ).rstrip()
+            except NewsIndexError as err:
+                raise PageProjectionError(str(err)) from err
+            rendered = rendered.replace(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, news_groups)
+        if HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER in rendered:
+            current_students = render_homepage_current_students_list_djot(
                 root,
-                news_path=news_path,
+                data_dir=data_dir,
             ).rstrip()
-        except NewsIndexError as err:
-            raise PageProjectionError(str(err)) from err
-        return body.replace(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+            rendered = rendered.replace(HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER, current_students)
+        if rendered != body:
+            return rendered
 
     if route_kind == "collaborators_index_page" and route_key == "collaborators":
         people_path = (data_dir / "people.json") if data_dir is not None else None

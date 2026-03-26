@@ -35,6 +35,7 @@ from scripts.sitebuild.page_projection import (
     CV_STUDENTS_PHD_LIST_PLACEHOLDER,
     CV_STUDENTS_POSTDOC_LIST_PLACEHOLDER,
     CV_STUDENTS_VISITING_LIST_PLACEHOLDER,
+    HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER,
     SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     SERVICE_MENTORING_LIST_PLACEHOLDER,
     SERVICE_ORGANIZING_LIST_PLACEHOLDER,
@@ -57,6 +58,7 @@ from scripts.sitebuild.page_projection import (
     render_cv_teaching_assistant_list_djot,
     render_cv_teaching_instructor_list_djot,
     render_cv_teaching_summer_school_list_djot,
+    render_homepage_current_students_list_djot,
     render_cv_students_section_list_djot,
     render_teaching_special_topics_list_djot,
     render_teaching_summer_school_list_djot,
@@ -893,8 +895,177 @@ class PageProjectionTests(unittest.TestCase):
                 root=root,
                 data_dir=root / "site" / "data",
             ),
-            body,
+                body,
+            )
+
+    def test_renders_homepage_current_students_list_from_canonical_section(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            data_dir.mkdir(parents=True)
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "amy-zhu": {"name": "Amy Zhu", "url": "https://example.test/amy"},
+                            "linkless-student": {"name": "Linkless Student"},
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            _student_section(
+                                "current_students",
+                                "Current Students",
+                                {
+                                    "key": "amy-zhu-phd-student",
+                                    "person_key": "amy-zhu",
+                                    "name": "Amy Zhu",
+                                    "label": "PhD Student",
+                                },
+                            ),
+                            _student_section(
+                                "completed_postdoctoral_mentoring",
+                                "Completed Postdoctoral Mentoring",
+                                {
+                                    "key": "amy-zhu-postdoc-2025",
+                                    "person_key": "amy-zhu",
+                                    "name": "Amy Zhu",
+                                    "label": "Postdoc 2025",
+                                },
+                            ),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            rendered = render_homepage_current_students_list_djot(
+                root,
+                data_dir=data_dir,
+            )
+            self.assertIn("- [Amy Zhu][], PhD Student", rendered)
+            self.assertNotIn("Postdoc 2025", rendered)
+
+            (data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            {
+                                "key": "current_students",
+                                "title": "Current Students",
+                                "records": [
+                                    {
+                                        "key": "linkless-student-current",
+                                        "person_key": "linkless-student",
+                                        "name": "Linkless Student",
+                                        "label": "BS Student",
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rendered_linkless = render_homepage_current_students_list_djot(
+                root,
+                data_dir=data_dir,
+            )
+            self.assertIn("- Linkless Student, BS Student", rendered_linkless)
+            self.assertNotIn("[Linkless Student][]", rendered_linkless)
+
+    def test_applies_projection_only_to_homepage_current_students_section(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            data_dir.mkdir(parents=True)
+            (data_dir / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "haobin-ni": {"name": "Haobin Ni", "url": "https://example.test/haobin"},
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            _student_section(
+                                "current_students",
+                                "Current Students",
+                                {
+                                    "key": "haobin-ni-postdoctoral-scholar",
+                                    "person_key": "haobin-ni",
+                                    "name": "Haobin Ni",
+                                    "label": "Postdoctoral Scholar",
+                                },
+                            )
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            body = (
+                "# Home\n\n"
+                "## Current Students\n\n"
+                "{.columns .columns-16rem}\n"
+                f"{HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER}\n\n"
+                "Please see my [students page](students/) for more.\n"
+            )
+            rendered = apply_page_projections(
+                "ordinary_page",
+                "index",
+                body,
+                root=root,
+                data_dir=data_dir,
+            )
+            self.assertNotIn(HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER, rendered)
+            self.assertIn("- [Haobin Ni][], Postdoctoral Scholar", rendered)
+            self.assertIn("Please see my [students page](students/) for more.", rendered)
+
+            self.assertEqual(
+                apply_page_projections(
+                    "ordinary_page",
+                    "about",
+                    body,
+                    root=root,
+                    data_dir=data_dir,
+                ),
+                body,
+            )
+
+    def test_applies_both_homepage_news_and_current_students_projections(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Home\n\n"
+            "## News\n\n"
+            "__HOMEPAGE_NEWS_MONTH_GROUPS__\n\n"
+            "Please see [past news](news/) for more.\n\n"
+            "## Current Students\n\n"
+            "{.columns .columns-16rem}\n"
+            "__HOMEPAGE_CURRENT_STUDENTS_LIST__\n\n"
+            "Please see my [students page](students/) for more.\n"
         )
+        rendered = apply_page_projections(
+            "ordinary_page",
+            "index",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertNotIn(HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER, rendered)
+        self.assertIn(": February 2026", rendered)
+        self.assertIn("- [Haobin Ni][], Postdoctoral Scholar", rendered)
 
     def test_homepage_news_overflow_prefers_featured_older_items(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

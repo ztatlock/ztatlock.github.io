@@ -1,6 +1,6 @@
 # Homepage / CV Curated Consumers Slice 1: Homepage Current Students
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -147,3 +147,7 @@ Rendered diff review should confirm:
 - no visible change outside [build/index.html](/Users/ztatlock/www/ztatlock.github.io/build/index.html)
 - ideally no substantive visible change even within the homepage current
   students block
+
+Implemented result:
+
+- the rendered diff was empty once `sitemap.xml` noise was excluded
