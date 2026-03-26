@@ -1,6 +1,6 @@
 # Homepage / CV Curated Consumers Campaign
 
-Status: slices 1-2 implemented
+Status: slices 1-2 implemented; service audit next
 
 It builds on:
 
@@ -208,10 +208,37 @@ After slices 1 and 2:
 - the CV `Selected Recent Highlights` block can be evaluated separately as an
   editorial curation problem rather than by campaign inertia
 
+### Slice 3. Service Data Audit
+
+Audit the canonical service model before any homepage recent-service
+projection.
+
+Invariant:
+
+- the repo has an explicit reviewed understanding of grouped/coalesced service
+  semantics as they matter for homepage selection
+- any needed canonical service cleanups are identified before homepage
+  projection logic depends on them
+
+Why this slice belongs first:
+
+- homepage service should select from grouped/coalesced service entries rather
+  than from raw yearly service terms
+- the current grouped service behavior is already good, but not obviously final
+  enough to harden into homepage policy without review
+- recurring service concepts with year-specific instance links may need a
+  stronger long-term service-model story than the current term-only grouping
+  rules provide
+- future service years and repeated annual series make service recency
+  selection trickier than news or teaching
+
+### Slice 4. Homepage Recent Service / Leadership
+
+Only plan this after the service audit clarifies the right grouped source scope
+and coalescing semantics.
+
 ### Later Possible Work
 
-- homepage `Recent Service / Leadership` only if a real curation policy is
-  worth formalizing
 - homepage `Recent Publications` only if a homepage publication-selection
   policy becomes clear enough to justify another consumer slice
 - CV highlights only if tiny curated consumers clearly beat hand authorship
@@ -225,5 +252,7 @@ The right next move is:
 
 1. stop and reassess from the cleaner baseline where homepage `News`,
    `Current Students`, and `Recent Teaching` are already derived consumers
-2. keep service/publications/highlights authored until a stronger editorial
-   policy exists
+2. do the service data audit before deciding how homepage recent service should
+   project
+3. keep publications/highlights authored until a stronger editorial policy
+   exists

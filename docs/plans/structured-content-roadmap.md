@@ -481,12 +481,16 @@ The main remaining cross-domain maintenance seams are now:
 
 Near-term priorities that currently look strongest are:
 
-1. later exploration of the remaining authored homepage/CV curated blocks now
+1. the service-data audit needed before any homepage `Recent Service /
+   Leadership` projection, since service homepage policy should operate over
+   grouped/coalesced service concepts rather than blindly over raw yearly
+   terms
+2. later exploration of the remaining authored homepage/CV curated blocks now
    we are ready to decide whether they should stay authored, be trimmed, or
    become small structured consumers
-2. a later teaching-page styling/polish campaign now that the richer
+3. a later teaching-page styling/polish campaign now that the richer
    projections are materially more consistent but also visually rougher
-3. later collaborator enrichment only if a concrete per-person consumer
+4. later collaborator enrichment only if a concrete per-person consumer
    clearly earns it, likely alongside or after a future structured `projects`
    domain rather than through a premature collaborator registry
 
