@@ -490,8 +490,8 @@ The main adjacent campaign now at a good checkpoint is:
 
 After that, later adjacent campaigns that still look plausible include:
 
-- eventually news, once we are ready for a more prose-heavy structured
-  consumer or decide it should stay mostly prose-first
+- news, starting with a canonical flat item stream in `site/data/news.json`
+  before any wrapper cutover, homepage consumer, or cross-domain enrichment
 - later funding enrichment, once grant-to-paper and grant-to-project mapping
   clearly earns its cross-domain complexity
 
