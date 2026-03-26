@@ -1,6 +1,6 @@
 # Teaching Staffing Slice 3: Co-Instructor Canonicalization
 
-Status: planned
+Status: implemented
 
 It builds on:
 

@@ -419,6 +419,9 @@ The repo is also now at a good checkpoint after:
 - the teaching-staffing schema-foundation slice that now allows optional
   offering-level `co_instructors` / `teaching_assistants` keyed through
   `people.json` without changing rendered output or importing staffing data
+- the co-instructor canonicalization slice that backfilled the small confirmed
+  co-instructor set and the one missing co-instructor person record before the
+  larger TA import
 
 Funding follow-on work should continue separately as:
 

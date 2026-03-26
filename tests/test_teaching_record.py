@@ -34,8 +34,17 @@ class TeachingRecordTests(unittest.TestCase):
             ["uw_courses", "special_topics", "summer_school", "teaching_assistant"],
         )
         self.assertEqual(groups[0].records[0].code, "UW CSE 507")
+        self.assertEqual(groups[0].records[1].offerings[0].co_instructors, ("james-wilcox",))
+        self.assertEqual(groups[0].records[1].offerings[6].co_instructors, ("leonardo-de-moura",))
+        self.assertEqual(groups[0].records[1].offerings[9].co_instructors, ("valentin-robert",))
+        self.assertEqual(groups[0].records[2].offerings[0].co_instructors, ("anjali-pal",))
+        self.assertEqual(groups[0].records[3].offerings[0].co_instructors, ("anjali-pal",))
         self.assertEqual(groups[0].records[0].offerings[0].year, 2025)
-        self.assertEqual(groups[1].records[1].details[1], "Co-taught with [Xi Wang][] and [Bryan Parno][]")
+        self.assertEqual(
+            groups[1].records[1].offerings[0].co_instructors,
+            ("bryan-parno", "xi-wang"),
+        )
+        self.assertEqual(groups[1].records[1].details[0], "Formally verifying systems implementations")
         self.assertEqual(groups[2].records[1].events[0].label, "Marktoberdorf Summer School 2024")
         self.assertEqual(groups[3].records[2].offerings[-1].year, 2004)
 

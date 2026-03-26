@@ -395,7 +395,7 @@ class PageProjectionTests(unittest.TestCase):
 
         rendered_topics = render_teaching_special_topics_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("[UW CSE 599W: Systems Verification, \\ 2016 Spring]", rendered_topics)
-        self.assertIn("Co-taught with [Xi Wang][] and [Bryan Parno][]", rendered_topics)
+        self.assertNotIn("Co-taught with [Xi Wang][] and [Bryan Parno][]", rendered_topics)
 
         rendered_summer = render_teaching_summer_school_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("- Analysis and Optimizations with Equality Saturation", rendered_summer)
@@ -407,7 +407,7 @@ class PageProjectionTests(unittest.TestCase):
         rendered_instructor = render_cv_teaching_instructor_list_djot(root)
         self.assertIn("- *UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_instructor)
         self.assertIn("- *Special Topics Graduate Courses*", rendered_instructor)
-        self.assertIn("Co-taught with Xi Wang and Bryan Parno", rendered_instructor)
+        self.assertNotIn("Co-taught with Xi Wang and Bryan Parno", rendered_instructor)
         self.assertNotIn("[Xi Wang][]", rendered_instructor)
         self.assertNotIn("https://courses.cs.washington.edu/courses/cse507/25au/", rendered_instructor)
 

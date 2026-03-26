@@ -317,8 +317,10 @@ Implemented outcomes so far:
 These are real possibilities, but they should not shape the first teaching
 slice:
 
-- later teaching-staffing data backfill for instructor-led offerings now that
-  the offering-level `co_instructors` / `teaching_assistants` schema exists
+- later teaching-staffing data backfill for teaching assistants and any tutor
+  decision now that the offering-level `co_instructors` /
+  `teaching_assistants` schema exists and confirmed co-instructors are
+  canonical
 - additional date/detail normalization beyond `year` plus academic `term`
 - course-local extra pages or assets
 - broader teaching-adjacent domains such as course recipes or mentoring notes

@@ -36,17 +36,20 @@
             {
               "year": 2025,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/cse505/25sp/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/25sp/",
+              "co_instructors": ["james-wilcox"]
             },
             {
               "year": 2023,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse505/23wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/23wi/",
+              "co_instructors": ["james-wilcox"]
             },
             {
               "year": 2021,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/cse505/21sp/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/21sp/",
+              "co_instructors": ["james-wilcox"]
             },
             {
               "year": 2020,
@@ -66,7 +69,8 @@
             {
               "year": 2017,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse505/17au/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/17au/",
+              "co_instructors": ["leonardo-de-moura"]
             },
             {
               "year": 2016,
@@ -81,7 +85,8 @@
             {
               "year": 2015,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse505/15wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/15wi/",
+              "co_instructors": ["valentin-robert"]
             },
             {
               "year": 2013,
@@ -102,7 +107,8 @@
             {
               "year": 2024,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse341/24au/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/24au/",
+              "co_instructors": ["anjali-pal"]
             },
             {
               "year": 2022,
@@ -153,7 +159,8 @@
             {
               "year": 2024,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse331/24wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse331/24wi/",
+              "co_instructors": ["anjali-pal"]
             },
             {
               "year": 2018,
@@ -204,12 +211,12 @@
             {
               "year": 2016,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/cse599w/16sp/"
+              "url": "https://courses.cs.washington.edu/courses/cse599w/16sp/",
+              "co_instructors": ["bryan-parno", "xi-wang"]
             }
           ],
           "details": [
-            "Formally verifying systems implementations",
-            "Co-taught with [Xi Wang][] and [Bryan Parno][]"
+            "Formally verifying systems implementations"
           ]
         },
         {

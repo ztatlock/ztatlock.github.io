@@ -50,6 +50,14 @@ class PeopleRegistryTests(unittest.TestCase):
             for alias in expected_aliases:
                 self.assertEqual(registry.resolve_alias(alias), key)
 
+    def test_seed_registry_includes_leonardo_de_moura(self) -> None:
+        registry = load_people_registry(PEOPLE_PATH)
+
+        person = registry.person("leonardo-de-moura")
+        self.assertEqual(person.name, "Leonardo de Moura")
+        self.assertEqual(person.url, "https://leodemoura.github.io/")
+        self.assertEqual(person.primary_url, "https://leodemoura.github.io/")
+
     def test_accepts_optional_public_link_fields_and_primary_url_fallback(self) -> None:
         payload = {
             "people": {
