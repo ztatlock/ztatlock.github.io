@@ -42,7 +42,7 @@ the authored homepage/CV highlights blocks.
 Current explicit collaborator-related surfaces:
 
 - `site/collaborators/index.dj`
-  a thin wrapper over a projected alphabetical coauthor list
+  a thin wrapper over projected research and teaching collaborator lists
 - `site/pages/about.dj`
   a hand-authored collaborator alphabet-coverage note with projected gap values
 - `site/pubs/<slug>/publication.json`
@@ -52,15 +52,17 @@ Current explicit collaborator-related surfaces:
 
 Important current facts:
 
-- the collaborators page is really a coauthor page today, even though
-  the title says `Collaborators`
+- before slice 4, the collaborators page was really a coauthor page even
+  though the title said `Collaborators`
 - before slice 1, the hand-authored page listed `118` names
 - canonical publication bundles currently expose `133` unique author strings
 - only a small number of publication-author strings are still unresolved
   through `people.json`, and most of those appear to be alias cleanup rather
   than deeper modeling gaps
-- the current projected page renders `131` collaborator names after excluding
-  `Zachary Tatlock` and adding missing canonical coauthors
+- the current `Research Collaborators` section renders `131` names after
+  excluding `Zachary Tatlock` and adding missing canonical coauthors
+- the current public page now renders separate `Research Collaborators` and
+  flat `Teaching Collaborators` sections from existing canonical sources
 - canonical teaching staffing now exposes `84` distinct teaching collaborators
   keyed through `site/data/people.json`
 - only `18` of those teaching collaborators overlap with current coauthors,
@@ -368,13 +370,18 @@ post-slice-2 audit checkpoint.
 
 ## Recommendation
 
-Continue collaborators with the smallest next real architecture:
+Collaborators is now at a good checkpoint.
 
-1. sectioned public collaborators page
-2. stop and reassess
-3. only then decide whether any collaborator-specific data layer is actually
+The next work should stay deferred until a concrete new consumer clearly earns
+it, likely alongside or after a future structured `projects` domain.
+
+If collaborators resumes later, the recommended order is:
+
+1. stop and reassess what new consumer actually matters
+2. only then decide whether any collaborator-specific data layer is actually
    needed
-4. only then consider richer per-collaborator enrichment
+3. only then consider richer per-collaborator enrichment such as overlays or
+   relationship summaries
 
-That keeps the next slice honest to the now-clearer ontology while still
-leaving room for the richer collaborator directions that may matter later.
+That keeps the current sectioned page simple and honest while still leaving
+room for richer collaborator directions later.

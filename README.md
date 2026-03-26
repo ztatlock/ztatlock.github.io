@@ -63,8 +63,10 @@ Metadata rules:
   metadata from their own `index.dj` front matter.
 - The talks index is projected from talk-local records under
   `site/talks/<slug>/talk.json` into `site/talks/index.dj`.
-- The collaborators page is projected from publication coauthors plus
-  `site/data/people.json` into `site/collaborators/index.dj`.
+- The collaborators page is projected into `site/collaborators/index.dj`
+  from publication coauthors plus canonical students/advising for the
+  `Research Collaborators` section and from canonical teaching staffing for
+  the flat `Teaching Collaborators` section.
 - The students landing page is projected from canonical advising records in
   `site/data/students.json` into `site/students/index.dj`.
 - The teaching landing page is projected from canonical course records in
