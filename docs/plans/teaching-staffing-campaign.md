@@ -1,6 +1,6 @@
 # Teaching Staffing Campaign
 
-Status: slices 1, 1A, 2, 3, and 4 implemented
+Status: slices 1, 1A, 2, 3, 4, and 5 implemented
 
 It builds on:
 
@@ -246,7 +246,8 @@ Current checkpoint:
   already represented in `site/data/teaching.json`
 - the needed new TA-linked people records and normalization cases are now
   canonical in `site/data/people.json`
-- tutor handling remains the next explicit policy seam
+- the tutor role is now explicit and canonical on the small known set of
+  affected offerings
 - public teaching/CV/homepage/collaborators staffing rendering remains
   deferred
 
@@ -267,6 +268,15 @@ Invariant after slice 5:
 - the repo has an explicit tutor policy rather than silently collapsing or
   dropping the role
 
+Current checkpoint:
+
+- teaching offerings may now carry ordered `tutors`
+- the small known tutor set is canonical on the affected `uw-cse-505`
+  offerings
+- tutors are now modeled distinctly from `teaching_assistants`
+- public teaching/CV/homepage/collaborators staffing rendering remains
+  deferred
+
 ## Verification Themes
 
 Across the campaign, verification should focus on:
@@ -275,16 +285,15 @@ Across the campaign, verification should focus on:
 - people-ref generation tests
 - authored-source validation tests where linkability matters
 - explicit data diffs for canonical backfills
-- `make build`
-- `make test`
-- `make check`
+- `make verify`
 
 No rendered HTML diff should be required until a later consumer slice actually
 changes a public page.
 
 ## Campaign Stop Point
 
-Stop after the tutor decision slice and reassess.
+The planned tutor decision slice is now landed, so this campaign is at the
+intended data-foundation checkpoint.
 
 At that checkpoint, the repo should have:
 

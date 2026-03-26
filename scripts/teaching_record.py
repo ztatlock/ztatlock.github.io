@@ -27,7 +27,14 @@ RECORD_ALLOWED_FIELDS = {
     "details",
     "events",
 }
-OFFERING_ALLOWED_FIELDS = {"year", "term", "url", "co_instructors", "teaching_assistants"}
+OFFERING_ALLOWED_FIELDS = {
+    "year",
+    "term",
+    "url",
+    "co_instructors",
+    "teaching_assistants",
+    "tutors",
+}
 EVENT_ALLOWED_FIELDS = {"label", "url", "links"}
 LINK_ALLOWED_FIELDS = {"label", "url"}
 GROUP_KEY_RE = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
@@ -63,6 +70,7 @@ class TeachingOffering:
     url: str | None = None
     co_instructors: tuple[str, ...] = ()
     teaching_assistants: tuple[str, ...] = ()
+    tutors: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -246,7 +254,7 @@ def _normalize_offering(
     if group_key == "teaching_assistant":
         unexpected = sorted(
             field
-            for field in ("co_instructors", "teaching_assistants")
+            for field in ("co_instructors", "teaching_assistants", "tutors")
             if rows.get(field) is not None
         )
         if unexpected:
@@ -255,7 +263,11 @@ def _normalize_offering(
             )
         return TeachingOffering(year=year, term=term, url=url)
 
-    if rows.get("co_instructors") is None and rows.get("teaching_assistants") is None:
+    if (
+        rows.get("co_instructors") is None
+        and rows.get("teaching_assistants") is None
+        and rows.get("tutors") is None
+    ):
         return TeachingOffering(year=year, term=term, url=url)
 
     people_registry = get_people_registry()
@@ -271,12 +283,19 @@ def _normalize_offering(
         field="teaching_assistants",
         people_registry=people_registry,
     )
+    tutors = _normalize_people_keys(
+        rows.get("tutors"),
+        context=context,
+        field="tutors",
+        people_registry=people_registry,
+    )
     return TeachingOffering(
         year=year,
         term=term,
         url=url,
         co_instructors=co_instructors,
         teaching_assistants=teaching_assistants,
+        tutors=tutors,
     )
 
 

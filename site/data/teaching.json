@@ -85,13 +85,15 @@
               "year": 2016,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/16au/",
-              "teaching_assistants": ["konstantin-weitz"]
+              "teaching_assistants": ["konstantin-weitz"],
+              "tutors": ["james-wilcox", "eric-mullen", "joe-redmon"]
             },
             {
               "year": 2015,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/15au/",
-              "teaching_assistants": ["doug-woos"]
+              "teaching_assistants": ["doug-woos"],
+              "tutors": ["eric-mullen", "joe-redmon"]
             },
             {
               "year": 2015,

@@ -1,6 +1,6 @@
 # Teaching Staffing Slice 5: Tutor Canonicalization
 
-Status: drafted for review
+Status: implemented
 
 It builds on:
 

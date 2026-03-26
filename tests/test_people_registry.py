@@ -83,6 +83,11 @@ class PeopleRegistryTests(unittest.TestCase):
         self.assertEqual(registry.resolve_alias("Tingjia (Jennifer) Tao"), "jennifer-tao")
         self.assertEqual(registry.resolve_alias("Chen (Jason) Qiu"), "chen-qiu")
 
+        joe = registry.person("joe-redmon")
+        self.assertEqual(joe.name, "Joe Redmon")
+        self.assertEqual(joe.url, "https://pjreddie.com/")
+        self.assertEqual(joe.primary_url, "https://pjreddie.com/")
+
     def test_accepts_optional_public_link_fields_and_primary_url_fallback(self) -> None:
         payload = {
             "people": {

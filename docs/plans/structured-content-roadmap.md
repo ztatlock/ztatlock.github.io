@@ -424,8 +424,10 @@ The repo is also now at a good checkpoint after:
   larger TA import
 - the teaching-assistant canonicalization slice that backfilled confirmed TA
   facts on the relevant UW instructor-led offerings and expanded `people.json`
-  only as needed to key those canonical staffing facts cleanly, while keeping
-  tutor handling and public staffing rendering deferred
+  only as needed to key those canonical staffing facts cleanly
+- the tutor canonicalization slice that made the small known tutor set
+  canonical on the affected `uw-cse-505` offerings without changing public
+  rendering
 
 Funding follow-on work should continue separately as:
 
