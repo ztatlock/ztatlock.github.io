@@ -1,6 +1,6 @@
 # Collaborators Campaign
 
-Status: slices 1 and 2 implemented; slice 3 planned
+Status: slices 1 and 2 implemented; slice 3 audit in progress
 
 It builds on:
 
