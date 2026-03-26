@@ -464,12 +464,15 @@ The main remaining cross-domain maintenance seams are now:
 
 Near-term priorities that currently look strongest are:
 
-1. the collaborator relationship-model planning slice, now that both
+1. the special-topics teaching-page follow-on so the `Special Topics Graduate
+   Courses` section stops acting like a staffing-blind exception to the now
+   canonical teaching staffing model
+2. the collaborator relationship-model planning slice, now that both
    coauthorship and teaching staffing are canonical
-2. later exploration of the authored homepage/CV curated blocks once we are
+3. later exploration of the authored homepage/CV curated blocks once we are
    ready to decide whether they should stay authored, be trimmed, or become
    small structured consumers
-3. later homepage recent-teaching cleanup now that the public `/teaching/`
+4. later homepage recent-teaching cleanup now that the public `/teaching/`
    page actually reflects the canonical staffing-aware offering facts
 
 The main adjacent campaign now underway is:

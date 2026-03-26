@@ -334,6 +334,18 @@ Implemented outcomes so far:
 - the page wrapper, special-topics section, teaching-award note,
   summer-school section, and Related section stayed unchanged
 
+### Slice 4A. Special Topics Staffing-Aware Layout
+
+- keep the `Special Topics Graduate Courses` heading
+- stop treating special topics as a staffing-blind rendering exception
+- render special-topics offerings with the same general offering-list pattern
+  as the main UW course section
+- keep broader styling/polish questions deferred to a later campaign
+
+Planned in:
+
+- [teaching-slice-4a-special-topics-staffing-layout.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-slice-4a-special-topics-staffing-layout.md)
+
 ### Slice 5. Homepage Recent Teaching Projection
 
 - derive the recent-teaching bullets on `site/pages/index.dj`
