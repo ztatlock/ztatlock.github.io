@@ -76,10 +76,51 @@ class PeopleRegistryTests(unittest.TestCase):
         self.assertIsNone(registry.person("jack-zhang").primary_url)
 
         self.assertEqual(registry.person("taylor-coffman").name, "Taylor Coffman")
+        self.assertEqual(
+            registry.person("taylor-coffman").linkedin,
+            "https://www.linkedin.com/in/taylor-coffman-bb1626170/",
+        )
+        self.assertEqual(
+            registry.person("taylor-coffman").primary_url,
+            "https://www.linkedin.com/in/taylor-coffman-bb1626170/",
+        )
         self.assertEqual(registry.resolve_alias("Levi Coffman"), "taylor-coffman")
         self.assertEqual(registry.person("sam-gao").name, "Sam Gao")
+        self.assertEqual(
+            registry.person("sam-gao").linkedin,
+            "https://www.linkedin.com/in/sam-gao/",
+        )
+        self.assertEqual(
+            registry.person("sam-gao").primary_url,
+            "https://www.linkedin.com/in/sam-gao/",
+        )
         self.assertEqual(registry.resolve_alias("Zhengyang Gao"), "sam-gao")
+        self.assertEqual(
+            registry.person("christopher-mackie").linkedin,
+            "https://www.linkedin.com/in/christopher-mackie-881903b0/",
+        )
+        self.assertEqual(
+            registry.person("christopher-mackie").primary_url,
+            "https://www.linkedin.com/in/christopher-mackie-881903b0/",
+        )
+        self.assertEqual(registry.resolve_alias("Chris Mackie"), "christopher-mackie")
+        self.assertEqual(
+            registry.person("kenny-wu").linkedin,
+            "https://www.linkedin.com/in/anshuowu/",
+        )
+        self.assertEqual(
+            registry.person("kenny-wu").primary_url,
+            "https://www.linkedin.com/in/anshuowu/",
+        )
         self.assertEqual(registry.resolve_alias("Anshuo (Kenny) Wu"), "kenny-wu")
+        self.assertEqual(
+            registry.person("jennifer-tao").linkedin,
+            "https://www.linkedin.com/in/tingjia-jennifer-tao/",
+        )
+        self.assertEqual(
+            registry.person("jennifer-tao").primary_url,
+            "https://www.linkedin.com/in/tingjia-jennifer-tao/",
+        )
         self.assertEqual(registry.resolve_alias("Tingjia (Jennifer) Tao"), "jennifer-tao")
         self.assertEqual(registry.resolve_alias("Chen (Jason) Qiu"), "chen-qiu")
 

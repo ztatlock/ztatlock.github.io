@@ -99,10 +99,47 @@ class PeopleRefsTests(unittest.TestCase):
 
         self.assertIn("[Adam Anderson]: https://github.com/AdamEAnderson/\n", rendered)
         self.assertIn("[Aditya Akhileshwaran]: https://www.linkedin.com/in/adiakhil\n", rendered)
+        self.assertIn(
+            "[Christopher Mackie]: https://www.linkedin.com/in/christopher-mackie-881903b0/\n",
+            rendered,
+        )
+        self.assertIn(
+            "[Chris Mackie]: https://www.linkedin.com/in/christopher-mackie-881903b0/\n",
+            rendered,
+        )
         self.assertIn("[Gus Henry Smith]: https://justg.us/\n", rendered)
         self.assertIn("[Gus Smith]: https://justg.us/\n", rendered)
+        self.assertIn("[Kenny Wu]: https://www.linkedin.com/in/anshuowu/\n", rendered)
+        self.assertIn(
+            "[Anshuo (Kenny) Wu]: https://www.linkedin.com/in/anshuowu/\n",
+            rendered,
+        )
+        self.assertIn(
+            "[Jennifer Tao]: https://www.linkedin.com/in/tingjia-jennifer-tao/\n",
+            rendered,
+        )
+        self.assertIn(
+            "[Tingjia (Jennifer) Tao]: https://www.linkedin.com/in/tingjia-jennifer-tao/\n",
+            rendered,
+        )
+        self.assertIn(
+            "[Sam Gao]: https://www.linkedin.com/in/sam-gao/\n",
+            rendered,
+        )
+        self.assertIn(
+            "[Zhengyang Gao]: https://www.linkedin.com/in/sam-gao/\n",
+            rendered,
+        )
         self.assertIn("[Steven L. Tanimoto]: https://www.cs.washington.edu/people/faculty/tanimoto\n", rendered)
         self.assertIn("[Steve Tanimoto]: https://www.cs.washington.edu/people/faculty/tanimoto\n", rendered)
+        self.assertIn(
+            "[Taylor Coffman]: https://www.linkedin.com/in/taylor-coffman-bb1626170/\n",
+            rendered,
+        )
+        self.assertIn(
+            "[Levi Coffman]: https://www.linkedin.com/in/taylor-coffman-bb1626170/\n",
+            rendered,
+        )
 
 
 if __name__ == "__main__":
