@@ -841,6 +841,248 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(find_source_issues(config), [])
 
+    def test_reports_missing_homepage_recent_teaching_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Recent Teaching\n\n"
+                "- [2025 Autumn, UW CSE 507: Computer-Aided Reasoning for Software](https://example.test/507)\n\n"
+                "Please see my [teaching page](teaching/) for more.\n",
+                encoding="utf-8",
+            )
+            (teaching / "index.dj").write_text(
+                "---\n"
+                "description: Teaching page\n"
+                "---\n\n"
+                "# Teaching\n\n"
+                "__TEACHING_UW_COURSES_LIST__\n\n"
+                "__TEACHING_SPECIAL_TOPICS_LIST__\n\n"
+                "__TEACHING_SUMMER_SCHOOL_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "teaching.json").write_text(
+                json.dumps(
+                    {
+                        "groups": [
+                            {
+                                "key": "uw_courses",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-507",
+                                        "kind": "course",
+                                        "code": "UW CSE 507",
+                                        "title": "Computer-Aided Reasoning for Software",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2025, "term": "Autumn", "url": "https://example.test/507"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "special_topics",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-599z",
+                                        "kind": "course",
+                                        "code": "UW CSE 599Z",
+                                        "title": "Topics",
+                                        "details": ["Notes"],
+                                        "offerings": [{"year": 2017, "term": "Spring", "url": "https://example.test/599z"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "summer_school",
+                                "records": [
+                                    {
+                                        "key": "marktoberdorf",
+                                        "kind": "summer_school",
+                                        "title": "EqSat",
+                                        "events": [{"label": "Marktoberdorf Summer School 2024", "year": 2024, "url": "https://example.test/m"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "teaching_assistant",
+                                "records": [
+                                    {
+                                        "key": "ucsd-cse-130",
+                                        "kind": "course",
+                                        "code": "UCSD CSE 130",
+                                        "title": "PL",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2012, "term": "Winter"}],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'index.dj'}: homepage recent teaching section must contain __HOMEPAGE_RECENT_TEACHING_LIST__",
+                    f"{pages / 'index.dj'}: homepage recent teaching section must not contain literal repeated teaching entry blocks",
+                ],
+            )
+
+    def test_accepts_homepage_recent_teaching_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Recent Teaching\n\n"
+                "__HOMEPAGE_RECENT_TEACHING_LIST__\n\n"
+                "Please see my [teaching page](teaching/) for more.\n",
+                encoding="utf-8",
+            )
+            (teaching / "index.dj").write_text(
+                "---\n"
+                "description: Teaching page\n"
+                "---\n\n"
+                "# Teaching\n\n"
+                "__TEACHING_UW_COURSES_LIST__\n\n"
+                "__TEACHING_SPECIAL_TOPICS_LIST__\n\n"
+                "__TEACHING_SUMMER_SCHOOL_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "teaching.json").write_text(
+                json.dumps(
+                    {
+                        "groups": [
+                            {
+                                "key": "uw_courses",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-507",
+                                        "kind": "course",
+                                        "code": "UW CSE 507",
+                                        "title": "Computer-Aided Reasoning for Software",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2025, "term": "Autumn", "url": "https://example.test/507"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "special_topics",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-599z",
+                                        "kind": "course",
+                                        "code": "UW CSE 599Z",
+                                        "title": "Topics",
+                                        "details": ["Notes"],
+                                        "offerings": [{"year": 2017, "term": "Spring", "url": "https://example.test/599z"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "summer_school",
+                                "records": [
+                                    {
+                                        "key": "marktoberdorf",
+                                        "kind": "summer_school",
+                                        "title": "EqSat",
+                                        "events": [{"label": "Marktoberdorf Summer School 2024", "year": 2024, "url": "https://example.test/m"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "teaching_assistant",
+                                "records": [
+                                    {
+                                        "key": "ucsd-cse-130",
+                                        "kind": "course",
+                                        "code": "UCSD CSE 130",
+                                        "title": "PL",
+                                        "description_djot": "Desc",
+                                        "offerings": [{"year": 2012, "term": "Winter"}],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
     def test_reports_linkless_person_ref_in_news_data(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

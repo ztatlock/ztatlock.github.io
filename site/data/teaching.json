@@ -275,6 +275,7 @@
           "events": [
             {
               "label": "DeepSpec Summer School 2018",
+              "year": 2018,
               "url": "https://deepspec.org/event/dsss18/index.html",
               "links": [
                 {
@@ -296,6 +297,7 @@
           "events": [
             {
               "label": "Marktoberdorf Summer School 2024",
+              "year": 2024,
               "url": "https://sites.google.com/view/marktoberdorf2024/home"
             }
           ]

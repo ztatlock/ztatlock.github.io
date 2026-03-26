@@ -1,6 +1,6 @@
 # Homepage / CV Curated Consumers Campaign
 
-Status: slice 1 implemented; slice 2 next
+Status: slices 1-2 implemented
 
 It builds on:
 
@@ -40,12 +40,12 @@ Relevant current blocks:
   now a derived consumer of [site/data/news.json](/Users/ztatlock/www/ztatlock.github.io/site/data/news.json)
 - `## Current Students`
   now a derived consumer of [site/data/students.json](/Users/ztatlock/www/ztatlock.github.io/site/data/students.json)
+- `## Recent Teaching`
+  now a derived consumer of [site/data/teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json)
 - `## Recent Service / Leadership`
   6 entries
 - `## Recent Publications`
   14 full publication entries
-- `## Recent Teaching`
-  7 offering bullets
 
 Current overlap assessment:
 
@@ -55,7 +55,7 @@ Current overlap assessment:
   now solved as a tiny derived consumer of the canonical `current_students`
   section in [site/data/students.json](/Users/ztatlock/www/ztatlock.github.io/site/data/students.json)
 - `## Recent Teaching`
-  a flattened recent-offerings consumer over
+  now solved as a flattened recent-teaching consumer over
   [site/data/teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json)
 - `## Recent Service / Leadership`
   clearly curated across service categories rather than a simple "latest
@@ -179,15 +179,24 @@ Implemented outcomes so far:
 
 ### Slice 2. Homepage Recent Teaching
 
-Turn the homepage `## Recent Teaching` block into a tiny derived consumer of
-[site/data/teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json).
+Implemented.
 
 Invariant:
 
-- homepage recent teaching derives from canonical instructor-led offerings
+- homepage recent teaching derives from canonical teaching data
 - selection policy is explicit and deterministic
 - the block stays a flattened homepage-specific view rather than reusing the
   richer public teaching renderer
+
+Implemented outcomes so far:
+
+- the literal homepage recent-teaching bullets are gone from
+  [site/pages/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/index.dj)
+- the homepage now derives recent teaching from canonical `uw_courses`,
+  `special_topics`, and `summer_school` data inside a deterministic trailing
+  3-year window anchored to the most recent teaching year
+- the homepage remains a slim single-line-per-item teaching teaser rather than
+  a second staffing-aware teaching page
 
 ### Stop And Reassess
 
@@ -214,6 +223,7 @@ The right next move is not "project everything."
 
 The right next move is:
 
-1. likely follow with homepage `Recent Teaching`
+1. stop and reassess from the cleaner baseline where homepage `News`,
+   `Current Students`, and `Recent Teaching` are already derived consumers
 2. keep service/publications/highlights authored until a stronger editorial
    policy exists

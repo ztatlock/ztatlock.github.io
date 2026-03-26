@@ -72,6 +72,7 @@ from .people_registry import PeopleRegistryError, load_people_registry
 from .page_projection import (
     CV_FUNDING_LIST_PLACEHOLDER,
     HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER,
+    HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
     CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
@@ -120,6 +121,10 @@ LITERAL_COLLABORATOR_GAP_RE = re.compile(r"^>\s+`[A-Z](?:, [A-Z])*`$", re.MULTIL
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 LITERAL_NEWS_MONTH_HEADING_RE = re.compile(r"^:\s+[A-Z][a-z]+ \d{4}$", re.MULTILINE)
 LITERAL_NEWS_ITEM_RE = re.compile(r"^[ ]{2,}\S.*\\\s+", re.MULTILINE)
+LITERAL_HOMEPAGE_RECENT_TEACHING_ENTRY_RE = re.compile(
+    r"^- (?:\[\d{4} (?:Autumn|Summer|Spring|Winter), [^\]]+\]\([^)]+\)|\d{4} (?:Autumn|Summer|Spring|Winter), .+)$",
+    re.MULTILINE,
+)
 PEOPLE_REF_RE = re.compile(r"(?<!!)\[([^\[\]]+)\]\[([^\[\]]*)\]")
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -845,6 +850,29 @@ def _find_homepage_current_students_projection_issues(config: SiteConfig) -> lis
     return issues
 
 
+def _find_homepage_recent_teaching_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = config.page_source_dir / "index.dj"
+    teaching_path = config.data_dir / TEACHING_DATA_NAME
+    if not index_path.exists() or not teaching_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    teaching_section = _extract_markdown_section_body(text, "Recent Teaching", level=2)
+    if teaching_section is None:
+        return []
+
+    issues: list[str] = []
+    if HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER not in teaching_section:
+        issues.append(
+            f"{index_path}: homepage recent teaching section must contain {HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER}"
+        )
+    if LITERAL_HOMEPAGE_RECENT_TEACHING_ENTRY_RE.search(teaching_section):
+        issues.append(
+            f"{index_path}: homepage recent teaching section must not contain literal repeated teaching entry blocks"
+        )
+    return issues
+
+
 def _find_cv_funding_projection_issues(config: SiteConfig) -> list[str]:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     funding_path = config.data_dir / FUNDING_DATA_NAME
@@ -1159,6 +1187,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_news_projection_issues(config)
         + _find_homepage_news_projection_issues(config)
         + _find_homepage_current_students_projection_issues(config)
+        + _find_homepage_recent_teaching_projection_issues(config)
         + _find_funding_data_issues(config)
         + _find_cv_funding_projection_issues(config)
         + _find_funding_projection_issues(config)

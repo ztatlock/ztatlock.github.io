@@ -77,7 +77,84 @@ class TeachingRecordTests(unittest.TestCase):
         )
         self.assertEqual(groups[1].records[1].details[0], "Formally verifying systems implementations")
         self.assertEqual(groups[2].records[1].events[0].label, "Marktoberdorf Summer School 2024")
+        self.assertEqual(groups[2].records[1].events[0].year, 2024)
         self.assertEqual(groups[3].records[2].offerings[-1].year, 2004)
+
+    def test_summer_school_event_accepts_explicit_year(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [{"year": 2025, "term": "Autumn"}],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {
+                        "key": "summer_school",
+                        "records": [
+                            {
+                                "key": "marktoberdorf",
+                                "kind": "summer_school",
+                                "title": "EqSat",
+                                "events": [{"label": "Marktoberdorf Summer School 2024", "year": 2024, "url": "https://example.com/m"}],
+                            }
+                        ],
+                    },
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            groups = load_teaching_groups(root)
+            self.assertEqual(groups[2].records[0].events[0].year, 2024)
+
+    def test_summer_school_event_infers_year_from_label_when_omitted(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [{"year": 2025, "term": "Autumn"}],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {
+                        "key": "summer_school",
+                        "records": [
+                            {
+                                "key": "marktoberdorf",
+                                "kind": "summer_school",
+                                "title": "EqSat",
+                                "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}],
+                            }
+                        ],
+                    },
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            groups = load_teaching_groups(root)
+            self.assertEqual(groups[2].records[0].events[0].year, 2024)
 
     def test_duplicate_group_key_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

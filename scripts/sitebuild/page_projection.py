@@ -72,6 +72,7 @@ from .people_registry import PeopleRegistryError, load_people_registry
 
 TALKS_LIST_PLACEHOLDER = "__TALKS_LIST__"
 HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER = "__HOMEPAGE_CURRENT_STUDENTS_LIST__"
+HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER = "__HOMEPAGE_RECENT_TEACHING_LIST__"
 STUDENTS_CURRENT_LIST_PLACEHOLDER = "__STUDENTS_CURRENT_LIST__"
 STUDENTS_POSTDOC_LIST_PLACEHOLDER = "__STUDENTS_POSTDOC_LIST__"
 STUDENTS_PHD_LIST_PLACEHOLDER = "__STUDENTS_PHD_LIST__"
@@ -129,6 +130,12 @@ TEACHING_GROUP_PLACEHOLDERS = {
     "special_topics": TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER,
     "summer_school": TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER,
 }
+TEACHING_TERM_SORT_MONTH = {
+    "Winter": 1,
+    "Spring": 4,
+    "Summer": 7,
+    "Autumn": 9,
+}
 
 
 class PageProjectionError(ValueError):
@@ -155,6 +162,10 @@ def _render_teaching_offering(offering: TeachingOffering) -> str:
     if not offering.url:
         return label
     return f"[{label}]({offering.url})"
+
+
+def _render_homepage_recent_teaching_entry(text: str, url: str | None) -> str:
+    return f"- {_render_title(text, url)}"
 
 
 def _load_projection_people_registry(root: Path, *, data_dir: Path | None = None):
@@ -396,6 +407,64 @@ def _teaching_group_records_by_key(root: Path, *, data_dir: Path | None = None) 
     except TeachingRecordError as err:
         raise PageProjectionError(str(err)) from err
     return {group.key: group.records for group in groups}
+
+
+def _trim_trailing_label_year(label: str, year: int) -> str:
+    suffix = f" {year}"
+    if label.endswith(suffix):
+        return label[: -len(suffix)]
+    return label
+
+
+def render_homepage_recent_teaching_list_djot(
+    root: Path,
+    *,
+    data_dir: Path | None = None,
+) -> str:
+    groups = _teaching_group_records_by_key(root, data_dir=data_dir)
+    items: list[tuple[int, int, int, str, str | None]] = []
+    sequence = 0
+
+    def add_item(year: int, month: int, text: str, url: str | None) -> None:
+        nonlocal sequence
+        items.append((year, month, sequence, text, url))
+        sequence += 1
+
+    for group_key in ("uw_courses", "special_topics"):
+        for record in groups.get(group_key, ()):
+            for offering in record.offerings:
+                add_item(
+                    offering.year,
+                    TEACHING_TERM_SORT_MONTH[offering.term],
+                    f"{offering.year} {offering.term}, {record.code}: {record.title}",
+                    offering.url,
+                )
+
+    for record in groups.get("summer_school", ()):
+        for event in record.events:
+            add_item(
+                event.year,
+                7,
+                f"{event.year} Summer, {_trim_trailing_label_year(event.label, event.year)}: {record.title}",
+                event.url,
+            )
+
+    if not items:
+        return ""
+
+    latest_year = max(year for year, _, _, _, _ in items)
+    earliest_year = latest_year - 2
+    selected = [
+        item
+        for item in items
+        if earliest_year <= item[0] <= latest_year
+    ]
+    selected.sort(key=lambda item: (-item[0], -item[1], item[2]))
+    rendered = tuple(
+        _render_homepage_recent_teaching_entry(text, url)
+        for _, _, _, text, url in selected
+    )
+    return "\n\n".join(rendered) + ("\n" if rendered else "")
 
 
 def _service_records(root: Path, *, data_dir: Path | None = None) -> tuple[ServiceRecord, ...]:
@@ -763,6 +832,12 @@ def apply_page_projections(
                 data_dir=data_dir,
             ).rstrip()
             rendered = rendered.replace(HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER, current_students)
+        if HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER in rendered:
+            recent_teaching = render_homepage_recent_teaching_list_djot(
+                root,
+                data_dir=data_dir,
+            ).rstrip()
+            rendered = rendered.replace(HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER, recent_teaching)
         if rendered != body:
             return rendered
 

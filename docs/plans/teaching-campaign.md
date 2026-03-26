@@ -66,13 +66,15 @@ Important pre-CV-projection characteristics:
 
 `site/pages/index.dj` currently contains:
 
-- 7 recent teaching bullets
-- each bullet is one flattened instructor offering with a direct link
+- a projected `## Recent Teaching` block
+- one flat bullet per selected recent teaching item
+- a trailing authored link to `teaching/`
 
 Important current characteristics:
 
 - this is a projection-style consumer, not a prose-first page
-- it currently draws only from recent instructor offerings
+- it now derives from canonical teaching data inside an explicit recent-year
+  window
 - it should eventually derive from the same canonical teaching records
 
 ### Important Audit Constraint
@@ -357,8 +359,19 @@ Implemented outcomes so far:
 
 ### Slice 5. Homepage Recent Teaching Projection
 
-- derive the recent-teaching bullets on `site/pages/index.dj`
-- update authored links to use canonical `/teaching/`
+Implemented in:
+
+- [homepage-cv-curated-consumers-slice-2-recent-teaching.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/homepage-cv-curated-consumers-slice-2-recent-teaching.md)
+
+Implemented outcomes so far:
+
+- the homepage recent-teaching block now derives from canonical teaching data
+  in [site/data/teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json)
+- the selection policy is now explicit: a trailing 3-year window anchored to
+  the most recent teaching year across `uw_courses`, `special_topics`, and
+  `summer_school`, excluding the historical `teaching_assistant` group
+- the homepage render remains intentionally slim and flat, without staffing
+  details or teaching-page prose
 
 ## Deferred Questions
 

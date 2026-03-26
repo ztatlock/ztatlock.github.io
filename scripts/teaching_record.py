@@ -35,7 +35,7 @@ OFFERING_ALLOWED_FIELDS = {
     "teaching_assistants",
     "tutors",
 }
-EVENT_ALLOWED_FIELDS = {"label", "url", "links"}
+EVENT_ALLOWED_FIELDS = {"label", "year", "url", "links"}
 LINK_ALLOWED_FIELDS = {"label", "url"}
 GROUP_KEY_RE = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
 RECORD_KEY_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -51,6 +51,7 @@ RECORD_KIND_SUMMER_SCHOOL = "summer_school"
 RECORD_KINDS = frozenset({RECORD_KIND_COURSE, RECORD_KIND_SUMMER_SCHOOL})
 OFFERING_TERMS = ("Winter", "Spring", "Summer", "Autumn")
 OFFERING_TERM_SET = frozenset(OFFERING_TERMS)
+EVENT_LABEL_YEAR_RE = re.compile(r"(19|20)\d{2}")
 
 
 class TeachingRecordError(ValueError):
@@ -76,6 +77,7 @@ class TeachingOffering:
 @dataclass(frozen=True)
 class TeachingEvent:
     label: str
+    year: int
     url: str
     links: tuple[TeachingLink, ...] = ()
 
@@ -335,9 +337,19 @@ def _normalize_event(raw: object, *, context: str) -> TeachingEvent:
     if unknown_fields:
         raise TeachingRecordError(f"{context}: unknown fields: {', '.join(unknown_fields)}")
     label = _require_nonempty_string(rows.get("label"), context=context, field="label")
+    year_raw = rows.get("year")
+    if year_raw is None:
+        matches = tuple(EVENT_LABEL_YEAR_RE.finditer(label))
+        if not matches:
+            raise TeachingRecordError(
+                f"{context}: missing year and could not infer one from label {label!r}"
+            )
+        year = int(matches[-1].group(0))
+    else:
+        year = _require_year(year_raw, context=context, field="year")
     url = _require_nonempty_string(rows.get("url"), context=context, field="url")
     links = _normalize_links(rows.get("links"), context=f"{context}.links")
-    return TeachingEvent(label=label, url=url, links=links)
+    return TeachingEvent(label=label, year=year, url=url, links=links)
 
 
 def _normalize_events(raw: object, *, context: str) -> tuple[TeachingEvent, ...]:

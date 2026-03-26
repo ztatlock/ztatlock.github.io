@@ -36,6 +36,7 @@ from scripts.sitebuild.page_projection import (
     CV_STUDENTS_POSTDOC_LIST_PLACEHOLDER,
     CV_STUDENTS_VISITING_LIST_PLACEHOLDER,
     HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER,
+    HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER,
     SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     SERVICE_MENTORING_LIST_PLACEHOLDER,
     SERVICE_ORGANIZING_LIST_PLACEHOLDER,
@@ -59,6 +60,7 @@ from scripts.sitebuild.page_projection import (
     render_cv_teaching_instructor_list_djot,
     render_cv_teaching_summer_school_list_djot,
     render_homepage_current_students_list_djot,
+    render_homepage_recent_teaching_list_djot,
     render_cv_students_section_list_djot,
     render_teaching_special_topics_list_djot,
     render_teaching_summer_school_list_djot,
@@ -1066,6 +1068,83 @@ class PageProjectionTests(unittest.TestCase):
         self.assertNotIn(HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER, rendered)
         self.assertIn(": February 2026", rendered)
         self.assertIn("- [Haobin Ni][], Postdoctoral Scholar", rendered)
+
+    def test_renders_homepage_recent_teaching_list_from_recent_window(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        rendered = render_homepage_recent_teaching_list_djot(
+            root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertIn(
+            "- [2025 Autumn, UW CSE 507: Computer-Aided Reasoning for Software](https://courses.cs.washington.edu/courses/cse507/25au/)",
+            rendered,
+        )
+        self.assertIn(
+            "- [2024 Summer, Marktoberdorf Summer School: Analysis and Optimizations with Equality Saturation](https://sites.google.com/view/marktoberdorf2024/home)",
+            rendered,
+        )
+        self.assertNotIn("2022 Autumn, UW CSE 341: Programming Languages", rendered)
+        self.assertNotIn("2018 Summer, DeepSpec Summer School", rendered)
+
+    def test_applies_projection_only_to_homepage_recent_teaching_section(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Home\n\n"
+            "## Recent Teaching\n\n"
+            "__HOMEPAGE_RECENT_TEACHING_LIST__\n\n"
+            "Please see my [teaching page](teaching/) for more.\n"
+        )
+        rendered = apply_page_projections(
+            "ordinary_page",
+            "index",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER, rendered)
+        self.assertIn("2025 Autumn, UW CSE 507: Computer-Aided Reasoning for Software", rendered)
+        self.assertIn("2024 Summer, Marktoberdorf Summer School: Analysis and Optimizations with Equality Saturation", rendered)
+        self.assertIn("Please see my [teaching page](teaching/) for more.", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
+
+    def test_applies_homepage_news_current_students_and_recent_teaching_together(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Home\n\n"
+            "## News\n\n"
+            "__HOMEPAGE_NEWS_MONTH_GROUPS__\n\n"
+            "Please see [past news](news/) for more.\n\n"
+            "## Current Students\n\n"
+            "{.columns .columns-16rem}\n"
+            "__HOMEPAGE_CURRENT_STUDENTS_LIST__\n\n"
+            "Please see my [students page](students/) for more.\n\n"
+            "## Recent Teaching\n\n"
+            "__HOMEPAGE_RECENT_TEACHING_LIST__\n\n"
+            "Please see my [teaching page](teaching/) for more.\n"
+        )
+        rendered = apply_page_projections(
+            "ordinary_page",
+            "index",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertNotIn(HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER, rendered)
+        self.assertIn(": February 2026", rendered)
+        self.assertIn("- [Haobin Ni][], Postdoctoral Scholar", rendered)
+        self.assertIn("2024 Summer, Marktoberdorf Summer School: Analysis and Optimizations with Equality Saturation", rendered)
 
     def test_homepage_news_overflow_prefers_featured_older_items(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

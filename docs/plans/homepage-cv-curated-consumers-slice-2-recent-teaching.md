@@ -1,6 +1,6 @@
 # Homepage / CV Curated Consumers Slice 2: Homepage Recent Teaching
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -174,17 +174,22 @@ than scanning the whole file blindly.
 
 ## Expected Visible Changes
 
-This slice should ideally produce no intentional rendered HTML change.
+This slice intentionally changes the homepage recent-teaching selection to
+match the new explicit canonical policy.
 
 What should stay the same:
 
 - section heading
-- bullet wording
-- bullet order
-- bullet link targets
+- flat single-line bullet style
+- bullet wording policy
 - trailing teaching-page sentence
 
-The intended change is source-of-truth cleanup, not presentation change.
+What intentionally changes:
+
+- the homepage recent-teaching bullets now derive from a trailing 3-year
+  canonical window rather than from the previously hand-maintained 7-item list
+- recent summer-school teaching may now appear naturally within that window
+- older out-of-window offerings no longer remain on the homepage by inertia
 
 ## Verification
 
@@ -198,5 +203,5 @@ Verification should include:
 Rendered diff review should confirm:
 
 - no visible change outside [build/index.html](/Users/ztatlock/www/ztatlock.github.io/build/index.html)
-- ideally no substantive visible change even within the homepage recent
-  teaching block
+- the homepage recent-teaching block changes only in ways explained by the new
+  deterministic 3-year window policy

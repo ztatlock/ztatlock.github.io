@@ -218,6 +218,15 @@ Likely slice order:
 3. CV teaching projection
 4. homepage recent-teaching projection
 
+Implemented outcomes so far:
+
+- the homepage recent-teaching block now derives from canonical teaching data
+  using an explicit trailing 3-year window anchored to the most recent
+  teaching year
+- the homepage teaching teaser now covers recent `uw_courses`,
+  `special_topics`, and `summer_school` teaching while still excluding the
+  separate historical `teaching_assistant` group
+
 ### 5. Service
 
 Service followed teaching as the next major shared-data campaign and is now at
@@ -472,14 +481,12 @@ The main remaining cross-domain maintenance seams are now:
 
 Near-term priorities that currently look strongest are:
 
-1. later homepage recent-teaching cleanup now that the public `/teaching/`
-   page actually reflects the canonical staffing-aware offering facts
-2. later exploration of the remaining authored homepage/CV curated blocks once
+1. later exploration of the remaining authored homepage/CV curated blocks now
    we are ready to decide whether they should stay authored, be trimmed, or
    become small structured consumers
-3. a later teaching-page styling/polish campaign now that the richer
+2. a later teaching-page styling/polish campaign now that the richer
    projections are materially more consistent but also visually rougher
-4. later collaborator enrichment only if a concrete per-person consumer
+3. later collaborator enrichment only if a concrete per-person consumer
    clearly earns it, likely alongside or after a future structured `projects`
    domain rather than through a premature collaborator registry
 
