@@ -1,6 +1,6 @@
 # Collaborators Slice 3 Audit Notes
 
-Status: in progress
+Status: concluded
 
 It builds on:
 
@@ -29,7 +29,9 @@ Important observation:
 
 So the research-collaborator audit is not cleaning up a hidden old
 non-coauthor list.
-It is deciding what should be added beyond coauthors.
+It is confirming that the near-term expansion can proceed directly from
+existing canonical domains rather than needing a temporary collaborator
+registry first.
 
 ## Student Review Set
 
@@ -110,13 +112,25 @@ That reinforces the current policy recommendation:
 - keep the about-page joke tied to the coauthor/research-publication side
   until the broadened collaborators ontology is reviewed explicitly
 
+## Current Conclusion
+
+- no hidden historical non-coauthor collaborator set was lost during the
+  collaborators projection cutover
+- the old manual collaborators page was effectively coauthors plus self
+- no near-term `site/data/collaborators.json` layer is needed before the next
+  collaborators rendering slice
+- the next collaborators step should be a sectioned public page over existing
+  canonical sources:
+  - `Research Collaborators`
+  - `Teaching Collaborators`
+- the about-page alphabet joke should stay tied to the coauthor/research-
+  publication side for now
+- a future `projects` domain still looks useful for richer research
+  justification, but it is not needed before the next public collaborators
+  slice
+
 ## Stop Point
 
-The next step in this slice is person-by-person review of:
-
-- the `16` student-only names above
-- any additional non-student, non-coauthor research collaborators that should
-  belong in `Research Collaborators`
-
-Do not plan page rendering or a collaborator registry until that review is
-explicit.
+The next step is to plan the sectioned public collaborators page.
+If a real residual research-collaborator case appears later, revisit whether
+any collaborator-specific shared-data layer is actually needed.

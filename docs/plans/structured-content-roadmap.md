@@ -303,7 +303,7 @@ above.
 
 ### Collaborators
 
-The collaborators campaign is now underway through its second slice.
+The collaborators campaign is now through its third audit slice.
 
 The current checkpoint is narrow on purpose:
 
@@ -319,15 +319,16 @@ The current checkpoint is narrow on purpose:
 - the seeded people registry now also uses typed `linkedin` / `github` fields
   consistently for obvious social-only fallback links before staffing imports
   grow the registry further
-- collaborator-specific relationship data only later, once non-coauthor facts
-  become real and worth modeling
+- the research-collaborator audit found no hidden historical non-coauthor
+  collaborator set that was lost during projection
+- the current near-term expansion does not need collaborator-specific shared
+  data before the next public rendering slice
 
 Current dependency note:
 
-- the next collaborators step should now be a research-collaborator audit,
-  not immediate rendering, because teaching staffing has unblocked a broader
-  collaborator ontology but non-coauthor research collaborators still need
-  reviewed semantics before a residual collaborator layer is introduced
+- the next collaborators step should now be the sectioned public page, because
+  the audit showed the current near-term expansion can proceed directly from
+  publication coauthors, students/advising, and teaching staffing
 - some facts that are residual collaborator data today may later become
   canonical under a future structured-data `projects` domain, so any later
   collaborator-specific registry should stay minimal and designed to shrink

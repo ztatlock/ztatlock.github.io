@@ -1,6 +1,6 @@
 # Collaborators Slice 3: Research Collaborator Audit
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -15,7 +15,8 @@ It builds on:
 Review and define what should count as `Research Collaborators` before the
 public collaborators page broadens beyond publication coauthors.
 
-This is an ontology and audit slice, not an implementation or rendering slice.
+This was an ontology and audit slice, not an implementation or rendering
+slice.
 
 ## Why This Slice Next
 
@@ -42,7 +43,7 @@ It likely includes:
 - some other research collaborators who are neither publication coauthors nor
   advisees
 
-That means the next slice must be an explicit review first.
+That meant the next slice needed an explicit review first.
 
 ## Current State
 
@@ -96,34 +97,30 @@ This slice should answer:
 
 ## Audit Inputs
 
-The audit should review at least:
+The audit reviewed:
 
-- current collaborators-page inclusions that are not justified by publication
-  coauthorship alone
 - student/advisee names that are not coauthors but may still be research
   collaborators
-- other known research collaborators who are neither students nor coauthors
-
-The audit should not assume that every student belongs in `Research
-Collaborators`.
+- the full git history of the manual collaborators page to check whether any
+  non-coauthor names had been lost during projection
 
 ## Expected Output
 
-The output of this slice should be a reviewed memo or plan update that
-includes:
+The output of this slice is the reviewed memo in
+[collaborators-slice-3-research-collaborator-audit-notes.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/collaborators-slice-3-research-collaborator-audit-notes.md)
+plus the resulting campaign adjustment.
 
-- a candidate `Research Collaborators` population
-- reviewed buckets such as:
-  - `coauthor`
-  - `student-research-collaborator`
-  - `other-research-collaborator`
-- a short reason for every non-coauthor inclusion
-- an explicit classification of whether each non-coauthor inclusion is:
-  - already derivable now
-  - likely future-project-derived
-  - likely always residual/curated
-- a recommendation about what residual facts need stable storage in a later
-  `site/data/collaborators.json`
+Main conclusions:
+
+- no hidden historical non-coauthor collaborator set was lost during the
+  collaborators projection cutover
+- the old manual collaborators page was effectively coauthors plus self
+- no near-term `site/data/collaborators.json` layer is needed before the next
+  public rendering slice
+- the next collaborators slice should be the sectioned public page over
+  existing canonical sources
+- a future `projects` domain still looks useful for richer research
+  justification, but it is not needed to proceed now
 
 ## Invariant
 
@@ -140,11 +137,12 @@ After this slice:
 
 ## Scope
 
-In scope:
+What was in scope:
 
 - analyze current collaborator, student, and teaching sets
-- review likely non-coauthor research collaborators one by one
-- record the reason categories for inclusion
+- review the current student-only review set
+- inspect full collaborators-page history to confirm whether any historical
+  non-coauthor names were lost
 - decide whether the about-page alphabet joke should stay research/coauthor
   focused for now
 - identify whether a future collaborator-specific shared-data layer is needed
@@ -162,7 +160,7 @@ Out of scope:
 
 ## Future Direction
 
-This slice should keep one longer-term direction in mind:
+This slice kept one longer-term direction in mind:
 
 - a later collaborators campaign may want a per-collaborator view that can
   show publications, teaching relationships, advising, projects, and maybe
@@ -189,9 +187,9 @@ Stop after the audit and reassess.
 
 The next decision should be between:
 
-- introducing a minimal collaborator-specific data layer for residual research
-  collaborator facts
 - planning the sectioned public collaborators page
+- later introducing a minimal collaborator-specific data layer only if a real
+  residual case appears
 - revisiting the about-page collaborator alphabet wording/policy
 
 not jumping straight into page rendering while the research-collaborator

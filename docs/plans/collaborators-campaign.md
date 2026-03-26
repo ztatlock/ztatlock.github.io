@@ -1,6 +1,6 @@
 # Collaborators Campaign
 
-Status: slices 1 and 2 implemented; slice 3 audit in progress
+Status: slices 1, 2, and 3 implemented
 
 It builds on:
 
@@ -112,7 +112,7 @@ sources:
 - publication bundles for research coauthorship
 - teaching staffing for teaching collaboration
 - a later collaborator-specific shared-data layer only for residual facts that
-  are canonical nowhere else
+  are canonical nowhere else, if such facts actually emerge
 
 That later residual layer should be intentionally small.
 It is not meant to become the permanent home of all research-collaboration
@@ -131,10 +131,14 @@ Current checkpoint:
   display set
 - teaching staffing now provides a second real canonical collaborator source,
   but the public collaborators page does not use it yet
+- the slice-3 audit found no hidden historical non-coauthor collaborator set
+  that was lost during projection
+- the current near-term `Research Collaborators` path does not require a
+  collaborator-specific shared-data layer before broadening the page
 
-The next campaign phase should not jump straight into rendering. It should
-first audit what `Research Collaborators` is intended to mean beyond paper
-coauthorship.
+The next campaign phase should now move to rendering, because the audit
+clarified that the current near-term `Research Collaborators` expansion can be
+grounded directly in existing canonical domains.
 
 That means:
 
@@ -142,9 +146,9 @@ That means:
 - `people.json` remains canonical for person identity, aliases, and URLs
 - `site/data/students.json` remains canonical for student/advising facts
 - `site/data/teaching.json` remains canonical for teaching collaboration facts
-- collaborator-specific relationship facts only get their own data file once
-  the audit proves they are real residual facts that cannot be derived cleanly
-  from those existing domains
+- collaborator-specific relationship facts only get their own data file if
+  real residual cases emerge that cannot be derived cleanly from those
+  existing domains
 
 ## Important Boundary
 
@@ -238,49 +242,17 @@ Required outputs:
 - a recommendation about what residual facts need a collaborator-specific data
   layer
 
-Invariant after slice 3:
+Current conclusion:
 
-- the repo has an explicit reviewed understanding of what `Research
-  Collaborators` means
-- non-coauthor research collaborators are no longer an implicit grab bag
-- no collaborator-specific data file or rendering change is required yet
+- no hidden historical non-coauthor collaborator set was lost during the
+  collaborators projection cutover
+- the old manual collaborators page was effectively coauthors plus self
+- the current near-term `Research Collaborators` expansion can proceed
+  directly from existing canonical domains:
+  publication coauthors plus the current reviewed student/advising set
+- no collaborator-specific data file is needed before the next rendering slice
 
-### Slice 4. Collaborator Relationship Model
-
-Goal:
-
-- add a collaborator-specific shared-data layer only for residual collaborator
-  facts that are not already canonical elsewhere
-
-Likely target:
-
-- `site/data/collaborators.json`
-
-Likely first residual fact types:
-
-- explicit inclusion/justification for non-coauthor research collaborators
-- future curated relationship notes that are canonical nowhere else
-
-Important design note:
-
-- this layer should be minimal and expected to shrink if a later
-  structured-data `projects` domain absorbs some currently residual research
-  collaboration facts
-
-Important non-goals:
-
-- do not duplicate publication coauthors into the collaborator registry just
-  for symmetry
-- do not duplicate teaching staffing into the collaborator registry just for
-  symmetry
-
-Invariant after slice 4:
-
-- residual collaborator-specific facts have one canonical home keyed by
-  `people.json`
-- publication and teaching remain canonical in their own domains
-
-### Slice 5. Sectioned Collaborator Views
+### Slice 4. Sectioned Collaborator Views
 
 Goal:
 
@@ -303,11 +275,47 @@ Recommended policy:
 - the about-page alphabet joke should likely remain tied to the
   research/coauthor side rather than silently broadening to all collaborators
 
-Invariant after slice 5:
+Invariant after slice 4:
 
 - the public collaborators page can present research and teaching
   collaboration distinctly without hand-maintained drift
 - section semantics are explicit and reviewable
+
+### Slice 5. Collaborator Relationship Model
+
+Goal:
+
+- add a collaborator-specific shared-data layer only if later residual
+  collaborator facts actually emerge that are not canonical elsewhere
+
+Likely target:
+
+- `site/data/collaborators.json`
+
+Possible later residual fact types:
+
+- explicit inclusion/justification for non-coauthor research collaborators
+  who are neither publication-derived nor student-derived
+- future curated relationship notes that are canonical nowhere else
+
+Important design note:
+
+- this layer should be minimal and expected to shrink if a later
+  structured-data `projects` domain absorbs some currently residual research
+  collaboration facts
+
+Important non-goals:
+
+- do not duplicate publication coauthors into the collaborator registry just
+  for symmetry
+- do not duplicate teaching staffing into the collaborator registry just for
+  symmetry
+
+Invariant after slice 5:
+
+- residual collaborator-specific facts have one canonical home keyed by
+  `people.json`
+- publication and teaching remain canonical in their own domains
 
 ### Slice 6. Richer Collaborator Enrichment
 
@@ -334,11 +342,9 @@ Invariant after slice 6:
 
 ## Deferred Work
 
-The following should remain explicitly out of the first collaborators
+The following should remain explicitly out of the current collaborators
 checkpoint:
 
-- broadening the page to include teaching collaborators without a reviewed
-  ontology first
 - collaborator detail pages or popups
 - collaborator/project/grant cross-linking
 - a future structured-data `projects` domain for research work that does not
@@ -353,10 +359,11 @@ post-slice-2 audit checkpoint.
 
 Continue collaborators with the smallest next real architecture:
 
-1. research-collaborator audit
+1. sectioned public collaborators page
 2. stop and reassess
-3. only then decide the minimum collaborator-specific data layer
-4. only then broaden the page into explicit research/teaching sections
+3. only then decide whether any collaborator-specific data layer is actually
+   needed
+4. only then consider richer per-collaborator enrichment
 
-That keeps the next slice honest to the now-larger ontology while still
+That keeps the next slice honest to the now-clearer ontology while still
 leaving room for the richer collaborator directions that may matter later.
