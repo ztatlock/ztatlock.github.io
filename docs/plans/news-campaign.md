@@ -325,14 +325,21 @@ Goal:
 
 Important design note:
 
-- the current homepage omissions imply this slice will likely need explicit
-  per-item inclusion policy rather than a pure "latest N" rule
+- the agreed policy should stay deterministic and anchored to canonical news
+  data, not the wall clock
+- recency should remain primary
+- a small optional stickiness signal can help in heavier-news periods without
+  turning the homepage into a hand-curated second registry
 
 Invariant after slice 3:
 
 - homepage and news page can no longer drift silently
 - the homepage remains a curated teaser consumer, not a second source of truth
-- homepage inclusion policy is explicit rather than implicitly "latest N"
+- homepage inclusion policy is explicit and deterministic:
+  trailing `12` months from the most recent canonical news month, hard cap
+  `15`, always keep the `10` most recent items, and use optional
+  `homepage_featured` only for older in-window stickiness when the window
+  overflows
 
 ### Slice 4. Typed Cross-Domain Enrichment
 
