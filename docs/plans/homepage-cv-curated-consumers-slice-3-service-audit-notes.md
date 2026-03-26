@@ -121,6 +121,53 @@ Why they are interesting:
 This is probably correct for some current consumers, but it is not obviously
 the best long-term model for every future consumer.
 
+### Series-By-Series Provisional Read
+
+`FPTalks`
+
+- recurring concept is very strong
+- each year has its own distinct event URL
+- current grouped view keeps each year separate
+- provisional read:
+  - current instance-by-instance public rendering is defensible
+  - future consumers would likely benefit from a stronger concept-level story
+    that can still expose per-year instance links
+
+`PLDI Workshops`
+
+- recurring concept is real, but the public meaning is more year-local than
+  `FPTalks`
+- each year has a distinct organizing-committee URL
+- provisional read:
+  - probably fine to keep year-local in current public/homepage rendering
+  - but still a useful test case for whether later grouped summaries should be
+    able to show one concept with multiple year links
+
+`EGRAPHS Workshop`
+
+- recurring concept is real across `2022` and `2023`
+- each year has a distinct PLDI-hosted URL
+- provisional read:
+  - similar to `PLDI Workshops`
+  - keep year-local for now, but treat as another example of concept-versus-
+    instance pressure on the model
+
+`PNW PLSE`
+
+- same broad concept, but years are non-contiguous and role text changes
+- provisional read:
+  - should remain separate grouped entries under current and likely future
+    models unless a richer concept layer explicitly wants to connect them
+
+`SRC JUMP: Applications Driving Architectures (ADA)`
+
+- adjacent years
+- same URL
+- same role
+- already collapses cleanly today
+- provisional read:
+  - current model handles this series well
+
 ### Mixed / Special Cases
 
 - `pldi-program-committee-chair`
@@ -188,6 +235,24 @@ No recommendation is final yet.
 The current conclusion is only that the question is real and worth keeping
 explicit during the audit.
 
+## Rendering / Presentation Seam
+
+The current public service page is factually much better than the old manually
+maintained version, but the rendered projection is still visually rough.
+
+Observed current issues from
+[build/service/index.html](/Users/ztatlock/www/ztatlock.github.io/build/service/index.html):
+
+- long sections of flat bullets feel dense and monotonous
+- nested detail links help, but the overall page still reads like a large
+  undifferentiated list dump
+- repeated annual organizer/event entries make the `Organizing` section feel
+  especially noisy
+
+This is a separate problem from the current audit.
+The data-model and grouping audit should come first, but the repo should retain
+an explicit later backlog item for service-page formatting/projection polish.
+
 ## Provisional Conclusions
 
 Current provisional conclusions:
@@ -214,3 +279,5 @@ Current provisional conclusions:
 4. Is the current single `url` field on a service term enough for future
    grouped summaries, or do recurring concepts eventually want richer link
    support?
+5. Once the grouping/model questions are settled, what service-page projection
+   and CSS changes would make `/service/` materially easier to scan?
