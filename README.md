@@ -36,6 +36,9 @@ source with a small Python build engine behind `make`.
   and CV reuse.
 - `site/data/funding.json`
   Canonical funding records for the funding page plus CV reuse.
+- `site/data/news.json`
+  Canonical editorial news-item records for the later news wrapper and
+  homepage reuse.
 - `site/pubs/<slug>/`
   Publication records and local publication assets.
 - `site/static/`
@@ -77,6 +80,9 @@ Metadata rules:
   and CV service facts should reuse the same records.
 - The public funding page and the CV funding list are projected from canonical
   grant records in `site/data/funding.json`.
+- The public news page currently remains authored at `site/pages/news.dj`,
+  while the canonical repeated news item stream now lives in
+  `site/data/news.json` ahead of the later `/news/` wrapper cutover.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.

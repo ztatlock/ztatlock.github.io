@@ -1,6 +1,6 @@
 # News Campaign
 
-Status: planned
+Status: slice 1 implemented; later slices planned
 
 It builds on:
 
@@ -62,6 +62,8 @@ forced to own the news prose.
 
 Current explicit surfaces:
 
+- [site/data/news.json](/Users/ztatlock/www/ztatlock.github.io/site/data/news.json)
+  canonical ordered news records
 - [site/pages/news.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/news.dj)
   current authored news page
 - [site/pages/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/index.dj)
@@ -72,7 +74,7 @@ Route / wrapper facts:
 - news is still an ordinary authored page under `site/pages/`
 - its canonical public route is still `/news.html`
 - the homepage already behaves like a second consumer of the same news stream
-- there is no current `site/data/news.json`
+- canonical shared news data now exists in `site/data/news.json`
 
 Current page shape in `site/pages/news.dj`:
 

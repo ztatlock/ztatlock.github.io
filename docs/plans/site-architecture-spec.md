@@ -87,6 +87,14 @@ Examples:
 These pages remain prose-first and should keep YAML front matter for page-local
 metadata.
 
+Current news special case:
+
+- `site/pages/news.dj` is still the public authored consumer for news
+- the repeated news item stream now also has canonical shared data in
+  `site/data/news.json`
+- a later wrapper cutover can still move the public news page to `site/news/`
+  once the repo is ready for that route change
+
 Projection-backed public wrappers and consumer pages now live under their own
 roots such as `site/students/`, `site/teaching/`, `site/service/`,
 `site/collaborators/`, `site/funding/`, and `site/cv/`.
@@ -230,6 +238,7 @@ Current canonical records:
 
 - `site/data/people.json`
 - `site/data/funding.json`
+- `site/data/news.json`
 - `site/data/service.json`
 - `site/data/students.json`
 - `site/data/teaching.json`
@@ -559,8 +568,9 @@ Important clarifications:
   canonical domains
 - the main remaining cross-domain seams are the authored homepage recent/current
   blocks and the authored top-of-CV highlights block
-- news should still come later, after we have enough experience with
-  structured consumers in more prose-heavy pages
+- news is now at a first canonical-data checkpoint through
+  `site/data/news.json`, while the public wrapper and homepage consumer remain
+  later slices
 
 The medium-term roadmap for those campaigns is captured in
 [structured-content-roadmap.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/structured-content-roadmap.md).

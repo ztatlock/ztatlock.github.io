@@ -19,6 +19,7 @@ from scripts.funding_record import (
     find_funding_record_issues,
     funding_index_path,
 )
+from scripts.news_record import NEWS_DATA_NAME, find_news_record_issues
 from scripts.publication_index import (
     publications_index_path,
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
@@ -226,7 +227,7 @@ def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
 
 def _all_people_ref_sources(config: SiteConfig) -> list[Path]:
     paths = _all_authored_djot_sources(config)
-    for data_name in (STUDENTS_DATA_NAME, TEACHING_DATA_NAME, SERVICE_DATA_NAME):
+    for data_name in (STUDENTS_DATA_NAME, TEACHING_DATA_NAME, SERVICE_DATA_NAME, NEWS_DATA_NAME):
         path = config.data_dir / data_name
         if path.exists():
             paths.append(path)
@@ -717,6 +718,17 @@ def _find_funding_data_issues(config: SiteConfig) -> list[str]:
     )
 
 
+def _find_news_data_issues(config: SiteConfig) -> list[str]:
+    news_path = config.data_dir / NEWS_DATA_NAME
+    has_news_consumers = (config.page_source_dir / "news.dj").exists()
+    if not news_path.exists() and not has_news_consumers:
+        return []
+    return find_news_record_issues(
+        config.repo_root,
+        news_path=news_path,
+    )
+
+
 def _find_cv_funding_projection_issues(config: SiteConfig) -> list[str]:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     funding_path = config.data_dir / FUNDING_DATA_NAME
@@ -1027,6 +1039,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_cv_service_projection_issues(config)
         + _find_cv_teaching_projection_issues(config)
         + _find_cv_talks_projection_issues(config)
+        + _find_news_data_issues(config)
         + _find_funding_data_issues(config)
         + _find_cv_funding_projection_issues(config)
         + _find_funding_projection_issues(config)

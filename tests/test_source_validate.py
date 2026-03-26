@@ -201,6 +201,206 @@ class SourceValidateTests(unittest.TestCase):
                 [f"missing funding registry: {data / 'funding.json'}"],
             )
 
+    def test_reports_missing_news_registry_when_news_page_exists(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "news.dj").write_text(
+                "---\n"
+                "description: News page\n"
+                "---\n\n"
+                "# News\n\n"
+                ": January 2026\n\n"
+                "  🗣️ \\ Demo.\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"missing news registry: {data / 'news.json'}"],
+            )
+
+    def test_accepts_valid_news_registry_while_news_page_remains_authored(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "news.dj").write_text(
+                "---\n"
+                "description: News page\n"
+                "---\n\n"
+                "# News\n\n"
+                ": January 2026\n\n"
+                "  🗣️ \\ Demo.\n",
+                encoding="utf-8",
+            )
+            (data / "news.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2026-01-demo",
+                                "year": 2026,
+                                "month": 1,
+                                "kind": "talk",
+                                "emoji": "🗣️",
+                                "body_djot": "Demo.",
+                            }
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
+    def test_reports_linkless_person_ref_in_news_data(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "news.dj").write_text(
+                "---\n"
+                "description: News page\n"
+                "---\n\n"
+                "# News\n\n"
+                ": January 2026\n\n"
+                "  🗣️ \\ Demo.\n",
+                encoding="utf-8",
+            )
+            (data / "people.json").write_text(
+                json.dumps(
+                    {
+                        "people": {
+                            "alpha-person": {
+                                "name": "Alpha Person",
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data / "news.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2026-01-demo",
+                                "year": 2026,
+                                "month": 1,
+                                "kind": "other",
+                                "emoji": "🗣️",
+                                "body_djot": "With [Alpha Person][].",
+                            }
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{data / 'news.json'}: generated people refs must not target linkless person label 'Alpha Person'; use plain text or add a public link in site/data/people.json"
+                ],
+            )
+
     def test_accepts_valid_funding_registry_for_cv_funding_section(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

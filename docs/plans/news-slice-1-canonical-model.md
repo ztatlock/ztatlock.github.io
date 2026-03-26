@@ -1,6 +1,6 @@
 # News Slice 1: Canonical News Model
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -255,7 +255,7 @@ Update:
 The docs should describe the new canonical record model without yet claiming
 that the public route or homepage consumer has changed.
 
-## Planned Invariant
+## Landed Invariant
 
 After this slice:
 

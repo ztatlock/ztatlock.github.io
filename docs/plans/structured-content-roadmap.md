@@ -490,8 +490,9 @@ The main adjacent campaign now at a good checkpoint is:
 
 After that, later adjacent campaigns that still look plausible include:
 
-- news, starting with a canonical flat item stream in `site/data/news.json`
-  before any wrapper cutover, homepage consumer, or cross-domain enrichment
+- news, now through the canonical flat item-stream checkpoint in
+  `site/data/news.json`, with later wrapper cutover, homepage consumer, and
+  cross-domain enrichment still deferred
 - later funding enrichment, once grant-to-paper and grant-to-project mapping
   clearly earns its cross-domain complexity
 
