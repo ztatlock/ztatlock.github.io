@@ -153,16 +153,18 @@ Recommended `offering` fields:
 - `term`
 - optional `url`
 
-Likely later offering-level extensions, if and when they earn their keep:
+Landed later schema extension:
 
 - ordered `co_instructors`
 - ordered `teaching_assistants`
 
-Current dependency note:
+Current checkpoint note:
 
-- before those staffing fields are added, the people-registry linkability
-  slice should land so `site/data/people.json` can represent linkable and
-  linkless people honestly without breaking generated-ref assumptions
+- the people-registry linkability and social-link cleanup slices have now
+  landed, so `site/data/people.json` can represent linkable and linkless
+  people honestly before staffing data import begins
+- the teaching schema now allows those staffing fields on individual course
+  offerings without changing current rendered output or seeding staffing data
 
 Those future staffing fields should likely live on individual offerings, not
 on whole course records, because co-teaching and TA staffing can vary by term.
@@ -312,11 +314,11 @@ Implemented outcomes so far:
 
 ## Deferred Questions
 
-These are real possibilities, but they should not shape the first slice:
+These are real possibilities, but they should not shape the first teaching
+slice:
 
-- richer teaching metadata such as offering-level `co_instructors`
-- later teaching-staffing data for instructor-led offerings, including
-  offering-level `teaching_assistants` tied into `site/data/people.json`
+- later teaching-staffing data backfill for instructor-led offerings now that
+  the offering-level `co_instructors` / `teaching_assistants` schema exists
 - additional date/detail normalization beyond `year` plus academic `term`
 - course-local extra pages or assets
 - broader teaching-adjacent domains such as course recipes or mentoring notes

@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
+from scripts.sitebuild.people_registry import PeopleRegistry, PeopleRegistryError, load_people_registry
 
 TEACHING_DATA_NAME = "teaching.json"
 TEACHING_INDEX_NAME = "index.dj"
+PEOPLE_DATA_NAME = "people.json"
 TEACHING_ROOT_KEY = "groups"
 GROUP_ALLOWED_FIELDS = {"key", "records"}
 RECORD_ALLOWED_FIELDS = {
@@ -24,7 +27,7 @@ RECORD_ALLOWED_FIELDS = {
     "details",
     "events",
 }
-OFFERING_ALLOWED_FIELDS = {"year", "term", "url"}
+OFFERING_ALLOWED_FIELDS = {"year", "term", "url", "co_instructors", "teaching_assistants"}
 EVENT_ALLOWED_FIELDS = {"label", "url", "links"}
 LINK_ALLOWED_FIELDS = {"label", "url"}
 GROUP_KEY_RE = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
@@ -58,6 +61,8 @@ class TeachingOffering:
     year: int
     term: str
     url: str | None = None
+    co_instructors: tuple[str, ...] = ()
+    teaching_assistants: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -191,7 +196,46 @@ def _require_term(raw: object, *, context: str, field: str) -> str:
     return value
 
 
-def _normalize_offering(raw: object, *, context: str) -> TeachingOffering:
+def _normalize_people_keys(
+    raw: object,
+    *,
+    context: str,
+    field: str,
+    people_registry: PeopleRegistry,
+) -> tuple[str, ...]:
+    if raw is None:
+        return ()
+    if not isinstance(raw, list) or not raw:
+        raise TeachingRecordError(f"{context}: {field} must be a non-empty array")
+
+    values: list[str] = []
+    seen: set[str] = set()
+    for index, entry in enumerate(raw):
+        key = _require_nonempty_string(
+            entry,
+            context=f"{context}.{field}[{index}]",
+            field="value",
+        )
+        try:
+            people_registry.person(key)
+        except PeopleRegistryError as err:
+            raise TeachingRecordError(
+                f"{context}: {field} uses unknown person key {key!r}"
+            ) from err
+        if key in seen:
+            raise TeachingRecordError(f"{context}: duplicate {field} key {key!r}")
+        seen.add(key)
+        values.append(key)
+    return tuple(values)
+
+
+def _normalize_offering(
+    raw: object,
+    *,
+    context: str,
+    group_key: str,
+    get_people_registry: Callable[[], PeopleRegistry],
+) -> TeachingOffering:
     rows = _require_object(raw, context=context)
     unknown_fields = sorted(set(rows) - OFFERING_ALLOWED_FIELDS)
     if unknown_fields:
@@ -199,15 +243,60 @@ def _normalize_offering(raw: object, *, context: str) -> TeachingOffering:
     year = _require_year(rows.get("year"), context=context, field="year")
     term = _require_term(rows.get("term"), context=context, field="term")
     url = _optional_nonempty_string(rows.get("url"), context=context, field="url")
-    return TeachingOffering(year=year, term=term, url=url)
+    if group_key == "teaching_assistant":
+        unexpected = sorted(
+            field
+            for field in ("co_instructors", "teaching_assistants")
+            if rows.get(field) is not None
+        )
+        if unexpected:
+            raise TeachingRecordError(
+                f"{context}: teaching_assistant history offerings must not include {', '.join(unexpected)}"
+            )
+        return TeachingOffering(year=year, term=term, url=url)
+
+    if rows.get("co_instructors") is None and rows.get("teaching_assistants") is None:
+        return TeachingOffering(year=year, term=term, url=url)
+
+    people_registry = get_people_registry()
+    co_instructors = _normalize_people_keys(
+        rows.get("co_instructors"),
+        context=context,
+        field="co_instructors",
+        people_registry=people_registry,
+    )
+    teaching_assistants = _normalize_people_keys(
+        rows.get("teaching_assistants"),
+        context=context,
+        field="teaching_assistants",
+        people_registry=people_registry,
+    )
+    return TeachingOffering(
+        year=year,
+        term=term,
+        url=url,
+        co_instructors=co_instructors,
+        teaching_assistants=teaching_assistants,
+    )
 
 
-def _normalize_offerings(raw: object, *, context: str) -> tuple[TeachingOffering, ...]:
+def _normalize_offerings(
+    raw: object,
+    *,
+    context: str,
+    group_key: str,
+    get_people_registry: Callable[[], PeopleRegistry],
+) -> tuple[TeachingOffering, ...]:
     if not isinstance(raw, list) or not raw:
         raise TeachingRecordError(f"{context}: offerings must be a non-empty array")
 
     offerings = tuple(
-        _normalize_offering(item, context=f"{context}[{index}]")
+        _normalize_offering(
+            item,
+            context=f"{context}[{index}]",
+            group_key=group_key,
+            get_people_registry=get_people_registry,
+        )
         for index, item in enumerate(raw)
     )
     seen: set[tuple[int, str]] = set()
@@ -259,7 +348,13 @@ def _normalize_details(raw: object, *, context: str) -> tuple[str, ...]:
     )
 
 
-def _normalize_record(raw: object, *, context: str, group_key: str) -> TeachingRecord:
+def _normalize_record(
+    raw: object,
+    *,
+    context: str,
+    group_key: str,
+    get_people_registry: Callable[[], PeopleRegistry],
+) -> TeachingRecord:
     rows = _require_object(raw, context=context)
     unknown_fields = sorted(set(rows) - RECORD_ALLOWED_FIELDS)
     if unknown_fields:
@@ -300,7 +395,12 @@ def _normalize_record(raw: object, *, context: str, group_key: str) -> TeachingR
             context=context,
             field="description_djot",
         )
-        offerings = _normalize_offerings(rows.get("offerings"), context=f"{context}.offerings")
+        offerings = _normalize_offerings(
+            rows.get("offerings"),
+            context=f"{context}.offerings",
+            group_key=group_key,
+            get_people_registry=get_people_registry,
+        )
         details = _normalize_details(rows.get("details"), context=f"{context}.details")
         if description_djot is None and not details:
             raise TeachingRecordError(
@@ -348,7 +448,12 @@ def _normalize_record(raw: object, *, context: str, group_key: str) -> TeachingR
     )
 
 
-def _normalize_group(raw: object, *, context: str) -> TeachingGroup:
+def _normalize_group(
+    raw: object,
+    *,
+    context: str,
+    get_people_registry: Callable[[], PeopleRegistry],
+) -> TeachingGroup:
     rows = _require_object(raw, context=context)
     unknown_fields = sorted(set(rows) - GROUP_ALLOWED_FIELDS)
     if unknown_fields:
@@ -360,7 +465,12 @@ def _normalize_group(raw: object, *, context: str) -> TeachingGroup:
         raise TeachingRecordError(f"{context}: records must be a non-empty array")
 
     records = tuple(
-        _normalize_record(item, context=f"{context}.records[{index}]", group_key=key)
+        _normalize_record(
+            item,
+            context=f"{context}.records[{index}]",
+            group_key=key,
+            get_people_registry=get_people_registry,
+        )
         for index, item in enumerate(records_raw)
     )
     return TeachingGroup(key=key, records=records)
@@ -372,6 +482,7 @@ def load_teaching_groups(
     teaching_path: Path | None = None,
 ) -> tuple[TeachingGroup, ...]:
     path = teaching_data_path(root, teaching_path=teaching_path)
+    people_path = (root / "site" / "data" / PEOPLE_DATA_NAME).resolve()
 
     try:
         raw = json.loads(
@@ -396,8 +507,23 @@ def load_teaching_groups(
     if not isinstance(groups_raw, list) or not groups_raw:
         raise TeachingRecordError(f"{path}: {TEACHING_ROOT_KEY} must be a non-empty array")
 
+    people_registry: PeopleRegistry | None = None
+
+    def get_people_registry() -> PeopleRegistry:
+        nonlocal people_registry
+        if people_registry is None:
+            try:
+                people_registry = load_people_registry(people_path)
+            except PeopleRegistryError as err:
+                raise TeachingRecordError(str(err)) from err
+        return people_registry
+
     groups = tuple(
-        _normalize_group(item, context=f"{path}.groups[{index}]")
+        _normalize_group(
+            item,
+            context=f"{path}.groups[{index}]",
+            get_people_registry=get_people_registry,
+        )
         for index, item in enumerate(groups_raw)
     )
 
@@ -419,7 +545,6 @@ def load_teaching_groups(
         )
 
     return groups
-
 
 def find_teaching_record_issues(
     root: Path,

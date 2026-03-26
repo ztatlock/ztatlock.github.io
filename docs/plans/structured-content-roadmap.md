@@ -416,6 +416,9 @@ The repo is also now at a good checkpoint after:
 - the seeded social-link normalization follow-on that moved obvious
   LinkedIn/GitHub fallback URLs out of `url` and into typed fields without
   changing rendered output
+- the teaching-staffing schema-foundation slice that now allows optional
+  offering-level `co_instructors` / `teaching_assistants` keyed through
+  `people.json` without changing rendered output or importing staffing data
 
 Funding follow-on work should continue separately as:
 

@@ -1,6 +1,6 @@
 # Teaching Staffing Slice 2: Schema Foundation
 
-Status: planned
+Status: implemented
 
 It builds on:
 
