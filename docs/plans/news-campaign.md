@@ -1,6 +1,6 @@
 # News Campaign
 
-Status: slices 1-3 implemented; later slices planned
+Status: slices 1-3 implemented; later enrichment ideas deferred
 
 It builds on:
 
@@ -351,12 +351,12 @@ Current checkpoint note:
   homepage news block, which is intentional and expected until later news
   backfill expands the recent window
 
-### Slice 4. Typed Cross-Domain Enrichment
+### Optional Later Enrichment: Typed Cross-Domain Links
 
 Goal:
 
 - add lightweight references from news items back to existing canonical
-  domains only where that clearly earns its keep
+  domains only where a concrete consumer clearly earns that extra structure
 
 Examples:
 
@@ -366,12 +366,19 @@ Examples:
 - related teaching offering
 - future related project
 
-Invariant after slice 4:
+If this is ever done later:
 
 - news remains canonically editorial, but selected entries can point back to
   stronger fact domains explicitly
 - later typed links do not change the fact that news records themselves are
   canonical for the editorial prose
+
+Current recommendation:
+
+- defer this
+- keep ordinary page links in `body_djot`
+- only revisit typed news/domain links if a real later consumer appears, such
+  as overlays, reverse lookups, or stronger consistency audits
 
 ## Important Non-Goals
 
