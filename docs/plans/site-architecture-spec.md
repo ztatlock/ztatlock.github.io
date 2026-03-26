@@ -573,9 +573,10 @@ Important clarifications:
   canonical domains
 - the main remaining cross-domain seams are the authored homepage recent/current
   blocks and the authored top-of-CV highlights block
-- news is now at a public-wrapper checkpoint through `site/data/news.json`
-  and `site/news/index.dj`, while the homepage consumer and later cross-domain
-  enrichment remain later slices
+- news is now at a public-plus-homepage consumer checkpoint through
+  `site/data/news.json`, `site/news/index.dj`, and the derived homepage
+  `## News` block in `site/pages/index.dj`, while later cross-domain
+  enrichment remains a later slice
 
 The medium-term roadmap for those campaigns is captured in
 [structured-content-roadmap.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/structured-content-roadmap.md).

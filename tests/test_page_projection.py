@@ -12,7 +12,10 @@ from scripts.collaborators_index import (
     TEACHING_COLLABORATORS_LIST_PLACEHOLDER,
 )
 from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
-from scripts.news_index import NEWS_MONTH_GROUPS_PLACEHOLDER
+from scripts.news_index import (
+    HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER,
+    NEWS_MONTH_GROUPS_PLACEHOLDER,
+)
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
     CV_FUNDING_LIST_PLACEHOLDER,
@@ -858,6 +861,85 @@ class PageProjectionTests(unittest.TestCase):
             ),
             body,
         )
+
+    def test_applies_projection_only_to_homepage_news_section(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Home\n\n"
+            "## News\n\n"
+            "__HOMEPAGE_NEWS_MONTH_GROUPS__\n\n"
+            "Please see [past news](news/) for more.\n"
+        )
+        rendered = apply_page_projections(
+            "ordinary_page",
+            "index",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertIn(": February 2026", rendered)
+        self.assertIn(": January 2026", rendered)
+        self.assertIn(": June 2025", rendered)
+        self.assertNotIn(": February 2025", rendered)
+        self.assertNotIn(": October 2023", rendered)
+        self.assertIn("Please see [past news](news/) for more.", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
+
+    def test_homepage_news_overflow_prefers_featured_older_items(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "site" / "data"
+            data_dir.mkdir(parents=True)
+            (data_dir / "news.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": f"2026-02-item-{index:02d}",
+                                "year": 2026,
+                                "month": 2,
+                                "kind": "other",
+                                "emoji": "🗣️",
+                                "body_djot": f"Item {index:02d}.",
+                                "homepage_featured": index in {12, 15},
+                            }
+                            for index in range(1, 18)
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            body = "# Home\n\n## News\n\n__HOMEPAGE_NEWS_MONTH_GROUPS__\n"
+            rendered = apply_page_projections(
+                "ordinary_page",
+                "index",
+                body,
+                root=root,
+                data_dir=data_dir,
+            )
+
+            for index in range(1, 11):
+                self.assertIn(f"Item {index:02d}.", rendered)
+            self.assertIn("Item 12.", rendered)
+            self.assertIn("Item 15.", rendered)
+            self.assertIn("Item 11.", rendered)
+            self.assertIn("Item 13.", rendered)
+            self.assertIn("Item 14.", rendered)
+            self.assertNotIn("Item 16.", rendered)
+            self.assertNotIn("Item 17.", rendered)
 
     def test_applies_projection_only_to_cv_publications_section(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

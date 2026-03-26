@@ -491,9 +491,9 @@ The main adjacent campaign now at a good checkpoint is:
 After that, later adjacent campaigns that still look plausible include:
 
 - news, now through the canonical flat item-stream checkpoint in
-  `site/data/news.json` plus the public wrapper/route cutover at
-  `site/news/index.dj`, with the homepage consumer and later cross-domain
-  enrichment still deferred
+  `site/data/news.json`, the public wrapper/route cutover at
+  `site/news/index.dj`, and the homepage consumer checkpoint on
+  `site/pages/index.dj`, with later cross-domain enrichment still deferred
 - later funding enrichment, once grant-to-paper and grant-to-project mapping
   clearly earns its cross-domain complexity
 

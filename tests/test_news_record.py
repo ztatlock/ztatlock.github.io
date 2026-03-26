@@ -34,6 +34,7 @@ class NewsRecordTests(unittest.TestCase):
         self.assertEqual(by_key["2025-02-sigplan-research-highlights-egg"].kind, "recognition")
         self.assertEqual(by_key["2023-10-haploid-release"].kind, "release")
         self.assertEqual(by_key["2023-09-cse-507-teaching"].emoji, "🧑‍🏫")
+        self.assertFalse(by_key["2026-02-brown-talk"].homepage_featured)
         self.assertIn("[Anjali][Anjali Pal]", by_key["2023-10-enumo-oopsla"].body_djot)
 
     def test_duplicate_record_key_is_rejected(self) -> None:
@@ -168,6 +169,48 @@ class NewsRecordTests(unittest.TestCase):
             issues = find_news_record_issues(root)
             self.assertEqual(len(issues), 1)
             self.assertIn("missing news registry", issues[0])
+
+    def test_accepts_optional_homepage_featured_boolean(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_news(
+                root / "site" / "data" / "news.json",
+                [
+                    {
+                        "key": "2026-02-demo",
+                        "year": 2026,
+                        "month": 2,
+                        "kind": "talk",
+                        "emoji": "🗣️",
+                        "body_djot": "Demo.",
+                        "homepage_featured": True,
+                    }
+                ],
+            )
+
+            records = load_news_records(root)
+            self.assertTrue(records[0].homepage_featured)
+
+    def test_invalid_homepage_featured_type_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_news(
+                root / "site" / "data" / "news.json",
+                [
+                    {
+                        "key": "2026-02-demo",
+                        "year": 2026,
+                        "month": 2,
+                        "kind": "talk",
+                        "emoji": "🗣️",
+                        "body_djot": "Demo.",
+                        "homepage_featured": "yes",
+                    }
+                ],
+            )
+
+            with self.assertRaisesRegex(NewsRecordError, "homepage_featured must be a boolean"):
+                load_news_records(root)
 
 
 if __name__ == "__main__":

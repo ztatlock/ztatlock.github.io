@@ -23,8 +23,10 @@ from scripts.funding_index import (
 )
 from scripts.funding_record import FUNDING_DATA_NAME, FundingRecordError, load_funding_records
 from scripts.news_index import (
+    HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER,
     NEWS_MONTH_GROUPS_PLACEHOLDER,
     NewsIndexError,
+    render_homepage_news_month_groups_djot,
     render_public_news_month_groups_djot,
 )
 from scripts.news_record import NEWS_DATA_NAME
@@ -700,6 +702,21 @@ def apply_page_projections(
         for placeholder, replacement in replacements.items():
             rendered = rendered.replace(placeholder, replacement)
         return rendered
+
+    if (
+        route_kind == "ordinary_page"
+        and route_key == "index"
+        and HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER in body
+    ):
+        news_path = (data_dir / NEWS_DATA_NAME) if data_dir is not None else None
+        try:
+            rendered = render_homepage_news_month_groups_djot(
+                root,
+                news_path=news_path,
+            ).rstrip()
+        except NewsIndexError as err:
+            raise PageProjectionError(str(err)) from err
+        return body.replace(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
 
     if route_kind == "collaborators_index_page" and route_key == "collaborators":
         people_path = (data_dir / "people.json") if data_dir is not None else None

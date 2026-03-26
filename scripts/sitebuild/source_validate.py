@@ -19,7 +19,11 @@ from scripts.funding_record import (
     find_funding_record_issues,
     funding_index_path,
 )
-from scripts.news_index import NEWS_MONTH_GROUPS_PLACEHOLDER, news_index_path
+from scripts.news_index import (
+    HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER,
+    NEWS_MONTH_GROUPS_PLACEHOLDER,
+    news_index_path,
+)
 from scripts.news_record import NEWS_DATA_NAME, find_news_record_issues
 from scripts.publication_index import (
     publications_index_path,
@@ -114,6 +118,7 @@ LITERAL_COLLABORATOR_ENTRY_RE = re.compile(r"^\* ", re.MULTILINE)
 LITERAL_COLLABORATOR_GAP_RE = re.compile(r"^>\s+`[A-Z](?:, [A-Z])*`$", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
 LITERAL_NEWS_MONTH_HEADING_RE = re.compile(r"^:\s+[A-Z][a-z]+ \d{4}$", re.MULTILINE)
+LITERAL_NEWS_ITEM_RE = re.compile(r"^[ ]{2,}\S.*\\\s+", re.MULTILINE)
 PEOPLE_REF_RE = re.compile(r"(?<!!)\[([^\[\]]+)\]\[([^\[\]]*)\]")
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -740,7 +745,12 @@ def _find_funding_data_issues(config: SiteConfig) -> list[str]:
 
 def _find_news_data_issues(config: SiteConfig) -> list[str]:
     news_path = config.data_dir / NEWS_DATA_NAME
-    has_news_consumers = news_index_path(config.repo_root, news_dir=config.news_dir).exists()
+    homepage_path = config.page_source_dir / "index.dj"
+    homepage_text = homepage_path.read_text(encoding="utf-8") if homepage_path.exists() else ""
+    has_news_consumers = (
+        news_index_path(config.repo_root, news_dir=config.news_dir).exists()
+        or HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER in homepage_text
+    )
     if not news_path.exists() and not has_news_consumers:
         return []
     return find_news_record_issues(
@@ -781,6 +791,33 @@ def _find_news_projection_issues(config: SiteConfig) -> list[str]:
         issues.append(f"{index_path}: news index page must contain {NEWS_MONTH_GROUPS_PLACEHOLDER}")
     if LITERAL_NEWS_MONTH_HEADING_RE.search(text):
         issues.append(f"{index_path}: news index page must not contain literal month-group headings")
+    return issues
+
+
+def _find_homepage_news_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = config.page_source_dir / "index.dj"
+    news_path = config.data_dir / NEWS_DATA_NAME
+    if not index_path.exists() or not news_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    news_section = _extract_markdown_section_body(text, "News", level=2)
+    if news_section is None:
+        return []
+
+    issues: list[str] = []
+    if HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER not in news_section:
+        issues.append(
+            f"{index_path}: homepage news section must contain {HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER}"
+        )
+    if LITERAL_NEWS_MONTH_HEADING_RE.search(news_section):
+        issues.append(
+            f"{index_path}: homepage news section must not contain literal month-group headings"
+        )
+    if LITERAL_NEWS_ITEM_RE.search(news_section):
+        issues.append(
+            f"{index_path}: homepage news section must not contain literal repeated news item blocks"
+        )
     return issues
 
 
@@ -1096,6 +1133,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_cv_talks_projection_issues(config)
         + _find_news_data_issues(config)
         + _find_news_projection_issues(config)
+        + _find_homepage_news_projection_issues(config)
         + _find_funding_data_issues(config)
         + _find_cv_funding_projection_issues(config)
         + _find_funding_projection_issues(config)

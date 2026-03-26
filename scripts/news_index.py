@@ -5,11 +5,12 @@ from __future__ import annotations
 import calendar
 from pathlib import Path
 
-from scripts.news_record import NewsRecordError, load_news_records
+from scripts.news_record import NewsRecord, NewsRecordError, load_news_records
 
 
 NEWS_INDEX_NAME = "index.dj"
 NEWS_MONTH_GROUPS_PLACEHOLDER = "__NEWS_MONTH_GROUPS__"
+HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER = "__HOMEPAGE_NEWS_MONTH_GROUPS__"
 
 
 class NewsIndexError(ValueError):
@@ -28,16 +29,7 @@ def _render_news_item_djot(body_djot: str, *, emoji: str) -> str:
     return "\n".join(rendered)
 
 
-def render_public_news_month_groups_djot(
-    root: Path,
-    *,
-    news_path: Path | None = None,
-) -> str:
-    try:
-        records = load_news_records(root, news_path=news_path)
-    except NewsRecordError as err:
-        raise NewsIndexError(str(err)) from err
-
+def _render_news_month_groups(records: tuple[NewsRecord, ...]) -> str:
     chunks: list[str] = []
     current_group: tuple[int, int] | None = None
     current_items: list[str] = []
@@ -64,3 +56,66 @@ def render_public_news_month_groups_djot(
     flush_current_group()
     rendered = "\n\n".join(chunks)
     return rendered + ("\n" if rendered else "")
+
+
+def _load_news_records_for_projection(
+    root: Path,
+    *,
+    news_path: Path | None = None,
+) -> tuple[NewsRecord, ...]:
+    try:
+        return load_news_records(root, news_path=news_path)
+    except NewsRecordError as err:
+        raise NewsIndexError(str(err)) from err
+
+
+def _months_since(latest: tuple[int, int], candidate: tuple[int, int]) -> int:
+    latest_year, latest_month = latest
+    candidate_year, candidate_month = candidate
+    return (latest_year - candidate_year) * 12 + (latest_month - candidate_month)
+
+
+def _select_homepage_news_records(records: tuple[NewsRecord, ...]) -> tuple[NewsRecord, ...]:
+    latest_year_month = (records[0].year, records[0].month)
+    window_records = tuple(
+        record
+        for record in records
+        if 0 <= _months_since(latest_year_month, (record.year, record.month)) <= 11
+    )
+    if len(window_records) <= 15:
+        return window_records
+
+    selected_keys = {record.key for record in window_records[:10]}
+    older_records = window_records[10:]
+
+    for record in older_records:
+        if len(selected_keys) >= 15:
+            break
+        if record.homepage_featured:
+            selected_keys.add(record.key)
+
+    for record in older_records:
+        if len(selected_keys) >= 15:
+            break
+        selected_keys.add(record.key)
+
+    return tuple(record for record in window_records if record.key in selected_keys)
+
+
+def render_public_news_month_groups_djot(
+    root: Path,
+    *,
+    news_path: Path | None = None,
+) -> str:
+    records = _load_news_records_for_projection(root, news_path=news_path)
+    return _render_news_month_groups(records)
+
+
+def render_homepage_news_month_groups_djot(
+    root: Path,
+    *,
+    news_path: Path | None = None,
+) -> str:
+    records = _load_news_records_for_projection(root, news_path=news_path)
+    selected = _select_homepage_news_records(records)
+    return _render_news_month_groups(selected)

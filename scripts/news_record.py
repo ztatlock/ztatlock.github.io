@@ -18,6 +18,7 @@ NEWS_ALLOWED_FIELDS = {
     "kind",
     "emoji",
     "body_djot",
+    "homepage_featured",
 }
 NEWS_KEY_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 NEWS_KIND_VALUES = (
@@ -48,6 +49,7 @@ class NewsRecord:
     emoji: str
     body_djot: str
     sort_day: int | None = None
+    homepage_featured: bool = False
 
 
 def news_data_path(root: Path, *, news_path: Path | None = None) -> Path:
@@ -108,6 +110,14 @@ def _optional_sort_day(raw: object, *, context: str, field: str) -> int | None:
     return raw
 
 
+def _optional_bool(raw: object, *, context: str, field: str) -> bool:
+    if raw is None:
+        return False
+    if not isinstance(raw, bool):
+        raise NewsRecordError(f"{context}: {field} must be a boolean")
+    return raw
+
+
 def _require_kind(raw: object, *, context: str, field: str) -> str:
     value = _require_nonempty_string(raw, context=context, field=field)
     if value not in NEWS_KIND_SET:
@@ -129,6 +139,11 @@ def _normalize_record(raw: object, *, context: str) -> NewsRecord:
     kind = _require_kind(rows.get("kind"), context=context, field="kind")
     emoji = _require_nonempty_string(rows.get("emoji"), context=context, field="emoji")
     body_djot = _require_nonempty_string(rows.get("body_djot"), context=context, field="body_djot")
+    homepage_featured = _optional_bool(
+        rows.get("homepage_featured"),
+        context=context,
+        field="homepage_featured",
+    )
     return NewsRecord(
         key=key,
         year=year,
@@ -137,6 +152,7 @@ def _normalize_record(raw: object, *, context: str) -> NewsRecord:
         kind=kind,
         emoji=emoji,
         body_djot=body_djot,
+        homepage_featured=homepage_featured,
     )
 
 

@@ -1,6 +1,6 @@
 # News Slice 3: Homepage Consumer
 
-Status: planned
+Status: implemented
 
 It builds on:
 
@@ -46,9 +46,9 @@ The repo has already reached the awkward middle state:
 
 That means the homepage is now the last real drift seam in the news domain.
 
-## Current Behavior
+## Pre-Slice-3 Behavior
 
-Today:
+At planning time:
 
 - the public `/news/` page shows the full canonical record stream
 - the homepage `## News` block still contains literal month headings and
@@ -56,7 +56,7 @@ Today:
 - the homepage ends with an authored `Please see [past news](news/) for more.`
   sentence
 
-Current overlap facts:
+Audit findings at that checkpoint:
 
 - the homepage duplicates `13` of the `15` month buckets in the full news page
 - the homepage duplicates `21` of the `23` individual items
@@ -239,9 +239,16 @@ Verification should include:
 
 Rendered review should confirm:
 
-- the homepage remains unchanged in visible substance
+- the homepage changes only in the intended consumer-policy way
 - the public `/news/` page remains unchanged
 - no new routes are introduced
+
+Landing note:
+
+- this slice landed with the planned deterministic recent-news policy
+- with the current canonical data, the homepage now shows exactly the three
+  items in the trailing `12`-month window from February 2026
+- the public `/news/` page stayed unchanged
 
 ## Invariant After This Slice
 

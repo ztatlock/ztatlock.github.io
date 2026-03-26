@@ -1,6 +1,6 @@
 # News Campaign
 
-Status: slices 1-2 implemented; later slices planned
+Status: slices 1-3 implemented; later slices planned
 
 It builds on:
 
@@ -103,12 +103,12 @@ For example:
 So a first structured model should treat the icon as display/editorial policy,
 not as a trustworthy event kind.
 
-## Homepage Overlap
+## Initial Homepage Overlap Audit
 
-The homepage `## News` block is already a second hand-maintained consumer of
-the same underlying news stream.
+Before slice 3, the homepage `## News` block was a second hand-maintained
+consumer of the same underlying news stream.
 
-Current overlap:
+Audit findings at that checkpoint:
 
 - homepage news duplicates `13` of the `15` dated month buckets from the
   public news page
@@ -340,6 +340,16 @@ Invariant after slice 3:
   `15`, always keep the `10` most recent items, and use optional
   `homepage_featured` only for older in-window stickiness when the window
   overflows
+
+Current checkpoint note:
+
+- the homepage `## News` body now projects from canonical news records instead
+  of being hand-maintained in `site/pages/index.dj`
+- the homepage uses the deterministic trailing-`12`-month rule with optional
+  `homepage_featured` overflow stickiness
+- at the current data checkpoint, that policy yields a visibly shorter
+  homepage news block, which is intentional and expected until later news
+  backfill expands the recent window
 
 ### Slice 4. Typed Cross-Domain Enrichment
 

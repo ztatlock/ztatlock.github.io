@@ -373,6 +373,223 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(find_source_issues(config), [])
 
+    def test_reports_missing_news_registry_when_homepage_uses_news_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## News\n\n"
+                "__HOMEPAGE_NEWS_MONTH_GROUPS__\n\n"
+                "Please see [past news](news/) for more.\n",
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [f"missing news registry: {data / 'news.json'}"],
+            )
+
+    def test_reports_missing_homepage_news_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            news = root / "site" / "news"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            news.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## News\n\n"
+                ": January 2026\n\n"
+                "  🗣️ \\ Demo.\n\n"
+                "Please see [past news](news/) for more.\n",
+                encoding="utf-8",
+            )
+            (news / "index.dj").write_text(
+                "---\n"
+                "description: News page\n"
+                "---\n\n"
+                "# News\n\n"
+                "__NEWS_MONTH_GROUPS__\n",
+                encoding="utf-8",
+            )
+            (data / "news.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2026-01-demo",
+                                "year": 2026,
+                                "month": 1,
+                                "kind": "talk",
+                                "emoji": "🗣️",
+                                "body_djot": "Demo.",
+                            }
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                news_dir=news,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'index.dj'}: homepage news section must contain __HOMEPAGE_NEWS_MONTH_GROUPS__",
+                    f"{pages / 'index.dj'}: homepage news section must not contain literal month-group headings",
+                    f"{pages / 'index.dj'}: homepage news section must not contain literal repeated news item blocks",
+                ],
+            )
+
+    def test_accepts_homepage_news_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            news = root / "site" / "news"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            news.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## News\n\n"
+                "__HOMEPAGE_NEWS_MONTH_GROUPS__\n\n"
+                "Please see [past news](news/) for more.\n",
+                encoding="utf-8",
+            )
+            (news / "index.dj").write_text(
+                "---\n"
+                "description: News page\n"
+                "---\n\n"
+                "# News\n\n"
+                "__NEWS_MONTH_GROUPS__\n",
+                encoding="utf-8",
+            )
+            (data / "news.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2026-01-demo",
+                                "year": 2026,
+                                "month": 1,
+                                "kind": "talk",
+                                "emoji": "🗣️",
+                                "body_djot": "Demo.",
+                                "homepage_featured": True,
+                            }
+                        ]
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                news_dir=news,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
     def test_reports_linkless_person_ref_in_news_data(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
