@@ -164,34 +164,35 @@ Recommended canonical public route:
 
 Why this shape:
 
-- once news has canonical shared data plus a later homepage consumer, it is no
-  longer just an ordinary prose page
+- once news has canonical shared data plus a derived homepage consumer, it is
+  no longer just an ordinary prose page
 - the wrapper/data split matches the rest of the repo's structured public
   domains honestly
 - route churn buys a cleaner long-term architecture here rather than just
   symmetry for its own sake
 - a small shared data file is a better fit than per-entry bundles for the
   current page shape
-- later homepage reuse becomes straightforward
-- later typed cross-links back to talks/publications/service/teaching/projects
-  can grow from a clear canonical news domain
+- homepage reuse becomes straightforward
+- later optional typed cross-links back to
+  talks/publications/service/teaching/projects can grow from a clear canonical
+  news domain
 
 Important route-model note:
 
-- this would require a deliberate ordinary-page to wrapper cutover, not just
-  a data-file addition
+- this required a deliberate ordinary-page to wrapper cutover, not just a
+  data-file addition
 
-That means:
+That meant:
 
 - add a new explicit `news_index_page` route kind
-- move the public wrapper out of `site/pages/news.dj`
+- move the public wrapper out of `site/pages/news.dj` into `site/news/index.dj`
 - reject simultaneous legacy `site/pages/news.dj` and new `site/news/index.dj`
   wrappers, just as the repo already does for other wrapper routes
 - rewrite lingering `news.html` links to `news/`
 
-Current churn looks acceptable:
+The churn stayed acceptable:
 
-- the only current authored site link using `news.html` is in
+- the only authored site link using `news.html` at planning time was in
   [site/pages/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/index.dj)
 
 ## Minimal Canonical Model
@@ -249,9 +250,14 @@ Important notes:
 - do not require typed references to talks/publications/service/teaching in
   slice 1
 
+Implemented later field addition:
+
+- `homepage_featured`
+  optional homepage-stickiness signal used only by the slice-3 homepage
+  consumer when the recent window overflows
+
 Likely later optional fields, only if they earn their keep:
 
-- `homepage_visible`
 - lightweight tags beyond the primary `kind`
 - `related_publication_keys`
 - `related_talk_keys`

@@ -39,8 +39,8 @@ source with a small Python build engine behind `make`.
 - `site/data/funding.json`
   Canonical funding records for the funding page plus CV reuse.
 - `site/data/news.json`
-  Canonical editorial news-item records for the later news wrapper and
-  homepage reuse.
+  Canonical editorial news-item records for the public news wrapper and
+  derived homepage consumer.
 - `site/pubs/<slug>/`
   Publication records and local publication assets.
 - `site/static/`
