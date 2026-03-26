@@ -50,6 +50,7 @@ The short version:
 
 ## Build And Checks
 
+- Preferred safe sequential verification path: `make verify`
 - Build the authoritative site: `make build`
 - Validate authoritative source plus the built site: `make check`
 - Render the authoritative route table: `make routes`
@@ -57,9 +58,16 @@ The short version:
 - Check local prerequisites and assumptions: `make env-check`
 - Build publication inventory snapshots: `make inventory`
 
+Keep `make test`, `make build`, and `make check` sequential.
+Do not run them in parallel against the same worktree because `build/` is
+shared mutable state.
+Likewise, keep git actions sequential and avoid overlapping `git add`,
+`git commit`, and `git push` invocations.
+
 ## Before Committing
 
-- Ensure the authoritative build/check path passes:
+- Prefer `make verify` before committing.
+- At minimum, ensure the authoritative build/check path passes sequentially:
   - `make build`
   - `make check`
 - Ensure the changed authored source lives under `site/`.

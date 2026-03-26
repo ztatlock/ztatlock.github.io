@@ -19,13 +19,24 @@ YCF ?=
 .PHONY: all
 all: build
 
+.PHONY: verify
+verify:
+	@$(MAKE) test
+	@$(MAKE) build
+	@$(MAKE) check-built
+
 .PHONY: build
 build:
 	@python3 -m $(BUILD_SITE_MODULE) --root .
 
-.PHONY: check
-check: build
+.PHONY: check-built
+check-built:
 	@python3 -m $(VALIDATE_SITE_MODULE) --root .
+
+.PHONY: check
+check:
+	@$(MAKE) build
+	@$(MAKE) check-built
 
 .PHONY: routes
 routes:
@@ -35,6 +46,7 @@ routes:
 .PHONY: help
 help:
 	@printf '%s\n' \
+		'make verify' \
 		'make build' \
 		'make check' \
 		'make routes' \

@@ -18,6 +18,10 @@ notes.
 - [x] Add minimal collaboration guide (`AGENTS.md`).
 - [x] Update README with real workflow and structure (`README.md`).
 - [x] Document multi-machine pull/push workflow in `AGENTS.md` and `README.md`.
+- [x] Add a safe sequential verification target and agent guidance so
+  `make test`, `make build`, and `make check` have one obvious non-parallel
+  pre-commit path, and keep overlapping git actions out of normal workflow
+  (`Makefile`, `AGENTS.md`).
 
 ## Migrated Backlog From TODO.md
 
