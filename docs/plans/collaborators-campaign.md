@@ -203,13 +203,13 @@ Goal:
 
 Recommended precondition:
 
-- do not start this slice until there is at least one real non-publication
-  canonical source to integrate, with teaching staffing as the clearest
-  current candidate
-- in particular, the later teaching staffing slice should land first so
-  teaching collaborators such as co-instructors and TAs are canonical in
-  `site/data/teaching.json` rather than being prematurely copied into a
-  collaborator registry
+- use a real non-publication canonical source rather than inventing
+  collaborator-only facts prematurely, with teaching staffing now the clearest
+  current source
+- that prerequisite is now satisfied: teaching collaborators such as
+  co-instructors, teaching assistants, and tutors are canonical in
+  `site/data/teaching.json`, so a later collaborator registry can integrate
+  those facts instead of copying them by hand
 
 Likely target:
 

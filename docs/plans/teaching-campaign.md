@@ -166,19 +166,21 @@ Current checkpoint note:
 - the teaching schema now allows those staffing fields on individual course
   offerings
 - confirmed co-instructor facts and confirmed teaching-assistant facts are now
-  canonical on the relevant UW instructor-led offerings, while public
-  staffing rendering remains deferred
+  canonical on the relevant UW instructor-led offerings
+- the small known tutor set is now canonical on the affected `uw-cse-505`
+  offerings
+- public staffing rendering remains deferred
 
 Those future staffing fields should likely live on individual offerings, not
 on whole course records, because co-teaching and TA staffing can vary by term.
 
-This later staffing slice is also a likely dependency for richer
-collaborators work:
+That staffing foundation is also now a real prerequisite that has landed for
+richer collaborators work:
 
-- it would provide a second real canonical source for non-coauthor
+- it now provides a second real canonical source for non-coauthor
   collaborator relationships
-- it should therefore land before a collaborator-specific relationship model
-  tries to represent teaching collaborators
+- a later collaborator-specific relationship model can now integrate teaching
+  collaborators instead of treating them as speculative future structure
 
 Recommended `summer_school` fields:
 

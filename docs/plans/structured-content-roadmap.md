@@ -324,9 +324,9 @@ The current checkpoint is narrow on purpose:
 
 Current dependency note:
 
-- the collaborator relationship-model slice should probably wait until the
-  later teaching staffing slice lands, so teaching collaborators come from a
-  real canonical source instead of forcing a speculative collaborator registry
+- the collaborator relationship-model slice is now unblocked by the landed
+  teaching-staffing campaign, so teaching collaborators can come from a real
+  canonical source instead of forcing a speculative collaborator registry
 
 It should still avoid turning collaborators into a bigger relationship system
 too early.
@@ -467,11 +467,11 @@ The main adjacent campaign now underway is:
 - collaborators, through the public-wrapper, about-page alphabet, and
   people-registry-semantics checkpoints
 
-The clearest blocked adjacent slice is:
+The clearest newly unblocked adjacent slice is:
 
-- the collaborator relationship-model slice, which should likely wait until
-  the later teaching staffing slice provides a second real canonical source
-  for non-coauthor collaborator facts
+- the collaborator relationship-model slice, because the teaching-staffing
+  campaign now provides a second real canonical source for non-coauthor
+  collaborator facts in addition to publication coauthorship
 
 After that, later adjacent campaigns that still look plausible include:
 
