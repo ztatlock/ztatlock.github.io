@@ -1,6 +1,6 @@
 # Teaching Staffing Campaign
 
-Status: slices 1, 1A, and 2 implemented
+Status: slices 1, 1A, and 2 implemented; slice 3 planned
 
 It builds on:
 
