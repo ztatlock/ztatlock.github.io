@@ -303,7 +303,13 @@ class RouteDiscoveryTests(unittest.TestCase):
 
             (page_source_dir / "collaborators.dj").write_text("# Collaborators\n", encoding="utf-8")
             (collaborators_dir / "index.dj").write_text(
-                "# Collaborators\n\n__COLLABORATORS_LIST__\n",
+                (
+                    "# Collaborators\n\n"
+                    "## Research Collaborators\n\n"
+                    "__RESEARCH_COLLABORATORS_LIST__\n\n"
+                    "## Teaching Collaborators\n\n"
+                    "__TEACHING_COLLABORATORS_LIST__\n"
+                ),
                 encoding="utf-8",
             )
             (data_dir / "people.json").write_text(

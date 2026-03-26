@@ -8,11 +8,13 @@ import re
 from scripts.collaborators_index import (
     COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER,
     COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER,
-    COLLABORATORS_LIST_PLACEHOLDER,
     CollaboratorsIndexError,
-    render_public_collaborators_list_djot,
+    RESEARCH_COLLABORATORS_LIST_PLACEHOLDER,
+    TEACHING_COLLABORATORS_LIST_PLACEHOLDER,
     render_missing_collaborator_first_initials,
     render_missing_collaborator_last_initials,
+    render_public_research_collaborators_list_djot,
+    render_public_teaching_collaborators_list_djot,
 )
 from scripts.funding_index import (
     FUNDING_LIST_PLACEHOLDER,
@@ -695,15 +697,26 @@ def apply_page_projections(
 
     if route_kind == "collaborators_index_page" and route_key == "collaborators":
         people_path = (data_dir / "people.json") if data_dir is not None else None
+        students_path = (data_dir / STUDENTS_DATA_NAME) if data_dir is not None else None
+        teaching_path = (data_dir / "teaching.json") if data_dir is not None else None
         try:
-            rendered = render_public_collaborators_list_djot(
+            research = render_public_research_collaborators_list_djot(
                 root,
                 publications_dir=publications_dir,
                 people_path=people_path,
+                students_path=students_path,
+            ).rstrip()
+            teaching = render_public_teaching_collaborators_list_djot(
+                root,
+                people_path=people_path,
+                teaching_path=teaching_path,
             ).rstrip()
         except CollaboratorsIndexError as err:
             raise PageProjectionError(str(err)) from err
-        return body.replace(COLLABORATORS_LIST_PLACEHOLDER, rendered)
+        return (
+            body.replace(RESEARCH_COLLABORATORS_LIST_PLACEHOLDER, research)
+            .replace(TEACHING_COLLABORATORS_LIST_PLACEHOLDER, teaching)
+        )
 
     if route_kind == "talks_index_page" and route_key == "talks" and TALKS_LIST_PLACEHOLDER in body:
         rendered = render_talks_list_djot(root, talks_dir=talks_dir).rstrip()

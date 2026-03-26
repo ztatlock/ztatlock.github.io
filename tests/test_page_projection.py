@@ -8,7 +8,8 @@ from pathlib import Path
 from scripts.collaborators_index import (
     COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER,
     COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER,
-    COLLABORATORS_LIST_PLACEHOLDER,
+    RESEARCH_COLLABORATORS_LIST_PLACEHOLDER,
+    TEACHING_COLLABORATORS_LIST_PLACEHOLDER,
 )
 from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
 from scripts.service_index import render_public_service_section_list_djot
@@ -180,6 +181,10 @@ class PageProjectionTests(unittest.TestCase):
                                 "url": "https://example.test/adam",
                                 "aliases": ["Adam T. Geller"],
                             },
+                            "kevin-mu": {
+                                "name": "Kevin Mu",
+                                "url": "https://example.test/kevin",
+                            },
                         }
                     }
                 ),
@@ -208,7 +213,105 @@ class PageProjectionTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            body = "# Collaborators\n\n__COLLABORATORS_LIST__\n"
+            (data_dir / "students.json").write_text(
+                json.dumps(
+                    {
+                        "sections": [
+                            {
+                                "key": "current_students",
+                                "title": "Current Students",
+                                "records": [
+                                    {
+                                        "key": "kevin-mu-phd-student",
+                                        "person_key": "kevin-mu",
+                                        "name": "Kevin Mu",
+                                        "label": "PhD Student",
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (data_dir / "teaching.json").write_text(
+                json.dumps(
+                    {
+                        "groups": [
+                            {
+                                "key": "uw_courses",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-505",
+                                        "kind": "course",
+                                        "code": "UW CSE 505",
+                                        "title": "Concepts",
+                                        "institution": "University of Washington",
+                                        "description_djot": "course description",
+                                        "offerings": [
+                                            {
+                                                "year": 2025,
+                                                "term": "Spring",
+                                                "teaching_assistants": ["kevin-mu"],
+                                            }
+                                        ],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "special_topics",
+                                "records": [
+                                    {
+                                        "key": "uw-cse-599z",
+                                        "kind": "course",
+                                        "code": "UW CSE 599Z",
+                                        "title": "Special Topics",
+                                        "institution": "University of Washington",
+                                        "details": ["special topics"],
+                                        "offerings": [{"year": 2024, "term": "Spring"}],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "summer_school",
+                                "records": [
+                                    {
+                                        "key": "summer-school-demo",
+                                        "kind": "summer_school",
+                                        "title": "Summer School",
+                                        "events": [
+                                            {"label": "2024 Demo", "url": "https://example.test/summer"}
+                                        ],
+                                    }
+                                ],
+                            },
+                            {
+                                "key": "teaching_assistant",
+                                "records": [
+                                    {
+                                        "key": "demo-ta-course",
+                                        "kind": "course",
+                                        "code": "Demo 101",
+                                        "title": "Demo TA Course",
+                                        "institution": "University of Washington",
+                                        "description_djot": "teaching assistant history",
+                                        "offerings": [{"year": 2024, "term": "Winter"}],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            body = (
+                "# Collaborators\n\n"
+                "## Research Collaborators\n\n"
+                f"{RESEARCH_COLLABORATORS_LIST_PLACEHOLDER}\n\n"
+                "## Teaching Collaborators\n\n"
+                f"{TEACHING_COLLABORATORS_LIST_PLACEHOLDER}\n"
+            )
             rendered = apply_page_projections(
                 "collaborators_index_page",
                 "collaborators",
@@ -217,9 +320,11 @@ class PageProjectionTests(unittest.TestCase):
                 data_dir=data_dir,
                 publications_dir=pubs_dir,
             )
-            self.assertNotIn(COLLABORATORS_LIST_PLACEHOLDER, rendered)
+            self.assertNotIn(RESEARCH_COLLABORATORS_LIST_PLACEHOLDER, rendered)
+            self.assertNotIn(TEACHING_COLLABORATORS_LIST_PLACEHOLDER, rendered)
             self.assertIn("* [Adam Geller][]", rendered)
             self.assertIn("* Robert Rabe", rendered)
+            self.assertIn("* [Kevin Mu][]", rendered)
             self.assertNotIn("Zachary Tatlock", rendered)
 
             self.assertEqual(

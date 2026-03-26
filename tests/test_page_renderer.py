@@ -142,7 +142,8 @@ class PageRendererTests(unittest.TestCase):
         )
         self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
-        self.assertNotIn("__COLLABORATORS_LIST__", html)
+        self.assertNotIn("__RESEARCH_COLLABORATORS_LIST__", html)
+        self.assertNotIn("__TEACHING_COLLABORATORS_LIST__", html)
         self.assertIn("James Wilcox", html)
         self.assertIn("Robert Rabe", html)
 

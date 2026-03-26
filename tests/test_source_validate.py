@@ -851,7 +851,10 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(
                 find_source_issues(config),
-                [f"{collaborators / 'index.dj'}: collaborators index page must contain __COLLABORATORS_LIST__"],
+                [
+                    f"{collaborators / 'index.dj'}: collaborators index page must contain __RESEARCH_COLLABORATORS_LIST__",
+                    f"{collaborators / 'index.dj'}: collaborators index page must contain __TEACHING_COLLABORATORS_LIST__",
+                ],
             )
 
     def test_reports_literal_collaborator_entry_blocks_after_projection(self) -> None:
@@ -885,7 +888,8 @@ class SourceValidateTests(unittest.TestCase):
                 "description: Collaborators page\n"
                 "---\n\n"
                 "# Collaborators\n\n"
-                "__COLLABORATORS_LIST__\n\n"
+                "__RESEARCH_COLLABORATORS_LIST__\n\n"
+                "__TEACHING_COLLABORATORS_LIST__\n\n"
                 "* [James Wilcox][]\n",
                 encoding="utf-8",
             )

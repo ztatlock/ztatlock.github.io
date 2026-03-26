@@ -1,6 +1,6 @@
 # Collaborators Campaign
 
-Status: slices 1, 2, and 3 implemented
+Status: slices 1, 2, 3, and 4 implemented
 
 It builds on:
 
@@ -125,20 +125,23 @@ Current checkpoint:
 
 - slice 1 is landed
 - the public route is now `/collaborators/`
-- the current page is still effectively a coauthor page projected from
-  publication bundles plus `people.json`
+- the public collaborators page is now sectioned into:
+  - `Research Collaborators`
+  - `Teaching Collaborators`
+- the research section derives from publication bundles plus the current
+  student/advising set
+- the teaching section derives flat from canonical teaching staffing
 - slice 2 keeps the about-page alphabet joke derived from that same coauthor
   display set
-- teaching staffing now provides a second real canonical collaborator source,
-  but the public collaborators page does not use it yet
 - the slice-3 audit found no hidden historical non-coauthor collaborator set
   that was lost during projection
 - the current near-term `Research Collaborators` path does not require a
   collaborator-specific shared-data layer before broadening the page
 
-The next campaign phase should now move to rendering, because the audit
-clarified that the current near-term `Research Collaborators` expansion can be
-grounded directly in existing canonical domains.
+The next collaborators work, if any, should move to richer per-person
+relationship design only when a concrete consumer clearly earns it, because the
+near-term public sectioned page can already be grounded directly in existing
+canonical domains.
 
 That means:
 
@@ -280,6 +283,14 @@ Invariant after slice 4:
 - the public collaborators page can present research and teaching
   collaboration distinctly without hand-maintained drift
 - section semantics are explicit and reviewable
+
+Current result:
+
+- `/collaborators/` now has explicit `Research Collaborators` and flat
+  `Teaching Collaborators` sections
+- the page wrapper keeps authored title, intro, and section headings
+- the about-page alphabet joke remains tied to the coauthor/research side
+  rather than broadening silently
 
 ### Slice 5. Collaborator Relationship Model
 

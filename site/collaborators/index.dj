@@ -1,6 +1,6 @@
 ---
-description: All my coauthors in academic research, a journey through the alphabet.
-share_description: Coauthor Alphabet Soup: Gotta Catch 'Em All!'
+description: Research and teaching collaborators over the years, from coauthors to course staff.
+share_description: Research and Teaching Collaborators: projects, papers, and courses.
 ---
 
 # [Zachary Tatlock][] / Collaborators
@@ -8,5 +8,12 @@ share_description: Coauthor Alphabet Soup: Gotta Catch 'Em All!'
 I have been very fortunate to work on projects
   with many amazing folks over the years.
 
+## Research Collaborators
+
 {.columns .columns-12rem}
-__COLLABORATORS_LIST__
+__RESEARCH_COLLABORATORS_LIST__
+
+## Teaching Collaborators
+
+{.columns .columns-12rem}
+__TEACHING_COLLABORATORS_LIST__

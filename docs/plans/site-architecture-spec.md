@@ -377,7 +377,8 @@ from the shared-data layer rather than a collection-local bundle root.
 
 This route is intentionally collaborators-specific for now.
 Its public-wrapper shape matches other wrapper pages, but its current truth is
-derived from publication bundles plus `site/data/people.json` rather than a
+derived from publication bundles, canonical students/advising data, and
+canonical teaching staffing plus `site/data/people.json` rather than a
 collaborator-specific registry.
 
 ### Service Index Page Route

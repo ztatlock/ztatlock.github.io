@@ -1,6 +1,6 @@
 # Collaborators Slice 4: Sectioned Public Page
 
-Status: drafted for review
+Status: implemented
 
 It builds on:
 

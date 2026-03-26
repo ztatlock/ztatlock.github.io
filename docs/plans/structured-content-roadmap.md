@@ -414,6 +414,9 @@ The repo is also now at a good checkpoint after:
 
 - the collaborators wrapper/coauthor projection slice
 - the about-page collaborator alphabet projection slice
+- the sectioned collaborators-page slice that now presents explicit
+  `Research Collaborators` and flat `Teaching Collaborators` sections over
+  existing canonical sources
 - the people-registry semantics cleanup that made `people.json` name/alias
   policy explicit before more consumers build on it
 - the teaching-staffing slice-1 people-linkability guardrail that made public
@@ -469,26 +472,21 @@ The main remaining cross-domain maintenance seams are now:
 
 Near-term priorities that currently look strongest are:
 
-1. the collaborator relationship-model planning slice, now that both
-   coauthorship and teaching staffing are canonical
-2. later exploration of the authored homepage/CV curated blocks once we are
+1. later exploration of the authored homepage/CV curated blocks once we are
    ready to decide whether they should stay authored, be trimmed, or become
    small structured consumers
-3. later homepage recent-teaching cleanup now that the public `/teaching/`
+2. later homepage recent-teaching cleanup now that the public `/teaching/`
    page actually reflects the canonical staffing-aware offering facts
-4. a later teaching-page styling/polish campaign now that the richer
+3. a later teaching-page styling/polish campaign now that the richer
    projections are materially more consistent but also visually rougher
+4. later collaborator enrichment only if a concrete per-person consumer
+   clearly earns it, likely alongside or after a future structured `projects`
+   domain rather than through a premature collaborator registry
 
-The main adjacent campaign now underway is:
+The main adjacent campaign now at a good checkpoint is:
 
-- collaborators, through the public-wrapper, about-page alphabet, and
-  people-registry-semantics checkpoints
-
-The clearest newly unblocked adjacent slice is:
-
-- the collaborator relationship-model slice, because the teaching-staffing
-  campaign now provides a second real canonical source for non-coauthor
-  collaborator facts in addition to publication coauthorship
+- collaborators, through the public-wrapper, about-page alphabet,
+  research-collaborator audit, and sectioned-page checkpoints
 
 After that, later adjacent campaigns that still look plausible include:
 

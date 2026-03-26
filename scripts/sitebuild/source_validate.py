@@ -8,7 +8,8 @@ from pathlib import Path
 from scripts.collaborators_index import (
     COLLABORATORS_FIRST_INITIAL_GAPS_PLACEHOLDER,
     COLLABORATORS_LAST_INITIAL_GAPS_PLACEHOLDER,
-    COLLABORATORS_LIST_PLACEHOLDER,
+    RESEARCH_COLLABORATORS_LIST_PLACEHOLDER,
+    TEACHING_COLLABORATORS_LIST_PLACEHOLDER,
     collaborators_index_path,
 )
 from scripts.cv_index import cv_index_path
@@ -485,9 +486,13 @@ def _find_collaborators_projection_issues(config: SiteConfig) -> list[str]:
     )
 
     text = index_path.read_text(encoding="utf-8")
-    if COLLABORATORS_LIST_PLACEHOLDER not in text:
+    if RESEARCH_COLLABORATORS_LIST_PLACEHOLDER not in text:
         issues.append(
-            f"{index_path}: collaborators index page must contain {COLLABORATORS_LIST_PLACEHOLDER}"
+            f"{index_path}: collaborators index page must contain {RESEARCH_COLLABORATORS_LIST_PLACEHOLDER}"
+        )
+    if TEACHING_COLLABORATORS_LIST_PLACEHOLDER not in text:
+        issues.append(
+            f"{index_path}: collaborators index page must contain {TEACHING_COLLABORATORS_LIST_PLACEHOLDER}"
         )
     if LITERAL_COLLABORATOR_ENTRY_RE.search(text):
         issues.append(
