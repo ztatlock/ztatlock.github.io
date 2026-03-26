@@ -22,6 +22,8 @@ source with a small Python build engine behind `make`.
   Authored collaborators landing-page wrapper rendered at `/collaborators/`.
 - `site/funding/index.dj`
   Authored funding landing-page wrapper rendered at `/funding/`.
+- `site/news/index.dj`
+  Authored news landing-page wrapper rendered at `/news/`.
 - `site/cv/index.dj`
   Authored CV consumer wrapper rendered at `/cv/`.
 - `site/data/people.json`
@@ -80,9 +82,8 @@ Metadata rules:
   and CV service facts should reuse the same records.
 - The public funding page and the CV funding list are projected from canonical
   grant records in `site/data/funding.json`.
-- The public news page currently remains authored at `site/pages/news.dj`,
-  while the canonical repeated news item stream now lives in
-  `site/data/news.json` ahead of the later `/news/` wrapper cutover.
+- The public news page is projected from canonical editorial records in
+  `site/data/news.json` into `site/news/index.dj`.
 - Public publication pages source metadata from
   `site/pubs/<slug>/publication.json`.
 - Draft pages may omit metadata while they remain drafts.
@@ -153,6 +154,7 @@ Notes:
   `collaborators.html`.
 - Authored funding page links in Djot should use `funding/`, not
   `funding.html`.
+- Authored news page links in Djot should use `news/`, not `news.html`.
 - Authored CV links in Djot should use `cv/`, not `cv.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.

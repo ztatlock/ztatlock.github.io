@@ -10,6 +10,7 @@ from scripts.page_source import (
     collaborators_index_source_path,
     cv_index_source_path,
     funding_index_source_path,
+    news_index_source_path,
     PageSourceError,
     page_path,
     publications_index_source_path,
@@ -455,6 +456,25 @@ def render_funding_index_meta_for_url(
     )
 
 
+def render_news_index_meta_for_url(
+    title: str,
+    *,
+    canonical_url: str,
+    root: Path,
+    news_dir: Path | None = None,
+    site_url: str = SITE_URL,
+) -> str:
+    return render_djot_source_meta_for_url(
+        news_index_source_path(
+            root,
+            news_dir=news_dir,
+        ),
+        title,
+        canonical_url=canonical_url,
+        site_url=site_url,
+    )
+
+
 def render_teaching_index_meta_for_url(
     title: str,
     *,
@@ -536,6 +556,7 @@ def render_route_meta_for_url(
     collaborators_dir: Path | None = None,
     cv_dir: Path | None = None,
     funding_dir: Path | None = None,
+    news_dir: Path | None = None,
     service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
@@ -600,6 +621,16 @@ def render_route_meta_for_url(
             canonical_url=canonical_url,
             root=root,
             funding_dir=funding_dir,
+            site_url=site_url,
+        )
+    if route_kind == "news_index_page":
+        if route_key != "news":
+            raise MetadataError(f"unsupported news index route key: {route_key}")
+        return render_news_index_meta_for_url(
+            title,
+            canonical_url=canonical_url,
+            root=root,
+            news_dir=news_dir,
             site_url=site_url,
         )
     if route_kind == "students_index_page":

@@ -19,6 +19,7 @@ class SiteConfig:
     collaborators_dir: Path
     cv_dir: Path
     funding_dir: Path
+    news_dir: Path
     service_dir: Path
     students_dir: Path
     teaching_dir: Path
@@ -49,6 +50,7 @@ def load_site_config(
     collaborators_dir: Path | None = None,
     cv_dir: Path | None = None,
     funding_dir: Path | None = None,
+    news_dir: Path | None = None,
     service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
@@ -70,6 +72,7 @@ def load_site_config(
         collaborators_dir=(collaborators_dir or (resolved_root / "site" / "collaborators")).resolve(),
         cv_dir=(cv_dir or (resolved_root / "site" / "cv")).resolve(),
         funding_dir=(funding_dir or (resolved_root / "site" / "funding")).resolve(),
+        news_dir=(news_dir or (resolved_root / "site" / "news")).resolve(),
         service_dir=(service_dir or (resolved_root / "site" / "service")).resolve(),
         students_dir=(students_dir or (resolved_root / "site" / "students")).resolve(),
         teaching_dir=(teaching_dir or (resolved_root / "site" / "teaching")).resolve(),

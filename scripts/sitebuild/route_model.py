@@ -11,6 +11,7 @@ RouteKind = Literal[
     "collaborators_index_page",
     "cv_index_page",
     "funding_index_page",
+    "news_index_page",
     "talks_index_page",
     "service_index_page",
     "students_index_page",

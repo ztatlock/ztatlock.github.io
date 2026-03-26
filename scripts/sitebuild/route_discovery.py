@@ -7,6 +7,8 @@ from pathlib import Path
 from scripts.collaborators_index import collaborators_index_path
 from scripts.cv_index import cv_index_path
 from scripts.funding_record import FUNDING_DATA_NAME, funding_index_path
+from scripts.news_index import news_index_path
+from scripts.news_record import NEWS_DATA_NAME
 from scripts.page_source import DRAFT_HEADING_RE
 from scripts.publication_index import (
     PublicationIndexError,
@@ -291,6 +293,41 @@ def _funding_index_routes(config: SiteConfig) -> list[Route]:
     return routes
 
 
+def _news_collection_index_route(config: SiteConfig) -> Route | None:
+    index_path = news_index_path(config.repo_root, news_dir=config.news_dir)
+    if not index_path.exists():
+        return None
+
+    legacy_news_page = config.page_source_dir / "news.dj"
+    if legacy_news_page.exists():
+        raise RouteDiscoveryError(
+            f"{legacy_news_page}: news index wrapper must live at {index_path}"
+        )
+
+    source_paths = [index_path]
+    news_data = config.data_dir / NEWS_DATA_NAME
+    if news_data.exists():
+        source_paths.append(news_data)
+
+    return Route(
+        kind="news_index_page",
+        key="news",
+        source_paths=tuple(source_paths),
+        output_relpath="news/index.html",
+        public_url="/news/",
+        canonical_url=canonical_url(config.site_url, "/news/"),
+        is_draft=_is_draft_page(index_path),
+    )
+
+
+def _news_index_routes(config: SiteConfig) -> list[Route]:
+    routes: list[Route] = []
+    news_route = _news_collection_index_route(config)
+    if news_route is not None:
+        routes.append(news_route)
+    return routes
+
+
 def _teaching_collection_index_route(config: SiteConfig) -> Route | None:
     index_path = teaching_index_path(config.repo_root, teaching_dir=config.teaching_dir)
     if not index_path.exists():
@@ -528,6 +565,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
     ordinary_routes = _ordinary_page_routes(config)
     collaborators_index_routes = _collaborators_index_routes(config)
     cv_index_routes = _cv_index_routes(config)
+    news_index_routes = _news_index_routes(config)
     talks_index_routes = _talks_index_routes(config)
     service_index_routes = _service_index_routes(config)
     funding_index_routes = _funding_index_routes(config)
@@ -541,6 +579,7 @@ def discover_routes(config: SiteConfig) -> tuple[Route, ...]:
                 *ordinary_routes,
                 *collaborators_index_routes,
                 *cv_index_routes,
+                *news_index_routes,
                 *talks_index_routes,
                 *service_index_routes,
                 *funding_index_routes,

@@ -19,6 +19,7 @@ from scripts.funding_record import (
     find_funding_record_issues,
     funding_index_path,
 )
+from scripts.news_index import NEWS_MONTH_GROUPS_PLACEHOLDER, news_index_path
 from scripts.news_record import NEWS_DATA_NAME, find_news_record_issues
 from scripts.publication_index import (
     publications_index_path,
@@ -92,6 +93,7 @@ LEGACY_TALKS_LINK_RE = re.compile(r"\b(talks\.html)\b")
 LEGACY_SERVICE_LINK_RE = re.compile(r"\b(service\.html)\b")
 LEGACY_COLLABORATORS_LINK_RE = re.compile(r"\b(collaborators\.html)\b")
 LEGACY_CV_LINK_RE = re.compile(r"\b(cv\.html)\b")
+LEGACY_NEWS_LINK_RE = re.compile(r"\b(news\.html)\b")
 LITERAL_SERVICE_ENTRY_RE = re.compile(
     r"^- (?:\[\d{4}(?: - (?:\d{4}|Present))? [^\]]+\]\([^)]+\)|\d{4}(?: - (?:\d{4}|Present))?(?: :)? .+)$",
     re.MULTILINE,
@@ -111,6 +113,7 @@ LITERAL_FUNDING_ENTRY_RE = re.compile(r"^- .+ \\\s*$", re.MULTILINE)
 LITERAL_COLLABORATOR_ENTRY_RE = re.compile(r"^\* ", re.MULTILINE)
 LITERAL_COLLABORATOR_GAP_RE = re.compile(r"^>\s+`[A-Z](?:, [A-Z])*`$", re.MULTILINE)
 LITERAL_TEACHING_ENTRY_RE = re.compile(r"^(?:\*UW CSE \d{3}:|\* \[UW CSE \d{3}:)", re.MULTILINE)
+LITERAL_NEWS_MONTH_HEADING_RE = re.compile(r"^:\s+[A-Z][a-z]+ \d{4}$", re.MULTILINE)
 PEOPLE_REF_RE = re.compile(r"(?<!!)\[([^\[\]]+)\]\[([^\[\]]*)\]")
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -138,6 +141,13 @@ def _legacy_talks_link_issues(path: Path) -> list[str]:
     if not LEGACY_TALKS_LINK_RE.search(text):
         return []
     return [f"{path}: legacy talks link should use canonical collection path: talks.html -> talks/"]
+
+
+def _legacy_news_link_issues(path: Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    if not LEGACY_NEWS_LINK_RE.search(text):
+        return []
+    return [f"{path}: legacy news link should use canonical collection path: news.html -> news/"]
 
 
 def _legacy_cv_link_issues(path: Path) -> list[str]:
@@ -208,6 +218,9 @@ def _all_authored_djot_sources(config: SiteConfig) -> list[Path]:
     funding_index = funding_index_path(config.repo_root, funding_dir=config.funding_dir)
     if funding_index.exists():
         paths.append(funding_index)
+    news_index = news_index_path(config.repo_root, news_dir=config.news_dir)
+    if news_index.exists():
+        paths.append(news_index)
     students_index = students_index_path(config.repo_root, students_dir=config.students_dir)
     if students_index.exists():
         paths.append(students_index)
@@ -308,6 +321,13 @@ def _find_legacy_publications_index_link_issues(config: SiteConfig) -> list[str]
     issues: list[str] = []
     for path in _all_authored_djot_sources(config):
         issues.extend(_legacy_publications_index_link_issues(path))
+    return issues
+
+
+def _find_legacy_news_link_issues(config: SiteConfig) -> list[str]:
+    issues: list[str] = []
+    for path in _all_authored_djot_sources(config):
+        issues.extend(_legacy_news_link_issues(path))
     return issues
 
 
@@ -720,13 +740,48 @@ def _find_funding_data_issues(config: SiteConfig) -> list[str]:
 
 def _find_news_data_issues(config: SiteConfig) -> list[str]:
     news_path = config.data_dir / NEWS_DATA_NAME
-    has_news_consumers = (config.page_source_dir / "news.dj").exists()
+    has_news_consumers = news_index_path(config.repo_root, news_dir=config.news_dir).exists()
     if not news_path.exists() and not has_news_consumers:
         return []
     return find_news_record_issues(
         config.repo_root,
         news_path=news_path,
     )
+
+
+def _find_news_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = news_index_path(config.repo_root, news_dir=config.news_dir)
+    legacy_index_path = config.page_source_dir / "news.dj"
+    news_path = config.data_dir / NEWS_DATA_NAME
+
+    issues: list[str] = []
+    if legacy_index_path.exists():
+        issues.append(f"{legacy_index_path}: news index wrapper must move to {index_path}")
+        if not index_path.exists():
+            return issues
+
+    if not index_path.exists() and not news_path.exists():
+        return issues
+
+    if not index_path.exists():
+        issues.append(f"{index_path}: news index page is required when canonical news records exist")
+        return issues
+
+    issues.extend(
+        validate_general_source_metadata_path(
+            index_path,
+            config.repo_root,
+            publications_dir=config.publications_dir,
+            static_source_dir=config.static_source_dir,
+        )
+    )
+
+    text = index_path.read_text(encoding="utf-8")
+    if NEWS_MONTH_GROUPS_PLACEHOLDER not in text:
+        issues.append(f"{index_path}: news index page must contain {NEWS_MONTH_GROUPS_PLACEHOLDER}")
+    if LITERAL_NEWS_MONTH_HEADING_RE.search(text):
+        issues.append(f"{index_path}: news index page must not contain literal month-group headings")
+    return issues
 
 
 def _find_cv_funding_projection_issues(config: SiteConfig) -> list[str]:
@@ -1040,6 +1095,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_cv_teaching_projection_issues(config)
         + _find_cv_talks_projection_issues(config)
         + _find_news_data_issues(config)
+        + _find_news_projection_issues(config)
         + _find_funding_data_issues(config)
         + _find_cv_funding_projection_issues(config)
         + _find_funding_projection_issues(config)
@@ -1059,6 +1115,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_legacy_publications_index_link_issues(config)
         + _find_legacy_cv_link_issues(config)
         + _find_legacy_collaborators_link_issues(config)
+        + _find_legacy_news_link_issues(config)
         + _find_legacy_students_link_issues(config)
         + _find_legacy_service_link_issues(config)
         + _find_legacy_teaching_link_issues(config)

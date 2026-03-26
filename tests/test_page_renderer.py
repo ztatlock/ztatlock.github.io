@@ -168,6 +168,29 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn("ComPort: Rigorous Testing Methods to Safeguard Software Porting", html)
         self.assertIn("NSF CCF-2017927", html)
 
+    def test_render_news_index_page_uses_explicit_canonical_url(self) -> None:
+        canonical = "https://example.com/news/"
+        html = render_page_html(
+            "news_index_page",
+            "news",
+            canonical_url=canonical,
+            refs_text=self.refs_text,
+            root=ROOT,
+            site_url=self.config.site_url,
+            webfiles_url=self.config.webfiles_url,
+            news_dir=self.config.news_dir,
+            data_dir=self.config.data_dir,
+            publications_dir=self.config.publications_dir,
+            templates_dir=self.config.templates_dir,
+        )
+        self.assertIn(f'<link rel="canonical" href="{canonical}">', html)
+        self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
+        self.assertNotIn("__NEWS_MONTH_GROUPS__", html)
+        self.assertIn("Zachary Tatlock / News", html)
+        self.assertIn("Visiting the PL and Graphics groups at Brown University", html)
+        self.assertIn("Dagstuhl on EGRAPHS", html)
+        self.assertIn("The Neutrons project was featured", html)
+
     def test_render_students_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/students/"
         html = render_page_html(

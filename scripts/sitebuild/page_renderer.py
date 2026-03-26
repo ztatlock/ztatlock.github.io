@@ -12,6 +12,7 @@ from scripts.page_source import (
     read_collaborators_index_source,
     read_cv_index_source,
     read_funding_index_source,
+    read_news_index_source,
     read_page_source,
     read_publications_index_source,
     read_publication_page_source,
@@ -98,6 +99,7 @@ def render_page_html(
     collaborators_dir: Path | None = None,
     cv_dir: Path | None = None,
     funding_dir: Path | None = None,
+    news_dir: Path | None = None,
     service_dir: Path | None = None,
     students_dir: Path | None = None,
     teaching_dir: Path | None = None,
@@ -160,6 +162,13 @@ def render_page_html(
                 root,
                 funding_dir=funding_dir,
             )
+        elif route_kind == "news_index_page":
+            if route_key != "news":
+                raise PageRenderError(f"unsupported news index route key: {route_key}")
+            source = read_news_index_source(
+                root,
+                news_dir=news_dir,
+            )
         elif route_kind == "teaching_index_page":
             if route_key != "teaching":
                 raise PageRenderError(f"unsupported teaching index route key: {route_key}")
@@ -197,6 +206,7 @@ def render_page_html(
             collaborators_dir=collaborators_dir,
             cv_dir=cv_dir,
             funding_dir=funding_dir,
+            news_dir=news_dir,
             service_dir=service_dir,
             students_dir=students_dir,
             teaching_dir=teaching_dir,

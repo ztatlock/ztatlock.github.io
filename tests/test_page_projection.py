@@ -12,6 +12,7 @@ from scripts.collaborators_index import (
     TEACHING_COLLABORATORS_LIST_PLACEHOLDER,
 )
 from scripts.funding_index import FUNDING_LIST_PLACEHOLDER
+from scripts.news_index import NEWS_MONTH_GROUPS_PLACEHOLDER
 from scripts.service_index import render_public_service_section_list_djot
 from scripts.sitebuild.page_projection import (
     CV_FUNDING_LIST_PLACEHOLDER,
@@ -820,6 +821,32 @@ class PageProjectionTests(unittest.TestCase):
         self.assertIn("Marktoberdorf Summer School 2024", rendered)
         self.assertIn("Co-Instructors: [James Wilcox][]", rendered)
         self.assertIn("Tutors: [James Wilcox][], [Eric Mullen][], and [Joe Redmon][]", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
+
+    def test_applies_projection_only_to_news_index_page(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = "# News\n\n__NEWS_MONTH_GROUPS__\n"
+        rendered = apply_page_projections(
+            "news_index_page",
+            "news",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertIn(": February 2026", rendered)
+        self.assertIn("🗣️ \\ Visiting the PL and Graphics groups at Brown University to give a talk.", rendered)
+        self.assertIn(": August 2017", rendered)
 
         self.assertEqual(
             apply_page_projections(

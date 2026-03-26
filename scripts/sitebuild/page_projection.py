@@ -22,6 +22,12 @@ from scripts.funding_index import (
     render_public_funding_list_djot,
 )
 from scripts.funding_record import FUNDING_DATA_NAME, FundingRecordError, load_funding_records
+from scripts.news_index import (
+    NEWS_MONTH_GROUPS_PLACEHOLDER,
+    NewsIndexError,
+    render_public_news_month_groups_djot,
+)
+from scripts.news_record import NEWS_DATA_NAME
 from scripts.publication_index import (
     PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
@@ -747,6 +753,17 @@ def apply_page_projections(
         except FundingIndexError as err:
             raise PageProjectionError(str(err)) from err
         return body.replace(FUNDING_LIST_PLACEHOLDER, rendered)
+
+    if route_kind == "news_index_page" and route_key == "news":
+        news_path = (data_dir / NEWS_DATA_NAME) if data_dir is not None else None
+        try:
+            rendered = render_public_news_month_groups_djot(
+                root,
+                news_path=news_path,
+            ).rstrip()
+        except NewsIndexError as err:
+            raise PageProjectionError(str(err)) from err
+        return body.replace(NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
 
     if route_kind == "students_index_page" and route_key == "students":
         rendered = body

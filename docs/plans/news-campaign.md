@@ -1,6 +1,6 @@
 # News Campaign
 
-Status: slice 1 implemented; later slices planned
+Status: slices 1-2 implemented; later slices planned
 
 It builds on:
 
@@ -64,19 +64,19 @@ Current explicit surfaces:
 
 - [site/data/news.json](/Users/ztatlock/www/ztatlock.github.io/site/data/news.json)
   canonical ordered news records
-- [site/pages/news.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/news.dj)
-  current authored news page
+- [site/news/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/news/index.dj)
+  thin authored public news wrapper
 - [site/pages/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/index.dj)
   authored homepage `## News` block
 
 Route / wrapper facts:
 
-- news is still an ordinary authored page under `site/pages/`
-- its canonical public route is still `/news.html`
+- news is now an explicit wrapper page under `site/news/`
+- its canonical public route is now `/news/`
 - the homepage already behaves like a second consumer of the same news stream
-- canonical shared news data now exists in `site/data/news.json`
+- canonical shared news data lives in `site/data/news.json`
 
-Current page shape in `site/pages/news.dj`:
+Current public page shape rendered from canonical records:
 
 - `15` month buckets
 - `23` individual news items
@@ -110,8 +110,8 @@ the same underlying news stream.
 
 Current overlap:
 
-- homepage news duplicates `13` of the `15` dated month buckets from
-  `site/pages/news.dj`
+- homepage news duplicates `13` of the `15` dated month buckets from the
+  public news page
 - homepage news duplicates `21` of the `23` individual news items
 
 The current homepage omits exactly these two older news items:
@@ -307,6 +307,14 @@ Invariant after slice 2:
 - renderer-owned month/year grouping reconstructs the current public page
   shape from the flat canonical record list
 - homepage news remains explicitly separate for now
+
+Current checkpoint note:
+
+- the route cutover is landed at `site/news/index.dj` with canonical `/news/`
+- the homepage now links to `news/`
+- the public news body is projected from `site/data/news.json`
+- rendered review showed only route/plumbing changes plus projection-owned HTML
+  reflow, not news-content drift
 
 ### Slice 3. Homepage News Consumer
 

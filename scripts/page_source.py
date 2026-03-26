@@ -11,6 +11,7 @@ from pathlib import Path
 from scripts.collaborators_index import collaborators_index_path
 from scripts.cv_index import cv_index_path
 from scripts.funding_record import funding_index_path
+from scripts.news_index import news_index_path
 from scripts.publication_index import publications_index_path
 from scripts.publication_record import (
     PublicationRecord,
@@ -90,6 +91,14 @@ def funding_index_source_path(
     funding_dir: Path | None = None,
 ) -> Path:
     return funding_index_path(root, funding_dir=funding_dir)
+
+
+def news_index_source_path(
+    root: Path,
+    *,
+    news_dir: Path | None = None,
+) -> Path:
+    return news_index_path(root, news_dir=news_dir)
 
 
 def publications_index_source_path(
@@ -266,6 +275,19 @@ def read_funding_index_source(
         funding_index_source_path(
             root,
             funding_dir=funding_dir,
+        )
+    )
+
+
+def read_news_index_source(
+    root: Path,
+    *,
+    news_dir: Path | None = None,
+) -> PageSource:
+    return read_source_path(
+        news_index_source_path(
+            root,
+            news_dir=news_dir,
         )
     )
 

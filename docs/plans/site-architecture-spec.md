@@ -82,22 +82,13 @@ Examples:
 
 - `site/pages/index.dj`
 - `site/pages/about.dj`
-- `site/pages/news.dj`
 
 These pages remain prose-first and should keep YAML front matter for page-local
 metadata.
 
-Current news special case:
-
-- `site/pages/news.dj` is still the public authored consumer for news
-- the repeated news item stream now also has canonical shared data in
-  `site/data/news.json`
-- a later wrapper cutover can still move the public news page to `site/news/`
-  once the repo is ready for that route change
-
 Projection-backed public wrappers and consumer pages now live under their own
 roots such as `site/students/`, `site/teaching/`, `site/service/`,
-`site/collaborators/`, `site/funding/`, and `site/cv/`.
+`site/collaborators/`, `site/funding/`, `site/news/`, and `site/cv/`.
 
 ### `site/pubs/`
 
@@ -213,6 +204,19 @@ Like `site/students/`, `site/teaching/`, and `site/service/`, this is not a
 record-bundle root.
 The canonical funding truth still lives in shared data under
 `site/data/funding.json`.
+
+### `site/news/`
+
+Projection-backed public wrapper for the news landing page.
+
+This root currently owns:
+
+- `site/news/index.dj`
+
+Like `site/students/`, `site/teaching/`, `site/service/`, and `site/funding/`,
+this is a wrapper root rather than a record-bundle root.
+The canonical editorial news truth lives in shared data under
+`site/data/news.json`.
 
 ### `site/cv/`
 
@@ -560,17 +564,18 @@ Important clarifications:
 - the funding campaign is now at a good public-plus-CV checkpoint with
   canonical funding records projected into `site/funding/index.dj` at
   `/funding/` and into the CV funding list
-- collaborators are now at a first public-wrapper/coauthor-projection
-  checkpoint, and they should still stay narrow until collaborator-specific
-  relationship facts clearly earn their own data layer
+- collaborators are now at a first sectioned public-page checkpoint over
+  existing canonical research and teaching sources, and they should still stay
+  narrow until collaborator-specific relationship facts clearly earn their own
+  data layer
 - CV is now a proven cross-domain consumer pattern, with the wrapper at
   `site/cv/index.dj` and multiple projected subsections backed by existing
   canonical domains
 - the main remaining cross-domain seams are the authored homepage recent/current
   blocks and the authored top-of-CV highlights block
-- news is now at a first canonical-data checkpoint through
-  `site/data/news.json`, while the public wrapper and homepage consumer remain
-  later slices
+- news is now at a public-wrapper checkpoint through `site/data/news.json`
+  and `site/news/index.dj`, while the homepage consumer and later cross-domain
+  enrichment remain later slices
 
 The medium-term roadmap for those campaigns is captured in
 [structured-content-roadmap.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/structured-content-roadmap.md).
