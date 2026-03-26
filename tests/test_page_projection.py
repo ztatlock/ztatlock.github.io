@@ -392,8 +392,20 @@ class PageProjectionTests(unittest.TestCase):
         rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("*UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_uw)
         self.assertIn("[2025 Autumn](https://courses.cs.washington.edu/courses/cse507/25au/)", rendered_uw)
-        self.assertNotIn("Audrey Seo", rendered_uw)
-        self.assertNotIn("Adam Fuegmann", rendered_uw)
+        self.assertIn("Co-Instructors: [James Wilcox][]", rendered_uw)
+        self.assertIn(
+            "Teaching Assistants: [Gus Smith][], [Audrey Seo][], and [Anjali Pal][]",
+            rendered_uw,
+        )
+        self.assertIn(
+            "Tutors: [James Wilcox][], [Eric Mullen][], and [Joe Redmon][]",
+            rendered_uw,
+        )
+        self.assertIn(
+            "Teaching Assistants: [Brendan Murphy][], Jack Zhang, [Mike He][], and [Yihong Zhang][]",
+            rendered_uw,
+        )
+        self.assertNotIn("{.columns .columns-8rem}", rendered_uw)
 
         rendered_topics = render_teaching_special_topics_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("[UW CSE 599W: Systems Verification, \\ 2016 Spring]", rendered_topics)
@@ -698,6 +710,8 @@ class PageProjectionTests(unittest.TestCase):
         self.assertNotIn(TEACHING_SPECIAL_TOPICS_LIST_PLACEHOLDER, rendered)
         self.assertNotIn(TEACHING_SUMMER_SCHOOL_LIST_PLACEHOLDER, rendered)
         self.assertIn("Marktoberdorf Summer School 2024", rendered)
+        self.assertIn("Co-Instructors: [James Wilcox][]", rendered)
+        self.assertIn("Tutors: [James Wilcox][], [Eric Mullen][], and [Joe Redmon][]", rendered)
 
         self.assertEqual(
             apply_page_projections(

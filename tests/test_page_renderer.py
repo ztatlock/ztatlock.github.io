@@ -207,6 +207,14 @@ class PageRendererTests(unittest.TestCase):
         self.assertNotIn("__TEACHING_UW_COURSES_LIST__", html)
         self.assertIn("Marktoberdorf Summer School 2024", html)
         self.assertIn("Mathematician", html)
+        self.assertNotIn('class="columns columns-8rem"', html)
+        self.assertIn(
+            '<a href="https://courses.cs.washington.edu/courses/cse505/25sp/">2025 Spring</a>\n<ul>\n<li>\nCo-Instructors: <a href="https://jamesrwilcox.com/">James Wilcox</a>',
+            html,
+        )
+        self.assertIn("Co-Instructors: <a href=\"https://jamesrwilcox.com/\">James Wilcox</a>", html)
+        self.assertIn("Tutors: <a href=\"https://jamesrwilcox.com/\">James Wilcox</a>", html)
+        self.assertIn("Jack Zhang", html)
 
     def test_render_publications_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/pubs/"

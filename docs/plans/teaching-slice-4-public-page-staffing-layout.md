@@ -1,6 +1,6 @@
 # Teaching Slice 4: Public Page Staffing Layout
 
-Status: drafted for review
+Status: implemented
 
 It builds on:
 
@@ -201,3 +201,12 @@ The next decision should then be between:
 - curated CV cleanup
 
 not automatic broadening of teaching consumers by inertia.
+
+Implemented outcome:
+
+- the public `/teaching/` UW course section now renders offerings as vertical
+  lists instead of flowing columns
+- canonical `co_instructors`, `teaching_assistants`, and `tutors` now appear
+  under offerings where present
+- the page wrapper, teaching-award note, special-topics section,
+  summer-school section, and Related section stayed unchanged

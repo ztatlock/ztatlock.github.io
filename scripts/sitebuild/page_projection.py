@@ -146,6 +146,29 @@ def _render_teaching_offering(offering: TeachingOffering) -> str:
     return f"[{label}]({offering.url})"
 
 
+def _render_person_key_ref(person_key: str, *, registry) -> str:
+    person = registry.person(person_key)
+    return _render_person_ref(
+        display_name=person.name,
+        ref_name=person.name,
+        is_linked=person.primary_url is not None,
+    )
+
+
+def _render_staffing_line(
+    label: str,
+    person_keys: tuple[str, ...],
+    *,
+    registry,
+) -> str | None:
+    if not person_keys:
+        return None
+    rendered_people = tuple(
+        _render_person_key_ref(person_key, registry=registry) for person_key in person_keys
+    )
+    return f"  - {label}: {_join_people_refs(rendered_people)}"
+
+
 def _flatten_cv_djot_text(text: str) -> str:
     return INLINE_LINK_RE.sub(r"\1", text).replace("\\ ", " ")
 
@@ -408,15 +431,39 @@ def render_cv_teaching_instructor_list_djot(
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 
 
-def _render_uw_course_record(record: TeachingRecord) -> str:
+def _render_uw_course_record(record: TeachingRecord, *, registry) -> str:
     lines = [f"*{record.code}: {record.title}* \\"]
     if record.audience_label:
         lines.append(record.audience_label)
     if record.description_djot:
         lines.append(f"  {record.description_djot}")
     lines.append("")
-    lines.append("{.columns .columns-8rem}")
-    lines.extend(f"- {_render_teaching_offering(offering)}" for offering in record.offerings)
+    for offering in record.offerings:
+        lines.append(f"- {_render_teaching_offering(offering)}")
+        staffing_lines = tuple(
+            line
+            for line in (
+                _render_staffing_line(
+                    "Co-Instructors",
+                    offering.co_instructors,
+                    registry=registry,
+                ),
+                _render_staffing_line(
+                    "Teaching Assistants",
+                    offering.teaching_assistants,
+                    registry=registry,
+                ),
+                _render_staffing_line(
+                    "Tutors",
+                    offering.tutors,
+                    registry=registry,
+                ),
+            )
+            if line is not None
+        )
+        if staffing_lines:
+            lines.append("")
+            lines.extend(staffing_lines)
     return "\n".join(lines)
 
 
@@ -426,7 +473,12 @@ def render_teaching_uw_courses_list_djot(
     data_dir: Path | None = None,
 ) -> str:
     records = _teaching_group_records_by_key(root, data_dir=data_dir)["uw_courses"]
-    chunks = [_render_uw_course_record(record) for record in records]
+    people_path = (data_dir / "people.json") if data_dir is not None else None
+    try:
+        registry = load_people_registry(people_path or (root / "site" / "data" / "people.json"))
+    except PeopleRegistryError as err:
+        raise PageProjectionError(str(err)) from err
+    chunks = [_render_uw_course_record(record, registry=registry) for record in records]
     if not chunks:
         return ""
     return ("\n\n{.course-vspace}\n".join(chunks)) + "\n"

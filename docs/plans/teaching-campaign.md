@@ -321,9 +321,18 @@ Implemented outcomes so far:
 - keep the page wrapper, award note, special-topics section, and summer-school
   section stable
 
-Planned in:
+Implemented in:
 
 - [teaching-slice-4-public-page-staffing-layout.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-slice-4-public-page-staffing-layout.md)
+
+Implemented outcomes so far:
+
+- the public `/teaching/` UW course offering layout now uses vertical lists
+  rather than flowing term/year columns
+- the public teaching page now visibly renders canonical `co_instructors`,
+  `teaching_assistants`, and `tutors` for offerings where those facts exist
+- the page wrapper, special-topics section, teaching-award note,
+  summer-school section, and Related section stayed unchanged
 
 ### Slice 5. Homepage Recent Teaching Projection
 
