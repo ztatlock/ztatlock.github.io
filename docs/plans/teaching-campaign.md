@@ -342,9 +342,18 @@ Implemented outcomes so far:
   as the main UW course section
 - keep broader styling/polish questions deferred to a later campaign
 
-Planned in:
+Implemented in:
 
 - [teaching-slice-4a-special-topics-staffing-layout.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-slice-4a-special-topics-staffing-layout.md)
+
+Implemented outcomes so far:
+
+- the public `Special Topics Graduate Courses` section now uses the same
+  general offering-plus-staffing pattern as the main UW course section
+- canonical special-topics staffing facts now visibly appear when present,
+  including Bryan Parno and Xi Wang for `UW CSE 599W`
+- the teaching page is now more consistent with the teaching ontology even
+  though broader visual/style refinement remains a later separate concern
 
 ### Slice 5. Homepage Recent Teaching Projection
 

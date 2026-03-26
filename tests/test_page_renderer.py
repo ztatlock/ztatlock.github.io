@@ -214,6 +214,11 @@ class PageRendererTests(unittest.TestCase):
         )
         self.assertIn("Co-Instructors: <a href=\"https://jamesrwilcox.com/\">James Wilcox</a>", html)
         self.assertIn("Tutors: <a href=\"https://jamesrwilcox.com/\">James Wilcox</a>", html)
+        self.assertIn("UW CSE 599W: Systems Verification", html)
+        self.assertIn("Formally verifying systems implementations", html)
+        self.assertIn("Co-Instructors:", html)
+        self.assertIn(">Bryan Parno</a>", html)
+        self.assertIn(">Xi Wang</a>", html)
         self.assertIn("Jack Zhang", html)
 
     def test_render_publications_index_page_uses_explicit_canonical_url(self) -> None:

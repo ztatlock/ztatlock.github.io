@@ -1,6 +1,6 @@
 # Teaching Slice 4A: Special Topics Staffing-Aware Layout
 
-Status: drafted for review
+Status: implemented
 
 It builds on:
 
@@ -202,3 +202,13 @@ The next decision should then be between:
 - later teaching-page styling/projection polish
 
 not automatic broadening of the teaching page by inertia.
+
+Implemented outcome:
+
+- the public `Special Topics Graduate Courses` section now uses the same
+  general offering-plus-staffing rendering pattern as the main UW course
+  section
+- canonical special-topics staffing facts now appear when present, including
+  Bryan Parno and Xi Wang for `UW CSE 599W`
+- the broader teaching-page styling/polish question remains explicitly
+  deferred to a later campaign
