@@ -324,9 +324,13 @@ The current checkpoint is narrow on purpose:
 
 Current dependency note:
 
-- the collaborator relationship-model slice is now unblocked by the landed
-  teaching-staffing campaign, so teaching collaborators can come from a real
-  canonical source instead of forcing a speculative collaborator registry
+- the next collaborators step should now be a research-collaborator audit,
+  not immediate rendering, because teaching staffing has unblocked a broader
+  collaborator ontology but non-coauthor research collaborators still need
+  reviewed semantics before a residual collaborator layer is introduced
+- some facts that are residual collaborator data today may later become
+  canonical under a future structured-data `projects` domain, so any later
+  collaborator-specific registry should stay minimal and designed to shrink
 
 It should still avoid turning collaborators into a bigger relationship system
 too early.

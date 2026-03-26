@@ -1,6 +1,6 @@
 # Collaborators Campaign
 
-Status: slice 2 implemented
+Status: slices 1 and 2 implemented; slice 3 planned
 
 It builds on:
 
@@ -17,9 +17,9 @@ needs.
 
 This campaign is not about building collaborator profiles, popups, or a full
 relationship graph on day one.
-It is about replacing the current hand-maintained collaborators list with a
-thin wrapper over existing canonical truth where possible, while leaving room
-for later collaborator-specific enrichment when it clearly earns its keep.
+It is about giving collaborators a clean public home, then carefully growing
+that page from a coauthor list into a broader, sectioned collaborator view
+without losing clarity about where each collaborator fact actually comes from.
 
 ## Why Collaborators Next
 
@@ -31,8 +31,8 @@ Collaborators is now a strong adjacent campaign because:
 - much of its current substance is already derivable from canonical
   publication bundles plus `site/data/people.json`
 - the about page has a small collaborator-derived alphabet joke that can drift
-- richer collaborator relationships are plausible later, but do not need to be
-  solved in the first slice
+- richer collaborator relationships are plausible later, but now need a more
+  deliberate audit before the page can safely broaden beyond coauthors
 
 This is a better next move than forcing an immediate decision about trimming
 the authored homepage/CV highlights blocks.
@@ -61,6 +61,13 @@ Important current facts:
   than deeper modeling gaps
 - the current projected page renders `131` collaborator names after excluding
   `Zachary Tatlock` and adding missing canonical coauthors
+- canonical teaching staffing now exposes `84` distinct teaching collaborators
+  keyed through `site/data/people.json`
+- only `18` of those teaching collaborators overlap with current coauthors,
+  which means broadening `/collaborators/` is a real ontology change rather
+  than a tiny rendering tweak
+- canonical students/advising data currently includes `58` people, `42` of
+  whom already overlap with publication coauthors and `16` of whom do not
 
 Important current constraints:
 
@@ -99,35 +106,45 @@ resolve through aliases.
 
 ## Design Recommendation
 
-Treat collaborators as a staged hybrid campaign.
+Treat collaborators as a staged hybrid campaign with three different fact
+sources:
 
-For slice 1:
+- publication bundles for research coauthorship
+- teaching staffing for teaching collaboration
+- a later collaborator-specific shared-data layer only for residual facts that
+  are canonical nowhere else
 
-- derive the public collaborators page from publication coauthors plus
-  `people.json` normalization
-- move the wrapper to `site/collaborators/index.dj`
-- canonicalize `/collaborators/`
-- do not create `site/data/collaborators.json` yet
+That later residual layer should be intentionally small.
+It is not meant to become the permanent home of all research-collaboration
+truth.
+Some facts that are residual today may later become derivable from a future
+structured-data `projects` domain, and the collaborators campaign should be
+designed so those facts can move out again cleanly.
 
 Current checkpoint:
 
 - slice 1 is landed
 - the public route is now `/collaborators/`
-- the list is projected from publication coauthors plus `people.json`
-- display now uses the normalized default `people.json` `name`
-- unresolved names such as `Robert Rabe` remain as plain text
+- the current page is still effectively a coauthor page projected from
+  publication bundles plus `people.json`
+- slice 2 keeps the about-page alphabet joke derived from that same coauthor
+  display set
+- teaching staffing now provides a second real canonical collaborator source,
+  but the public collaborators page does not use it yet
 
-Later, if non-coauthor collaborator facts clearly matter, add a small
-collaborator-specific shared-data layer keyed by `people.json` person keys.
+The next campaign phase should not jump straight into rendering. It should
+first audit what `Research Collaborators` is intended to mean beyond paper
+coauthorship.
 
 That means:
 
 - publication bundles remain canonical for coauthorship
 - `people.json` remains canonical for person identity, aliases, and URLs
+- `site/data/students.json` remains canonical for student/advising facts
+- `site/data/teaching.json` remains canonical for teaching collaboration facts
 - collaborator-specific relationship facts only get their own data file once
-  they are real facts, not just anticipated future possibilities
-- familiar-name display remains an explicit collaborator-consumer policy rather
-  than a hidden people-registry rule
+  the audit proves they are real residual facts that cannot be derived cleanly
+  from those existing domains
 
 ## Important Boundary
 
@@ -194,65 +211,105 @@ Invariant after slice 2:
 - the about-page prose remains authored while only the letter-set facts become
   projected
 
-### Slice 3. Collaborator Relationship Model
+### Slice 3. Research Collaborator Audit
 
 Goal:
 
-- add a collaborator-specific shared-data layer only for relationships that are
-  not already canonical in publications plus `people.json`
+- decide, person by person, what belongs in a broader `Research
+  Collaborators` section beyond publication coauthors
 
-Recommended precondition:
+This slice should review at least:
 
-- use a real non-publication canonical source rather than inventing
-  collaborator-only facts prematurely, with teaching staffing now the clearest
-  current source
-- that prerequisite is now satisfied: teaching collaborators such as
-  co-instructors, teaching assistants, and tutors are canonical in
-  `site/data/teaching.json`, so a later collaborator registry can integrate
-  those facts instead of copying them by hand
+- current collaborators-page inclusions that are not justified by publication
+  coauthorship alone
+- student/advisee names that are not coauthors but may still belong in
+  `Research Collaborators`
+- any other research collaborators who are neither publication coauthors nor
+  advisees
+
+Required outputs:
+
+- a reviewed candidate `Research Collaborators` population
+- explicit reason categories for non-coauthor inclusion
+- an explicit classification of whether each non-coauthor inclusion is:
+  - already derivable now
+  - likely future-project-derived
+  - likely always residual/curated
+- a recommendation about what residual facts need a collaborator-specific data
+  layer
+
+Invariant after slice 3:
+
+- the repo has an explicit reviewed understanding of what `Research
+  Collaborators` means
+- non-coauthor research collaborators are no longer an implicit grab bag
+- no collaborator-specific data file or rendering change is required yet
+
+### Slice 4. Collaborator Relationship Model
+
+Goal:
+
+- add a collaborator-specific shared-data layer only for residual collaborator
+  facts that are not already canonical elsewhere
 
 Likely target:
 
 - `site/data/collaborators.json`
 
-Likely first relationship categories:
+Likely first residual fact types:
 
-- non-coauthor research collaborators
-- advising/collaboration relationships that do not imply coauthorship
-- teaching collaborators such as co-instructors or TAs
-- community collaborators such as running-club organizers
+- explicit inclusion/justification for non-coauthor research collaborators
+- future curated relationship notes that are canonical nowhere else
 
-Invariant after slice 3:
+Important design note:
 
-- collaborator-specific relationship facts have one canonical home keyed by
-  `people.json`
-- publication coauthorship still remains canonical in publication bundles
-- teaching collaboration facts, once modeled, remain canonical in
-  `site/data/teaching.json`
-- the repo does not duplicate coauthor facts into a collaborator registry just
+- this layer should be minimal and expected to shrink if a later
+  structured-data `projects` domain absorbs some currently residual research
+  collaboration facts
+
+Important non-goals:
+
+- do not duplicate publication coauthors into the collaborator registry just
   for symmetry
-
-### Slice 4. Sectioned Collaborator Views
-
-Goal:
-
-- let the collaborators page show explicit sections when relationship
-  categories become real and stable
-
-Potential sections:
-
-- coauthors
-- advising collaborators
-- teaching collaborators
-- community collaborators
+- do not duplicate teaching staffing into the collaborator registry just for
+  symmetry
 
 Invariant after slice 4:
 
-- the public collaborators page can present multiple relationship categories
-  without hand-maintained drift
-- category policy remains explicit rather than hidden in one flat list
+- residual collaborator-specific facts have one canonical home keyed by
+  `people.json`
+- publication and teaching remain canonical in their own domains
 
-### Slice 5. Richer Collaborator Enrichment
+### Slice 5. Sectioned Collaborator Views
+
+Goal:
+
+- broaden the public collaborators page into explicit sections over canonical
+  and reviewed relationship sources
+
+Likely sections:
+
+- `Research Collaborators`
+- `Teaching Collaborators`
+
+Recommended policy:
+
+- `Research Collaborators` includes publication coauthors plus reviewed
+  non-coauthor research collaborators
+- `Teaching Collaborators` is a flat section derived from canonical teaching
+  staffing
+- overlap across sections is allowed when it represents distinct real
+  relationship types
+- the about-page alphabet joke should likely remain tied to the
+  research/coauthor side rather than silently broadening to all collaborators
+
+Invariant after slice 5:
+
+- the public collaborators page can present research and teaching
+  collaboration distinctly without hand-maintained drift
+- section semantics are explicit and reviewable
+
+### Slice 6. Richer Collaborator Enrichment
 
 Goal:
 
@@ -260,12 +317,15 @@ Goal:
 
 Possible later features:
 
+- per-collaborator overlays or popups
 - related publication lists
+- related teaching history
+- advising years or student relationship summaries
 - related project lists
 - related grant lists
-- popups or detail pages
+- possibly later prose-page mention indexing if that ever clearly earns it
 
-Invariant after slice 5:
+Invariant after slice 6:
 
 - richer collaborator context is driven by explicit canonical relationships or
   deliberate derived views
@@ -277,23 +337,26 @@ Invariant after slice 5:
 The following should remain explicitly out of the first collaborators
 checkpoint:
 
-- non-coauthor collaborator categories
-- optional-URL support in `people.json`
+- broadening the page to include teaching collaborators without a reviewed
+  ontology first
 - collaborator detail pages or popups
 - collaborator/project/grant cross-linking
-- turning the about-page alphabet note into a same-day requirement
+- a future structured-data `projects` domain for research work that does not
+  yet or may never map cleanly to publications
+- changing the about-page alphabet joke without an explicit decision about
+  whether it should stay coauthor/research-focused
 
 Those all look plausible later, but they should not complicate the first
-wrapper/projection slice.
+post-slice-2 audit checkpoint.
 
 ## Recommendation
 
-Start collaborators with the smallest real architecture:
+Continue collaborators with the smallest next real architecture:
 
-1. wrapper plus coauthor projection
+1. research-collaborator audit
 2. stop and reassess
-3. only then decide whether the about-page alphabet note or a
-   collaborator-specific relationship model should come next
+3. only then decide the minimum collaborator-specific data layer
+4. only then broaden the page into explicit research/teaching sections
 
-That keeps the first slice honest to the current public page while still
+That keeps the next slice honest to the now-larger ontology while still
 leaving room for the richer collaborator directions that may matter later.
