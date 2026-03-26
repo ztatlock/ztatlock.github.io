@@ -164,7 +164,10 @@ Current checkpoint note:
   landed, so `site/data/people.json` can represent linkable and linkless
   people honestly before staffing data import begins
 - the teaching schema now allows those staffing fields on individual course
-  offerings without changing current rendered output or seeding staffing data
+  offerings
+- confirmed co-instructor facts and confirmed teaching-assistant facts are now
+  canonical on the relevant UW instructor-led offerings, while public
+  staffing rendering remains deferred
 
 Those future staffing fields should likely live on individual offerings, not
 on whole course records, because co-teaching and TA staffing can vary by term.
@@ -193,8 +196,8 @@ Recommended `event` fields:
 Recommended `details` and `links` items:
 
 - small Djot strings or `{label, url}` pairs
-- enough to preserve current notes like "Co-taught with [Xi Wang][] and
-  [Bryan Parno][]" without inventing a larger ontology yet
+- enough to preserve current notes like "Formally verifying systems
+  implementations" without inventing a larger ontology yet
 
 The implemented slice-1 model is slightly more permissive than this initial
 draft:

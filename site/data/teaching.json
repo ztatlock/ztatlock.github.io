@@ -15,12 +15,14 @@
             {
               "year": 2025,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse507/25au/"
+              "url": "https://courses.cs.washington.edu/courses/cse507/25au/",
+              "teaching_assistants": ["audrey-seo"]
             },
             {
               "year": 2023,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse507/23au/"
+              "url": "https://courses.cs.washington.edu/courses/cse507/23au/",
+              "teaching_assistants": ["sirui-lu"]
             }
           ]
         },
@@ -37,61 +39,72 @@
               "year": 2025,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse505/25sp/",
-              "co_instructors": ["james-wilcox"]
+              "co_instructors": ["james-wilcox"],
+              "teaching_assistants": ["oliver-flatt", "kevin-mu"]
             },
             {
               "year": 2023,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse505/23wi/",
-              "co_instructors": ["james-wilcox"]
+              "co_instructors": ["james-wilcox"],
+              "teaching_assistants": ["gus-smith", "audrey-seo", "anjali-pal"]
             },
             {
               "year": 2021,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse505/21sp/",
-              "co_instructors": ["james-wilcox"]
+              "co_instructors": ["james-wilcox"],
+              "teaching_assistants": ["brendan-murphy", "jack-zhang", "mike-he", "yihong-zhang"]
             },
             {
               "year": 2020,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/cse505/20sp/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/20sp/",
+              "teaching_assistants": ["ben-kushigian"]
             },
             {
               "year": 2019,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/csep505/19sp/"
+              "url": "https://courses.cs.washington.edu/courses/csep505/19sp/",
+              "teaching_assistants": ["james-wilcox"]
             },
             {
               "year": 2018,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse505/18au/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/18au/",
+              "teaching_assistants": ["talia-ringer"]
             },
             {
               "year": 2017,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/17au/",
-              "co_instructors": ["leonardo-de-moura"]
+              "co_instructors": ["leonardo-de-moura"],
+              "teaching_assistants": ["jared-roesch"]
             },
             {
               "year": 2016,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse505/16au/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/16au/",
+              "teaching_assistants": ["konstantin-weitz"]
             },
             {
               "year": 2015,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse505/15au/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/15au/",
+              "teaching_assistants": ["doug-woos"]
             },
             {
               "year": 2015,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse505/15wi/",
-              "co_instructors": ["valentin-robert"]
+              "co_instructors": ["valentin-robert"],
+              "teaching_assistants": ["eric-mullen"]
             },
             {
               "year": 2013,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse505/13au/"
+              "url": "https://courses.cs.washington.edu/courses/cse505/13au/",
+              "teaching_assistants": ["james-wilcox"]
             }
           ]
         },
@@ -108,42 +121,50 @@
               "year": 2024,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse341/24au/",
-              "co_instructors": ["anjali-pal"]
+              "co_instructors": ["anjali-pal"],
+              "teaching_assistants": ["aaminah-alam", "andres-paz", "ceci-miovic", "kirsten-graham"]
             },
             {
               "year": 2022,
               "term": "Autumn",
-              "url": "https://courses.cs.washington.edu/courses/cse341/22au/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/22au/",
+              "teaching_assistants": ["jacob-van-geffen", "oliver-flatt", "riya-dheer", "nuha-qadir", "anirudh-suresh", "deeksha-vatwani"]
             },
             {
               "year": 2021,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse341/21wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/21wi/",
+              "teaching_assistants": ["andres-paz", "kenny-wu", "michael-flanders", "jennifer-tao", "kevin-zhu"]
             },
             {
               "year": 2020,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse341/20wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/20wi/",
+              "teaching_assistants": ["melissa-hovik", "julie-newcomb", "daniel-snitkovskiy", "adam-anderson", "taylor-coffman"]
             },
             {
               "year": 2019,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse341/19wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/19wi/",
+              "teaching_assistants": ["meha-agarwal", "kush-gupta", "melissa-hovik", "sven-hansen", "brendan-murphy", "john-toman"]
             },
             {
               "year": 2018,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse341/18wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/18wi/",
+              "teaching_assistants": ["kush-gupta", "christopher-mackie", "chandrakana-nandi", "jifan-zhang"]
             },
             {
               "year": 2015,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/cse341/15sp/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/15sp/",
+              "teaching_assistants": ["stuart-pernsteiner", "gurwinder-gulati", "max-sherman", "riley-wilk"]
             },
             {
               "year": 2014,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/cse341/14sp/"
+              "url": "https://courses.cs.washington.edu/courses/cse341/14sp/",
+              "teaching_assistants": ["armando-diaz-tolentino", "riley-klingler", "max-sherman"]
             }
           ]
         },
@@ -160,22 +181,26 @@
               "year": 2024,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse331/24wi/",
-              "co_instructors": ["anjali-pal"]
+              "co_instructors": ["anjali-pal"],
+              "teaching_assistants": ["adam-fuegmann", "ali-toghani", "annika-singh", "ashay-manocha", "ben-lambert", "edison-leung", "gargi-panatula", "jaela-field", "katherine-murphy", "michelle-arquiza"]
             },
             {
               "year": 2018,
               "term": "Spring",
-              "url": "https://courses.cs.washington.edu/courses/cse331/18sp/"
+              "url": "https://courses.cs.washington.edu/courses/cse331/18sp/",
+              "teaching_assistants": ["weifan-jiang", "cody-kesting", "tim-chirananthavat", "alexey-beall", "hongtao-huang", "jake-sippy", "chen-qiu", "leah-perlmutter", "zhu-ruby-li", "yifan-vanadis-xu"]
             },
             {
               "year": 2017,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse331/17wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse331/17wi/",
+              "teaching_assistants": ["christopher-chen", "viktor-farkas", "cody-kesting", "chen-qiu", "matthew-yang", "lucy-zhu", "garrett-marconet", "sam-gao", "qian-yan"]
             },
             {
               "year": 2016,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse331/16wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse331/16wi/",
+              "teaching_assistants": ["justin-bare", "christopher-chen", "deric-pang", "marcella-cindy-prasetio", "vinod-rathnam"]
             }
           ]
         }

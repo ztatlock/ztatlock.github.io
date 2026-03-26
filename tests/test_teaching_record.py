@@ -39,6 +39,29 @@ class TeachingRecordTests(unittest.TestCase):
         self.assertEqual(groups[0].records[1].offerings[9].co_instructors, ("valentin-robert",))
         self.assertEqual(groups[0].records[2].offerings[0].co_instructors, ("anjali-pal",))
         self.assertEqual(groups[0].records[3].offerings[0].co_instructors, ("anjali-pal",))
+        self.assertEqual(groups[0].records[0].offerings[0].teaching_assistants, ("audrey-seo",))
+        self.assertEqual(
+            groups[0].records[1].offerings[0].teaching_assistants,
+            ("oliver-flatt", "kevin-mu"),
+        )
+        self.assertEqual(
+            groups[0].records[2].offerings[2].teaching_assistants,
+            ("andres-paz", "kenny-wu", "michael-flanders", "jennifer-tao", "kevin-zhu"),
+        )
+        self.assertEqual(
+            groups[0].records[3].offerings[2].teaching_assistants,
+            (
+                "christopher-chen",
+                "viktor-farkas",
+                "cody-kesting",
+                "chen-qiu",
+                "matthew-yang",
+                "lucy-zhu",
+                "garrett-marconet",
+                "sam-gao",
+                "qian-yan",
+            ),
+        )
         self.assertEqual(groups[0].records[0].offerings[0].year, 2025)
         self.assertEqual(
             groups[1].records[1].offerings[0].co_instructors,

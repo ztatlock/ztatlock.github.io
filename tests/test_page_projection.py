@@ -392,6 +392,8 @@ class PageProjectionTests(unittest.TestCase):
         rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("*UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_uw)
         self.assertIn("[2025 Autumn](https://courses.cs.washington.edu/courses/cse507/25au/)", rendered_uw)
+        self.assertNotIn("Audrey Seo", rendered_uw)
+        self.assertNotIn("Adam Fuegmann", rendered_uw)
 
         rendered_topics = render_teaching_special_topics_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("[UW CSE 599W: Systems Verification, \\ 2016 Spring]", rendered_topics)

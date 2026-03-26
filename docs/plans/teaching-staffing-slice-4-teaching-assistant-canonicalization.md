@@ -1,6 +1,6 @@
 # Teaching Staffing Slice 4: Teaching Assistant Canonicalization
 
-Status: drafted for review
+Status: implemented
 
 It builds on:
 

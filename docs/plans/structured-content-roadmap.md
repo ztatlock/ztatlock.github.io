@@ -422,6 +422,10 @@ The repo is also now at a good checkpoint after:
 - the co-instructor canonicalization slice that backfilled the small confirmed
   co-instructor set and the one missing co-instructor person record before the
   larger TA import
+- the teaching-assistant canonicalization slice that backfilled confirmed TA
+  facts on the relevant UW instructor-led offerings and expanded `people.json`
+  only as needed to key those canonical staffing facts cleanly, while keeping
+  tutor handling and public staffing rendering deferred
 
 Funding follow-on work should continue separately as:
 

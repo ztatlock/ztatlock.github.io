@@ -58,6 +58,31 @@ class PeopleRegistryTests(unittest.TestCase):
         self.assertEqual(person.url, "https://leodemoura.github.io/")
         self.assertEqual(person.primary_url, "https://leodemoura.github.io/")
 
+    def test_seed_registry_includes_teaching_staff_entries_and_aliases(self) -> None:
+        registry = load_people_registry(PEOPLE_PATH)
+
+        audrey = registry.person("audrey-seo")
+        self.assertEqual(audrey.name, "Audrey Seo")
+        self.assertEqual(audrey.url, "https://audreyseo.github.io/")
+        self.assertEqual(audrey.primary_url, "https://audreyseo.github.io/")
+
+        daniel = registry.person("daniel-snitkovskiy")
+        self.assertEqual(daniel.linkedin, "https://www.linkedin.com/in/danielsnitkovskiy/")
+        self.assertEqual(daniel.github, "https://github.com/snitkdan")
+        self.assertEqual(daniel.primary_url, "https://www.linkedin.com/in/danielsnitkovskiy/")
+
+        self.assertIsNone(registry.person("michael-flanders").primary_url)
+        self.assertIsNone(registry.person("riley-wilk").primary_url)
+        self.assertIsNone(registry.person("jack-zhang").primary_url)
+
+        self.assertEqual(registry.person("taylor-coffman").name, "Taylor Coffman")
+        self.assertEqual(registry.resolve_alias("Levi Coffman"), "taylor-coffman")
+        self.assertEqual(registry.person("sam-gao").name, "Sam Gao")
+        self.assertEqual(registry.resolve_alias("Zhengyang Gao"), "sam-gao")
+        self.assertEqual(registry.resolve_alias("Anshuo (Kenny) Wu"), "kenny-wu")
+        self.assertEqual(registry.resolve_alias("Tingjia (Jennifer) Tao"), "jennifer-tao")
+        self.assertEqual(registry.resolve_alias("Chen (Jason) Qiu"), "chen-qiu")
+
     def test_accepts_optional_public_link_fields_and_primary_url_fallback(self) -> None:
         payload = {
             "people": {

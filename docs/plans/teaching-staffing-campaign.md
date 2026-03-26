@@ -1,6 +1,6 @@
 # Teaching Staffing Campaign
 
-Status: slices 1, 1A, 2, and 3 implemented
+Status: slices 1, 1A, 2, 3, and 4 implemented
 
 It builds on:
 
@@ -239,6 +239,16 @@ Invariant after slice 4:
 - no public rendering changes yet
 
 This is the larger data-import slice and should therefore stand alone.
+
+Current checkpoint:
+
+- confirmed TA facts are now canonical on the UW instructor-led offerings
+  already represented in `site/data/teaching.json`
+- the needed new TA-linked people records and normalization cases are now
+  canonical in `site/data/people.json`
+- tutor handling remains the next explicit policy seam
+- public teaching/CV/homepage/collaborators staffing rendering remains
+  deferred
 
 ### Slice 5. Tutor Decision
 
