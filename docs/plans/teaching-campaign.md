@@ -312,7 +312,20 @@ Implemented outcomes so far:
 - the CV teaching section now includes both DeepSpec Summer School 2018 and
   Marktoberdorf Summer School 2024 from the canonical teaching record
 
-### Slice 4. Homepage Recent Teaching Projection
+### Slice 4. Public Teaching Staffing / Layout
+
+- redesign the UW-course offering presentation on `site/teaching/index.dj`
+- move from flowing term/year columns to vertical offering lists
+- render canonical `co_instructors`, `teaching_assistants`, and `tutors`
+  under offerings where present
+- keep the page wrapper, award note, special-topics section, and summer-school
+  section stable
+
+Planned in:
+
+- [teaching-slice-4-public-page-staffing-layout.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-slice-4-public-page-staffing-layout.md)
+
+### Slice 5. Homepage Recent Teaching Projection
 
 - derive the recent-teaching bullets on `site/pages/index.dj`
 - update authored links to use canonical `/teaching/`

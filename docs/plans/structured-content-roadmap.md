@@ -462,6 +462,16 @@ The main remaining cross-domain maintenance seams are now:
 - the publication-boundary question around the authored CV `Book Chapters`
   subsection
 
+Near-term priorities that currently look strongest are:
+
+1. a public teaching-page staffing/layout slice that makes `/teaching/`
+   actually reflect the now-canonical offering staffing facts
+2. the collaborator relationship-model planning slice, now that both
+   coauthorship and teaching staffing are canonical
+3. later exploration of the authored homepage/CV curated blocks once we are
+   ready to decide whether they should stay authored, be trimmed, or become
+   small structured consumers
+
 The main adjacent campaign now underway is:
 
 - collaborators, through the public-wrapper, about-page alphabet, and
