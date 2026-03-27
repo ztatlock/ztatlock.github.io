@@ -68,7 +68,7 @@ class ServiceRecordTests(unittest.TestCase):
                 ],
             )
 
-            with self.assertRaisesRegex(ServiceRecordError, "duplicate record key"):
+            with self.assertRaisesRegex(ServiceRecordError, "duplicate (?:top-level )?record key"):
                 load_service_records(root)
 
     def test_invalid_view_group_is_rejected(self) -> None:
@@ -126,24 +126,39 @@ class ServiceRecordTests(unittest.TestCase):
             with self.assertRaisesRegex(ServiceRecordError, "details must be a non-empty array"):
                 load_service_records(root)
 
-    def test_ongoing_record_requires_series_key(self) -> None:
+    def test_a4_shorthand_flattens_through_compatibility_loader(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             _write_service(
                 root / "site" / "data" / "service.json",
                 [
                     {
-                        "key": "2025-demo-role",
-                        "year": 2025,
-                        "ongoing": True,
-                        "view_groups": ["reviewing"],
+                        "key": "demo-role",
                         "title": "Demo",
+                        "role": "Chair",
+                        "view_groups": ["organizing"],
+                        "instances": [
+                            {
+                                "key": "2025-demo-role",
+                                "year": 2025,
+                                "url": "https://example.com/2025",
+                            },
+                            {
+                                "key": "2024-demo-role",
+                                "year": 2024,
+                                "url": "https://example.com/2024",
+                            },
+                        ],
                     }
                 ],
             )
 
-            with self.assertRaisesRegex(ServiceRecordError, "ongoing records must include series_key"):
-                load_service_records(root)
+            records = load_service_records(root)
+            by_key = {record.key: record for record in records}
+            self.assertEqual(tuple(by_key), ("2025-demo-role", "2024-demo-role"))
+            self.assertEqual(by_key["2025-demo-role"].series_key, "demo-role")
+            self.assertEqual(by_key["2025-demo-role"].role, "Chair")
+            self.assertEqual(by_key["2024-demo-role"].url, "https://example.com/2024")
 
     def test_ongoing_record_must_use_latest_year_in_series(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

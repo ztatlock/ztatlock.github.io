@@ -1,8 +1,8 @@
 # Service Campaign
 
-Status: public-page core and CV service projection implemented; A4 redesign and
-migration planning are now the leading direction; later homepage cleanup
-remains deferred
+Status: public-page core and CV service projection implemented; A4 canonical
+data migration is now implemented behind a temporary compatibility bridge;
+current-consumer cutover remains next; later homepage cleanup remains deferred
 
 ## Goal
 
@@ -290,8 +290,8 @@ The current implementation/testing checkpoint is:
 
 The next planned move is:
 
-- slice 2 canonical data migration onto the A4 authored schema, after the
-  slice-1 loader/validator foundation
+- slice 3 current-consumer cutover from the temporary flat-model compatibility
+  bridge onto canonical A4 runs
 
 If those later consumers land, the invariant should be:
 
@@ -299,7 +299,8 @@ If those later consumers land, the invariant should be:
 
 ## Deferred Questions
 
-These are real possibilities, but they should not shape slice 1:
+These are real possibilities, but they should not shape slice 3 while the
+current consumer cutover remains in flight:
 
 - richer taxonomy beyond the current `view_groups`
 - explicit `leadership` or other cross-cutting tags

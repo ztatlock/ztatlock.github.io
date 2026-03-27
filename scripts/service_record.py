@@ -7,6 +7,12 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from scripts.service_record_a4 import (
+    ServiceRecordA4Error,
+    ServiceRegistryA4,
+    load_service_registry_a4,
+)
+
 
 SERVICE_DATA_NAME = "service.json"
 SERVICE_INDEX_NAME = "index.dj"
@@ -172,13 +178,58 @@ def _normalize_record(raw: object, *, context: str) -> ServiceRecord:
     )
 
 
-def load_service_records(
-    root: Path,
-    *,
-    service_path: Path | None = None,
-) -> tuple[ServiceRecord, ...]:
-    path = service_data_path(root, service_path=service_path)
+def _looks_like_a4_authored_records(records_raw: object) -> bool:
+    if not isinstance(records_raw, list) or not records_raw:
+        return False
+    for item in records_raw:
+        if not isinstance(item, dict):
+            return False
+        if "instances" in item or "runs" in item:
+            return True
+    return False
 
+
+def _fallback_legacy_record_key(*, run_key: str, year: int, single_instance_run: bool) -> str:
+    if single_instance_run:
+        return run_key
+    return f"{run_key}-{year}"
+
+
+def _flatten_a4_registry_to_legacy_records(registry: ServiceRegistryA4) -> tuple[ServiceRecord, ...]:
+    flattened: list[ServiceRecord] = []
+    for record in registry.records:
+        for run in record.runs:
+            ongoing_instance_key: str | None = None
+            if run.ongoing:
+                latest_year = max(instance.year for instance in run.instances)
+                for instance in run.instances:
+                    if instance.year == latest_year:
+                        ongoing_instance_key = instance.key
+                        break
+            single_instance_run = len(run.instances) == 1
+            for instance in run.instances:
+                legacy_key = instance.authored_key or _fallback_legacy_record_key(
+                    run_key=run.key,
+                    year=instance.year,
+                    single_instance_run=single_instance_run,
+                )
+                flattened.append(
+                    ServiceRecord(
+                        key=legacy_key,
+                        series_key=run.series.key if run.series is not None else None,
+                        year=instance.year,
+                        ongoing=ongoing_instance_key == instance.key,
+                        view_groups=run.view_groups,
+                        title=instance.title,
+                        role=instance.role,
+                        url=instance.url,
+                        details=instance.details,
+                    )
+                )
+    return tuple(flattened)
+
+
+def _load_flat_service_records(path: Path) -> tuple[ServiceRecord, ...]:
     try:
         raw = json.loads(
             path.read_text(encoding="utf-8"),
@@ -235,6 +286,42 @@ def load_service_records(
                 )
 
     return records
+
+
+def load_service_records(
+    root: Path,
+    *,
+    service_path: Path | None = None,
+) -> tuple[ServiceRecord, ...]:
+    path = service_data_path(root, service_path=service_path)
+    try:
+        raw = json.loads(
+            path.read_text(encoding="utf-8"),
+            object_pairs_hook=_load_json_object_pairs,
+        )
+    except FileNotFoundError as err:
+        raise ServiceRecordError(f"missing service registry: {path}") from err
+    except ServiceRecordError as err:
+        raise ServiceRecordError(f"{path}: {err}") from err
+    except json.JSONDecodeError as err:
+        raise ServiceRecordError(f"{path}:{err.lineno}: invalid JSON: {err.msg}") from err
+
+    rows = _require_object(raw, context=str(path))
+    if set(rows) != {SERVICE_ROOT_KEY}:
+        unknown = sorted(set(rows) - {SERVICE_ROOT_KEY})
+        if SERVICE_ROOT_KEY not in rows:
+            raise ServiceRecordError(f"{path}: missing {SERVICE_ROOT_KEY}")
+        raise ServiceRecordError(f"{path}: unknown top-level fields: {', '.join(unknown)}")
+
+    records_raw = rows[SERVICE_ROOT_KEY]
+    if _looks_like_a4_authored_records(records_raw):
+        try:
+            registry = load_service_registry_a4(root, service_path=path)
+        except ServiceRecordA4Error as err:
+            raise ServiceRecordError(str(err)) from err
+        return _flatten_a4_registry_to_legacy_records(registry)
+
+    return _load_flat_service_records(path)
 
 
 def find_service_record_issues(

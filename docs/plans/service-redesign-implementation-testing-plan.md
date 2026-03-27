@@ -88,6 +88,9 @@ Invariant after slice 1:
 Migrate `site/data/service.json` from the current flat term model to the A4
 authored schema.
 
+This migration slice is now implemented in canonical data plus the temporary
+compatibility adapter.
+
 Scope:
 
 - convert current one-offs into `singleton` records
@@ -105,6 +108,8 @@ Important migration discipline:
 - choose stable run keys carefully
 - keep old visible-anchor stability in mind whenever a current grouped concept
   already matters downstream
+- preserve explicit `instance.key` values where they materially help the
+  migration bridge keep old term-level identities stable during cutover
 
 Invariant after slice 2:
 
@@ -254,8 +259,13 @@ not as reasons to reopen the A4 model itself.
 
 The next implementation slice is:
 
-- canonical data migration onto the A4 authored schema, using the new
-  loader/validator foundation and a temporary compatibility bridge
+- current consumer cutover onto canonical runs, replacing the temporary
+  flat-model compatibility path in public `/service/` and the CV service
+  section
 
-That is the next safe step now that the A4 proposal has been turned into
-executable contract code without changing the live service consumer path.
+That is the next safe step now that:
+
+- A4 is executable as code
+- `site/data/service.json` already uses the A4 authored schema
+- and the temporary compatibility bridge is preserving current consumer
+  behavior during the transition

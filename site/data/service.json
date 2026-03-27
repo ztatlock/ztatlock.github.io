@@ -1,70 +1,76 @@
 {
   "records": [
     {
-      "key": "2029-pacmpl-advisory-board",
-      "series_key": "pacmpl-advisory-board",
-      "year": 2029,
+      "key": "pacmpl-advisory-board",
+      "title": "PACMPL Advisory Board",
       "view_groups": [
         "organizing"
       ],
-      "title": "PACMPL Advisory Board",
+      "instances": [
+        {
+          "key": "2029-pacmpl-advisory-board",
+          "year": 2029
+        },
+        {
+          "key": "2028-pacmpl-advisory-board",
+          "year": 2028
+        },
+        {
+          "key": "2027-pacmpl-advisory-board",
+          "year": 2027
+        },
+        {
+          "key": "2026-pacmpl-advisory-board",
+          "year": 2026
+        }
+      ],
       "role": "Member"
     },
     {
-      "key": "2029-pldi-steering-committee",
-      "series_key": "pldi-steering-committee",
-      "year": 2029,
+      "key": "pldi-steering-committee",
+      "title": "PLDI Steering Committee",
       "view_groups": [
         "organizing"
       ],
-      "title": "PLDI Steering Committee"
+      "instances": [
+        {
+          "key": "2029-pldi-steering-committee",
+          "year": 2029
+        },
+        {
+          "key": "2028-pldi-steering-committee",
+          "year": 2028
+        },
+        {
+          "key": "2027-pldi-steering-committee",
+          "year": 2027
+        },
+        {
+          "key": "2026-pldi-steering-committee",
+          "year": 2026
+        }
+      ]
     },
     {
-      "key": "2028-pacmpl-advisory-board",
-      "series_key": "pacmpl-advisory-board",
-      "year": 2028,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PACMPL Advisory Board",
-      "role": "Member"
-    },
-    {
-      "key": "2028-pldi-steering-committee",
-      "series_key": "pldi-steering-committee",
-      "year": 2028,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PLDI Steering Committee"
-    },
-    {
-      "key": "2027-pacmpl-advisory-board",
-      "series_key": "pacmpl-advisory-board",
-      "year": 2027,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PACMPL Advisory Board",
-      "role": "Member"
-    },
-    {
-      "key": "2027-pldi-steering-committee",
-      "series_key": "pldi-steering-committee",
-      "year": 2027,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PLDI Steering Committee"
-    },
-    {
-      "key": "2027-uw-cse-faculty-graduate-admissions",
-      "series_key": "uw-cse-faculty-graduate-admissions",
-      "year": 2027,
+      "key": "uw-cse-faculty-graduate-admissions",
+      "title": "UW CSE Faculty Graduate Admissions",
       "view_groups": [
         "department"
       ],
-      "title": "UW CSE Faculty Graduate Admissions",
+      "instances": [
+        {
+          "key": "2027-uw-cse-faculty-graduate-admissions",
+          "year": 2027
+        },
+        {
+          "key": "2026-uw-cse-faculty-graduate-admissions",
+          "year": 2026
+        },
+        {
+          "key": "2025-uw-cse-faculty-graduate-admissions",
+          "year": 2025
+        }
+      ],
       "role": "Co-chair"
     },
     {
@@ -81,14 +87,34 @@
       ]
     },
     {
-      "key": "2026-egraphs-community-advisory-board",
-      "series_key": "egraphs-community-advisory-board",
-      "year": 2026,
-      "ongoing": true,
+      "key": "egraphs-community-advisory-board",
+      "title": "EGRAPHS Community Advisory Board",
       "view_groups": [
         "organizing"
       ],
-      "title": "EGRAPHS Community Advisory Board"
+      "instances": [
+        {
+          "key": "2026-egraphs-community-advisory-board",
+          "year": 2026
+        },
+        {
+          "key": "2025-egraphs-community-advisory-board",
+          "year": 2025
+        },
+        {
+          "key": "2024-egraphs-community-advisory-board",
+          "year": 2024
+        },
+        {
+          "key": "2023-egraphs-community-advisory-board",
+          "year": 2023
+        },
+        {
+          "key": "2022-egraphs-community-advisory-board",
+          "year": 2022
+        }
+      ],
+      "ongoing": true
     },
     {
       "key": "2026-icfp-program-committee",
@@ -100,67 +126,106 @@
       "role": "Program Committee"
     },
     {
-      "key": "2026-pacmpl-advisory-board",
-      "series_key": "pacmpl-advisory-board",
-      "year": 2026,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PACMPL Advisory Board",
-      "role": "Member"
-    },
-    {
-      "key": "2026-pldi-steering-committee",
-      "series_key": "pldi-steering-committee",
-      "year": 2026,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PLDI Steering Committee"
-    },
-    {
-      "key": "2026-uw-cse-faculty-graduate-admissions",
-      "series_key": "uw-cse-faculty-graduate-admissions",
-      "year": 2026,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Faculty Graduate Admissions",
-      "role": "Co-chair"
-    },
-    {
-      "key": "2026-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2026,
-      "ongoing": true,
-      "view_groups": [
-        "department"
-      ],
+      "key": "uw-faculty-skit",
       "title": "UW Faculty Skit",
+      "view_groups": [
+        "department"
+      ],
+      "instances": [
+        {
+          "key": "2026-uw-faculty-skit",
+          "year": 2026
+        },
+        {
+          "key": "2025-uw-faculty-skit",
+          "year": 2025
+        },
+        {
+          "key": "2024-uw-faculty-skit",
+          "year": 2024
+        },
+        {
+          "key": "2023-uw-faculty-skit",
+          "year": 2023
+        },
+        {
+          "key": "2022-uw-faculty-skit",
+          "year": 2022
+        },
+        {
+          "key": "2021-uw-faculty-skit",
+          "year": 2021
+        },
+        {
+          "key": "2020-uw-faculty-skit",
+          "year": 2020
+        },
+        {
+          "key": "2019-uw-faculty-skit",
+          "year": 2019
+        },
+        {
+          "key": "2018-uw-faculty-skit",
+          "year": 2018
+        },
+        {
+          "key": "2017-uw-faculty-skit",
+          "year": 2017
+        },
+        {
+          "key": "2016-uw-faculty-skit",
+          "year": 2016
+        },
+        {
+          "key": "2015-uw-faculty-skit",
+          "year": 2015
+        }
+      ],
       "role": "Writer, Producer, and Director",
       "details": [
         "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
+      ],
+      "ongoing": true
     },
     {
-      "key": "2025-egraphs-community-advisory-board",
-      "series_key": "egraphs-community-advisory-board",
-      "year": 2025,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "EGRAPHS Community Advisory Board"
-    },
-    {
-      "key": "2025-fptalks-co-organizer",
-      "series_key": "fptalks",
-      "year": 2025,
-      "view_groups": [
-        "organizing"
-      ],
+      "key": "fptalks",
       "title": "FPTalks",
-      "role": "Co-Organizer",
-      "url": "https://fpbench.org/talks/fptalks25.html"
+      "view_groups": [
+        "organizing"
+      ],
+      "instances": [
+        {
+          "key": "2025-fptalks-co-organizer",
+          "year": 2025,
+          "url": "https://fpbench.org/talks/fptalks25.html"
+        },
+        {
+          "key": "2024-fptalks-co-organizer",
+          "year": 2024,
+          "url": "https://fpbench.org/talks/fptalks24.html"
+        },
+        {
+          "key": "2023-fptalks-co-organizer",
+          "year": 2023,
+          "url": "https://fpbench.org/talks/fptalks23.html"
+        },
+        {
+          "key": "2022-fptalks-co-organizer",
+          "year": 2022,
+          "url": "https://fpbench.org/talks/fptalks22.html"
+        },
+        {
+          "key": "2021-fptalks-co-organizer",
+          "year": 2021,
+          "url": "https://fpbench.org/talks/fptalks21.html"
+        },
+        {
+          "key": "2020-fptalks-co-organizer",
+          "year": 2020,
+          "url": "https://fpbench.org/talks/fptalks20.html"
+        }
+      ],
+      "role": "Co-Organizer"
     },
     {
       "key": "2025-pldi-program-committee-chair",
@@ -175,84 +240,50 @@
       "details": [
         "[Review Committee](https://pldi25.sigplan.org/committee/pldi-2025-papers-pldi-review-committee)",
         "[SIGPLAN Announcement](https://www.sigplan.org/announce/2024-09-21-pldi-2025/)"
-      ]
+      ],
+      "anchor_view_group": "organizing"
     },
     {
-      "key": "2025-uw-cse-faculty-graduate-admissions",
-      "series_key": "uw-cse-faculty-graduate-admissions",
-      "year": 2025,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Faculty Graduate Admissions",
-      "role": "Co-chair"
-    },
-    {
-      "key": "2025-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2025,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
-    },
-    {
-      "key": "2024-egraphs-community-advisory-board",
-      "series_key": "egraphs-community-advisory-board",
-      "year": 2024,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "EGRAPHS Community Advisory Board"
-    },
-    {
-      "key": "2024-fptalks-co-organizer",
-      "series_key": "fptalks",
-      "year": 2024,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "FPTalks",
-      "role": "Co-Organizer",
-      "url": "https://fpbench.org/talks/fptalks24.html"
-    },
-    {
-      "key": "2024-pldi-workshops-co-chair",
-      "series_key": "pldi-workshops",
-      "year": 2024,
-      "view_groups": [
-        "organizing"
-      ],
+      "key": "pldi-workshops",
       "title": "PLDI Workshops",
-      "role": "Co-chair",
-      "url": "https://pldi24.sigplan.org/committee/pldi-2024-organizing-committee"
-    },
-    {
-      "key": "2024-uw-cse-faculty-recruiting",
-      "series_key": "uw-cse-faculty-recruiting",
-      "year": 2024,
       "view_groups": [
-        "department"
+        "organizing"
       ],
-      "title": "UW CSE Faculty Recruiting",
+      "instances": [
+        {
+          "key": "2024-pldi-workshops-co-chair",
+          "year": 2024,
+          "url": "https://pldi24.sigplan.org/committee/pldi-2024-organizing-committee"
+        },
+        {
+          "key": "2023-pldi-workshops-co-chair",
+          "year": 2023,
+          "url": "https://pldi23.sigplan.org/committee/pldi-2023-organizing-committee"
+        }
+      ],
       "role": "Co-chair"
     },
     {
-      "key": "2024-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2024,
+      "key": "uw-cse-faculty-recruiting",
+      "title": "UW CSE Faculty Recruiting",
       "view_groups": [
         "department"
       ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
+      "instances": [
+        {
+          "key": "2024-uw-cse-faculty-recruiting",
+          "year": 2024
+        },
+        {
+          "key": "2023-uw-cse-faculty-recruiting",
+          "year": 2023
+        },
+        {
+          "key": "2022-uw-cse-faculty-recruiting",
+          "year": 2022
+        }
+      ],
+      "role": "Co-chair"
     },
     {
       "key": "2023-arith-program-committee",
@@ -273,35 +304,24 @@
       "role": "External Review Committee"
     },
     {
-      "key": "2023-egraphs-community-advisory-board",
-      "series_key": "egraphs-community-advisory-board",
-      "year": 2023,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "EGRAPHS Community Advisory Board"
-    },
-    {
-      "key": "2023-egraphs-workshop-co-organizer",
-      "series_key": "egraphs-workshop",
-      "year": 2023,
-      "view_groups": [
-        "organizing"
-      ],
+      "key": "egraphs-workshop",
       "title": "EGRAPHS Workshop",
-      "role": "Co-Organizer",
-      "url": "https://pldi23.sigplan.org/home/egraphs-2023"
-    },
-    {
-      "key": "2023-fptalks-co-organizer",
-      "series_key": "fptalks",
-      "year": 2023,
       "view_groups": [
         "organizing"
       ],
-      "title": "FPTalks",
-      "role": "Co-Organizer",
-      "url": "https://fpbench.org/talks/fptalks23.html"
+      "instances": [
+        {
+          "key": "2023-egraphs-workshop-co-organizer",
+          "year": 2023,
+          "url": "https://pldi23.sigplan.org/home/egraphs-2023"
+        },
+        {
+          "key": "2022-egraphs-workshop-co-organizer",
+          "year": 2022,
+          "url": "https://pldi22.sigplan.org/home/egraphs-2022"
+        }
+      ],
+      "role": "Co-Organizer"
     },
     {
       "key": "2023-nsf-grant-review-panel",
@@ -322,49 +342,37 @@
       "role": "Program Committee"
     },
     {
-      "key": "2023-pldi-workshops-co-chair",
-      "series_key": "pldi-workshops",
-      "year": 2023,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PLDI Workshops",
-      "role": "Co-chair",
-      "url": "https://pldi23.sigplan.org/committee/pldi-2023-organizing-committee"
-    },
-    {
-      "key": "2023-pnw-plse-co-organizer",
-      "series_key": "pnw-plse",
-      "year": 2023,
-      "view_groups": [
-        "organizing"
-      ],
+      "key": "pnw-plse",
       "title": "PNW PLSE",
-      "role": "Co-Organizer",
+      "runs": [
+        {
+          "key": "pnw-plse-return",
+          "view_groups": [
+            "organizing"
+          ],
+          "instances": [
+            {
+              "key": "2023-pnw-plse-co-organizer",
+              "year": 2023
+            }
+          ],
+          "role": "Co-Organizer"
+        },
+        {
+          "key": "pnw-plse-foundation",
+          "view_groups": [
+            "organizing"
+          ],
+          "instances": [
+            {
+              "key": "2018-pnw-plse-organizer",
+              "year": 2018
+            }
+          ],
+          "role": "Organizer"
+        }
+      ],
       "url": "http://pnwplse.org/"
-    },
-    {
-      "key": "2023-uw-cse-faculty-recruiting",
-      "series_key": "uw-cse-faculty-recruiting",
-      "year": 2023,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Faculty Recruiting",
-      "role": "Co-chair"
-    },
-    {
-      "key": "2023-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2023,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
     },
     {
       "key": "2022-arith-program-committee",
@@ -374,37 +382,6 @@
       ],
       "title": "ARITH",
       "role": "Program Committee"
-    },
-    {
-      "key": "2022-egraphs-community-advisory-board",
-      "series_key": "egraphs-community-advisory-board",
-      "year": 2022,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "EGRAPHS Community Advisory Board"
-    },
-    {
-      "key": "2022-egraphs-workshop-co-organizer",
-      "series_key": "egraphs-workshop",
-      "year": 2022,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "EGRAPHS Workshop",
-      "role": "Co-Organizer",
-      "url": "https://pldi22.sigplan.org/home/egraphs-2022"
-    },
-    {
-      "key": "2022-fptalks-co-organizer",
-      "series_key": "fptalks",
-      "year": 2022,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "FPTalks",
-      "role": "Co-Organizer",
-      "url": "https://fpbench.org/talks/fptalks22.html"
     },
     {
       "key": "2022-iscsa-tutorial-generalizing-the-isa-to-the-ila-co-organizer",
@@ -427,29 +404,6 @@
       "url": "https://pldi22.sigplan.org/details/pldi-2022-tutorials/6/Build-your-own-optimizer-with-egg-"
     },
     {
-      "key": "2022-uw-cse-faculty-recruiting",
-      "series_key": "uw-cse-faculty-recruiting",
-      "year": 2022,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Faculty Recruiting",
-      "role": "Co-chair"
-    },
-    {
-      "key": "2022-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2022,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
-    },
-    {
       "key": "2021-asplos-program-committee",
       "year": 2021,
       "view_groups": [
@@ -457,17 +411,6 @@
       ],
       "title": "ASPLOS",
       "role": "Program Committee"
-    },
-    {
-      "key": "2021-fptalks-co-organizer",
-      "series_key": "fptalks",
-      "year": 2021,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "FPTalks",
-      "role": "Co-Organizer",
-      "url": "https://fpbench.org/talks/fptalks21.html"
     },
     {
       "key": "2021-pldi-program-committee",
@@ -479,35 +422,67 @@
       "role": "Program Committee"
     },
     {
-      "key": "2021-uw-cse-distinguished-lecture-and-colloquia",
-      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
-      "year": 2021,
+      "key": "uw-cse-distinguished-lecture-and-colloquia",
+      "title": "UW CSE Distinguished Lecture and Colloquia",
       "view_groups": [
         "department"
       ],
-      "title": "UW CSE Distinguished Lecture and Colloquia",
+      "instances": [
+        {
+          "key": "2021-uw-cse-distinguished-lecture-and-colloquia",
+          "year": 2021
+        },
+        {
+          "key": "2020-uw-cse-distinguished-lecture-and-colloquia",
+          "year": 2020
+        },
+        {
+          "key": "2019-uw-cse-distinguished-lecture-and-colloquia",
+          "year": 2019
+        },
+        {
+          "key": "2018-uw-cse-distinguished-lecture-and-colloquia",
+          "year": 2018
+        }
+      ],
       "role": "Organizer"
     },
     {
-      "key": "2021-uw-cse-undergraduate-admissions-committee",
-      "series_key": "uw-cse-undergraduate-admissions-committee",
-      "year": 2021,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Undergraduate Admissions Committee"
-    },
-    {
-      "key": "2021-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2021,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
+      "key": "uw-cse-undergraduate-admissions-committee",
+      "title": "UW CSE Undergraduate Admissions Committee",
+      "runs": [
+        {
+          "key": "uw-cse-undergraduate-admissions-recent",
+          "view_groups": [
+            "department"
+          ],
+          "instances": [
+            {
+              "key": "2021-uw-cse-undergraduate-admissions-committee",
+              "year": 2021
+            },
+            {
+              "key": "2020-uw-cse-undergraduate-admissions-committee",
+              "year": 2020
+            }
+          ]
+        },
+        {
+          "key": "uw-cse-undergraduate-admissions-early",
+          "view_groups": [
+            "department"
+          ],
+          "instances": [
+            {
+              "key": "2018-uw-cse-undergraduate-admissions-committee",
+              "year": 2018
+            },
+            {
+              "key": "2017-uw-cse-undergraduate-admissions-committee",
+              "year": 2017
+            }
+          ]
+        }
       ]
     },
     {
@@ -518,17 +493,6 @@
       ],
       "title": "ASPLOS",
       "role": "Program Committee"
-    },
-    {
-      "key": "2020-fptalks-co-organizer",
-      "series_key": "fptalks",
-      "year": 2020,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "FPTalks",
-      "role": "Co-Organizer",
-      "url": "https://fpbench.org/talks/fptalks20.html"
     },
     {
       "key": "2020-oopsla-external-review-committee",
@@ -558,55 +522,39 @@
       "role": "External Reviewer"
     },
     {
-      "key": "2020-src-jump-ada-student-hackathon-organizer",
-      "series_key": "src-jump-ada-student-hackathon",
-      "year": 2020,
+      "key": "src-jump-ada-student-hackathon",
+      "title": "SRC JUMP: Applications Driving Architectures (ADA)",
       "view_groups": [
         "organizing"
       ],
-      "title": "SRC JUMP: Applications Driving Architectures (ADA)",
+      "instances": [
+        {
+          "key": "2020-src-jump-ada-student-hackathon-organizer",
+          "year": 2020
+        },
+        {
+          "key": "2019-src-jump-ada-student-hackathon-organizer",
+          "year": 2019
+        }
+      ],
       "role": "Student Hackathon Organizer",
       "url": "https://adacenter.org/"
     },
     {
-      "key": "2020-uw-cse-distinguished-lecture-and-colloquia",
-      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
-      "year": 2020,
+      "key": "uw-cse-diversity-committee",
+      "title": "UW CSE Diversity Committee",
       "view_groups": [
         "department"
       ],
-      "title": "UW CSE Distinguished Lecture and Colloquia",
-      "role": "Organizer"
-    },
-    {
-      "key": "2020-uw-cse-diversity-committee",
-      "series_key": "uw-cse-diversity-committee",
-      "year": 2020,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Diversity Committee"
-    },
-    {
-      "key": "2020-uw-cse-undergraduate-admissions-committee",
-      "series_key": "uw-cse-undergraduate-admissions-committee",
-      "year": 2020,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Undergraduate Admissions Committee"
-    },
-    {
-      "key": "2020-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2020,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
+      "instances": [
+        {
+          "key": "2020-uw-cse-diversity-committee",
+          "year": 2020
+        },
+        {
+          "key": "2019-uw-cse-diversity-committee",
+          "year": 2019
+        }
       ]
     },
     {
@@ -637,53 +585,59 @@
       "role": "Program Committee"
     },
     {
-      "key": "2019-src-jump-ada-student-hackathon-organizer",
-      "series_key": "src-jump-ada-student-hackathon",
-      "year": 2019,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "SRC JUMP: Applications Driving Architectures (ADA)",
-      "role": "Student Hackathon Organizer",
-      "url": "https://adacenter.org/"
-    },
-    {
-      "key": "2019-uw-cse-distinguished-lecture-and-colloquia",
-      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
-      "year": 2019,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Distinguished Lecture and Colloquia",
-      "role": "Organizer"
-    },
-    {
-      "key": "2019-uw-cse-diversity-committee",
-      "series_key": "uw-cse-diversity-committee",
-      "year": 2019,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Diversity Committee"
-    },
-    {
-      "key": "2019-uw-cse-grad-culture",
-      "series_key": "uw-cse-grad-culture",
-      "year": 2019,
-      "view_groups": [
-        "department"
-      ],
+      "key": "uw-cse-grad-culture",
       "title": "UW CSE Grad Culture",
+      "view_groups": [
+        "department"
+      ],
+      "instances": [
+        {
+          "key": "2019-uw-cse-grad-culture",
+          "year": 2019
+        },
+        {
+          "key": "2018-uw-cse-grad-culture",
+          "year": 2018
+        },
+        {
+          "key": "2017-uw-cse-grad-culture",
+          "year": 2017
+        },
+        {
+          "key": "2016-uw-cse-grad-culture",
+          "year": 2016
+        },
+        {
+          "key": "2015-uw-cse-grad-culture",
+          "year": 2015
+        },
+        {
+          "key": "2014-uw-cse-grad-culture",
+          "year": 2014
+        },
+        {
+          "key": "2013-uw-cse-grad-culture",
+          "year": 2013
+        }
+      ],
       "role": "Chair"
     },
     {
-      "key": "2019-uw-cse-graduate-admissions-committee",
-      "series_key": "uw-cse-graduate-admissions-committee",
-      "year": 2019,
+      "key": "uw-cse-graduate-admissions-committee",
+      "title": "UW CSE Graduate Admissions Committee",
       "view_groups": [
         "department"
       ],
-      "title": "UW CSE Graduate Admissions Committee"
+      "instances": [
+        {
+          "key": "2019-uw-cse-graduate-admissions-committee",
+          "year": 2019
+        },
+        {
+          "key": "2018-uw-cse-graduate-admissions-committee",
+          "year": 2018
+        }
+      ]
     },
     {
       "key": "2019-verification-in-practice-co-organizer",
@@ -694,19 +648,6 @@
       "title": "University of Washington Verification in Practice (ViP)",
       "role": "Co-Organizer",
       "url": "https://vip.cs.washington.edu/"
-    },
-    {
-      "key": "2019-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2019,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
     },
     {
       "key": "2018-itp-program-committee",
@@ -725,17 +666,6 @@
       ],
       "title": "PLDI Programming Languages Mentoring Workshop (PLMW)",
       "role": "Panelist"
-    },
-    {
-      "key": "2018-pnw-plse-organizer",
-      "series_key": "pnw-plse",
-      "year": 2018,
-      "view_groups": [
-        "organizing"
-      ],
-      "title": "PNW PLSE",
-      "role": "Organizer",
-      "url": "http://pnwplse.org/"
     },
     {
       "key": "2018-popl-program-committee",
@@ -765,63 +695,24 @@
       "role": "Referee"
     },
     {
-      "key": "2018-uw-cse-bsms-admissions-committee",
-      "series_key": "uw-cse-bsms-admissions-committee",
-      "year": 2018,
+      "key": "uw-cse-bsms-admissions-committee",
+      "title": "UW CSE BSMS Admissions Committee",
       "view_groups": [
         "department"
       ],
-      "title": "UW CSE BSMS Admissions Committee"
-    },
-    {
-      "key": "2018-uw-cse-distinguished-lecture-and-colloquia",
-      "series_key": "uw-cse-distinguished-lecture-and-colloquia",
-      "year": 2018,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Distinguished Lecture and Colloquia",
-      "role": "Organizer"
-    },
-    {
-      "key": "2018-uw-cse-grad-culture",
-      "series_key": "uw-cse-grad-culture",
-      "year": 2018,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Grad Culture",
-      "role": "Chair"
-    },
-    {
-      "key": "2018-uw-cse-graduate-admissions-committee",
-      "series_key": "uw-cse-graduate-admissions-committee",
-      "year": 2018,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Graduate Admissions Committee"
-    },
-    {
-      "key": "2018-uw-cse-undergraduate-admissions-committee",
-      "series_key": "uw-cse-undergraduate-admissions-committee",
-      "year": 2018,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Undergraduate Admissions Committee"
-    },
-    {
-      "key": "2018-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2018,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
+      "instances": [
+        {
+          "key": "2018-uw-cse-bsms-admissions-committee",
+          "year": 2018
+        },
+        {
+          "key": "2017-uw-cse-bsms-admissions-committee",
+          "year": 2017
+        },
+        {
+          "key": "2016-uw-cse-bsms-admissions-committee",
+          "year": 2016
+        }
       ]
     },
     {
@@ -861,34 +752,6 @@
       "role": "Program Committee"
     },
     {
-      "key": "2017-uw-cse-bsms-admissions-committee",
-      "series_key": "uw-cse-bsms-admissions-committee",
-      "year": 2017,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE BSMS Admissions Committee"
-    },
-    {
-      "key": "2017-uw-cse-grad-culture",
-      "series_key": "uw-cse-grad-culture",
-      "year": 2017,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Grad Culture",
-      "role": "Chair"
-    },
-    {
-      "key": "2017-uw-cse-undergraduate-admissions-committee",
-      "series_key": "uw-cse-undergraduate-admissions-committee",
-      "year": 2017,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Undergraduate Admissions Committee"
-    },
-    {
       "key": "2017-uw-nsf-stars-mentor",
       "year": 2017,
       "view_groups": [
@@ -896,19 +759,6 @@
       ],
       "title": "UW NSF STARS",
       "role": "Mentor"
-    },
-    {
-      "key": "2017-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2017,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
     },
     {
       "key": "2016-asplos-external-review-committee",
@@ -965,44 +815,20 @@
       "role": "Organizer"
     },
     {
-      "key": "2016-uw-cse-bsms-admissions-committee",
-      "series_key": "uw-cse-bsms-admissions-committee",
-      "year": 2016,
+      "key": "uw-cse-visit-days-organizing-committee",
+      "title": "UW CSE Visit Days Organizing Committee",
       "view_groups": [
         "department"
       ],
-      "title": "UW CSE BSMS Admissions Committee"
-    },
-    {
-      "key": "2016-uw-cse-grad-culture",
-      "series_key": "uw-cse-grad-culture",
-      "year": 2016,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Grad Culture",
-      "role": "Chair"
-    },
-    {
-      "key": "2016-uw-cse-visit-days-organizing-committee",
-      "series_key": "uw-cse-visit-days-organizing-committee",
-      "year": 2016,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Visit Days Organizing Committee"
-    },
-    {
-      "key": "2016-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2016,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
+      "instances": [
+        {
+          "key": "2016-uw-cse-visit-days-organizing-committee",
+          "year": 2016
+        },
+        {
+          "key": "2015-uw-cse-visit-days-organizing-committee",
+          "year": 2015
+        }
       ]
     },
     {
@@ -1052,38 +878,6 @@
       "role": "Co-Chair"
     },
     {
-      "key": "2015-uw-cse-grad-culture",
-      "series_key": "uw-cse-grad-culture",
-      "year": 2015,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Grad Culture",
-      "role": "Chair"
-    },
-    {
-      "key": "2015-uw-cse-visit-days-organizing-committee",
-      "series_key": "uw-cse-visit-days-organizing-committee",
-      "year": 2015,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Visit Days Organizing Committee"
-    },
-    {
-      "key": "2015-uw-faculty-skit",
-      "series_key": "uw-faculty-skit",
-      "year": 2015,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW Faculty Skit",
-      "role": "Writer, Producer, and Director",
-      "details": [
-        "with [Hank Levy][] and [Adriana Schulz][]"
-      ]
-    },
-    {
       "key": "2014-oopsla-external-review-committee",
       "year": 2014,
       "view_groups": [
@@ -1111,43 +905,25 @@
       "role": "Co-Organizer and Speaker"
     },
     {
-      "key": "2014-uw-cse-grad-culture",
-      "series_key": "uw-cse-grad-culture",
-      "year": 2014,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Grad Culture",
-      "role": "Chair"
-    },
-    {
-      "key": "2013-uw-cse-grad-culture",
-      "series_key": "uw-cse-grad-culture",
-      "year": 2013,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UW CSE Grad Culture",
-      "role": "Chair"
-    },
-    {
-      "key": "2011-ucsd-gradcom",
-      "series_key": "ucsd-gradcom",
-      "year": 2011,
-      "view_groups": [
-        "department"
-      ],
+      "key": "ucsd-gradcom",
       "title": "UCSD GradCom",
-      "role": "Student Representative"
-    },
-    {
-      "key": "2010-ucsd-gradcom",
-      "series_key": "ucsd-gradcom",
-      "year": 2010,
       "view_groups": [
         "department"
       ],
-      "title": "UCSD GradCom",
+      "instances": [
+        {
+          "key": "2011-ucsd-gradcom",
+          "year": 2011
+        },
+        {
+          "key": "2010-ucsd-gradcom",
+          "year": 2010
+        },
+        {
+          "key": "2009-ucsd-gradcom",
+          "year": 2009
+        }
+      ],
       "role": "Student Representative"
     },
     {
@@ -1158,16 +934,6 @@
       ],
       "title": "CC",
       "role": "External Reviewer"
-    },
-    {
-      "key": "2009-ucsd-gradcom",
-      "series_key": "ucsd-gradcom",
-      "year": 2009,
-      "view_groups": [
-        "department"
-      ],
-      "title": "UCSD GradCom",
-      "role": "Student Representative"
     }
   ]
 }

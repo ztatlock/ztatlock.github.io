@@ -23,6 +23,36 @@ def _write_people(path: Path, people: dict[str, object]) -> None:
 
 
 class ServiceRecordA4Tests(unittest.TestCase):
+    def test_seed_service_registry_loads(self) -> None:
+        root = Path(__file__).resolve().parent.parent
+        registry = load_service_registry_a4(root)
+
+        self.assertEqual(len(registry.records), 64)
+        self.assertEqual(len(registry.runs), 66)
+
+        fptalks = registry.record("fptalks")
+        self.assertEqual(fptalks.form, "shorthand")
+        self.assertEqual(fptalks.runs[0].role, "Co-Organizer")
+        self.assertEqual(fptalks.runs[0].instances[0].authored_key, "2025-fptalks-co-organizer")
+        self.assertEqual(
+            fptalks.runs[0].instances[0].url,
+            "https://fpbench.org/talks/fptalks25.html",
+        )
+
+        pldi_pc = registry.record("2025-pldi-program-committee-chair")
+        self.assertEqual(pldi_pc.form, "singleton")
+        self.assertEqual(pldi_pc.runs[0].anchor_view_group, "organizing")
+
+        admissions = registry.record("uw-cse-undergraduate-admissions-committee")
+        self.assertEqual(admissions.form, "explicit")
+        self.assertEqual(
+            tuple(run.key for run in admissions.runs),
+            (
+                "uw-cse-undergraduate-admissions-recent",
+                "uw-cse-undergraduate-admissions-early",
+            ),
+        )
+
     def test_singleton_normalizes_to_one_run_and_one_instance(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
