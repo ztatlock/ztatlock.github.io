@@ -1,7 +1,8 @@
 # Service Campaign
 
-Status: public-page core and CV service projection implemented; later homepage
-cleanup remains deferred
+Status: public-page core and CV service projection implemented; A4 redesign and
+migration planning are now the leading direction; later homepage cleanup
+remains deferred
 
 ## Goal
 
@@ -121,7 +122,20 @@ This is intentionally not a bundle-root campaign.
 Service records do not currently need per-record local prose, assets, or
 detail routes.
 
-## Canonical Model Recommendation
+## Historical Canonical Model Recommendation
+
+This section is preserved as the historical model that originally powered the
+implemented public/CV service projections.
+
+It is now superseded as forward-looking redesign guidance by:
+
+- [service-redesign-proposal-a4.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a4.md)
+- [service-redesign-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-implementation-testing-plan.md)
+
+So the flat per-year term model below is historical context, not the current
+recommended destination.
+
+## Historical Flat-Term Model Recommendation
 
 The canonical model should be a flat ordered list of service terms rather than
 top-level section buckets.

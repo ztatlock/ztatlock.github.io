@@ -39,6 +39,8 @@ renderer rewrite.
 That means:
 
 - first make the A4 schema and normalized model executable in code
+- then keep a temporary compatibility bridge so current consumers can survive
+  the data migration without immediate renderer rewrites
 - then migrate canonical data
 - then cut current consumers over to the normalized run model
 - only after that revisit richer service-page formatting or homepage recent
@@ -62,6 +64,7 @@ Scope:
   - optional `series`
   - canonical `run`
   - atomic `instance`
+- keep the current flat-model loader/consumer path intact for now
 - do not migrate `site/data/service.json` yet
 - do not cut any page renderer over yet
 
@@ -75,6 +78,7 @@ Invariant after slice 1:
 
 - A4 is executable as code
 - the repo has tests proving the loader/validator behavior on focused fixtures
+- the current flat-model consumer path still exists side by side
 - current site output is unchanged
 
 ### Slice 2. Canonical Data Migration
@@ -90,6 +94,8 @@ Scope:
 - convert current multi-run or metadata-heavy recurring identities into
   explicit series-with-runs records
 - preserve current canonical facts, URLs, details, and view-group membership
+- add or maintain a temporary compatibility adapter so current renderers can
+  keep working against migrated canonical data until slice 3
 
 Important migration discipline:
 
@@ -102,8 +108,9 @@ Invariant after slice 2:
 
 - `site/data/service.json` uses the A4 schema
 - canonical service facts are preserved
-- current renderers may still rely on temporary compatibility helpers, but the
-  source of truth is now the redesigned data
+- the redesigned data is now the only source of truth
+- current renderers may still rely on a temporary compatibility path, but only
+  as an adapter over the redesigned data
 
 ### Slice 3. Current Consumer Cutover
 
@@ -128,6 +135,8 @@ Invariant after slice 3:
 
 - all current service consumers run on the redesigned loader/model
 - `/service/` and the CV service section remain correct and stable
+- temporary flat-model compatibility code is removed or clearly isolated as
+  migration-only scaffolding
 - remaining service work is no longer blocked on the old flat term model
 
 ### Slice 4. Homepage Recent Service Planning / Implementation
@@ -202,6 +211,7 @@ Add focused tests for:
 - CV compressed service rendering over the normalized run model
 - anchor placement and duplicate-id avoidance for multi-view service
 - homepage/link-target helper behavior if any is introduced during migration
+- compatibility-adapter behavior during slice 2, if that bridge exists
 
 ### Build / Diff Review
 
