@@ -2962,6 +2962,7 @@ class SourceValidateTests(unittest.TestCase):
                                 "key": "2025-pldi-program-committee-chair",
                                 "year": 2025,
                                 "view_groups": ["reviewing", "organizing"],
+                                "anchor_view_group": "organizing",
                                 "title": "PLDI",
                                 "role": "Program Committee Chair",
                                 "url": "https://example.test/pldi",
@@ -3051,6 +3052,7 @@ class SourceValidateTests(unittest.TestCase):
                                 "key": "2025-pldi-program-committee-chair",
                                 "year": 2025,
                                 "view_groups": ["reviewing", "organizing"],
+                                "anchor_view_group": "organizing",
                                 "title": "PLDI",
                                 "role": "Program Committee Chair",
                                 "url": "https://example.test/pldi",
@@ -3127,6 +3129,72 @@ class SourceValidateTests(unittest.TestCase):
                 find_source_issues(config),
                 [f"missing service registry: {data / 'service.json'}"],
             )
+
+    def test_validates_service_data_directly_through_a4_loader(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+            students = root / "site" / "students"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            pages.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            students.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            service.mkdir(parents=True)
+            (service / "index.dj").write_text(
+                "---\n"
+                "description: Service\n"
+                "---\n\n"
+                "# Service\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2025-demo-chair",
+                                "year": 2025,
+                                "title": "DemoConf",
+                                "role": "Program Chair",
+                                "view_groups": ["reviewing", "organizing"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                service_dir=service,
+                students_dir=students,
+                talks_dir=talks,
+                publications_dir=pubs,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            issues = find_source_issues(config)
+            self.assertEqual(len(issues), 1)
+            self.assertIn("anchor_view_group is required", issues[0])
 
     def test_reports_missing_service_projection_placeholder(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

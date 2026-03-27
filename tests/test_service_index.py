@@ -5,7 +5,10 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.service_index import render_public_service_section_list_djot
+from scripts.service_index import (
+    render_cv_service_section_list_djot,
+    render_public_service_section_list_djot,
+)
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -17,63 +20,91 @@ def _write_service(path: Path, records: list[dict[str, object]]) -> None:
 
 
 class ServiceIndexTests(unittest.TestCase):
-    def test_seed_public_service_render_includes_expected_ranges(self) -> None:
+    def test_seed_public_service_render_is_run_native(self) -> None:
         organizing = render_public_service_section_list_djot(ROOT, "organizing")
-        self.assertIn(
-            "- 2022 - Present EGRAPHS Community Advisory Board",
-            organizing,
-        )
-        self.assertIn(
-            "- [2026 Dagstuhl Seminar 26022: EGRAPHS](https://www.dagstuhl.de/26022)",
-            organizing,
-        )
+        self.assertIn("{#fptalks}", organizing)
+        self.assertIn("- FPTalks Co-Organizer, 2020 - 2025", organizing)
+        self.assertIn("  * [FPTalks 2025, Co-Organizer](https://fpbench.org/talks/fptalks25.html)", organizing)
+        self.assertIn("{#pldi-workshops}", organizing)
+        self.assertIn("- PLDI Workshops Co-chair, 2023 - 2024", organizing)
 
         department = render_public_service_section_list_djot(ROOT, "department")
-        self.assertIn(
-            "- 2025 - 2027 : UW CSE Faculty Graduate Admissions Co-chair",
-            department,
-        )
-        self.assertIn(
-            "- 2015 - Present : UW Faculty Skit Writer, Producer, and Director",
-            department,
-        )
+        self.assertIn("{#uw-faculty-skit}", department)
+        self.assertIn("- UW Faculty Skit Writer, Producer, and Director, 2015 - Present", department)
         self.assertIn("  * with [Hank Levy][] and [Adriana Schulz][]", department)
 
-    def test_render_public_service_section_from_temp_records(self) -> None:
+    def test_render_public_uniform_shorthand_run_as_one_summary(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             _write_service(
                 root / "site" / "data" / "service.json",
                 [
                     {
-                        "key": "2024-demo-role",
-                        "series_key": "demo-role",
-                        "year": 2024,
-                        "view_groups": ["organizing"],
+                        "key": "demo-summit",
                         "title": "Demo Summit",
                         "role": "Co-Organizer",
-                        "url": "https://example.test/demo",
-                    },
-                    {
-                        "key": "2025-demo-role",
-                        "series_key": "demo-role",
-                        "year": 2025,
+                        "view_groups": ["organizing"],
                         "ongoing": True,
-                        "view_groups": ["organizing"],
-                        "title": "Demo Summit",
-                        "role": "Co-Organizer",
-                        "url": "https://example.test/demo",
-                    },
+                        "instances": [
+                            {
+                                "key": "2025-demo-summit",
+                                "year": 2025,
+                                "url": "https://example.test/demo",
+                            },
+                            {
+                                "key": "2024-demo-summit",
+                                "year": 2024,
+                                "url": "https://example.test/demo",
+                            },
+                        ],
+                    }
                 ],
             )
 
             rendered = render_public_service_section_list_djot(root, "organizing")
             self.assertEqual(
                 rendered,
-                "- [2024 - Present Demo Summit](https://example.test/demo) Co-Organizer\n",
+                "{#demo-summit}\n"
+                "- [Demo Summit Co-Organizer, 2024 - Present](https://example.test/demo)\n",
             )
 
-    def test_render_public_service_details_as_nested_list(self) -> None:
+    def test_render_public_heterogeneous_run_with_instance_sub_bullets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_service(
+                root / "site" / "data" / "service.json",
+                [
+                    {
+                        "key": "demo-summit",
+                        "title": "Demo Summit",
+                        "role": "Co-Organizer",
+                        "view_groups": ["organizing"],
+                        "instances": [
+                            {
+                                "key": "2025-demo-summit",
+                                "year": 2025,
+                                "url": "https://example.test/2025",
+                            },
+                            {
+                                "key": "2024-demo-summit",
+                                "year": 2024,
+                                "url": "https://example.test/2024",
+                            },
+                        ],
+                    }
+                ],
+            )
+
+            rendered = render_public_service_section_list_djot(root, "organizing")
+            self.assertEqual(
+                rendered,
+                "{#demo-summit}\n"
+                "- Demo Summit Co-Organizer, 2024 - 2025\n"
+                "  * [Demo Summit 2025, Co-Organizer](https://example.test/2025)\n"
+                "  * [Demo Summit 2024, Co-Organizer](https://example.test/2024)\n",
+            )
+
+    def test_multi_view_anchor_attaches_only_in_anchor_view(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             _write_service(
@@ -82,51 +113,52 @@ class ServiceIndexTests(unittest.TestCase):
                     {
                         "key": "2025-demo-chair",
                         "year": 2025,
-                        "view_groups": ["reviewing"],
                         "title": "DemoConf",
                         "role": "Program Chair",
+                        "view_groups": ["reviewing", "organizing"],
+                        "anchor_view_group": "organizing",
                         "url": "https://example.test/democonf",
-                        "details": [
-                            "[Committee](https://example.test/committee)",
-                            "[Announcement](https://example.test/announcement)",
-                        ],
                     }
                 ],
             )
 
-            rendered = render_public_service_section_list_djot(root, "reviewing")
-            self.assertEqual(
-                rendered,
-                "- [2025 DemoConf](https://example.test/democonf) Program Chair\n\n"
-                "  * [Committee](https://example.test/committee)\n"
-                "  * [Announcement](https://example.test/announcement)\n",
-            )
+            organizing = render_public_service_section_list_djot(root, "organizing")
+            reviewing = render_public_service_section_list_djot(root, "reviewing")
+            self.assertIn("{#2025-demo-chair}", organizing)
+            self.assertNotIn("{#2025-demo-chair}", reviewing)
 
-    def test_department_render_treats_skit_as_ordinary_service_entry(self) -> None:
+    def test_cv_uses_internal_service_anchor_for_multi_url_runs(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             _write_service(
                 root / "site" / "data" / "service.json",
                 [
                     {
-                        "key": "2025-uw-faculty-skit",
-                        "series_key": "uw-faculty-skit",
-                        "year": 2025,
-                        "ongoing": True,
-                        "view_groups": ["department"],
-                        "title": "UW Faculty Skit",
-                        "role": "Writer, Producer, and Director",
-                        "details": ["with [Hank Levy][] and [Adriana Schulz][]"],
+                        "key": "demo-summit",
+                        "title": "Demo Summit",
+                        "role": "Co-Organizer",
+                        "view_groups": ["organizing"],
+                        "instances": [
+                            {
+                                "key": "2025-demo-summit",
+                                "year": 2025,
+                                "url": "https://example.test/2025",
+                            },
+                            {
+                                "key": "2024-demo-summit",
+                                "year": 2024,
+                                "url": "https://example.test/2024",
+                            },
+                        ],
                     }
                 ],
             )
 
-            rendered = render_public_service_section_list_djot(root, "department")
-            self.assertIn(
-                "- 2025 - Present : UW Faculty Skit Writer, Producer, and Director",
+            rendered = render_cv_service_section_list_djot(root, "organizing")
+            self.assertEqual(
                 rendered,
+                "- [Demo Summit Co-Organizer, 2024 - 2025](/service/#demo-summit)\n",
             )
-            self.assertIn("[Hank Levy][]", rendered)
 
 
 if __name__ == "__main__":

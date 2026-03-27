@@ -123,7 +123,7 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn("UW Faculty Skit Writer, Producer, and Director", html)
         self.assertIn("Hank Levy", html)
         self.assertIn("Program Committee Chair", html)
-        self.assertIn("2025 PLDI", html)
+        self.assertIn("PLDI 2025", html)
 
     def test_render_collaborators_index_page_uses_explicit_canonical_url(self) -> None:
         canonical = "https://example.com/collaborators/"

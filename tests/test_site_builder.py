@@ -147,18 +147,18 @@ class SiteBuilderTests(unittest.TestCase):
                                 "key": "2025-pldi-pc-chair",
                                 "year": 2025,
                                 "view_groups": ["reviewing", "organizing"],
+                                "anchor_view_group": "organizing",
                                 "title": "PLDI",
                                 "role": "Program Committee Chair",
                             },
                             {
-                                "key": "2025-uw-faculty-skit",
-                                "series_key": "uw-faculty-skit",
-                                "year": 2025,
+                                "key": "uw-faculty-skit",
                                 "ongoing": True,
                                 "view_groups": ["department"],
                                 "title": "UW Faculty Skit",
                                 "role": "Writer, Producer, and Director",
                                 "details": ["with [Hank Levy][] and [Adriana Schulz][]"],
+                                "instances": [{"year": 2025}],
                             },
                         ]
                     }
@@ -269,7 +269,7 @@ class SiteBuilderTests(unittest.TestCase):
             )
             self.assertIn('href="https://ztatlock.net/service/"', service_html)
             self.assertIn("Program Committee Chair", service_html)
-            self.assertIn("2025 PLDI", service_html)
+            self.assertIn("PLDI 2025", service_html)
             self.assertIn("UW Faculty Skit Writer, Producer, and Director", service_html)
             self.assertIn("Hank Levy", service_html)
 

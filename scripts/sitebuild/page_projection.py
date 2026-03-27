@@ -45,16 +45,10 @@ from scripts.service_index import (
     SERVICE_REVIEWING_LIST_PLACEHOLDER,
     SERVICE_SECTION_PLACEHOLDERS,
     ServiceIndexError,
-    collapse_service_year_label,
-    group_service_records_for_view,
     render_public_service_section_list_djot,
+    render_cv_service_section_list_djot,
 )
-from scripts.service_record import (
-    SERVICE_DATA_NAME,
-    ServiceRecord,
-    ServiceRecordError,
-    load_service_records,
-)
+from scripts.service_record_a4 import SERVICE_DATA_NAME
 from scripts.student_record import (
     STUDENTS_DATA_NAME,
     StudentRecord,
@@ -467,14 +461,6 @@ def render_homepage_recent_teaching_list_djot(
     return "\n\n".join(rendered) + ("\n" if rendered else "")
 
 
-def _service_records(root: Path, *, data_dir: Path | None = None) -> tuple[ServiceRecord, ...]:
-    service_path = (data_dir / SERVICE_DATA_NAME) if data_dir is not None else None
-    try:
-        return load_service_records(root, service_path=service_path)
-    except ServiceRecordError as err:
-        raise PageProjectionError(str(err)) from err
-
-
 def _render_cv_publication_entry(record: PublicationRecord) -> str:
     parts = [
         f"*{record.title}*",
@@ -501,54 +487,6 @@ def render_cv_publications_list_djot(
         if record.listing_group == listing_group
     ]
     return "\n\n".join(chunks) + ("\n" if chunks else "")
-
-
-def _render_cv_service_lead_text(group_key: str, record: ServiceRecord, *, year_label: str) -> str:
-    if group_key == "department":
-        label = f"{year_label} : {record.title}"
-    else:
-        label = f"{year_label} {record.title}"
-    role_suffix = f" {record.role}" if record.role else ""
-    visible_text = f"{label}{role_suffix}"
-    if not record.url:
-        return visible_text
-    return f"[{visible_text}]({record.url})"
-
-
-def _render_cv_service_entry_djot(
-    group_key: str,
-    records: tuple[ServiceRecord, ...],
-) -> str:
-    head = records[0]
-    lead = _render_cv_service_lead_text(
-        group_key,
-        head,
-        year_label=collapse_service_year_label(records),
-    )
-    line = f"- {lead}"
-    if not head.details:
-        return line
-    detail_lines = "\n".join(f"  * {detail}" for detail in head.details)
-    return f"{line}\n\n{detail_lines}"
-
-
-def render_cv_service_section_list_djot(
-    root: Path,
-    group_key: str,
-    *,
-    data_dir: Path | None = None,
-) -> str:
-    records = _service_records(root, data_dir=data_dir)
-    if group_key == "department":
-        records = tuple(
-            record
-            for record in records
-            if record.series_key != "uw-faculty-skit" and record.title != "UW Faculty Skit"
-        )
-    groups = group_service_records_for_view(records, group_key=group_key)
-    chunks = [_render_cv_service_entry_djot(group_key, group) for group in groups]
-    rendered = "\n".join(chunks)
-    return rendered + ("\n" if rendered else "")
 
 
 def _render_cv_course_record(record: TeachingRecord) -> str:
@@ -955,14 +893,18 @@ def apply_page_projections(
             placeholder in rendered
             for placeholder in CV_SERVICE_SECTION_PLACEHOLDERS.values()
         ):
-            service_replacements = {
-                placeholder: render_cv_service_section_list_djot(
-                    root,
-                    section_key,
-                    data_dir=data_dir,
-                ).rstrip()
-                for section_key, placeholder in CV_SERVICE_SECTION_PLACEHOLDERS.items()
-            }
+            service_path = (data_dir / SERVICE_DATA_NAME) if data_dir is not None else None
+            try:
+                service_replacements = {
+                    placeholder: render_cv_service_section_list_djot(
+                        root,
+                        section_key,
+                        service_path=service_path,
+                    ).rstrip()
+                    for section_key, placeholder in CV_SERVICE_SECTION_PLACEHOLDERS.items()
+                }
+            except ServiceIndexError as err:
+                raise PageProjectionError(str(err)) from err
             for placeholder, replacement in service_replacements.items():
                 rendered = rendered.replace(placeholder, replacement)
         if any(

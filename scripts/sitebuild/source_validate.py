@@ -45,9 +45,9 @@ from scripts.service_index import (
 )
 from scripts.service_record import (
     SERVICE_DATA_NAME,
-    find_service_record_issues,
     service_index_path,
 )
+from scripts.service_record_a4 import find_service_record_a4_issues
 from scripts.student_record import (
     STUDENTS_DATA_NAME,
     StudentRecordError,
@@ -1149,6 +1149,7 @@ def _find_service_projection_issues(config: SiteConfig) -> list[str]:
 
 def _find_service_data_issues(config: SiteConfig) -> list[str]:
     service_path = config.data_dir / SERVICE_DATA_NAME
+    people_path = config.data_dir / "people.json"
     has_service_consumers = (
         (config.page_source_dir / "service.dj").exists()
         or service_index_path(config.repo_root, service_dir=config.service_dir).exists()
@@ -1156,9 +1157,10 @@ def _find_service_data_issues(config: SiteConfig) -> list[str]:
     )
     if not service_path.exists() and not has_service_consumers:
         return []
-    return find_service_record_issues(
+    return find_service_record_a4_issues(
         config.repo_root,
         service_path=service_path,
+        people_path=people_path,
     )
 
 

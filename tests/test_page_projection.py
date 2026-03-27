@@ -471,34 +471,36 @@ class PageProjectionTests(unittest.TestCase):
     def test_renders_public_service_sections_from_canonical_data(self) -> None:
         root = Path(__file__).resolve().parents[1]
         organizing = render_public_service_section_list_djot(root, "organizing")
-        self.assertIn("[2026 Dagstuhl Seminar 26022: EGRAPHS]", organizing)
-        self.assertIn("2022 - Present EGRAPHS Community Advisory Board", organizing)
+        self.assertIn("{#fptalks}", organizing)
+        self.assertIn("FPTalks Co-Organizer, 2020 - 2025", organizing)
+        self.assertIn("[FPTalks 2025, Co-Organizer](https://fpbench.org/talks/fptalks25.html)", organizing)
+        self.assertIn("EGRAPHS Community Advisory Board, 2022 - Present", organizing)
 
         department = render_public_service_section_list_djot(root, "department")
-        self.assertIn("UW CSE Faculty Graduate Admissions Co-chair", department)
-        self.assertIn("UW Faculty Skit Writer, Producer, and Director", department)
+        self.assertIn("UW CSE Faculty Graduate Admissions Co-chair, 2025 - 2027", department)
+        self.assertIn("UW Faculty Skit Writer, Producer, and Director, 2015 - Present", department)
         self.assertIn("[Hank Levy][]", department)
 
     def test_renders_cv_service_sections_with_explicit_cv_policy(self) -> None:
         root = Path(__file__).resolve().parents[1]
 
         reviewing = render_cv_service_section_list_djot(root, "reviewing")
-        self.assertIn("- 2026 ICFP Program Committee", reviewing)
+        self.assertIn("- ICFP 2026, Program Committee", reviewing)
         self.assertIn(
-            "- [2025 PLDI Program Committee Chair](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee)",
+            "- [PLDI 2025, Program Committee Chair](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee)",
             reviewing,
         )
         self.assertIn("[Review Committee](https://pldi25.sigplan.org/committee/pldi-2025-papers-pldi-review-committee)", reviewing)
 
         organizing = render_cv_service_section_list_djot(root, "organizing")
-        self.assertIn("2022 - Present EGRAPHS Community Advisory Board", organizing)
-        self.assertIn("[2025 FPTalks Co-Organizer](https://fpbench.org/talks/fptalks25.html)", organizing)
+        self.assertIn("EGRAPHS Community Advisory Board, 2022 - Present", organizing)
+        self.assertIn("[FPTalks Co-Organizer, 2020 - 2025](/service/#fptalks)", organizing)
 
         mentoring = render_cv_service_section_list_djot(root, "mentoring")
-        self.assertIn("2018 PLDI Programming Languages Mentoring Workshop (PLMW) Panelist", mentoring)
+        self.assertIn("PLDI Programming Languages Mentoring Workshop (PLMW) 2018, Panelist", mentoring)
 
         department = render_cv_service_section_list_djot(root, "department")
-        self.assertIn("2025 - 2027 : UW CSE Faculty Graduate Admissions Co-chair", department)
+        self.assertIn("UW CSE Faculty Graduate Admissions Co-chair, 2025 - 2027", department)
         self.assertNotIn("UW Faculty Skit", department)
 
     def test_renders_teaching_sections_from_canonical_data(self) -> None:
@@ -1300,7 +1302,7 @@ class PageProjectionTests(unittest.TestCase):
         self.assertIn("UW Faculty Skit Writer, Producer, and Director", rendered)
         self.assertIn("[Hank Levy][]", rendered)
         self.assertIn("Program Committee Chair", rendered)
-        self.assertIn("2025 PLDI", rendered)
+        self.assertIn("PLDI 2025", rendered)
 
         self.assertEqual(
             apply_page_projections(
@@ -1383,7 +1385,7 @@ class PageProjectionTests(unittest.TestCase):
         self.assertNotIn(CV_SERVICE_ORGANIZING_LIST_PLACEHOLDER, rendered)
         self.assertNotIn(CV_SERVICE_MENTORING_LIST_PLACEHOLDER, rendered)
         self.assertNotIn(CV_SERVICE_DEPARTMENT_LIST_PLACEHOLDER, rendered)
-        self.assertIn("2022 - Present EGRAPHS Community Advisory Board", rendered)
+        self.assertIn("EGRAPHS Community Advisory Board, 2022 - Present", rendered)
         self.assertIn("UW CSE Faculty Graduate Admissions Co-chair", rendered)
 
         self.assertEqual(

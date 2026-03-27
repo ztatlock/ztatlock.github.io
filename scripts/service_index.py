@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
-from collections import defaultdict
 from pathlib import Path
 
-from scripts.service_record import ServiceRecord, ServiceRecordError, load_service_records
+from scripts.service_record_a4 import (
+    ServiceRecordA4Error,
+    ServiceRegistryA4,
+    ServiceRunA4,
+    load_service_registry_a4,
+)
 
 
 SERVICE_REVIEWING_LIST_PLACEHOLDER = "__SERVICE_REVIEWING_LIST__"
@@ -18,98 +22,166 @@ SERVICE_SECTION_PLACEHOLDERS = {
     "mentoring": SERVICE_MENTORING_LIST_PLACEHOLDER,
     "department": SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
 }
+CV_SERVICE_HREF_PREFIX = "/service/#"
 
 
 class ServiceIndexError(ValueError):
     pass
 
 
-def collapse_service_year_label(records: tuple[ServiceRecord, ...]) -> str:
-    years = sorted(record.year for record in records)
+def _load_service_registry(
+    root: Path,
+    *,
+    service_path: Path | None = None,
+) -> ServiceRegistryA4:
+    try:
+        return load_service_registry_a4(root, service_path=service_path)
+    except ServiceRecordA4Error as err:
+        raise ServiceIndexError(str(err)) from err
+
+
+def collapse_service_run_year_label(run: ServiceRunA4) -> str:
+    years = sorted(instance.year for instance in run.instances)
     first_year = years[0]
     last_year = years[-1]
-    if records[-1].ongoing:
+    if run.ongoing:
         return f"{first_year} - Present"
     if len(years) == 1:
         return str(first_year)
     return f"{first_year} - {last_year}"
 
 
-def _render_service_lead_text(group_key: str, record: ServiceRecord, *, year_label: str) -> str:
-    if group_key == "department":
-        label = f"{year_label} : {record.title}"
-    else:
-        label = f"{year_label} {record.title}"
-    if not record.url:
-        return label
-    return f"[{label}]({record.url})"
+def _is_single_year_label(year_label: str) -> bool:
+    return year_label.isdigit()
 
 
-def _render_public_service_entry_djot(
-    group_key: str,
-    records: tuple[ServiceRecord, ...],
-) -> str:
-    head = records[0]
-    lead = _render_service_lead_text(
-        group_key,
-        head,
-        year_label=collapse_service_year_label(records),
-    )
-    role_suffix = f" {head.role}" if head.role else ""
-    line = f"- {lead}{role_suffix}"
-    if not head.details:
-        return line
-    detail_lines = "\n".join(f"  * {detail}" for detail in head.details)
-    return f"{line}\n\n{detail_lines}"
+def _format_run_summary_label(run: ServiceRunA4) -> str:
+    year_label = collapse_service_run_year_label(run)
+    if _is_single_year_label(year_label):
+        summary = f"{run.title} {year_label}"
+        if run.role:
+            summary += f", {run.role}"
+        return summary
+    summary = run.title
+    if run.role:
+        summary += f" {run.role}"
+    return f"{summary}, {year_label}"
 
 
-def group_service_records_for_view(
-    records: tuple[ServiceRecord, ...],
+def _format_instance_label(title: str, year: int, role: str | None) -> str:
+    label = f"{title} {year}"
+    if role:
+        label += f", {role}"
+    return label
+
+
+def _nonempty_unique_urls(run: ServiceRunA4) -> set[str]:
+    return {instance.url for instance in run.instances if instance.url}
+
+
+def _resolved_single_url(run: ServiceRunA4) -> str | None:
+    urls = _nonempty_unique_urls(run)
+    if len(urls) == 1:
+        return next(iter(urls))
+    return None
+
+
+def _summary_details(run: ServiceRunA4) -> tuple[str, ...]:
+    if run.details:
+        return run.details
+    detail_sets = {instance.details for instance in run.instances}
+    if len(detail_sets) == 1:
+        return next(iter(detail_sets))
+    return ()
+
+
+def _has_meaningful_instance_variation(run: ServiceRunA4) -> bool:
+    titles = {instance.title for instance in run.instances}
+    roles = {instance.role for instance in run.instances}
+    urls = {instance.url for instance in run.instances}
+    details = {instance.details for instance in run.instances}
+    return any(len(values) > 1 for values in (titles, roles, urls, details))
+
+
+def _service_runs_for_view(
+    registry: ServiceRegistryA4,
     *,
     group_key: str,
-) -> tuple[tuple[ServiceRecord, ...], ...]:
-    group_records = [
-        record
-        for record in records
-        if group_key in record.view_groups
-    ]
-    by_signature: dict[tuple[object, ...], list[ServiceRecord]] = defaultdict(list)
-    for record in group_records:
-        signature = (
-            record.series_key or record.key,
-            record.title,
-            record.role,
-            record.url,
-            record.details,
-        )
-        by_signature[signature].append(record)
-
-    groups: list[tuple[ServiceRecord, ...]] = []
-    for signature_records in by_signature.values():
-        ordered = sorted(signature_records, key=lambda record: -record.year)
-        current_run: list[ServiceRecord] = []
-        for record in ordered:
-            if not current_run:
-                current_run = [record]
-                continue
-            if record.series_key and current_run[-1].year - 1 == record.year:
-                current_run.append(record)
-                continue
-            groups.append(tuple(sorted(current_run, key=lambda entry: entry.year)))
-            current_run = [record]
-        if current_run:
-            groups.append(tuple(sorted(current_run, key=lambda entry: entry.year)))
-
+) -> tuple[ServiceRunA4, ...]:
+    order_by_key = {run.key: index for index, run in enumerate(registry.runs)}
+    runs = [run for run in registry.runs if group_key in run.view_groups]
     return tuple(
         sorted(
-            groups,
-            key=lambda grouped_records: (
-                -max(record.year for record in grouped_records),
-                grouped_records[0].title,
-                grouped_records[0].role or "",
+            runs,
+            key=lambda run: (
+                -max(instance.year for instance in run.instances),
+                run.title,
+                run.role or "",
+                order_by_key[run.key],
             ),
         )
     )
+
+
+def _anchor_prefix(run: ServiceRunA4, *, group_key: str) -> str:
+    if group_key != run.anchor_view_group:
+        return ""
+    return f"{{#{run.key}}}\n"
+
+
+def _render_optional_link(label: str, href: str | None) -> str:
+    if not href:
+        return label
+    return f"[{label}]({href})"
+
+
+def _render_detail_bullets(details: tuple[str, ...], *, indent: str) -> list[str]:
+    return [f"{indent}* {detail}" for detail in details]
+
+
+def _render_instance_block_lines(
+    instance,
+    *,
+    indent: str,
+    inherited_details: tuple[str, ...],
+) -> list[str]:
+    label = _format_instance_label(instance.title, instance.year, instance.role)
+    lines = [f"{indent}* {_render_optional_link(label, instance.url)}"]
+    if instance.details and instance.details != inherited_details:
+        lines.extend(_render_detail_bullets(instance.details, indent=indent + "  "))
+    return lines
+
+
+def _render_public_service_entry_djot(
+    run: ServiceRunA4,
+    *,
+    group_key: str,
+) -> str:
+    lines = []
+    anchor = _anchor_prefix(run, group_key=group_key)
+    if anchor:
+        lines.append(anchor.rstrip("\n"))
+
+    summary = _render_optional_link(_format_run_summary_label(run), _resolved_single_url(run))
+    lines.append(f"- {summary}")
+
+    summary_details = _summary_details(run)
+    if summary_details:
+        lines.extend(_render_detail_bullets(summary_details, indent="  "))
+
+    if _has_meaningful_instance_variation(run):
+        ordered_instances = sorted(run.instances, key=lambda instance: -instance.year)
+        for instance in ordered_instances:
+            lines.extend(
+                _render_instance_block_lines(
+                    instance,
+                    indent="  ",
+                    inherited_details=summary_details,
+                )
+            )
+
+    return "\n".join(lines)
+
 
 def render_public_service_section_list_djot(
     root: Path,
@@ -117,12 +189,50 @@ def render_public_service_section_list_djot(
     *,
     service_path: Path | None = None,
 ) -> str:
-    try:
-        records = load_service_records(root, service_path=service_path)
-    except ServiceRecordError as err:
-        raise ServiceIndexError(str(err)) from err
+    registry = _load_service_registry(root, service_path=service_path)
+    runs = _service_runs_for_view(registry, group_key=group_key)
+    chunks = [_render_public_service_entry_djot(run, group_key=group_key) for run in runs]
+    rendered = "\n\n".join(chunks)
+    return rendered + ("\n" if rendered else "")
 
-    groups = group_service_records_for_view(records, group_key=group_key)
-    chunks = [_render_public_service_entry_djot(group_key, group) for group in groups]
-    rendered = "\n".join(chunks)
+
+def _cv_summary_href(run: ServiceRunA4) -> str | None:
+    direct = _resolved_single_url(run)
+    if direct:
+        return direct
+    if len(_nonempty_unique_urls(run)) > 1:
+        return f"{CV_SERVICE_HREF_PREFIX}{run.key}"
+    return None
+
+
+def _render_cv_service_entry_djot(
+    run: ServiceRunA4,
+    *,
+    group_key: str,
+) -> str:
+    label = _format_run_summary_label(run)
+    line = f"- {_render_optional_link(label, _cv_summary_href(run))}"
+    if group_key == "department" and run.key == "uw-faculty-skit":
+        return ""
+    summary_details = _summary_details(run)
+    if not summary_details:
+        return line
+    detail_lines = "\n".join(f"  * {detail}" for detail in summary_details)
+    return f"{line}\n\n{detail_lines}"
+
+
+def render_cv_service_section_list_djot(
+    root: Path,
+    group_key: str,
+    *,
+    service_path: Path | None = None,
+) -> str:
+    registry = _load_service_registry(root, service_path=service_path)
+    runs = _service_runs_for_view(registry, group_key=group_key)
+    chunks = [
+        rendered
+        for run in runs
+        if (rendered := _render_cv_service_entry_djot(run, group_key=group_key))
+    ]
+    rendered = "\n\n".join(chunks)
     return rendered + ("\n" if rendered else "")
