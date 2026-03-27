@@ -1,8 +1,8 @@
 # Service Campaign
 
 Status: public-page core, CV service projection, A4 canonical migration,
-current-consumer cutover, and homepage recent-service projection are now
-implemented; later broader cleanup remains deferred
+current-consumer cutover, homepage recent-service projection, and legacy
+shim cleanup are now implemented; later broader cleanup remains deferred
 
 ## Goal
 
@@ -27,7 +27,7 @@ Service is now the strongest next major shared-data domain because:
 
 That public-page core is now implemented:
 
-- canonical service terms live in `site/data/service.json`
+- canonical service records live in `site/data/service.json`
 - the public service wrapper lives at `site/service/index.dj`
 - the canonical public route is `/service/`
 

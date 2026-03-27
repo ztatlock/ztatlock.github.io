@@ -19,7 +19,7 @@ from scripts.publication_record import (
     load_publication_record,
     render_publication_body,
 )
-from scripts.service_record import service_index_path
+from scripts.service_record_a4 import service_index_path
 from scripts.student_record import students_index_path
 from scripts.teaching_record import teaching_index_path
 from scripts.talk_record import talks_index_path

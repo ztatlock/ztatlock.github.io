@@ -1,6 +1,6 @@
 # Service Redesign Implementation / Testing Plan
 
-Status: draft
+Status: slices 1-4 implemented; later small cleanup/polish follow-ons remain
 
 It builds on:
 
@@ -22,6 +22,11 @@ The design question is now considered narrow enough:
 
 So the next job is not to keep redesigning.
 It is to decide how to land the redesign safely and test it well.
+
+Follow-on note:
+
+- the temporary flat-model compatibility shim used during slices 1-3 has now
+  been deleted, so the live service code path is A4-only
 
 ## Goal
 

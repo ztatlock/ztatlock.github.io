@@ -27,6 +27,9 @@ CV_SERVICE_HREF_PREFIX = "/service/#"
 HOMEPAGE_RECENT_SERVICE_GROUPS = frozenset({"organizing", "reviewing", "mentoring"})
 HOMEPAGE_RECENT_SERVICE_WINDOW_YEARS = 3
 HOMEPAGE_RECENT_SERVICE_CAP: int | None = None
+# Intentional policy: unless a caller pins `current_year` explicitly (for
+# tests or historical simulation), homepage recent service is anchored to the
+# current calendar year at build time.
 
 
 class ServiceIndexError(ValueError):

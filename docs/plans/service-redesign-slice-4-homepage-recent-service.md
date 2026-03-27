@@ -95,6 +95,12 @@ Why this is the current recommendation:
 
 This policy is intentionally simple first.
 
+Implementation note:
+
+- the homepage service projection intentionally uses the current calendar year
+  at build time unless a caller pins `current_year` explicitly for tests or
+  simulation
+
 If later backfill makes the block too dense, the expected first follow-ons are:
 
 - re-evaluate whether `organizing` should outrank or replace broader

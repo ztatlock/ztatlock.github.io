@@ -71,7 +71,8 @@ Important field semantics:
 This slice established:
 
 - canonical service terms in `site/data/service.json`
-- strict loading/validation in `scripts/service_record.py`
+- strict loading/validation in the then-current service loader, since later
+  superseded by `scripts/service_record_a4.py`
 - source-validation integration so the public service page now requires the
   canonical registry to exist
 - a backfill that already reconciles the known public/CV drift items in

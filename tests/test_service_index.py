@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.service_index import (
     render_cv_service_section_list_djot,
@@ -172,6 +174,18 @@ class ServiceIndexTests(unittest.TestCase):
         )
         self.assertNotIn("Dagstuhl Seminar 26022: EGRAPHS", rendered)
         self.assertNotIn("UW Faculty Skit", rendered)
+
+    def test_homepage_recent_service_defaults_to_current_calendar_year(self) -> None:
+        class _FakeDate:
+            @staticmethod
+            def today() -> date:
+                return date(2026, 7, 1)
+
+        with patch("scripts.service_index.date", _FakeDate):
+            implicit = render_homepage_recent_service_list_djot(ROOT)
+
+        explicit = render_homepage_recent_service_list_djot(ROOT, current_year=2026)
+        self.assertEqual(implicit, explicit)
 
     def test_homepage_recent_service_uses_non_department_window_and_link_policy(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

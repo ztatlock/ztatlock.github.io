@@ -43,11 +43,11 @@ from scripts.service_index import (
     SERVICE_ORGANIZING_LIST_PLACEHOLDER,
     SERVICE_REVIEWING_LIST_PLACEHOLDER,
 )
-from scripts.service_record import (
+from scripts.service_record_a4 import (
     SERVICE_DATA_NAME,
+    find_service_record_a4_issues,
     service_index_path,
 )
-from scripts.service_record_a4 import find_service_record_a4_issues
 from scripts.student_record import (
     STUDENTS_DATA_NAME,
     StudentRecordError,

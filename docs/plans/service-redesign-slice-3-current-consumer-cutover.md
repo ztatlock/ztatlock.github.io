@@ -37,9 +37,8 @@ After slice 2, the repo has a split state:
 - [scripts/service_record_a4.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_record_a4.py)
   already loads and validates that model directly
 - but the live renderers and source validation still flow through the
-  temporary flattened compatibility path in
-  [scripts/service_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_record.py)
-  and the legacy grouping logic in
+  temporary flattened compatibility path in the then-live legacy shim and the
+  legacy grouping logic in
   [scripts/service_index.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_index.py)
 
 So the next safe step is not another schema change.
@@ -59,11 +58,11 @@ run-native code to imitate a model we have already replaced.
 
 The current live service path still depends on:
 
-- [load_service_records(...) in service_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_record.py)
+- the legacy flattened compatibility loader
 - [group_service_records_for_view(...) in service_index.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_index.py)
 - [render_public_service_section_list_djot(...) in service_index.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_index.py)
 - [render_cv_service_section_list_djot(...) in page_projection.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/page_projection.py)
-- [find_service_record_issues(...) in service_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_record.py)
+- the legacy flattened validation helper
 
 That means:
 
@@ -299,10 +298,9 @@ Expected code-direction changes:
    - stop validating service data through `find_service_record_issues(...)`
    - validate service data directly through the A4 loader/validator
 
-The temporary compatibility API in
-[scripts/service_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_record.py)
-may remain briefly as isolated migration scaffolding, but it should no longer
-be part of the live build/check path after this slice.
+The temporary compatibility API may remain briefly as isolated migration
+scaffolding, but it should no longer be part of the live build/check path
+after this slice. That scaffolding has since been removed.
 
 ## Proposed Invariant After Slice 3
 

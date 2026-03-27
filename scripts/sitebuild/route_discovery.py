@@ -24,7 +24,7 @@ from scripts.publication_record import (
     publication_dir,
     publication_record_path,
 )
-from scripts.service_record import SERVICE_DATA_NAME, service_index_path
+from scripts.service_record_a4 import SERVICE_DATA_NAME, service_index_path
 from scripts.student_record import STUDENTS_DATA_NAME, students_index_path
 from scripts.teaching_record import TEACHING_DATA_NAME, teaching_index_path
 from scripts.talk_record import TALK_RECORD_NAME, discover_talk_slugs, talk_record_path

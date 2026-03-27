@@ -32,7 +32,7 @@ Current canonical service data lives in
 
 Current main code surfaces are:
 
-- [scripts/service_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_record.py)
+- [scripts/service_record_a4.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_record_a4.py)
 - [scripts/service_index.py](/Users/ztatlock/www/ztatlock.github.io/scripts/service_index.py)
 
 Current public/secondary consumers are:

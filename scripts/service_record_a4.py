@@ -15,6 +15,7 @@ from scripts.sitebuild.people_registry import (
 
 
 SERVICE_DATA_NAME = "service.json"
+SERVICE_INDEX_NAME = "index.dj"
 SERVICE_ROOT_KEY = "records"
 SERVICE_KEY_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SERVICE_VIEW_GROUPS = ("reviewing", "organizing", "mentoring", "department")
@@ -145,6 +146,11 @@ class ServiceRegistryA4:
 
 def service_data_path(root: Path, *, service_path: Path | None = None) -> Path:
     return (service_path or (root / "site" / "data" / SERVICE_DATA_NAME)).resolve()
+
+
+def service_index_path(root: Path, *, service_dir: Path | None = None) -> Path:
+    actual_service_dir = service_dir or (root / "site" / "service")
+    return (actual_service_dir / SERVICE_INDEX_NAME).resolve()
 
 
 def _load_json_object_pairs(pairs: list[tuple[str, object]]) -> dict[str, object]:
