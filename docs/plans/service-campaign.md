@@ -1,8 +1,8 @@
 # Service Campaign
 
 Status: public-page core and CV service projection implemented; A4 canonical
-data migration is now implemented behind a temporary compatibility bridge;
-current-consumer cutover remains next; later homepage cleanup remains deferred
+data migration and current-consumer cutover are now implemented; homepage
+recent-service planning is next; later broader cleanup remains deferred
 
 ## Goal
 
@@ -290,19 +290,18 @@ The current implementation/testing checkpoint is:
 
 The next planned move is:
 
-- slice 3 current-consumer cutover from the temporary flat-model compatibility
-  bridge onto canonical A4 runs
+- slice 4 homepage recent-service policy simulation and planning over canonical
+  A4 runs
 
-That cutover is now specified more concretely in:
+That next slice is now specified more concretely in:
 
-- [service-redesign-slice-3-current-consumer-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-3-current-consumer-cutover.md)
+- [service-redesign-slice-4-homepage-recent-service.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-4-homepage-recent-service.md)
 
 The current direction for that slice is:
 
-- preserve facts, anchors, and section semantics
-- stop preserving the old flat-term visible formatting just because it is old
-- let `/service/` and CV service rendering move directly toward the intended
-  run-native shape
+- select from canonical runs rather than instances
+- reuse the now-landed `/service/#<run.key>` anchor targets
+- bias toward simpler homepage policy before introducing stickiness metadata
 
 If those later consumers land, the invariant should be:
 
@@ -310,8 +309,8 @@ If those later consumers land, the invariant should be:
 
 ## Deferred Questions
 
-These are real possibilities, but they should not shape slice 3 while the
-current consumer cutover remains in flight:
+These are real possibilities, but they should not shape slice 4 while homepage
+policy simulation remains in flight:
 
 - richer taxonomy beyond the current `view_groups`
 - explicit `leadership` or other cross-cutting tags

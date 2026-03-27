@@ -9,6 +9,7 @@ It builds on:
 - [service-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-campaign.md)
 - [homepage-cv-curated-consumers-slice-3-service-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/homepage-cv-curated-consumers-slice-3-service-audit.md)
 - [service-redesign-slice-3-current-consumer-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-3-current-consumer-cutover.md)
+- [service-redesign-slice-4-homepage-recent-service.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-4-homepage-recent-service.md)
 
 ## Purpose
 
@@ -124,6 +125,8 @@ Invariant after slice 2:
 
 Cut the current service consumers over to the normalized A4 loaded model.
 
+This cutover slice is now implemented.
+
 Scope:
 
 - update public service-page projection to consume canonical runs
@@ -186,6 +189,18 @@ At that point:
 
 This later slice should explicitly carry forward the open questions from A4 as
 test and policy targets rather than reopening the redesign itself.
+
+Updated recommendation after slice 3:
+
+- begin slice 4 with policy simulation over canonical runs
+- reuse the now-landed direct-URL vs `/service/#<run.key>` link rule
+- bias toward a simpler window-and-cap policy first
+- only add homepage-specific stickiness metadata if simulation proves it
+  necessary
+
+Reference slice note:
+
+- [service-redesign-slice-4-homepage-recent-service.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-4-homepage-recent-service.md)
 
 ## Testing Strategy
 
@@ -290,13 +305,13 @@ not as reasons to reopen the A4 model itself.
 
 The next implementation slice is:
 
-- current consumer cutover onto canonical runs, replacing the temporary
-  flat-model compatibility path in public `/service/`, the CV service
-  section, and service-data validation
+- homepage recent-service policy simulation over canonical runs, now that
+  public `/service/`, the CV service section, and service-data validation
+  already consume the A4 model
 
 Concrete planning note:
 
-- [service-redesign-slice-3-current-consumer-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-3-current-consumer-cutover.md)
+- [service-redesign-slice-4-homepage-recent-service.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-4-homepage-recent-service.md)
 
 That is the next safe step now that:
 

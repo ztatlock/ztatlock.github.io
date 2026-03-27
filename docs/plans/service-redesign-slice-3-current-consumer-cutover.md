@@ -1,6 +1,6 @@
 # Service Redesign Slice 3: Current Consumer Cutover
 
-Status: draft
+Status: implemented
 
 It builds on:
 
