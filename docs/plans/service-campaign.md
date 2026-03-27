@@ -260,12 +260,19 @@ Implemented outcomes so far:
 These should likely be treated as later cross-cutting consumer work rather
 than part of the near-term service campaign:
 
-- homepage recent-service projection from canonical service terms
+- homepage recent-service projection from redesigned canonical service runs
 - broader homepage/CV cleanup across multiple canonical domains once enough of
   the underlying sources of truth are in place
-- review whether the current flat service-term model should remain the
-  long-horizon foundation for those later consumers, or whether a clearer
-  explicit `series` / `run` / `instance` redesign should land first
+- implement the latched A4 service redesign before homepage recent-service
+  projection depends more heavily on the current flat term model
+
+The current redesign checkpoint is now:
+
+- [service-redesign-proposal-a4.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a4.md)
+
+The next planned move is:
+
+- [service-redesign-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-implementation-testing-plan.md)
 
 If those later consumers land, the invariant should be:
 

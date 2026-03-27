@@ -251,6 +251,16 @@ Implemented outcomes so far:
   canonical service data
 - homepage cleanup remains deferred as later cross-cutting consumer work
 
+Current recommendation:
+
+- treat the current flat term model as an implemented intermediate foundation,
+  not the final long-horizon service shape
+- use the latched A4 redesign as the current best long-horizon service model:
+  [service-redesign-proposal-a4.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a4.md)
+- move next to implementation/testing planning rather than more redesign
+  iteration:
+  [service-redesign-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-implementation-testing-plan.md)
+
 ### 6. CV Consumer Wrapper
 
 The CV is now at its first real cross-domain consumer checkpoint.

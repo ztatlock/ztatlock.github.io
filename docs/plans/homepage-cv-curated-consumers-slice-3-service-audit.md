@@ -162,6 +162,16 @@ This slice should produce:
 - a recommendation for the later homepage recency anchor rule in the presence
   of future service years
 
+That redesign follow-on is now materially complete enough to serve as the
+leading design checkpoint:
+
+- [service-redesign-proposal-a4.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a4.md)
+
+The next move after this audit is therefore implementation/testing planning
+rather than more redesign iteration:
+
+- [service-redesign-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-implementation-testing-plan.md)
+
 ## Recommended Work
 
 The audit should:
@@ -211,9 +221,8 @@ Possible outputs:
 
 ## Follow-On Slice
 
-Only after this audit, and after the repo decides whether to stay on the
-current flat service-term model or adopt a fuller redesign, should we plan the
-homepage projection slice.
+Only after this audit, and after the repo begins implementing the latched A4
+redesign direction, should we plan the homepage projection slice.
 
 That later slice should cover:
 
