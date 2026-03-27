@@ -53,6 +53,8 @@ That means:
 Implement the A4 schema and normalization logic in code before migrating the
 real canonical data file.
 
+This foundation slice is now implemented in code and tests.
+
 Scope:
 
 - add a new loader/validator module for A4-authored service records
@@ -250,9 +252,10 @@ not as reasons to reopen the A4 model itself.
 
 ## Immediate Next Step
 
-The clean first implementation slice is:
+The next implementation slice is:
 
-- loader / validator foundation over small focused fixtures
+- canonical data migration onto the A4 authored schema, using the new
+  loader/validator foundation and a temporary compatibility bridge
 
-That is the safest place to turn the A4 proposal from design into executable
-contract before touching `site/data/service.json` or the public renderers.
+That is the next safe step now that the A4 proposal has been turned into
+executable contract code without changing the live service consumer path.

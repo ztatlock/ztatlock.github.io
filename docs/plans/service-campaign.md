@@ -284,9 +284,14 @@ The current redesign checkpoint is now:
 
 - [service-redesign-proposal-a4.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a4.md)
 
-The next planned move is:
+The current implementation/testing checkpoint is:
 
 - [service-redesign-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-implementation-testing-plan.md)
+
+The next planned move is:
+
+- slice 2 canonical data migration onto the A4 authored schema, after the
+  slice-1 loader/validator foundation
 
 If those later consumers land, the invariant should be:
 
