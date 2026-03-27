@@ -293,6 +293,17 @@ The next planned move is:
 - slice 3 current-consumer cutover from the temporary flat-model compatibility
   bridge onto canonical A4 runs
 
+That cutover is now specified more concretely in:
+
+- [service-redesign-slice-3-current-consumer-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-3-current-consumer-cutover.md)
+
+The current direction for that slice is:
+
+- preserve facts, anchors, and section semantics
+- stop preserving the old flat-term visible formatting just because it is old
+- let `/service/` and CV service rendering move directly toward the intended
+  run-native shape
+
 If those later consumers land, the invariant should be:
 
 - remaining variation is renderer policy and curation, not duplicated facts

@@ -8,6 +8,7 @@ It builds on:
 - [service-redesign-requirements.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-requirements.md)
 - [service-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-campaign.md)
 - [homepage-cv-curated-consumers-slice-3-service-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/homepage-cv-curated-consumers-slice-3-service-audit.md)
+- [service-redesign-slice-3-current-consumer-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-3-current-consumer-cutover.md)
 
 ## Purpose
 
@@ -127,24 +128,49 @@ Scope:
 
 - update public service-page projection to consume canonical runs
 - update CV service projection to consume canonical runs
+- update service-data validation to consume the A4 validator directly
+- attach canonical run anchors on `/service/`
 - preserve the current section structure and authored `Aggregators` handling
-- preserve current compressed CV conventions
-- do **not** yet broaden the public service-page formatting just because the
-  new model now supports richer grouping
+- preserve current compressed CV conventions where they still make sense
+- allow intentional rendered changes that move public/CV service output toward
+  the run-native target
+
+Concrete cutover rule:
+
+- on the public service page, canonical runs are the top-level visible units
+- uniform canonical runs render as one grouped summary line
+- heterogeneous canonical runs render as one grouped summary line plus
+  contextual instance sub-bullets
+- in the CV, canonical runs render as one summary line each, with internal
+  `/service/#<run.key>` links when direct external linking would be lossy
+- the bounded known heterogeneous runs are:
+  - `fptalks`
+  - `pldi-workshops`
+  - `egraphs-workshop`
 
 Why keep this slice conservative:
 
 - first prove that the redesign can preserve or narrowly improve current public
-  behavior
-- avoid mixing data-model migration with aesthetic/service-page redesign
+  behavior at the semantic level
+- avoid a separate later “make the renderer fit the model” pass
+- make future homepage service links target real `/service/#<run.key>` anchors
+  without reopening service-page design
 
 Invariant after slice 3:
 
 - all current service consumers run on the redesigned loader/model
+- service-data validation runs on the A4 validator directly
 - `/service/` and the CV service section remain correct and stable
+- `/service/` exposes canonical run anchors
+- public `/service/` now uses run-native grouped rendering
+- the CV service section now uses run-native compressed rendering
 - temporary flat-model compatibility code is removed or clearly isolated as
   migration-only scaffolding
 - remaining service work is no longer blocked on the old flat term model
+
+Reference slice note:
+
+- [service-redesign-slice-3-current-consumer-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-3-current-consumer-cutover.md)
 
 ### Slice 4. Homepage Recent Service Planning / Implementation
 
@@ -216,7 +242,11 @@ Add focused tests for:
 
 - public service-page grouped rendering over the normalized run model
 - CV compressed service rendering over the normalized run model
+- heterogeneous-run summary plus instance sub-bullets on the public page
+- internal `/service/#<run.key>` linking from the CV for ambiguous multi-url
+  runs
 - anchor placement and duplicate-id avoidance for multi-view service
+- direct A4 service-data validation on the live source-check path
 - homepage/link-target helper behavior if any is introduced during migration
 - compatibility-adapter behavior during slice 2, if that bridge exists
 
@@ -234,7 +264,8 @@ For migration/cutover slices, review:
 
 The default expectation should be:
 
-- narrow rendered change unless a slice explicitly aims to improve presentation
+- intentional rendered change is acceptable when it aligns the output with the
+  run-native target
 
 ## Open Questions To Carry Forward
 
@@ -260,8 +291,12 @@ not as reasons to reopen the A4 model itself.
 The next implementation slice is:
 
 - current consumer cutover onto canonical runs, replacing the temporary
-  flat-model compatibility path in public `/service/` and the CV service
-  section
+  flat-model compatibility path in public `/service/`, the CV service
+  section, and service-data validation
+
+Concrete planning note:
+
+- [service-redesign-slice-3-current-consumer-cutover.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-3-current-consumer-cutover.md)
 
 That is the next safe step now that:
 
