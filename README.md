@@ -31,11 +31,9 @@ source with a small Python build engine behind `make`.
 - `site/data/students.json`
   Canonical student/advising records for the students page plus CV reuse.
 - `site/data/service.json`
-  Canonical service-term records for the service page plus later homepage and
-  CV reuse.
+  Canonical service records for the service page, homepage, and CV.
 - `site/data/teaching.json`
-  Canonical teaching/course records for the teaching page plus later homepage
-  and CV reuse.
+  Canonical teaching records for the teaching page, homepage, and CV.
 - `site/data/funding.json`
   Canonical funding records for the funding page plus CV reuse.
 - `site/data/news.json`
@@ -55,7 +53,7 @@ source with a small Python build engine behind `make`.
 - `tests/`
   Focused unit tests for route/data/build modules.
 - `docs/`
-  Human-authored policy/spec docs.
+  Human-authored policy, plan, and lessons docs.
 - `manifests/`
   Small versioned structured manifests.
 - `state/`
@@ -75,11 +73,11 @@ Metadata rules:
 - The students landing page is projected from canonical advising records in
   `site/data/students.json` into `site/students/index.dj`.
 - The teaching landing page is projected from canonical course records in
-  `site/data/teaching.json` into `site/teaching/index.dj`, and later homepage
-  and CV teaching facts should reuse the same records.
-- The public service page is projected from canonical service-term records in
-  `site/data/service.json` into `site/service/index.dj`, and later homepage
-  and CV service facts should reuse the same records.
+  `site/data/teaching.json` into `site/teaching/index.dj`; the teaching page,
+  homepage, and CV all now consume that shared truth.
+- The public service page is projected from canonical service records in
+  `site/data/service.json` into `site/service/index.dj`; the service page,
+  homepage, and CV all now consume that shared truth.
 - The public funding page and the CV funding list are projected from canonical
   grant records in `site/data/funding.json`.
 - The public news page is projected from canonical editorial records in
@@ -194,3 +192,5 @@ The repo Pages settings control the active custom domain.
 - Use [ROADMAP.md](ROADMAP.md) for actionable backlog items.
 - Use [TODO.md](TODO.md) and [docs/plans/](docs/plans/) for broader strategy
   and longer-horizon design work.
+- Use [docs/lessons/](docs/lessons/) for reusable retrospective/process
+  guidance from major redesign work.

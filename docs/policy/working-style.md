@@ -169,10 +169,23 @@ The repo has already landed canonical or wrapper checkpoints for:
 - students
 - teaching
 - service
+- funding
+- collaborators
+- homepage recent teaching
+- homepage recent service
 - CV route cutover
 - CV students projection
+- CV teaching projection
+- CV service projection
+- CV indexed-publications projection
+- CV talks projection
+- CV funding projection
 
-The next planned cross-domain consumer slice is teaching inside the CV.
+The current near-term cross-domain priorities are:
+
+- deciding a better home for non-service research/community-participation
+  honors such as Dagstuhl attendance
+- planning and implementing homepage recent-publications projection
 
 ## What Success Looks Like
 
