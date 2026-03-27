@@ -1,6 +1,6 @@
 # Homepage / CV Curated Consumers Slice 3: Service Data Audit
 
-Status: planned
+Status: in progress
 
 It builds on:
 
@@ -153,6 +153,8 @@ This slice should produce:
 - a short list of canonical service-data cleanup recommendations, if needed
 - a recommendation about whether the service data model needs a later
   concept/instance follow-on for recurring series with year-specific links
+- if warranted, a requirements brief and redesign proposal capturing what a
+  cleaner long-horizon service model should accomplish
 - a recommendation for the later homepage source scope:
   - organizing only
   - organizing plus selected department leadership
@@ -209,7 +211,9 @@ Possible outputs:
 
 ## Follow-On Slice
 
-Only after this audit should we plan the homepage projection slice.
+Only after this audit, and after the repo decides whether to stay on the
+current flat service-term model or adopt a fuller redesign, should we plan the
+homepage projection slice.
 
 That later slice should cover:
 

@@ -128,6 +128,16 @@ Why they are interesting:
 This is probably correct for some current consumers, but it is not obviously
 the best long-term model for every future consumer.
 
+One useful concrete observation from the current data:
+
+- for the recurring series under pressure, `title` is already stable across
+  instances
+- the main variation is `url`, with `role` only varying in a small number of
+  cases such as `pnw-plse`
+
+So the current seam is less about missing series naming data and more about
+how to summarize and link recurring series without losing instance-level facts.
+
 ### Series-By-Series Provisional Read
 
 `FPTalks`
@@ -163,8 +173,12 @@ the best long-term model for every future consumer.
 
 - same broad concept, but years are non-contiguous and role text changes
 - provisional read:
-  - should remain separate grouped entries under current and likely future
-    models unless a richer concept layer explicitly wants to connect them
+  - current `series_key` still expresses a real recurring identity
+  - future grouped helpers should likely keep one series entry structurally
+    while rendering it conservatively
+  - the current best candidate is:
+    - homepage: latest run or latest instance only
+    - service page: neutral summary title plus instance bullets
 
 `SRC JUMP: Applications Driving Architectures (ADA)`
 
@@ -254,6 +268,135 @@ No recommendation is final yet.
 The current conclusion is only that the question is real and worth keeping
 explicit during the audit.
 
+## Current Preferred Render Direction
+
+The strongest current design candidate is:
+
+- keep canonical service truth as per-year instances
+- add richer derived **series** helpers in code
+- let those helpers compute contiguous **runs** within a series
+- let `/service/` and the homepage consume those helpers differently
+
+### Summary Label Shape
+
+Current preference:
+
+- grouped series summary with uniform role:
+  - `FPTalks Co-Organizer, 2020 - 2025`
+  - `PACMPL Advisory Board Member, 2026 - 2029`
+- grouped series summary without role:
+  - `PLDI Steering Committee, 2026 - 2029`
+  - `EGRAPHS Community Advisory Board, 2022 - Present`
+- single-instance summary with role:
+  - `PNW PLSE 2023, Co-Organizer`
+- single-instance summary without role:
+  - `Dagstuhl Seminar 26022: EGRAPHS 2026`
+
+Important preferences:
+
+- do not render year-first labels like `2025 FPTalks`
+- do not use comma-separated `title, year, role` labels like
+  `FPTalks, 2025, Co-Organizer`
+- for grouped summaries, prefer `title role, years`
+- for single instances, prefer `title year, role`
+
+### Instance Bullets On `/service/`
+
+If grouped series expose instance bullets, those bullets should never be bare
+years.
+
+Current preference:
+
+- `[FPTalks 2025](...)`, `Co-Organizer`
+- `[FPTalks 2024](...)`, `Co-Organizer`
+- `[PLDI Workshops 2024](...)`, `Co-chair`
+- `[PNW PLSE 2023](...)`, `Co-Organizer`
+
+The important point is that each bullet should stand on its own:
+
+- title repeated
+- year repeated
+- role repeated when present
+
+### Link Target Policy
+
+Current preferred policy:
+
+- if a grouped series has multiple distinct instance URLs, homepage projections
+  should link to the corresponding entry on `/service/`, not to any one
+  external instance URL
+- if a series is a singleton or all of its instances share one URL, homepage
+  projections should link directly to that external URL when present
+- if there is no URL, the homepage entry can remain unlinked
+
+This keeps recurring annual series like `FPTalks` or `PLDI Workshops`
+coalesced on the homepage without throwing away the richer per-instance links.
+
+### Anchor Direction
+
+The current leading anchor policy is:
+
+- treat `series_key` as the stable conceptual identity
+- derive one or more contiguous **runs** inside each series
+- anchor visible `/service/` entries at the run level, not just the series
+  level
+- if a series has only one run, its anchor can still just be `series_key`
+- if a series has multiple runs, each run needs its own stable anchor
+- if a visible `/service/` entry is a singleton with no `series_key`, use the
+  instance `key`
+
+So under the current preferred design:
+
+- `FPTalks Co-Organizer, 2020 - 2025` would likely anchor at
+  `/service/#fptalks`
+- `PLDI Workshops Co-chair, 2023 - 2024` would likely anchor at
+  `/service/#pldi-workshops`
+- `PNW PLSE 2023, Co-Organizer` would likely anchor at
+  `/service/#pnw-plse--2023-2023`
+- `PNW PLSE 2018, Organizer` would likely anchor at
+  `/service/#pnw-plse--2018-2018`
+
+If a future repeated committee or appointment returns after a gap, this run
+layer keeps the anchor design stable. For example, a later second run of
+`uw-cse-undergraduate-admissions-committee` would not collide with the first.
+
+### Non-Contiguous Series
+
+For non-contiguous series such as `PNW PLSE`, the current preferred behavior
+is:
+
+- homepage:
+  - show the latest run if there is one
+  - otherwise show the latest instance
+- `/service/`:
+  - allow a neutral series title like `PNW PLSE`
+  - render one visible block per run
+  - let instance bullets carry the actual years and roles inside each run if
+    needed
+
+This avoids misleading fake ranges like `2018 - 2023` while still preserving
+the recurring-series connection.
+
+## Academic-Year Semantics Wrinkle
+
+One additional interpretation seam is worth making explicit now:
+
+- for Allen School and similar academic service, a rendered year range like
+  `2020 - 2021` often means the `2020-2021 academic year`
+- it usually does **not** mean continuous calendar-year coverage from
+  January 2020 through December 2021
+
+Current recommendation:
+
+- keep canonical service data at year granularity for now
+- allow grouped run summaries like `2020 - 2021` to remain as display
+  shorthand
+- document that some service ranges should be read as academic-year spans
+  rather than literal full-calendar-year intervals
+
+This is important context for future service modeling and rendering, even if it
+does not justify a schema change today.
+
 ## Rendering / Presentation Seam
 
 The current public service page is factually much better than the old manually
@@ -281,9 +424,9 @@ page and the homepage.
 
 The strongest current candidate is:
 
-- render one grouped summary line for the recurring series
-- then, when a recurring series has distinct yearly links or meaningful
-  instance-level variation, render instance sub-bullets underneath
+- render one grouped summary line per visible run
+- then, when a run has distinct yearly links or meaningful instance-level
+  variation, render instance sub-bullets underneath
 
 Important rendering preference from the audit:
 
@@ -298,16 +441,16 @@ And for instance sub-bullets:
 
 So a plausible future service-page rendering shape would be:
 
-- `FPTalks, 2020 - 2025 Co-Organizer`
-  - `[FPTalks 2025](...) Co-Organizer`
-  - `[FPTalks 2024](...) Co-Organizer`
-  - `[FPTalks 2023](...) Co-Organizer`
+- `FPTalks Co-Organizer, 2020 - 2025`
+  - `[FPTalks 2025](...)`, `Co-Organizer`
+  - `[FPTalks 2024](...)`, `Co-Organizer`
+  - `[FPTalks 2023](...)`, `Co-Organizer`
 
 And similarly:
 
-- `PLDI Workshops, 2023 - 2024 Co-chair`
-  - `[PLDI Workshops 2024](...) Co-chair`
-  - `[PLDI Workshops 2023](...) Co-chair`
+- `PLDI Workshops Co-chair, 2023 - 2024`
+  - `[PLDI Workshops 2024](...)`, `Co-chair`
+  - `[PLDI Workshops 2023](...)`, `Co-chair`
 
 This is much stronger than a structure where the sub-bullets are just years.
 
@@ -317,10 +460,12 @@ The homepage likely wants a different consumer policy:
 
 - one selected item per recurring series
 - no instance sub-bullets
-- either:
-  - the grouped summary line for stable long-running appointments
-  - or the newest relevant in-window instance for recurring annual linked
-    series
+- select a specific visible run for each included series
+- if the included series has multiple distinct instance URLs, link the
+  homepage item to the corresponding `/service/` run anchor
+- if the included series is a singleton or all of its instances share one URL,
+  link directly to that URL when present
+- otherwise leave the item unlinked
 
 That would let the homepage stay compact while the public service page becomes
 more informative.
@@ -338,6 +483,9 @@ Current provisional conclusions:
   hint rather than as an explicit modeled layer
 - homepage recent-service policy should **not** be finalized until we decide
   how much conceptual collapsing we actually want for recurring series
+- the audit has now produced two concrete follow-on design candidates:
+  - richer derived series/run helpers over the current flat instance model
+  - a fuller redesign with explicit `series`, `runs`, and nested `instances`
 - the service audit should continue by reviewing the recurring annual series one
   by one and deciding whether each should remain instance-driven or gain a
   clearer concept-level story

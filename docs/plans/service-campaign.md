@@ -263,6 +263,9 @@ than part of the near-term service campaign:
 - homepage recent-service projection from canonical service terms
 - broader homepage/CV cleanup across multiple canonical domains once enough of
   the underlying sources of truth are in place
+- review whether the current flat service-term model should remain the
+  long-horizon foundation for those later consumers, or whether a clearer
+  explicit `series` / `run` / `instance` redesign should land first
 
 If those later consumers land, the invariant should be:
 

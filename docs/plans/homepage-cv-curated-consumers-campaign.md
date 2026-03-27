@@ -1,6 +1,6 @@
 # Homepage / CV Curated Consumers Campaign
 
-Status: slices 1-2 implemented; service audit next
+Status: slices 1-2 implemented; service audit in progress; redesign review underway
 
 It builds on:
 
@@ -231,11 +231,16 @@ Why this slice belongs first:
   rules provide
 - future service years and repeated annual series make service recency
   selection trickier than news or teaching
+- the audit may conclude that a more explicit service redesign should happen
+  before homepage recent-service projection depends more heavily on the current
+  flat term model
 
 ### Slice 4. Homepage Recent Service / Leadership
 
 Only plan this after the service audit clarifies the right grouped source scope
-and coalescing semantics.
+and coalescing semantics, and after the repo decides whether the current flat
+service-term model remains the right long-horizon foundation for that
+consumer.
 
 ### Later Possible Work
 
@@ -252,7 +257,7 @@ The right next move is:
 
 1. stop and reassess from the cleaner baseline where homepage `News`,
    `Current Students`, and `Recent Teaching` are already derived consumers
-2. do the service data audit before deciding how homepage recent service should
-   project
+2. do the service data audit, including explicit redesign review, before
+   deciding how homepage recent service should project
 3. keep publications/highlights authored until a stronger editorial policy
    exists
