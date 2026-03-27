@@ -5,6 +5,10 @@ source-first and predictable.
 
 For the broader working rhythm and design philosophy, read
 `docs/policy/working-style.md`.
+If a domain starts feeling structurally slippery rather than just locally
+awkward, also read
+`docs/lessons/service-redesign-retrospective-and-playbook.md` before locking a
+model or projection policy.
 The short version:
 
 - keep designs simple, explicit, and narrow

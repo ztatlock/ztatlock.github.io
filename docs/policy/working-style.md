@@ -9,6 +9,12 @@ The goal is to make it cleaner, simpler, more coherent, and easier to
 maintain while preserving hand-authored prose and page-level editorial
 control.
 
+For the most detailed retrospective/process lesson currently available in this
+repo, see
+[../lessons/service-redesign-retrospective-and-playbook.md](/Users/ztatlock/www/ztatlock.github.io/docs/lessons/service-redesign-retrospective-and-playbook.md).
+Future deep model/redesign work should use that note when the problem starts to
+look structural rather than like an isolated renderer tweak.
+
 ## Mission
 
 The medium-term mission is:
@@ -56,6 +62,11 @@ Avoid:
   be better and still faithful
 
 If a design feels too smart, it is probably wrong.
+
+If a domain repeatedly produces vague discomfort, awkward grouping rules,
+implicit identity, or renderer code that keeps inventing structure, treat that
+as a sign to step back and use the service-redesign lessons/process rather than
+continuing with local fixes by inertia.
 
 ## Architectural Patterns
 

@@ -5,6 +5,8 @@ meant to be read, maintained, and extended over time.
 
 ## Layout
 
+- `lessons/`
+  Retrospectives and reusable lessons learned from major repo/design work.
 - `policy/`
   Long-lived policy and specification documents.
 - `plans/`
@@ -14,6 +16,7 @@ meant to be read, maintained, and extended over time.
 ## What Belongs Here
 
 - storage/linking policy
+- lessons learned from major redesign work
 - repository layout decisions
 - current reference architecture notes
 - medium-term campaign roadmaps
@@ -37,6 +40,8 @@ meant to be read, maintained, and extended over time.
 ## Current Conventions
 
 - Human-authored policy/spec docs should go under `docs/policy/`.
+- Lessons-learned retrospectives and reusable process writeups should go under
+  `docs/lessons/`.
 - Resumable work notes should go under `docs/plans/`.
 - Executable utilities should go under `scripts/`.
 - Versioned structured manifests should go under `manifests/`.
@@ -51,6 +56,10 @@ meant to be read, maintained, and extended over time.
 
 ### Current Reference Docs
 
+- `lessons/service-redesign-retrospective-and-playbook.md`
+  Hybrid retrospective and reusable playbook distilled from the service
+  redesign saga, including what made that deep design process successful and
+  how to repeat it more deliberately for future domains.
 - `policy/publication-artifacts.md`
   Publication storage and linking policy.
 - `policy/root-layout.md`
