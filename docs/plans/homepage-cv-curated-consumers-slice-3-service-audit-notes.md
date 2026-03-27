@@ -61,7 +61,7 @@ So there is no immediate data-loss bug analogous to a dropped record set.
 The audit confirms that the central service-model seam is **not** missing
 facts. It is the tension between:
 
-- a stable recurring service **concept**
+- a stable recurring service **series**
 - year-specific service **instances** with distinct URLs
 
 This is most obvious for recurring annual series:
@@ -84,6 +84,13 @@ But it also means the grouped view is currently doing two jobs at once:
   public URL
 
 Those are related, but they are not the same problem.
+
+One additional clarification from the audit:
+
+- not every service instance needs to belong to a multi-year series
+- one-off service entries are valid and expected
+- the current discomfort is mainly about recurring entries where a series
+  clearly exists, but only implicitly through `series_key`
 
 ## Current Series Audit
 
@@ -210,10 +217,10 @@ This is useful because it gives a concrete simulation baseline.
 The current model is still defensible, but the audit is surfacing a real future
 question:
 
-Should recurring service concepts eventually be modeled with a clearer split
+Should recurring service series eventually be modeled with a clearer split
 between:
 
-- a stable concept-level identity
+- a stable series-level identity
 - one or more year-specific instances
 
 That could help future consumers such as:
@@ -230,6 +237,18 @@ Potential directions to revisit later if the audit concludes they are worth it:
 2. add stronger concept-level fields while preserving the current term records
 3. introduce a fuller concept/instance split only if simpler helper-level
    improvements prove insufficient
+
+Important current interpretation:
+
+- `series_key` is currently only a grouping hint shared by instance records
+- it does **not** point at a separate series registry or series object
+- that is a legitimate source of design unease, because the repo already
+  acknowledges series-like identity without yet giving series any explicit home
+
+That still does not mean an explicit series layer is automatically the right
+next move.
+It may remain better to keep series implicit in canonical data and add richer
+derived grouped helpers in code first.
 
 No recommendation is final yet.
 The current conclusion is only that the question is real and worth keeping
@@ -253,6 +272,59 @@ This is a separate problem from the current audit.
 The data-model and grouping audit should come first, but the repo should retain
 an explicit later backlog item for service-page formatting/projection polish.
 
+## Current Rendering Direction That Seems Most Promising
+
+The audit is converging on a stronger render split between the public service
+page and the homepage.
+
+### Public Service Page
+
+The strongest current candidate is:
+
+- render one grouped summary line for the recurring series
+- then, when a recurring series has distinct yearly links or meaningful
+  instance-level variation, render instance sub-bullets underneath
+
+Important rendering preference from the audit:
+
+- year-first labels like `2025 FPTalks` feel unnatural
+- prefer year-last labels such as `FPTalks 2025`
+
+And for instance sub-bullets:
+
+- do **not** render just bare years
+- repeat enough context to make each instance line readable on its own
+- when role matters, repeat the role too
+
+So a plausible future service-page rendering shape would be:
+
+- `FPTalks, 2020 - 2025 Co-Organizer`
+  - `[FPTalks 2025](...) Co-Organizer`
+  - `[FPTalks 2024](...) Co-Organizer`
+  - `[FPTalks 2023](...) Co-Organizer`
+
+And similarly:
+
+- `PLDI Workshops, 2023 - 2024 Co-chair`
+  - `[PLDI Workshops 2024](...) Co-chair`
+  - `[PLDI Workshops 2023](...) Co-chair`
+
+This is much stronger than a structure where the sub-bullets are just years.
+
+### Homepage
+
+The homepage likely wants a different consumer policy:
+
+- one selected item per recurring series
+- no instance sub-bullets
+- either:
+  - the grouped summary line for stable long-running appointments
+  - or the newest relevant in-window instance for recurring annual linked
+    series
+
+That would let the homepage stay compact while the public service page becomes
+more informative.
+
 ## Provisional Conclusions
 
 Current provisional conclusions:
@@ -261,6 +333,9 @@ Current provisional conclusions:
   broken
 - there is strong evidence that recurring annual series with year-specific URLs
   are the main stress case for the current grouping semantics
+- there is also real design unease around the current halfway status of
+  `series_key`: series-like identity exists, but only as an implicit grouping
+  hint rather than as an explicit modeled layer
 - homepage recent-service policy should **not** be finalized until we decide
   how much conceptual collapsing we actually want for recurring series
 - the service audit should continue by reviewing the recurring annual series one
@@ -281,3 +356,5 @@ Current provisional conclusions:
    support?
 5. Once the grouping/model questions are settled, what service-page projection
    and CSS changes would make `/service/` materially easier to scan?
+6. Is a future explicit series layer actually needed, or would richer derived
+   grouping/render helpers over the existing instance records be enough?
