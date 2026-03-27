@@ -1,6 +1,10 @@
 # Service Redesign Proposal
 
-Status: draft
+Status: historical first explicit proposal; later superseded by
+[service-redesign-proposal-a2.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a2.md),
+[service-redesign-proposal-a3.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a3.md),
+and
+[service-redesign-proposal-a4.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-proposal-a4.md)
 
 It builds on:
 
@@ -21,6 +25,21 @@ The cleanest long-horizon design is a **three-level model**:
 
 This is the first design I think actually resolves most of the current seams
 cleanly without forcing renderer code to keep inventing structure.
+
+Focused refinements after review:
+
+- `run.key` must be a stable authored identifier, not a derived year-range
+  suffix
+- `primary_view_group` is narrowed to `anchor_view_group` so the field names
+  the anchor-placement problem honestly instead of pretending to encode a
+  deeper ontological home
+- field ownership follows a clearer "highest level where the fact is true"
+  rule, including optional `series.role`
+- rich authored detail fields are simply called `details`; their Djot-bearing
+  validation semantics belong in the loader/validator contract, not in the
+  field name
+- `run` no longer has to repeat `title` or `role` when those facts already
+  live cleanly at the `series` level
 
 ## Why This Model
 
@@ -107,17 +126,15 @@ That means:
   "series": [
     {
       "key": "fptalks",
-      "title": "FPTalks"
+      "title": "FPTalks",
+      "role": "Co-Organizer"
     }
   ],
   "runs": [
     {
-      "key": "fptalks-2020-2025",
+      "key": "fptalks",
       "series": "fptalks",
-      "title": "FPTalks",
-      "role": "Co-Organizer",
       "view_groups": ["organizing"],
-      "primary_view_group": "organizing",
       "instances": [
         {
           "key": "fptalks-2025",
@@ -168,10 +185,11 @@ Examples:
 
 - `url`
   stable higher-level URL when one exists
-- `details_djot`
-  higher-level notes that belong to the recurring identity as a whole
-- `title_short`
-  optional future override if a shorter consumer-facing label is ever useful
+- `role`
+  stable recurring role when it is true across all runs in the series
+- `details`
+  higher-level Djot-bearing notes that belong to the recurring identity as a
+  whole
 
 ### Design Notes
 
@@ -179,8 +197,9 @@ Examples:
 - a `series` may have no URL
 - a `series` does not own `view_groups`
   those belong to visible runs
-- a `series` does not need its own role by default
-  roles are more naturally run- or instance-local
+- a `series` may own `role` when that role is truly uniform across all runs
+- a `series` should stay sparse; if a fact is only true for one run, it does
+  not belong here
 
 ## `run`
 
@@ -205,12 +224,8 @@ Examples:
 
 - `key`
   stable visible-unit identity
-- `title`
-  run-level display title
 - `view_groups`
   rendered sections where this run appears
-- `primary_view_group`
-  canonical section for anchors and internal links
 - `instances`
   ordered array of one or more instance objects
 
@@ -218,21 +233,26 @@ Examples:
 
 - `series`
   reference to parent recurring identity
+- `title`
+  run-level display title only when the series title is not sufficient
 - `role`
-  run-level role when uniform across instances
+  run-level role when uniform across instances but not across the whole series
 - `url`
   stable run-level URL when one exists
-- `details_djot`
-  run-level notes/details
+- `details`
+  run-level Djot-bearing notes/details
 - `ongoing`
   marks the latest open-ended run
+- `anchor_view_group`
+  canonical section for anchor placement when `view_groups` has more than one
+  value; if omitted and there is only one view group, it is inferred
 - `time_basis`
   optional summary-semantics hint such as:
   - `calendar_year`
   - `academic_year`
   - `event_year`
 
-### Why `primary_view_group`
+### Why `anchor_view_group`
 
 This is one of the main simplifications in the proposal.
 
@@ -243,14 +263,25 @@ Current service data already has multi-view facts such as:
 
 So a visible run may appear in multiple rendered sections.
 
-`primary_view_group` gives the model one canonical home for:
+`anchor_view_group` gives the model one canonical anchor home for:
 
 - stable anchor attachment
 - homepage internal links
 - any future reverse links or popups
 
 That avoids ambiguous “which copy on `/service/` should the homepage link to?”
-logic.
+logic without pretending that one rendered section is the run’s deepest
+semantic home.
+
+Narrow rule:
+
+- if `view_groups` has length `1`, `anchor_view_group` is inferred
+- if `view_groups` has length greater than `1`, `anchor_view_group` is
+  required
+- `anchor_view_group` must always be one of the run’s `view_groups`
+
+This keeps the field narrowly about anchor placement instead of broader
+semantic classification.
 
 ### Why `key` Lives On Runs
 
@@ -262,7 +293,73 @@ Stable anchors should be based on stable run identity, not on:
 - or fragile derived `START-END` suffixes
 
 If a future run grows because of backfill, the run key stays the same.
-If a future series gets a second or third run, the run keys still stay stable.
+If a future series gets a second or third run, the existing run keys still stay
+stable.
+
+The important discipline is:
+
+- `run.key` is authored, not algorithmic
+- it should be chosen for long-horizon stability
+- it should not encode exact start/end boundaries that may later change
+
+Human readability is helpful, but stability matters more than chronology.
+Examples such as `fptalks`, `pnw-plse-return`, or
+`uw-cse-undergraduate-admissions-recent` are better models than derived keys
+such as `fptalks-2020-2025`.
+
+### Run-Key Policy
+
+`run.key` should be treated as a durable authored identifier, not as a pretty
+rendered label.
+
+Recommended rules:
+
+- every `run.key` is globally unique
+- if a series currently has one run, that run may reuse the `series.key`
+- if a series has more than one run, each additional run gets its own stable
+  authored key
+- run keys should usually begin with the parent `series.key` when a parent
+  series exists
+- run keys should use a short stable distinguisher such as:
+  - `pnw-plse-return`
+  - `uw-cse-undergraduate-admissions-early`
+  - `uw-cse-undergraduate-admissions-recent`
+- run keys should **not** encode exact start/end years
+- run keys should **not** be renamed just because:
+  - an older year is backfilled into an existing run
+  - a current run extends forward
+  - a later additional run appears
+
+This is the main discipline that keeps canonical run anchors stable under
+backfill.
+
+### Anchor Semantics
+
+The anchor contract should be simple:
+
+- every visible run owns exactly one canonical internal anchor
+- that anchor id is always the run’s `key`
+- `/service/` attaches that anchor only on the run’s `anchor_view_group`
+  occurrence, or on its sole section occurrence when `anchor_view_group` is
+  inferred
+- other rendered copies of the same run in other sections do **not** get
+  duplicate ids
+- homepage and other internal consumers always link to `/service/#<run.key>`
+
+This keeps anchor identity:
+
+- canonical
+- section-safe
+- independent of derived year ranges
+- stable under later backfill and later additional runs
+
+A run must also resolve a display title from either:
+
+- its own `title`
+- or the referenced `series.title`
+
+So singleton runs need their own `title`, while recurring runs can often reuse
+the series title without repeating it.
 
 ### Ordering
 
@@ -277,6 +374,13 @@ That order becomes the deterministic fallback tie-break for:
 The repo does not need a numeric `sort_key` until a real case proves it is
 necessary.
 
+That means:
+
+- authored array order is the final tie-break at the run level
+- instance array order is the final tie-break within a run
+- renderers should rely on canonical order only where more semantic rules do
+  not already decide the result
+
 ## `instance`
 
 ### Purpose
@@ -289,23 +393,27 @@ structure to be flat.
 ### Required Fields
 
 - `key`
+  stable instance identity; this remains explicit so same-year multiplicity and
+  future internal references stay possible
 - `year`
 
 ### Optional Fields
 
 - `title`
-  instance-specific override when the run title is not sufficient
+  instance-specific override when the resolved run/series title is not
+  sufficient
 - `role`
-  instance-specific override when the run role is not sufficient
+  instance-specific override when the resolved run/series role is not
+  sufficient
 - `url`
   instance-specific primary URL
-- `details_djot`
-  instance-specific supporting details
+- `details`
+  instance-specific Djot-bearing supporting details
 
 ### Design Notes
 
 - most instances will probably omit `title` and `role` and inherit the run’s
-  title/role semantically
+  or series’ title/role semantically
 - if a run has many per-year URLs, those live here
 - if an instance has distinct supporting links, those live here
 - instance order inside a run is canonical and should usually be newest first
@@ -314,23 +422,32 @@ structure to be flat.
 
 This is the heart of the simplicity story.
 
+General rule:
+
+- place a fact at the highest level where it remains true
+- lower levels override only when that higher-level fact stops being true
+
+That keeps the model explicit without forcing needless duplication.
+
 ### Title
 
 - `series.title`
   broad recurring identity label
 - `run.title`
-  visible summary label base for that run
+  only when one run needs a different visible label from the series
 - `instance.title`
-  only when one instance needs a different label
+  only when one instance needs a different label from the resolved run/series
+  title
 
 ### Role
 
+- `series.role`
+  when one stable role is true across the whole recurring identity
 - `run.role`
-  when the visible run has one stable role
+  when one visible run has a stable role that is not uniform across the whole
+  series
 - `instance.role`
-  only when that instance differs from the run role
-
-There should be no default `series.role` in the initial redesign.
+  only when that instance differs from the resolved run/series role
 
 ### URL
 
@@ -343,11 +460,11 @@ There should be no default `series.role` in the initial redesign.
 
 ### Details
 
-- `series.details_djot`
+- `series.details`
   facts true of the whole recurring identity
-- `run.details_djot`
+- `run.details`
   facts true of the whole visible run
-- `instance.details_djot`
+- `instance.details`
   facts true only of one instance
 
 This resolves the current ambiguity around things like:
@@ -366,8 +483,10 @@ Default behavior:
 
 - filter runs by section membership
 - render one summary line per run
-- attach the anchor only on the `primary_view_group` occurrence
+- attach the anchor only on the `anchor_view_group` occurrence, or on the
+  single implied view occurrence if `anchor_view_group` is omitted
 - if the run has meaningful per-instance variation, render instance sub-bullets
+- render the same run in other matching sections without re-attaching the id
 
 That gives:
 
@@ -411,17 +530,15 @@ Because runs are already the visible grouped units, the CV can:
   "series": [
     {
       "key": "fptalks",
-      "title": "FPTalks"
+      "title": "FPTalks",
+      "role": "Co-Organizer"
     }
   ],
   "runs": [
     {
-      "key": "fptalks-2020-2025",
+      "key": "fptalks",
       "series": "fptalks",
-      "title": "FPTalks",
-      "role": "Co-Organizer",
       "view_groups": ["organizing"],
-      "primary_view_group": "organizing",
       "instances": [
         { "key": "fptalks-2025", "year": 2025, "url": "..." },
         { "key": "fptalks-2024", "year": 2024, "url": "..." },
@@ -438,7 +555,7 @@ Benefits:
 - one visible run
 - one stable anchor
 - per-instance URLs preserved
-- homepage can link to `/service/#fptalks-2020-2025`
+- homepage can link to `/service/#fptalks`
 
 ### `PNW PLSE`
 
@@ -453,23 +570,19 @@ Benefits:
   ],
   "runs": [
     {
-      "key": "pnw-plse-2023",
+      "key": "pnw-plse-return",
       "series": "pnw-plse",
-      "title": "PNW PLSE",
       "role": "Co-Organizer",
       "view_groups": ["organizing"],
-      "primary_view_group": "organizing",
       "instances": [
         { "key": "pnw-plse-2023-instance", "year": 2023 }
       ]
     },
     {
-      "key": "pnw-plse-2018",
+      "key": "pnw-plse-foundation",
       "series": "pnw-plse",
-      "title": "PNW PLSE",
       "role": "Organizer",
       "view_groups": ["organizing"],
-      "primary_view_group": "organizing",
       "instances": [
         { "key": "pnw-plse-2018-instance", "year": 2018 }
       ]
@@ -497,11 +610,9 @@ Benefits:
   ],
   "runs": [
     {
-      "key": "uw-cse-undergraduate-admissions-2020-2021",
+      "key": "uw-cse-undergraduate-admissions-recent",
       "series": "uw-cse-undergraduate-admissions",
-      "title": "UW CSE Undergraduate Admissions Committee",
       "view_groups": ["department"],
-      "primary_view_group": "department",
       "time_basis": "academic_year",
       "instances": [
         { "key": "uw-cse-undergraduate-admissions-2021", "year": 2021 },
@@ -509,11 +620,9 @@ Benefits:
       ]
     },
     {
-      "key": "uw-cse-undergraduate-admissions-2017-2018",
+      "key": "uw-cse-undergraduate-admissions-earlier",
       "series": "uw-cse-undergraduate-admissions",
-      "title": "UW CSE Undergraduate Admissions Committee",
       "view_groups": ["department"],
-      "primary_view_group": "department",
       "time_basis": "academic_year",
       "instances": [
         { "key": "uw-cse-undergraduate-admissions-2018", "year": 2018 },
@@ -540,13 +649,13 @@ Benefits:
       "title": "PLDI",
       "role": "Program Committee Chair",
       "view_groups": ["reviewing", "organizing"],
-      "primary_view_group": "organizing",
+      "anchor_view_group": "organizing",
       "instances": [
         {
           "key": "pldi-2025-program-committee-chair-instance",
           "year": 2025,
           "url": "https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee",
-          "details_djot": [
+          "details": [
             "[Review Committee](https://pldi25.sigplan.org/committee/pldi-2025-papers-pldi-review-committee)",
             "[SIGPLAN Announcement](https://www.sigplan.org/announce/2024-09-21-pldi-2025/)"
           ]
@@ -561,7 +670,7 @@ Benefits:
 
 - one canonical fact
 - multi-view membership explicit
-- primary section explicit
+- anchor section explicit
 - no anchor ambiguity
 
 ## Why This Is Simpler Than It Looks
@@ -616,7 +725,8 @@ If I compress the whole proposal into one sentence:
 
 Make `run` the canonical visible service unit, keep `instance` as the atomic
 fact unit, and add an explicit optional `series` layer above runs for recurring
-identity and future metadata.
+identity and higher-level metadata, while keeping keys stable and field
+ownership at the highest level where each fact remains true.
 
 I think that is the cleanest design that is still simple enough to edit by
 hand and robust enough not to keep biting the repo for years.
