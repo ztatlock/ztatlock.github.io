@@ -1083,6 +1083,172 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(find_source_issues(config), [])
 
+    def test_reports_missing_homepage_recent_service_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Recent Service / Leadership\n\n"
+                "- ICFP 2026, Program Committee\n\n"
+                "Please see my [service page](service/) for more.\n",
+                encoding="utf-8",
+            )
+            (service / "index.dj").write_text(
+                "---\n"
+                "description: Service page\n"
+                "---\n\n"
+                "# Service\n\n"
+                "## Reviewing\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "## Organizing\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "## Mentoring\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "## Department\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2026-icfp-program-committee",
+                                "year": 2026,
+                                "title": "ICFP",
+                                "role": "Program Committee",
+                                "view_groups": ["reviewing"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'index.dj'}: homepage recent service section must contain __HOMEPAGE_RECENT_SERVICE_LIST__",
+                    f"{pages / 'index.dj'}: homepage recent service section must not contain literal repeated service entry blocks",
+                ],
+            )
+
+    def test_accepts_homepage_recent_service_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Recent Service / Leadership\n\n"
+                "__HOMEPAGE_RECENT_SERVICE_LIST__\n\n"
+                "Please see my [service page](service/) for more.\n",
+                encoding="utf-8",
+            )
+            (service / "index.dj").write_text(
+                "---\n"
+                "description: Service page\n"
+                "---\n\n"
+                "# Service\n\n"
+                "## Reviewing\n\n"
+                "__SERVICE_REVIEWING_LIST__\n\n"
+                "## Organizing\n\n"
+                "__SERVICE_ORGANIZING_LIST__\n\n"
+                "## Mentoring\n\n"
+                "__SERVICE_MENTORING_LIST__\n\n"
+                "## Department\n\n"
+                "__SERVICE_DEPARTMENT_LIST__\n",
+                encoding="utf-8",
+            )
+            (data / "service.json").write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "key": "2026-icfp-program-committee",
+                                "year": 2026,
+                                "title": "ICFP",
+                                "role": "Program Committee",
+                                "view_groups": ["reviewing"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
     def test_reports_linkless_person_ref_in_news_data(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

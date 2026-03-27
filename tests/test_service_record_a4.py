@@ -27,8 +27,8 @@ class ServiceRecordA4Tests(unittest.TestCase):
         root = Path(__file__).resolve().parent.parent
         registry = load_service_registry_a4(root)
 
-        self.assertEqual(len(registry.records), 64)
-        self.assertEqual(len(registry.runs), 66)
+        self.assertEqual(len(registry.records), 63)
+        self.assertEqual(len(registry.runs), 65)
 
         fptalks = registry.record("fptalks")
         self.assertEqual(fptalks.form, "shorthand")

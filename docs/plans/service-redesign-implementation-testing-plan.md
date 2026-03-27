@@ -177,10 +177,9 @@ Reference slice note:
 
 ### Slice 4. Homepage Recent Service Planning / Implementation
 
-Only after slices 1-3 are stable should the repo return to homepage recent
-service projection.
+This slice is now implemented.
 
-At that point:
+The repo returned to homepage recent-service projection only after slices 1-3:
 
 - the data model question is settled
 - the grouped canonical source is stronger
@@ -190,13 +189,18 @@ At that point:
 This later slice should explicitly carry forward the open questions from A4 as
 test and policy targets rather than reopening the redesign itself.
 
-Updated recommendation after slice 3:
+Implemented policy/result:
 
-- begin slice 4 with policy simulation over canonical runs
-- reuse the now-landed direct-URL vs `/service/#<run.key>` link rule
-- bias toward a simpler window-and-cap policy first
-- only add homepage-specific stickiness metadata if simulation proves it
-  necessary
+- current-year anchor
+- trailing 3-year window
+- all service except `department`
+- no cap for now
+- direct links for unambiguous single-URL runs
+- internal `/service/#<run.key>` links for multi-URL runs
+- no links for no-URL runs
+- `Dagstuhl Seminar 26022: EGRAPHS` removed from the service domain as a
+  separate content cleanup rather than allowed to skew the homepage service
+  policy
 
 Reference slice note:
 

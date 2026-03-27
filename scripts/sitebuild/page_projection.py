@@ -45,6 +45,7 @@ from scripts.service_index import (
     SERVICE_REVIEWING_LIST_PLACEHOLDER,
     SERVICE_SECTION_PLACEHOLDERS,
     ServiceIndexError,
+    render_homepage_recent_service_list_djot,
     render_public_service_section_list_djot,
     render_cv_service_section_list_djot,
 )
@@ -67,6 +68,7 @@ from .people_registry import PeopleRegistryError, load_people_registry
 TALKS_LIST_PLACEHOLDER = "__TALKS_LIST__"
 HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER = "__HOMEPAGE_CURRENT_STUDENTS_LIST__"
 HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER = "__HOMEPAGE_RECENT_TEACHING_LIST__"
+HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER = "__HOMEPAGE_RECENT_SERVICE_LIST__"
 STUDENTS_CURRENT_LIST_PLACEHOLDER = "__STUDENTS_CURRENT_LIST__"
 STUDENTS_POSTDOC_LIST_PLACEHOLDER = "__STUDENTS_POSTDOC_LIST__"
 STUDENTS_PHD_LIST_PLACEHOLDER = "__STUDENTS_PHD_LIST__"
@@ -776,6 +778,16 @@ def apply_page_projections(
                 data_dir=data_dir,
             ).rstrip()
             rendered = rendered.replace(HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER, recent_teaching)
+        if HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER in rendered:
+            service_path = (data_dir / SERVICE_DATA_NAME) if data_dir is not None else None
+            try:
+                recent_service = render_homepage_recent_service_list_djot(
+                    root,
+                    service_path=service_path,
+                ).rstrip()
+            except ServiceIndexError as err:
+                raise PageProjectionError(str(err)) from err
+            rendered = rendered.replace(HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER, recent_service)
         if rendered != body:
             return rendered
 

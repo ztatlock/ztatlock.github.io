@@ -7,6 +7,7 @@ from pathlib import Path
 
 from scripts.service_index import (
     render_cv_service_section_list_djot,
+    render_homepage_recent_service_list_djot,
     render_public_service_section_list_djot,
 )
 
@@ -158,6 +159,71 @@ class ServiceIndexTests(unittest.TestCase):
             self.assertEqual(
                 rendered,
                 "- [Demo Summit Co-Organizer, 2024 - 2025](/service/#demo-summit)\n",
+            )
+
+    def test_seed_homepage_recent_service_uses_latched_policy(self) -> None:
+        rendered = render_homepage_recent_service_list_djot(ROOT, current_year=2026)
+        self.assertIn("- EGRAPHS Community Advisory Board, 2022 - Present", rendered)
+        self.assertIn("- ICFP 2026, Program Committee", rendered)
+        self.assertIn("- [FPTalks Co-Organizer, 2020 - 2025](/service/#fptalks)", rendered)
+        self.assertIn(
+            "- [PLDI 2025, Program Committee Chair](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee)",
+            rendered,
+        )
+        self.assertNotIn("Dagstuhl Seminar 26022: EGRAPHS", rendered)
+        self.assertNotIn("UW Faculty Skit", rendered)
+
+    def test_homepage_recent_service_uses_non_department_window_and_link_policy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_service(
+                root / "site" / "data" / "service.json",
+                [
+                    {
+                        "key": "demo-series",
+                        "title": "Demo Summit",
+                        "role": "Co-Organizer",
+                        "view_groups": ["organizing"],
+                        "instances": [
+                            {
+                                "key": "2025-demo-summit",
+                                "year": 2025,
+                                "url": "https://example.test/2025",
+                            },
+                            {
+                                "key": "2024-demo-summit",
+                                "year": 2024,
+                                "url": "https://example.test/2024",
+                            },
+                        ],
+                    },
+                    {
+                        "key": "2026-demo-pc",
+                        "year": 2026,
+                        "title": "DemoConf",
+                        "role": "Program Committee",
+                        "view_groups": ["reviewing"],
+                    },
+                    {
+                        "key": "2026-department-role",
+                        "year": 2026,
+                        "title": "Department Role",
+                        "view_groups": ["department"],
+                    },
+                    {
+                        "key": "2022-old-role",
+                        "year": 2022,
+                        "title": "Old Role",
+                        "view_groups": ["organizing"],
+                    },
+                ],
+            )
+
+            rendered = render_homepage_recent_service_list_djot(root, current_year=2026)
+            self.assertEqual(
+                rendered,
+                "- DemoConf 2026, Program Committee\n\n"
+                "- [Demo Summit Co-Organizer, 2024 - 2025](/service/#demo-series)\n",
             )
 
 

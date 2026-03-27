@@ -1,6 +1,6 @@
 # Service Redesign Slice 4: Homepage Recent Service
 
-Status: draft
+Status: implemented
 
 It builds on:
 
@@ -64,40 +64,77 @@ The homepage service consumer should now assume:
   `/service/` and the CV
 - if a selected run resolves to one unambiguous direct URL, link directly
 - if multiple distinct instance URLs matter, link to `/service/#<run.key>`
+- if a selected run has no URL at all, leave it unlinked
 - the trailing authored sentence should remain:
   `Please see my [service page](service/) for more.`
 
-## Policy Questions Still To Resolve
+## Latched Policy For Slice 4A
+
+The current best policy is now:
+
+- anchor to the current calendar year, not the latest canonical future year
+- use a trailing 3-year window over canonical runs
+- scope to everything except `department`:
+  - `organizing`
+  - `reviewing`
+  - `mentoring`
+- use no cap for now
+- keep the policy simple and parameterized so a later cap can be introduced if
+  future backfill makes the homepage too dense
+
+Why this is the current recommendation:
+
+- `organizing` only was appealing, but the actual current corpus shows that the
+  broader non-`department` scope only adds one additional reviewing run under
+  the current 3-year window:
+  - `ICFP 2026, Program Committee`
+- `department` still adds visibly different institutional/service material that
+  should not be mixed into the homepage block without a stronger later policy
+- run coalescing has already reduced density enough that the plain 3-year
+  window currently stays small without a cap
+
+This policy is intentionally simple first.
+
+If later backfill makes the block too dense, the expected first follow-ons are:
+
+- re-evaluate whether `organizing` should outrank or replace broader
+  `reviewing` / `mentoring`
+- introduce a cap only if the plain window stops reading well
+
+## Additional Content-Policy Decision
+
+The current `Dagstuhl Seminar 26022: EGRAPHS` service record should not drive
+homepage recent-service policy.
+
+The repo should instead treat that as a separate content cleanup:
+
+- remove the Dagstuhl entry from the service domain
+- preserve the information through the existing news item and any later more
+  appropriate CV/site category
+- do not let homepage service policy contort itself around one entry that is
+  better understood as research/community participation than service
+
+So slice 4 should proceed assuming the service domain will no longer claim that
+entry.
+
+## Narrow Remaining Questions
 
 The remaining slice-4 questions are now much narrower:
 
-1. Source scope
+1. Multi-URL internal links
 
-Should homepage recent service draw from:
+For runs like `FPTalks` and `PLDI Workshops`, the current preferred rule is:
 
-- `organizing` only
-- `organizing` plus selected `department` leadership
-- or another principled subset over canonical runs
+- link the homepage summary line to `/service/#<run.key>`
 
-2. Recency anchor rule
+This is now a positive design choice, not just a fallback compromise.
 
-Canonical service already contains future years.
-The homepage policy needs an explicit anchor rule in the presence of:
+2. Future density handling
 
-- `2026 - 2029 PLDI Steering Committee`
-- `2026 - 2029 PACMPL Advisory Board Member`
+The current policy intentionally has no cap.
 
-3. Cap / density
-
-Now that recurring yearly series are already coalesced, the homepage may need
-less policy machinery than it would have under the flat-term model.
-
-So slice 4 should explicitly test whether a plain:
-
-- window over canonical runs
-- plus a modest cap
-
-is already enough, before adding any `homepage_featured`-style stickiness.
+The slice should keep the implementation parameterized enough that a later cap
+can be added cleanly if broader backfill materially changes density.
 
 ## Updated Recommendation
 
@@ -109,6 +146,8 @@ should be:
 3. only add homepage-specific stickiness metadata if the simulations prove it
    necessary
 
+That simulation work is now effectively settled.
+
 So the default bias should now be:
 
 - simpler policy first
@@ -118,31 +157,32 @@ So the default bias should now be:
 
 ### Slice 4A. Policy Simulation / Latch
 
-Use the current canonical runs to compare a few plausible homepage policies.
+Implemented in planning.
 
-At minimum compare:
+The current latched direction is:
 
-- trailing-window only
-- trailing-window plus cap
-- trailing-window plus cap plus scoped stickiness
-
-Evaluate them against:
-
-- current canonical run population
-- future-facing runs already present in the data
-- the current manually curated homepage service block
-
-The goal is to latch one clear homepage policy before implementing the
-projection.
+- current-year anchor
+- trailing 3-year window
+- all service except `department`
+- no cap
+- direct link for unambiguous single-URL runs
+- internal `/service/#<run.key>` link for multi-URL runs
+- no link for no-URL runs
+- service-page link sentence retained beneath the section
 
 ### Slice 4B. Homepage Projection
 
-After the policy is latched:
+Implemented.
 
 - add the homepage placeholder
 - render the selected canonical runs
-- use the direct-URL vs `/service/#<run.key>` rule already proven in slice 3
+- use the direct-URL vs `/service/#<run.key>` rule now chosen for homepage
+  service
+- leave no-URL runs unlinked
 - keep the trailing service-page sentence authored
+- remove the current literal repeated list
+- add tests proving the chosen non-`department` window policy over canonical
+  runs
 
 ## Why This Is Better Than The Earlier Trajectory
 

@@ -36,6 +36,7 @@ from scripts.sitebuild.page_projection import (
     CV_STUDENTS_POSTDOC_LIST_PLACEHOLDER,
     CV_STUDENTS_VISITING_LIST_PLACEHOLDER,
     HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER,
+    HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER,
     HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER,
     SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     SERVICE_MENTORING_LIST_PLACEHOLDER,
@@ -1119,6 +1120,38 @@ class PageProjectionTests(unittest.TestCase):
             body,
         )
 
+    def test_applies_projection_only_to_homepage_recent_service_section(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Home\n\n"
+            "## Recent Service / Leadership\n\n"
+            "__HOMEPAGE_RECENT_SERVICE_LIST__\n\n"
+            "Please see my [service page](service/) for more.\n"
+        )
+        rendered = apply_page_projections(
+            "ordinary_page",
+            "index",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER, rendered)
+        self.assertIn("- ICFP 2026, Program Committee", rendered)
+        self.assertIn("- [FPTalks Co-Organizer, 2020 - 2025](/service/#fptalks)", rendered)
+        self.assertIn("Please see my [service page](service/) for more.", rendered)
+        self.assertNotIn("Dagstuhl Seminar 26022: EGRAPHS", rendered)
+
+        self.assertEqual(
+            apply_page_projections(
+                "ordinary_page",
+                "about",
+                body,
+                root=root,
+                data_dir=root / "site" / "data",
+            ),
+            body,
+        )
+
     def test_applies_homepage_news_current_students_and_recent_teaching_together(self) -> None:
         root = Path(__file__).resolve().parents[1]
         body = (
@@ -1147,6 +1180,41 @@ class PageProjectionTests(unittest.TestCase):
         self.assertIn(": February 2026", rendered)
         self.assertIn("- [Haobin Ni][], Postdoctoral Scholar", rendered)
         self.assertIn("2024 Summer, Marktoberdorf Summer School: Analysis and Optimizations with Equality Saturation", rendered)
+
+    def test_applies_homepage_news_students_teaching_and_service_together(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        body = (
+            "# Home\n\n"
+            "## News\n\n"
+            "__HOMEPAGE_NEWS_MONTH_GROUPS__\n\n"
+            "Please see [past news](news/) for more.\n\n"
+            "## Current Students\n\n"
+            "{.columns .columns-16rem}\n"
+            "__HOMEPAGE_CURRENT_STUDENTS_LIST__\n\n"
+            "Please see my [students page](students/) for more.\n\n"
+            "## Recent Teaching\n\n"
+            "__HOMEPAGE_RECENT_TEACHING_LIST__\n\n"
+            "Please see my [teaching page](teaching/) for more.\n\n"
+            "## Recent Service / Leadership\n\n"
+            "__HOMEPAGE_RECENT_SERVICE_LIST__\n\n"
+            "Please see my [service page](service/) for more.\n"
+        )
+        rendered = apply_page_projections(
+            "ordinary_page",
+            "index",
+            body,
+            root=root,
+            data_dir=root / "site" / "data",
+        )
+        self.assertNotIn(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertNotIn(HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER, rendered)
+        self.assertNotIn(HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER, rendered)
+        self.assertIn(": February 2026", rendered)
+        self.assertIn("- [Haobin Ni][], Postdoctoral Scholar", rendered)
+        self.assertIn("2024 Summer, Marktoberdorf Summer School: Analysis and Optimizations with Equality Saturation", rendered)
+        self.assertIn("- ICFP 2026, Program Committee", rendered)
+        self.assertIn("- [FPTalks Co-Organizer, 2020 - 2025](/service/#fptalks)", rendered)
 
     def test_homepage_news_overflow_prefers_featured_older_items(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

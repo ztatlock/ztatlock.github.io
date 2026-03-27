@@ -25,7 +25,7 @@ class ServiceRecordTests(unittest.TestCase):
         records = load_service_records(ROOT)
         by_key = {record.key: record for record in records}
 
-        self.assertEqual(len(records), 117)
+        self.assertEqual(len(records), 116)
         self.assertEqual(
             by_key["2025-pldi-program-committee-chair"].view_groups,
             ("reviewing", "organizing"),
@@ -39,10 +39,7 @@ class ServiceRecordTests(unittest.TestCase):
             "https://fpbench.org/talks/fptalks24.html",
         )
         self.assertIn("2022-egraphs-community-advisory-board", by_key)
-        self.assertEqual(
-            by_key["2026-dagstuhl-seminar-26022-egraphs"].details[0],
-            "[Seminar Details](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26022)",
-        )
+        self.assertNotIn("2026-dagstuhl-seminar-26022-egraphs", by_key)
         self.assertTrue(by_key["2026-egraphs-community-advisory-board"].ongoing)
         self.assertTrue(by_key["2026-uw-faculty-skit"].ongoing)
 

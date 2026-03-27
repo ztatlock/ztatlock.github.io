@@ -1,8 +1,8 @@
 # Service Campaign
 
-Status: public-page core and CV service projection implemented; A4 canonical
-data migration and current-consumer cutover are now implemented; homepage
-recent-service planning is next; later broader cleanup remains deferred
+Status: public-page core, CV service projection, A4 canonical migration,
+current-consumer cutover, and homepage recent-service projection are now
+implemented; later broader cleanup remains deferred
 
 ## Goal
 
@@ -85,8 +85,15 @@ Important characteristics:
 
 - this view is not just “all recent service”
 - it is a curated subset spanning multiple categories
-- it should eventually derive from the same canonical service terms, but that
-  consumer cleanup does not need to be part of the near-term service campaign
+- it now derives from the same canonical service terms, with the implemented
+  slice-4 policy:
+  - current-year anchor
+  - trailing 3-year window
+  - all service except `department`
+  - no cap for now
+  - direct links for unambiguous runs
+  - `/service/#<run.key>` links for multi-URL runs
+  - no link for no-URL runs
 
 ### Important Audit Constraint
 

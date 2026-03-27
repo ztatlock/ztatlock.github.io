@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from pathlib import Path
 
 from scripts.service_record_a4 import (
@@ -23,6 +24,9 @@ SERVICE_SECTION_PLACEHOLDERS = {
     "department": SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
 }
 CV_SERVICE_HREF_PREFIX = "/service/#"
+HOMEPAGE_RECENT_SERVICE_GROUPS = frozenset({"organizing", "reviewing", "mentoring"})
+HOMEPAGE_RECENT_SERVICE_WINDOW_YEARS = 3
+HOMEPAGE_RECENT_SERVICE_CAP: int | None = None
 
 
 class ServiceIndexError(ValueError):
@@ -86,6 +90,13 @@ def _resolved_single_url(run: ServiceRunA4) -> str | None:
     return None
 
 
+def _latest_run_year_not_later_than(run: ServiceRunA4, current_year: int) -> int | None:
+    years = [instance.year for instance in run.instances if instance.year <= current_year]
+    if not years:
+        return None
+    return max(years)
+
+
 def _summary_details(run: ServiceRunA4) -> tuple[str, ...]:
     if run.details:
         return run.details
@@ -121,6 +132,38 @@ def _service_runs_for_view(
             ),
         )
     )
+
+
+def _homepage_recent_service_runs(
+    registry: ServiceRegistryA4,
+    *,
+    current_year: int,
+) -> tuple[ServiceRunA4, ...]:
+    earliest_year = current_year - (HOMEPAGE_RECENT_SERVICE_WINDOW_YEARS - 1)
+    order_by_key = {run.key: index for index, run in enumerate(registry.runs)}
+    selected: list[tuple[int, ServiceRunA4]] = []
+    for run in registry.runs:
+        if not HOMEPAGE_RECENT_SERVICE_GROUPS.intersection(run.view_groups):
+            continue
+        years = {instance.year for instance in run.instances if instance.year <= current_year}
+        if not years:
+            continue
+        if not any(earliest_year <= year <= current_year for year in years):
+            continue
+        selected.append((max(years), run))
+
+    selected.sort(
+        key=lambda item: (
+            -item[0],
+            item[1].title,
+            item[1].role or "",
+            order_by_key[item[1].key],
+        )
+    )
+    runs = tuple(run for _, run in selected)
+    if HOMEPAGE_RECENT_SERVICE_CAP is None:
+        return runs
+    return runs[:HOMEPAGE_RECENT_SERVICE_CAP]
 
 
 def _anchor_prefix(run: ServiceRunA4, *, group_key: str) -> str:
@@ -196,7 +239,7 @@ def render_public_service_section_list_djot(
     return rendered + ("\n" if rendered else "")
 
 
-def _cv_summary_href(run: ServiceRunA4) -> str | None:
+def _summary_href(run: ServiceRunA4) -> str | None:
     direct = _resolved_single_url(run)
     if direct:
         return direct
@@ -211,7 +254,7 @@ def _render_cv_service_entry_djot(
     group_key: str,
 ) -> str:
     label = _format_run_summary_label(run)
-    line = f"- {_render_optional_link(label, _cv_summary_href(run))}"
+    line = f"- {_render_optional_link(label, _summary_href(run))}"
     if group_key == "department" and run.key == "uw-faculty-skit":
         return ""
     summary_details = _summary_details(run)
@@ -233,6 +276,23 @@ def render_cv_service_section_list_djot(
         rendered
         for run in runs
         if (rendered := _render_cv_service_entry_djot(run, group_key=group_key))
+    ]
+    rendered = "\n\n".join(chunks)
+    return rendered + ("\n" if rendered else "")
+
+
+def render_homepage_recent_service_list_djot(
+    root: Path,
+    *,
+    service_path: Path | None = None,
+    current_year: int | None = None,
+) -> str:
+    registry = _load_service_registry(root, service_path=service_path)
+    anchor_year = current_year if current_year is not None else date.today().year
+    runs = _homepage_recent_service_runs(registry, current_year=anchor_year)
+    chunks = [
+        f"- {_render_optional_link(_format_run_summary_label(run), _summary_href(run))}"
+        for run in runs
     ]
     rendered = "\n\n".join(chunks)
     return rendered + ("\n" if rendered else "")

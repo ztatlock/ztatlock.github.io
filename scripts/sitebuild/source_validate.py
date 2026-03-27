@@ -72,6 +72,7 @@ from .people_registry import PeopleRegistryError, load_people_registry
 from .page_projection import (
     CV_FUNDING_LIST_PLACEHOLDER,
     HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER,
+    HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER,
     HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_MAIN_LIST_PLACEHOLDER,
     CV_PUBLICATIONS_WORKSHOP_LIST_PLACEHOLDER,
@@ -125,6 +126,7 @@ LITERAL_HOMEPAGE_RECENT_TEACHING_ENTRY_RE = re.compile(
     r"^- (?:\[\d{4} (?:Autumn|Summer|Spring|Winter), [^\]]+\]\([^)]+\)|\d{4} (?:Autumn|Summer|Spring|Winter), .+)$",
     re.MULTILINE,
 )
+LITERAL_HOMEPAGE_RECENT_SERVICE_ENTRY_RE = re.compile(r"^- ", re.MULTILINE)
 PEOPLE_REF_RE = re.compile(r"(?<!!)\[([^\[\]]+)\]\[([^\[\]]*)\]")
 ROOT_STATIC_SOURCE_NAMES = (
     "CNAME",
@@ -873,6 +875,29 @@ def _find_homepage_recent_teaching_projection_issues(config: SiteConfig) -> list
     return issues
 
 
+def _find_homepage_recent_service_projection_issues(config: SiteConfig) -> list[str]:
+    index_path = config.page_source_dir / "index.dj"
+    service_path = config.data_dir / SERVICE_DATA_NAME
+    if not index_path.exists() or not service_path.exists():
+        return []
+
+    text = index_path.read_text(encoding="utf-8")
+    service_section = _extract_markdown_section_body(text, "Recent Service / Leadership", level=2)
+    if service_section is None:
+        return []
+
+    issues: list[str] = []
+    if HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER not in service_section:
+        issues.append(
+            f"{index_path}: homepage recent service section must contain {HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER}"
+        )
+    if LITERAL_HOMEPAGE_RECENT_SERVICE_ENTRY_RE.search(service_section):
+        issues.append(
+            f"{index_path}: homepage recent service section must not contain literal repeated service entry blocks"
+        )
+    return issues
+
+
 def _find_cv_funding_projection_issues(config: SiteConfig) -> list[str]:
     index_path = cv_index_path(config.repo_root, cv_dir=config.cv_dir)
     funding_path = config.data_dir / FUNDING_DATA_NAME
@@ -1190,6 +1215,7 @@ def find_source_issues(config: SiteConfig) -> list[str]:
         + _find_homepage_news_projection_issues(config)
         + _find_homepage_current_students_projection_issues(config)
         + _find_homepage_recent_teaching_projection_issues(config)
+        + _find_homepage_recent_service_projection_issues(config)
         + _find_funding_data_issues(config)
         + _find_cv_funding_projection_issues(config)
         + _find_funding_projection_issues(config)
