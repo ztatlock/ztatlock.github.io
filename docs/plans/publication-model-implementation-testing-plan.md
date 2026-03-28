@@ -1,6 +1,6 @@
 # Publication Model Implementation / Testing / Migration Plan
 
-Status: slices 1-3 implemented; slice 4 pending
+Status: slices 1-4 implemented
 
 It builds on:
 
@@ -85,11 +85,11 @@ forcing the authored JSON to mirror that full grouping directly.
 Implement the Proposal A schema and validation rules in code before touching
 the real publication corpus.
 
-This foundation slice is now implemented in side-by-side code and focused
-tests:
+This foundation slice was implemented first on focused fixtures and is now
+fully folded into the live publication loader and tests:
 
-- [publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record_a.py)
-- [test_publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record_a.py)
+- [publication_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record.py)
+- [test_publication_record.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record.py)
 
 Scope:
 
@@ -277,6 +277,8 @@ Invariant after slice 3:
 - no long-lived compatibility bridge survives the cutover
 
 ### Slice 4. Post-Cutover Cleanup And Follow-On Enrichment
+
+This slice is now implemented.
 
 After the main cutover, clean up the remaining narrow seams without reopening
 the model.

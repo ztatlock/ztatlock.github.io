@@ -84,10 +84,11 @@ That implementation/testing/migration plan is now drafted here:
 
 - [publication-model-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-implementation-testing-plan.md)
 
-Its slice-1 loader/validator foundation is also now implemented side by side:
+Its slice-1 loader/validator foundation is now part of the live publication
+module and focused tests:
 
-- [publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record_a.py)
-- [test_publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record_a.py)
+- [publication_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record.py)
+- [test_publication_record.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record.py)
 
 Its slice-2 corpus migration decisions are also now explicit and checked in:
 
@@ -103,11 +104,17 @@ That coordinated slice-3 cutover is now implemented:
 - slug-year display semantics are retired from live publication consumers
 - no publication compatibility bridge was kept
 
+That slice-4 cleanup is now also implemented:
+
+- the remaining side-by-side Proposal A scaffolding has been retired
+- the live publication loader now owns the Proposal A schema directly
+- the focused publication-record tests now live only in the main test suite
+- new publication authoring paths already start from the settled schema
+
 So the next likely work is now:
 
-- execute slice 4 of that plan: post-cutover cleanup and narrower follow-on
-  enrichment, then revisit downstream curated consumers such as the top-of-CV
-  highlights block deliberately rather than by inertia
+- revisit downstream curated consumers such as the top-of-CV highlights block
+  deliberately rather than by inertia
 
 Supporting review notes from this completed design pass:
 
@@ -456,7 +463,7 @@ The main architectural goals of this campaign are now in place:
 
 The next publication-specific work should likely be one of:
 
-- local artifact enrichment for minimal `detail_page: false` bundles
+- local artifact enrichment for minimal `local_page: false` bundles
 - targeted publication-driven reuse in later consumers once it clearly earns
   its keep
 

@@ -93,9 +93,9 @@ Current wrapper/consumer state:
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
 - the next step should be chosen deliberately rather than broadened
-  automatically, and the authored top-of-CV highlights review should now wait
-  until the publication slice-4 cleanup settles the current publication
-  boundary and compact-publication semantics
+  automatically, and the authored top-of-CV highlights review is now ready
+  for deliberate reconsideration because the publication slice-4 cleanup has
+  settled the current publication boundary and compact-publication semantics
 
 That means the wrapper shape is now settled and the remaining CV work is more
 curated consumer-side cleanup rather than another obviously large repeated

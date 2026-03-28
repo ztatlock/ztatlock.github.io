@@ -63,8 +63,8 @@ notes.
 - [x] Implement slice 1 of the Proposal A publication-model plan as a
   side-by-side loader/validator foundation with focused fixture tests, while
   leaving the live publication corpus and consumers unchanged
-  (`scripts/publication_record_a.py`,
-  `tests/test_publication_record_a.py`,
+  (`scripts/publication_record.py`,
+  `tests/test_publication_record.py`,
   `docs/plans/publication-model-implementation-testing-plan.md`).
 - [x] Execute slice 2 of the Proposal A publication-model plan by making the
   real corpus migration decisions explicit for indexed publication bundles:
@@ -85,20 +85,19 @@ notes.
   `scripts/publication_record.py`, `scripts/publication_index.py`,
   `scripts/sitebuild/page_projection.py`, `scripts/build_pub_inventory.py`,
   `site/pubs/`).
-- [ ] Execute slice 4 of the Proposal A publication-model plan: do the
+- [x] Execute slice 4 of the Proposal A publication-model plan: do the
   post-cutover cleanup and narrower follow-on enrichment now that the live
   corpus and consumers use Proposal A directly, including retiring remaining
   side-by-side scaffolding if it no longer earns its keep and tightening
   template/scaffold/default authoring paths around the settled schema
   (`docs/plans/publication-model-implementation-testing-plan.md`,
   `docs/plans/publications-campaign.md`, `scripts/publication_record.py`,
-  `scripts/publication_record_a.py`, `tests/test_publication_record.py`,
-  `tests/test_publication_record_a.py`, `site/templates/publication.json`).
-- [ ] Revisit the top-of-CV `Selected Recent Highlights` block only after the
-  publication slice-4 cleanup settles the current publication boundary and
-  compact rendering semantics, so the remaining authored highlights structure
-  can be reviewed deliberately rather than by inertia (`site/cv/index.dj`,
-  `docs/plans/cv-campaign.md`,
+  `tests/test_publication_record.py`, `site/templates/publication.json`).
+- [ ] Revisit the top-of-CV `Selected Recent Highlights` block now that the
+  publication slice-4 cleanup has settled the current publication boundary
+  and compact rendering semantics, so the remaining authored highlights
+  structure can be reviewed deliberately rather than by inertia
+  (`site/cv/index.dj`, `docs/plans/cv-campaign.md`,
   `docs/plans/homepage-cv-curated-consumers-campaign.md`).
 
 ## Migrated Backlog From TODO.md
