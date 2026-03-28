@@ -1,0 +1,92 @@
+# CV Top Summary Slice 4 Rewrite
+
+Status: implemented rewrite checkpoint
+
+It builds on:
+
+- [cv-top-summary-executive-block-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-executive-block-plan.md)
+- [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
+- [cv-top-summary-slice-3-shape-proposals.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-3-shape-proposals.md)
+- [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
+
+## Goal
+
+Rewrite the live top of the CV around the now-leading
+narrative-plus-small-stat-row-plus-mixed-signals shape.
+
+## What Changed
+
+The top of
+[site/cv/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/cv/index.dj)
+now uses:
+
+- the heading `Overview`
+- one compact narrative paragraph
+- one sentence-level summary-stat cluster
+- one flat mixed bullet list of recent/editorial signals
+
+The rewrite deliberately removed:
+
+- the explicit year range in the heading
+- `Leadership`, `Community Participation`, `Invited Talks`, and
+  `Selected Publications` as standing subheadings
+- the implied claim that the talk/publication bullets were meaningfully
+  "selected" rather than mostly complete recent windows
+
+## What Was Preserved
+
+The rewrite preserved the important spirit of the old block:
+
+- strong current leadership/community signals
+- room for Dagstuhl-like participation
+- a recent invited talk
+- a recent strong paper
+- a sense of current momentum near the top of the CV
+
+## Why This Shape Won
+
+This rewrite follows Proposal A from
+[cv-top-summary-slice-3-shape-proposals.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-3-shape-proposals.md).
+
+It won because it:
+
+- reads more like an executive summary than the old mixed mini-dump
+- stays clearly authored
+- uses a few honest scale signals without becoming a dashboard
+- is more distinct from the homepage top summary than a prose-only approach
+- avoids fake domain completeness
+
+## Stats Chosen
+
+The live rewrite uses these audited summary statistics:
+
+- `8` current students and postdocs
+- `12` graduated PhD students
+- `69` indexed publications
+- `4` distinguished or spotlight papers
+
+These were chosen because they are the strongest currently available scale and
+distinction signals across the canonical domains.
+
+The rewrite intentionally does **not** use:
+
+- teaching counts
+- service counts
+- funding totals
+- raw news counts
+
+Those remain better as authored signals than as headline statistics.
+
+## Follow-On
+
+The next step is not more top-of-CV redesign.
+It is slice 5:
+
+- compare the new CV top with the homepage top summary
+- decide whether the homepage summary should stay as-is or be lightly retuned
+
+One later note remains open:
+
+- a future teaching-enrichment slice with enrollment numbers may eventually
+  provide stronger teaching-related summary statistics
+- that should only cause a small later refinement if it clearly earns its keep

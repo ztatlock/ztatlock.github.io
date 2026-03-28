@@ -125,7 +125,7 @@ notes.
   `docs/plans/cv-top-summary-slice-2-audit.md`,
   `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
   `site/pages/index.dj`).
-- [ ] Execute slice 4 of the top-of-CV executive-summary plan: rewrite the
+- [x] Execute slice 4 of the top-of-CV executive-summary plan: rewrite the
   live top of `site/cv/index.dj` around the now-leading
   narrative-plus-small-stat-row-plus-mixed-signals shape, while keeping the
   result fully authored and reviewing its relationship to the homepage top
@@ -133,6 +133,16 @@ notes.
   (`docs/plans/cv-top-summary-executive-block-plan.md`,
   `docs/plans/cv-top-summary-slice-2-audit.md`,
   `docs/plans/cv-top-summary-slice-3-shape-proposals.md`,
+  `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
+  `site/pages/index.dj`).
+- [ ] Execute slice 5 of the top-of-CV executive-summary plan: reassess the
+  authored homepage top summary against the new CV `Overview` block and decide
+  whether the homepage prose should stay as-is or be lightly retuned in tone,
+  emphasis, or summary framing
+  (`docs/plans/cv-top-summary-executive-block-plan.md`,
+  `docs/plans/cv-top-summary-slice-2-audit.md`,
+  `docs/plans/cv-top-summary-slice-3-shape-proposals.md`,
+  `docs/plans/cv-top-summary-slice-4-rewrite.md`,
   `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
   `site/pages/index.dj`).
 - [ ] After the top-of-CV executive-summary campaign settles, review peer CVs

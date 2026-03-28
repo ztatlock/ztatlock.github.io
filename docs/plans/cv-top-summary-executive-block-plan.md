@@ -1,6 +1,6 @@
 # CV Top Summary / Executive Block Plan
 
-Status: plan latched; slices 1-3 implemented; slice 4 rewrite next
+Status: plan latched; slices 1-4 implemented; slice 5 homepage reassessment next
 
 It builds on:
 
@@ -358,6 +358,14 @@ Invariant after slice 4:
 - the top of the CV clearly reads as an executive summary layer
 - the remaining detailed CV below remains the canonical full record
 
+Implemented outputs:
+
+- [cv-top-summary-slice-4-rewrite.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-4-rewrite.md)
+- the live rewrite in [site/cv/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/cv/index.dj)
+- updates to [cv-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-campaign.md),
+  [homepage-cv-curated-consumers-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/homepage-cv-curated-consumers-campaign.md),
+  and [ROADMAP.md](/Users/ztatlock/www/ztatlock.github.io/ROADMAP.md)
+
 ### Slice 5. Homepage Top-Summary Reassessment
 
 After the CV top summary is redesigned, reassess the authored summary at the
@@ -399,18 +407,17 @@ Invariant after slice 6:
 
 ## Current Recommendation
 
-The current best next step is slice 4, a live but still fully authored CV
-rewrite.
+The current best next step is slice 5: reassess the homepage top summary in
+light of the new CV top.
 
 Why:
 
-- the block's purpose and maintenance contract are now explicit
-- the summary-source audit is done
-- the repo now has a leading shape direction for the live rewrite
-- another proposal pass is less useful than testing that direction on the real
-  CV
+- the top-of-CV rewrite is now real
+- the remaining nearby question is coordination with the homepage top summary
+- the peer-CV inspiration pass should stay after this campaign rather than
+  interrupting the homepage reassessment
 
-Only after that should we rewrite the block itself.
+Only after that should the repo consider broader front-matter follow-ons.
 
 ## Expected Long-Term Outcome
 

@@ -2,7 +2,7 @@
 
 Status: route/wrapper cutover plus students, teaching, service, indexed
 publications, full invited-talks, and funding CV projection implemented;
-the top-of-CV executive-summary plan is now latched with slices 1-3
+the top-of-CV executive-summary plan is now latched with slices 1-4
 implemented; stop and reassess before broader curated CV consumers
 
 ## Goal
@@ -54,7 +54,7 @@ Current relevant source:
 
 Important current facts:
 
-- the current CV source is `213` lines
+- the current CV source is about `200` lines
 - it contains `30` major section/subsection headings
 - it is not one homogeneous repeated-data page
 - but it still contains curated repeated sections and authored cross-domain
@@ -67,15 +67,14 @@ Most important remaining duplicated factual domains:
 
 Other important cross-domain consumers already present near the top of the CV:
 
-- `Selected Recent Highlights`
-  especially the `Leadership` subsection, which overlaps service
+- `Overview`
+  now an authored executive-summary layer with:
+  - one narrative paragraph
+  - one small stat cluster
+  - one mixed recent/editorial signal list
   while non-service research/community-participation items such as Dagstuhl
-  attendance should remain authored there rather than being forced back into
+  attendance still remain authored there rather than being forced back into
   the service domain
-- `Invited Talks`
-  overlaps talks
-- `Selected Publications`
-  overlaps publications
 
 Current wrapper/consumer state:
 
@@ -199,6 +198,7 @@ Current planning note for the top-of-CV block:
 - [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
 - [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
 - [cv-top-summary-slice-3-shape-proposals.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-3-shape-proposals.md)
+- [cv-top-summary-slice-4-rewrite.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-4-rewrite.md)
 
 Likely later projection candidates:
 

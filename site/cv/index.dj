@@ -8,48 +8,28 @@ description: CV: education, employment, students, publications, service, etc.
 
 `https://ztatlock.net`
 
-## Selected Recent Highlights (2024-2026)
+## Overview
 
-### _Leadership_
+I am a Professor in the Paul G. Allen School of Computer Science &
+Engineering at the University of Washington. My research is rooted in formal
+methods, especially compilers, and has grown outward into program synthesis,
+equality saturation, and tools for making difficult software easier to build
+and trust. Across these areas, I work closely with students and aim to
+combine rigorous reasoning with real systems and real measurements.
 
-- 2026 - 2029 PLDI Steering Committee
-- 2026 - 2029 PACMPL Advisory Board Member
-- [2025 PLDI Program Committee Chair](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee) \
-  [Review Committee](https://pldi25.sigplan.org/committee/pldi-2025-papers-pldi-review-committee), [SIGPLAN Announcement](https://www.sigplan.org/announce/2024-09-21-pldi-2025/)
-- 2025 FPTalks Co-Organizer
+Current snapshot: **8** current students and postdocs; **12** graduated PhD
+students; **69** indexed publications; **4** distinguished or spotlight
+papers.
 
-### _Community Participation_
-
-- Participated in [Dagstuhl Seminar 26022: EGRAPHS](https://www.dagstuhl.de/26022) \
-  January 2026; [Seminar Details](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26022), [Dagstuhl News](https://www.dagstuhl.de/en/institute/news/2026/dagstuhl-egraphs-2026)
-
-### _Invited Talks_
-
-- [Everything is a compiler, try Equality Saturation!](https://events.brown.edu/computer-science/event/326439-bvc-seminar-zachary-tatlock-university-of) \
-  Brown University, PL and Graphics groups, February 2026
-
-- When You've Got EqSat, Everything Is a Compiler \
-  Cornell University, November 2024
-
-- Analysis and Optimizations with Equality Saturation \
-  Marktoberdorf Summer School, August 2024
-
-### _Selected Publications (2024-2025)_
-
-- *Target-Aware Implementation of Real Expressions* \
-  Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2025
-
-- *Application-level Validation of Accelerator Designs Using a Formal Software/Hardware Interface* \
-  ACM Transactions on Design Automation of Electronic Systems (TODAES) 2024
-
-- *Computational Illusion Knitting* \
-  ACM Transactions on Graphics (TOG) 2024
-
-- *FPGA Technology Mapping Using Sketch-Guided Program Synthesis* \
-  Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2024
-
-- *Magic Markup: Maintaining Document-External Markup with an LLM* \
-  The Art, Science, and Engineering of Programming (<Programming>) 2024
+- Serving on the PLDI Steering Committee and the PACMPL Advisory Board
+  (2026 - 2029).
+- Program Chair for [PLDI 2025](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee).
+- Recent invited talk: [Everything is a compiler, try Equality Saturation!](https://events.brown.edu/computer-science/event/326439-bvc-seminar-zachary-tatlock-university-of)
+  at Brown University, February 2026.
+- Recent paper: [*Target-Aware Implementation of Real Expressions*](pubs/2025-asplos-realexpr/)
+  (ASPLOS 2025).
+- Participated in [Dagstuhl Seminar 26022: EGRAPHS](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26022),
+  January 2026.
 
 ## Experience
 

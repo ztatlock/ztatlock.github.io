@@ -1,7 +1,7 @@
 # Homepage / CV Curated Consumers Campaign
 
 Status: slices 1-5 implemented; the remaining top-of-CV highlights work is now
-framed as a broader authored executive-summary question, with slices 1-3
+framed as a broader authored executive-summary question, with slices 1-4
 implemented
 
 It builds on:
@@ -74,17 +74,17 @@ Current relevant source:
 
 Relevant remaining authored cross-domain blocks:
 
-- `## Selected Recent Highlights (2024-2026)`
-  - `Leadership` with 5 bullets
-  - `Invited Talks` with 3 bullets
-  - `Selected Publications (2024-2025)` with 5 bullets
+- `## Overview`
+  - one narrative paragraph
+  - one small stat cluster
+  - one mixed recent/editorial signal list
 - `### _Book Chapters_`
   one authored bibliography entry outside the indexed publication-bundle
   boundary
 
 Current overlap assessment:
 
-- `Selected Recent Highlights`
+- `Overview`
   is a deliberately editorial cross-domain block rather than a simple repeated
   list from one source
 - `Book Chapters`
@@ -102,7 +102,7 @@ There is now one clear remaining category in scope:
 
 ### Remaining Clearly Editorial Surface
 
-- CV `## Selected Recent Highlights`
+- CV `## Overview`
 
 Why this still stays authored for now:
 
@@ -206,6 +206,7 @@ artifacts are:
 - [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
 - [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
 - [cv-top-summary-slice-3-shape-proposals.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-3-shape-proposals.md)
+- [cv-top-summary-slice-4-rewrite.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-4-rewrite.md)
 
 ### Slice 3. Service Data Audit
 
@@ -249,6 +250,7 @@ to implementation/migration planning.
 
 The next move is no longer another homepage factual consumer slice.
 
-The main remaining curated question in this campaign is now the authored
-top-of-CV executive-summary redesign and whether any tiny follow-on helpers
-there would actually improve clarity rather than over-automate it.
+The main remaining curated question in this campaign is now whether the
+homepage top summary should be lightly retuned after the implemented CV
+executive-summary rewrite, rather than whether the CV top should keep its old
+mixed highlights structure.

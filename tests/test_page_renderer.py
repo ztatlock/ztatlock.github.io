@@ -99,7 +99,7 @@ class PageRendererTests(unittest.TestCase):
         self.assertIn(f'<meta property="og:url" content="{canonical}">', html)
         self.assertNotIn("__CV_STUDENTS_CURRENT_LIST__", html)
         self.assertIn("Curriculum Vitae", html)
-        self.assertIn("Selected Recent Highlights", html)
+        self.assertIn("Overview", html)
         self.assertIn("Visiting Students and Interns", html)
         self.assertIn("Ian Briggs", html)
 
