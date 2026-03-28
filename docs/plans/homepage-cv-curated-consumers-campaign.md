@@ -1,8 +1,8 @@
 # Homepage / CV Curated Consumers Campaign
 
 Status: slices 1-5 implemented; the remaining top-of-CV highlights work is now
-framed as a broader authored executive-summary question, with slice-1
-purpose/guidance implemented
+framed as a broader authored executive-summary question, with slices 1-2
+implemented
 
 It builds on:
 
@@ -204,6 +204,7 @@ artifacts are:
 
 - [cv-top-summary-executive-block-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-executive-block-plan.md)
 - [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
+- [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
 
 ### Slice 3. Service Data Audit
 

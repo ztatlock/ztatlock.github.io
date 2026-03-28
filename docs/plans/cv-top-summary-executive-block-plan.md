@@ -1,6 +1,6 @@
 # CV Top Summary / Executive Block Plan
 
-Status: plan latched; slice 1 guidance implemented; slice 2 audit next
+Status: plan latched; slices 1-2 implemented; slice 3 proposals next
 
 It builds on:
 
@@ -303,6 +303,13 @@ Invariant after slice 2:
 - the repo knows which facts are available
 - the rewrite is informed by real canonical coverage, not guesswork
 
+Implemented outputs:
+
+- [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
+- updates to [cv-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-campaign.md),
+  [homepage-cv-curated-consumers-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/homepage-cv-curated-consumers-campaign.md),
+  and [ROADMAP.md](/Users/ztatlock/www/ztatlock.github.io/ROADMAP.md)
+
 ### Slice 3. Executive-Summary Shape Proposals
 
 Draft a few authored top-of-CV alternatives before editing the live CV.
@@ -385,15 +392,14 @@ Invariant after slice 6:
 
 ## Current Recommendation
 
-The current best next step is slice 2, not a live CV edit.
+The current best next step is slice 3, not a live CV edit.
 
 Why:
 
 - the block's purpose and maintenance contract are now explicit
-- the next useful input is a sober audit of trustworthy summary sources and
-  candidate summary statistics across canonical domains
-- the live CV rewrite should be informed by that audit rather than by taste
-  alone
+- the summary-source audit is now done
+- the next useful work is to compare a few concrete authored top-of-CV shapes
+  before editing the live CV
 
 Only after that should we rewrite the block itself.
 

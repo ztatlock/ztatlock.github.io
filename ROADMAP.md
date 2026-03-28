@@ -108,15 +108,23 @@ notes.
   `docs/plans/cv-campaign.md`,
   `docs/plans/homepage-cv-curated-consumers-campaign.md`,
   `docs/policy/cv-top-summary.md`).
-- [ ] Execute slice 2 of the top-of-CV executive-summary plan: audit
+- [x] Execute slice 2 of the top-of-CV executive-summary plan: audit
   trustworthy summary inputs and candidate summary statistics across canonical
   domains, then compare them against the authored homepage top summary before
   proposing concrete top-of-CV rewrite shapes
   (`docs/plans/cv-top-summary-executive-block-plan.md`,
-  `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
+  `docs/policy/cv-top-summary.md`,
+  `docs/plans/cv-top-summary-slice-2-audit.md`, `site/cv/index.dj`,
   `site/pages/index.dj`, `site/data/news.json`, `site/data/students.json`,
   `site/data/teaching.json`, `site/data/service.json`,
   `site/data/funding.json`, `site/talks/`, `site/pubs/`).
+- [ ] Execute slice 3 of the top-of-CV executive-summary plan: draft and
+  compare a few authored top-of-CV shapes over the now-audited inputs, then
+  choose a leading direction before editing the live CV
+  (`docs/plans/cv-top-summary-executive-block-plan.md`,
+  `docs/plans/cv-top-summary-slice-2-audit.md`,
+  `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
+  `site/pages/index.dj`).
 - [ ] After the top-of-CV executive-summary campaign settles, review peer CVs
   from Adam Chlipala, Xavier Leroy, Nate Foster, Emina Torlak, Pavel
   Panchekha, Michael Ernst, and Derek Dreyer for structure inspiration and
