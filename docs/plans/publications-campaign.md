@@ -68,16 +68,29 @@ That means:
 - the `Book Chapters` subsection in the CV remains hand-authored by explicit
   policy
 
-The next likely work in this campaign is no longer collection-route cleanup.
-It is a publication-model seam/design review pass before broader backfill or
-further downstream reuse:
+The next likely work in this campaign is no longer the seam/design review
+itself.
+That review is now done, and the leading direction is:
+
+- [publication-model-proposal-a-conservative-refinement.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-proposal-a-conservative-refinement.md)
+
+Important framing:
+
+- Proposal A is mainly the leading **authored schema** direction
+- it still allows richer normalized in-memory publication objects after parse
+  if that makes consumer or tooling code cleaner
+
+So the next likely work is now:
+
+- plan the implementation/testing/migration path for Proposal A before broader
+  backfill or further downstream reuse
+
+Supporting review notes from this completed design pass:
 
 - [publication-model-seams-and-requirements.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-seams-and-requirements.md)
 - [publication-model-audit-notes.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-audit-notes.md)
-
-That review should sharpen field semantics such as venue display, identifiers,
-bundle readiness, and publication-boundary questions before the repo invests in
-many more bundle backfills.
+- [publication-model-requirements.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-requirements.md)
+- [publication-model-corpus-refinement-pass.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-corpus-refinement-pass.md)
 
 ## Current Audit
 

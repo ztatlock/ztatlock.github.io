@@ -38,19 +38,32 @@ notes.
   ordering, and low-link policy (`docs/plans/publications-campaign.md`,
   `docs/plans/structured-content-roadmap.md`, `site/pubs/`,
   `site/pages/index.dj`).
-- [ ] Do a publication-model seam audit and design review pass before large
+- [x] Do a publication-model seam audit and design review pass before large
   further publication backfill so field semantics, compact-consumer needs,
   identifier handling, and publication-boundary questions are improved on the
-  canonical bundle model before dozens more bundles need the same migration
+  canonical bundle model before dozens more bundles need the same migration;
+  Proposal A is now the leading authored-schema direction, while still
+  allowing richer normalized in-memory publication objects after parse
   (`docs/plans/publication-model-seams-and-requirements.md`,
   `docs/plans/publication-model-audit-notes.md`,
+  `docs/plans/publication-model-requirements.md`,
+  `docs/plans/publication-model-proposal-a-conservative-refinement.md`,
+  `docs/plans/publication-model-corpus-refinement-pass.md`,
   `docs/plans/publications-campaign.md`, `site/pubs/`,
   `scripts/publication_record.py`).
+- [ ] Plan the publication-model implementation/testing/migration path around
+  the now-leading Proposal A direction before large further publication
+  backfill, so canonical year, compact venue labels, `pub_type`,
+  `local_page`, and identifier handling can land deliberately rather than via
+  ad hoc bundle cleanup (`docs/plans/publication-model-proposal-a-conservative-refinement.md`,
+  `docs/plans/publications-campaign.md`, `site/pubs/`,
+  `scripts/publication_record.py`, `scripts/publication_index.py`,
+  `scripts/sitebuild/page_projection.py`).
 - [ ] Revisit the top-of-CV `Selected Recent Highlights` block only after the
-  publication-model review settles the current publication boundary and compact
-  rendering semantics, so the remaining authored highlights structure can be
-  reviewed deliberately rather than by inertia (`site/cv/index.dj`,
-  `docs/plans/cv-campaign.md`,
+  publication-model direction and its implementation/migration plan settle the
+  current publication boundary and compact rendering semantics, so the
+  remaining authored highlights structure can be reviewed deliberately rather
+  than by inertia (`site/cv/index.dj`, `docs/plans/cv-campaign.md`,
   `docs/plans/homepage-cv-curated-consumers-campaign.md`).
 
 ## Migrated Backlog From TODO.md
