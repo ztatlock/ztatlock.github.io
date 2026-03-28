@@ -80,10 +80,14 @@ Important framing:
 - it still allows richer normalized in-memory publication objects after parse
   if that makes consumer or tooling code cleaner
 
+That implementation/testing/migration plan is now drafted here:
+
+- [publication-model-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-implementation-testing-plan.md)
+
 So the next likely work is now:
 
-- plan the implementation/testing/migration path for Proposal A before broader
-  backfill or further downstream reuse
+- execute slice 1 of that plan: Proposal A loader/validator foundation and
+  focused fixture tests before broader backfill or live consumer cutover
 
 Supporting review notes from this completed design pass:
 

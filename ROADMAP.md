@@ -51,11 +51,12 @@ notes.
   `docs/plans/publication-model-corpus-refinement-pass.md`,
   `docs/plans/publications-campaign.md`, `site/pubs/`,
   `scripts/publication_record.py`).
-- [ ] Plan the publication-model implementation/testing/migration path around
+- [x] Plan the publication-model implementation/testing/migration path around
   the now-leading Proposal A direction before large further publication
   backfill, so canonical year, compact venue labels, `pub_type`,
   `local_page`, and identifier handling can land deliberately rather than via
   ad hoc bundle cleanup (`docs/plans/publication-model-proposal-a-conservative-refinement.md`,
+  `docs/plans/publication-model-implementation-testing-plan.md`,
   `docs/plans/publications-campaign.md`, `site/pubs/`,
   `scripts/publication_record.py`, `scripts/publication_index.py`,
   `scripts/sitebuild/page_projection.py`).
