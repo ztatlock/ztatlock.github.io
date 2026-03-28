@@ -60,6 +60,11 @@ meant to be read, maintained, and extended over time.
   Hybrid retrospective and reusable playbook distilled from the service
   redesign saga, including what made that deep design process successful and
   how to repeat it more deliberately for future domains.
+- `lessons/publication-model-redesign-retrospective-and-playbook.md`
+  Parallel retrospective and reusable playbook distilled from the publication
+  model redesign saga, emphasizing requirements-first design, corpus-backed
+  refinement, and the distinction between authored JSON and richer rehydrated
+  in-memory models.
 - `policy/publication-artifacts.md`
   Publication storage and linking policy.
 - `policy/root-layout.md`
