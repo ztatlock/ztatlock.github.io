@@ -1,18 +1,46 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2023,
   "pub_date": "2023-06-06",
   "title": "Better Together: Unifying Datalog and Equality Saturation",
   "authors": [
-    { "name": "Yihong Zhang", "ref": "Yihong Zhang" },
-    { "name": "Yisu Remy Wang", "ref": "Remy Wang" },
-    { "name": "Oliver Flatt", "ref": "Oliver Flatt" },
-    { "name": "David Cao", "ref": "David Cao" },
-    { "name": "Philip Zucker", "ref": "Philip Zucker" },
-    { "name": "Eli Rosenthal", "ref": "Eli Rosenthal" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Max Willsey", "ref": "Max Willsey" }
+    {
+      "name": "Yihong Zhang",
+      "ref": "Yihong Zhang"
+    },
+    {
+      "name": "Yisu Remy Wang",
+      "ref": "Remy Wang"
+    },
+    {
+      "name": "Oliver Flatt",
+      "ref": "Oliver Flatt"
+    },
+    {
+      "name": "David Cao",
+      "ref": "David Cao"
+    },
+    {
+      "name": "Philip Zucker",
+      "ref": "Philip Zucker"
+    },
+    {
+      "name": "Eli Rosenthal",
+      "ref": "Eli Rosenthal"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Max Willsey",
+      "ref": "Max Willsey"
+    }
   ],
-  "venue": "Programming Language Design and Implementation (PLDI)",
+  "venue": "Programming Language Design and Implementation",
+  "venue_short": "PLDI",
   "description": "The new egglog fixpoint reasoning system fully combines Datalog and Equality Saturation to provide composable analyses and enable incremental term rewriting.",
   "links": {
     "project": "https://egraphs-good.github.io/",

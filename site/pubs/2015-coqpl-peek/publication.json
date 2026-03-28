@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "workshop",
+  "pub_type": "workshop",
+  "pub_year": 2015,
   "pub_date": "2015-01-18",
   "primary_link": "event",
   "title": "Peek: A Formally Verified Peephole Optimization Framework for x86",
@@ -15,7 +17,8 @@
       "name": "Dan Grossman"
     }
   ],
-  "venue": "Workshop on Coq for Programming Languages (CoqPL)",
+  "venue": "Workshop on Coq for Programming Languages",
+  "venue_short": "CoqPL",
   "links": {
     "event": "https://coqpl.cs.washington.edu/program/"
   }

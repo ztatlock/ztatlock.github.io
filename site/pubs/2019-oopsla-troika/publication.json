@@ -1,16 +1,29 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2019,
   "pub_date": "2019-10-10",
   "primary_link": "publisher",
   "title": "Modular Verification of Web Page Layout",
   "authors": [
-    { "name": "Pavel Panchekha" },
-    { "name": "Michael D. Ernst", "ref": "Mike Ernst" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Shoaib Kamil" }
+    {
+      "name": "Pavel Panchekha"
+    },
+    {
+      "name": "Michael D. Ernst",
+      "ref": "Mike Ernst"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Shoaib Kamil"
+    }
   ],
-  "venue": "Object-Oriented Programming, Systems, Languages & Applications (OOPSLA)",
+  "venue": "Object-Oriented Programming, Systems, Languages & Applications",
+  "venue_short": "OOPSLA",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3360577"
   }

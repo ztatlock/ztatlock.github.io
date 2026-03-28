@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2018,
   "pub_date": "2017-12-27",
   "primary_link": "publisher",
   "title": "Programming and Proving with Distributed Protocols",
@@ -16,7 +18,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Principles of Programming Languages (POPL)",
+  "venue": "Principles of Programming Languages",
+  "venue_short": "POPL",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3158116"
   }

@@ -326,7 +326,7 @@ def publication_page_source(record: PublicationRecord, root: Path, *, publicatio
             title=record.title,
             is_draft=True,
         )
-    if not record.detail_page:
+    if not record.local_page:
         raise PageSourceError(
             f"{record.slug}: publication has no local detail page source"
         )

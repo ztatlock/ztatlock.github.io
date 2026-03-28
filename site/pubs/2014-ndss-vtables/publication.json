@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2014,
   "pub_date": "2014-02-22",
   "primary_link": "publisher",
   "title": "SafeDispatch: Securing C++ Virtual Calls from Memory Corruption Attacks",
@@ -15,7 +17,8 @@
       "name": "Sorin Lerner"
     }
   ],
-  "venue": "Network and Distributed System Security (NDSS)",
+  "venue": "Network and Distributed System Security",
+  "venue_short": "NDSS",
   "links": {
     "publisher": "https://www.ndss-symposium.org/ndss2014/programme/safedispatch-securing-c-virtual-calls-memory-corruption-attacks/"
   }

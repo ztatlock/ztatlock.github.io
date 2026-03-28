@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "journal",
+  "pub_year": 2024,
   "pub_date": "2024-02-14",
   "primary_link": "publisher",
   "title": "Application-level Validation of Accelerator Designs Using a Formal Software/Hardware Interface",
@@ -46,7 +48,8 @@
       "name": "Sharad Malik"
     }
   ],
-  "venue": "ACM Transactions on Design Automation of Electronic Systems (TODAES)",
+  "venue": "ACM Transactions on Design Automation of Electronic Systems",
+  "venue_short": "TODAES",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3639051"
   }

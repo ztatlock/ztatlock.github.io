@@ -9,6 +9,8 @@ from scripts.publication_record import (
     PublicationRecordError,
     default_publications_dir,
     load_publication_record,
+    publication_listing_group,
+    publication_order_key,
     render_publication_index_entry,
 )
 
@@ -30,10 +32,8 @@ def publications_index_path(root: Path, *, publications_dir: Path | None = None)
     return actual_publications_dir / PUBLICATIONS_INDEX_NAME
 
 
-def _publication_sort_key(record: PublicationRecord) -> tuple[int, str]:
-    if record.pub_date is None:
-        raise PublicationIndexError(f"{record.slug}: missing pub_date")
-    return (-record.pub_date.toordinal(), record.title)
+def _publication_sort_key(record: PublicationRecord) -> tuple[int, int, int, str]:
+    return publication_order_key(record)
 
 
 def load_publication_index_records(
@@ -72,6 +72,6 @@ def render_publications_list_djot(
     chunks = [
         render_publication_index_entry(record)
         for record in load_publication_index_records(root, publications_dir=publications_dir)
-        if record.listing_group == listing_group
+        if publication_listing_group(record) == listing_group
     ]
     return "\n\n".join(chunks) + ("\n" if chunks else "")

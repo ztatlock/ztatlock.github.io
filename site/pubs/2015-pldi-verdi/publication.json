@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2015,
   "pub_date": "2015-06-03",
   "primary_link": "publisher",
   "title": "Verdi: A Framework for Implementing and Formally Verifying Distributed Systems",
@@ -30,7 +32,8 @@
       "ref": "Tom Anderson"
     }
   ],
-  "venue": "Programming Language Design and Implementation (PLDI)",
+  "venue": "Programming Language Design and Implementation",
+  "venue_short": "PLDI",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/2737924.2737958"
   }

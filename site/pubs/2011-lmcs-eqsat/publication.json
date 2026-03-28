@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "journal",
+  "pub_year": 2011,
   "pub_date": "2011-03-28",
   "primary_link": "publisher",
   "title": "Equality Saturation: A New Approach to Optimization",
@@ -18,7 +20,8 @@
       "name": "Sorin Lerner"
     }
   ],
-  "venue": "Logical Methods in Computer Science (LMCS)",
+  "venue": "Logical Methods in Computer Science",
+  "venue_short": "LMCS",
   "links": {
     "publisher": "https://lmcs.episciences.org/1016"
   }

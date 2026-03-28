@@ -1,18 +1,45 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2022,
   "pub_date": "2022-06-23",
   "title": "Verified Compilation and Optimization of Floating-Point Programs in CakeML",
   "authors": [
-    { "name": "Heiko Becker", "ref": "Heiko Becker" },
-    { "name": "Robert Rabe" },
-    { "name": "Eva Darulova", "ref": "Eva Darulova" },
-    { "name": "Magnus O. Myreen", "ref": "Magnus O. Myreen" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Ramana Kumar", "ref": "Ramana Kumar" },
-    { "name": "Yong Kiam Tan", "ref": "Yong Kiam Tan" },
-    { "name": "Anthony Fox", "ref": "Anthony Fox" }
+    {
+      "name": "Heiko Becker",
+      "ref": "Heiko Becker"
+    },
+    {
+      "name": "Robert Rabe"
+    },
+    {
+      "name": "Eva Darulova",
+      "ref": "Eva Darulova"
+    },
+    {
+      "name": "Magnus O. Myreen",
+      "ref": "Magnus O. Myreen"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Ramana Kumar",
+      "ref": "Ramana Kumar"
+    },
+    {
+      "name": "Yong Kiam Tan",
+      "ref": "Yong Kiam Tan"
+    },
+    {
+      "name": "Anthony Fox",
+      "ref": "Anthony Fox"
+    }
   ],
-  "venue": "European Conference on Object-Oriented Programming (ECOOP)",
+  "venue": "European Conference on Object-Oriented Programming",
+  "venue_short": "ECOOP",
   "description": "RealCake extends CakeML with verified fast-math-style optimizations, enabling end-to-end correctness by relating abstract real-number semantics to concrete I/O semantics.",
   "links": {
     "project": "https://cakeml.org/",

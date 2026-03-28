@@ -48,9 +48,12 @@ class BuildPubInventoryTests(unittest.TestCase):
                     {
                         "title": "Demo Paper",
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "description": "Demo description",
                         "links": {
                             "code": "https://example.test/code",
@@ -105,9 +108,12 @@ class BuildPubInventoryTests(unittest.TestCase):
                     {
                         "title": "Demo Paper",
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "description": "Demo description",
                         "links": {},
                         "talks": [],
@@ -149,13 +155,16 @@ class BuildPubInventoryTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "workshop",
+                        "pub_type": "workshop",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {
                             "publisher": "https://example.test/paper",
                             "project": "https://example.test/project",

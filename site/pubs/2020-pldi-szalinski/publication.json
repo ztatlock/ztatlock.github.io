@@ -1,19 +1,43 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2020,
   "pub_date": "2020-06-11",
   "primary_link": "publisher",
   "title": "Synthesizing Structured CAD Models with Equality Saturation and Inverse Transformations",
   "authors": [
-    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },
-    { "name": "Max Willsey", "ref": "Max Willsey" },
-    { "name": "Adam Anderson", "ref": "Adam Anderson" },
-    { "name": "James R. Wilcox", "ref": "James Wilcox" },
-    { "name": "Eva Darulova", "ref": "Eva Darulova" },
-    { "name": "Dan Grossman", "ref": "Dan Grossman" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Chandrakana Nandi",
+      "ref": "Chandrakana Nandi"
+    },
+    {
+      "name": "Max Willsey",
+      "ref": "Max Willsey"
+    },
+    {
+      "name": "Adam Anderson",
+      "ref": "Adam Anderson"
+    },
+    {
+      "name": "James R. Wilcox",
+      "ref": "James Wilcox"
+    },
+    {
+      "name": "Eva Darulova",
+      "ref": "Eva Darulova"
+    },
+    {
+      "name": "Dan Grossman",
+      "ref": "Dan Grossman"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "Programming Language Design and Implementation (PLDI)",
+  "venue": "Programming Language Design and Implementation",
+  "venue_short": "PLDI",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3385412.3386012"
   }

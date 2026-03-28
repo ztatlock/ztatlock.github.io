@@ -1,18 +1,46 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2021,
   "pub_date": "2021-05-03",
   "title": "Dynamic Tensor Rematerialization",
   "authors": [
-    { "name": "Marisa Kirisame", "ref": "Marisa Kirisame" },
-    { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" },
-    { "name": "Altan Haan", "ref": "Altan Haan" },
-    { "name": "Jennifer Brennan", "ref": "Jennifer Brennan" },
-    { "name": "Mike He", "ref": "Mike He" },
-    { "name": "Jared Roesch", "ref": "Jared Roesch" },
-    { "name": "Tianqi Chen", "ref": "Tianqi Chen" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Marisa Kirisame",
+      "ref": "Marisa Kirisame"
+    },
+    {
+      "name": "Steven Lyubomirsky",
+      "ref": "Steven Lyubomirsky"
+    },
+    {
+      "name": "Altan Haan",
+      "ref": "Altan Haan"
+    },
+    {
+      "name": "Jennifer Brennan",
+      "ref": "Jennifer Brennan"
+    },
+    {
+      "name": "Mike He",
+      "ref": "Mike He"
+    },
+    {
+      "name": "Jared Roesch",
+      "ref": "Jared Roesch"
+    },
+    {
+      "name": "Tianqi Chen",
+      "ref": "Tianqi Chen"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "International Conference on Learning Representations (ICLR)",
+  "venue": "International Conference on Learning Representations",
+  "venue_short": "ICLR",
   "badges": [
     "★ Spotlight Paper"
   ],
@@ -29,7 +57,10 @@
     {
       "event": "ICLR 2021",
       "speakers": [
-        { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" }
+        {
+          "name": "Steven Lyubomirsky",
+          "ref": "Steven Lyubomirsky"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=S9KJ37Sx2XY",
       "embed": "https://www.youtube.com/embed/S9KJ37Sx2XY"

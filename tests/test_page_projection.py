@@ -121,8 +121,10 @@ class PageProjectionTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
@@ -133,6 +135,7 @@ class PageProjectionTests(unittest.TestCase):
                             {"name": "Robert Rabe", "ref": ""},
                         ],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/paper"},
                         "talks": [],
                     }
@@ -206,8 +209,10 @@ class PageProjectionTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
@@ -217,6 +222,7 @@ class PageProjectionTests(unittest.TestCase):
                             {"name": "Robert Rabe", "ref": ""},
                         ],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/paper"},
                         "talks": [],
                     }
@@ -394,8 +400,10 @@ class PageProjectionTests(unittest.TestCase):
             (newer_main / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-05-01",
                         "primary_link": "publisher",
                         "title": "Main Paper",
@@ -404,6 +412,7 @@ class PageProjectionTests(unittest.TestCase):
                             {"name": "Collaborator", "ref": ""},
                         ],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "badges": ["★ Distinguished Paper"],
                         "links": {"publisher": "https://example.test/main"},
                         "talks": [],
@@ -416,13 +425,16 @@ class PageProjectionTests(unittest.TestCase):
             (older_main / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2024,
                         "pub_date": "2024-03-01",
                         "primary_link": "publisher",
                         "title": "Older Main Paper",
                         "authors": [{"name": "Solo Author", "ref": "Solo Author"}],
                         "venue": "OlderConf",
+                        "venue_short": "OlderConf",
                         "links": {"publisher": "https://example.test/older-main"},
                         "talks": [],
                     }
@@ -434,13 +446,16 @@ class PageProjectionTests(unittest.TestCase):
             (workshop / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "workshop",
+                        "pub_type": "workshop",
+                        "pub_year": 2025,
                         "pub_date": "2025-02-01",
                         "primary_link": "publisher",
                         "title": "Workshop Paper",
                         "authors": [{"name": "Workshop Author", "ref": "Workshop Author"}],
                         "venue": "Demo Workshop",
+                        "venue_short": "Demo Workshop",
                         "links": {"publisher": "https://example.test/workshop"},
                         "talks": [],
                     }
@@ -752,13 +767,16 @@ class PageProjectionTests(unittest.TestCase):
             (main_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Main Paper",
                         "authors": [{"name": "Demo Author", "ref": "Demo Author"}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/main"},
                         "talks": [],
                     }
@@ -770,13 +788,16 @@ class PageProjectionTests(unittest.TestCase):
             (workshop_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "workshop",
+                        "pub_type": "workshop",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-02",
                         "primary_link": "publisher",
                         "title": "Workshop Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "Demo Workshop",
+                        "venue_short": "Demo Workshop",
                         "links": {"publisher": "https://example.test/workshop"},
                         "talks": [],
                     }
@@ -1161,11 +1182,11 @@ class PageProjectionTests(unittest.TestCase):
             publications_dir=root / "site" / "pubs",
         )
         self.assertIn(
-            "- *[Target-Aware Implementation of Real Expressions](https://dl.acm.org/doi/10.1145/3669940.3707277)* (Architectural Support for Programming Languages and Operating Systems (ASPLOS) 2025)",
+            "- *[Target-Aware Implementation of Real Expressions](https://dl.acm.org/doi/10.1145/3669940.3707277)* (ASPLOS 2025)",
             rendered,
         )
         self.assertIn(
-            "- *[Better Together: Unifying Datalog and Equality Saturation](pubs/2023-pldi-egglog/)* (Programming Language Design and Implementation (PLDI) 2023)",
+            "- *[Better Together: Unifying Datalog and Equality Saturation](pubs/2023-pldi-egglog/)* (PLDI 2023)",
             rendered,
         )
         self.assertNotIn("Small Proofs from Congruence Closure", rendered)
@@ -1366,13 +1387,16 @@ class PageProjectionTests(unittest.TestCase):
             (main_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Main Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/main"},
                         "talks": [],
                     }
@@ -1384,13 +1408,16 @@ class PageProjectionTests(unittest.TestCase):
             (workshop_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "workshop",
+                        "pub_type": "workshop",
+                        "pub_year": 2024,
                         "pub_date": "2024-01-01",
                         "primary_link": "publisher",
                         "title": "Workshop Paper",
                         "authors": [{"name": "Workshop Author", "ref": ""}],
                         "venue": "WorkshopConf",
+                        "venue_short": "WorkshopConf",
                         "links": {"publisher": "https://example.test/workshop"},
                         "talks": [],
                     }

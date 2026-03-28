@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2014,
   "pub_date": "2014-10-06",
   "primary_link": "publisher",
   "title": "Jitk: A Trustworthy In-Kernel Interpreter Infrastructure",
@@ -21,7 +23,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Operating Systems Design and Implementation (OSDI)",
+  "venue": "Operating Systems Design and Implementation",
+  "venue_short": "OSDI",
   "links": {
     "publisher": "https://www.usenix.org/conference/osdi14/technical-sessions/presentation/wang_xi"
   }

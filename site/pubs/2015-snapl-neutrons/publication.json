@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2015,
   "pub_date": "2015-04-30",
   "primary_link": "publisher",
   "title": "Toward a Dependability Case Language and Workflow for a Radiation Therapy System",
@@ -32,7 +34,8 @@
       "name": "Xi Wang"
     }
   ],
-  "venue": "Summit oN Advances in Programming Languages (SNAPL)",
+  "venue": "Summit oN Advances in Programming Languages",
+  "venue_short": "SNAPL",
   "links": {
     "publisher": "https://drops.dagstuhl.de/opus/volltexte/2015/5020/"
   }

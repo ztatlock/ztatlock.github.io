@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2015,
   "pub_date": "2015-06-03",
   "primary_link": "publisher",
   "title": "Automatically Improving Accuracy for Floating Point Expressions",
@@ -19,11 +21,12 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Programming Language Design and Implementation (PLDI)",
-  "links": {
-    "publisher": "https://dl.acm.org/doi/10.1145/2737924.2737959"
-  },
+  "venue": "Programming Language Design and Implementation",
+  "venue_short": "PLDI",
   "badges": [
     "★ Distinguished Paper"
-  ]
+  ],
+  "links": {
+    "publisher": "https://dl.acm.org/doi/10.1145/2737924.2737959"
+  }
 }

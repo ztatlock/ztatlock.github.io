@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "workshop",
+  "pub_year": 2018,
   "pub_date": "2018-06-18",
   "primary_link": "publisher",
   "title": "Relay: a New IR for Machine Learning Frameworks",
@@ -27,7 +29,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Machine Learning and Programming Languages (MAPL)",
+  "venue": "Machine Learning and Programming Languages",
+  "venue_short": "MAPL",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3211346.3211348"
   }

@@ -1,16 +1,38 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2023,
   "pub_date": "2023-10-29",
   "title": "Odyssey: An Interactive Workbench for Expert-Driven Floating-Point Expression Rewriting",
   "authors": [
-    { "name": "Edward Misback", "ref": "Edward Misback" },
-    { "name": "Caleb C. Chan", "ref": "Caleb Chan" },
-    { "name": "Brett Saiki", "ref": "Brett Saiki" },
-    { "name": "Eunice Jun", "ref": "Eunice Jun" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Pavel Panchekha", "ref": "Pavel Panchekha" }
+    {
+      "name": "Edward Misback",
+      "ref": "Edward Misback"
+    },
+    {
+      "name": "Caleb C. Chan",
+      "ref": "Caleb Chan"
+    },
+    {
+      "name": "Brett Saiki",
+      "ref": "Brett Saiki"
+    },
+    {
+      "name": "Eunice Jun",
+      "ref": "Eunice Jun"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Pavel Panchekha",
+      "ref": "Pavel Panchekha"
+    }
   ],
-  "venue": "ACM Symposium on User Interface Software and Technology (UIST)",
+  "venue": "ACM Symposium on User Interface Software and Technology",
+  "venue_short": "UIST",
   "description": "The interactive Odyssey workbench aids in floating-point error diagnosis, repair, and fine-tuning. See our paper from UIST 2023 and try the VSCode plugin!",
   "links": {
     "code": "https://github.com/herbie-fp/odyssey",
@@ -22,7 +44,10 @@
     {
       "event": "UIST 2023",
       "speakers": [
-        { "name": "Edward Misback", "ref": "Edward Misback" }
+        {
+          "name": "Edward Misback",
+          "ref": "Edward Misback"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=2uCkUodZ22A",
       "embed": "https://www.youtube.com/embed/2uCkUodZ22A",
@@ -31,7 +56,10 @@
     {
       "event": "FPTalks 2023",
       "speakers": [
-        { "name": "Edward Misback", "ref": "Edward Misback" }
+        {
+          "name": "Edward Misback",
+          "ref": "Edward Misback"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=O1Sbk3ZZJ-s",
       "embed": "https://www.youtube.com/embed/O1Sbk3ZZJ-s"

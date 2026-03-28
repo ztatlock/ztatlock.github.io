@@ -1,18 +1,46 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2021,
   "pub_date": "2021-06-20",
   "title": "Pure Tensor Program Rewriting via Access Patterns",
   "authors": [
-    { "name": "Gus Henry Smith", "ref": "Gus Smith" },
-    { "name": "Andrew Liu", "ref": "Andrew Liu" },
-    { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" },
-    { "name": "Scott Davidson", "ref": "Scott Davidson" },
-    { "name": "Joseph McMahan", "ref": "Joseph McMahan" },
-    { "name": "Michael Taylor", "ref": "Michael Taylor" },
-    { "name": "Luis Ceze", "ref": "Luis Ceze" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Gus Henry Smith",
+      "ref": "Gus Smith"
+    },
+    {
+      "name": "Andrew Liu",
+      "ref": "Andrew Liu"
+    },
+    {
+      "name": "Steven Lyubomirsky",
+      "ref": "Steven Lyubomirsky"
+    },
+    {
+      "name": "Scott Davidson",
+      "ref": "Scott Davidson"
+    },
+    {
+      "name": "Joseph McMahan",
+      "ref": "Joseph McMahan"
+    },
+    {
+      "name": "Michael Taylor",
+      "ref": "Michael Taylor"
+    },
+    {
+      "name": "Luis Ceze",
+      "ref": "Luis Ceze"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "Symposium on Machine Programming (MAPS)",
+  "venue": "Symposium on Machine Programming",
+  "venue_short": "MAPS",
   "description": "Glenside is a pure IR for ML compilers that enables term rewriting by leveraging access patterns for HW mapping and discovering data layout transformations.",
   "links": {
     "project": "https://sampl.cs.washington.edu/projects/glenside.html",
@@ -24,7 +52,10 @@
     {
       "event": "MAPS 2021",
       "speakers": [
-        { "name": "Gus Smith", "ref": "Gus Smith" }
+        {
+          "name": "Gus Smith",
+          "ref": "Gus Smith"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=zxfhurFdYVs",
       "embed": "https://www.youtube.com/embed/zxfhurFdYVs",

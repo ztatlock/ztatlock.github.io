@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "journal",
+  "pub_year": 2024,
   "pub_date": "2024-07-19",
   "primary_link": "publisher",
   "title": "Computational Illusion Knitting",
@@ -21,7 +23,8 @@
       "name": "Adriana Schulz"
     }
   ],
-  "venue": "ACM Transactions on Graphics (TOG)",
+  "venue": "ACM Transactions on Graphics",
+  "venue_short": "TOG",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3658231"
   }

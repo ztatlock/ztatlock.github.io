@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2016,
   "pub_date": "2016-07-13",
   "primary_link": "publisher",
   "title": "Investigating Safety of a Radiotherapy Machine Using System Models with Pluggable Checkers",
@@ -29,7 +31,8 @@
       "ref": "Jon Jacky"
     }
   ],
-  "venue": "Computer-Aided Verification (CAV)",
+  "venue": "Computer-Aided Verification",
+  "venue_short": "CAV",
   "links": {
     "publisher": "https://link.springer.com/chapter/10.1007/978-3-319-41540-6_2"
   }

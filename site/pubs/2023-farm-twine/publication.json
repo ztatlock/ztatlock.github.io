@@ -1,15 +1,27 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "workshop",
+  "pub_type": "workshop",
+  "pub_year": 2023,
   "pub_date": "2023-08-31",
   "primary_link": "publisher",
   "title": "Exploring Self-Embedded Knitting Programs with Twine",
   "authors": [
-    { "name": "Amy Zhu", "ref": "Amy Zhu" },
-    { "name": "Adriana Schulz", "ref": "Adriana Schulz" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Amy Zhu",
+      "ref": "Amy Zhu"
+    },
+    {
+      "name": "Adriana Schulz",
+      "ref": "Adriana Schulz"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "ACM SIGPLAN International Workshop on Functional Art, Music, Modelling and Design (FARM)",
+  "venue": "ACM SIGPLAN International Workshop on Functional Art, Music, Modelling and Design",
+  "venue_short": "FARM",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3609023.3609805"
   }

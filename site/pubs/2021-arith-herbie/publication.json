@@ -1,15 +1,34 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2021,
   "pub_date": "2021-06-14",
   "title": "Combining Precision Tuning and Rewriting",
   "authors": [
-    { "name": "Brett Saiki", "ref": "Brett Saiki" },
-    { "name": "Oliver Flatt", "ref": "Oliver Flatt" },
-    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },
-    { "name": "Pavel Panchekha", "ref": "Pavel Panchekha" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Brett Saiki",
+      "ref": "Brett Saiki"
+    },
+    {
+      "name": "Oliver Flatt",
+      "ref": "Oliver Flatt"
+    },
+    {
+      "name": "Chandrakana Nandi",
+      "ref": "Chandrakana Nandi"
+    },
+    {
+      "name": "Pavel Panchekha",
+      "ref": "Pavel Panchekha"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "IEEE International Symposium on Computer Arithmetic (ARITH)",
+  "venue": "IEEE International Symposium on Computer Arithmetic",
+  "venue_short": "ARITH",
   "description": "Pareto Herbie optimizes floating-point code by interleaving precision tuning and rewriting to generate diverse accuracy vs. speed trade-offs.",
   "links": {
     "project": "https://herbie.uwplse.org/",
@@ -20,8 +39,14 @@
     {
       "event": "ARITH 2021",
       "speakers": [
-        { "name": "Brett Saiki", "ref": "Brett Saiki" },
-        { "name": "Oliver Flatt", "ref": "Oliver Flatt" }
+        {
+          "name": "Brett Saiki",
+          "ref": "Brett Saiki"
+        },
+        {
+          "name": "Oliver Flatt",
+          "ref": "Oliver Flatt"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=ytWhp0I8KVw",
       "embed": "https://www.youtube.com/embed/ytWhp0I8KVw"

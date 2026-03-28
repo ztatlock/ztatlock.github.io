@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "workshop",
+  "pub_type": "workshop",
+  "pub_year": 2020,
   "pub_date": "2020-12-06",
   "primary_link": "publisher",
   "title": "Towards Numerical Assistants",
@@ -12,7 +14,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Numerical Software Verification (NSV)",
+  "venue": "Numerical Software Verification",
+  "venue_short": "NSV",
   "links": {
     "publisher": "https://link.springer.com/chapter/10.1007/978-3-030-63618-0_13"
   }

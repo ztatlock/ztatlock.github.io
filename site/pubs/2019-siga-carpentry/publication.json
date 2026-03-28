@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "journal",
+  "pub_year": 2019,
   "pub_date": "2019-11-08",
   "primary_link": "publisher",
   "title": "Carpentry Compiler",
@@ -25,7 +27,8 @@
       "name": "Adriana Schulz"
     }
   ],
-  "venue": "SIGGRAPH Asia, ACM Transactions on Graphics (SIGA)",
+  "venue": "SIGGRAPH Asia, ACM Transactions on Graphics",
+  "venue_short": "SIGA",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3355089.3356518"
   }

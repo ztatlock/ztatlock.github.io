@@ -1,17 +1,42 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "journal",
+  "pub_year": 2022,
   "pub_date": "2022-03-09",
   "title": "Co-Optimization of Design and Fabrication Plans for Carpentry",
   "authors": [
-    { "name": "Haisen Zhao", "ref": "Haisen Zhao" },
-    { "name": "Max Willsey", "ref": "Max Willsey" },
-    { "name": "Amy Zhu", "ref": "Amy Zhu" },
-    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Justin Solomon", "ref": "Justin Solomon" },
-    { "name": "Adriana Schulz", "ref": "Adriana Schulz" }
+    {
+      "name": "Haisen Zhao",
+      "ref": "Haisen Zhao"
+    },
+    {
+      "name": "Max Willsey",
+      "ref": "Max Willsey"
+    },
+    {
+      "name": "Amy Zhu",
+      "ref": "Amy Zhu"
+    },
+    {
+      "name": "Chandrakana Nandi",
+      "ref": "Chandrakana Nandi"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Justin Solomon",
+      "ref": "Justin Solomon"
+    },
+    {
+      "name": "Adriana Schulz",
+      "ref": "Adriana Schulz"
+    }
   ],
-  "venue": "ACM Transactions on Graphics (TOG)",
+  "venue": "ACM Transactions on Graphics",
+  "venue_short": "TOG",
   "description": "Joint optimization of carpentry designs & fabrication plans with e-graphs. Discovering Pareto-optimal tradeoffs to bridge design-to-fabrication gaps.",
   "links": {
     "teaser": "https://www.youtube.com/watch?v=P6AqNmSlwc4",
@@ -25,7 +50,10 @@
     {
       "event": "SIGGRAPH 2022",
       "speakers": [
-        { "name": "Amy Zhu", "ref": "Amy Zhu" }
+        {
+          "name": "Amy Zhu",
+          "ref": "Amy Zhu"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=vfFO_mJ4yPk",
       "embed": "https://www.youtube.com/embed/vfFO_mJ4yPk",

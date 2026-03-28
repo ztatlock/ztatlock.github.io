@@ -75,7 +75,7 @@ notes.
   `docs/plans/publication-model-corpus-refinement-pass.md`,
   `manifests/publication-model-a-migration.tsv`,
   `tests/test_publication_model_a_migration.py`, `site/pubs/`).
-- [ ] Execute slice 3 of the Proposal A publication-model plan: migrate the
+- [x] Execute slice 3 of the Proposal A publication-model plan: migrate the
   canonical publication bundles and cut `/pubs/`, the CV indexed-publication
   sections, the homepage recent-publications projection, inventory tooling,
   and validation over to the new Proposal A field contract in one coordinated
@@ -85,11 +85,20 @@ notes.
   `scripts/publication_record.py`, `scripts/publication_index.py`,
   `scripts/sitebuild/page_projection.py`, `scripts/build_pub_inventory.py`,
   `site/pubs/`).
+- [ ] Execute slice 4 of the Proposal A publication-model plan: do the
+  post-cutover cleanup and narrower follow-on enrichment now that the live
+  corpus and consumers use Proposal A directly, including retiring remaining
+  side-by-side scaffolding if it no longer earns its keep and tightening
+  template/scaffold/default authoring paths around the settled schema
+  (`docs/plans/publication-model-implementation-testing-plan.md`,
+  `docs/plans/publications-campaign.md`, `scripts/publication_record.py`,
+  `scripts/publication_record_a.py`, `tests/test_publication_record.py`,
+  `tests/test_publication_record_a.py`, `site/templates/publication.json`).
 - [ ] Revisit the top-of-CV `Selected Recent Highlights` block only after the
-  publication-model direction and its implementation/migration plan settle the
-  current publication boundary and compact rendering semantics, so the
-  remaining authored highlights structure can be reviewed deliberately rather
-  than by inertia (`site/cv/index.dj`, `docs/plans/cv-campaign.md`,
+  publication slice-4 cleanup settles the current publication boundary and
+  compact rendering semantics, so the remaining authored highlights structure
+  can be reviewed deliberately rather than by inertia (`site/cv/index.dj`,
+  `docs/plans/cv-campaign.md`,
   `docs/plans/homepage-cv-curated-consumers-campaign.md`).
 
 ## Migrated Backlog From TODO.md

@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2018,
   "pub_date": "2018-06-11",
   "primary_link": "publisher",
   "title": "Finding Root Causes of Floating Point Error",
@@ -18,7 +20,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Programming Language Design and Implementation (PLDI)",
+  "venue": "Programming Language Design and Implementation",
+  "venue_short": "PLDI",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3296979.3192411"
   }

@@ -1,15 +1,34 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2022,
   "pub_date": "2022-10-19",
   "title": "Small Proofs from Congruence Closure",
   "authors": [
-    { "name": "Oliver Flatt", "ref": "Oliver Flatt" },
-    { "name": "Samuel Coward", "ref": "Samuel Coward" },
-    { "name": "Max Willsey", "ref": "Max Willsey" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Pavel Panchekha", "ref": "Pavel Panchekha" }
+    {
+      "name": "Oliver Flatt",
+      "ref": "Oliver Flatt"
+    },
+    {
+      "name": "Samuel Coward",
+      "ref": "Samuel Coward"
+    },
+    {
+      "name": "Max Willsey",
+      "ref": "Max Willsey"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Pavel Panchekha",
+      "ref": "Pavel Panchekha"
+    }
   ],
-  "venue": "Formal Methods in Computer-Aided Design (FMCAD)",
+  "venue": "Formal Methods in Computer-Aided Design",
+  "venue_short": "FMCAD",
   "description": "A practical O(n log(n)) method for generating small proofs from congruence closure, plus a novel optimal O(n^5) algorithm. Implemented in egg, faster than Z3.",
   "links": {
     "project": "https://egraphs-good.github.io/",
@@ -21,7 +40,10 @@
     {
       "event": "FMCAD 2022",
       "speakers": [
-        { "name": "Oliver Flatt", "ref": "Oliver Flatt" }
+        {
+          "name": "Oliver Flatt",
+          "ref": "Oliver Flatt"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=_KnAHFdqWT0",
       "embed": "https://www.youtube.com/embed/_KnAHFdqWT0",

@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2016,
   "pub_date": "2016-01-18",
   "primary_link": "publisher",
   "title": "Planning for Change in a Formal Verification of the Raft Consensus Protocol",
@@ -27,7 +29,8 @@
       "ref": "Tom Anderson"
     }
   ],
-  "venue": "Certified Programs and Proofs (CPP)",
+  "venue": "Certified Programs and Proofs",
+  "venue_short": "CPP",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/2854065.2854081"
   }

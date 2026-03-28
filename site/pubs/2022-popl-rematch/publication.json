@@ -1,14 +1,30 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2022,
   "pub_date": "2022-01-12",
   "title": "Relational e-matching",
   "authors": [
-    { "name": "Yihong Zhang", "ref": "Yihong Zhang" },
-    { "name": "Yisu Remy Wang", "ref": "Remy Wang" },
-    { "name": "Max Willsey", "ref": "Max Willsey" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Yihong Zhang",
+      "ref": "Yihong Zhang"
+    },
+    {
+      "name": "Yisu Remy Wang",
+      "ref": "Remy Wang"
+    },
+    {
+      "name": "Max Willsey",
+      "ref": "Max Willsey"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "Principles of Programming Languages (POPL)",
+  "venue": "Principles of Programming Languages",
+  "venue_short": "POPL",
   "description": "Relational e-matching uses DB query techniques to provide optimal e-matching, simple implementation, and orders-of-magnitude speedup vs. conventional methods.",
   "links": {
     "teaser": "https://www.youtube.com/watch?v=yHqPYphl440",

@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2016,
   "pub_date": "2016-10-19",
   "primary_link": "publisher",
   "title": "Scalable Verification of Border Gateway Protocol Configurations with an SMT Solver",
@@ -25,7 +27,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Object-Oriented Programming, Systems, Languages & Applications (OOPSLA)",
+  "venue": "Object-Oriented Programming, Systems, Languages & Applications",
+  "venue_short": "OOPSLA",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/2983990.2984012"
   }

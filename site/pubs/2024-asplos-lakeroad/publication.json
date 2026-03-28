@@ -1,19 +1,50 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2024,
   "pub_date": "2024-04-27",
   "title": "FPGA Technology Mapping Using Sketch-Guided Program Synthesis",
   "authors": [
-    { "name": "Gus Henry Smith", "ref": "Gus Smith" },
-    { "name": "Benjamin Kushigian", "ref": "Ben Kushigian" },
-    { "name": "Vishal Canumalla", "ref": "Vishal Canumalla" },
-    { "name": "Andrew Cheung", "ref": "Andrew Cheung" },
-    { "name": "Steven Lyubomirsky", "ref": "Steven Lyubomirsky" },
-    { "name": "Sorawee Porncharoenwase", "ref": "Sorawee Porncharoenwase" },
-    { "name": "René Just", "ref": "René Just" },
-    { "name": "Gilbert Louis Bernstein", "ref": "Gilbert Bernstein" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Gus Henry Smith",
+      "ref": "Gus Smith"
+    },
+    {
+      "name": "Benjamin Kushigian",
+      "ref": "Ben Kushigian"
+    },
+    {
+      "name": "Vishal Canumalla",
+      "ref": "Vishal Canumalla"
+    },
+    {
+      "name": "Andrew Cheung",
+      "ref": "Andrew Cheung"
+    },
+    {
+      "name": "Steven Lyubomirsky",
+      "ref": "Steven Lyubomirsky"
+    },
+    {
+      "name": "Sorawee Porncharoenwase",
+      "ref": "Sorawee Porncharoenwase"
+    },
+    {
+      "name": "René Just",
+      "ref": "René Just"
+    },
+    {
+      "name": "Gilbert Louis Bernstein",
+      "ref": "Gilbert Bernstein"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "Architectural Support for Programming Languages and Operating Systems (ASPLOS)",
+  "venue": "Architectural Support for Programming Languages and Operating Systems",
+  "venue_short": "ASPLOS",
   "description": "Lakeroad applies sketch-guided program synthesis to FPGA technology mapping, improving mapping coverage while providing correctness guarantees.",
   "links": {
     "code": "https://github.com/gussmith23/lakeroad",
@@ -24,7 +55,10 @@
     {
       "event": "ASPLOS 2024",
       "speakers": [
-        { "name": "Gus Smith", "ref": "Gus Smith" }
+        {
+          "name": "Gus Smith",
+          "ref": "Gus Smith"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=2XgOWAtJ8vs",
       "embed": "https://www.youtube.com/embed/2XgOWAtJ8vs",

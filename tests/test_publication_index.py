@@ -5,14 +5,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.publication_index import (
-    PublicationIndexError,
-    render_publications_list_djot,
-)
+from scripts.publication_index import PublicationIndexError, render_publications_list_djot
 
 
 class PublicationIndexTests(unittest.TestCase):
-    def test_renders_publication_entries_from_bundles(self) -> None:
+    def test_renders_publication_entries_from_a_bundles(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()
             pubs = root / "site" / "pubs"
@@ -21,8 +18,10 @@ class PublicationIndexTests(unittest.TestCase):
             (first / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-02",
                         "primary_link": "publisher",
                         "title": "Main Paper",
@@ -30,7 +29,8 @@ class PublicationIndexTests(unittest.TestCase):
                             {"name": "First Author", "ref": "First Author"},
                             {"name": "Second Author", "ref": ""},
                         ],
-                        "venue": "DemoConf",
+                        "venue": "Demo Conference",
+                        "venue_short": "DemoConf",
                         "badges": ["★ Best Paper"],
                         "links": {"publisher": "https://example.test/main"},
                         "talks": [],
@@ -45,10 +45,13 @@ class PublicationIndexTests(unittest.TestCase):
                 json.dumps(
                     {
                         "listing_group": "main",
+                        "pub_type": "journal",
+                        "pub_year": 2025,
                         "pub_date": "2024-12-31",
                         "title": "Local Paper",
                         "authors": [{"name": "Local Author", "ref": "Local Author"}],
                         "venue": "Demo Journal",
+                        "venue_short": "Journal",
                         "description": "Local detail page",
                         "links": {},
                         "talks": [],
@@ -56,18 +59,15 @@ class PublicationIndexTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
-            (second / "2025-test-local-abstract.md").write_text("Demo abstract.\n", encoding="utf-8")
-            (second / "2025-test-local.bib").write_text("@article{demo}\n", encoding="utf-8")
-            (second / "2025-test-local.pdf").write_bytes(b"%PDF-1.4\n")
-            (second / "2025-test-local-absimg.png").write_bytes(b"PNG")
 
             rendered = render_publications_list_djot(root, "main", publications_dir=pubs)
             self.assertIn("{#2025-test-main}", rendered)
             self.assertIn("*[Main Paper](https://example.test/main)* \\", rendered)
             self.assertIn("[First Author][First Author],", rendered)
             self.assertIn("\\ Second Author", rendered)
-            self.assertIn("DemoConf 2025 \\\n★ Best Paper", rendered)
+            self.assertIn("Demo Conference 2025 \\\n★ Best Paper", rendered)
             self.assertIn("*[Local Paper](pubs/2025-test-local/)* \\", rendered)
+            self.assertIn("Demo Journal 2025", rendered)
             self.assertLess(rendered.find("Main Paper"), rendered.find("Local Paper"))
 
     def test_renders_workshop_subset_only(self) -> None:
@@ -75,19 +75,25 @@ class PublicationIndexTests(unittest.TestCase):
             root = Path(tmpdir).resolve()
             pubs = root / "site" / "pubs"
 
-            for slug, group in (("2025-test-main", "main"), ("2025-test-workshop", "workshop")):
+            for slug, group, pub_type in (
+                ("2025-test-main", "main", "conference"),
+                ("2025-test-workshop", "workshop", "workshop"),
+            ):
                 pub_dir = pubs / slug
                 pub_dir.mkdir(parents=True)
                 (pub_dir / "publication.json").write_text(
                     json.dumps(
                         {
-                            "detail_page": False,
+                            "local_page": False,
                             "listing_group": group,
+                            "pub_type": pub_type,
+                            "pub_year": 2025,
                             "pub_date": "2025-01-01",
                             "primary_link": "publisher",
                             "title": slug,
                             "authors": [{"name": "Demo Author", "ref": ""}],
-                            "venue": "DemoConf",
+                            "venue": "Demo Conference",
+                            "venue_short": "DemoConf",
                             "links": {"publisher": f"https://example.test/{slug}"},
                             "talks": [],
                         }

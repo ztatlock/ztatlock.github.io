@@ -17,18 +17,23 @@ def _write_publication_bundle(
     title: str,
     pub_date: str,
 ) -> None:
+    pub_year = int(slug.split("-", 1)[0])
+    pub_type = "workshop" if listing_group == "workshop" else "conference"
     pub_dir = publications_dir / slug
     pub_dir.mkdir()
     (pub_dir / "publication.json").write_text(
         json.dumps(
             {
-                "detail_page": False,
+                "local_page": False,
                 "listing_group": listing_group,
+                "pub_type": pub_type,
+                "pub_year": pub_year,
                 "pub_date": pub_date,
                 "primary_link": "publisher",
                 "title": title,
-                "authors": [{"name": "Demo Author", "ref": ""}],
+                "authors": [{"name": "Demo Author"}],
                 "venue": "Demo Venue",
+                "venue_short": "Demo Venue",
                 "links": {"publisher": f"https://example.test/{slug}"},
                 "talks": [],
             }
@@ -1299,13 +1304,16 @@ class SourceValidateTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/paper"},
                         "talks": [],
                     }
@@ -1381,13 +1389,16 @@ class SourceValidateTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/paper"},
                         "talks": [],
                     }
@@ -4543,13 +4554,16 @@ class SourceValidateTests(unittest.TestCase):
             (main_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Main Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/main"},
                         "talks": [],
                     }
@@ -4563,10 +4577,13 @@ class SourceValidateTests(unittest.TestCase):
                 json.dumps(
                     {
                         "listing_group": "workshop",
+                        "pub_type": "workshop",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "title": "Workshop Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "Demo Workshop",
+                        "venue_short": "Demo Workshop",
                         "description": "Workshop description",
                         "links": {},
                         "talks": [],
@@ -4997,13 +5014,16 @@ class SourceValidateTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/paper"},
                         "talks": [],
                     }
@@ -5071,13 +5091,16 @@ class SourceValidateTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {"publisher": "https://example.test/paper"},
                         "talks": [],
                     }
@@ -5242,9 +5265,12 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "title": "Demo Paper",
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "description": "Demo description",
                         "meta_image_path": "pubs/2025-test-demo/custom-meta.png",
                         "links": {},
@@ -5305,9 +5331,12 @@ class SourceValidateTests(unittest.TestCase):
                     {
                         "title": "Demo Paper",
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "description": "Demo description",
                         "meta_image_path": "pubs/2025-test-demo/missing-meta.png",
                         "links": {},
@@ -5369,13 +5398,16 @@ class SourceValidateTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {
                             "publisher": "https://example.test/paper",
                         },

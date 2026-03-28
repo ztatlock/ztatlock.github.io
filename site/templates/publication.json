@@ -1,11 +1,15 @@
 {
   "draft": true,
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": YEAR,
   "title": "TITLE",
   "authors": [
     { "name": "AUTHOR", "ref": "AUTHOR" }
   ],
-  "venue": "CONFERENCE (CONF)",
+  "venue": "CONFERENCE",
+  "venue_short": "CONF",
   "description": "TODO",
   "links": {},
   "talks": []

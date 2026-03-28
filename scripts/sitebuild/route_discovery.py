@@ -413,7 +413,7 @@ def _publication_page_route(
         except PublicationRecordError as err:
             raise RouteDiscoveryError(str(err)) from err
 
-    if not record.draft and not record.detail_page:
+    if not record.draft and not record.local_page:
         raise RouteDiscoveryError(
             f"{record_path}: publication has no local detail page route"
         )
@@ -471,7 +471,7 @@ def _publication_page_routes(config: SiteConfig) -> list[Route]:
             )
         except PublicationRecordError as err:
             raise RouteDiscoveryError(str(err)) from err
-        if record.draft or record.detail_page:
+        if record.draft or record.local_page:
             routes.append(_publication_page_route(config, slug, record=record))
     return routes
 

@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2018,
   "pub_date": "2018-07-30",
   "primary_link": "publisher",
   "title": "Functional Programming for Compiling and Decompiling Computer-aided Design",
@@ -25,7 +27,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "International Conference on Functional Programming (ICFP)",
+  "venue": "International Conference on Functional Programming",
+  "venue_short": "ICFP",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3236794"
   }

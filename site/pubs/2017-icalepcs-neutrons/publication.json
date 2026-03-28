@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2017,
   "pub_date": "2018-01-01",
   "primary_link": "publisher",
   "title": "Automatic Formal Verification for EPICS",
@@ -29,7 +31,8 @@
       "name": "Emina Torlak"
     }
   ],
-  "venue": "International Conference on Accelerator and Large Experimental Control Systems (ICALEPCS)",
+  "venue": "International Conference on Accelerator and Large Experimental Control Systems",
+  "venue_short": "ICALEPCS",
   "links": {
     "publisher": "https://accelconf.web.cern.ch/icalepcs2017/doi/JACoW-ICALEPCS2017-TUDPL02.html"
   }

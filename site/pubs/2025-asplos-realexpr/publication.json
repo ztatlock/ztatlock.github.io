@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2025,
   "pub_date": "2025-03-30",
   "primary_link": "publisher",
   "title": "Target-Aware Implementation of Real Expressions",
@@ -30,7 +32,8 @@
       "name": "Pavel Panchekha"
     }
   ],
-  "venue": "Architectural Support for Programming Languages and Operating Systems (ASPLOS)",
+  "venue": "Architectural Support for Programming Languages and Operating Systems",
+  "venue_short": "ASPLOS",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3669940.3707277"
   }

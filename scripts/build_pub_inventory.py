@@ -239,7 +239,7 @@ def build_record(
         pub_dir / f"{slug}-slides{ext}" for ext in SLIDE_SRC_EXTS
     )
     site_poster_pdf_path = first_existing([pub_dir / f"{slug}-poster.pdf"])
-    include_local_detail_page = record.detail_page
+    include_local_detail_page = record.local_page
     links = _publication_page_links(
         slug,
         record,

@@ -94,10 +94,20 @@ Its slice-2 corpus migration decisions are also now explicit and checked in:
 - [publication-model-a-migration.tsv](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-model-a-migration.tsv)
 - [test_publication_model_a_migration.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_model_a_migration.py)
 
+That coordinated slice-3 cutover is now implemented:
+
+- the canonical bundle corpus under `site/pubs/` now uses Proposal A directly
+- `/pubs/`, the CV indexed-publication sections, the homepage recent-publications
+  block, publication metadata/route discovery, and publication inventory tooling
+  now read Proposal A fields directly
+- slug-year display semantics are retired from live publication consumers
+- no publication compatibility bridge was kept
+
 So the next likely work is now:
 
-- execute slice 3 of that plan: the coordinated canonical-data and live
-  consumer cutover from the current publication field contract to Proposal A
+- execute slice 4 of that plan: post-cutover cleanup and narrower follow-on
+  enrichment, then revisit downstream curated consumers such as the top-of-CV
+  highlights block deliberately rather than by inertia
 
 Supporting review notes from this completed design pass:
 
@@ -127,7 +137,7 @@ Current observed facts:
   - `58` `main`
   - `11` `workshop`
 - `48` publications are currently represented as minimal index-backed bundles
-  with `detail_page: false`
+  with `local_page: false`
 - the canonical collection route is now `/pubs/`
 - the wrapper keeps hand-authored framing and `Aggregators`
 - repeated publication-entry sections are now generated from bundle truth

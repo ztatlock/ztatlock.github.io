@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2019,
   "pub_date": "2019-03-25",
   "primary_link": "publisher",
   "title": "Teaching Rigorous Distributed Systems With Efficient Model Checking",
@@ -23,7 +25,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "European Conference on Computer Systems (EuroSys)",
+  "venue": "European Conference on Computer Systems",
+  "venue_short": "EuroSys",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3302424.3303947"
   }

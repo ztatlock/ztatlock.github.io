@@ -1,19 +1,50 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2021,
   "pub_date": "2021-08-02",
   "title": "A Roadmap Towards Parallel Printing for Desktop 3D Printers",
   "authors": [
-    { "name": "Molly Aubrey Carton", "ref": "Molly Carton" },
-    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },
-    { "name": "Adam Anderson", "ref": "Adam Anderson" },
-    { "name": "Haisen Zhao", "ref": "Haisen Zhao" },
-    { "name": "Eva Darulova", "ref": "Eva Darulova" },
-    { "name": "Dan Grossman", "ref": "Dan Grossman" },
-    { "name": "Jeffrey I. Lipton", "ref": "Jeff Lipton" },
-    { "name": "Adriana Schulz", "ref": "Adriana Schulz" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Molly Aubrey Carton",
+      "ref": "Molly Carton"
+    },
+    {
+      "name": "Chandrakana Nandi",
+      "ref": "Chandrakana Nandi"
+    },
+    {
+      "name": "Adam Anderson",
+      "ref": "Adam Anderson"
+    },
+    {
+      "name": "Haisen Zhao",
+      "ref": "Haisen Zhao"
+    },
+    {
+      "name": "Eva Darulova",
+      "ref": "Eva Darulova"
+    },
+    {
+      "name": "Dan Grossman",
+      "ref": "Dan Grossman"
+    },
+    {
+      "name": "Jeffrey I. Lipton",
+      "ref": "Jeff Lipton"
+    },
+    {
+      "name": "Adriana Schulz",
+      "ref": "Adriana Schulz"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "Solid Freeform Fabrication Symposium (SFF)",
+  "venue": "Solid Freeform Fabrication Symposium",
+  "venue_short": "SFF",
   "description": "Project investigating multi-headed desktop printers for simultaneous parallel 3D printing, aiming to reduce fabrication time and enhance rapid prototyping.",
   "links": {
     "project": "https://uwplse.org/incarnate",
@@ -24,8 +55,14 @@
     {
       "event": "SFF 2021",
       "speakers": [
-        { "name": "Molly Aubrey Carton", "ref": "Molly Carton" },
-        { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" }
+        {
+          "name": "Molly Aubrey Carton",
+          "ref": "Molly Carton"
+        },
+        {
+          "name": "Chandrakana Nandi",
+          "ref": "Chandrakana Nandi"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=RghmCu6399U",
       "embed": "https://www.youtube.com/embed/RghmCu6399U"

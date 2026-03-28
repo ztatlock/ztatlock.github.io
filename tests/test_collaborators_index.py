@@ -24,18 +24,22 @@ def _write_publication(
     pub_date: str,
     authors: list[dict[str, str]],
 ) -> None:
+    pub_year = int(slug.split("-", 1)[0])
     pub_dir = pubs_dir / slug
     pub_dir.mkdir(parents=True)
     (pub_dir / "publication.json").write_text(
         json.dumps(
             {
-                "detail_page": False,
+                "local_page": False,
                 "listing_group": "main",
+                "pub_type": "conference",
+                "pub_year": pub_year,
                 "pub_date": pub_date,
                 "primary_link": "publisher",
                 "title": title,
                 "authors": authors,
                 "venue": "DemoConf",
+                "venue_short": "DemoConf",
                 "links": {"publisher": f"https://example.test/{slug}"},
                 "talks": [],
             }

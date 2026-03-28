@@ -1,15 +1,34 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2008,
   "pub_date": "2008-10-19",
   "title": "Deep Typechecking and Refactoring",
   "authors": [
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Chris Tucker", "ref": "Chris Tucker" },
-    { "name": "David Shuffelton", "ref": "David Shuffelton" },
-    { "name": "Ranjit Jhala", "ref": "Ranjit Jhala" },
-    { "name": "Sorin Lerner", "ref": "Sorin Lerner" }
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Chris Tucker",
+      "ref": "Chris Tucker"
+    },
+    {
+      "name": "David Shuffelton",
+      "ref": "David Shuffelton"
+    },
+    {
+      "name": "Ranjit Jhala",
+      "ref": "Ranjit Jhala"
+    },
+    {
+      "name": "Sorin Lerner",
+      "ref": "Sorin Lerner"
+    }
   ],
-  "venue": "Object-Oriented Programming, Systems, Languages & Applications (OOPSLA)",
+  "venue": "Object-Oriented Programming, Systems, Languages & Applications",
+  "venue_short": "OOPSLA",
   "description": "QUAIL introduces deep typechecking to ensure dynamic query safety and simplify refactoring in systems combining Java code with a database backend.",
   "links": {
     "project": "https://cseweb.ucsd.edu/~lerner/quail.html",

@@ -41,7 +41,16 @@ def scaffold_publication(
     if pub_dir.exists():
         raise ScaffoldPublicationError(f"Refusing to overwrite existing directory: {pub_dir}")
 
-    replacements = {"YEAR-CONF-SYS": slug}
+    year, _, _ = slug.partition("-")
+    if len(year) != 4 or not year.isdigit():
+        raise ScaffoldPublicationError(
+            f"Invalid publication slug {slug!r}; expected YEAR-..."
+        )
+
+    replacements = {
+        "YEAR-CONF-SYS": slug,
+        "YEAR": year,
+    }
 
     pub_dir.mkdir(parents=True)
     write_new_file(

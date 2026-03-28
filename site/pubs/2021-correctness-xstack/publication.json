@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "workshop",
+  "pub_type": "workshop",
+  "pub_year": 2021,
   "pub_date": "2021-11-19",
   "primary_link": "publisher",
   "title": "Guarding Numerics Amidst Rising Heterogeneity",
@@ -24,7 +26,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Software Correctness for HPC Applications (CORRECTNESS)",
+  "venue": "Software Correctness for HPC Applications",
+  "venue_short": "CORRECTNESS",
   "links": {
     "publisher": "https://ieeexplore.ieee.org/document/9651291"
   }

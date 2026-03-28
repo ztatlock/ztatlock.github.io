@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "workshop",
+  "pub_type": "workshop",
+  "pub_year": 2016,
   "pub_date": "2017-02-17",
   "primary_link": "publisher",
   "title": "Toward a Standard Benchmark Format and Suite for Floating-Point Analysis",
@@ -24,7 +26,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Numerical Software Verification (NSV)",
+  "venue": "Numerical Software Verification",
+  "venue_short": "NSV",
   "links": {
     "publisher": "https://link.springer.com/chapter/10.1007/978-3-319-54292-8_6"
   }

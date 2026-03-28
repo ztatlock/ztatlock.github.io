@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2015,
   "pub_date": "2015-05-26",
   "primary_link": "publisher",
   "title": "RoboFlow: A Flow-based Visual Programming Language for Mobile Manipulation Tasks",
@@ -15,7 +17,8 @@
       "name": "Maya Cakmak"
     }
   ],
-  "venue": "International Conference on Robotics and Automation (ICRA)",
+  "venue": "International Conference on Robotics and Automation",
+  "venue_short": "ICRA",
   "links": {
     "publisher": "https://ieeexplore.ieee.org/document/7139973"
   }

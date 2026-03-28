@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2018,
   "pub_date": "2018-07-04",
   "primary_link": "publisher",
   "title": "Software Verification with ITPs Should Use Binary Code Extraction to Reduce the TCB",
@@ -18,7 +20,8 @@
       "name": "Magnus O. Myreen"
     }
   ],
-  "venue": "Interactive Theorem Proving (ITP)",
+  "venue": "Interactive Theorem Proving",
+  "venue_short": "ITP",
   "links": {
     "publisher": "https://link.springer.com/chapter/10.1007/978-3-319-94821-8_21"
   }

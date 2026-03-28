@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "workshop",
+  "pub_type": "workshop",
+  "pub_year": 2017,
   "pub_date": "2017-01-21",
   "primary_link": "event",
   "title": "Verification of Implementations of Distributed Systems Under Churn",
@@ -22,7 +24,8 @@
       "name": "Karl Palmskog"
     }
   ],
-  "venue": "Workshop on Coq for Programming Languages (CoqPL)",
+  "venue": "Workshop on Coq for Programming Languages",
+  "venue_short": "CoqPL",
   "links": {
     "event": "https://popl17.sigplan.org/details/main/1/Verification-of-Implementations-of-Distributed-Systems-Under-Churn"
   }

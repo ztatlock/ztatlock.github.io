@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2018,
   "pub_date": "2018-01-08",
   "primary_link": "publisher",
   "title": "Œuf: Minimizing the Coq Extraction TCB",
@@ -22,7 +24,8 @@
       "name": "Dan Grossman"
     }
   ],
-  "venue": "Certified Programs and Proofs (CPP)",
+  "venue": "Certified Programs and Proofs",
+  "venue_short": "CPP",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/3167089"
   }

@@ -1,19 +1,50 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2021,
   "pub_date": "2021-10-15",
   "title": "Rewrite Rule Inference Using Equality Saturation",
   "authors": [
-    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" },
-    { "name": "Max Willsey", "ref": "Max Willsey" },
-    { "name": "Amy Zhu", "ref": "Amy Zhu" },
-    { "name": "Yisu Remy Wang", "ref": "Remy Wang" },
-    { "name": "Brett Saiki", "ref": "Brett Saiki" },
-    { "name": "Adam Anderson", "ref": "Adam Anderson" },
-    { "name": "Adriana Schulz", "ref": "Adriana Schulz" },
-    { "name": "Dan Grossman", "ref": "Dan Grossman" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Chandrakana Nandi",
+      "ref": "Chandrakana Nandi"
+    },
+    {
+      "name": "Max Willsey",
+      "ref": "Max Willsey"
+    },
+    {
+      "name": "Amy Zhu",
+      "ref": "Amy Zhu"
+    },
+    {
+      "name": "Yisu Remy Wang",
+      "ref": "Remy Wang"
+    },
+    {
+      "name": "Brett Saiki",
+      "ref": "Brett Saiki"
+    },
+    {
+      "name": "Adam Anderson",
+      "ref": "Adam Anderson"
+    },
+    {
+      "name": "Adriana Schulz",
+      "ref": "Adriana Schulz"
+    },
+    {
+      "name": "Dan Grossman",
+      "ref": "Dan Grossman"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "Object-Oriented Programming, Systems, Languages & Applications (OOPSLA)",
+  "venue": "Object-Oriented Programming, Systems, Languages & Applications",
+  "venue_short": "OOPSLA",
   "badges": [
     "★ Distinguished Paper"
   ],
@@ -27,7 +58,10 @@
     {
       "event": "OOPSLA 2021",
       "speakers": [
-        { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" }
+        {
+          "name": "Chandrakana Nandi",
+          "ref": "Chandrakana Nandi"
+        }
       ],
       "url": "https://www.youtube.com/watch?v=5VGTXMgebOo",
       "embed": "https://www.youtube.com/embed/5VGTXMgebOo"

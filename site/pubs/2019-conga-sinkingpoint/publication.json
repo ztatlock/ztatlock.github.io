@@ -1,13 +1,26 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2019,
   "pub_date": "2019-03-13",
   "title": "Sinking Point: Dynamic Precision Tracking for Floating-point",
   "authors": [
-    { "name": "Bill Zorn", "ref": "Bill Zorn" },
-    { "name": "Dan Grossman", "ref": "Dan Grossman" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" }
+    {
+      "name": "Bill Zorn",
+      "ref": "Bill Zorn"
+    },
+    {
+      "name": "Dan Grossman",
+      "ref": "Dan Grossman"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    }
   ],
-  "venue": "Conference for Next Generation Arithmetic (CoNGA)",
+  "venue": "Conference for Next Generation Arithmetic",
+  "venue_short": "CoNGA",
   "description": "Sinking-point extends arbitrary digital number systems to dynamically track precision and help identify results with high error with few false positives.",
   "links": {
     "talk": "https://www.youtube.com/watch?v=nsKIUWlNrUU",

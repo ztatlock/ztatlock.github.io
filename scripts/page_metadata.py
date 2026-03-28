@@ -674,7 +674,7 @@ def render_route_meta_for_url(
             raise MetadataError(str(err)) from err
         if record.draft:
             return ""
-        if not record.detail_page:
+        if not record.local_page:
             raise MetadataError(
                 f"{route_key}: publication has no local detail page metadata"
             )
@@ -816,7 +816,7 @@ def validate_publication_record_metadata(
 
         if record.draft:
             continue
-        if not record.detail_page:
+        if not record.local_page:
             continue
 
         try:

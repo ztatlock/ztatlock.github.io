@@ -1,6 +1,6 @@
 # Publication Model Implementation / Testing / Migration Plan
 
-Status: slices 1-2 implemented; slices 3-4 pending
+Status: slices 1-3 implemented; slice 4 pending
 
 It builds on:
 
@@ -201,6 +201,18 @@ slice.
 This should be the main implementation slice.
 Unlike service, it should not rely on a long-lived compatibility adapter.
 
+This slice is now implemented directly in the live publication path:
+
+- [publication_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record.py)
+- [publication_index.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_index.py)
+- [page_projection.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/page_projection.py)
+- [build_pub_inventory.py](/Users/ztatlock/www/ztatlock.github.io/scripts/build_pub_inventory.py)
+- [page_source.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_source.py)
+- [page_metadata.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_metadata.py)
+- [route_discovery.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/route_discovery.py)
+- [publication-model-a-migration.tsv](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-model-a-migration.tsv)
+- canonical bundle data under [site/pubs/](/Users/ztatlock/www/ztatlock.github.io/site/pubs/)
+
 Scope:
 
 - migrate all non-draft `site/pubs/*/publication.json` bundles to Proposal A:
@@ -262,6 +274,7 @@ Invariant after slice 3:
   - the old field contract
 - current `/pubs/`, CV, homepage, and inventory behavior remain coherent and
   trustworthy
+- no long-lived compatibility bridge survives the cutover
 
 ### Slice 4. Post-Cutover Cleanup And Follow-On Enrichment
 

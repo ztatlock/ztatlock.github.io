@@ -174,9 +174,7 @@ def _normalize_optional_string(raw: object, *, context: str, field: str) -> str 
     if not isinstance(raw, str):
         raise PublicationRecordAError(f"{context}: {field} must be a string or null")
     value = raw.strip()
-    if not value:
-        raise PublicationRecordAError(f"{context}: {field} must be a non-empty string")
-    return value
+    return value or None
 
 
 def _normalize_required_string(raw: object, *, context: str, field: str) -> str:
@@ -230,7 +228,11 @@ def _normalize_person(raw: object, *, context: str) -> PublicationPersonA:
             f"{context}: unknown fields: {', '.join(unknown_fields)}"
         )
     name = _normalize_required_string(obj.get("name"), context=context, field="name")
-    ref = _normalize_optional_string(obj.get("ref"), context=context, field="ref")
+    raw_ref = obj.get("ref")
+    if isinstance(raw_ref, str) and not raw_ref.strip():
+        ref = None
+    else:
+        ref = _normalize_optional_string(raw_ref, context=context, field="ref")
     return PublicationPersonA(name=name, ref=ref)
 
 

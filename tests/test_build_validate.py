@@ -204,13 +204,16 @@ class BuildValidateTests(unittest.TestCase):
             (pub_dir / "publication.json").write_text(
                 json.dumps(
                     {
-                        "detail_page": False,
+                        "local_page": False,
                         "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
                         "pub_date": "2025-01-01",
                         "primary_link": "publisher",
                         "title": "Demo Paper",
                         "authors": [{"name": "Demo Author", "ref": ""}],
                         "venue": "DemoConf",
+                        "venue_short": "DemoConf",
                         "links": {
                             "publisher": "https://example.test/paper",
                         },

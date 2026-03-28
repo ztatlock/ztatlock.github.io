@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2010,
   "pub_date": "2010-06-05",
   "primary_link": "publisher",
   "title": "Bringing Extensibility to Verified Compilers",
@@ -12,7 +14,8 @@
       "name": "Sorin Lerner"
     }
   ],
-  "venue": "Programming Language Design and Implementation (PLDI)",
+  "venue": "Programming Language Design and Implementation",
+  "venue_short": "PLDI",
   "links": {
     "publisher": "https://dl.acm.org/doi/10.1145/1806596.1806611"
   }

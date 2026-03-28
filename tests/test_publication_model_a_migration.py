@@ -36,7 +36,7 @@ class PublicationModelAMigrationManifestTests(unittest.TestCase):
         self.assertEqual(set(manifest_slugs), set(current))
         self.assertEqual(len(rows), 69)
 
-    def test_manifest_current_columns_match_current_corpus(self) -> None:
+    def test_manifest_proposed_columns_match_live_corpus(self) -> None:
         rows = _load_manifest_rows()
         current = _load_current_publications()
 
@@ -46,12 +46,15 @@ class PublicationModelAMigrationManifestTests(unittest.TestCase):
             self.assertEqual(row["title"], data["title"])
             self.assertEqual(row["current_listing_group"], data["listing_group"])
             self.assertEqual(
-                row["current_detail_page"],
-                str(data.get("detail_page", True)).lower(),
+                row["proposed_local_page"],
+                str(data.get("local_page", True)).lower(),
             )
             self.assertEqual(row["current_primary_link"], data.get("primary_link", ""))
             self.assertEqual(row["current_pub_date"], data.get("pub_date", ""))
-            self.assertEqual(row["current_venue"], data["venue"])
+            self.assertEqual(row["proposed_venue"], data["venue"])
+            self.assertEqual(row["proposed_venue_short"], data["venue_short"])
+            self.assertEqual(int(row["proposed_pub_year"]), data["pub_year"])
+            self.assertEqual(row["proposed_pub_type"], data["pub_type"])
 
     def test_manifest_proposed_columns_are_valid(self) -> None:
         rows = _load_manifest_rows()

@@ -37,8 +37,15 @@ from scripts.publication_index import (
     load_publication_index_records,
     render_publications_list_djot,
 )
-from scripts.publication_record import PublicationRecord, publication_year
-from scripts.publication_record import publication_index_title_url
+from scripts.publication_record import (
+    PublicationRecord,
+    publication_compact_venue_label,
+    publication_display_year,
+    publication_full_venue_label,
+    publication_index_title_url,
+    publication_listing_group,
+    publication_pub_year,
+)
 from scripts.service_index import (
     SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     SERVICE_MENTORING_LIST_PLACEHOLDER,
@@ -471,7 +478,7 @@ def _render_cv_publication_entry(record: PublicationRecord) -> str:
     parts = [
         f"*{record.title}*",
         ", ".join(author.name for author in record.authors),
-        f"{record.venue} {publication_year(record.slug)}",
+        f"{publication_full_venue_label(record)} {publication_display_year(record)}",
         *record.badges,
     ]
     return " \\\n".join(parts)
@@ -479,7 +486,7 @@ def _render_cv_publication_entry(record: PublicationRecord) -> str:
 
 def _render_homepage_recent_publication_entry(record: PublicationRecord) -> str:
     title_url = publication_index_title_url(record)
-    venue_year = f"{record.venue} {publication_year(record.slug)}"
+    venue_year = f"{publication_compact_venue_label(record)} {publication_display_year(record)}"
     return f"- *[{record.title}]({title_url})* ({venue_year})"
 
 
@@ -495,12 +502,12 @@ def render_homepage_recent_publications_list_djot(
     if not records:
         return ""
 
-    latest_year = records[0].pub_date.year
+    latest_year = max(publication_pub_year(record) for record in records)
     earliest_year = latest_year - (HOMEPAGE_RECENT_PUBLICATIONS_WINDOW_YEARS - 1)
     selected = [
         record
         for record in records
-        if earliest_year <= record.pub_date.year <= latest_year
+        if earliest_year <= publication_pub_year(record) <= latest_year
     ]
     if HOMEPAGE_RECENT_PUBLICATIONS_CAP is not None:
         selected = selected[:HOMEPAGE_RECENT_PUBLICATIONS_CAP]
@@ -521,7 +528,7 @@ def render_cv_publications_list_djot(
     chunks = [
         _render_cv_publication_entry(record)
         for record in records
-        if record.listing_group == listing_group
+        if publication_listing_group(record) == listing_group
     ]
     return "\n\n".join(chunks) + ("\n" if chunks else "")
 

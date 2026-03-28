@@ -94,8 +94,8 @@ Current wrapper/consumer state:
 - the CV now includes Ian Briggs consistently with the canonical students data
 - the next step should be chosen deliberately rather than broadened
   automatically, and the authored top-of-CV highlights review should now wait
-  until the publication-model direction and its implementation/migration plan
-  settle the current publication boundary and compact-publication semantics
+  until the publication slice-4 cleanup settles the current publication
+  boundary and compact-publication semantics
 
 That means the wrapper shape is now settled and the remaining CV work is more
 curated consumer-side cleanup rather than another obviously large repeated

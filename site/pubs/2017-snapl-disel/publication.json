@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2017,
   "pub_date": "2017-05-05",
   "primary_link": "publisher",
   "title": "Programming Language Abstractions for Modularly Verified Distributed Systems",
@@ -16,7 +18,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Summit oN Advances in Programming Languages (SNAPL)",
+  "venue": "Summit oN Advances in Programming Languages",
+  "venue_short": "SNAPL",
   "links": {
     "publisher": "https://drops.dagstuhl.de/opus/volltexte/2017/7126/"
   }

@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "workshop",
+  "pub_type": "workshop",
+  "pub_year": 2019,
   "pub_date": "2019-11-18",
   "primary_link": "publisher",
   "title": "Toward Multi-Precision, Multi-Format Numerics",
@@ -18,7 +20,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Software Correctness for HPC Applications (CORRECTNESS)",
+  "venue": "Software Correctness for HPC Applications",
+  "venue_short": "CORRECTNESS",
   "links": {
     "publisher": "https://www.computer.org/csdl/proceedings-article/correctness/2019/601500a019/1gyr5pHvaz6"
   }

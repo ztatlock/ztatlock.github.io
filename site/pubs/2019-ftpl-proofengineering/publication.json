@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "journal",
+  "pub_year": 2019,
   "pub_date": "2019-09-03",
   "primary_link": "publisher",
   "title": "QED at Large: A Survey of Engineering of Formally Verified Software",
@@ -21,7 +23,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Foundations and Trends in Programming Languages (FTPL)",
+  "venue": "Foundations and Trends in Programming Languages",
+  "venue_short": "FTPL",
   "links": {
     "publisher": "https://www.nowpublishers.com/article/Details/PGL-045"
   }

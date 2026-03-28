@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2019,
   "pub_date": "2019-07-12",
   "primary_link": "publisher",
   "title": "Icing: Supporting Fast-Math Style Optimizations in a Verified Compiler",
@@ -18,7 +20,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "Computer-Aided Verification (CAV)",
+  "venue": "Computer-Aided Verification",
+  "venue_short": "CAV",
   "links": {
     "publisher": "https://link.springer.com/chapter/10.1007/978-3-030-25543-5_10"
   }

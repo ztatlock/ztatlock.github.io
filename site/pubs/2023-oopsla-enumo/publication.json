@@ -1,19 +1,50 @@
 {
+  "local_page": true,
   "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2023,
   "pub_date": "2023-10-16",
   "title": "Equality Saturation Theory Exploration à la Carte",
   "authors": [
-    { "name": "Anjali Pal", "ref": "Anjali Pal" },
-    { "name": "Brett Saiki", "ref": "Brett Saiki" },
-    { "name": "Ryan Tjoa", "ref": "Ryan Tjoa" },
-    { "name": "Cynthia Richey", "ref": "Cynthia Richey" },
-    { "name": "Amy Zhu", "ref": "Amy Zhu" },
-    { "name": "Oliver Flatt", "ref": "Oliver Flatt" },
-    { "name": "Max Willsey", "ref": "Max Willsey" },
-    { "name": "Zachary Tatlock", "ref": "Zachary Tatlock" },
-    { "name": "Chandrakana Nandi", "ref": "Chandrakana Nandi" }
+    {
+      "name": "Anjali Pal",
+      "ref": "Anjali Pal"
+    },
+    {
+      "name": "Brett Saiki",
+      "ref": "Brett Saiki"
+    },
+    {
+      "name": "Ryan Tjoa",
+      "ref": "Ryan Tjoa"
+    },
+    {
+      "name": "Cynthia Richey",
+      "ref": "Cynthia Richey"
+    },
+    {
+      "name": "Amy Zhu",
+      "ref": "Amy Zhu"
+    },
+    {
+      "name": "Oliver Flatt",
+      "ref": "Oliver Flatt"
+    },
+    {
+      "name": "Max Willsey",
+      "ref": "Max Willsey"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Chandrakana Nandi",
+      "ref": "Chandrakana Nandi"
+    }
   ],
-  "venue": "Object-Oriented Programming, Systems, Languages & Applications (OOPSLA)",
+  "venue": "Object-Oriented Programming, Systems, Languages & Applications",
+  "venue_short": "OOPSLA",
   "description": "Enumo is a new DSL that makes EqSat rule inference programmable and scalable. Its core operators enable strategic guidance, supporting larger grammars and novel strategies previously out of scope.",
   "links": {
     "code": "https://github.com/uwplse/ruler",
@@ -24,7 +55,10 @@
     {
       "event": "OOPSLA 2023",
       "speakers": [
-        { "name": "Anjali Pal", "ref": "Anjali Pal" }
+        {
+          "name": "Anjali Pal",
+          "ref": "Anjali Pal"
+        }
       ],
       "url": "https://youtu.be/cwMpjtNJba8",
       "embed": "https://www.youtube.com/embed/cwMpjtNJba8",

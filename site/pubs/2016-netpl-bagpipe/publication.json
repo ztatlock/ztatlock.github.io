@@ -1,6 +1,8 @@
 {
-  "detail_page": false,
+  "local_page": false,
   "listing_group": "main",
+  "pub_type": "workshop",
+  "pub_year": 2016,
   "pub_date": "2016-08-22",
   "primary_link": "event",
   "title": "Formal Semantics and Automated Verification for the Border Gateway Protocol",
@@ -25,7 +27,8 @@
       "name": "Zachary Tatlock"
     }
   ],
-  "venue": "ACM SIGCOMM Workshop on Networking and Programming Languages (NetPL)",
+  "venue": "ACM SIGCOMM Workshop on Networking and Programming Languages",
+  "venue_short": "NetPL",
   "links": {
     "event": "https://conferences.sigcomm.org/sigcomm/2016/netpl.php"
   }
