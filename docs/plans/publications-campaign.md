@@ -89,10 +89,15 @@ Its slice-1 loader/validator foundation is also now implemented side by side:
 - [publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record_a.py)
 - [test_publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record_a.py)
 
+Its slice-2 corpus migration decisions are also now explicit and checked in:
+
+- [publication-model-a-migration.tsv](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-model-a-migration.tsv)
+- [test_publication_model_a_migration.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_model_a_migration.py)
+
 So the next likely work is now:
 
-- execute slice 2 of that plan: corpus migration tables and reality-checked
-  publication decisions before broader backfill or live consumer cutover
+- execute slice 3 of that plan: the coordinated canonical-data and live
+  consumer cutover from the current publication field contract to Proposal A
 
 Supporting review notes from this completed design pass:
 

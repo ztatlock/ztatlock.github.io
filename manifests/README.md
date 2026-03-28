@@ -21,3 +21,9 @@ These are not:
   inventory.
   Use `present` only for archive-presence heuristic misses, not to override a
   missing canonical repo file or page link.
+- `publication-model-a-migration.tsv`
+  Checked-in slice-2 migration decisions for the indexed publication corpus
+  under the leading Proposal A authored schema.
+  This manifest records the current bundle facts plus the proposed
+  `pub_year`, cleaned `venue`, `venue_short`, `pub_type`, and `local_page`
+  values that will drive the coordinated slice-3 cutover.

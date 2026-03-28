@@ -66,13 +66,25 @@ notes.
   (`scripts/publication_record_a.py`,
   `tests/test_publication_record_a.py`,
   `docs/plans/publication-model-implementation-testing-plan.md`).
-- [ ] Execute slice 2 of the Proposal A publication-model plan by making the
+- [x] Execute slice 2 of the Proposal A publication-model plan by making the
   real corpus migration decisions explicit for indexed publication bundles:
   `pub_year`, cleaned `venue`, `venue_short`, `pub_type`, and `local_page`,
   with the known year-mismatch and `listing_group`/semantic-type divergence
   cases carried forward as named migration checks
   (`docs/plans/publication-model-implementation-testing-plan.md`,
-  `docs/plans/publication-model-corpus-refinement-pass.md`, `site/pubs/`).
+  `docs/plans/publication-model-corpus-refinement-pass.md`,
+  `manifests/publication-model-a-migration.tsv`,
+  `tests/test_publication_model_a_migration.py`, `site/pubs/`).
+- [ ] Execute slice 3 of the Proposal A publication-model plan: migrate the
+  canonical publication bundles and cut `/pubs/`, the CV indexed-publication
+  sections, the homepage recent-publications projection, inventory tooling,
+  and validation over to the new Proposal A field contract in one coordinated
+  bounded slice, without keeping a long-lived compatibility bridge
+  (`docs/plans/publication-model-implementation-testing-plan.md`,
+  `manifests/publication-model-a-migration.tsv`,
+  `scripts/publication_record.py`, `scripts/publication_index.py`,
+  `scripts/sitebuild/page_projection.py`, `scripts/build_pub_inventory.py`,
+  `site/pubs/`).
 - [ ] Revisit the top-of-CV `Selected Recent Highlights` block only after the
   publication-model direction and its implementation/migration plan settle the
   current publication boundary and compact rendering semantics, so the

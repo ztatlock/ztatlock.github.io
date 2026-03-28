@@ -1,6 +1,6 @@
 # Publication Model Implementation / Testing / Migration Plan
 
-Status: slice 1 implemented; slices 2-4 pending
+Status: slices 1-2 implemented; slices 3-4 pending
 
 It builds on:
 
@@ -142,6 +142,12 @@ Invariant after slice 1:
 
 Turn the already completed review/audit work into explicit migration inputs for
 the real indexed corpus.
+
+This slice is now implemented in a checked-in migration manifest plus focused
+coverage tests:
+
+- [publication-model-a-migration.tsv](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-model-a-migration.tsv)
+- [test_publication_model_a_migration.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_model_a_migration.py)
 
 Scope:
 
