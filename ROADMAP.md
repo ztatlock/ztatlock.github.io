@@ -43,6 +43,7 @@ notes.
   identifier handling, and publication-boundary questions are improved on the
   canonical bundle model before dozens more bundles need the same migration
   (`docs/plans/publication-model-seams-and-requirements.md`,
+  `docs/plans/publication-model-audit-notes.md`,
   `docs/plans/publications-campaign.md`, `site/pubs/`,
   `scripts/publication_record.py`).
 - [ ] Revisit the top-of-CV `Selected Recent Highlights` block only after the

@@ -73,6 +73,7 @@ It is a publication-model seam/design review pass before broader backfill or
 further downstream reuse:
 
 - [publication-model-seams-and-requirements.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-seams-and-requirements.md)
+- [publication-model-audit-notes.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-audit-notes.md)
 
 That review should sharpen field semantics such as venue display, identifiers,
 bundle readiness, and publication-boundary questions before the repo invests in
