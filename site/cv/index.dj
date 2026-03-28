@@ -10,20 +10,18 @@ description: CV: education, employment, students, publications, service, etc.
 
 ## Overview
 
-I am a Professor in the Paul G. Allen School of Computer Science &
-Engineering at the University of Washington. My research is rooted in formal
-methods, especially compilers, and has grown outward into program synthesis,
-equality saturation, and tools for making difficult software easier to build
-and trust. Across these areas, I work closely with students and aim to
-combine rigorous reasoning with real systems and real measurements.
+I am a Professor in the Allen School at the University of Washington. I work
+with students in the UW PLSE group on formal methods, compilers, equality
+saturation, numerics, and fabrication, with an emphasis on making difficult
+software easier to build and reason about. My work combines formal semantics
+and verification with practical systems, tools, and measurements.
 
-Current snapshot: **8** current students and postdocs; **12** graduated PhD
-students; **69** indexed publications; **4** distinguished or spotlight
-papers.
+Current scale: **8** current students and postdocs; **12** graduated PhD
+students; **69** indexed publications.
 
-- Serving on the PLDI Steering Committee and the PACMPL Advisory Board
-  (2026 - 2029).
-- Program Chair for [PLDI 2025](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee).
+- Current leadership includes service on the PLDI Steering Committee and the
+  PACMPL Advisory Board (2026 - 2029), following Program Chair service for
+  [PLDI 2025](https://pldi25.sigplan.org/committee/pldi-2025-organizing-committee).
 - Recent invited talk: [Everything is a compiler, try Equality Saturation!](https://events.brown.edu/computer-science/event/326439-bvc-seminar-zachary-tatlock-university-of)
   at Brown University, February 2026.
 - Recent paper: [*Target-Aware Implementation of Real Expressions*](pubs/2025-asplos-realexpr/)

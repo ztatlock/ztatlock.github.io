@@ -1,6 +1,6 @@
 # CV Top Summary Slice 4 Rewrite
 
-Status: implemented rewrite checkpoint
+Status: implemented rewrite checkpoint; live wording reviewed and approved
 
 It builds on:
 
@@ -79,8 +79,7 @@ Those remain better as authored signals than as headline statistics.
 
 ## Follow-On
 
-The next step is not more top-of-CV redesign.
-It is slice 5:
+The next campaign step is slice 5:
 
 - compare the new CV top with the homepage top summary
 - decide whether the homepage summary should stay as-is or be lightly retuned

@@ -61,6 +61,25 @@ It should not become:
 
 Canonical domains should inform this block, but they should not control it.
 
+### Iterate With Zach Until Approval
+
+Agents helping with the top-of-CV summary should treat authored wording as
+iterative draft material, not as content to finalize unilaterally.
+
+That means:
+
+- propose concrete wording and structural edits
+- explain the intended tradeoffs clearly
+- revise in response to Zach's feedback
+- keep iterating until Zach explicitly approves the authored content
+
+Do not treat "the page builds" or "the shape is now correct" as sufficient
+grounds to consider the prose finished.
+
+This block is an editorial surface.
+Its wording should be settled collaboratively, not silently locked in by an
+agent.
+
 ### Treat It As Summary, Not Repetition
 
 The block should summarize the full CV, not repeat it in miniature.
@@ -203,6 +222,10 @@ Revisit the top summary when:
 
 Do not update it just because the calendar year changed.
 Prefer editorial honesty over timestamp churn.
+
+When a rewrite is in progress, prefer short iterative proposal cycles over
+large one-shot rewrites.
+Show candidate language, get review, and only then settle the live wording.
 
 ## Non-Goals
 
