@@ -2,7 +2,7 @@
 
 Status: route/wrapper cutover plus students, teaching, service, indexed
 publications, full invited-talks, and funding CV projection implemented;
-the top-of-CV executive-summary plan is now latched with slices 1-2
+the top-of-CV executive-summary plan is now latched with slices 1-3
 implemented; stop and reassess before broader curated CV consumers
 
 ## Goal
@@ -198,6 +198,7 @@ Current planning note for the top-of-CV block:
 - [cv-top-summary-executive-block-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-executive-block-plan.md)
 - [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
 - [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
+- [cv-top-summary-slice-3-shape-proposals.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-3-shape-proposals.md)
 
 Likely later projection candidates:
 

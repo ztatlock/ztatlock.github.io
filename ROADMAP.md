@@ -118,11 +118,21 @@ notes.
   `site/pages/index.dj`, `site/data/news.json`, `site/data/students.json`,
   `site/data/teaching.json`, `site/data/service.json`,
   `site/data/funding.json`, `site/talks/`, `site/pubs/`).
-- [ ] Execute slice 3 of the top-of-CV executive-summary plan: draft and
+- [x] Execute slice 3 of the top-of-CV executive-summary plan: draft and
   compare a few authored top-of-CV shapes over the now-audited inputs, then
   choose a leading direction before editing the live CV
   (`docs/plans/cv-top-summary-executive-block-plan.md`,
   `docs/plans/cv-top-summary-slice-2-audit.md`,
+  `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
+  `site/pages/index.dj`).
+- [ ] Execute slice 4 of the top-of-CV executive-summary plan: rewrite the
+  live top of `site/cv/index.dj` around the now-leading
+  narrative-plus-small-stat-row-plus-mixed-signals shape, while keeping the
+  result fully authored and reviewing its relationship to the homepage top
+  summary explicitly
+  (`docs/plans/cv-top-summary-executive-block-plan.md`,
+  `docs/plans/cv-top-summary-slice-2-audit.md`,
+  `docs/plans/cv-top-summary-slice-3-shape-proposals.md`,
   `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
   `site/pages/index.dj`).
 - [ ] After the top-of-CV executive-summary campaign settles, review peer CVs
