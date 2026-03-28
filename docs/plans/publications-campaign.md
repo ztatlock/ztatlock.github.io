@@ -84,10 +84,15 @@ That implementation/testing/migration plan is now drafted here:
 
 - [publication-model-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-implementation-testing-plan.md)
 
+Its slice-1 loader/validator foundation is also now implemented side by side:
+
+- [publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record_a.py)
+- [test_publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record_a.py)
+
 So the next likely work is now:
 
-- execute slice 1 of that plan: Proposal A loader/validator foundation and
-  focused fixture tests before broader backfill or live consumer cutover
+- execute slice 2 of that plan: corpus migration tables and reality-checked
+  publication decisions before broader backfill or live consumer cutover
 
 Supporting review notes from this completed design pass:
 

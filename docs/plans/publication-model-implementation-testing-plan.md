@@ -1,6 +1,6 @@
 # Publication Model Implementation / Testing / Migration Plan
 
-Status: draft
+Status: slice 1 implemented; slices 2-4 pending
 
 It builds on:
 
@@ -84,6 +84,12 @@ forcing the authored JSON to mirror that full grouping directly.
 
 Implement the Proposal A schema and validation rules in code before touching
 the real publication corpus.
+
+This foundation slice is now implemented in side-by-side code and focused
+tests:
+
+- [publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record_a.py)
+- [test_publication_record_a.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record_a.py)
 
 Scope:
 

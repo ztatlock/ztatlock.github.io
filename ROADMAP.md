@@ -60,6 +60,19 @@ notes.
   `docs/plans/publications-campaign.md`, `site/pubs/`,
   `scripts/publication_record.py`, `scripts/publication_index.py`,
   `scripts/sitebuild/page_projection.py`).
+- [x] Implement slice 1 of the Proposal A publication-model plan as a
+  side-by-side loader/validator foundation with focused fixture tests, while
+  leaving the live publication corpus and consumers unchanged
+  (`scripts/publication_record_a.py`,
+  `tests/test_publication_record_a.py`,
+  `docs/plans/publication-model-implementation-testing-plan.md`).
+- [ ] Execute slice 2 of the Proposal A publication-model plan by making the
+  real corpus migration decisions explicit for indexed publication bundles:
+  `pub_year`, cleaned `venue`, `venue_short`, `pub_type`, and `local_page`,
+  with the known year-mismatch and `listing_group`/semantic-type divergence
+  cases carried forward as named migration checks
+  (`docs/plans/publication-model-implementation-testing-plan.md`,
+  `docs/plans/publication-model-corpus-refinement-pass.md`, `site/pubs/`).
 - [ ] Revisit the top-of-CV `Selected Recent Highlights` block only after the
   publication-model direction and its implementation/migration plan settle the
   current publication boundary and compact rendering semantics, so the
