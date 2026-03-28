@@ -68,6 +68,9 @@ Other important cross-domain consumers already present near the top of the CV:
 
 - `Selected Recent Highlights`
   especially the `Leadership` subsection, which overlaps service
+  while non-service research/community-participation items such as Dagstuhl
+  attendance should remain authored there rather than being forced back into
+  the service domain
 - `Invited Talks`
   overlaps talks
 - `Selected Publications`
@@ -179,6 +182,8 @@ Likely hand-authored for now:
 
 - the page heading and contact block
 - `Selected Recent Highlights`
+- small non-service research/community-participation highlights such as
+  Dagstuhl attendance
 - `Experience`
 - `Education`
 - `Awards`

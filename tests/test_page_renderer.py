@@ -188,7 +188,7 @@ class PageRendererTests(unittest.TestCase):
         self.assertNotIn("__NEWS_MONTH_GROUPS__", html)
         self.assertIn("Zachary Tatlock / News", html)
         self.assertIn("Visiting the PL and Graphics groups at Brown University", html)
-        self.assertIn("Dagstuhl on EGRAPHS", html)
+        self.assertIn("Dagstuhl Seminar 26022: EGRAPHS", html)
         self.assertIn("The Neutrons project was featured", html)
 
     def test_render_students_index_page_uses_explicit_canonical_url(self) -> None:

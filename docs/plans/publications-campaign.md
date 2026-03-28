@@ -40,8 +40,8 @@ payoff.
 
 ## Current Status
 
-Slices 1 through 5 of this campaign are implemented, and one downstream CV
-consumer slice now reuses the canonical indexed publication bundles.
+Slices 1 through 5 of this campaign are implemented, and downstream CV and
+homepage consumers now reuse the canonical indexed publication bundles.
 
 That means:
 
@@ -62,6 +62,9 @@ That means:
 - the duplicated indexed-publication subsections in `site/cv/index.dj` now
   project from publication bundles rather than from a second hand-maintained
   publication list
+- the homepage `## Recent Publications` block now projects a compressed recent
+  subset from canonical publication bundles using explicit latest-year/trailing
+  3-year selection policy
 - the `Book Chapters` subsection in the CV remains hand-authored by explicit
   policy
 

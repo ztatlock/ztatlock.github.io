@@ -484,23 +484,26 @@ Teaching and service follow-on work should continue separately as:
 
 The main remaining cross-domain maintenance seams are now:
 
-- the remaining authored homepage recent blocks
 - the authored top-of-CV `Selected Recent Highlights` block
 - the publication-boundary question around the authored CV `Book Chapters`
   subsection
 
+Current policy note:
+
+- non-service research/community-participation facts such as Dagstuhl
+  attendance should remain in authored/news surfaces for now
+- they should not be forced into the service domain by inertia
+- a separate structured honors/activities domain should only be introduced if
+  enough similar facts accumulate to justify it
+
 Near-term priorities that currently look strongest are:
 
-1. the service-data audit needed before any homepage `Recent Service /
-   Leadership` projection, since service homepage policy should operate over
-   grouped/coalesced service concepts rather than blindly over raw yearly
-   terms
-2. later exploration of the remaining authored homepage/CV curated blocks now
-   we are ready to decide whether they should stay authored, be trimmed, or
-   become small structured consumers
-3. a later teaching-page styling/polish campaign now that the richer
+1. revisit the authored top-of-CV `Selected Recent Highlights` block now that
+   the homepage recent service/publications consumers and the Dagstuhl-like
+   non-service participation policy are settled
+2. a later teaching-page styling/polish campaign now that the richer
    projections are materially more consistent but also visually rougher
-4. later collaborator enrichment only if a concrete per-person consumer
+3. later collaborator enrichment only if a concrete per-person consumer
    clearly earns it, likely alongside or after a future structured `projects`
    domain rather than through a premature collaborator registry
 

@@ -1249,6 +1249,166 @@ class SourceValidateTests(unittest.TestCase):
             )
             self.assertEqual(find_source_issues(config), [])
 
+    def test_reports_missing_homepage_recent_publications_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Recent Publications\n\n"
+                "{#2025-demo-paper}\n"
+                "*[Demo Paper](https://example.test/paper)* \\\n"
+                "DemoConf 2025\n\n"
+                "Please see my [publications page](pubs/) for more.\n",
+                encoding="utf-8",
+            )
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications page\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n",
+                encoding="utf-8",
+            )
+            pub_dir = pubs / "2025-demo-paper"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2025-01-01",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/paper"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(
+                find_source_issues(config),
+                [
+                    f"{pages / 'index.dj'}: homepage recent publications section must contain __HOMEPAGE_RECENT_PUBLICATIONS_LIST__",
+                    f"{pages / 'index.dj'}: homepage recent publications section must not contain literal repeated publication entry blocks",
+                ],
+            )
+
+    def test_accepts_homepage_recent_publications_projection_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            pages = root / "site" / "pages"
+            templates = root / "site" / "templates"
+            data = root / "site" / "data"
+            static = root / "site" / "static"
+            talks = root / "site" / "talks"
+            pubs = root / "site" / "pubs"
+            students = root / "site" / "students"
+            service = root / "site" / "service"
+            teaching = root / "site" / "teaching"
+
+            pages.mkdir(parents=True)
+            templates.mkdir(parents=True)
+            data.mkdir(parents=True)
+            talks.mkdir(parents=True)
+            pubs.mkdir(parents=True)
+            students.mkdir(parents=True)
+            service.mkdir(parents=True)
+            teaching.mkdir(parents=True)
+            (static / "img").mkdir(parents=True)
+            (static / "img" / "favicon-meta.png").write_bytes(b"PNG")
+
+            (pages / "index.dj").write_text(
+                "---\n"
+                "description: Home page\n"
+                "---\n\n"
+                "# Home\n\n"
+                "## Recent Publications\n\n"
+                "__HOMEPAGE_RECENT_PUBLICATIONS_LIST__\n\n"
+                "Please see my [publications page](pubs/) for more.\n",
+                encoding="utf-8",
+            )
+            (pubs / "index.dj").write_text(
+                "---\n"
+                "description: Publications page\n"
+                "---\n\n"
+                "# Publications\n\n"
+                "__PUBLICATIONS_MAIN_LIST__\n\n"
+                "__PUBLICATIONS_WORKSHOP_LIST__\n",
+                encoding="utf-8",
+            )
+            pub_dir = pubs / "2025-demo-paper"
+            pub_dir.mkdir()
+            (pub_dir / "publication.json").write_text(
+                json.dumps(
+                    {
+                        "detail_page": False,
+                        "listing_group": "main",
+                        "pub_date": "2025-01-01",
+                        "primary_link": "publisher",
+                        "title": "Demo Paper",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "links": {"publisher": "https://example.test/paper"},
+                        "talks": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            config = load_site_config(
+                root,
+                page_source_dir=pages,
+                talks_dir=talks,
+                publications_dir=pubs,
+                students_dir=students,
+                service_dir=service,
+                teaching_dir=teaching,
+                templates_dir=templates,
+                data_dir=data,
+                static_source_dir=static,
+            )
+            self.assertEqual(find_source_issues(config), [])
+
     def test_reports_linkless_person_ref_in_news_data(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir).resolve()

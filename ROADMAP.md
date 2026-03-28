@@ -25,16 +25,25 @@ notes.
 
 ## Near-Term Next Steps
 
-- [ ] Decide how to represent non-service research/community-participation
+- [x] Decide how to represent non-service research/community-participation
   honors such as Dagstuhl attendance on the site and CV so those facts are not
-  lost when they are removed from canonical service (`site/cv/index.dj`,
-  `site/data/news.json`, `docs/plans/structured-content-roadmap.md`).
-- [ ] Plan and implement the homepage recent-publications projection so the
+  lost when they are removed from canonical service: keep them in authored/news
+  surfaces for now, not in the service domain, and revisit only if enough
+  similar facts accumulate to justify a separate structured honors/activities
+  domain (`site/cv/index.dj`, `site/data/news.json`,
+  `docs/plans/cv-campaign.md`, `docs/plans/structured-content-roadmap.md`).
+- [x] Plan and implement the homepage recent-publications projection so the
   repeated recent-publications block on `site/pages/index.dj` derives from
   canonical publication bundles under `site/pubs/` with explicit selection,
   ordering, and low-link policy (`docs/plans/publications-campaign.md`,
   `docs/plans/structured-content-roadmap.md`, `site/pubs/`,
   `site/pages/index.dj`).
+- [ ] Revisit the top-of-CV `Selected Recent Highlights` block now that the
+  Dagstuhl-like non-service participation policy and the homepage
+  recent-publications consumer are both settled, so the remaining authored
+  highlights structure can be reviewed deliberately rather than by inertia
+  (`site/cv/index.dj`, `docs/plans/cv-campaign.md`,
+  `docs/plans/homepage-cv-curated-consumers-campaign.md`).
 
 ## Migrated Backlog From TODO.md
 
@@ -78,6 +87,7 @@ notes.
 - [x] Plan and implement the homepage `Current Students` consumer so the repeated current-students block on `site/pages/index.dj` derives from the canonical `current_students` section in `site/data/students.json` while preserving the section heading, columns wrapper, and trailing students-page sentence (`docs/plans/homepage-cv-curated-consumers-campaign.md`, `docs/plans/homepage-cv-curated-consumers-slice-1-current-students.md`, `site/pages/index.dj`, `site/data/students.json`, `scripts/sitebuild/page_projection.py`, `scripts/sitebuild/source_validate.py`).
 - [x] Plan and implement the homepage recent-teaching projection so the repeated recent-teaching bullets on `site/pages/index.dj` derive from `site/data/teaching.json` with explicit recent-window, ordering, and link policy across `uw_courses`, `special_topics`, and `summer_school` while excluding the historical `teaching_assistant` group (`docs/plans/teaching-campaign.md`, `docs/plans/homepage-cv-curated-consumers-slice-2-recent-teaching.md`, `docs/plans/structured-content-roadmap.md`, `site/data/teaching.json`, `site/pages/index.dj`).
 - [x] Plan and implement the homepage recent-service / leadership projection so the curated block on `site/pages/index.dj` derives from canonical service runs using the latched current-year trailing-3-year non-`department` policy, no cap for now, direct links for single-URL runs, internal `/service/#<run.key>` links for multi-URL runs, and a retained trailing service-page sentence (`docs/plans/service-campaign.md`, `docs/plans/service-redesign-slice-4-homepage-recent-service.md`, `docs/plans/service-redesign-implementation-testing-plan.md`, `site/data/service.json`, `site/pages/index.dj`).
+- [x] Plan and implement the homepage recent-publications projection so the repeated recent-publications block on `site/pages/index.dj` derives from canonical publication bundles under `site/pubs/` using latest-publication-year anchoring, a trailing 3-year window, no cap for now, and a compressed homepage-specific renderer (`docs/plans/publications-campaign.md`, `docs/plans/homepage-cv-curated-consumers-slice-5-recent-publications.md`, `docs/plans/structured-content-roadmap.md`, `site/pubs/`, `site/pages/index.dj`).
 - [x] Delete the legacy flat-model service compatibility shim now that canonical service data, `/service/`, the CV, validation, and homepage recent-service all consume the A4 model directly, and make the homepage current-year anchoring rule explicit in code/tests/docs (`scripts/service_record_a4.py`, `scripts/service_index.py`, `scripts/page_source.py`, `scripts/sitebuild/route_discovery.py`, `scripts/sitebuild/source_validate.py`, `tests/test_service_index.py`, `docs/plans/service-redesign-implementation-testing-plan.md`).
 - [x] Plan and implement the funding slice-1 canonical model in `site/data/funding.json`, capturing the current funding facts from the CV in a small shared-data record model while explicitly deferring grant-to-paper/project associations (`docs/plans/funding-campaign.md`, `docs/plans/funding-slice-1-canonical-model.md`, `site/data/funding.json`).
 - [x] Plan and implement the public funding wrapper/projection slice so a public funding page lands at `site/funding/index.dj` with canonical `/funding/`, projecting repeated funding records from `site/data/funding.json` while keeping page framing hand-authored (`docs/plans/funding-campaign.md`, `docs/plans/funding-slice-2-index-projection.md`, `site/data/funding.json`, `site/funding/index.dj`).

@@ -1,6 +1,7 @@
 # Homepage / CV Curated Consumers Campaign
 
-Status: slices 1-2 implemented; service audit in progress; redesign review underway
+Status: slices 1-5 implemented; the remaining top-of-CV highlights work stays
+authored for now
 
 It builds on:
 
@@ -43,9 +44,9 @@ Relevant current blocks:
 - `## Recent Teaching`
   now a derived consumer of [site/data/teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json)
 - `## Recent Service / Leadership`
-  6 entries
+  now a derived consumer over canonical service runs
 - `## Recent Publications`
-  14 full publication entries
+  now a derived compressed consumer over canonical publication bundles
 
 Current overlap assessment:
 
@@ -58,13 +59,11 @@ Current overlap assessment:
   now solved as a flattened recent-teaching consumer over
   [site/data/teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json)
 - `## Recent Service / Leadership`
-  clearly curated across service categories rather than a simple "latest
-  service terms" view
+  now solved as a run-native derived consumer over canonical service with
+  explicit current-year/trailing-window/category/link policy
 - `## Recent Publications`
-  clearly repeated publication bibliography structure, but still a heavier
-  editorial choice than the students/teaching blocks because the homepage
-  wants a selective compressed subset rather than the whole canonical `/pubs/`
-  view
+  now solved as a derived compressed consumer over canonical publication
+  bundles with explicit recent-year policy
 
 ### CV
 
@@ -95,37 +94,24 @@ Current overlap assessment:
 
 The remaining curated surfaces are not all alike.
 
-There are two clear categories:
+There is now one clear remaining category in scope:
 
-1. tiny factual consumers that now look safe to derive
-2. editorial cross-domain blocks that should remain authored for now
+- editorial cross-domain blocks that should remain authored unless a very
+  small, explicit follow-on policy clearly improves them
 
-### Good Tiny-Consumer Candidates
+### Remaining Clearly Editorial Surface
 
-- homepage `## Current Students`
-- homepage `## Recent Teaching`
-
-Why these two look good:
-
-- both already overlap a single clear canonical domain
-- both are relatively small
-- both are structurally list-shaped
-- both can likely adopt explicit simple selection/order policy without
-  inventing new metadata
-
-### Still Clearly Editorial
-
-- homepage `## Recent Service / Leadership`
-- homepage `## Recent Publications`
 - CV `## Selected Recent Highlights`
 
-Why these should stay authored for now:
+Why this still stays authored for now:
 
-- each mixes curation, selection, and tone rather than just flattening one
-  canonical list
-- each would need explicit editorial policy before projection could be honest
-- none has the same obvious "just mirror the canonical subset" shape that
-  `Current Students` and `Recent Teaching` have
+- it mixes service, talks, publications, and broader participation
+- it is intentionally selective and presentational rather than a thin recent
+  list from one domain
+- the remaining question is no longer whether the homepage should derive more
+  factual consumers, but whether any tiny part of the CV highlights block
+  should later derive from canonical domains without flattening its editorial
+  character
 
 ### Separate Boundary Question
 
@@ -145,8 +131,7 @@ Recommended principle:
 - keep editorial framing authored
 - project only the obviously repeated factual bodies
 - stop once the low-risk blocks are converted
-- reassess before touching the more curated publication/service/highlights
-  surfaces
+- reassess before touching the more curated highlights surface
 
 This campaign should not:
 
@@ -208,6 +193,10 @@ After slices 1 and 2:
 - the CV `Selected Recent Highlights` block can be evaluated separately as an
   editorial curation problem rather than by campaign inertia
 
+That later work has now landed for both homepage service and homepage recent
+publications. The main remaining curated block in scope is therefore the
+authored top-of-CV highlights surface.
+
 ### Slice 3. Service Data Audit
 
 Audit the canonical service model before any homepage recent-service
@@ -243,23 +232,13 @@ to implementation/migration planning.
 
 ### Later Possible Work
 
-- homepage `Recent Publications` only if a homepage publication-selection
-  policy becomes clear enough to justify another consumer slice
 - CV highlights only if tiny curated consumers clearly beat hand authorship
 - `Book Chapters` only through a separate publication-boundary decision
 
 ## Current Recommendation
 
-The right next move is not "project everything."
+The next move is no longer another homepage factual consumer slice.
 
-The right next move is:
-
-1. stop and reassess from the cleaner baseline where homepage `News`,
-   `Current Students`, and `Recent Teaching` are already derived consumers
-2. do the service data audit and explicit redesign review before deciding how
-   homepage recent service should project
-3. treat the latched A4 service redesign as the current best foundation for
-   later homepage recent-service projection, and plan its implementation/testing
-   before returning to homepage service
-4. keep publications/highlights authored until a stronger editorial policy
-   exists
+The main remaining curated question in this campaign is now the authored
+top-of-CV `Selected Recent Highlights` block and whether any tiny follow-on
+consumers there would actually improve clarity rather than over-automate it.

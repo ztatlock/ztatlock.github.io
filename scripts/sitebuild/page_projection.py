@@ -38,6 +38,7 @@ from scripts.publication_index import (
     render_publications_list_djot,
 )
 from scripts.publication_record import PublicationRecord, publication_year
+from scripts.publication_record import publication_index_title_url
 from scripts.service_index import (
     SERVICE_DEPARTMENT_LIST_PLACEHOLDER,
     SERVICE_MENTORING_LIST_PLACEHOLDER,
@@ -69,6 +70,7 @@ TALKS_LIST_PLACEHOLDER = "__TALKS_LIST__"
 HOMEPAGE_CURRENT_STUDENTS_LIST_PLACEHOLDER = "__HOMEPAGE_CURRENT_STUDENTS_LIST__"
 HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER = "__HOMEPAGE_RECENT_TEACHING_LIST__"
 HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER = "__HOMEPAGE_RECENT_SERVICE_LIST__"
+HOMEPAGE_RECENT_PUBLICATIONS_LIST_PLACEHOLDER = "__HOMEPAGE_RECENT_PUBLICATIONS_LIST__"
 STUDENTS_CURRENT_LIST_PLACEHOLDER = "__STUDENTS_CURRENT_LIST__"
 STUDENTS_POSTDOC_LIST_PLACEHOLDER = "__STUDENTS_POSTDOC_LIST__"
 STUDENTS_PHD_LIST_PLACEHOLDER = "__STUDENTS_PHD_LIST__"
@@ -132,6 +134,8 @@ TEACHING_TERM_SORT_MONTH = {
     "Summer": 7,
     "Autumn": 9,
 }
+HOMEPAGE_RECENT_PUBLICATIONS_WINDOW_YEARS = 3
+HOMEPAGE_RECENT_PUBLICATIONS_CAP: int | None = None
 
 
 class PageProjectionError(ValueError):
@@ -473,6 +477,37 @@ def _render_cv_publication_entry(record: PublicationRecord) -> str:
     return " \\\n".join(parts)
 
 
+def _render_homepage_recent_publication_entry(record: PublicationRecord) -> str:
+    title_url = publication_index_title_url(record)
+    venue_year = f"{record.venue} {publication_year(record.slug)}"
+    return f"- *[{record.title}]({title_url})* ({venue_year})"
+
+
+def render_homepage_recent_publications_list_djot(
+    root: Path,
+    *,
+    publications_dir: Path | None = None,
+) -> str:
+    try:
+        records = load_publication_index_records(root, publications_dir=publications_dir)
+    except PublicationIndexError as err:
+        raise PageProjectionError(str(err)) from err
+    if not records:
+        return ""
+
+    latest_year = records[0].pub_date.year
+    earliest_year = latest_year - (HOMEPAGE_RECENT_PUBLICATIONS_WINDOW_YEARS - 1)
+    selected = [
+        record
+        for record in records
+        if earliest_year <= record.pub_date.year <= latest_year
+    ]
+    if HOMEPAGE_RECENT_PUBLICATIONS_CAP is not None:
+        selected = selected[:HOMEPAGE_RECENT_PUBLICATIONS_CAP]
+    rendered = [_render_homepage_recent_publication_entry(record) for record in selected]
+    return "\n\n".join(rendered) + ("\n" if rendered else "")
+
+
 def render_cv_publications_list_djot(
     root: Path,
     listing_group: str,
@@ -788,6 +823,15 @@ def apply_page_projections(
             except ServiceIndexError as err:
                 raise PageProjectionError(str(err)) from err
             rendered = rendered.replace(HOMEPAGE_RECENT_SERVICE_LIST_PLACEHOLDER, recent_service)
+        if HOMEPAGE_RECENT_PUBLICATIONS_LIST_PLACEHOLDER in rendered:
+            recent_publications = render_homepage_recent_publications_list_djot(
+                root,
+                publications_dir=publications_dir,
+            ).rstrip()
+            rendered = rendered.replace(
+                HOMEPAGE_RECENT_PUBLICATIONS_LIST_PLACEHOLDER,
+                recent_publications,
+            )
         if rendered != body:
             return rendered
 
