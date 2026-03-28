@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-27.
+Last updated: 2026-03-28.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -93,12 +93,36 @@ notes.
   (`docs/plans/publication-model-implementation-testing-plan.md`,
   `docs/plans/publications-campaign.md`, `scripts/publication_record.py`,
   `tests/test_publication_record.py`, `site/templates/publication.json`).
-- [ ] Revisit the top-of-CV `Selected Recent Highlights` block now that the
-  publication slice-4 cleanup has settled the current publication boundary
-  and compact rendering semantics, so the remaining authored highlights
-  structure can be reviewed deliberately rather than by inertia
-  (`site/cv/index.dj`, `docs/plans/cv-campaign.md`,
-  `docs/plans/homepage-cv-curated-consumers-campaign.md`).
+- [x] Plan the top-of-CV executive-summary rethink now that the publication
+  slice-4 cleanup has settled the current publication boundary and compact
+  rendering semantics, so the remaining authored highlights structure can be
+  reconsidered as a broader authored summary layer rather than by inertia
+  (`site/cv/index.dj`, `site/pages/index.dj`,
+  `docs/plans/cv-campaign.md`,
+  `docs/plans/homepage-cv-curated-consumers-campaign.md`,
+  `docs/plans/cv-top-summary-executive-block-plan.md`).
+- [x] Execute slice 1 of the top-of-CV executive-summary plan by writing down
+  the purpose, audience, authorship boundary, maintenance guidance, and
+  homepage-relationship policy for the authored top layer before any live CV
+  rewrite (`docs/plans/cv-top-summary-executive-block-plan.md`,
+  `docs/plans/cv-campaign.md`,
+  `docs/plans/homepage-cv-curated-consumers-campaign.md`,
+  `docs/policy/cv-top-summary.md`).
+- [ ] Execute slice 2 of the top-of-CV executive-summary plan: audit
+  trustworthy summary inputs and candidate summary statistics across canonical
+  domains, then compare them against the authored homepage top summary before
+  proposing concrete top-of-CV rewrite shapes
+  (`docs/plans/cv-top-summary-executive-block-plan.md`,
+  `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
+  `site/pages/index.dj`, `site/data/news.json`, `site/data/students.json`,
+  `site/data/teaching.json`, `site/data/service.json`,
+  `site/data/funding.json`, `site/talks/`, `site/pubs/`).
+- [ ] After the top-of-CV executive-summary campaign settles, review peer CVs
+  from Adam Chlipala, Xavier Leroy, Nate Foster, Emina Torlak, Pavel
+  Panchekha, Michael Ernst, and Derek Dreyer for structure inspiration and
+  calibration before any broader CV front-matter follow-on
+  (`docs/plans/cv-top-summary-executive-block-plan.md`, `site/cv/index.dj`,
+  `site/pages/index.dj`).
 
 ## Migrated Backlog From TODO.md
 
@@ -130,7 +154,13 @@ notes.
 - [x] Plan and implement the service CV-projection slice so the duplicated service subsection bodies in `site/cv/index.dj` render from `site/data/service.json` with an explicit CV-specific service view, while preserving the faculty-skit prose note and reviewing visible service-section changes against rendered HTML (`docs/plans/cv-campaign.md`, `docs/plans/cv-slice-4-service-projection.md`, `site/data/service.json`, `site/cv/index.dj`).
 - [x] Plan and implement the indexed-publications CV-projection slice so the duplicated `Conference and Journal Papers` and `Workshop Papers` bodies in `site/cv/index.dj` render from canonical publication bundles under `site/pubs/`, while preserving the authored `Book Chapters` subsection and reviewing visible publications-section changes against rendered HTML (`docs/plans/cv-campaign.md`, `docs/plans/cv-slice-5-publications-projection.md`, `site/pubs/`, `site/cv/index.dj`).
 - [x] Plan and implement the full invited-talks CV-projection slice so the duplicated `## Invited Talks` body in `site/cv/index.dj` renders from canonical talk bundles under `site/talks/`, while preserving the heading and reviewing visible talks-section changes against rendered HTML (`docs/plans/cv-campaign.md`, `docs/plans/cv-slice-6-talks-projection.md`, `site/talks/`, `site/cv/index.dj`).
-- [ ] Decide whether the top-of-CV `Selected Recent Highlights` block should remain authored, be trimmed, or gain later tiny curated consumer slices rather than broadening it by inertia (`site/cv/index.dj`, `docs/plans/cv-campaign.md`, `docs/plans/cv-slice-6-talks-projection.md`).
+- [ ] Work through the remaining top-of-CV executive-summary slices: audit
+  trustworthy summary inputs and candidate stats across canonical domains,
+  compare authored shape alternatives, then rewrite the top of the CV before
+  reassessing the homepage top summary
+  (`docs/plans/cv-top-summary-executive-block-plan.md`,
+  `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
+  `site/pages/index.dj`, `docs/plans/cv-campaign.md`).
 - [x] Plan and execute the service data audit slice so the repo reviews whether recurring service concepts and year-specific service instances are modeled and grouped correctly before any homepage `Recent Service / Leadership` projection hardens the current service semantics into another consumer (`docs/plans/homepage-cv-curated-consumers-campaign.md`, `docs/plans/homepage-cv-curated-consumers-slice-3-service-audit.md`, `docs/plans/service-campaign.md`, `site/data/service.json`, `scripts/service_index.py`).
 - [x] Review the service redesign brief/proposal set and choose a leading long-horizon service model direction before homepage recent-service or richer service-page grouping build further on the current flat term model (`docs/plans/service-redesign-requirements.md`, `docs/plans/service-redesign-proposal.md`, `docs/plans/service-redesign-proposal-a4.md`, `docs/plans/service-campaign.md`).
 - [x] Plan and execute the service redesign implementation/testing foundation so the latched A4 `series` / `run` / `instance` model becomes executable in loader/validator code before canonical data migration and before homepage recent-service projection depends on the old flat term model (`docs/plans/service-redesign-proposal-a4.md`, `docs/plans/service-redesign-implementation-testing-plan.md`, `site/data/service.json`, `scripts/service_index.py`, `scripts/service_record_a4.py`, `tests/test_service_record_a4.py`).

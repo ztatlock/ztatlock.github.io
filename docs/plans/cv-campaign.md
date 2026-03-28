@@ -2,7 +2,8 @@
 
 Status: route/wrapper cutover plus students, teaching, service, indexed
 publications, full invited-talks, and funding CV projection implemented;
-stop and reassess before broader curated CV consumers
+the top-of-CV executive-summary plan is now latched with slice-1 guidance
+implemented; stop and reassess before broader curated CV consumers
 
 ## Goal
 
@@ -96,6 +97,8 @@ Current wrapper/consumer state:
   automatically, and the authored top-of-CV highlights review is now ready
   for deliberate reconsideration because the publication slice-4 cleanup has
   settled the current publication boundary and compact-publication semantics
+- that top block is now better understood as a likely authored executive
+  summary layer rather than merely a leftover projection seam
 
 That means the wrapper shape is now settled and the remaining CV work is more
 curated consumer-side cleanup rather than another obviously large repeated
@@ -189,6 +192,11 @@ Likely hand-authored for now:
 - `Experience`
 - `Education`
 - `Awards`
+
+Current planning note for the top-of-CV block:
+
+- [cv-top-summary-executive-block-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-executive-block-plan.md)
+- [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
 
 Likely later projection candidates:
 

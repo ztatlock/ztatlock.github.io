@@ -1,7 +1,8 @@
 # Homepage / CV Curated Consumers Campaign
 
-Status: slices 1-5 implemented; the remaining top-of-CV highlights work stays
-authored for now
+Status: slices 1-5 implemented; the remaining top-of-CV highlights work is now
+framed as a broader authored executive-summary question, with slice-1
+purpose/guidance implemented
 
 It builds on:
 
@@ -197,6 +198,13 @@ That later work has now landed for both homepage service and homepage recent
 publications. The main remaining curated block in scope is therefore the
 authored top-of-CV highlights surface.
 
+That surface is now better understood as a likely authored executive-summary
+layer rather than merely a tiny leftover projection seam. The current planning
+artifacts are:
+
+- [cv-top-summary-executive-block-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-executive-block-plan.md)
+- [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
+
 ### Slice 3. Service Data Audit
 
 Audit the canonical service model before any homepage recent-service
@@ -240,5 +248,5 @@ to implementation/migration planning.
 The next move is no longer another homepage factual consumer slice.
 
 The main remaining curated question in this campaign is now the authored
-top-of-CV `Selected Recent Highlights` block and whether any tiny follow-on
-consumers there would actually improve clarity rather than over-automate it.
+top-of-CV executive-summary redesign and whether any tiny follow-on helpers
+there would actually improve clarity rather than over-automate it.

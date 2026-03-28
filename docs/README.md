@@ -67,6 +67,9 @@ meant to be read, maintained, and extended over time.
   in-memory models.
 - `policy/publication-artifacts.md`
   Publication storage and linking policy.
+- `policy/cv-top-summary.md`
+  Purpose and authoring contract for the top-of-CV executive-summary layer,
+  including audience, non-goals, and maintenance guidance.
 - `policy/root-layout.md`
   Current root-level layout now that authored source lives under `site/` and
   generated site output lives under `build/`.
