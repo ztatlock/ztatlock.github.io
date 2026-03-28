@@ -498,12 +498,16 @@ Current policy note:
 
 Near-term priorities that currently look strongest are:
 
-1. revisit the authored top-of-CV `Selected Recent Highlights` block now that
-   the homepage recent service/publications consumers and the Dagstuhl-like
-   non-service participation policy are settled
-2. a later teaching-page styling/polish campaign now that the richer
+1. do a publication-model seam/design review pass before large further
+   publication backfill, now that `/pubs/`, `/cv/`, and the homepage are all
+   real publication consumers and field-level seams such as venue display,
+   identifiers, and publication boundary have become visible
+2. revisit the authored top-of-CV `Selected Recent Highlights` block after the
+   publication-model review settles the current publication boundary and
+   compact-publication rendering semantics
+3. a later teaching-page styling/polish campaign now that the richer
    projections are materially more consistent but also visually rougher
-3. later collaborator enrichment only if a concrete per-person consumer
+4. later collaborator enrichment only if a concrete per-person consumer
    clearly earns it, likely alongside or after a future structured `projects`
    domain rather than through a premature collaborator registry
 

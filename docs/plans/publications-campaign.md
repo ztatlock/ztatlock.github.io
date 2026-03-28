@@ -68,9 +68,15 @@ That means:
 - the `Book Chapters` subsection in the CV remains hand-authored by explicit
   policy
 
-The next likely work in this campaign is local artifact enrichment or
-selective later downstream reuse, not more collection-route or index-projection
-cleanup.
+The next likely work in this campaign is no longer collection-route cleanup.
+It is a publication-model seam/design review pass before broader backfill or
+further downstream reuse:
+
+- [publication-model-seams-and-requirements.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-model-seams-and-requirements.md)
+
+That review should sharpen field semantics such as venue display, identifiers,
+bundle readiness, and publication-boundary questions before the repo invests in
+many more bundle backfills.
 
 ## Current Audit
 

@@ -38,11 +38,18 @@ notes.
   ordering, and low-link policy (`docs/plans/publications-campaign.md`,
   `docs/plans/structured-content-roadmap.md`, `site/pubs/`,
   `site/pages/index.dj`).
-- [ ] Revisit the top-of-CV `Selected Recent Highlights` block now that the
-  Dagstuhl-like non-service participation policy and the homepage
-  recent-publications consumer are both settled, so the remaining authored
-  highlights structure can be reviewed deliberately rather than by inertia
-  (`site/cv/index.dj`, `docs/plans/cv-campaign.md`,
+- [ ] Do a publication-model seam audit and design review pass before large
+  further publication backfill so field semantics, compact-consumer needs,
+  identifier handling, and publication-boundary questions are improved on the
+  canonical bundle model before dozens more bundles need the same migration
+  (`docs/plans/publication-model-seams-and-requirements.md`,
+  `docs/plans/publications-campaign.md`, `site/pubs/`,
+  `scripts/publication_record.py`).
+- [ ] Revisit the top-of-CV `Selected Recent Highlights` block only after the
+  publication-model review settles the current publication boundary and compact
+  rendering semantics, so the remaining authored highlights structure can be
+  reviewed deliberately rather than by inertia (`site/cv/index.dj`,
+  `docs/plans/cv-campaign.md`,
   `docs/plans/homepage-cv-curated-consumers-campaign.md`).
 
 ## Migrated Backlog From TODO.md
