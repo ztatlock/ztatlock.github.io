@@ -21,9 +21,13 @@ all: build
 
 .PHONY: verify
 verify:
+	@printf '%s\n' '=== VERIFY: TEST ==='
 	@$(MAKE) test
+	@printf '%s\n' '=== VERIFY: BUILD ==='
 	@$(MAKE) build
+	@printf '%s\n' '=== VERIFY: CHECK-BUILT ==='
 	@$(MAKE) check-built
+	@printf '%s\n' '=== VERIFY: OK ==='
 
 .PHONY: build
 build:
