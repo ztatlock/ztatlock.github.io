@@ -30,6 +30,13 @@ The upcoming teaching-assistant data import is a larger slice with broader
 surface area, so this is a good point to tighten the workflow before that
 work begins.
 
+Later experience reinforced one more subtle lesson:
+
+- a successful unittest phase inside `make verify` is not the same as the
+  full verification target succeeding
+- agents must wait for the wrapper command itself to exit before declaring
+  verification green
+
 ## Invariant
 
 After this slice:

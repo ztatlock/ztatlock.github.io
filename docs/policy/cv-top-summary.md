@@ -131,6 +131,12 @@ Good examples:
 - carefully chosen participation/recognition items that matter to the profile
 - a small number of trustworthy summary statistics, if they truly help
 
+When the block mentions a specific publication, link to the honest canonical
+destination for that publication:
+
+- the local publication page if one exists
+- otherwise the publication's primary external destination
+
 ## What Should Stay Out
 
 The top summary should usually avoid:

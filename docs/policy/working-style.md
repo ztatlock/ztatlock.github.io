@@ -101,6 +101,10 @@ The normal collaboration rhythm is:
    Make the smallest real change that lands the invariant.
 5. Verify
    Add focused tests, run targeted checks first, then full checks.
+   When a wrapper command like `make verify` includes tests plus later build
+   and validation phases, only treat verification as passing when the wrapper
+   process exits successfully. Do not mistake an intermediate unittest `OK`
+   for final success.
 6. Sober review
    Audit for drift, stale docs, awkward scaffolding, hidden second sources of
    truth, or unnecessary complexity.

@@ -67,6 +67,11 @@ Do not run them in parallel against the same worktree because `build/` is
 shared mutable state.
 Likewise, keep git actions sequential and avoid overlapping `git add`,
 `git commit`, and `git push` invocations.
+When using `make verify`, do not treat the unittest-phase `Ran ... / OK`
+output as final success.
+`make verify` still has to finish the later build and `check-built` phases.
+Only treat verification as passing when the `make verify` process itself exits
+successfully.
 
 ## Before Committing
 
