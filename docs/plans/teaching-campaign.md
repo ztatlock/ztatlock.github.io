@@ -1,7 +1,8 @@
 # Teaching Campaign
 
 Status: public-page core, homepage recent-teaching consumer, CV teaching
-projection, and staffing/layout slices implemented; later polish remains
+projection, and staffing/layout slices implemented; teaching-enrollment
+follow-on now planned; later polish remains
 
 ## Goal
 
@@ -384,3 +385,22 @@ slice:
 - additional date/detail normalization beyond `year` plus academic `term`
 - course-local extra pages or assets
 - broader teaching-adjacent domains such as course recipes or mentoring notes
+
+## Likely Next Follow-On
+
+The next planned teaching-domain follow-on is now a narrow
+teaching-enrollment slice.
+
+That follow-on should:
+
+- keep `site/data/teaching.json` as the canonical site-facing teaching ledger
+- add Spring 2026 `CSE P590` under the existing `uw-cse-507` / CARS family
+- add enrollment only for settled historical instructor-led UW offerings
+- keep Spring 2026 enrollment absent until the quarter is over
+- avoid public enrollment rendering in the first implementation slice
+
+Reference notes:
+
+- [teaching-enrollment-policy-note.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-enrollment-policy-note.md)
+- [teaching-domain-audit-before-enrollment.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-domain-audit-before-enrollment.md)
+- [teaching-enrollment-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-enrollment-implementation-testing-plan.md)

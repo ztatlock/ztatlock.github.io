@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-28.
+Last updated: 2026-03-29.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -25,6 +25,17 @@ notes.
 
 ## Near-Term Next Steps
 
+- [ ] Plan and implement the first teaching-enrollment slice so
+  `site/data/teaching.json` gains optional offering-level enrollment for
+  settled historical instructor-led UW offerings, Spring 2026 `CSE P590` is
+  added under the `uw-cse-507` / CARS family without current-quarter
+  enrollment, and the homepage recent-teaching diff from the newer latest-year
+  window is reviewed explicitly rather than surfacing by surprise
+  (`docs/plans/teaching-enrollment-policy-note.md`,
+  `docs/plans/teaching-domain-audit-before-enrollment.md`,
+  `docs/plans/teaching-enrollment-implementation-testing-plan.md`,
+  `site/data/teaching.json`, `scripts/teaching_record.py`,
+  `scripts/sitebuild/page_projection.py`).
 - [ ] Review peer CVs from Adam Chlipala, Xavier Leroy, Nate Foster, Emina
   Torlak, Pavel Panchekha, Michael Ernst, and Derek Dreyer for structure
   inspiration and calibration before any broader CV front-matter follow-on
