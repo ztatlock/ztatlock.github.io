@@ -1,6 +1,6 @@
 # Publication Model Proposal A: Conservative Refinement
 
-Status: proposal draft
+Status: latched leading authored-schema direction
 
 It builds on:
 

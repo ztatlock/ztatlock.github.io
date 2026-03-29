@@ -187,9 +187,12 @@ The repo has already landed canonical or wrapper checkpoints for:
 
 The current near-term cross-domain priorities are:
 
-- deciding a better home for non-service research/community-participation
-  honors such as Dagstuhl attendance
-- planning and implementing homepage recent-publications projection
+- smaller follow-on slices and coherence work rather than another major
+  redesign campaign
+- the deferred peer-CV inspiration/calibration pass for the top-of-CV
+  executive-summary work
+- the talks detail-page versus index-only bundle boundary
+- the publication-boundary question around authored `Book Chapters`
 
 ## What Success Looks Like
 

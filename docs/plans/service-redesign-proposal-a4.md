@@ -1,6 +1,6 @@
 # Service Redesign Proposal A4
 
-Status: draft
+Status: latched redesign checkpoint
 
 It builds on:
 

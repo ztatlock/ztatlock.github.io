@@ -130,15 +130,17 @@ Normal workflow:
    `site/data/service.json`, `site/data/funding.json`, or
    `site/data/people.json`, talk records under `site/talks/<slug>/talk.json`,
    or publication records under `site/pubs/<slug>/publication.json`.
-3. Run `make build`.
-4. Run `make check`.
+3. Run `make verify`.
 5. Commit once the authoritative checks pass.
 
 Notes:
 - The repo root is a workspace, not the live served site.
 - Do not hand-edit generated files under `build/`.
-- Authored publication page links in Djot should use `pubs/<slug>/`, not
-  `pub-<slug>.html`.
+- For links to specific publications in authored Djot, use the honest
+  canonical destination:
+  - the local publication page only when that bundle has `local_page: true`
+  - otherwise the publication's primary external destination
+  Do not use legacy `pub-<slug>.html` links.
 - Authored publications collection links in Djot should use `pubs/`, not
   `publications.html`.
 - Authored talks index links in Djot should use `talks/`, not `talks.html`.
@@ -158,6 +160,9 @@ Notes:
   `[Name][]` links.
   Keep `site/templates/REFS` only for non-person references such as `PGAS`
   or `UW`.
+- When `make verify` prints unittest `OK`, the command may still be running
+  later build/check phases. Only treat verification as green when the wrapper
+  process itself exits successfully.
 
 ## Publication Bootstrap
 

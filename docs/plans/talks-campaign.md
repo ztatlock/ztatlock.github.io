@@ -45,7 +45,7 @@ Current relevant sources:
   One dedicated talk detail page.
 - `site/cv/index.dj`
   Now reuses the full invited-talks section from canonical talk bundles while
-  leaving the top-of-CV highlights block authored.
+  leaving the top-of-CV `Overview` block authored.
 - `site/pubs/*/publication.json`
   Some publication bundles already include publication-local `"talks"` arrays.
 
@@ -431,7 +431,5 @@ Questions for the next checkpoint:
 
 - should the next talks-related work be a talk detail-page slice from
   `extra.dj`?
-- should the top-of-CV highlights talks subset remain authored, be trimmed, or
-  become a later tiny curated consumer slice?
-- should talks otherwise remain stable while homepage cleanup and other
-  cross-domain work proceed first?
+- should talks otherwise remain stable while other cross-domain work proceeds
+  first?

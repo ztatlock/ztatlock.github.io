@@ -2,7 +2,7 @@
 
 Status: route/wrapper cutover plus students, teaching, service, indexed
 publications, full invited-talks, and funding CV projection implemented;
-the top-of-CV executive-summary plan is now latched with slices 1-4
+the top-of-CV executive-summary plan is now latched with slices 1-5
 implemented; stop and reassess before broader curated CV consumers
 
 ## Goal
@@ -94,9 +94,9 @@ Current wrapper/consumer state:
 - the visiting-section wording is now `Visiting Students and Interns`
 - the CV now includes Ian Briggs consistently with the canonical students data
 - the next step should be chosen deliberately rather than broadened
-  automatically, and the authored top-of-CV highlights review is now ready
-  for deliberate reconsideration because the publication slice-4 cleanup has
-  settled the current publication boundary and compact-publication semantics
+  automatically; the authored top-of-CV executive-summary redesign is now
+  implemented, and the current publication boundary/compact-publication
+  semantics are settled
 - that top block is now better understood as a likely authored executive
   summary layer rather than merely a leftover projection seam
 
@@ -186,7 +186,7 @@ projection begins.
 Likely hand-authored for now:
 
 - the page heading and contact block
-- `Selected Recent Highlights`
+- `Overview`
 - small non-service research/community-participation highlights such as
   Dagstuhl attendance
 - `Experience`
@@ -200,11 +200,11 @@ Current planning note for the top-of-CV block:
 - [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
 - [cv-top-summary-slice-3-shape-proposals.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-3-shape-proposals.md)
 - [cv-top-summary-slice-4-rewrite.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-4-rewrite.md)
+- [cv-top-summary-slice-5-homepage-reassessment.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-5-homepage-reassessment.md)
 
 Likely later projection candidates:
 
 - maybe a separate `Book Chapters` / bibliography-boundary decision later
-- maybe selected recent talks/highlights
 
 ## Recommended Slice Order
 
@@ -349,8 +349,8 @@ Invariant after slice 6:
   source while still allowing separate consumer renderers
 - the CV talks section now uses canonical talk title/link/host truth and
   canonical reverse-chronological ordering rather than a hand-maintained copy
-- the top-of-CV `Selected Recent Highlights -> Invited Talks` block remains
-  authored by explicit policy for now
+- the top-of-CV authored summary surface remains authored by explicit policy
+  for now
 
 ### Slice 7. Funding CV Projection
 
@@ -380,17 +380,17 @@ Why stop here:
 
 - the largest duplicated shared-data domains in the CV are now canonicalized
   from the consumer side, including talks and funding
-- the remaining likely work is now more curated and less obviously list-shaped
-- homepage cleanup now competes with narrower curated CV consumers like the
-  top-of-CV highlights, and with the separate publication-boundary question
-  around `Book Chapters`
+- the top-of-CV executive-summary rewrite and homepage coordination slice are
+  both already implemented
+- the remaining likely work is now narrower and more boundary-oriented than
+  another obvious consumer cutover
 - the next step should be selected from current repo needs rather than from
   campaign inertia
 
 Likely candidates from here:
 
-1. homepage recent-service or recent-teaching cleanup
-2. curated CV consumers such as selected highlights
-3. no immediate CV broadening if the current checkpoint already earns its keep
-4. a separate `Book Chapters` / bibliography-boundary slice only if that
+1. no immediate CV broadening if the current checkpoint already earns its keep
+2. a separate `Book Chapters` / bibliography-boundary slice only if that
    complexity clearly earns its keep
+3. the deferred peer-CV inspiration pass as a future calibration input rather
+   than as a live consumer cutover

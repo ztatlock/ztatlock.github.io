@@ -1,8 +1,7 @@
 # Homepage / CV Curated Consumers Campaign
 
-Status: slices 1-5 implemented; the remaining top-of-CV highlights work is now
-framed as a broader authored executive-summary question, with slices 1-4
-implemented
+Status: slices 1-5 implemented; the top-of-CV executive-summary follow-on is
+also implemented and the campaign is now in a good resting state
 
 It builds on:
 
@@ -191,12 +190,12 @@ After slices 1 and 2:
 - the easiest homepage drift seams should be gone
 - the remaining homepage `Recent Service / Leadership` and
   `Recent Publications` blocks can be reconsidered from a cleaner baseline
-- the CV `Selected Recent Highlights` block can be evaluated separately as an
-  editorial curation problem rather than by campaign inertia
+- the CV top block can be evaluated separately as an editorial curation
+  problem rather than by campaign inertia
 
 That later work has now landed for both homepage service and homepage recent
 publications. The main remaining curated block in scope is therefore the
-authored top-of-CV highlights surface.
+authored top-of-CV executive-summary surface.
 
 That surface is now better understood as a likely authored executive-summary
 layer rather than merely a tiny leftover projection seam. The current planning
@@ -204,6 +203,7 @@ artifacts are:
 
 - [cv-top-summary-executive-block-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-executive-block-plan.md)
 - [../policy/cv-top-summary.md](/Users/ztatlock/www/ztatlock.github.io/docs/policy/cv-top-summary.md)
+- [cv-top-summary-slice-5-homepage-reassessment.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-5-homepage-reassessment.md)
 - [cv-top-summary-slice-2-audit.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-2-audit.md)
 - [cv-top-summary-slice-3-shape-proposals.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-3-shape-proposals.md)
 - [cv-top-summary-slice-4-rewrite.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-4-rewrite.md)

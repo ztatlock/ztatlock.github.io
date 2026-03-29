@@ -295,29 +295,20 @@ The current implementation/testing checkpoint is:
 
 - [service-redesign-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-implementation-testing-plan.md)
 
-The next planned move is:
-
-- slice 4 homepage recent-service policy simulation and planning over canonical
-  A4 runs
-
-That next slice is now specified more concretely in:
+That homepage recent-service slice is now implemented:
 
 - [service-redesign-slice-4-homepage-recent-service.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/service-redesign-slice-4-homepage-recent-service.md)
 
-The current direction for that slice is:
+The campaign is now at a good resting checkpoint:
 
-- select from canonical runs rather than instances
-- reuse the now-landed `/service/#<run.key>` anchor targets
-- bias toward simpler homepage policy before introducing stickiness metadata
-
-If those later consumers land, the invariant should be:
-
+- canonical service truth is A4-shaped
+- `/service/`, the CV, and the homepage all consume that canonical truth
 - remaining variation is renderer policy and curation, not duplicated facts
 
 ## Deferred Questions
 
-These are real possibilities, but they should not shape slice 4 while homepage
-policy simulation remains in flight:
+These are real possibilities, but they should not shape later service
+follow-on work by inertia:
 
 - richer taxonomy beyond the current `view_groups`
 - explicit `leadership` or other cross-cutting tags

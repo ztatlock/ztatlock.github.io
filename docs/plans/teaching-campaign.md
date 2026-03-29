@@ -1,7 +1,7 @@
 # Teaching Campaign
 
-Status: public-page core and CV teaching projection implemented; homepage
-cleanup remains later
+Status: public-page core, homepage recent-teaching consumer, CV teaching
+projection, and staffing/layout slices implemented; later polish remains
 
 ## Goal
 

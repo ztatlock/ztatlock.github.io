@@ -293,7 +293,7 @@ Scope:
 - revisit scaffolding/templates so newly created publication bundles start in
   the new schema immediately
 - only after the model cutover settles, revisit downstream curation questions
-  such as the top-of-CV `Selected Recent Highlights` block
+  such as the top-of-CV executive-summary surface
 
 Invariant after slice 4:
 

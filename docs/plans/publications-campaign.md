@@ -20,9 +20,7 @@ The goal is to finish the architectural shift already started under
 `site/pubs/<slug>/publication.json` and remove repeated publication-list
 structure from hand-authored pages.
 
-## Why Publications Now
-
-The publications campaign now deserves to move ahead of students.
+## Why Publications Became A Major Campaign
 
 Why:
 
@@ -111,10 +109,14 @@ That slice-4 cleanup is now also implemented:
 - the focused publication-record tests now live only in the main test suite
 - new publication authoring paths already start from the settled schema
 
-So the next likely work is now:
+The campaign is now at a good implementation checkpoint.
 
-- revisit downstream curated consumers such as the top-of-CV highlights block
-  deliberately rather than by inertia
+Likely later follow-on work is now narrower:
+
+- publication enrichment/backfill over the settled Proposal A schema
+- the separate publication-boundary question around authored `Book Chapters`
+- targeted artifact/link enrichment such as DOI/arXiv/code decisions where
+  they clearly earn their keep
 
 Supporting review notes from this completed design pass:
 

@@ -25,6 +25,22 @@ notes.
 
 ## Near-Term Next Steps
 
+- [ ] Review peer CVs from Adam Chlipala, Xavier Leroy, Nate Foster, Emina
+  Torlak, Pavel Panchekha, Michael Ernst, and Derek Dreyer for structure
+  inspiration and calibration before any broader CV front-matter follow-on
+  (`docs/plans/cv-top-summary-executive-block-plan.md`, `site/cv/index.dj`,
+  `site/pages/index.dj`).
+- [ ] Decide which talks actually need talk-local detail pages instead of
+  index-only bundles (`site/talks/`,
+  `site/pages/talk-2023-05-egg-uiuc.dj`).
+- [ ] Decide whether the authored `Book Chapters` CV subsection should remain
+  prose-first or move into a separate publication/bibliography boundary slice
+  rather than broadening the current indexed-publication bundle model by
+  inertia (`docs/plans/cv-slice-5-publications-projection.md`,
+  `site/cv/index.dj`, `site/pubs/`).
+
+## Recent Completed Milestones
+
 - [x] Decide how to represent non-service research/community-participation
   honors such as Dagstuhl attendance on the site and CV so those facts are not
   lost when they are removed from canonical service: keep them in authored/news
@@ -146,17 +162,10 @@ notes.
   `docs/plans/cv-top-summary-slice-5-homepage-reassessment.md`,
   `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
   `site/pages/index.dj`).
-- [ ] After the top-of-CV executive-summary campaign settles, review peer CVs
-  from Adam Chlipala, Xavier Leroy, Nate Foster, Emina Torlak, Pavel
-  Panchekha, Michael Ernst, and Derek Dreyer for structure inspiration and
-  calibration before any broader CV front-matter follow-on
-  (`docs/plans/cv-top-summary-executive-block-plan.md`, `site/cv/index.dj`,
-  `site/pages/index.dj`).
 
 ## Migrated Backlog From TODO.md
 
 - [x] Establish the canonical publication-bundle pattern under `site/pubs/` for publication pages that have local records today.
-- [ ] Decide which talks actually need talk-local detail pages instead of index-only bundles (`site/talks/`, `site/pages/talk-2023-05-egg-uiuc.dj`).
 - [x] Implement the slice-1 canonical advising-record model for `site/data/students.json`, including required `person_key`, ordered section/record structure, and typed detail items (`docs/plans/students-slice-1-canonical-model.md`, `site/data/students.json`, `scripts/student_record.py`).
 - [x] Implement the students index-wrapper/projection slice: move the public wrapper to `site/students/index.dj`, canonicalize `/students/`, and project the repeated section bodies from `site/data/students.json` while preserving authored framing (`docs/plans/students-slice-2-index-projection.md`, `site/data/students.json`, `site/students/index.dj`).
 - [x] Implement the slice-1 canonical teaching-record model for `site/data/teaching.json`, including ordered teaching groups, structured course/summer-school records, and offering/event invariants (`docs/plans/teaching-campaign.md`, `docs/plans/teaching-slice-1-canonical-model.md`, `site/data/teaching.json`, `scripts/teaching_record.py`).
@@ -215,7 +224,6 @@ notes.
 - [ ] Later plan a structured `projects` domain for research work that may not map cleanly to publications, so some collaborator-inclusion facts can eventually move out of residual collaborator-specific data and into a stronger canonical home (`docs/plans/collaborators-campaign.md`, `docs/plans/structured-content-roadmap.md`, `site/data/people.json`, `site/pubs/`).
 - [ ] Plan the longer-term funding-enrichment campaign so grant-to-publication/project associations, selection policy, and downstream consumer surfaces across funding, research, and publication views are explicit before new cross-links are added (`docs/plans/funding-campaign.md`, `docs/plans/structured-content-roadmap.md`, `site/data/funding.json`, `site/pages/research.dj`, `site/pubs/`).
 - [ ] Later enrich canonical funding records with explicit related publication and project associations only if that cross-domain mapping clearly earns its complexity, so the site can eventually reflect grant outputs across funding, research, and publication views (`docs/plans/funding-campaign.md`, `site/data/funding.json`, `site/pages/research.dj`, `site/pubs/`).
-- [ ] Decide whether the authored `Book Chapters` CV subsection should remain prose-first or move into a separate publication/bibliography boundary slice rather than broadening the current indexed-publication bundle model by inertia (`docs/plans/cv-slice-5-publications-projection.md`, `site/cv/index.dj`, `site/pubs/`).
 - [ ] Later projection/validation-layer cleanup: load shared student/teaching-style data once per projected page render and review whether tiny per-domain helper splits or a tiny projection registry now earn their keep after the current funding-backed checkpoint (`scripts/sitebuild/page_projection.py`, `scripts/sitebuild/source_validate.py`).
 - [ ] Review whether the current centralized explicit route-kind plumbing still earns its keep or whether a small route/renderer registry helper would simplify future wrapper cutovers without obscuring the build (`scripts/sitebuild/route_model.py`, `scripts/sitebuild/route_discovery.py`, `scripts/sitebuild/page_renderer.py`, `scripts/page_metadata.py`).
 

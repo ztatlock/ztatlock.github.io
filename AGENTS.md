@@ -47,8 +47,11 @@ The short version:
   Keep `site/templates/REFS` only for the tiny non-person manual remainder.
 - Publication assets and publication-local records live in
   `site/pubs/<slug>/`.
-- Authored publication page links in Djot should use `pubs/<slug>/`, not
-  `pub-<slug>.html`.
+- For links to specific publications in authored Djot, use the honest
+  canonical destination:
+  - the local publication page only when that bundle has `local_page: true`
+  - otherwise the publication's primary external destination
+  Do not use legacy `pub-<slug>.html` links.
 - Track actionable backlog items in `ROADMAP.md`.
 - Keep broader structural plans and design notes in `TODO.md` and `docs/plans/`.
 

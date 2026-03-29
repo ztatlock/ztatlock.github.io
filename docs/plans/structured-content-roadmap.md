@@ -484,7 +484,7 @@ Teaching and service follow-on work should continue separately as:
 
 The main remaining cross-domain maintenance seams are now:
 
-- the authored top-of-CV `Selected Recent Highlights` block
+- the authored top-of-CV `Overview` / executive-summary layer
 - the publication-boundary question around the authored CV `Book Chapters`
   subsection
 
@@ -498,17 +498,13 @@ Current policy note:
 
 Near-term priorities that currently look strongest are:
 
-1. plan the implementation/testing/migration path for the now-leading
-   publication-model Proposal A before large further publication backfill, now
-   that `/pubs/`, `/cv/`, and the homepage are all real publication consumers
-   and the field-level seams around venue display, identifiers, year
-   semantics, and publication boundary have been reviewed deliberately
-2. revisit the authored top-of-CV `Selected Recent Highlights` block after the
-   publication-model direction and its implementation/migration plan settle the
-   current publication boundary and compact-publication rendering semantics
-3. a later teaching-page styling/polish campaign now that the richer
+1. the deferred peer-CV inspiration/calibration pass after the top-of-CV
+   executive-summary campaign settles
+2. the talks detail-page versus index-only bundle boundary
+3. the publication-boundary question around authored `Book Chapters`
+4. a later teaching-page styling/polish campaign now that the richer
    projections are materially more consistent but also visually rougher
-4. later collaborator enrichment only if a concrete per-person consumer
+5. later collaborator enrichment only if a concrete per-person consumer
    clearly earns it, likely alongside or after a future structured `projects`
    domain rather than through a premature collaborator registry
 
