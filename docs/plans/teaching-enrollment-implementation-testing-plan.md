@@ -1,6 +1,6 @@
 # Teaching Enrollment Implementation / Testing Plan
 
-Status: slices 1-3 implemented; slice 4 deferred/later
+Status: slices 1-3 implemented; slices 4-5 replanned as later follow-on work
 
 It builds on:
 
@@ -38,8 +38,8 @@ Implement first-pass teaching enrollment in a way that:
 - backfills enrollment only for settled historical instructor-led UW
   offerings
 - treats missing enrollment on current-quarter offerings as normal
-- and defers any public enrollment rendering or executive-summary stat use
-  until the underlying data slice is stable
+- and treats any later stats helper or public enrollment-derived consumer as a
+  separate explicit follow-on decision
 
 ## Main Execution Principle
 
@@ -54,8 +54,9 @@ That means:
   and the settled historical enrollment facts
 - then review current consumers explicitly for visible downstream diffs, even
   if they do not render enrollment yet
-- only after that decide whether any public teaching page, homepage, or CV
-  consumer should surface enrollment-derived summaries
+- only after that decide whether the data should support:
+  - an authorship-support scale-stats helper
+  - a real public teaching-page consumer
 
 Important scope control:
 
@@ -213,18 +214,114 @@ Implemented outcome:
 - missing enrollment on Spring 2026 is exercised as a real supported case
 - the repo has explicit tests for the intended homepage teaching-window diff
 
-### Slice 4. Later Consumer / Summary Follow-On
+### Slice 4. General Scale-Stats Helper For Authorship Support
 
-Do **not** bundle this into the first enrollment import.
+Do **not** turn the top-of-CV `Overview` into a projection consumer.
 
-Possible later work, only if it clearly earns its keep:
+Instead, the next useful follow-on should be a small general helper that
+computes trustworthy scale-summary facts from canonical site data and makes
+them easy to consult while authoring or revising editorial summary surfaces.
 
-- teaching-page summary counts
-- CV executive-summary teaching-scale stat
-- later teaching analysis helpers
+Important boundary:
 
-This later slice should start from explicit editorial or consumer needs, not
-from the existence of enrollment data alone.
+- this helper should be **general**, not teaching-specific
+- it should support authored summary work on the CV, homepage, and similar
+  surfaces
+- it should not automatically inject numbers into those authored blocks
+
+Initial helper goals:
+
+- compute compact, defensible scale facts from canonical site data
+- surface those facts in a form humans and future agents can quickly consult
+- make scope/exclusion boundaries explicit, especially where some data is
+  intentionally incomplete
+- remain extensible if later summary work wants additional metrics such as
+  citation-derived facts
+
+Initial facts worth computing in v1:
+
+- current advisees total plus category breakdown
+  - for example: PhD, postdoc, BS
+- graduated advisees total plus category breakdown
+  - for example: PhD, masters, bachelors
+- completed postdoctoral mentoring count
+- visiting students count
+- indexed publications
+- completed UW instructor-led offerings with enrollment present
+- total UW students taught across offerings with enrollment present
+
+Important v1 exclusions:
+
+- no service-derived stats
+- no citation-derived metrics yet
+- no non-canonical or externally refreshed metrics
+
+Important first-pass teaching rule:
+
+- while Spring 2026 `CSE P590` lacks enrollment, teaching-scale totals should
+  be explicit that they are computed only from offerings with enrollment
+  present or through a closed historical boundary
+
+Recommended output shape:
+
+- a small script that prints a human-readable report to standard output
+- no generated Markdown file yet
+- no generated JSON file yet
+- readable enough for direct human use
+- deterministic enough for future agents to rely on during drafting support
+
+Recommended report shape:
+
+- a short `Core scale facts` section for the strongest summary-support facts
+- a short `Additional context` section for useful supporting counts and caveats
+- an explicit teaching note when current-quarter offerings are excluded from
+  enrollment totals
+
+Recommended usage pattern:
+
+- run the helper while revising authored summary surfaces such as:
+  - [site/cv/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/cv/index.dj)
+  - [site/pages/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/index.dj)
+- use the output as drafting support and factual grounding
+- keep final prose decisions authored and reviewable
+- allow the helper to expose more facts than any one current consumer uses,
+  because future summary work may want different subsets
+- treat the report as a drafting aid, not as a list of numbers that must all
+  appear in any one summary surface
+
+What this slice should **not** do:
+
+- no macro or projection insertion into [site/cv/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/cv/index.dj)
+- no automatic homepage top-summary insertion
+- no teaching-page visual redesign yet
+
+### Slice 5. Optional Teaching-Page Consumer Exploration
+
+Only consider this after slice 4 clarifies whether the new teaching-scale
+facts are actually useful in practice.
+
+If a real built-site consumer still looks worthwhile, the first place to try
+it is the bottom of the public teaching page rather than the top of the CV.
+
+Candidate directions worth exploring later:
+
+- one compact bottom-of-page teaching-scale summary sentence or paragraph
+- a small factual stats block if it earns its keep editorially
+- a quarter-by-quarter enrollment graph
+- a distribution view such as a histogram or CDF of students taught across
+  offerings
+
+Important scope caution:
+
+- do not commit to any of these yet
+- revisit only after:
+  - the scale-stats helper exists
+  - Spring 2026 enrollment has landed
+  - the public teaching page still seems like the right place for a real
+    data-driven consumer
+
+If slice 5 happens later, it should start from explicit user-facing value,
+not from the mere existence of enrollment data.
 
 ## Testing Strategy
 

@@ -1,8 +1,9 @@
 # Teaching Campaign
 
 Status: public-page core, homepage recent-teaching consumer, CV teaching
-projection, and staffing/layout slices implemented; teaching-enrollment
-follow-on now planned; later polish remains
+projection, staffing/layout slices, and teaching-enrollment slices 1-3
+implemented; later scale-stats helper and possible teaching-page follow-on
+remain
 
 ## Goal
 
@@ -388,29 +389,29 @@ slice:
 
 ## Likely Next Follow-On
 
-The next planned teaching-domain follow-on is now a narrow
-teaching-enrollment slice.
+The narrow teaching-enrollment import is now in place through slices 1-3.
 
-That follow-on should:
+The next likely follow-on should **not** be direct projection into the top of
+the CV.
 
-- keep slice 1 intentionally narrow:
-  - optional offering-level enrollment support in the loader/validator
-  - focused schema tests
-  - no live teaching-data or renderer changes yet
-- keep slice 2 as a narrow canonical-data extension:
-  - keep `site/data/teaching.json` as the canonical site-facing teaching
-    ledger
-  - add Spring 2026 `CSE P590` under the existing `uw-cse-507` / CARS family
-  - add enrollment only for settled historical instructor-led UW offerings
-  - keep Spring 2026 enrollment absent until the quarter is over
-  - avoid public enrollment rendering in the first implementation slice
-- treat slice 3 as explicit consumer review rather than more schema work:
-  - deliberate review of the now-enriched teaching ledger in the public
-    teaching page, CV teaching section, and homepage recent-teaching block
-  - explicit acceptance of the homepage recent-teaching window shift
-  - no renderer changes unless the review finds a real problem
-- leave any later enrollment-derived teaching summary or stat work deferred
-  until the current quarter closes and the value of such surfacing is clear
+Instead, the next steps should be:
+
+- slice 4:
+  - build a small general scale-stats helper for authorship support
+  - let that helper compute trustworthy scale facts from canonical site data
+  - start with stable student, publication, and teaching scale facts rather
+    than service or external citation metrics
+  - prefer a simple stdout report over generated files in the first pass
+  - use it to support future human/agent iteration on authored summary
+    surfaces such as the CV `Overview` and homepage top matter
+  - keep those authored summary surfaces fully hand-authored
+- slice 5:
+  - only later, if it still looks worthwhile, explore a real built-site
+    teaching-page consumer
+  - likely at the bottom of `/teaching/`, not in the top-of-CV summary
+  - keep graphs, factual summary text, or distribution views as ideas rather
+    than commitments until the scale-stats helper proves useful and Spring
+    2026 enrollment closes
 
 Reference notes:
 

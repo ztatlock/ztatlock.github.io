@@ -30,6 +30,18 @@ notes.
   inspiration and calibration before any broader CV front-matter follow-on
   (`docs/plans/cv-top-summary-executive-block-plan.md`, `site/cv/index.dj`,
   `site/pages/index.dj`).
+- [ ] Reframe teaching-enrollment slice 4 as a small general scale-stats
+  helper for authored summary support across canonical site domains, rather
+  than as a direct CV-top projection consumer
+  (`docs/plans/teaching-enrollment-implementation-testing-plan.md`,
+  `docs/plans/teaching-campaign.md`, `site/data/teaching.json`,
+  `site/cv/index.dj`, `site/pages/index.dj`).
+- [ ] Revisit a possible later teaching-page bottom summary or visualization
+  only after the scale-stats helper proves useful and Spring 2026 enrollment
+  closes, so any real public teaching consumer starts from demonstrated value
+  rather than from the existence of enrollment data
+  (`docs/plans/teaching-enrollment-implementation-testing-plan.md`,
+  `site/teaching/index.dj`, `site/data/teaching.json`).
 - [ ] Decide which talks actually need talk-local detail pages instead of
   index-only bundles (`site/talks/`,
   `site/pages/talk-2023-05-egg-uiuc.dj`).
