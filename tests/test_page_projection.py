@@ -524,6 +524,8 @@ class PageProjectionTests(unittest.TestCase):
     def test_renders_teaching_sections_from_canonical_data(self) -> None:
         rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("*UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_uw)
+        self.assertIn("- 2026 Spring", rendered_uw)
+        self.assertNotIn("[2026 Spring](", rendered_uw)
         self.assertIn("[2025 Autumn](https://courses.cs.washington.edu/courses/cse507/25au/)", rendered_uw)
         self.assertIn("Co-Instructors: [James Wilcox][]", rendered_uw)
         self.assertIn(
@@ -556,6 +558,7 @@ class PageProjectionTests(unittest.TestCase):
 
         rendered_instructor = render_cv_teaching_instructor_list_djot(root)
         self.assertIn("- *UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_instructor)
+        self.assertIn("*  2026 Spring", rendered_instructor)
         self.assertIn("- *Special Topics Graduate Courses*", rendered_instructor)
         self.assertNotIn("Co-taught with Xi Wang and Bryan Parno", rendered_instructor)
         self.assertNotIn("[Xi Wang][]", rendered_instructor)
@@ -1102,6 +1105,14 @@ class PageProjectionTests(unittest.TestCase):
             data_dir=root / "site" / "data",
         )
         self.assertIn(
+            "- 2026 Spring, UW CSE 507: Computer-Aided Reasoning for Software",
+            rendered,
+        )
+        self.assertNotIn(
+            "[2026 Spring, UW CSE 507: Computer-Aided Reasoning for Software](",
+            rendered,
+        )
+        self.assertIn(
             "- [2025 Autumn, UW CSE 507: Computer-Aided Reasoning for Software](https://courses.cs.washington.edu/courses/cse507/25au/)",
             rendered,
         )
@@ -1109,6 +1120,7 @@ class PageProjectionTests(unittest.TestCase):
             "- [2024 Summer, Marktoberdorf Summer School: Analysis and Optimizations with Equality Saturation](https://sites.google.com/view/marktoberdorf2024/home)",
             rendered,
         )
+        self.assertNotIn("2023 Autumn, UW CSE 507: Computer-Aided Reasoning for Software", rendered)
         self.assertNotIn("2022 Autumn, UW CSE 341: Programming Languages", rendered)
         self.assertNotIn("2018 Summer, DeepSpec Summer School", rendered)
 
@@ -1128,8 +1140,10 @@ class PageProjectionTests(unittest.TestCase):
             data_dir=root / "site" / "data",
         )
         self.assertNotIn(HOMEPAGE_RECENT_TEACHING_LIST_PLACEHOLDER, rendered)
+        self.assertIn("2026 Spring, UW CSE 507: Computer-Aided Reasoning for Software", rendered)
         self.assertIn("2025 Autumn, UW CSE 507: Computer-Aided Reasoning for Software", rendered)
         self.assertIn("2024 Summer, Marktoberdorf Summer School: Analysis and Optimizations with Equality Saturation", rendered)
+        self.assertNotIn("2023 Autumn, UW CSE 507: Computer-Aided Reasoning for Software", rendered)
         self.assertIn("Please see my [teaching page](teaching/) for more.", rendered)
 
         self.assertEqual(

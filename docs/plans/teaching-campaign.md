@@ -404,12 +404,17 @@ That follow-on should:
   - add enrollment only for settled historical instructor-led UW offerings
   - keep Spring 2026 enrollment absent until the quarter is over
   - avoid public enrollment rendering in the first implementation slice
-- treat the next explicit step as slice 3:
-  - deliberate consumer review of the now-enriched teaching ledger,
-    especially the homepage recent-teaching window shift
+- treat slice 3 as explicit consumer review rather than more schema work:
+  - deliberate review of the now-enriched teaching ledger in the public
+    teaching page, CV teaching section, and homepage recent-teaching block
+  - explicit acceptance of the homepage recent-teaching window shift
+  - no renderer changes unless the review finds a real problem
+- leave any later enrollment-derived teaching summary or stat work deferred
+  until the current quarter closes and the value of such surfacing is clear
 
 Reference notes:
 
 - [teaching-enrollment-policy-note.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-enrollment-policy-note.md)
 - [teaching-domain-audit-before-enrollment.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-domain-audit-before-enrollment.md)
 - [teaching-enrollment-implementation-testing-plan.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-enrollment-implementation-testing-plan.md)
+- [teaching-enrollment-slice-3-consumer-review.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-enrollment-slice-3-consumer-review.md)

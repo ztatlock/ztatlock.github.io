@@ -25,16 +25,6 @@ notes.
 
 ## Near-Term Next Steps
 
-- [ ] Continue the teaching-enrollment campaign with slice 3 now that slices
-  1-2 have landed: deliberately review the public teaching page, the CV
-  teaching section, and especially the homepage recent-teaching diff caused by
-  the newer latest-year window after adding Spring 2026 `CSE P590`, rather
-  than letting those consumer effects drift by inertia
-  (`docs/plans/teaching-enrollment-policy-note.md`,
-  `docs/plans/teaching-domain-audit-before-enrollment.md`,
-  `docs/plans/teaching-enrollment-implementation-testing-plan.md`,
-  `site/data/teaching.json`, `scripts/teaching_record.py`,
-  `scripts/sitebuild/page_projection.py`).
 - [ ] Review peer CVs from Adam Chlipala, Xavier Leroy, Nate Foster, Emina
   Torlak, Pavel Panchekha, Michael Ernst, and Derek Dreyer for structure
   inspiration and calibration before any broader CV front-matter follow-on
@@ -51,6 +41,18 @@ notes.
 
 ## Recent Completed Milestones
 
+- [x] Execute teaching-enrollment slices 1-3 so the teaching loader supports
+  optional offering-level enrollment, the canonical teaching ledger gains
+  settled historical instructor-led UW enrollment plus Spring 2026 `CSE P590`
+  under the `uw-cse-507` / CARS family, and the public teaching/CV/homepage
+  consumers are reviewed explicitly for the resulting visible diffs before any
+  later teaching-summary/stat follow-on is considered
+  (`docs/plans/teaching-enrollment-policy-note.md`,
+  `docs/plans/teaching-domain-audit-before-enrollment.md`,
+  `docs/plans/teaching-enrollment-implementation-testing-plan.md`,
+  `docs/plans/teaching-enrollment-slice-3-consumer-review.md`,
+  `site/data/teaching.json`, `scripts/teaching_record.py`,
+  `tests/test_teaching_record.py`, `tests/test_page_projection.py`).
 - [x] Decide how to represent non-service research/community-participation
   honors such as Dagstuhl attendance on the site and CV so those facts are not
   lost when they are removed from canonical service: keep them in authored/news

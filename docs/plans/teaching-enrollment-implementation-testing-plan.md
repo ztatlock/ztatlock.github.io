@@ -1,6 +1,6 @@
 # Teaching Enrollment Implementation / Testing Plan
 
-Status: slices 1-2 implemented; slices 3-4 planned
+Status: slices 1-3 implemented; slice 4 deferred/later
 
 It builds on:
 
@@ -173,6 +173,11 @@ Implemented outcome:
 Review and test the existing consumers against the now-enriched teaching
 ledger, even though they do not yet render enrollment publicly.
 
+This slice is now implemented in:
+
+- [teaching-enrollment-slice-3-consumer-review.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/teaching-enrollment-slice-3-consumer-review.md)
+- [test_page_projection.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_page_projection.py)
+
 Why this deserves its own slice:
 
 - adding Spring 2026 `CSE P590` is not visually neutral
@@ -202,7 +207,7 @@ Testing targets:
 - no new public projection should fail merely because an offering lacks
   `enrollment`
 
-Invariant after slice 3:
+Implemented outcome:
 
 - all current teaching consumers still render cleanly over the enriched ledger
 - missing enrollment on Spring 2026 is exercised as a real supported case
