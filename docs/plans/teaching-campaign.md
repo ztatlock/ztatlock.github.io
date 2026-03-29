@@ -397,11 +397,16 @@ That follow-on should:
   - optional offering-level enrollment support in the loader/validator
   - focused schema tests
   - no live teaching-data or renderer changes yet
-- keep `site/data/teaching.json` as the canonical site-facing teaching ledger
-- add Spring 2026 `CSE P590` under the existing `uw-cse-507` / CARS family
-- add enrollment only for settled historical instructor-led UW offerings
-- keep Spring 2026 enrollment absent until the quarter is over
-- avoid public enrollment rendering in the first implementation slice
+- keep slice 2 as a narrow canonical-data extension:
+  - keep `site/data/teaching.json` as the canonical site-facing teaching
+    ledger
+  - add Spring 2026 `CSE P590` under the existing `uw-cse-507` / CARS family
+  - add enrollment only for settled historical instructor-led UW offerings
+  - keep Spring 2026 enrollment absent until the quarter is over
+  - avoid public enrollment rendering in the first implementation slice
+- treat the next explicit step as slice 3:
+  - deliberate consumer review of the now-enriched teaching ledger,
+    especially the homepage recent-teaching window shift
 
 Reference notes:
 

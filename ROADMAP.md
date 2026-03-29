@@ -25,12 +25,11 @@ notes.
 
 ## Near-Term Next Steps
 
-- [ ] Continue the teaching-enrollment campaign with slice 2 and slice 3 now
-  that slice 1 has landed: add Spring 2026 `CSE P590` under the
-  `uw-cse-507` / CARS family, backfill enrollment for settled historical
-  instructor-led UW offerings, and review the homepage recent-teaching diff
-  from the newer latest-year window explicitly rather than letting it surface
-  by surprise
+- [ ] Continue the teaching-enrollment campaign with slice 3 now that slices
+  1-2 have landed: deliberately review the public teaching page, the CV
+  teaching section, and especially the homepage recent-teaching diff caused by
+  the newer latest-year window after adding Spring 2026 `CSE P590`, rather
+  than letting those consumer effects drift by inertia
   (`docs/plans/teaching-enrollment-policy-note.md`,
   `docs/plans/teaching-domain-audit-before-enrollment.md`,
   `docs/plans/teaching-enrollment-implementation-testing-plan.md`,

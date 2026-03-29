@@ -1,6 +1,6 @@
 # Teaching Enrollment Implementation / Testing Plan
 
-Status: slice 1 implemented; slices 2-4 planned
+Status: slices 1-2 implemented; slices 3-4 planned
 
 It builds on:
 
@@ -129,6 +129,11 @@ Implemented outcome:
 Update the canonical teaching ledger with the one verified new offering and
 the settled historical enrollment facts.
 
+This slice is now implemented in:
+
+- [teaching.json](/Users/ztatlock/www/ztatlock.github.io/site/data/teaching.json)
+- [test_teaching_record.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_teaching_record.py)
+
 Scope:
 
 - add Spring 2026 `CSE P590` under the existing
@@ -157,7 +162,7 @@ Testing and review targets:
 - the known verified historical ledger remains unchanged apart from the new
   Spring 2026 addition and the new enrollment subobjects
 
-Invariant after slice 2:
+Implemented outcome:
 
 - the canonical teaching ledger includes the verified Spring 2026 offering
 - settled historical instructor-led UW enrollment is canonical

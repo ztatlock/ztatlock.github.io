@@ -13,15 +13,27 @@
           "description_djot": "introducing automated reasoning techniques for the design, analysis, and construction of software",
           "offerings": [
             {
+              "year": 2026,
+              "term": "Spring"
+            },
+            {
               "year": 2025,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse507/25au/",
+              "enrollment": {
+                "students": 33,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2025/cse.html"
+              },
               "teaching_assistants": ["audrey-seo"]
             },
             {
               "year": 2023,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse507/23au/",
+              "enrollment": {
+                "students": 23,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2023/cse.html"
+              },
               "teaching_assistants": ["sirui-lu"]
             }
           ]
@@ -39,6 +51,10 @@
               "year": 2025,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse505/25sp/",
+              "enrollment": {
+                "students": 76,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2025/cse.html"
+              },
               "co_instructors": ["james-wilcox"],
               "teaching_assistants": ["oliver-flatt", "kevin-mu"]
             },
@@ -46,6 +62,10 @@
               "year": 2023,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse505/23wi/",
+              "enrollment": {
+                "students": 68,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2023/cse.html"
+              },
               "co_instructors": ["james-wilcox"],
               "teaching_assistants": ["gus-smith", "audrey-seo", "anjali-pal"]
             },
@@ -53,6 +73,10 @@
               "year": 2021,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse505/21sp/",
+              "enrollment": {
+                "students": 54,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2021/cse.html"
+              },
               "co_instructors": ["james-wilcox"],
               "teaching_assistants": ["brendan-murphy", "jack-zhang", "mike-he", "yihong-zhang"]
             },
@@ -60,24 +84,40 @@
               "year": 2020,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse505/20sp/",
+              "enrollment": {
+                "students": 36,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2020/cse.html"
+              },
               "teaching_assistants": ["ben-kushigian"]
             },
             {
               "year": 2019,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/csep505/19sp/",
+              "enrollment": {
+                "students": 36,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2019/95csep.html"
+              },
               "teaching_assistants": ["james-wilcox"]
             },
             {
               "year": 2018,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/18au/",
+              "enrollment": {
+                "students": 33,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2018/cse.html"
+              },
               "teaching_assistants": ["talia-ringer"]
             },
             {
               "year": 2017,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/17au/",
+              "enrollment": {
+                "students": 25,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2017/cse.html"
+              },
               "co_instructors": ["leonardo-de-moura"],
               "teaching_assistants": ["jared-roesch"]
             },
@@ -85,6 +125,10 @@
               "year": 2016,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/16au/",
+              "enrollment": {
+                "students": 23,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2016/cse.html"
+              },
               "teaching_assistants": ["konstantin-weitz"],
               "tutors": ["james-wilcox", "eric-mullen", "joe-redmon"]
             },
@@ -92,6 +136,10 @@
               "year": 2015,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/15au/",
+              "enrollment": {
+                "students": 22,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2015/cse.html"
+              },
               "teaching_assistants": ["doug-woos"],
               "tutors": ["eric-mullen", "joe-redmon"]
             },
@@ -99,6 +147,10 @@
               "year": 2015,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse505/15wi/",
+              "enrollment": {
+                "students": 25,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2015/cse.html"
+              },
               "co_instructors": ["valentin-robert"],
               "teaching_assistants": ["eric-mullen"]
             },
@@ -106,6 +158,10 @@
               "year": 2013,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse505/13au/",
+              "enrollment": {
+                "students": 29,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2013/cse.html"
+              },
               "teaching_assistants": ["james-wilcox"]
             }
           ]
@@ -123,6 +179,10 @@
               "year": 2024,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse341/24au/",
+              "enrollment": {
+                "students": 82,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2024/cse.html"
+              },
               "co_instructors": ["anjali-pal"],
               "teaching_assistants": ["aaminah-alam", "andres-paz", "ceci-miovic", "kirsten-graham"]
             },
@@ -130,42 +190,70 @@
               "year": 2022,
               "term": "Autumn",
               "url": "https://courses.cs.washington.edu/courses/cse341/22au/",
+              "enrollment": {
+                "students": 91,
+                "evidence_url": "https://www.washington.edu/students/timeschd/AUT2022/cse.html"
+              },
               "teaching_assistants": ["jacob-van-geffen", "oliver-flatt", "riya-dheer", "nuha-qadir", "anirudh-suresh", "deeksha-vatwani"]
             },
             {
               "year": 2021,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse341/21wi/",
+              "enrollment": {
+                "students": 71,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2021/cse.html"
+              },
               "teaching_assistants": ["andres-paz", "kenny-wu", "michael-flanders", "jennifer-tao", "kevin-zhu"]
             },
             {
               "year": 2020,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse341/20wi/",
+              "enrollment": {
+                "students": 66,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2020/cse.html"
+              },
               "teaching_assistants": ["melissa-hovik", "julie-newcomb", "daniel-snitkovskiy", "adam-anderson", "taylor-coffman"]
             },
             {
               "year": 2019,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse341/19wi/",
+              "enrollment": {
+                "students": 104,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2019/cse.html"
+              },
               "teaching_assistants": ["meha-agarwal", "kush-gupta", "melissa-hovik", "sven-hansen", "brendan-murphy", "john-toman"]
             },
             {
               "year": 2018,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse341/18wi/",
+              "enrollment": {
+                "students": 60,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2018/cse.html"
+              },
               "teaching_assistants": ["kush-gupta", "christopher-mackie", "chandrakana-nandi", "jifan-zhang"]
             },
             {
               "year": 2015,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse341/15sp/",
+              "enrollment": {
+                "students": 83,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2015/cse.html"
+              },
               "teaching_assistants": ["stuart-pernsteiner", "gurwinder-gulati", "max-sherman", "riley-wilk"]
             },
             {
               "year": 2014,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse341/14sp/",
+              "enrollment": {
+                "students": 76,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2014/cse.html"
+              },
               "teaching_assistants": ["armando-diaz-tolentino", "riley-klingler", "max-sherman"]
             }
           ]
@@ -183,6 +271,10 @@
               "year": 2024,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse331/24wi/",
+              "enrollment": {
+                "students": 160,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2024/cse.html"
+              },
               "co_instructors": ["anjali-pal"],
               "teaching_assistants": ["adam-fuegmann", "ali-toghani", "annika-singh", "ashay-manocha", "ben-lambert", "edison-leung", "gargi-panatula", "jaela-field", "katherine-murphy", "michelle-arquiza"]
             },
@@ -190,18 +282,30 @@
               "year": 2018,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse331/18sp/",
+              "enrollment": {
+                "students": 158,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2018/cse.html"
+              },
               "teaching_assistants": ["weifan-jiang", "cody-kesting", "tim-chirananthavat", "alexey-beall", "hongtao-huang", "jake-sippy", "chen-qiu", "leah-perlmutter", "zhu-ruby-li", "yifan-vanadis-xu"]
             },
             {
               "year": 2017,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse331/17wi/",
+              "enrollment": {
+                "students": 119,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2017/cse.html"
+              },
               "teaching_assistants": ["christopher-chen", "viktor-farkas", "cody-kesting", "chen-qiu", "matthew-yang", "lucy-zhu", "garrett-marconet", "sam-gao", "qian-yan"]
             },
             {
               "year": 2016,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse331/16wi/",
+              "enrollment": {
+                "students": 86,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2016/cse.html"
+              },
               "teaching_assistants": ["justin-bare", "christopher-chen", "deric-pang", "marcella-cindy-prasetio", "vinod-rathnam"]
             }
           ]
@@ -221,7 +325,11 @@
             {
               "year": 2017,
               "term": "Spring",
-              "url": "https://homes.cs.washington.edu/~ztatlock/599z-17sp/"
+              "url": "https://homes.cs.washington.edu/~ztatlock/599z-17sp/",
+              "enrollment": {
+                "students": 11,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2017/cse.html"
+              }
             }
           ],
           "details": [
@@ -239,6 +347,10 @@
               "year": 2016,
               "term": "Spring",
               "url": "https://courses.cs.washington.edu/courses/cse599w/16sp/",
+              "enrollment": {
+                "students": 17,
+                "evidence_url": "https://www.washington.edu/students/timeschd/SPR2016/cse.html"
+              },
               "co_instructors": ["bryan-parno", "xi-wang"]
             }
           ],
@@ -256,7 +368,11 @@
             {
               "year": 2014,
               "term": "Winter",
-              "url": "https://courses.cs.washington.edu/courses/cse506/14wi/"
+              "url": "https://courses.cs.washington.edu/courses/cse506/14wi/",
+              "enrollment": {
+                "students": 13,
+                "evidence_url": "https://www.washington.edu/students/timeschd/WIN2014/cse.html"
+              }
             }
           ],
           "details": [

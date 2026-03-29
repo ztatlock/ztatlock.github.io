@@ -47,11 +47,20 @@ class TeachingRecordTests(unittest.TestCase):
         self.assertEqual(groups[0].records[1].offerings[9].co_instructors, ("valentin-robert",))
         self.assertEqual(groups[0].records[2].offerings[0].co_instructors, ("anjali-pal",))
         self.assertEqual(groups[0].records[3].offerings[0].co_instructors, ("anjali-pal",))
-        self.assertEqual(groups[0].records[0].offerings[0].teaching_assistants, ("audrey-seo",))
+        self.assertEqual(groups[0].records[0].offerings[0].year, 2026)
+        self.assertEqual(groups[0].records[0].offerings[0].term, "Spring")
+        self.assertIsNone(groups[0].records[0].offerings[0].enrollment)
+        self.assertEqual(groups[0].records[0].offerings[1].teaching_assistants, ("audrey-seo",))
+        self.assertIsNotNone(groups[0].records[0].offerings[1].enrollment)
+        assert groups[0].records[0].offerings[1].enrollment is not None
+        self.assertEqual(groups[0].records[0].offerings[1].enrollment.students, 33)
         self.assertEqual(
             groups[0].records[1].offerings[0].teaching_assistants,
             ("oliver-flatt", "kevin-mu"),
         )
+        self.assertIsNotNone(groups[0].records[1].offerings[4].enrollment)
+        assert groups[0].records[1].offerings[4].enrollment is not None
+        self.assertEqual(groups[0].records[1].offerings[4].enrollment.students, 36)
         self.assertEqual(
             groups[0].records[2].offerings[2].teaching_assistants,
             ("andres-paz", "kenny-wu", "michael-flanders", "jennifer-tao", "kevin-zhu"),
@@ -70,11 +79,13 @@ class TeachingRecordTests(unittest.TestCase):
                 "qian-yan",
             ),
         )
-        self.assertEqual(groups[0].records[0].offerings[0].year, 2025)
         self.assertEqual(
             groups[1].records[1].offerings[0].co_instructors,
             ("bryan-parno", "xi-wang"),
         )
+        self.assertIsNotNone(groups[1].records[0].offerings[0].enrollment)
+        assert groups[1].records[0].offerings[0].enrollment is not None
+        self.assertEqual(groups[1].records[0].offerings[0].enrollment.students, 11)
         self.assertEqual(groups[1].records[1].details[0], "Formally verifying systems implementations")
         self.assertEqual(groups[2].records[1].events[0].label, "Marktoberdorf Summer School 2024")
         self.assertEqual(groups[2].records[1].events[0].year, 2024)
