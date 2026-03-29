@@ -14,8 +14,12 @@ It is not an implementation plan yet.
 
 External handoff reviewed:
 
-- `/Users/ztatlock/Library/CloudStorage/Dropbox/UW Lecture Recordings/ASSISTANT/work/handoff-enrollment-to-website-agent.md`
-- `/Users/ztatlock/Library/CloudStorage/Dropbox/UW Lecture Recordings/ASSISTANT/knowledge/enrollment/enrollment-canonical.csv`
+- initial handoff:
+  `/Users/ztatlock/Library/CloudStorage/Dropbox/UW Lecture Recordings/ASSISTANT/work/handoff-enrollment-to-website-agent.md`
+- initial canonical CSV:
+  `/Users/ztatlock/Library/CloudStorage/Dropbox/UW Lecture Recordings/ASSISTANT/knowledge/enrollment/enrollment-canonical.csv`
+- verified follow-up handoff:
+  `/Users/ztatlock/Dropbox/UW Lecture Recordings/ASSISTANT/work/handoff-enrollment-verified-to-website-agent.md`
 
 Current site-facing canonical teaching ledger:
 
@@ -89,20 +93,38 @@ So:
 - no additional provisional-state machinery is required unless a real consumer
   later needs it
 
-## Immediate Integrity Questions Before Implementation
+## Verified Integrity Conclusions Before Implementation
 
-The reviewed handoff suggests this is not purely an enrichment slice.
-It likely also requires a small ledger reconciliation pass with the course
-agent.
+The later verified handoff materially simplified the situation.
 
-Current examples to verify before implementation:
+It established that:
 
-- whether the existing `uw-cse-331` Winter 2017 offering on the site is
-  correct, since the reviewed enrollment handoff points instead to Winter 2016
-- whether Spring 2026 PMP `CSE P590` should be represented in the site's
-  canonical teaching ledger under the `uw-cse-507` family
+- the current site teaching ledger is correct for all already-listed
+  instructor-led UW offerings
+- the earlier `uw-cse-331` Winter 2017 mismatch was a gap in the external
+  enrollment material, not an error in the site ledger
+- the one new offering that belongs in the site ledger is Spring 2026
+  `CSE P590`
 
-Those ledger questions should be settled before enrollment import work begins.
+The remaining site-side representation stance is now:
+
+- the repo may continue to treat `uw-cse-507` as the broader CARS teaching
+  family for now
+- Spring 2026 `CSE P590` belongs under that family
+
+The remaining enrollment-timing stance is:
+
+- Spring 2026 `CSE P590` should be added to the teaching ledger now
+- its enrollment should wait until the quarter is over and the number is no
+  longer changing
+
+So the next implementation slice should be treated as:
+
+- one small teaching-ledger extension
+- plus historical enrollment enrichment for settled instructor-led UW
+  offerings
+
+not as a large historical reconciliation pass.
 
 ## Implications For Future Consumers
 
