@@ -136,26 +136,32 @@ Normal workflow:
 Notes:
 - The repo root is a workspace, not the live served site.
 - Do not hand-edit generated files under `build/`.
+- For internal public page destinations in authored Djot, prefer
+  root-relative links such as `/students/`, `/pubs/`, `/cv/`, or
+  `/notes.html` over route-relative links.
+- This root-relative default is for public page destinations only, not for
+  local asset paths such as `img/...`.
 - For links to specific publications in authored Djot, use the honest
   canonical destination:
   - the local publication page only when that bundle has `local_page: true`
+    and then link to `/pubs/<slug>/`
   - otherwise the publication's primary external destination
   Do not use legacy `pub-<slug>.html` links.
-- Authored publications collection links in Djot should use `pubs/`, not
+- Authored publications collection links in Djot should use `/pubs/`, not
   `publications.html`.
-- Authored talks index links in Djot should use `talks/`, not `talks.html`.
-- Authored students index links in Djot should use `students/`, not
+- Authored talks index links in Djot should use `/talks/`, not `talks.html`.
+- Authored students index links in Djot should use `/students/`, not
   `students.html`.
-- Authored teaching index links in Djot should use `teaching/`, not
+- Authored teaching index links in Djot should use `/teaching/`, not
   `teaching.html`.
-- Authored service index links in Djot should use `service/`, not
+- Authored service index links in Djot should use `/service/`, not
   `service.html`.
-- Authored collaborators index links in Djot should use `collaborators/`, not
+- Authored collaborators index links in Djot should use `/collaborators/`, not
   `collaborators.html`.
-- Authored funding page links in Djot should use `funding/`, not
+- Authored funding page links in Djot should use `/funding/`, not
   `funding.html`.
-- Authored news page links in Djot should use `news/`, not `news.html`.
-- Authored CV links in Djot should use `cv/`, not `cv.html`.
+- Authored news page links in Djot should use `/news/`, not `news.html`.
+- Authored CV links in Djot should use `/cv/`, not `cv.html`.
 - Add or update person references in `site/data/people.json` when using
   `[Name][]` links.
   Keep `site/templates/REFS` only for non-person references such as `PGAS`

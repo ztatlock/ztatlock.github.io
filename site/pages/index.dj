@@ -14,11 +14,11 @@ My goal is to help students
   become great computer scientists.
 In research,
   I pursue that goal
-  with my [students](students/)
+  with my [students](/students/)
   in the [UW PLSE][PLSE] research group.
 In education,
   I pursue it
-  by [teaching courses](teaching/)
+  by [teaching courses](/teaching/)
   on programming languages and related topics.
 
 My expertise is rooted in formal verification,
@@ -39,21 +39,21 @@ We rigorously prove our results while
       formalism and empiricism as "both Greek and graphs".
 
 {.columns .columns-8rem}
-- [Students](students/)
-- [Notes](notes.html)
-- [Publications](pubs/)
-- [Research](research.html)
-- [Teaching](teaching/)
-- [Talks](talks/)
-- [Service](service/)
-- [CV](cv/)
+- [Students](/students/)
+- [Notes](/notes.html)
+- [Publications](/pubs/)
+- [Research](/research.html)
+- [Teaching](/teaching/)
+- [Talks](/talks/)
+- [Service](/service/)
+- [CV](/cv/)
 
 
 ## News
 
 __HOMEPAGE_NEWS_MONTH_GROUPS__
 
-Please see [past news](news/) for more.
+Please see [past news](/news/) for more.
 
 
 ## Current Students
@@ -61,23 +61,23 @@ Please see [past news](news/) for more.
 {.columns .columns-16rem}
 __HOMEPAGE_CURRENT_STUDENTS_LIST__
 
-Please see my [students page](students/) for more.
+Please see my [students page](/students/) for more.
 
 ## Recent Service / Leadership
 
 __HOMEPAGE_RECENT_SERVICE_LIST__
 
-Please see my [service page](service/) for more.
+Please see my [service page](/service/) for more.
 
 ## Recent Publications
 
 __HOMEPAGE_RECENT_PUBLICATIONS_LIST__
 
-Please see my [publications page](pubs/) for more.
+Please see my [publications page](/pubs/) for more.
 
 
 ## Recent Teaching
 
 __HOMEPAGE_RECENT_TEACHING_LIST__
 
-Please see my [teaching page](teaching/) for more.
+Please see my [teaching page](/teaching/) for more.

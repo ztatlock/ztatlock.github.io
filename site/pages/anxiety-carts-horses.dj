@@ -48,7 +48,7 @@ _Will this project ever be done? Will it even work?_
 
 > We mitigate risk by
 >   following [Lex Lyubomiricus][],
->   [building the simplest thing first](build-simple-first.html),
+>   [building the simplest thing first](/build-simple-first.html),
 >   and striving to
 >   [fail fast](https://en.wikipedia.org/wiki/Fail-fast).
 > However,
@@ -162,7 +162,7 @@ I am rooting for you.
 
 ## Related
 
-- [Basic Advice](basic-advice.html)
+- [Basic Advice](/basic-advice.html)
 
 - [List One Task, Do it, Cross it Out](
     https://www.oliverburkeman.com/onething)
@@ -184,4 +184,4 @@ I am rooting for you.
 
 \
 
-[📝 notes index](notes.html)
+[📝 notes index](/notes.html)

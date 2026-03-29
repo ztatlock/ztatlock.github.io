@@ -5,13 +5,13 @@ description: Our current and past computer science research projects.
 # [Zachary Tatlock][] / Research
 
 My primary goal is to help
-  my [students](students/)
+  my [students](/students/)
   become great researchers.
 That means working with them as
   they practice developing
   their own research questions and
   learning how to get unstuck as
-  we [answer those questions](pubs/).
+  we [answer those questions](/pubs/).
 
 Consequently, our "research portfolio" is diverse.
 We've worked on:
@@ -120,4 +120,4 @@ We've worked on:
 * [Quail](https://cseweb.ucsd.edu//~lerner/quail.html):
   Deep typechecking and refactoring for embedded DB queries in Java
 
-Please see our [publications](pubs/) for more.
+Please see our [publications](/pubs/) for more.

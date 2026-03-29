@@ -6,7 +6,7 @@ image_path: img/2015-12-plse-faculty-baja-hoodies.jpg
 
 # [Zachary Tatlock][] / About
 
-My [research](research.html) interests include
+My [research](/research.html) interests include
   compilers,
   term rewriting,
   numerics,
@@ -19,7 +19,7 @@ Outside of the lab,
 I can juggle and solve Rubik’s cubes,
   but not at the same time.
 Also, my name has a
-  [wicked cool anagram](anagram.html).
+  [wicked cool anagram](/anagram.html).
 
 I spent six sunny years at
   [UC San Diego](https://cse.ucsd.edu)
@@ -156,7 +156,7 @@ or via [Tom][Tom Anderson]:
 ## Collaborator Alphabet Soup: Gotta Catch 'Em All
 
 I have been very fortunate to work on projects
-  with many amazing [collaborators](collaborators/).
+  with many amazing [collaborators](/collaborators/).
 If your first name starts with:
 
 >    `__COLLABORATORS_FIRST_INITIAL_GAPS__`
@@ -170,7 +170,7 @@ let's write a paper together!
 
 ## Conspiracy Theories
 
-Did you know [the clock on your wall is probably lying to you](sundial.html)?
+Did you know [the clock on your wall is probably lying to you](/sundial.html)?
 If you thought daylight savings was bad,
   wait till you hear about timezones!
 
@@ -203,5 +203,4 @@ put together the conference trailers for POPL 2022:
 <iframe src="https://www.youtube.com/embed/707tBQ07I-A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ```
 :::
-
 

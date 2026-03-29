@@ -152,6 +152,21 @@ public domain page.
 Those differences should be explicit renderer policy, not hidden drift in
 duplicated text.
 
+## Linking
+
+For internal public page destinations in authored Djot, prefer root-relative
+links such as `/students/`, `/pubs/`, `/cv/`, or `/notes.html`.
+This avoids route-relative surprises when a source page lives under a nested
+wrapper like `/cv/` or `/service/`.
+
+This default is intentionally narrow:
+
+- it applies to public page destinations
+- it does not automatically apply to local asset paths such as `img/...`
+- publication links should still follow the honest canonical destination
+  rule: local `/pubs/<slug>/` only when `local_page: true`, otherwise the
+  publication's primary external destination
+
 ## Format Changes
 
 The current hand-authored presentation is not sacred line-for-line.
