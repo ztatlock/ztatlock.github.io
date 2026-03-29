@@ -1,6 +1,6 @@
 # Teaching Enrollment Implementation / Testing Plan
 
-Status: planning checkpoint
+Status: slice 1 implemented; slices 2-4 planned
 
 It builds on:
 
@@ -79,6 +79,11 @@ Important current-quarter rule:
 Extend the teaching schema and tests so offering-level enrollment is an
 explicit optional canonical fact.
 
+This slice is now implemented in:
+
+- [teaching_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/teaching_record.py)
+- [test_teaching_record.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_teaching_record.py)
+
 Scope:
 
 - extend [scripts/teaching_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/teaching_record.py)
@@ -113,7 +118,7 @@ Why first:
 - it isolates schema mistakes from data-import mistakes
 - it proves the domain can represent partial enrollment coverage honestly
 
-Invariant after slice 1:
+Implemented outcome:
 
 - offering-level enrollment is a supported optional canonical fact
 - the teaching loader/validator and focused tests enforce its shape

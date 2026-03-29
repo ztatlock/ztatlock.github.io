@@ -31,10 +31,12 @@ OFFERING_ALLOWED_FIELDS = {
     "year",
     "term",
     "url",
+    "enrollment",
     "co_instructors",
     "teaching_assistants",
     "tutors",
 }
+ENROLLMENT_ALLOWED_FIELDS = {"students", "evidence_url"}
 EVENT_ALLOWED_FIELDS = {"label", "year", "url", "links"}
 LINK_ALLOWED_FIELDS = {"label", "url"}
 GROUP_KEY_RE = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
@@ -65,10 +67,17 @@ class TeachingLink:
 
 
 @dataclass(frozen=True)
+class TeachingEnrollment:
+    students: int
+    evidence_url: str
+
+
+@dataclass(frozen=True)
 class TeachingOffering:
     year: int
     term: str
     url: str | None = None
+    enrollment: TeachingEnrollment | None = None
     co_instructors: tuple[str, ...] = ()
     teaching_assistants: tuple[str, ...] = ()
     tutors: tuple[str, ...] = ()
@@ -196,6 +205,16 @@ def _require_year(raw: object, *, context: str, field: str) -> int:
     return raw
 
 
+def _require_positive_int(raw: object, *, context: str, field: str) -> int:
+    if raw is None:
+        raise TeachingRecordError(f"{context}: missing {field}")
+    if not isinstance(raw, int):
+        raise TeachingRecordError(f"{context}: {field} must be an integer")
+    if raw <= 0:
+        raise TeachingRecordError(f"{context}: invalid {field} {raw!r}")
+    return raw
+
+
 def _require_term(raw: object, *, context: str, field: str) -> str:
     value = _require_nonempty_string(raw, context=context, field=field)
     if value not in OFFERING_TERM_SET:
@@ -239,6 +258,22 @@ def _normalize_people_keys(
     return tuple(values)
 
 
+def _normalize_enrollment(raw: object, *, context: str) -> TeachingEnrollment | None:
+    if raw is None:
+        return None
+    rows = _require_object(raw, context=context)
+    unknown_fields = sorted(set(rows) - ENROLLMENT_ALLOWED_FIELDS)
+    if unknown_fields:
+        raise TeachingRecordError(f"{context}: unknown fields: {', '.join(unknown_fields)}")
+    students = _require_positive_int(rows.get("students"), context=context, field="students")
+    evidence_url = _require_nonempty_string(
+        rows.get("evidence_url"),
+        context=context,
+        field="evidence_url",
+    )
+    return TeachingEnrollment(students=students, evidence_url=evidence_url)
+
+
 def _normalize_offering(
     raw: object,
     *,
@@ -253,10 +288,11 @@ def _normalize_offering(
     year = _require_year(rows.get("year"), context=context, field="year")
     term = _require_term(rows.get("term"), context=context, field="term")
     url = _optional_nonempty_string(rows.get("url"), context=context, field="url")
+    enrollment = _normalize_enrollment(rows.get("enrollment"), context=f"{context}.enrollment")
     if group_key == "teaching_assistant":
         unexpected = sorted(
             field
-            for field in ("co_instructors", "teaching_assistants", "tutors")
+            for field in ("enrollment", "co_instructors", "teaching_assistants", "tutors")
             if rows.get(field) is not None
         )
         if unexpected:
@@ -270,7 +306,7 @@ def _normalize_offering(
         and rows.get("teaching_assistants") is None
         and rows.get("tutors") is None
     ):
-        return TeachingOffering(year=year, term=term, url=url)
+        return TeachingOffering(year=year, term=term, url=url, enrollment=enrollment)
 
     people_registry = get_people_registry()
     co_instructors = _normalize_people_keys(
@@ -295,6 +331,7 @@ def _normalize_offering(
         year=year,
         term=term,
         url=url,
+        enrollment=enrollment,
         co_instructors=co_instructors,
         teaching_assistants=teaching_assistants,
         tutors=tutors,

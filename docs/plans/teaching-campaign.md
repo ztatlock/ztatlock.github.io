@@ -393,6 +393,10 @@ teaching-enrollment slice.
 
 That follow-on should:
 
+- keep slice 1 intentionally narrow:
+  - optional offering-level enrollment support in the loader/validator
+  - focused schema tests
+  - no live teaching-data or renderer changes yet
 - keep `site/data/teaching.json` as the canonical site-facing teaching ledger
 - add Spring 2026 `CSE P590` under the existing `uw-cse-507` / CARS family
 - add enrollment only for settled historical instructor-led UW offerings

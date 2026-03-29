@@ -25,12 +25,12 @@ notes.
 
 ## Near-Term Next Steps
 
-- [ ] Plan and implement the first teaching-enrollment slice so
-  `site/data/teaching.json` gains optional offering-level enrollment for
-  settled historical instructor-led UW offerings, Spring 2026 `CSE P590` is
-  added under the `uw-cse-507` / CARS family without current-quarter
-  enrollment, and the homepage recent-teaching diff from the newer latest-year
-  window is reviewed explicitly rather than surfacing by surprise
+- [ ] Continue the teaching-enrollment campaign with slice 2 and slice 3 now
+  that slice 1 has landed: add Spring 2026 `CSE P590` under the
+  `uw-cse-507` / CARS family, backfill enrollment for settled historical
+  instructor-led UW offerings, and review the homepage recent-teaching diff
+  from the newer latest-year window explicitly rather than letting it surface
+  by surprise
   (`docs/plans/teaching-enrollment-policy-note.md`,
   `docs/plans/teaching-domain-audit-before-enrollment.md`,
   `docs/plans/teaching-enrollment-implementation-testing-plan.md`,

@@ -291,6 +291,10 @@ class TeachingRecordTests(unittest.TestCase):
                                     {
                                         "year": 2025,
                                         "term": "Autumn",
+                                        "enrollment": {
+                                            "students": 160,
+                                            "evidence_url": "https://example.com/enrollment",
+                                        },
                                         "co_instructors": ["ada-lovelace"],
                                         "teaching_assistants": ["grace-hopper", "alan-kay"],
                                         "tutors": ["ada-lovelace"],
@@ -313,6 +317,85 @@ class TeachingRecordTests(unittest.TestCase):
                 ("grace-hopper", "alan-kay"),
             )
             self.assertEqual(offering.tutors, ("ada-lovelace",))
+            self.assertIsNotNone(offering.enrollment)
+            assert offering.enrollment is not None
+            self.assertEqual(offering.enrollment.students, 160)
+            self.assertEqual(
+                offering.enrollment.evidence_url,
+                "https://example.com/enrollment",
+            )
+
+    def test_course_offering_accepts_enrollment_without_staffing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [
+                                    {
+                                        "year": 2025,
+                                        "term": "Autumn",
+                                        "enrollment": {
+                                            "students": 23,
+                                            "evidence_url": "https://example.com/au25",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            groups = load_teaching_groups(root)
+            offering = groups[0].records[0].offerings[0]
+            self.assertIsNotNone(offering.enrollment)
+            assert offering.enrollment is not None
+            self.assertEqual(offering.enrollment.students, 23)
+            self.assertEqual(offering.enrollment.evidence_url, "https://example.com/au25")
+            self.assertEqual(offering.co_instructors, ())
+            self.assertEqual(offering.teaching_assistants, ())
+            self.assertEqual(offering.tutors, ())
+
+    def test_course_offering_without_enrollment_remains_valid(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [{"year": 2025, "term": "Autumn"}],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            groups = load_teaching_groups(root)
+            self.assertIsNone(groups[0].records[0].offerings[0].enrollment)
 
     def test_staffing_fields_require_readable_people_registry(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -384,6 +467,190 @@ class TeachingRecordTests(unittest.TestCase):
             )
 
             with self.assertRaisesRegex(TeachingRecordError, "unknown person key 'missing-person'"):
+                load_teaching_groups(root)
+
+    def test_enrollment_requires_students(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [
+                                    {
+                                        "year": 2025,
+                                        "term": "Autumn",
+                                        "enrollment": {
+                                            "evidence_url": "https://example.com/au25",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            with self.assertRaisesRegex(TeachingRecordError, "missing students"):
+                load_teaching_groups(root)
+
+    def test_enrollment_requires_evidence_url(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [
+                                    {
+                                        "year": 2025,
+                                        "term": "Autumn",
+                                        "enrollment": {
+                                            "students": 23,
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            with self.assertRaisesRegex(TeachingRecordError, "missing evidence_url"):
+                load_teaching_groups(root)
+
+    def test_enrollment_rejects_non_positive_students(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [
+                                    {
+                                        "year": 2025,
+                                        "term": "Autumn",
+                                        "enrollment": {
+                                            "students": 0,
+                                            "evidence_url": "https://example.com/au25",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            with self.assertRaisesRegex(TeachingRecordError, "invalid students 0"):
+                load_teaching_groups(root)
+
+    def test_enrollment_rejects_empty_evidence_url(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [
+                                    {
+                                        "year": 2025,
+                                        "term": "Autumn",
+                                        "enrollment": {
+                                            "students": 23,
+                                            "evidence_url": "",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            with self.assertRaisesRegex(TeachingRecordError, "missing evidence_url"):
+                load_teaching_groups(root)
+
+    def test_enrollment_rejects_unknown_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [
+                                    {
+                                        "year": 2025,
+                                        "term": "Autumn",
+                                        "enrollment": {
+                                            "students": 23,
+                                            "evidence_url": "https://example.com/au25",
+                                            "source": "registrar",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {"key": "teaching_assistant", "records": [{"key": "ucsd-cse-130", "kind": "course", "code": "UCSD CSE 130", "title": "PL", "description_djot": "Desc", "offerings": [{"year": 2012, "term": "Winter"}]}]},
+                ],
+            )
+
+            with self.assertRaisesRegex(TeachingRecordError, "unknown fields: source"):
                 load_teaching_groups(root)
 
     def test_duplicate_staffing_key_is_rejected(self) -> None:
@@ -671,6 +938,58 @@ class TeachingRecordTests(unittest.TestCase):
             with self.assertRaisesRegex(
                 TeachingRecordError,
                 "teaching_assistant history offerings must not include tutors",
+            ):
+                load_teaching_groups(root)
+
+    def test_teaching_assistant_history_offering_rejects_enrollment(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            _write_teaching(
+                root / "site" / "data" / "teaching.json",
+                [
+                    {
+                        "key": "uw_courses",
+                        "records": [
+                            {
+                                "key": "uw-cse-507",
+                                "kind": "course",
+                                "code": "UW CSE 507",
+                                "title": "Example",
+                                "description_djot": "Desc",
+                                "offerings": [{"year": 2025, "term": "Autumn"}],
+                            }
+                        ],
+                    },
+                    {"key": "special_topics", "records": [{"key": "uw-cse-599z", "kind": "course", "code": "UW CSE 599Z", "title": "Topics", "details": ["Notes"], "offerings": [{"year": 2017, "term": "Spring"}]}]},
+                    {"key": "summer_school", "records": [{"key": "marktoberdorf", "kind": "summer_school", "title": "EqSat", "events": [{"label": "Marktoberdorf Summer School 2024", "url": "https://example.com/m"}]}]},
+                    {
+                        "key": "teaching_assistant",
+                        "records": [
+                            {
+                                "key": "ucsd-cse-130",
+                                "kind": "course",
+                                "code": "UCSD CSE 130",
+                                "title": "PL",
+                                "description_djot": "Desc",
+                                "offerings": [
+                                    {
+                                        "year": 2012,
+                                        "term": "Winter",
+                                        "enrollment": {
+                                            "students": 23,
+                                            "evidence_url": "https://example.com/wi12",
+                                        },
+                                    }
+                                ],
+                            }
+                        ],
+                    },
+                ],
+            )
+
+            with self.assertRaisesRegex(
+                TeachingRecordError,
+                "teaching_assistant history offerings must not include enrollment",
             ):
                 load_teaching_groups(root)
 
