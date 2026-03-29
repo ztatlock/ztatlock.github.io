@@ -72,6 +72,7 @@ Other important cross-domain consumers already present near the top of the CV:
   - one narrative paragraph
   - one small stat cluster
   - one mixed recent/editorial signal list
+  - explicit coordination with a lightly retuned homepage top summary
   while non-service research/community-participation items such as Dagstuhl
   attendance still remain authored there rather than being forced back into
   the service domain

@@ -13,11 +13,11 @@ Professor ([photo](img/zachary-tatlock.jpg)) \
 My goal is to help students
   become great computer scientists.
 In research,
-  I work toward this goal
+  I pursue that goal
   with my [students](students/)
   in the [UW PLSE][PLSE] research group.
 In education,
-  I work toward this goal
+  I pursue it
   by [teaching courses](teaching/)
   on programming languages and related topics.
 
@@ -25,6 +25,10 @@ My expertise is rooted in formal verification,
   especially of compilers.
 As my students develop their own research vision,
   we branch out across diverse domains.
+These directions include equality saturation,
+  numerics,
+  fabrication,
+  and related areas where formal methods meet practical systems work.
 Our work remains unified by themes of
   making it easier to write tricky code and
   figuring out how to ensure such programs are correct.

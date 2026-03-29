@@ -1,6 +1,6 @@
 # CV Top Summary / Executive Block Plan
 
-Status: plan latched; slices 1-4 implemented; slice 5 homepage reassessment next
+Status: plan latched; slices 1-5 implemented
 
 It builds on:
 
@@ -384,6 +384,14 @@ Invariant after slice 5:
 
 - homepage and CV top summaries feel coordinated rather than redundant
 
+Implemented outputs:
+
+- [cv-top-summary-slice-5-homepage-reassessment.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-top-summary-slice-5-homepage-reassessment.md)
+- the light homepage wording refresh in [site/pages/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/pages/index.dj)
+- updates to [cv-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/cv-campaign.md),
+  [homepage-cv-curated-consumers-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/homepage-cv-curated-consumers-campaign.md),
+  and [ROADMAP.md](/Users/ztatlock/www/ztatlock.github.io/ROADMAP.md)
+
 ### Slice 6. Tiny Derived Helpers Only If They Clearly Earn It
 
 Only after the authored summary shape is stable should the repo consider any
@@ -407,17 +415,11 @@ Invariant after slice 6:
 
 ## Current Recommendation
 
-The current best next step is slice 5: reassess the homepage top summary in
-light of the new CV top.
+The top-of-CV executive-summary campaign is now in a good resting state.
 
-Why:
-
-- the top-of-CV rewrite is now real
-- the remaining nearby question is coordination with the homepage top summary
-- the peer-CV inspiration pass should stay after this campaign rather than
-  interrupting the homepage reassessment
-
-Only after that should the repo consider broader front-matter follow-ons.
+The next nearby follow-on should not be another rewrite of these surfaces.
+The next deferred related move is the peer-CV inspiration pass already kept on
+the roadmap.
 
 ## Expected Long-Term Outcome
 

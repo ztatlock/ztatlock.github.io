@@ -248,9 +248,9 @@ to implementation/migration planning.
 
 ## Current Recommendation
 
-The next move is no longer another homepage factual consumer slice.
+The campaign is now in a good resting state.
 
-The main remaining curated question in this campaign is now whether the
-homepage top summary should be lightly retuned after the implemented CV
-executive-summary rewrite, rather than whether the CV top should keep its old
-mixed highlights structure.
+The homepage top summary was lightly retuned after the implemented CV
+executive-summary rewrite, and the remaining nearby follow-on is the later
+peer-CV inspiration pass rather than another immediate homepage/CV front-matter
+change.
