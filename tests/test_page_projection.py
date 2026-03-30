@@ -524,8 +524,10 @@ class PageProjectionTests(unittest.TestCase):
     def test_renders_teaching_sections_from_canonical_data(self) -> None:
         rendered_uw = render_teaching_uw_courses_list_djot(Path(__file__).resolve().parents[1])
         self.assertIn("*UW CSE 507: Computer-Aided Reasoning for Software* \\", rendered_uw)
-        self.assertIn("- 2026 Spring", rendered_uw)
-        self.assertNotIn("[2026 Spring](", rendered_uw)
+        self.assertIn(
+            "- [2026 Spring](https://courses.cs.washington.edu/courses/csep590b/26sp/)",
+            rendered_uw,
+        )
         self.assertIn("[2025 Autumn](https://courses.cs.washington.edu/courses/cse507/25au/)", rendered_uw)
         self.assertIn("Co-Instructors: [James Wilcox][]", rendered_uw)
         self.assertIn(
@@ -1105,11 +1107,11 @@ class PageProjectionTests(unittest.TestCase):
             data_dir=root / "site" / "data",
         )
         self.assertIn(
-            "- 2026 Spring, UW CSE 507: Computer-Aided Reasoning for Software",
+            "- [2026 Spring, UW CSE 507: Computer-Aided Reasoning for Software](https://courses.cs.washington.edu/courses/csep590b/26sp/)",
             rendered,
         )
         self.assertNotIn(
-            "[2026 Spring, UW CSE 507: Computer-Aided Reasoning for Software](",
+            "- 2026 Spring, UW CSE 507: Computer-Aided Reasoning for Software",
             rendered,
         )
         self.assertIn(

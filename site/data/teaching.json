@@ -14,7 +14,8 @@
           "offerings": [
             {
               "year": 2026,
-              "term": "Spring"
+              "term": "Spring",
+              "url": "https://courses.cs.washington.edu/courses/csep590b/26sp/"
             },
             {
               "year": 2025,

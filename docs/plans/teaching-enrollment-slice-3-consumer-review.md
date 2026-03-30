@@ -29,14 +29,13 @@ The `uw-cse-507` family now renders:
 
 Important current behavior:
 
-- Spring 2026 is visible as a plain unlinked offering
-- this is intentional for now because the course-site URL has not been added
+- Spring 2026 now links to the public `CSE P590` course site
 - the family-level heading remains `UW CSE 507: Computer-Aided Reasoning for
   Software`
 
 Judgment:
 
-- acceptable for now
+- acceptable
 - honest enough under the agreed current umbrella-family stance
 
 ### CV Teaching Section
@@ -71,7 +70,7 @@ Current reviewed result:
 
 Important current behavior:
 
-- Spring 2026 appears without a link
+- Spring 2026 now appears with a link to the public `CSE P590` course site
 - Autumn 2023 `UW CSE 507` drops out of the homepage block because the trailing
   window now runs `2024-2026`
 
@@ -88,8 +87,8 @@ Slice 3 did not require renderer changes.
 The useful work here was:
 
 - explicit review of the consumer diffs
-- explicit confirmation that the no-link Spring 2026 presentation is honest
-  for now
+- explicit confirmation that the `uw-cse-507` umbrella remains honest enough
+  even after the Spring 2026 public `CSE P590` URL is added
 - explicit confirmation that the homepage recent-teaching window shift is
   acceptable
 - tests hardened to make these conclusions durable

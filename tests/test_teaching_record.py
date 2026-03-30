@@ -49,6 +49,10 @@ class TeachingRecordTests(unittest.TestCase):
         self.assertEqual(groups[0].records[3].offerings[0].co_instructors, ("anjali-pal",))
         self.assertEqual(groups[0].records[0].offerings[0].year, 2026)
         self.assertEqual(groups[0].records[0].offerings[0].term, "Spring")
+        self.assertEqual(
+            groups[0].records[0].offerings[0].url,
+            "https://courses.cs.washington.edu/courses/csep590b/26sp/",
+        )
         self.assertIsNone(groups[0].records[0].offerings[0].enrollment)
         self.assertEqual(groups[0].records[0].offerings[1].teaching_assistants, ("audrey-seo",))
         self.assertIsNotNone(groups[0].records[0].offerings[1].enrollment)
