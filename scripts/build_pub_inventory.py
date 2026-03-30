@@ -628,7 +628,10 @@ def write_summary(
         "",
         *render_list(
             records,
-            lambda r: effective_status(curation, r, "site_slides_pdf") == "missing",
+            lambda r: (
+                r.local_detail_page_status == "present"
+                and effective_status(curation, r, "site_slides_pdf") == "missing"
+            ),
             lambda r: f"- `{r.slug}`: page slides link=`{r.page_slides_link or '-'}`",
         ),
         "",
@@ -636,7 +639,10 @@ def write_summary(
         "",
         *render_list(
             records,
-            lambda r: effective_status(curation, r, "site_poster_pdf") == "missing",
+            lambda r: (
+                r.local_detail_page_status == "present"
+                and effective_status(curation, r, "site_poster_pdf") == "missing"
+            ),
             lambda r: f"- `{r.slug}`: page poster link=`{r.page_poster_link or '-'}`",
         ),
         "",
