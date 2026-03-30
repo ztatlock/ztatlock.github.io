@@ -79,10 +79,10 @@ Those remain better as authored signals than as headline statistics.
 
 ## Follow-On
 
-The next campaign step is slice 5:
+Slice 5 is now also implemented:
 
-- compare the new CV top with the homepage top summary
-- decide whether the homepage summary should stay as-is or be lightly retuned
+- the homepage top summary was reviewed against the new CV `Overview`
+- the homepage prose was lightly retuned rather than structurally rewritten
 
 One later note remains open:
 

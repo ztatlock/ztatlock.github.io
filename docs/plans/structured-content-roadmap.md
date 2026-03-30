@@ -126,7 +126,7 @@ Another important scoping note:
 - the current `site/pubs/index.dj` lists 69 entries
 - all 69 indexed publications now have canonical local bundles under
   `site/pubs/`
-- 48 of those bundles are currently minimal `detail_page: false` records
+- 48 of those bundles are currently minimal `local_page: false` records
 
 So the publications campaign has been an explicitly staged project.
 It separated:
@@ -467,7 +467,7 @@ Funding follow-on work should continue separately as:
 
 Publication follow-on work should continue separately as:
 
-- local artifact enrichment for thinner `detail_page: false` bundles
+- local artifact enrichment for thinner `local_page: false` bundles
 - narrower downstream reuse where publication bundle truth clearly earns it
 - no automatic broadening of the publication bundle boundary just to absorb
   the authored CV `Book Chapters` entry
@@ -482,11 +482,14 @@ Teaching and service follow-on work should continue separately as:
 - later homepage consumer cleanup once that cross-cutting work clearly earns
   its keep
 
-The main remaining cross-domain maintenance seams are now:
+The main remaining cross-domain maintenance seams are now narrower:
 
-- the authored top-of-CV `Overview` / executive-summary layer
 - the publication-boundary question around the authored CV `Book Chapters`
   subsection
+- the talks boundary question around which talks really need talk-local detail
+  pages versus index-only bundles
+- whether any later teaching-page enrollment-derived summary or visualization
+  clearly earns a public consumer
 
 Current policy note:
 

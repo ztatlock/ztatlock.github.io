@@ -1,6 +1,6 @@
 # Publication Model Proposal B: Semantic Objects
 
-Status: proposal draft
+Status: historical alternative kept for comparison
 
 It builds on:
 

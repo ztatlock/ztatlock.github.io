@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-29.
+Last updated: 2026-03-30.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -224,10 +224,10 @@ notes.
 - [x] Plan and implement the service CV-projection slice so the duplicated service subsection bodies in `site/cv/index.dj` render from `site/data/service.json` with an explicit CV-specific service view, while preserving the faculty-skit prose note and reviewing visible service-section changes against rendered HTML (`docs/plans/cv-campaign.md`, `docs/plans/cv-slice-4-service-projection.md`, `site/data/service.json`, `site/cv/index.dj`).
 - [x] Plan and implement the indexed-publications CV-projection slice so the duplicated `Conference and Journal Papers` and `Workshop Papers` bodies in `site/cv/index.dj` render from canonical publication bundles under `site/pubs/`, while preserving the authored `Book Chapters` subsection and reviewing visible publications-section changes against rendered HTML (`docs/plans/cv-campaign.md`, `docs/plans/cv-slice-5-publications-projection.md`, `site/pubs/`, `site/cv/index.dj`).
 - [x] Plan and implement the full invited-talks CV-projection slice so the duplicated `## Invited Talks` body in `site/cv/index.dj` renders from canonical talk bundles under `site/talks/`, while preserving the heading and reviewing visible talks-section changes against rendered HTML (`docs/plans/cv-campaign.md`, `docs/plans/cv-slice-6-talks-projection.md`, `site/talks/`, `site/cv/index.dj`).
-- [ ] Work through the remaining top-of-CV executive-summary slices: audit
+- [x] Work through the top-of-CV executive-summary slices: audit
   trustworthy summary inputs and candidate stats across canonical domains,
-  compare authored shape alternatives, then rewrite the top of the CV before
-  reassessing the homepage top summary
+  compare authored shape alternatives, rewrite the top of the CV, and
+  reassess the homepage top summary
   (`docs/plans/cv-top-summary-executive-block-plan.md`,
   `docs/policy/cv-top-summary.md`, `site/cv/index.dj`,
   `site/pages/index.dj`, `docs/plans/cv-campaign.md`).
