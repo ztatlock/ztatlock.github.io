@@ -233,6 +233,14 @@ When a rewrite is in progress, prefer short iterative proposal cycles over
 large one-shot rewrites.
 Show candidate language, get review, and only then settle the live wording.
 
+When trustworthy scale facts would help the iteration, agents should consult
+the general scale-stats helper first:
+
+- `python3 -m scripts.build_scale_stats --root .`
+
+Use that report as factual drafting support, not as a projection source.
+The final visible wording should still be authored and reviewed with Zach.
+
 ## Non-Goals
 
 This policy does not require:

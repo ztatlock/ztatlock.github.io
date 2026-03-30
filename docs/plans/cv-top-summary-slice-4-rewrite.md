@@ -63,14 +63,14 @@ The live rewrite uses these audited summary statistics:
 - `8` current students and postdocs
 - `12` graduated PhD students
 - `69` indexed publications
-- `4` distinguished or spotlight papers
+- `1,600+` UW students taught over `28` course offerings
 
-These were chosen because they are the strongest currently available scale and
-distinction signals across the canonical domains.
+These were chosen because they are the strongest currently available scale
+signals across the canonical domains while still reading cleanly in an
+authored executive-summary line.
 
 The rewrite intentionally does **not** use:
 
-- teaching counts
 - service counts
 - funding totals
 - raw news counts
@@ -86,6 +86,6 @@ The next campaign step is slice 5:
 
 One later note remains open:
 
-- a future teaching-enrichment slice with enrollment numbers may eventually
-  provide stronger teaching-related summary statistics
-- that should only cause a small later refinement if it clearly earns its keep
+- if teaching-enrollment support later proves useful on the public teaching
+  page, it should be treated as a separate follow-on rather than a reason to
+  make the top of the CV more projected
