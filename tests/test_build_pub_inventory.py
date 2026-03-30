@@ -247,6 +247,65 @@ class BuildPubInventoryTests(unittest.TestCase):
             self.assertNotIn("`2025-index-only-paper`: page slides link=`-`", summary)
             self.assertNotIn("`2025-index-only-paper`: page poster link=`-`", summary)
 
+    def test_summary_pages_without_public_talk_links_matches_local_detail_scope(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir).resolve()
+            out_path = root / "publication-artifact-inventory.md"
+
+            detail_record = build_record(
+                root,
+                root / "WEBFILES",
+                "2025-detail-paper",
+                publications_dir=self._write_publication_fixture(
+                    root,
+                    "2025-detail-paper",
+                    {
+                        "title": "Detail Paper",
+                        "listing_group": "main",
+                        "pub_type": "conference",
+                        "pub_year": 2025,
+                        "pub_date": "2025-01-01",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "venue_short": "DemoConf",
+                        "description": "Demo description",
+                        "links": {},
+                        "talks": [],
+                    },
+                    local_page=True,
+                ),
+            )
+            index_only_record = build_record(
+                root,
+                root / "WEBFILES",
+                "2025-index-only-paper",
+                publications_dir=self._write_publication_fixture(
+                    root,
+                    "2025-index-only-paper",
+                    {
+                        "title": "Index Only Paper",
+                        "listing_group": "workshop",
+                        "pub_type": "workshop",
+                        "pub_year": 2025,
+                        "pub_date": "2025-01-01",
+                        "authors": [{"name": "Demo Author", "ref": ""}],
+                        "venue": "DemoConf",
+                        "venue_short": "DemoConf",
+                        "links": {},
+                        "talks": [],
+                    },
+                    local_page=False,
+                ),
+            )
+
+            write_summary(out_path, [detail_record, index_only_record], {}, root / "curation.tsv")
+            summary = out_path.read_text(encoding="utf-8")
+
+            self.assertIn("- Pages without public talk links: 1", summary)
+            self.assertIn("## Pages Without Public Talk Links", summary)
+            self.assertIn("`2025-detail-paper`", summary)
+            self.assertNotIn("`2025-index-only-paper`", summary)
+
     def _write_publication_fixture(
         self,
         root: Path,

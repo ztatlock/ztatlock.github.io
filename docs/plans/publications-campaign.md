@@ -113,10 +113,18 @@ The campaign is now at a good implementation checkpoint.
 
 Likely later follow-on work is now narrower:
 
+- a lightweight publication-artifact / `WEBFILES` cleanup pass focused on easy
+  current-repo and current-archive wins before deeper historical website
+  mining
 - publication enrichment/backfill over the settled Proposal A schema
 - the separate publication-boundary question around authored `Book Chapters`
 - targeted artifact/link enrichment such as DOI/arXiv/code decisions where
   they clearly earn their keep
+
+Current planning note for that lightweight artifact/archive pass:
+
+- [publication-artifact-webfiles-cleanup-campaign.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-artifact-webfiles-cleanup-campaign.md)
+- [publication-artifact-webfiles-slice-1-triage.md](/Users/ztatlock/www/ztatlock.github.io/docs/plans/publication-artifact-webfiles-slice-1-triage.md)
 
 Supporting review notes from this completed design pass:
 

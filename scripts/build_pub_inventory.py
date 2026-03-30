@@ -658,7 +658,10 @@ def write_summary(
         "",
         *render_list(
             records,
-            lambda r: observed_status(r, "page_talk_link") == "missing",
+            lambda r: (
+                r.local_detail_page_status == "present"
+                and observed_status(r, "page_talk_link") == "missing"
+            ),
             lambda r: (
                 f"- `{r.slug}`"
                 + (

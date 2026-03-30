@@ -25,6 +25,16 @@ notes.
 
 ## Near-Term Next Steps
 
+- [ ] Plan and execute a lightweight publication-artifact / `WEBFILES`
+  incremental cleanup campaign focused on easy current-repo and current-archive
+  wins before any broader historical-website mining pass
+  (`docs/plans/publication-artifact-webfiles-cleanup-campaign.md`,
+  `docs/plans/publication-artifact-webfiles-slice-1-triage.md`,
+  `docs/plans/publication-artifact-followup.md`,
+  `docs/policy/publication-artifacts.md`,
+  `manifests/publication-artifact-curation.tsv`,
+  `scripts/build_pub_inventory.py`, `site/pubs/`,
+  `~/Desktop/WEBFILES/inventory/`).
 - [ ] Review peer CVs from Adam Chlipala, Xavier Leroy, Nate Foster, Emina
   Torlak, Pavel Panchekha, Michael Ernst, and Derek Dreyer for structure
   inspiration and calibration before any broader CV front-matter follow-on
@@ -54,6 +64,17 @@ notes.
 
 ## Recent Completed Milestones
 
+- [x] Execute slice 1 of the lightweight publication-artifact / `WEBFILES`
+  cleanup campaign by refreshing the inventory baseline, fixing current
+  summary/detail scope mismatches in the inventory report, and partitioning the
+  backlog into immediate required fixes, easy current-source wins, mailbox
+  candidates, and explicitly deferred archive-heavy cases
+  (`docs/plans/publication-artifact-webfiles-cleanup-campaign.md`,
+  `docs/plans/publication-artifact-webfiles-slice-1-triage.md`,
+  `docs/plans/publication-artifact-followup.md`,
+  `scripts/build_pub_inventory.py`,
+  `tests/test_build_pub_inventory.py`, `state/inventory/`,
+  `manifests/publication-artifact-curation.tsv`).
 - [x] Execute teaching-enrollment slices 1-3 so the teaching loader supports
   optional offering-level enrollment, the canonical teaching ledger gains
   settled historical instructor-led UW enrollment plus Spring 2026 `CSE P590`

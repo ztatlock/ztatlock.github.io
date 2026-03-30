@@ -189,6 +189,14 @@ meant to be read, maintained, and extended over time.
   made the route-aware build authoritative.
 - `plans/publication-artifact-followup.md`
   Resume point for the current publication-artifact cleanup.
+- `plans/publication-artifact-webfiles-cleanup-campaign.md`
+  Lightweight campaign plan for inventory-guided publication-artifact and
+  `WEBFILES` cleanup, explicitly scoped to easy current-source wins before any
+  deeper historical website-mining pass.
+- `plans/publication-artifact-webfiles-slice-1-triage.md`
+  Implemented slice-1 triage note for the lightweight publication-artifact /
+  `WEBFILES` cleanup campaign, including the current easy-win batch and the
+  explicitly deferred archive-heavy cases.
 
 ### Historical Design / Campaign Notes
 
