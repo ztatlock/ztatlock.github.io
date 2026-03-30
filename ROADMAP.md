@@ -30,11 +30,12 @@ notes.
   inspiration and calibration before any broader CV front-matter follow-on
   (`docs/plans/cv-top-summary-executive-block-plan.md`, `site/cv/index.dj`,
   `site/pages/index.dj`).
-- [ ] Reframe teaching-enrollment slice 4 as a small general scale-stats
+- [x] Reframe teaching-enrollment slice 4 as a small general scale-stats
   helper for authored summary support across canonical site domains, rather
   than as a direct CV-top projection consumer
   (`docs/plans/teaching-enrollment-implementation-testing-plan.md`,
-  `docs/plans/teaching-campaign.md`, `site/data/teaching.json`,
+  `docs/plans/teaching-campaign.md`, `scripts/build_scale_stats.py`,
+  `tests/test_build_scale_stats.py`, `site/data/teaching.json`,
   `site/cv/index.dj`, `site/pages/index.dj`).
 - [ ] Revisit a possible later teaching-page bottom summary or visualization
   only after the scale-stats helper proves useful and Spring 2026 enrollment
@@ -65,6 +66,13 @@ notes.
   `docs/plans/teaching-enrollment-slice-3-consumer-review.md`,
   `site/data/teaching.json`, `scripts/teaching_record.py`,
   `tests/test_teaching_record.py`, `tests/test_page_projection.py`).
+- [x] Implement teaching-enrollment slice 4 as a general stdout-only
+  scale-stats helper for authorship support, so future CV/homepage summary
+  iteration can consult canonical student, publication, and teaching scale
+  facts without turning the authored summary surfaces themselves into
+  projections (`docs/plans/teaching-enrollment-implementation-testing-plan.md`,
+  `docs/plans/teaching-campaign.md`, `scripts/build_scale_stats.py`,
+  `tests/test_build_scale_stats.py`).
 - [x] Decide how to represent non-service research/community-participation
   honors such as Dagstuhl attendance on the site and CV so those facts are not
   lost when they are removed from canonical service: keep them in authored/news

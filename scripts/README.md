@@ -33,6 +33,10 @@ Optional personal-maintenance helper:
   `make inventory` writes a repo-local inventory snapshot under `state/inventory/`.
   `make inventory-webfiles` refreshes the personal archive copy under
   `~/Desktop/WEBFILES/inventory/`.
+- `build_scale_stats.py`
+  Prints a compact authorship-support scale report from canonical site data:
+  current/graduated student totals, indexed publications, and teaching scale
+  facts with current-quarter enrollment caveats when needed.
 - `mkpub.sh`
   Scaffolds a new publication-local record under `site/pubs/<slug>/`.
 - `check_env.sh`

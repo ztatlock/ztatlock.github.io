@@ -1,9 +1,8 @@
 # Teaching Campaign
 
 Status: public-page core, homepage recent-teaching consumer, CV teaching
-projection, staffing/layout slices, and teaching-enrollment slices 1-3
-implemented; later scale-stats helper and possible teaching-page follow-on
-remain
+projection, staffing/layout slices, and teaching-enrollment slices 1-4
+implemented; only the optional later teaching-page follow-on remains
 
 ## Goal
 
@@ -389,29 +388,23 @@ slice:
 
 ## Likely Next Follow-On
 
-The narrow teaching-enrollment import is now in place through slices 1-3.
+The narrow teaching-enrollment import plus the general scale-stats helper are
+now in place through slice 4.
 
-The next likely follow-on should **not** be direct projection into the top of
-the CV.
+The next likely follow-on, if it still proves worthwhile, is slice 5 rather
+than more CV-top summary automation.
 
-Instead, the next steps should be:
+That later slice should:
 
-- slice 4:
-  - build a small general scale-stats helper for authorship support
-  - let that helper compute trustworthy scale facts from canonical site data
-  - start with stable student, publication, and teaching scale facts rather
-    than service or external citation metrics
-  - prefer a simple stdout report over generated files in the first pass
-  - use it to support future human/agent iteration on authored summary
-    surfaces such as the CV `Overview` and homepage top matter
-  - keep those authored summary surfaces fully hand-authored
-- slice 5:
-  - only later, if it still looks worthwhile, explore a real built-site
-    teaching-page consumer
-  - likely at the bottom of `/teaching/`, not in the top-of-CV summary
-  - keep graphs, factual summary text, or distribution views as ideas rather
-    than commitments until the scale-stats helper proves useful and Spring
-    2026 enrollment closes
+- start from explicit user-facing value on `/teaching/`, not from the mere
+  existence of enrollment data
+- likely live at the bottom of `/teaching/`, not in the top-of-CV summary
+- consider compact factual summary text, graphs, or distribution views only
+  after:
+  - the scale-stats helper has proven useful in practice
+  - Spring 2026 enrollment has landed
+  - the teaching page still looks like the right public surface for a real
+    data-driven consumer
 
 Reference notes:
 

@@ -1,6 +1,6 @@
 # Teaching Enrollment Implementation / Testing Plan
 
-Status: slices 1-3 implemented; slices 4-5 replanned as later follow-on work
+Status: slices 1-4 implemented; slice 5 remains optional later follow-on work
 
 It builds on:
 
@@ -294,6 +294,24 @@ What this slice should **not** do:
 - no macro or projection insertion into [site/cv/index.dj](/Users/ztatlock/www/ztatlock.github.io/site/cv/index.dj)
 - no automatic homepage top-summary insertion
 - no teaching-page visual redesign yet
+
+This slice is now implemented in:
+
+- [build_scale_stats.py](/Users/ztatlock/www/ztatlock.github.io/scripts/build_scale_stats.py)
+- [test_build_scale_stats.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_build_scale_stats.py)
+- [scripts/README.md](/Users/ztatlock/www/ztatlock.github.io/scripts/README.md)
+
+Implemented outcome:
+
+- the repo now has a small general scale-stats helper driven by canonical site
+  data
+- it prints a simple stdout report grouped by `Students`, `Publications`, and
+  `Teaching`
+- it is human-facing and intended for authorship support, not page projection
+- it includes richer student totals and category breakdowns
+- it includes teaching caveats when in-scope offerings exist without
+  enrollment
+- no public site surface or generated page now depends on it
 
 ### Slice 5. Optional Teaching-Page Consumer Exploration
 
