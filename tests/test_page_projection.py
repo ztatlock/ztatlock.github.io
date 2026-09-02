@@ -913,6 +913,7 @@ class PageProjectionTests(unittest.TestCase):
             data_dir=root / "site" / "data",
         )
         self.assertNotIn(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertIn(": October 2026", rendered)
         self.assertIn(": August 2026", rendered)
         self.assertIn(": February 2026", rendered)
         self.assertIn(": January 2026", rendered)
@@ -1197,6 +1198,10 @@ class PageProjectionTests(unittest.TestCase):
         rendered = render_homepage_recent_publications_list_djot(
             root,
             publications_dir=root / "site" / "pubs",
+        )
+        self.assertIn(
+            "- *[Efficient Extraction for Effectful E-graphs](pubs/2026-oopsla-eggcc/)* (OOPSLA 2026)",
+            rendered,
         )
         self.assertIn(
             "- *[egg: Fast and Extensible Equality Saturation](https://dl.acm.org/doi/10.1145/3815481)* (CACM 2026)",

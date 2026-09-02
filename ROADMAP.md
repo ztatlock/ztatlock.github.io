@@ -61,10 +61,24 @@ notes.
   rather than broadening the current indexed-publication bundle model by
   inertia (`docs/plans/cv-slice-5-publications-projection.md`,
   `site/cv/index.dj`, `site/pubs/`).
+- [ ] `2026-oopsla-eggcc`, once ACM publishes: add the publisher link (DOI
+  `10.1145/3839530`, printed in the camera-ready but not yet resolving),
+  move `pub_date` to the DL date (provisionally the conference start; PACMPL
+  siblings carry the DL date, one to two weeks earlier), and record the
+  artifact badges
+  (Functional, Reusable, Results Reproduced awarded; Available pending),
+  which also settles the repo's artifact-badge wording
+  (`site/pubs/2026-oopsla-eggcc/publication.json`).
 - [ ] Derive the hand-typed scale counts in the CV `Overview` (indexed
   publications first) from canonical data, or drop them: each new bundle
   currently stales the authored number (`site/cv/index.dj`,
   `scripts/build_scale_stats.py`, `docs/policy/cv-top-summary.md`).
+- [ ] Make the seed-pin tests assert properties instead of snapshots, so a
+  new bundle or news record stops re-typing counts and head keys: news
+  records sorted and unique by key, the homepage windows derived from the
+  same rule the renderer uses, the CV overview count equal to the
+  scale-stats helper (`tests/test_news_record.py`,
+  `tests/test_page_projection.py`, `scripts/build_scale_stats.py`).
 - [ ] Validate two corpus-wide publication properties that nothing checks
   today: `venue` carries no trailing `(SHORT)`, and each `venue_short` maps
   to exactly one `venue` and `pub_type` (`scripts/publication_record.py`,

@@ -1,0 +1,56 @@
+{
+  "local_page": true,
+  "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2026,
+  "pub_date": "2026-10-04",
+  "title": "Efficient Extraction for Effectful E-graphs",
+  "authors": [
+    {
+      "name": "Oliver Flatt",
+      "ref": "Oliver Flatt"
+    },
+    {
+      "name": "Anjali Pal",
+      "ref": "Anjali Pal"
+    },
+    {
+      "name": "Yihong Zhang",
+      "ref": "Yihong Zhang"
+    },
+    {
+      "name": "Ryan Tjoa",
+      "ref": "Ryan Tjoa"
+    },
+    {
+      "name": "Kirsten Graham",
+      "ref": "Kirsten Graham"
+    },
+    {
+      "name": "Alex Fischman",
+      "ref": "Alex Fischman"
+    },
+    {
+      "name": "Chandrakana Nandi",
+      "ref": "Chandrakana Nandi"
+    },
+    {
+      "name": "Eli Rosenthal",
+      "ref": "Eli Rosenthal"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Haobin Ni",
+      "ref": "Haobin Ni"
+    }
+  ],
+  "venue": "Object-Oriented Programming, Systems, Languages & Applications",
+  "venue_short": "OOPSLA",
+  "description": "Statewalk DP makes effect-aware e-graph extraction fast without ILP: the problem is NP-complete in general but tractable in statewalk width, and in eggcc, an e-graph compiler for imperative Bril programs, extraction is no longer the bottleneck.",
+  "links": {
+    "code": "https://github.com/egraphs-good/eggcc"
+  }
+}

@@ -1,6 +1,14 @@
 {
   "records": [
     {
+      "key": "2026-10-eggcc-oopsla",
+      "year": 2026,
+      "month": 10,
+      "kind": "talk",
+      "emoji": "🗣️",
+      "body_djot": "[Oliver][Oliver Flatt] is presenting [eggcc](pubs/2026-oopsla-eggcc/) at [OOPSLA 2026](https://2026.splashcon.org/track/oopsla-2026)."
+    },
+    {
       "key": "2026-08-cacm-research-highlight-egg",
       "year": 2026,
       "month": 8,

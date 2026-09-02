@@ -28,8 +28,8 @@ class NewsRecordTests(unittest.TestCase):
         records = load_news_records(ROOT)
         by_key = {record.key: record for record in records}
 
-        self.assertEqual(len(records), 24)
-        self.assertEqual(records[0].key, "2026-08-cacm-research-highlight-egg")
+        self.assertEqual(len(records), 25)
+        self.assertEqual(records[0].key, "2026-10-eggcc-oopsla")
         self.assertEqual(records[-1].key, "2017-08-neutrons-feature")
         self.assertEqual(by_key["2025-02-sigplan-research-highlights-egg"].kind, "recognition")
         self.assertEqual(by_key["2023-10-haploid-release"].kind, "release")
