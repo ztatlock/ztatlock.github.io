@@ -143,11 +143,9 @@ Invariant after slice 1:
 Turn the already completed review/audit work into explicit migration inputs for
 the real indexed corpus.
 
-This slice is now implemented in a checked-in migration manifest plus focused
-coverage tests:
-
-- [publication-model-a-migration.tsv](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-model-a-migration.tsv)
-- [test_publication_model_a_migration.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_model_a_migration.py)
+The migration inputs this slice produced live only in the canonical bundles
+under `site/pubs/`; a checked-in table restating them would be a second
+source of truth.
 
 Scope:
 
@@ -210,7 +208,6 @@ This slice is now implemented directly in the live publication path:
 - [page_source.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_source.py)
 - [page_metadata.py](/Users/ztatlock/www/ztatlock.github.io/scripts/page_metadata.py)
 - [route_discovery.py](/Users/ztatlock/www/ztatlock.github.io/scripts/sitebuild/route_discovery.py)
-- [publication-model-a-migration.tsv](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-model-a-migration.tsv)
 - canonical bundle data under [site/pubs/](/Users/ztatlock/www/ztatlock.github.io/site/pubs/)
 
 Scope:

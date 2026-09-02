@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-03-30.
+Last updated: 2026-09-02.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -61,6 +61,10 @@ notes.
   rather than broadening the current indexed-publication bundle model by
   inertia (`docs/plans/cv-slice-5-publications-projection.md`,
   `site/cv/index.dj`, `site/pubs/`).
+- [ ] Validate two corpus-wide publication properties that nothing checks
+  today: `venue` carries no trailing `(SHORT)`, and each `venue_short` maps
+  to exactly one `venue` and `pub_type` (`scripts/publication_record.py`,
+  `site/pubs/`).
 
 ## Recent Completed Milestones
 

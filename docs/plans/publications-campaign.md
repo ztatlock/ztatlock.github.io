@@ -88,10 +88,8 @@ module and focused tests:
 - [publication_record.py](/Users/ztatlock/www/ztatlock.github.io/scripts/publication_record.py)
 - [test_publication_record.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_record.py)
 
-Its slice-2 corpus migration decisions are also now explicit and checked in:
-
-- [publication-model-a-migration.tsv](/Users/ztatlock/www/ztatlock.github.io/manifests/publication-model-a-migration.tsv)
-- [test_publication_model_a_migration.py](/Users/ztatlock/www/ztatlock.github.io/tests/test_publication_model_a_migration.py)
+Its slice-2 corpus migration decisions are carried directly by the canonical
+bundles under `site/pubs/`.
 
 That coordinated slice-3 cutover is now implemented:
 
