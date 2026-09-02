@@ -61,6 +61,10 @@ notes.
   rather than broadening the current indexed-publication bundle model by
   inertia (`docs/plans/cv-slice-5-publications-projection.md`,
   `site/cv/index.dj`, `site/pubs/`).
+- [ ] Derive the hand-typed scale counts in the CV `Overview` (indexed
+  publications first) from canonical data, or drop them: each new bundle
+  currently stales the authored number (`site/cv/index.dj`,
+  `scripts/build_scale_stats.py`, `docs/policy/cv-top-summary.md`).
 - [ ] Validate two corpus-wide publication properties that nothing checks
   today: `venue` carries no trailing `(SHORT)`, and each `venue_short` maps
   to exactly one `venue` and `pub_type` (`scripts/publication_record.py`,

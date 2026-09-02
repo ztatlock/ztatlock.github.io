@@ -1,6 +1,14 @@
 {
   "records": [
     {
+      "key": "2026-08-cacm-research-highlight-egg",
+      "year": 2026,
+      "month": 8,
+      "kind": "recognition",
+      "emoji": "🗣️",
+      "body_djot": "Our POPL paper on egg is now a [CACM Research Highlight](https://dl.acm.org/doi/10.1145/3815481), with a [Technical Perspective](https://dl.acm.org/doi/10.1145/3816032) by [Nadia][Nadia Polikarpova]!"
+    },
+    {
       "key": "2026-02-brown-talk",
       "year": 2026,
       "month": 2,

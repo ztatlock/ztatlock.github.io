@@ -913,9 +913,10 @@ class PageProjectionTests(unittest.TestCase):
             data_dir=root / "site" / "data",
         )
         self.assertNotIn(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertIn(": August 2026", rendered)
         self.assertIn(": February 2026", rendered)
         self.assertIn(": January 2026", rendered)
-        self.assertIn(": June 2025", rendered)
+        self.assertNotIn(": June 2025", rendered)
         self.assertNotIn(": February 2025", rendered)
         self.assertNotIn(": October 2023", rendered)
         self.assertIn("Please see [past news](news/) for more.", rendered)
@@ -1198,13 +1199,14 @@ class PageProjectionTests(unittest.TestCase):
             publications_dir=root / "site" / "pubs",
         )
         self.assertIn(
-            "- *[Target-Aware Implementation of Real Expressions](https://dl.acm.org/doi/10.1145/3669940.3707277)* (ASPLOS 2025)",
+            "- *[egg: Fast and Extensible Equality Saturation](https://dl.acm.org/doi/10.1145/3815481)* (CACM 2026)",
             rendered,
         )
         self.assertIn(
-            "- *[Better Together: Unifying Datalog and Equality Saturation](pubs/2023-pldi-egglog/)* (PLDI 2023)",
+            "- *[Target-Aware Implementation of Real Expressions](https://dl.acm.org/doi/10.1145/3669940.3707277)* (ASPLOS 2025)",
             rendered,
         )
+        self.assertNotIn("Better Together: Unifying Datalog and Equality Saturation", rendered)
         self.assertNotIn("Small Proofs from Congruence Closure", rendered)
 
     def test_applies_projection_only_to_homepage_recent_publications_section(self) -> None:

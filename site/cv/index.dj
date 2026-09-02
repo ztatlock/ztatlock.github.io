@@ -17,7 +17,7 @@ software easier to build and reason about. My work combines formal semantics
 and verification with practical systems, tools, and measurements.
 
 Current scale: **8** current students and postdocs; **12** graduated PhD
-students; **69** indexed publications; **1,600+** UW students taught over
+students; **70** indexed publications; **1,600+** UW students taught over
 **28** course offerings.
 
 - Current leadership includes service on the PLDI Steering Committee and the
@@ -27,6 +27,8 @@ students; **69** indexed publications; **1,600+** UW students taught over
   at Brown University, February 2026.
 - Recent paper: [*Target-Aware Implementation of Real Expressions*](https://dl.acm.org/doi/10.1145/3669940.3707277)
   (ASPLOS 2025).
+- egg selected as a [CACM Research Highlight](https://dl.acm.org/doi/10.1145/3815481)
+  (2026).
 - Participated in [Dagstuhl Seminar 26022: EGRAPHS](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26022),
   January 2026.
 
