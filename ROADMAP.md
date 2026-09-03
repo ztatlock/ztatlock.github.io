@@ -61,6 +61,17 @@ notes.
   rather than broadening the current indexed-publication bundle model by
   inertia (`docs/plans/cv-slice-5-publications-projection.md`,
   `site/cv/index.dj`, `site/pubs/`).
+- [ ] Add the UIST 2026 paper *Codetations: Rich, Granular, and Maintainable
+  Annotations for Evolving Code* as a local-page bundle
+  (`site/pubs/2026-uist-codetations/`) once the byline is confirmed with
+  the authors: the final PDF, abstract, bib with the printed DOI
+  (`10.1145/3830398.3830552`), and Figure 1 as preview; `pub_date`
+  provisionally the conference start (Nov 2) until the DL date is known;
+  publisher link held until the DOI resolves; a `people.json` entry for
+  Erik Vank; a November news record; CV count to 72 with the `Overview`'s
+  "Recent paper" line staying on the OOPSLA paper (editorial choice)
+  (`site/pubs/`, `site/data/people.json`, `site/data/news.json`,
+  `site/cv/index.dj`).
 - [ ] `2026-oopsla-eggcc`, once ACM publishes: add the publisher link (DOI
   `10.1145/3839530`, printed in the camera-ready but not yet resolving),
   move `pub_date` to the DL date (provisionally the conference start; PACMPL
