@@ -269,6 +269,12 @@
           "description_djot": "exploring specification, invariants, testing, debugging, modular design",
           "offerings": [
             {
+              "year": 2026,
+              "term": "Autumn",
+              "url": "https://courses.cs.washington.edu/courses/cse331/26au/",
+              "co_instructors": ["james-wilcox"]
+            },
+            {
               "year": 2024,
               "term": "Winter",
               "url": "https://courses.cs.washington.edu/courses/cse331/24wi/",
@@ -377,7 +383,7 @@
             }
           ],
           "details": [
-            "Proof assistants, dependent types, and systems verificiation"
+            "Proof assistants, dependent types, and systems verification"
           ]
         }
       ]
