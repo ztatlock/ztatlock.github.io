@@ -913,6 +913,7 @@ class PageProjectionTests(unittest.TestCase):
             data_dir=root / "site" / "data",
         )
         self.assertNotIn(HOMEPAGE_NEWS_MONTH_GROUPS_PLACEHOLDER, rendered)
+        self.assertIn(": November 2026", rendered)
         self.assertIn(": October 2026", rendered)
         self.assertIn(": August 2026", rendered)
         self.assertIn(": February 2026", rendered)
@@ -1198,6 +1199,10 @@ class PageProjectionTests(unittest.TestCase):
         rendered = render_homepage_recent_publications_list_djot(
             root,
             publications_dir=root / "site" / "pubs",
+        )
+        self.assertIn(
+            "- *[Codetations: Rich, Granular, and Maintainable Annotations for Evolving Code](pubs/2026-uist-codetations/)* (UIST 2026)",
+            rendered,
         )
         self.assertIn(
             "- *[Efficient Extraction for Effectful E-graphs](pubs/2026-oopsla-eggcc/)* (OOPSLA 2026)",

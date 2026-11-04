@@ -37,7 +37,7 @@ class PeopleRegistryTests(unittest.TestCase):
             ("gus-smith", "Gus Smith", ("Gus Henry Smith",)),
             ("gilbert-bernstein", "Gilbert Bernstein", ("Gilbert Louis Bernstein",)),
             ("remy-wang", "Remy Wang", ("Yisu Remy Wang",)),
-            ("steven-tanimoto", "Steve Tanimoto", ("Steven L. Tanimoto",)),
+            ("steven-tanimoto", "Steve Tanimoto", ("Steven L. Tanimoto", "Steven Tanimoto")),
             ("michael-ernst", "Mike Ernst", ("Michael Ernst", "Michael D. Ernst")),
         )
 

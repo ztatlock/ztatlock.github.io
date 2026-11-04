@@ -1,0 +1,36 @@
+{
+  "local_page": true,
+  "listing_group": "main",
+  "pub_type": "conference",
+  "pub_year": 2026,
+  "pub_date": "2026-11-01",
+  "title": "Codetations: Rich, Granular, and Maintainable Annotations for Evolving Code",
+  "authors": [
+    {
+      "name": "Edward Misback",
+      "ref": "Edward Misback"
+    },
+    {
+      "name": "Eunice Jun",
+      "ref": "Eunice Jun"
+    },
+    {
+      "name": "Erik Vank"
+    },
+    {
+      "name": "Zachary Tatlock",
+      "ref": "Zachary Tatlock"
+    },
+    {
+      "name": "Steven Tanimoto",
+      "ref": "Steve Tanimoto"
+    }
+  ],
+  "venue": "ACM Symposium on User Interface Software and Technology",
+  "venue_short": "UIST",
+  "description": "Codetations is a VSCode extension for persistent, interactive annotations on arbitrary code spans, kept outside the source file and anchored by editor tracking plus LLM-based semantic matching as code evolves.",
+  "links": {
+    "code": "https://github.com/elmisback/magic-markup",
+    "publisher": "https://dl.acm.org/doi/10.1145/3830398.3830552"
+  }
+}

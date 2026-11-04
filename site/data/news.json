@@ -1,6 +1,14 @@
 {
   "records": [
     {
+      "key": "2026-11-codetations-uist",
+      "year": 2026,
+      "month": 11,
+      "kind": "talk",
+      "emoji": "🗣️",
+      "body_djot": "[Edward][Edward Misback] is presenting [Codetations](pubs/2026-uist-codetations/) at [UIST 2026](https://uist.acm.org/2026/)."
+    },
+    {
       "key": "2026-10-eggcc-oopsla",
       "year": 2026,
       "month": 10,

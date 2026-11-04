@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-11-03.
+Last updated: 2026-11-04.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -61,17 +61,12 @@ notes.
   rather than broadening the current indexed-publication bundle model by
   inertia (`docs/plans/cv-slice-5-publications-projection.md`,
   `site/cv/index.dj`, `site/pubs/`).
-- [ ] Add the UIST 2026 paper *Codetations: Rich, Granular, and Maintainable
-  Annotations for Evolving Code* as a local-page bundle
-  (`site/pubs/2026-uist-codetations/`) once the byline is confirmed with
-  the authors: the final PDF, abstract, bib with the printed DOI
-  (`10.1145/3830398.3830552`), and Figure 1 as preview; `pub_date`
-  provisionally the conference start (Nov 2) until the DL date is known;
-  publisher link held until the DOI resolves; a `people.json` entry for
-  Erik Vank; a November news record; CV count to 72 with the `Overview`'s
-  "Recent paper" line staying on the OOPSLA paper (editorial choice)
-  (`site/pubs/`, `site/data/people.json`, `site/data/news.json`,
-  `site/cv/index.dj`).
+- [x] Add the UIST 2026 paper *Codetations: Rich, Granular, and Maintainable
+  Annotations for Evolving Code* as a local-page bundle once ACM published
+  it, with the CV count to 72 and the `Overview`'s "Recent paper" line
+  staying on the OOPSLA paper (editorial choice)
+  (`site/pubs/2026-uist-codetations/`, `site/data/people.json`,
+  `site/data/news.json`, `site/cv/index.dj`).
 - [x] `2026-oopsla-eggcc` once ACM published it: the publisher link and
   the DL `pub_date`; artifact-evaluation badges stay off the site, so
   `badges` holds honors only
@@ -90,6 +85,9 @@ notes.
   today: `venue` carries no trailing `(SHORT)`, and each `venue_short` maps
   to exactly one `venue` and `pub_type` (`scripts/publication_record.py`,
   `site/pubs/`).
+- [ ] Extend the linkless-ref guard to publication author `ref`s: a ref to
+  a linkless person renders an empty `<a>` and `make verify` still passes
+  (`scripts/sitebuild/source_validate.py`, `scripts/publication_record.py`).
 
 ## Recent Completed Milestones
 
