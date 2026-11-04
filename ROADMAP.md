@@ -1,6 +1,6 @@
 # ROADMAP
 
-Last updated: 2026-09-02.
+Last updated: 2026-11-03.
 
 This is the working checklist for maintenance and collaboration.
 Use this file as the actionable backlog for concrete repo tasks.
@@ -72,13 +72,9 @@ notes.
   "Recent paper" line staying on the OOPSLA paper (editorial choice)
   (`site/pubs/`, `site/data/people.json`, `site/data/news.json`,
   `site/cv/index.dj`).
-- [ ] `2026-oopsla-eggcc`, once ACM publishes: add the publisher link (DOI
-  `10.1145/3839530`, printed in the camera-ready but not yet resolving),
-  move `pub_date` to the DL date (provisionally the conference start; PACMPL
-  siblings carry the DL date, one to two weeks earlier), and record the
-  artifact badges
-  (Functional, Reusable, Results Reproduced awarded; Available pending),
-  which also settles the repo's artifact-badge wording
+- [x] `2026-oopsla-eggcc` once ACM published it: the publisher link and
+  the DL `pub_date`; artifact-evaluation badges stay off the site, so
+  `badges` holds honors only
   (`site/pubs/2026-oopsla-eggcc/publication.json`).
 - [ ] Derive the hand-typed scale counts in the CV `Overview` (indexed
   publications first) from canonical data, or drop them: each new bundle

@@ -3,7 +3,7 @@
   "listing_group": "main",
   "pub_type": "conference",
   "pub_year": 2026,
-  "pub_date": "2026-10-04",
+  "pub_date": "2026-10-01",
   "title": "Efficient Extraction for Effectful E-graphs",
   "authors": [
     {
@@ -51,6 +51,7 @@
   "venue_short": "OOPSLA",
   "description": "Statewalk DP makes effect-aware e-graph extraction fast without ILP: the problem is NP-complete in general but tractable in statewalk width, and in eggcc, an e-graph compiler for imperative Bril programs, extraction is no longer the bottleneck.",
   "links": {
-    "code": "https://github.com/egraphs-good/eggcc"
+    "code": "https://github.com/egraphs-good/eggcc",
+    "publisher": "https://dl.acm.org/doi/10.1145/3839530"
   }
 }
